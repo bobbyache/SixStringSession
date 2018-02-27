@@ -6,31 +6,36 @@ using System.Threading.Tasks;
 
 namespace CygSoft.SmartSession.GoalManagement
 {
-    public class SpeedDrivenTask
+    public class SpeedDrivenTask : GoalTask
     {
         private int currentSpeed;
-        private int minutesRecorded;
         private int speedIncrement;
         private int targetSpeed;
-        private int weighting;
 
-        public SpeedDrivenTask(int minutesRecorded, int currentSpeed, int targetSpeed, int speedIncrement, int weighting)
+        public SpeedDrivenTask(int weighting, int minutesRecorded, int currentSpeed, int targetSpeed, int speedIncrement)
+            : base(weighting, minutesRecorded)
         {
-            this.minutesRecorded = minutesRecorded;
             this.currentSpeed = currentSpeed;
             this.targetSpeed = targetSpeed;
             this.speedIncrement = speedIncrement;
-            this.weighting = weighting;
         }
 
         public int CurrentSpeed => currentSpeed;
-
-        public int MinutesRecorded => minutesRecorded;
 
         public int SpeedIncrement => speedIncrement;
 
         public int TargetSpeed => targetSpeed;
 
-        public int Weighting => weighting;
+        public override int PercentCompleted
+        {
+            get
+            {
+                // The idea is that if one starts off with a metronome speed of 50, but your 
+                // target metronome speed is 90, and your currently checked off speed is 70, then your percentage will be...
+                // ((90 - 70) / (90 - 50)) * 100 ...
+                throw new NotImplementedException();
+            }
+        }
+
     }
 }

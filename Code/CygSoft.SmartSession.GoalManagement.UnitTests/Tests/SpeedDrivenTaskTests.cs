@@ -18,7 +18,7 @@ namespace CygSoft.SmartSession.GoalManagement.UnitTests.Tests
             int targetSpeed = 80;
             int speedIncrement = 5; // how much to increment toward target speed when the current speed is mastered.
             int weighting = 10;     // in percent.
-            SpeedDrivenTask speedTask = new SpeedDrivenTask(minutesRecorded, currentSpeed, targetSpeed, speedIncrement, weighting);
+            SpeedDrivenTask speedTask = new SpeedDrivenTask(weighting, minutesRecorded, currentSpeed, targetSpeed, speedIncrement);
 
             Assert.AreEqual(minutesRecorded, speedTask.MinutesRecorded);
             Assert.AreEqual(currentSpeed, speedTask.CurrentSpeed);

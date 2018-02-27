@@ -41,6 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Goal.cs" />
+    <Compile Include="GoalTask.cs" />
+    <Compile Include="PercentDrivenTask.cs" />
     <Compile Include="SpeedDrivenTask.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
