@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CygSoft.SmartSession.GoalManagement.UnitTests
+namespace CygSoft.SmartSession.GoalManagement.UnitTests.Tests
 {
     [TestFixture]
     public class GoalTests
