@@ -68,6 +68,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CygSoft.SmartSession.GoalManagement.Infrastructure\CygSoft.SmartSession.GoalManagement.Infrastructure.csproj">
+      <Project>{26f5ecf2-47a5-481d-b9ad-e128b19f9eed}</Project>
+      <Name>CygSoft.SmartSession.GoalManagement.Infrastructure</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CygSoft.SmartSession.GoalManagement\CygSoft.SmartSession.GoalManagement.csproj">
       <Project>{5e5c771f-a122-423a-8cc3-27488e9e054a}</Project>
       <Name>CygSoft.SmartSession.GoalManagement</Name>

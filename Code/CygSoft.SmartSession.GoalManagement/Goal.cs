@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CygSoft.SmartSession.GoalManagement.Infrastructure;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,14 +7,6 @@ using System.Threading.Tasks;
 
 namespace CygSoft.SmartSession.GoalManagement
 {
-    public interface IGoalTask
-    {
-    }
-
-    public interface IGoalFile
-    {
-    }
-
     internal class Goal
     {
         private IGoalFile[] goalFiles;

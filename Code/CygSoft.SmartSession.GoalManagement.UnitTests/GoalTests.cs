@@ -1,4 +1,5 @@
-﻿using Moq;
+﻿using CygSoft.SmartSession.GoalManagement.Infrastructure;
+using Moq;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
