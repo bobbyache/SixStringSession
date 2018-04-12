@@ -16,7 +16,36 @@ namespace CygSoft.SmartSession.GoalManagement.UnitTests.Tests
         public void Goal_New_Has_No_Minutes_Recorded()
         {
             Goal goal = new Goal();
-            Assert.AreEqual(0, goal.MinutesRecorded);
+            Assert.AreEqual(0, goal.MinutesPracticed);
+        }
+
+        [Test]
+        public void Goal_New_Has_Zero_TaskCount()
+        {
+            Goal goal = new Goal();
+            Assert.AreEqual(0, goal.TaskCount);
+        }
+
+        [Test]
+        public void Goal_New_Has_Zero_Weighting()
+        {
+            Goal goal = new Goal();
+            Assert.AreEqual(0, goal.Weighting);
+        }
+
+        [Test]
+        public void Goal_New_Has_Set_CreateDate()
+        {
+            Goal goal = new Goal();
+            Assert.AreNotEqual(DateTime.MinValue, goal.CreateDate);
+            Assert.AreNotEqual(DateTime.MaxValue, goal.CreateDate);
+        }
+
+        [Test]
+        public void Goal_New_Is_Not_Considered_Complete()
+        {
+            Goal goal = new Goal();
+            Assert.AreEqual(false, goal.IsConsideredComplete);
         }
 
         [Test]
@@ -36,7 +65,7 @@ namespace CygSoft.SmartSession.GoalManagement.UnitTests.Tests
             };
             
             Goal goal = new Goal(minutesRecorded, goalTasks, goalFiles);
-            Assert.AreEqual(12, goal.MinutesRecorded);
+            Assert.AreEqual(12, goal.MinutesPracticed);
             Assert.AreEqual(2, goal.FileCount);
             Assert.AreEqual(2, goal.Files.Length);
             Assert.AreEqual(2, goal.TaskCount);

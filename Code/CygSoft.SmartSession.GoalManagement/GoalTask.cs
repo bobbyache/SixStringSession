@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CygSoft.SmartSession.GoalManagement.Infrastructure;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,18 +7,20 @@ using System.Threading.Tasks;
 
 namespace CygSoft.SmartSession.GoalManagement
 {
-    public abstract class GoalTask
+    public abstract class GoalTask : IGoalTask
     {
-        private int minutesRecorded;
-        private int weighting;
+        public int MinutesPracticed => 0;
 
-        public int MinutesRecorded => minutesRecorded;
-        public int Weighting => weighting;
+        public int Weighting => 0;
 
-        public GoalTask(int weighting, int minutesRecorded)
+        public DateTime CreateDate { get; private set; }
+
+        // inferred by whatever the first session result is...
+        public DateTime? StartDate => null;
+
+        public GoalTask()
         {
-            this.minutesRecorded = minutesRecorded;
-            this.weighting = weighting;
+            CreateDate = DateTime.Now;
         }
 
         public abstract int PercentCompleted { get; }

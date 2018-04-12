@@ -12,11 +12,14 @@ namespace CygSoft.SmartSession.GoalManagement
         private IGoalFile[] goalFiles;
         private IGoalTask[] goalTasks;
 
-        public Goal() { }
+        public Goal()
+        {
+            CreateDate = DateTime.Now;
+        }
 
         internal Goal(int minutesRecorded, IGoalTask[] goalTasks, IGoalFile[] goalFiles)
         {
-            MinutesRecorded = minutesRecorded;
+            MinutesPracticed = minutesRecorded;
             this.goalTasks = goalTasks;
             this.goalFiles = goalFiles;
         }
@@ -24,8 +27,24 @@ namespace CygSoft.SmartSession.GoalManagement
         public double FileCount => goalFiles.Count();
 
         public IGoalFile[] Files => goalFiles;
-        public int MinutesRecorded { get; internal set; }
-        public double TaskCount => goalTasks.Count();
+        public int MinutesPracticed { get; internal set; }
+
+        public DateTime CreateDate { get; private set; }
+
+        public int Weighting => 0;
+
+        public bool IsConsideredComplete => false;
+
+        public int TaskCount
+        {
+            get
+            {
+                if (goalTasks != null)
+                    return goalTasks.Count();
+                return 0;
+            }
+        }
+
         public IGoalTask[] Tasks => goalTasks;
     }
 }

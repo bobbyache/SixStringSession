@@ -40,10 +40,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DurationGoalTask.cs" />
     <Compile Include="Goal.cs" />
     <Compile Include="GoalTask.cs" />
-    <Compile Include="PercentDrivenTask.cs" />
-    <Compile Include="SpeedDrivenTask.cs" />
+    <Compile Include="PercentGoalTask.cs" />
+    <Compile Include="MetronomeGoalTask.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
