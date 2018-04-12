@@ -8,9 +8,8 @@ namespace CygSoft.SmartSession.GoalManagement
 {
     public class PercentGoalTask : GoalTask
     {
-        public PercentGoalTask() : base()
+        public PercentGoalTask(string title) : base(title)
         {
-
         }
 
         public override int PercentCompleted => 0;

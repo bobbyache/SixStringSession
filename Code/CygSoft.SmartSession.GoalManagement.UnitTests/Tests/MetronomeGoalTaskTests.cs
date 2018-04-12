@@ -13,35 +13,35 @@ namespace CygSoft.SmartSession.GoalManagement.UnitTests.Tests
         [Test]
         public void New_MetronomeGoalTask_StartDate_IsNull()
         {
-            MetronomeGoalTask task = new MetronomeGoalTask();
+            MetronomeGoalTask task = new MetronomeGoalTask("Task 1");
             Assert.That(task.StartDate, Is.Null);
         }
 
         [Test]
         public void New_MetronomeGoalTask_CreateDate_IsSet()
         {
-            MetronomeGoalTask task = new MetronomeGoalTask();
+            MetronomeGoalTask task = new MetronomeGoalTask("Task 1");
             Assert.That(task.CreateDate, Is.Not.EqualTo(DateTime.MinValue));
         }
 
         [Test]
         public void New_MetronomeGoalTask_Has_0_MinutesPracticed()
         {
-            MetronomeGoalTask task = new MetronomeGoalTask();
+            MetronomeGoalTask task = new MetronomeGoalTask("Task 1");
             Assert.That(task.MinutesPracticed, Is.EqualTo(0));
         }
 
         [Test]
         public void New_MetronomeGoalTask_Has_0_PercentCompleted()
         {
-            MetronomeGoalTask task = new MetronomeGoalTask();
+            MetronomeGoalTask task = new MetronomeGoalTask("Task 1");
             Assert.That(task.PercentCompleted, Is.EqualTo(0));
         }
 
         [Test]
         public void New_MetronomeGoalTask_Has_0_EffortWeighting()
         {
-            MetronomeGoalTask task = new MetronomeGoalTask();
+            MetronomeGoalTask task = new MetronomeGoalTask("Task 1");
             Assert.That(task.Weighting, Is.EqualTo(0));
         }
 

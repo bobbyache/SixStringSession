@@ -8,6 +8,10 @@ namespace CygSoft.SmartSession.GoalManagement
 {
     public class MetronomeGoalTask : GoalTask
     {
+        public MetronomeGoalTask(string title) : base(title)
+        {
+        }
+
         public int CurrentSpeed => 0;
         public int TargetSpeed => 0;
 

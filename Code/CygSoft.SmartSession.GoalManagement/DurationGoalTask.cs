@@ -8,6 +8,11 @@ namespace CygSoft.SmartSession.GoalManagement
 {
     public class DurationGoalTask : GoalTask
     {
+        public DurationGoalTask(string title) : base(title)
+        {
+
+        }
+
         public override int PercentCompleted => 0;
 
         // eg. Hour, Minute.

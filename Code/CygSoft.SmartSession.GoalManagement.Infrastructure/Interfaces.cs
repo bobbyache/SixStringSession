@@ -6,13 +6,19 @@ using System.Threading.Tasks;
 
 namespace CygSoft.SmartSession.GoalManagement.Infrastructure
 {
-    public interface IGoalTask
+    public interface IGoalTask : IWeightedEntity
     {
+        string Id { get; }
+        string Title { get; }
         DateTime CreateDate { get; }
         int MinutesPracticed { get; }
         int PercentCompleted { get; }
         DateTime? StartDate { get; }
-        int Weighting { get; }
+    }
+
+    public interface IWeightedEntity
+    {
+        double Weighting { get; }
     }
 
     public interface IGoalFile
