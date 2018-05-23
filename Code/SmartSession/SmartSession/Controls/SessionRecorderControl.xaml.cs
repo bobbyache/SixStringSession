@@ -25,6 +25,14 @@ namespace SmartSession.Controls
         {
             InitializeComponent();
             DataContext = new SessionListViewModel();
+            //SessionComboBox.SelectionChanged += cmbx_SelectionChanged;
+        }
+
+        private void Session_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            MessageBox.Show(string.Format("Value and Index has been changed to {0}",
+                ((SessionViewModel)SessionComboBox.SelectedItem).Title
+                ));
         }
     }
 }

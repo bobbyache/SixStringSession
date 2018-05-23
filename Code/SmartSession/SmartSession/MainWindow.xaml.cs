@@ -26,5 +26,7 @@ namespace SmartSession
             InitializeComponent();
             //DataContext = new MainWindowViewModel();
         }
+
+
     }
 }
