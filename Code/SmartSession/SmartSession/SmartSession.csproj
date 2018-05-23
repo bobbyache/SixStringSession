@@ -64,6 +64,9 @@
     <Compile Include="Controls\SessionRecorderControl.xaml.cs">
       <DependentUpon>SessionRecorderControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Domain\PersistableEntity.cs" />
+    <Compile Include="Domain\Session.cs" />
+    <Compile Include="Domain\SessionInstance.cs" />
     <Compile Include="ViewModels\SessionListViewModel.cs" />
     <Compile Include="ViewModels\SessionViewModel.cs" />
     <Page Include="MainWindow.xaml">

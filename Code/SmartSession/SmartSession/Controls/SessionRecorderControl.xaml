@@ -23,6 +23,13 @@
                 DisplayMemberPath="Title"
                 SelectedValuePath="Id"
                 SelectedValue="{Binding Path=PhonebookEntry}" />
+
+        <TextBlock Grid.Row="0" Margin="7">Session:</TextBlock>
+        <ComboBox Margin="5" Grid.Row="0" Grid.Column="1" ItemsSource="{Binding Path=Sessions}"
+                DisplayMemberPath="Title"
+                SelectedValuePath="Id"
+                SelectedValue="{Binding Path=PhonebookEntry}" />
+        
         <TextBlock Margin="7" Grid.Row="1">Metronome:</TextBlock>
         <TextBox Margin="5" Grid.Row="1" Grid.Column="1"
             Text="{Binding Path=ModelName}"></TextBox>
