@@ -119,6 +119,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\CygSoft.SmartSession.Application.Infrastructure\CygSoft.SmartSession.Application.Infrastructure.csproj">
+      <Project>{36f0827c-edf0-4026-8ced-e30f3350918c}</Project>
+      <Name>CygSoft.SmartSession.Application.Infrastructure</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\CygSoft.SmartSession.Application\CygSoft.SmartSession.Application.csproj">
       <Project>{b9eeff87-b24d-4e22-b1d2-752cf6dcb644}</Project>
       <Name>CygSoft.SmartSession.Application</Name>
