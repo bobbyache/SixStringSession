@@ -5,6 +5,10 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartSession", "SmartSession\SmartSession\SmartSession.csproj", "{BB4E4DF6-2638-4CFC-8151-5C9971FA7512}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CygSoft.SmartSession.Application", "CygSoft.SmartSession.Application\CygSoft.SmartSession.Application.csproj", "{B9EEFF87-B24D-4E22-B1D2-752CF6DCB644}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CygSoft.SmartSession.Application.UnitTests", "CygSoft.SmartSession.Application.UnitTests\CygSoft.SmartSession.Application.UnitTests.csproj", "{1A5ACDB9-FA14-46F0-90EC-E989A5688BAA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{BB4E4DF6-2638-4CFC-8151-5C9971FA7512}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB4E4DF6-2638-4CFC-8151-5C9971FA7512}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BB4E4DF6-2638-4CFC-8151-5C9971FA7512}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9EEFF87-B24D-4E22-B1D2-752CF6DCB644}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9EEFF87-B24D-4E22-B1D2-752CF6DCB644}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9EEFF87-B24D-4E22-B1D2-752CF6DCB644}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9EEFF87-B24D-4E22-B1D2-752CF6DCB644}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A5ACDB9-FA14-46F0-90EC-E989A5688BAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A5ACDB9-FA14-46F0-90EC-E989A5688BAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A5ACDB9-FA14-46F0-90EC-E989A5688BAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A5ACDB9-FA14-46F0-90EC-E989A5688BAA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

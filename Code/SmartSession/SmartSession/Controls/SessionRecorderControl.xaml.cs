@@ -24,12 +24,22 @@ namespace SmartSession.Controls
         public SessionRecorderControl()
         {
             InitializeComponent();
+            this.Loaded += SessionRecorderControl_Loaded;
             DataContext = new SessionListViewModel();
             //SessionComboBox.SelectionChanged += cmbx_SelectionChanged;
         }
 
+        private void SessionRecorderControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            SessionListViewModel sessionListModel = new SessionListViewModel();
+            SessionComboBox.ItemsSource = sessionListModel.Sessions;
+            // Visual has been loaded into the tree and is available for use.
+        }
+
         private void Session_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            var removedItems = e.RemovedItems;
+            var addedItems = e.AddedItems;
             MessageBox.Show(string.Format("Value and Index has been changed to {0}",
                 ((SessionViewModel)SessionComboBox.SelectedItem).Title
                 ));

@@ -64,9 +64,6 @@
     <Compile Include="Controls\SessionRecorderControl.xaml.cs">
       <DependentUpon>SessionRecorderControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Domain\PersistableEntity.cs" />
-    <Compile Include="Domain\Session.cs" />
-    <Compile Include="Domain\SessionInstance.cs" />
     <Compile Include="ViewModels\SessionListViewModel.cs" />
     <Compile Include="ViewModels\SessionViewModel.cs" />
     <Page Include="MainWindow.xaml">
@@ -120,6 +117,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\CygSoft.SmartSession.Application\CygSoft.SmartSession.Application.csproj">
+      <Project>{b9eeff87-b24d-4e22-b1d2-752cf6dcb644}</Project>
+      <Name>CygSoft.SmartSession.Application</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SmartSession.Domain
+namespace CygSoft.SmartSession.Application
 {
     public abstract class PersistableEntity
     {

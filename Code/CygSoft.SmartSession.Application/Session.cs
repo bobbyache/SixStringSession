@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SmartSession.Domain
+namespace CygSoft.SmartSession.Application
 {
     public class Session : PersistableEntity
     {
@@ -19,6 +19,12 @@ namespace SmartSession.Domain
             : base(id, dateCreated, dateModified)
         {
             Title = title;
+        }
+
+        public SessionInstance CreateRecordableInstance()
+        {
+            SessionInstance sessionInstance = new SessionInstance(Id);
+            return sessionInstance;
         }
     }
 }
