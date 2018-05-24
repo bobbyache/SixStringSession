@@ -1,6 +1,7 @@
 ﻿using SmartSession.Domain;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,15 +12,14 @@ namespace SmartSession.ViewModels
     {
         private List<Session> _sessions;
 
-        public List<SessionViewModel> Sessions
+        public ObservableCollection<SessionViewModel> Sessions
         {
             get
             {
                 Load(null);
-                return _sessions.Select(
+                return new ObservableCollection<SessionViewModel>(_sessions.Select(
                     s => new SessionViewModel() { Id = s.Id, Title = s.Title }
-                    ).ToList();
-
+                    ));
             }
         }
 
