@@ -8,6 +8,13 @@ namespace CygSoft.SmartSession.GoalManagement
 {
     public class WeightingCalculator
     {
+        public int MaxValue { get; private set; }
+
+        public WeightingCalculator(int maxValue)
+        {
+            MaxValue = maxValue;
+        }
+
         private class Weighting
         {
             public string Id { get; set; }
@@ -23,6 +30,9 @@ namespace CygSoft.SmartSession.GoalManagement
 
         public void Update(string id, int relativeValue)
         {
+            if (relativeValue > MaxValue)
+                throw new ArgumentOutOfRangeException("The relative value passed to the calculator cannot be greater than the ceiling value.");
+
             if (weightings.ContainsKey(id))
                 weightings[id].Value = relativeValue;
             else
