@@ -11,32 +11,45 @@ namespace CygSoft.SmartSession.GoalManagement
         private class Weighting
         {
             public string Id { get; set; }
-            public double Value { get; set; }
+            public int Value { get; set; }
+            public double Percentage { get; set; }
         }
 
         private Dictionary<string, Weighting> weightings = new Dictionary<string, Weighting>();
 
         public bool Exists(string id) => weightings.ContainsKey(id);
 
-        public double this[string id] => weightings[id].Value;
+        public double this[string id] => weightings[id].Percentage;
 
-        public void AddItem(string id)
+        public void Update(string id, int relativeValue)
         {
-            weightings.Add(id, new Weighting { Id = id, Value = 0 });
+            if (weightings.ContainsKey(id))
+                weightings[id].Value = relativeValue;
+            else
+                weightings.Add(id, new Weighting { Id = id, Value = relativeValue });
+
+            CalculatePercentages();
+        }
+
+        private void CalculatePercentages()
+        {
+            int total = weightings.Values.Sum(w => w.Value);
+
             foreach (var item in weightings.Values)
             {
-                item.Value = 100d / weightings.Count;
+                item.Percentage = ((double)item.Value / total) * 100;
             }
         }
 
         public void RemoveItem(string id)
         {
             weightings.Remove(id);
+            CalculatePercentages();
         }
 
         public void Change(string id, double value)
         {
-            weightings[id].Value = value;
+            CalculatePercentages();
         }
     }
 }
