@@ -46,6 +46,7 @@
     <Compile Include="PercentGoalTask.cs" />
     <Compile Include="MetronomeGoalTask.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WeightingCalculator.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CygSoft.SmartSession.GoalManagement.Infrastructure\CygSoft.SmartSession.GoalManagement.Infrastructure.csproj">
