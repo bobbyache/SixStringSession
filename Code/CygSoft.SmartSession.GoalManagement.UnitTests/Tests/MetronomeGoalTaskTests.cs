@@ -96,5 +96,11 @@ namespace CygSoft.SmartSession.GoalManagement.UnitTests.Tests
             MetronomeGoalTask task = new MetronomeGoalTask("Task 1", DateTime.Parse("2018/06/22 18:33:20"), 60, 100, results);
             Assert.That(task.MinutesPracticed, Is.EqualTo(20));
         }
+        [Test]
+        public void MetronomeSessionResult_Given_Value_Below_0_Throws_Exception()
+        {
+            TestDelegate proc = () => new MetronomeSessionResult(DateTime.Parse("2018/06/22 18:33:20"), 5, -1);
+            Assert.That(proc, Throws.TypeOf<ArgumentOutOfRangeException>());
+        }
     }
 }

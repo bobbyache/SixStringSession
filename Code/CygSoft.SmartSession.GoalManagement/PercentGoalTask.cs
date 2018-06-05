@@ -17,6 +17,18 @@ namespace CygSoft.SmartSession.GoalManagement
         {
         }
 
-        public override double PercentCompleted => 0;
+        public override double PercentCompleted
+        {
+            get
+            {
+                if (results == null)
+                    return 0;
+
+                if (results.Count == 0)
+                    return 0;
+
+                return results.OfType<PercentSessionResult>().Max(r => r.PercentCompleted);
+            }
+        }
     }
 }

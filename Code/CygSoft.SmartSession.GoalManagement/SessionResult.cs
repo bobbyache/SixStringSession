@@ -9,6 +9,9 @@ namespace CygSoft.SmartSession.GoalManagement
 
         public SessionResult(DateTime dateTime, int minutes)
         {
+            if (minutes < 0)
+                throw new ArgumentOutOfRangeException("Session minutes cannot be a negative value.");
+
             this.dateTime = dateTime;
             this.minutes = minutes;
         }

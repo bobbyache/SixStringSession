@@ -90,6 +90,13 @@ namespace CygSoft.SmartSession.GoalManagement.UnitTests.Tests
             DurationGoalTask task = new DurationGoalTask("Task 1", 60, durationSessionResults);
             Assert.That(task.MinutesPracticed, Is.EqualTo(20));
         }
+
+        [Test]
+        public void DurationSessionResult_Given_Value_Below_0_Throws_Exception()
+        {
+            TestDelegate proc = () => new DurationSessionResult(DateTime.Parse("2018/06/22 18:33:20"), -1);
+            Assert.That(proc, Throws.TypeOf<ArgumentOutOfRangeException>());
+        }
     }
 
 

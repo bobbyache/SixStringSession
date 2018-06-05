@@ -50,12 +50,53 @@ namespace CygSoft.SmartSession.GoalManagement.UnitTests.Tests
         {
             List<PercentSessionResult> results = new List<PercentSessionResult>()
             {
-                new PercentSessionResult(DateTime.Parse("2018/06/22 18:33:20"), 5),
-                new PercentSessionResult(DateTime.Parse("2018/06/22 18:33:20"), 15)
+                new PercentSessionResult(DateTime.Parse("2018/06/22 18:33:20"), 5, 40),
+                new PercentSessionResult(DateTime.Parse("2018/06/22 18:33:20"), 15, 50)
             };
 
             PercentGoalTask task = new PercentGoalTask("Task 1", results);
             Assert.That(task.MinutesPracticed, Is.EqualTo(20));
+        }
+
+        [Test]
+        public void Existing_PercentGoalTask_Presents_Last_Percent_Completed_Value()
+        {
+            List<PercentSessionResult> results = new List<PercentSessionResult>()
+            {
+                new PercentSessionResult(DateTime.Parse("2018/06/22 18:33:20"), 5, 40),
+                new PercentSessionResult(DateTime.Parse("2018/06/22 18:33:20"), 15, 50)
+            };
+
+            PercentGoalTask task = new PercentGoalTask("Task 1", results);
+            Assert.That(task.PercentCompleted, Is.EqualTo(50));
+        }
+
+        [Test]
+        public void Existing_PercentGoalTask_Presents_Last_Percent_Completed_Value_Shuffled()
+        {
+            List<PercentSessionResult> results = new List<PercentSessionResult>()
+            {
+                new PercentSessionResult(DateTime.Parse("2018/06/22 18:33:20"), 5, 70),
+                new PercentSessionResult(DateTime.Parse("2018/06/22 18:33:20"), 5, 55),
+                new PercentSessionResult(DateTime.Parse("2018/06/22 18:33:20"), 15, 50)
+            };
+
+            PercentGoalTask task = new PercentGoalTask("Task 1", results);
+            Assert.That(task.PercentCompleted, Is.EqualTo(70));
+        }
+
+        [Test]
+        public void PercentSessionResult_Given_Value_Above_100_Throws_Exception()
+        {
+            TestDelegate proc = () => new PercentSessionResult(DateTime.Parse("2018/06/22 18:33:20"), 5, 101);
+            Assert.That(proc, Throws.TypeOf<ArgumentOutOfRangeException>());
+        }
+
+        [Test]
+        public void PercentSessionResult_Given_Value_Below_0_Throws_Exception()
+        {
+            TestDelegate proc = () => new PercentSessionResult(DateTime.Parse("2018/06/22 18:33:20"), 5, -1);
+            Assert.That(proc, Throws.TypeOf<ArgumentOutOfRangeException>());
         }
     }
 }

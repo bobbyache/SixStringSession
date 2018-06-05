@@ -8,6 +8,9 @@ namespace CygSoft.SmartSession.GoalManagement
 
         public MetronomeSessionResult(DateTime dateTime, int minutes, int speed) : base(dateTime, minutes)
         {
+            if (speed < 0)
+                throw new ArgumentOutOfRangeException("Session metronome speed cannot be a negative value.");
+
             this.speed = speed;
         }
 
