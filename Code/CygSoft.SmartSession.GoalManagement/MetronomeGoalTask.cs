@@ -8,23 +8,55 @@ namespace CygSoft.SmartSession.GoalManagement
 {
     public class MetronomeGoalTask : GoalTask
     {
+        private DateTime dateTime;
+        private int targetSpeed;
+        private int startSpeed;
+        private List<MetronomeSessionResult> results;
+
         public MetronomeGoalTask(string title) : base(title)
         {
         }
 
-        public int CurrentSpeed => 0;
-        public int TargetSpeed => 0;
+        public MetronomeGoalTask(string title, DateTime dateTime, int startSpeed, int targetSpeed, List<MetronomeSessionResult> results) : this(title)
+        {
+            this.dateTime = dateTime;
+            this.targetSpeed = targetSpeed;
+            this.startSpeed = startSpeed;
+            this.results = results;
+        }
 
-        public override double PercentCompleted => 0;
-        //{
-        //    get
-        //    {
-        //        // The idea is that if one starts off with a metronome speed of 50, but your 
-        //        // target metronome speed is 90, and your currently checked off speed is 70, then your percentage will be...
-        //        // ((90 - 70) / (90 - 50)) * 100 ...
-        //        throw new NotImplementedException();
-        //    }
-        //}
+        public int CurrentSpeed
+        {
+            get
+            {
+                if (results == null)
+                    return 0;
+
+                if (results.Count == 0)
+                    return 0;
+
+                return results.OrderBy(r => r.DateCreated).Last().Speed;
+            }
+        }
+        public int TargetSpeed => targetSpeed;
+
+        public override double PercentCompleted
+        {
+            get
+            {
+                if (startSpeed > CurrentSpeed)
+                    return 0;
+
+                int numerator = CurrentSpeed - startSpeed;
+                int denominator = TargetSpeed - startSpeed;
+
+                if (denominator > 0)
+                {
+                    return ((double)numerator / denominator) * 100;
+                }
+                return 0;
+            }
+        }
 
     }
 }

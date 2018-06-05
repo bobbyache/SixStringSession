@@ -6,17 +6,10 @@ using System.Threading.Tasks;
 
 namespace CygSoft.SmartSession.GoalManagement
 {
-    public class DurationSessionResult
+    public class DurationSessionResult : SessionResult
     {
-        private DateTime dateTime;
-        private int minutes;
-
-        public DurationSessionResult(DateTime dateTime, int minutes)
+        public DurationSessionResult(DateTime dateTime, int minutes) : base(dateTime, minutes)
         {
-            this.dateTime = dateTime;
-            this.minutes = minutes;
         }
-
-        public int Minutes { get { return minutes; } }
     }
 }

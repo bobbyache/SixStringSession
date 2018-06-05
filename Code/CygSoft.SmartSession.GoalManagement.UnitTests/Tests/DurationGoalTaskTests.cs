@@ -77,6 +77,19 @@ namespace CygSoft.SmartSession.GoalManagement.UnitTests.Tests
             DurationGoalTask task = new DurationGoalTask("Task 1", 60, durationSessionResults);
             Assert.That(task.PercentCompleted, Is.InRange(33.3, 33.34));
         }
+        [Test]
+        public void Existing_DurationGoalTask_With_Adds_Up_SessionResult_Minutes_Correctly()
+        {
+            List<DurationSessionResult> durationSessionResults = new List<DurationSessionResult>()
+            {
+                new DurationSessionResult(DateTime.Parse("2018/06/22 18:33:20"), 5),
+                new DurationSessionResult(DateTime.Parse("2018/06/22 18:33:20"), 15)
+            };
+
+
+            DurationGoalTask task = new DurationGoalTask("Task 1", 60, durationSessionResults);
+            Assert.That(task.MinutesPracticed, Is.EqualTo(20));
+        }
     }
 
 
