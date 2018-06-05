@@ -48,7 +48,7 @@ namespace CygSoft.SmartSession.GoalManagement
             }
             else if (goalTaskType == GoalTaskType.Metronome)
             {
-                MetronomeGoalTask goalTask = new MetronomeGoalTask(title);
+                MetronomeGoalTask goalTask = new MetronomeGoalTask(title, 80, 120);
                 goalTasks.Add(goalTask);
                 goalTask.Weighting = 100;
                 return goalTask;

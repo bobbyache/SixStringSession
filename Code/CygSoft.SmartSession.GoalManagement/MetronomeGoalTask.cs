@@ -9,8 +9,10 @@ namespace CygSoft.SmartSession.GoalManagement
         private int targetSpeed;
         private int startSpeed;
 
-        public MetronomeGoalTask(string title) : base(title)
+        public MetronomeGoalTask(string title, int startSpeed, int targetSpeed) : base(title)
         {
+            this.targetSpeed = targetSpeed;
+            this.startSpeed = startSpeed;
         }
 
         public MetronomeGoalTask(string title, DateTime createDate, int startSpeed, int targetSpeed, List<MetronomeSessionResult> results) 
