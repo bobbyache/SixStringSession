@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CygSoft.SmartSession.GoalManagement
 {
@@ -11,18 +9,17 @@ namespace CygSoft.SmartSession.GoalManagement
         private DateTime dateTime;
         private int targetSpeed;
         private int startSpeed;
-        private List<MetronomeSessionResult> results;
 
-        public MetronomeGoalTask(string title) : base(title)
+        public MetronomeGoalTask(string title) : base(title, null)
         {
         }
 
-        public MetronomeGoalTask(string title, DateTime dateTime, int startSpeed, int targetSpeed, List<MetronomeSessionResult> results) : this(title)
+        public MetronomeGoalTask(string title, DateTime dateTime, int startSpeed, int targetSpeed, List<MetronomeSessionResult> results) 
+            : base(title, results.OfType<SessionResult>().ToList())
         {
             this.dateTime = dateTime;
             this.targetSpeed = targetSpeed;
             this.startSpeed = startSpeed;
-            this.results = results;
         }
 
         public int CurrentSpeed
@@ -35,7 +32,7 @@ namespace CygSoft.SmartSession.GoalManagement
                 if (results.Count == 0)
                     return 0;
 
-                return results.OrderBy(r => r.DateCreated).Last().Speed;
+                return results.OfType<MetronomeSessionResult>().OrderBy(r => r.DateCreated).Last().Speed;
             }
         }
         public int TargetSpeed => targetSpeed;

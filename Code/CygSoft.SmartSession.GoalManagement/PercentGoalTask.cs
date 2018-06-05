@@ -12,6 +12,11 @@ namespace CygSoft.SmartSession.GoalManagement
         {
         }
 
+        public PercentGoalTask(string title, List<PercentSessionResult> results)
+            : base(title, results.OfType<SessionResult>().ToList())
+        {
+        }
+
         public override double PercentCompleted => 0;
     }
 }

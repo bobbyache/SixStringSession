@@ -44,5 +44,18 @@ namespace CygSoft.SmartSession.GoalManagement.UnitTests.Tests
             PercentGoalTask task = new PercentGoalTask("Task 1");
             Assert.That(task.Weighting, Is.EqualTo(0));
         }
+
+        [Test]
+        public void Existing_PercentGoalTask_With_Adds_Up_SessionResult_Minutes_Correctly()
+        {
+            List<PercentSessionResult> results = new List<PercentSessionResult>()
+            {
+                new PercentSessionResult(DateTime.Parse("2018/06/22 18:33:20"), 5),
+                new PercentSessionResult(DateTime.Parse("2018/06/22 18:33:20"), 15)
+            };
+
+            PercentGoalTask task = new PercentGoalTask("Task 1", results);
+            Assert.That(task.MinutesPracticed, Is.EqualTo(20));
+        }
     }
 }

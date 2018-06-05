@@ -1,11 +1,26 @@
 ﻿using CygSoft.SmartSession.GoalManagement.Infrastructure;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace CygSoft.SmartSession.GoalManagement
 {
     public abstract class GoalTask : IGoalTask
     {
-        public int MinutesPracticed => 0;
+        protected List<SessionResult> results;
+
+        public int MinutesPracticed
+        {
+            get
+            {
+                if (results == null)
+                    return 0;
+                if (results.Count == 0)
+                    return 0;
+
+                return results.Sum(r => r.Minutes);
+            }
+        }
 
         public double Weighting { get; internal set; }
 
@@ -19,6 +34,15 @@ namespace CygSoft.SmartSession.GoalManagement
             Id = Guid.NewGuid().ToString();
             CreateDate = DateTime.Now;
             Title = title;
+            this.results = null;
+        }
+
+        public GoalTask(string title, List<SessionResult> results)
+        {
+            Id = Guid.NewGuid().ToString();
+            CreateDate = DateTime.Now;
+            Title = title;
+            this.results = results;
         }
 
         public abstract double PercentCompleted { get; }

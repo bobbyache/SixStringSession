@@ -9,27 +9,25 @@ namespace CygSoft.SmartSession.GoalManagement
     public class DurationGoalTask : GoalTask
     {
         private string title;
-        private List<DurationSessionResult> durationSessionResults;
         private int targetMinutes;
 
         public DurationGoalTask(string title) : base(title) { }
 
-        public DurationGoalTask(string title, int targetMinutes, List<DurationSessionResult> durationSessionResults)
-            : this(title)
+        public DurationGoalTask(string title, int targetMinutes, List<DurationSessionResult> results)
+            : base(title, results.OfType<SessionResult>().ToList())
         {
             this.title = title;
             this.targetMinutes = targetMinutes;
-            this.durationSessionResults = durationSessionResults;
         }
 
         public override double PercentCompleted
         {
             get
             {
-                if (durationSessionResults == null)
+                if (results == null)
                     return 0;
 
-                var minutes = durationSessionResults.Sum(t => t.Minutes);
+                var minutes = results.Sum(t => t.Minutes);
                 if (minutes > targetMinutes && targetMinutes != 0)
                     return 100;
 
