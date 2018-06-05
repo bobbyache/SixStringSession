@@ -97,6 +97,22 @@ namespace CygSoft.SmartSession.GoalManagement.UnitTests.Tests
             TestDelegate proc = () => new DurationSessionResult(DateTime.Parse("2018/06/22 18:33:20"), -1);
             Assert.That(proc, Throws.TypeOf<ArgumentOutOfRangeException>());
         }
+
+        [Test]
+        public void Existing_DurationGoalTask_Supplies_Correct_StartDate_From_SessionList()
+        {
+            DateTime expectedStartTime = DateTime.Parse("2018/03/19 12:21:01");
+
+            List<DurationSessionResult> durationSessionResults = new List<DurationSessionResult>()
+            {
+                new DurationSessionResult(DateTime.Parse("2018/06/22 18:33:20"), 5),
+                new DurationSessionResult(DateTime.Parse("2018/03/19 12:21:01"), 15)
+            };
+
+
+            DurationGoalTask task = new DurationGoalTask("Task 1", DateTime.Parse("2018/03/18 18:01:20"), 60, durationSessionResults);
+            Assert.That(task.StartDate, Is.EqualTo(expectedStartTime));
+        }
     }
 
 

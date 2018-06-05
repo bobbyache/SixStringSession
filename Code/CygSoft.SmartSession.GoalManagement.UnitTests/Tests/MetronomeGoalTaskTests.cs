@@ -102,5 +102,29 @@ namespace CygSoft.SmartSession.GoalManagement.UnitTests.Tests
             TestDelegate proc = () => new MetronomeSessionResult(DateTime.Parse("2018/06/22 18:33:20"), 5, -1);
             Assert.That(proc, Throws.TypeOf<ArgumentOutOfRangeException>());
         }
+
+        [Test]
+        public void Existing_MetronomeGoalTask_Supplies_Correct_StartDate_From_SessionList()
+        {
+            DateTime expectedStartTime = DateTime.Parse("2018/03/19 12:21:01");
+
+            List<MetronomeSessionResult> results = new List<MetronomeSessionResult>()
+            {
+                new MetronomeSessionResult(DateTime.Parse("2018/06/22 18:33:20"), 5, 60),
+                new MetronomeSessionResult(DateTime.Parse("2018/03/19 12:21:01"), 15, 60)
+            };
+
+
+            MetronomeGoalTask task = new MetronomeGoalTask("Task 1", DateTime.Parse("2018/03/18 18:01:20"), 60, 70, results);
+            Assert.That(task.StartDate, Is.EqualTo(expectedStartTime));
+        }
+
+        [Test]
+        public void MetronomeSessionResult_Given_StartValue_Higher_Than_Target_Throws_Exception()
+        {
+            TestDelegate proc = () => new MetronomeGoalTask("Title 1", DateTime.Parse("2018/06/22 18:33:20"), 61, 60, 
+                new List<MetronomeSessionResult>());
+            Assert.That(proc, Throws.TypeOf<ArgumentOutOfRangeException>());
+        }
     }
 }

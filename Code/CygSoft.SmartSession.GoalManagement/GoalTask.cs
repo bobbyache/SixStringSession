@@ -27,7 +27,17 @@ namespace CygSoft.SmartSession.GoalManagement
         public DateTime CreateDate { get; private set; }
 
         // inferred by whatever the first session result is...
-        public DateTime? StartDate => null;
+        public DateTime? StartDate
+        {
+            get
+            {
+                if (results == null)
+                    return null;
+                if (results.Count == 0)
+                    return null;
+                return results.Min(r => r.StartDate);
+            }
+        }
 
         public GoalTask(string title)
         {

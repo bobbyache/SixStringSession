@@ -98,5 +98,21 @@ namespace CygSoft.SmartSession.GoalManagement.UnitTests.Tests
             TestDelegate proc = () => new PercentSessionResult(DateTime.Parse("2018/06/22 18:33:20"), 5, -1);
             Assert.That(proc, Throws.TypeOf<ArgumentOutOfRangeException>());
         }
+
+        [Test]
+        public void Existing_PercentGoalTask_Supplies_Correct_StartDate_From_SessionList()
+        {
+            DateTime expectedStartTime = DateTime.Parse("2018/03/19 12:21:01");
+
+            List<PercentSessionResult> results = new List<PercentSessionResult>()
+            {
+                new PercentSessionResult(DateTime.Parse("2018/06/22 18:33:20"), 5, 25),
+                new PercentSessionResult(DateTime.Parse("2018/03/19 12:21:01"), 15, 32)
+            };
+
+
+            PercentGoalTask task = new PercentGoalTask("Task 1", DateTime.Parse("2018/03/18 18:01:20"), results);
+            Assert.That(task.StartDate, Is.EqualTo(expectedStartTime));
+        }
     }
 }

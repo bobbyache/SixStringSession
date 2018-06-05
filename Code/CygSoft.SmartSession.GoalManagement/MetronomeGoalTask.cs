@@ -16,6 +16,9 @@ namespace CygSoft.SmartSession.GoalManagement
         public MetronomeGoalTask(string title, DateTime createDate, int startSpeed, int targetSpeed, List<MetronomeSessionResult> results) 
             : base(title, createDate, results.OfType<SessionResult>().ToList())
         {
+            if (startSpeed > targetSpeed)
+                throw new ArgumentOutOfRangeException("Start metronome speed cannot exceed the target metronome speed.");
+
             this.targetSpeed = targetSpeed;
             this.startSpeed = startSpeed;
         }
@@ -30,7 +33,7 @@ namespace CygSoft.SmartSession.GoalManagement
                 if (results.Count == 0)
                     return 0;
 
-                return results.OfType<MetronomeSessionResult>().OrderBy(r => r.DateCreated).Last().Speed;
+                return results.OfType<MetronomeSessionResult>().OrderBy(r => r.StartDate).Last().Speed;
             }
         }
         public int TargetSpeed => targetSpeed;
