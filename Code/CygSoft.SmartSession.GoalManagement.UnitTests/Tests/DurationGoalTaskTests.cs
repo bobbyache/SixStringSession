@@ -61,7 +61,7 @@ namespace CygSoft.SmartSession.GoalManagement.UnitTests.Tests
                 new DurationSessionResult(DateTime.Parse("2018/06/22 18:33:20"), 100)
             };
 
-            DurationGoalTask task = new DurationGoalTask("Task 1", 100, durationSessionResults);
+            DurationGoalTask task = new DurationGoalTask("Task 1", DateTime.Parse("2018/06/18 18:33:20"), 100, durationSessionResults);
             Assert.That(task.PercentCompleted, Is.EqualTo(100));
         }
 
@@ -74,7 +74,7 @@ namespace CygSoft.SmartSession.GoalManagement.UnitTests.Tests
                 new DurationSessionResult(DateTime.Parse("2018/06/22 18:33:20"), 15)
             };
 
-            DurationGoalTask task = new DurationGoalTask("Task 1", 60, durationSessionResults);
+            DurationGoalTask task = new DurationGoalTask("Task 1", DateTime.Parse("2018/06/20 18:33:20"), 60, durationSessionResults);
             Assert.That(task.PercentCompleted, Is.InRange(33.3, 33.34));
         }
         [Test]
@@ -87,7 +87,7 @@ namespace CygSoft.SmartSession.GoalManagement.UnitTests.Tests
             };
 
 
-            DurationGoalTask task = new DurationGoalTask("Task 1", 60, durationSessionResults);
+            DurationGoalTask task = new DurationGoalTask("Task 1", DateTime.Parse("2018/06/18 18:33:20"), 60, durationSessionResults);
             Assert.That(task.MinutesPracticed, Is.EqualTo(20));
         }
 

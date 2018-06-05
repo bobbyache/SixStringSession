@@ -37,10 +37,10 @@ namespace CygSoft.SmartSession.GoalManagement
             this.results = null;
         }
 
-        public GoalTask(string title, List<SessionResult> results)
+        public GoalTask(string title, DateTime createDate, List<SessionResult> results)
         {
             Id = Guid.NewGuid().ToString();
-            CreateDate = DateTime.Now;
+            CreateDate = createDate;
             Title = title;
             this.results = results;
         }

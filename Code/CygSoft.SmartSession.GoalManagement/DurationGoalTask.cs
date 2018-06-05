@@ -13,8 +13,8 @@ namespace CygSoft.SmartSession.GoalManagement
 
         public DurationGoalTask(string title) : base(title) { }
 
-        public DurationGoalTask(string title, int targetMinutes, List<DurationSessionResult> results)
-            : base(title, results.OfType<SessionResult>().ToList())
+        public DurationGoalTask(string title, DateTime createDate, int targetMinutes, List<DurationSessionResult> results)
+            : base(title, createDate, results.OfType<SessionResult>().ToList())
         {
             this.title = title;
             this.targetMinutes = targetMinutes;

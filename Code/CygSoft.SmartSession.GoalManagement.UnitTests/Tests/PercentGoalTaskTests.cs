@@ -54,7 +54,7 @@ namespace CygSoft.SmartSession.GoalManagement.UnitTests.Tests
                 new PercentSessionResult(DateTime.Parse("2018/06/22 18:33:20"), 15, 50)
             };
 
-            PercentGoalTask task = new PercentGoalTask("Task 1", results);
+            PercentGoalTask task = new PercentGoalTask("Task 1", DateTime.Parse("2018/06/18 18:33:20"), results);
             Assert.That(task.MinutesPracticed, Is.EqualTo(20));
         }
 
@@ -67,7 +67,7 @@ namespace CygSoft.SmartSession.GoalManagement.UnitTests.Tests
                 new PercentSessionResult(DateTime.Parse("2018/06/22 18:33:20"), 15, 50)
             };
 
-            PercentGoalTask task = new PercentGoalTask("Task 1", results);
+            PercentGoalTask task = new PercentGoalTask("Task 1", DateTime.Parse("2018/06/18 18:33:20"), results);
             Assert.That(task.PercentCompleted, Is.EqualTo(50));
         }
 
@@ -81,7 +81,7 @@ namespace CygSoft.SmartSession.GoalManagement.UnitTests.Tests
                 new PercentSessionResult(DateTime.Parse("2018/06/22 18:33:20"), 15, 50)
             };
 
-            PercentGoalTask task = new PercentGoalTask("Task 1", results);
+            PercentGoalTask task = new PercentGoalTask("Task 1", DateTime.Parse("2018/06/18 18:33:20"), results);
             Assert.That(task.PercentCompleted, Is.EqualTo(70));
         }
 

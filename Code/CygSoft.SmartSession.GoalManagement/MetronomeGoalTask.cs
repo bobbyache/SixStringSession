@@ -6,18 +6,16 @@ namespace CygSoft.SmartSession.GoalManagement
 {
     public class MetronomeGoalTask : GoalTask
     {
-        private DateTime dateTime;
         private int targetSpeed;
         private int startSpeed;
 
-        public MetronomeGoalTask(string title) : base(title, null)
+        public MetronomeGoalTask(string title) : base(title)
         {
         }
 
-        public MetronomeGoalTask(string title, DateTime dateTime, int startSpeed, int targetSpeed, List<MetronomeSessionResult> results) 
-            : base(title, results.OfType<SessionResult>().ToList())
+        public MetronomeGoalTask(string title, DateTime createDate, int startSpeed, int targetSpeed, List<MetronomeSessionResult> results) 
+            : base(title, createDate, results.OfType<SessionResult>().ToList())
         {
-            this.dateTime = dateTime;
             this.targetSpeed = targetSpeed;
             this.startSpeed = startSpeed;
         }
