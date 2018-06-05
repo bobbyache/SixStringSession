@@ -12,7 +12,7 @@ namespace CygSoft.SmartSession.GoalManagement.Infrastructure
         string Title { get; }
         DateTime CreateDate { get; }
         int MinutesPracticed { get; }
-        int PercentCompleted { get; }
+        double PercentCompleted { get; }
         DateTime? StartDate { get; }
     }
 

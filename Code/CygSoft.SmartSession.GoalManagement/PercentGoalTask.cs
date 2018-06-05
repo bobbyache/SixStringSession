@@ -12,6 +12,6 @@ namespace CygSoft.SmartSession.GoalManagement
         {
         }
 
-        public override int PercentCompleted => 0;
+        public override double PercentCompleted => 0;
     }
 }

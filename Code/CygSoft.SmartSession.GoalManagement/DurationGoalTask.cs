@@ -22,7 +22,7 @@ namespace CygSoft.SmartSession.GoalManagement
             this.durationSessionResults = durationSessionResults;
         }
 
-        public override int PercentCompleted
+        public override double PercentCompleted
         {
             get
             {
@@ -32,15 +32,9 @@ namespace CygSoft.SmartSession.GoalManagement
                 var minutes = durationSessionResults.Sum(t => t.Minutes);
                 if (minutes > targetMinutes && targetMinutes != 0)
                     return 100;
-                    //return (int)Math.Round(((double)minutes / targetMinutes) * 100);
-                return (int)Math.Round(((double)minutes / targetMinutes) * 100);
+
+                return ((double)minutes / targetMinutes) * 100;
             }
         }
-
-        // eg. Hour, Minute.
-        public string TimeUnit => "Hour";
-
-        // eg. 6 hours.
-        public int TargetUnit => 0;
     }
 }

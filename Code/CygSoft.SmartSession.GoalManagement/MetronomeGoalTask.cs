@@ -15,7 +15,7 @@ namespace CygSoft.SmartSession.GoalManagement
         public int CurrentSpeed => 0;
         public int TargetSpeed => 0;
 
-        public override int PercentCompleted => 0;
+        public override double PercentCompleted => 0;
         //{
         //    get
         //    {

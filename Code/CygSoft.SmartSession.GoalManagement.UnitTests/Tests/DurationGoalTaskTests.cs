@@ -49,14 +49,7 @@ namespace CygSoft.SmartSession.GoalManagement.UnitTests.Tests
         public void New_DurationGoalTask_Has_0_TargetUnit()
         {
             DurationGoalTask task = new DurationGoalTask("Task 1");
-            Assert.That(task.TargetUnit, Is.EqualTo(0));
-        }
-
-        [Test]
-        public void New_DurationGoalTask_Has_Default_Hour_Unit()
-        {
-            DurationGoalTask task = new DurationGoalTask("Task 1");
-            Assert.That(task.TimeUnit, Is.EqualTo("Hour"));
+            Assert.That(task.MinutesPracticed, Is.EqualTo(0));
         }
 
         [Test]
