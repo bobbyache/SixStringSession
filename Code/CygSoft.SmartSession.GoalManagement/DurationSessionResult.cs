@@ -8,7 +8,7 @@ namespace CygSoft.SmartSession.GoalManagement
 {
     public class DurationSessionResult : SessionResult
     {
-        public DurationSessionResult(DateTime dateTime, int minutes) : base(dateTime, minutes)
+        public DurationSessionResult(DateTime dateTime, DateTime endTime) : base(dateTime, endTime)
         {
         }
     }

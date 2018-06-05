@@ -54,8 +54,8 @@ namespace CygSoft.SmartSession.GoalManagement.UnitTests.Tests
 
             List<MetronomeSessionResult> results = new List<MetronomeSessionResult>()
             {
-                new MetronomeSessionResult(DateTime.Parse("2018/06/22 18:33:20"), 5, 60),
-                new MetronomeSessionResult(DateTime.Parse("2018/06/24 18:33:28"), 15, 80)
+                new MetronomeSessionResult(DateTime.Parse("2018/06/22 18:00:00"), DateTime.Parse("2018/06/22 18:05:00"), 60),
+                new MetronomeSessionResult(DateTime.Parse("2018/06/22 18:10:00"), DateTime.Parse("2018/06/22 18:25:00"), 80)
             };
 
             MetronomeGoalTask task = new MetronomeGoalTask("Task 1", DateTime.Parse("2018/06/22 18:33:20"), 60, 100, results);
@@ -76,8 +76,8 @@ namespace CygSoft.SmartSession.GoalManagement.UnitTests.Tests
         {
             List<MetronomeSessionResult> results = new List<MetronomeSessionResult>()
             {
-                new MetronomeSessionResult(DateTime.Parse("2018/06/22 18:33:20"), 5, 40),
-                new MetronomeSessionResult(DateTime.Parse("2018/06/24 18:33:28"), 15, 45)
+                new MetronomeSessionResult(DateTime.Parse("2018/06/22 18:00:00"), DateTime.Parse("2018/06/22 18:05:00"), 40),
+                new MetronomeSessionResult(DateTime.Parse("2018/06/22 18:10:00"), DateTime.Parse("2018/06/22 18:25:00"), 45)
             };
 
             MetronomeGoalTask task = new MetronomeGoalTask("Task 1", DateTime.Parse("2018/06/22 18:33:20"), 60, 100, results);
@@ -89,8 +89,8 @@ namespace CygSoft.SmartSession.GoalManagement.UnitTests.Tests
         {
             List<MetronomeSessionResult> results = new List<MetronomeSessionResult>()
             {
-                new MetronomeSessionResult(DateTime.Parse("2018/06/22 18:33:20"), 5, 40),
-                new MetronomeSessionResult(DateTime.Parse("2018/06/24 18:33:28"), 15, 45)
+                new MetronomeSessionResult(DateTime.Parse("2018/06/22 18:00:00"), DateTime.Parse("2018/06/22 18:05:00"), 40),
+                new MetronomeSessionResult(DateTime.Parse("2018/06/22 18:10:00"), DateTime.Parse("2018/06/22 18:25:00"), 45)
             };
 
             MetronomeGoalTask task = new MetronomeGoalTask("Task 1", DateTime.Parse("2018/06/22 18:33:20"), 60, 100, results);
@@ -99,19 +99,19 @@ namespace CygSoft.SmartSession.GoalManagement.UnitTests.Tests
         [Test]
         public void MetronomeSessionResult_Given_Value_Below_0_Throws_Exception()
         {
-            TestDelegate proc = () => new MetronomeSessionResult(DateTime.Parse("2018/06/22 18:33:20"), 5, -1);
+            TestDelegate proc = () => new MetronomeSessionResult(DateTime.Parse("2018/06/22 18:00:00"), DateTime.Parse("2018/06/22 18:05:00"), -1);
             Assert.That(proc, Throws.TypeOf<ArgumentOutOfRangeException>());
         }
 
         [Test]
         public void Existing_MetronomeGoalTask_Supplies_Correct_StartDate_From_SessionList()
         {
-            DateTime expectedStartTime = DateTime.Parse("2018/03/19 12:21:01");
+            DateTime expectedStartTime = DateTime.Parse("2018/06/22 18:00:00");
 
             List<MetronomeSessionResult> results = new List<MetronomeSessionResult>()
             {
-                new MetronomeSessionResult(DateTime.Parse("2018/06/22 18:33:20"), 5, 60),
-                new MetronomeSessionResult(DateTime.Parse("2018/03/19 12:21:01"), 15, 60)
+                new MetronomeSessionResult(DateTime.Parse("2018/06/22 18:00:00"), DateTime.Parse("2018/06/22 18:05:00"), 60),
+                new MetronomeSessionResult(DateTime.Parse("2018/06/22 18:10:00"), DateTime.Parse("2018/06/22 18:25:00"), 60)
             };
 
 

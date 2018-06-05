@@ -50,12 +50,12 @@ namespace CygSoft.SmartSession.GoalManagement.UnitTests.Tests
         {
             List<PercentSessionResult> results = new List<PercentSessionResult>()
             {
-                new PercentSessionResult(DateTime.Parse("2018/06/22 18:33:20"), 5, 40),
-                new PercentSessionResult(DateTime.Parse("2018/06/22 18:33:20"), 15, 50)
+                new PercentSessionResult(DateTime.Parse("2018/06/22 18:00:00"), DateTime.Parse("2018/06/22 18:05:00"), 40),
+                new PercentSessionResult(DateTime.Parse("2018/06/22 18:10:00"), DateTime.Parse("2018/06/22 18:15:00"), 50)
             };
 
             PercentGoalTask task = new PercentGoalTask("Task 1", DateTime.Parse("2018/06/18 18:33:20"), results);
-            Assert.That(task.MinutesPracticed, Is.EqualTo(20));
+            Assert.That(task.MinutesPracticed, Is.EqualTo(10));
         }
 
         [Test]
@@ -63,8 +63,8 @@ namespace CygSoft.SmartSession.GoalManagement.UnitTests.Tests
         {
             List<PercentSessionResult> results = new List<PercentSessionResult>()
             {
-                new PercentSessionResult(DateTime.Parse("2018/06/22 18:33:20"), 5, 40),
-                new PercentSessionResult(DateTime.Parse("2018/06/22 18:33:20"), 15, 50)
+                new PercentSessionResult(DateTime.Parse("2018/06/22 18:00:00"), DateTime.Parse("2018/06/22 18:05:00"), 40),
+                new PercentSessionResult(DateTime.Parse("2018/06/22 18:10:00"), DateTime.Parse("2018/06/22 18:15:00"), 50)
             };
 
             PercentGoalTask task = new PercentGoalTask("Task 1", DateTime.Parse("2018/06/18 18:33:20"), results);
@@ -76,9 +76,9 @@ namespace CygSoft.SmartSession.GoalManagement.UnitTests.Tests
         {
             List<PercentSessionResult> results = new List<PercentSessionResult>()
             {
-                new PercentSessionResult(DateTime.Parse("2018/06/22 18:33:20"), 5, 70),
-                new PercentSessionResult(DateTime.Parse("2018/06/22 18:33:20"), 5, 55),
-                new PercentSessionResult(DateTime.Parse("2018/06/22 18:33:20"), 15, 50)
+                new PercentSessionResult(DateTime.Parse("2018/06/22 18:00:00"), DateTime.Parse("2018/06/22 18:05:00"), 70),
+                new PercentSessionResult(DateTime.Parse("2018/06/22 18:10:00"), DateTime.Parse("2018/06/22 18:15:00"), 55),
+                new PercentSessionResult(DateTime.Parse("2018/06/22 18:20:00"), DateTime.Parse("2018/06/22 18:25:00"), 50)
             };
 
             PercentGoalTask task = new PercentGoalTask("Task 1", DateTime.Parse("2018/06/18 18:33:20"), results);
@@ -88,26 +88,26 @@ namespace CygSoft.SmartSession.GoalManagement.UnitTests.Tests
         [Test]
         public void PercentSessionResult_Given_Value_Above_100_Throws_Exception()
         {
-            TestDelegate proc = () => new PercentSessionResult(DateTime.Parse("2018/06/22 18:33:20"), 5, 101);
+            TestDelegate proc = () => new PercentSessionResult(DateTime.Parse("2018/06/22 18:00:00"), DateTime.Parse("2018/06/22 18:05:00"), 101);
             Assert.That(proc, Throws.TypeOf<ArgumentOutOfRangeException>());
         }
 
         [Test]
         public void PercentSessionResult_Given_Value_Below_0_Throws_Exception()
         {
-            TestDelegate proc = () => new PercentSessionResult(DateTime.Parse("2018/06/22 18:33:20"), 5, -1);
+            TestDelegate proc = () => new PercentSessionResult(DateTime.Parse("2018/06/22 18:00:00"), DateTime.Parse("2018/06/22 18:05:00"), -1);
             Assert.That(proc, Throws.TypeOf<ArgumentOutOfRangeException>());
         }
 
         [Test]
         public void Existing_PercentGoalTask_Supplies_Correct_StartDate_From_SessionList()
         {
-            DateTime expectedStartTime = DateTime.Parse("2018/03/19 12:21:01");
+            DateTime expectedStartTime = DateTime.Parse("2018/06/22 18:00:00");
 
             List<PercentSessionResult> results = new List<PercentSessionResult>()
             {
-                new PercentSessionResult(DateTime.Parse("2018/06/22 18:33:20"), 5, 25),
-                new PercentSessionResult(DateTime.Parse("2018/03/19 12:21:01"), 15, 32)
+                new PercentSessionResult(DateTime.Parse("2018/06/22 18:00:00"), DateTime.Parse("2018/06/22 18:05:00"), 70),
+                new PercentSessionResult(DateTime.Parse("2018/06/22 18:10:00"), DateTime.Parse("2018/06/22 18:15:00"), 55)
             };
 
 

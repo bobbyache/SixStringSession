@@ -6,7 +6,7 @@ namespace CygSoft.SmartSession.GoalManagement
     {
         public double PercentCompleted { get; private set; }
 
-        public PercentSessionResult(DateTime dateTime, int minutes, int percent) : base(dateTime, minutes)
+        public PercentSessionResult(DateTime dateTime, DateTime endTime, int percent) : base(dateTime, endTime)
         {
             if (percent < 0)
                 throw new ArgumentOutOfRangeException("Percent cannot be a negative value.");

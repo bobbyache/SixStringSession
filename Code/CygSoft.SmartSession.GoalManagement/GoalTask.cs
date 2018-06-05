@@ -35,7 +35,7 @@ namespace CygSoft.SmartSession.GoalManagement
                     return null;
                 if (results.Count == 0)
                     return null;
-                return results.Min(r => r.StartDate);
+                return results.Min(r => r.StartTime);
             }
         }
 

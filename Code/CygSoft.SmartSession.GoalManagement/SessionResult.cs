@@ -4,19 +4,19 @@ namespace CygSoft.SmartSession.GoalManagement
 {
     public abstract class SessionResult
     {
-        private DateTime startDate;
-        private int minutes;
+        private DateTime startTime;
+        private DateTime endTime;
 
-        public SessionResult(DateTime startDate, int minutes)
+        public SessionResult(DateTime startTime, DateTime endTime)
         {
-            if (minutes < 0)
+            if (startTime > endTime)
                 throw new ArgumentOutOfRangeException("Session minutes cannot be a negative value.");
 
-            this.startDate = startDate;
-            this.minutes = minutes;
+            this.startTime = startTime;
+            this.endTime = endTime;
         }
 
-        public int Minutes { get { return minutes; } }
-        public DateTime StartDate { get { return this.startDate; } }
+        public int Minutes { get { return (int)Math.Round(endTime.Subtract(startTime).TotalMinutes, 0); } }
+        public DateTime StartTime { get { return this.startTime; } }
     }
 }
