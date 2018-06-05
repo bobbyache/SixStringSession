@@ -28,33 +28,12 @@ namespace CygSoft.SmartSession.GoalManagement
 
         public double FileCount => goalFiles.Count();
 
-        internal IGoalTask AddTask(string title, GoalTaskType goalTaskType)
+        internal void AddTask(GoalTask goalTask)
         {
-            //IGoalTask goalTask;
+            if (goalTasks.Count == 0)
+                goalTask.Weighting = 100;
 
-            if (goalTaskType == GoalTaskType.Duration)
-            {
-                DurationGoalTask goalTask = new DurationGoalTask(title);
-                goalTasks.Add(goalTask);
-                goalTask.Weighting = 100;
-                return goalTask;
-            }
-            else if (goalTaskType == GoalTaskType.Percent)
-            {
-                PercentGoalTask goalTask = new PercentGoalTask(title);
-                goalTasks.Add(goalTask);
-                goalTask.Weighting = 100;
-                return goalTask;
-            }
-            else if (goalTaskType == GoalTaskType.Metronome)
-            {
-                MetronomeGoalTask goalTask = new MetronomeGoalTask(title, 80, 120);
-                goalTasks.Add(goalTask);
-                goalTask.Weighting = 100;
-                return goalTask;
-            }
-            else
-                throw new NotImplementedException();
+            goalTasks.Add(goalTask);
         }
 
         public IGoalFile[] Files => goalFiles.ToArray();

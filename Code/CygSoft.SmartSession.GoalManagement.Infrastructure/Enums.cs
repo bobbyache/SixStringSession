@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace CygSoft.SmartSession.GoalManagement.Infrastructure
 {
-    public enum GoalTaskType
-    {
-        Percent,
-        Metronome,
-        Duration
-    }
+    //public enum GoalTaskType
+    //{
+    //    Percent,
+    //    Metronome,
+    //    Duration
+    //}
 }

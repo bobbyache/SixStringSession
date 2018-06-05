@@ -24,7 +24,8 @@ namespace CygSoft.SmartSession.GoalManagement.UnitTests.Tests
         public void Weighting_Single_PercentGoalTask_Added_To_Task_Creates_100_Percent_Weighting()
         {
             Goal goal = new Goal();
-            IGoalTask goalTask = goal.AddTask("Title 1", GoalTaskType.Percent);
+            GoalTask goalTask = new PercentGoalTask("Title 1");
+            goal.AddTask(goalTask);
             Assert.That(goalTask.Weighting, Is.EqualTo(100));
         }
 
@@ -33,7 +34,8 @@ namespace CygSoft.SmartSession.GoalManagement.UnitTests.Tests
         public void Weighting_Single_MetronomeGoalTask_Added_To_Task_Creates_100_Percent_Weighting()
         {
             Goal goal = new Goal();
-            IGoalTask goalTask = goal.AddTask("Title 1", GoalTaskType.Metronome);
+            GoalTask goalTask = new MetronomeGoalTask("Title 1", 80, 90);
+            goal.AddTask(goalTask);
             Assert.That(goalTask.Weighting, Is.EqualTo(100));
         }
 
@@ -42,7 +44,8 @@ namespace CygSoft.SmartSession.GoalManagement.UnitTests.Tests
         public void Weighting_Single_DurationGoalTask_Added_To_Task_Creates_100_Percent_Weighting()
         {
             Goal goal = new Goal();
-            IGoalTask goalTask = goal.AddTask("Title 1", GoalTaskType.Duration);
+            GoalTask goalTask = new DurationGoalTask("Title 1");
+            goal.AddTask(goalTask);
             Assert.That(goalTask.Weighting, Is.EqualTo(100));
         }
 
@@ -50,33 +53,33 @@ namespace CygSoft.SmartSession.GoalManagement.UnitTests.Tests
         public void Goal_Add_DurationTask_Adds_Task_Successfully()
         {
             Goal goal = new Goal();
-            IGoalTask task = goal.AddTask("Task 1", GoalTaskType.Duration);
+            GoalTask goalTask = new DurationGoalTask("Title 1");
 
-            Assert.That(task, Is.TypeOf<DurationGoalTask>());
-            Assert.IsFalse(string.IsNullOrEmpty(task.Id));
-            Assert.That(task.Title, Is.EqualTo("Task 1"));
+            Assert.That(goalTask, Is.TypeOf<DurationGoalTask>());
+            Assert.IsFalse(string.IsNullOrEmpty(goalTask.Id));
+            Assert.That(goalTask.Title, Is.EqualTo("Title 1"));
         }
 
         [Test]
         public void Goal_Add_PercentTask_Adds_Task_Successfully()
         {
             Goal goal = new Goal();
-            IGoalTask task = goal.AddTask("Task 1", GoalTaskType.Percent);
+            GoalTask goalTask = new PercentGoalTask("Title 1");
 
-            Assert.That(task, Is.TypeOf<PercentGoalTask>());
-            Assert.IsFalse(string.IsNullOrEmpty(task.Id));
-            Assert.That(task.Title, Is.EqualTo("Task 1"));
+            Assert.That(goalTask, Is.TypeOf<PercentGoalTask>());
+            Assert.IsFalse(string.IsNullOrEmpty(goalTask.Id));
+            Assert.That(goalTask.Title, Is.EqualTo("Title 1"));
         }
 
         [Test]
         public void Goal_Add_MetronomeTask_Adds_Task_Successfully()
         {
             Goal goal = new Goal();
-            IGoalTask task = goal.AddTask("Task 1", GoalTaskType.Metronome);
+            GoalTask goalTask = new MetronomeGoalTask("Title 1", 80, 90);
 
-            Assert.That(task, Is.TypeOf<MetronomeGoalTask>());
-            Assert.IsFalse(string.IsNullOrEmpty(task.Id));
-            Assert.That(task.Title, Is.EqualTo("Task 1"));
+            Assert.That(goalTask, Is.TypeOf<MetronomeGoalTask>());
+            Assert.IsFalse(string.IsNullOrEmpty(goalTask.Id));
+            Assert.That(goalTask.Title, Is.EqualTo("Title 1"));
         }
 
         [Test]
