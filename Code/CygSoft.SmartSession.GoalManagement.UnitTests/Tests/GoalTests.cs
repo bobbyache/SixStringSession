@@ -12,6 +12,14 @@ namespace CygSoft.SmartSession.GoalManagement.UnitTests.Tests
     [TestFixture]
     public class GoalTests
     {
+        //[Test]
+        //public void Weighting_Single_PercentGoalTask_Added_To_Task_Creates_100_Percent_Weighting()
+        //{
+        //    Goal goal = new Goal();
+        //    IGoalTask goalTask = goal.AddTask("Title 1", GoalTaskType.Percent);
+        //    Assert.That(goalTask.Weighting, Is.EqualTo(100));
+        //}
+
         [Test]
         public void Weighting_Single_PercentGoalTask_Added_To_Task_Creates_100_Percent_Weighting()
         {

@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DurationGoalTask.cs" />
+    <Compile Include="DurationSessionResult.cs" />
     <Compile Include="Goal.cs" />
     <Compile Include="GoalTask.cs" />
     <Compile Include="PercentGoalTask.cs" />
@@ -53,6 +54,9 @@
       <Project>{26f5ecf2-47a5-481d-b9ad-e128b19f9eed}</Project>
       <Name>CygSoft.SmartSession.GoalManagement.Infrastructure</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
