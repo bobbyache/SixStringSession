@@ -3,10 +3,6 @@ using CygSoft.SmartSession.GoalManagement.Tasks;
 using CygSoft.SmartSession.GoalManagement.UnitTests.Helpers;
 using NUnit.Framework;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CygSoft.SmartSession.GoalManagement.UnitTests.Tests
 {

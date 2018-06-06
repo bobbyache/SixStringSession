@@ -4,7 +4,6 @@ using CygSoft.SmartSession.GoalManagement.Sessions;
 using CygSoft.SmartSession.GoalManagement.Tasks;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Xml.Linq;
 
 namespace CygSoft.SmartSession.GoalManagement.Goals
