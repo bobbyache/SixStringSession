@@ -98,6 +98,7 @@ namespace CygSoft.SmartSession.GoalManagement.UnitTests.Tests
             Assert.That(goalTask.MinutesPracticed, Is.EqualTo(22));
             Assert.That(goalTask.PercentCompleted, Is.EqualTo(75));
         }
+
         [Test]
         public void GoalSerializer_Deserializes_Goal_Files_Correctly()
         {

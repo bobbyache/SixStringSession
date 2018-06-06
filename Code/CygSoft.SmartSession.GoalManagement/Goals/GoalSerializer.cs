@@ -94,6 +94,7 @@ namespace CygSoft.SmartSession.GoalManagement.Goals
             foreach (XElement sessionNode in metronomeTask.Element("SessionResults").Elements("SessionResult"))
             {
                 MetronomeSessionResult result = new MetronomeSessionResult(
+                        sessionNode.Attribute("Id").Value,
                         DateTime.Parse(sessionNode.Attribute("StartTime").Value),
                         DateTime.Parse(sessionNode.Attribute("EndTime").Value),
                         int.Parse(sessionNode.Attribute("Speed").Value)
@@ -110,6 +111,7 @@ namespace CygSoft.SmartSession.GoalManagement.Goals
             foreach (XElement sessionNode in durationTask.Element("SessionResults").Elements("SessionResult"))
             {
                 DurationSessionResult result = new DurationSessionResult(
+                        sessionNode.Attribute("Id").Value,
                         DateTime.Parse(sessionNode.Attribute("StartTime").Value),
                         DateTime.Parse(sessionNode.Attribute("EndTime").Value)
                     );
@@ -125,6 +127,7 @@ namespace CygSoft.SmartSession.GoalManagement.Goals
             foreach (XElement sessionNode in durationTask.Element("SessionResults").Elements("SessionResult"))
             {
                 PercentSessionResult result = new PercentSessionResult(
+                        sessionNode.Attribute("Id").Value,
                         DateTime.Parse(sessionNode.Attribute("StartTime").Value),
                         DateTime.Parse(sessionNode.Attribute("EndTime").Value),
                         int.Parse(sessionNode.Attribute("Percent").Value)

@@ -6,20 +6,20 @@
 		<Tasks>
 			<Task Id="0bef8bd6-9fda-4115-bb1a-e21f6a8dbeb7" Type="Metronome" Weighting="25" DateCreated="2016-12-16" Title="Learn Measure 1 - 4" InitialSpeed="60" TargetSpeed="120">
 				<SessionResults>
-					<SessionResult Speed="60" StartTime="2016-12-18 18:00:00" EndTime="2016-12-18 18:10:00" />
-					<SessionResult Speed="75" StartTime="2016-12-19 18:00:00" EndTime="2016-12-19 18:12:00" />
+					<SessionResult Id="ad4c55d1-51ee-4b66-ad1c-89d912ca4939" Speed="60" StartTime="2016-12-18 18:00:00" EndTime="2016-12-18 18:10:00" />
+					<SessionResult Id="8b65e4ac-7f05-4b1a-9171-e3e43ab7fce5" Speed="75" StartTime="2016-12-19 18:00:00" EndTime="2016-12-19 18:12:00" />
 				</SessionResults>
 			</Task>
 			<Task Id="ca5905cc-3fcd-4e43-a4be-9e5a9d8fd0d6" Type="Percent" Weighting="25" DateCreated="2016-12-16" Title="Transcribe Examples 1 - 16 in the book">
 				<SessionResults>
-					<SessionResult Percent="60" StartTime="2016-12-18 18:00:00" EndTime="2016-12-18 18:10:00" />
-					<SessionResult Percent="75" StartTime="2016-12-19 18:00:00" EndTime="2016-12-19 18:12:00" />
+					<SessionResult Id="1686b470-0328-47c4-86d2-3441a4198437" Percent="60" StartTime="2016-12-18 18:00:00" EndTime="2016-12-18 18:10:00" />
+					<SessionResult Id="2ba85010-34e0-42f5-9b08-8ac2f470f96a" Percent="75" StartTime="2016-12-19 18:00:00" EndTime="2016-12-19 18:12:00" />
 				</SessionResults>
 			</Task>
 			<Task Id="062b7405-5902-4369-88eb-afa3804f1500" Type="Duration" Weighting="50" DateCreated="2016-12-12" Title="Bends and Pulloffs" Minutes="80">				
 				<SessionResults>
-					<SessionResult Speed="60" StartTime="2016-12-18 18:00:00" EndTime="2016-12-18 18:20:00" />
-					<SessionResult Speed="75" StartTime="2016-12-19 18:25:00" EndTime="2016-12-19 18:45:00" />
+					<SessionResult Id="7640d9e8-8bde-41c3-925f-714082321af5" Speed="60" StartTime="2016-12-18 18:00:00" EndTime="2016-12-18 18:20:00" />
+					<SessionResult Id="e578f98e-8a64-48b4-993e-ef06a9899560" Speed="75" StartTime="2016-12-19 18:25:00" EndTime="2016-12-19 18:45:00" />
 				</SessionResults>
 			</Task>
 		</Tasks>

@@ -16,5 +16,16 @@ namespace CygSoft.SmartSession.GoalManagement.Sessions
 
             this.PercentCompleted = percent;  
         }
+
+        public PercentSessionResult(string id, DateTime dateTime, DateTime endTime, int percent) : base(id, dateTime, endTime)
+        {
+            if (percent < 0)
+                throw new ArgumentOutOfRangeException("Percent cannot be a negative value.");
+
+            if (percent > 100)
+                throw new ArgumentOutOfRangeException("Percent value cannot exceed 100.");
+
+            this.PercentCompleted = percent;
+        }
     }
 }
