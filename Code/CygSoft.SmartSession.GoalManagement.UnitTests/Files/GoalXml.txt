@@ -1,0 +1,29 @@
+﻿<Goal Id="0a723447-e366-4e0b-9f00-1590e8fd8adc" MaxTaskWeighting="1000" Title="Goal 1 - First Ever Goal">
+		<Files>
+			<File Title="Instance File Title" Path="\2018-01\45689-1256-4587.gp" />
+		</Files>
+		<Tasks>
+			<Task Id="0bef8bd6-9fda-4115-bb1a-e21f6a8dbeb7" Type="Metronome" Weighting="25" DateCreated="2016-12-16" Title="Learn Measure 1 - 4" InitialSpeed="60" TargetSpeed="120">
+				<!-- Allows for a summary history -->
+				<SessionResults>	<!-- total time inferred by calc of session results -->
+					<SessionResult Speed="35" Date="2016-12-18" Minutes="20" />	<!-- initial speed inferred by first session result -->
+					<SessionResult Speed="40" Date="2016-12-18" Minutes="20" />
+				</SessionResults>
+			</Task>
+			<Task Id="ca5905cc-3fcd-4e43-a4be-9e5a9d8fd0d6" Type="Percent" Weighting="25" DateCreated="2016-12-16" Title="Learn the Key of E">
+				<!-- Allows for a summary history -->
+				<SessionResults>	<!-- total % inferred by calc of session results -->
+					<SessionResult Percent="35" Date="2016-12-18" Minutes="20" />	<!-- initial % inferred by first session result -->
+					<SessionResult Percent="40" Date="2016-12-18" Minutes="20" />
+				</SessionResults>
+			</Task>
+			<!-- Unit obviously can't be anything less than minutes -->
+			<Task Id="062b7405-5902-4369-88eb-afa3804f1500" Type="Duration" Weighting="50" DateCreated="2016-12-16" Title="Learn Measure 1 - 4" Minutes="15">				
+				<!-- Allows for a summary history -->
+				<SessionResults>	<!-- total % inferred by calc of session results -->
+					<SessionResult Date="2016-12-18" Minutes="20" />
+					<SessionResult Date="2016-12-18" Minutes="20" />
+				</SessionResults>
+			</Task>
+		</Tasks>
+</Goal>

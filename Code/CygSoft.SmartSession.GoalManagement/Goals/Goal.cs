@@ -3,16 +3,18 @@ using CygSoft.SmartSession.GoalManagement.Tasks;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CygSoft.SmartSession.GoalManagement.Goals
 {
-    internal class Goal
+    public class Goal : IdentityItem, IGoal
     {
         private WeightingCalculator weightingCalculator;
         private List<IGoalFile> goalFiles = new List<IGoalFile>();
         private List<IGoalTask> goalTasks = new List<IGoalTask>();
+
+        public string Title { get; set; }
+
+        public int MaxTaskWeighting { get { return weightingCalculator.MaxValue; } }
 
         public double PercentComplete
         {
@@ -28,14 +30,16 @@ namespace CygSoft.SmartSession.GoalManagement.Goals
             }
         }
 
-        public Goal(int maxTaskWeighting)
+        public Goal(string title, int maxTaskWeighting)
         {
+            Title = title;
             weightingCalculator = new WeightingCalculator(maxTaskWeighting);
             CreateDate = DateTime.Now;
         }
 
-        internal Goal(int maxTaskWeighting, IGoalTask[] goalTasks, IGoalFile[] goalFiles)
+        internal Goal(string id, string title, int maxTaskWeighting, IGoalTask[] goalTasks, IGoalFile[] goalFiles) : base(id)
         {
+            Title = title;
             weightingCalculator = new WeightingCalculator(maxTaskWeighting);
 
             if (goalTasks != null)

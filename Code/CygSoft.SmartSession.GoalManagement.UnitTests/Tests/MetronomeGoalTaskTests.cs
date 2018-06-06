@@ -60,7 +60,7 @@ namespace CygSoft.SmartSession.GoalManagement.UnitTests.Tests
                 new MetronomeSessionResult(DateTime.Parse("2018/06/22 18:10:00"), DateTime.Parse("2018/06/22 18:25:00"), 80)
             };
 
-            MetronomeGoalTask task = new MetronomeGoalTask("Task 1", DateTime.Parse("2018/06/22 18:33:20"), 60, 100, results);
+            MetronomeGoalTask task = new MetronomeGoalTask("8a62cffc-7f9c-4da9-a79a-13b283215533", "Task 1", DateTime.Parse("2018/06/22 18:33:20"), 60, 100, results);
             Assert.That(task.PercentCompleted, Is.EqualTo(50));
         }
 
@@ -69,7 +69,7 @@ namespace CygSoft.SmartSession.GoalManagement.UnitTests.Tests
         {
             List<MetronomeSessionResult> results = new List<MetronomeSessionResult>() { };
 
-            MetronomeGoalTask task = new MetronomeGoalTask("Task 1", DateTime.Parse("2018/06/22 18:33:20"), 60, 100, results);
+            MetronomeGoalTask task = new MetronomeGoalTask("8a62cffc-7f9c-4da9-a79a-13b283215533", "Task 1", DateTime.Parse("2018/06/22 18:33:20"), 60, 100, results);
             Assert.That(task.PercentCompleted, Is.EqualTo(0));
         }
 
@@ -82,7 +82,7 @@ namespace CygSoft.SmartSession.GoalManagement.UnitTests.Tests
                 new MetronomeSessionResult(DateTime.Parse("2018/06/22 18:10:00"), DateTime.Parse("2018/06/22 18:25:00"), 45)
             };
 
-            MetronomeGoalTask task = new MetronomeGoalTask("Task 1", DateTime.Parse("2018/06/22 18:33:20"), 60, 100, results);
+            MetronomeGoalTask task = new MetronomeGoalTask("8a62cffc-7f9c-4da9-a79a-13b283215533", "Task 1", DateTime.Parse("2018/06/22 18:33:20"), 60, 100, results);
             Assert.That(task.PercentCompleted, Is.EqualTo(0));
         }
 
@@ -95,7 +95,7 @@ namespace CygSoft.SmartSession.GoalManagement.UnitTests.Tests
                 new MetronomeSessionResult(DateTime.Parse("2018/06/22 18:10:00"), DateTime.Parse("2018/06/22 18:25:00"), 45)
             };
 
-            MetronomeGoalTask task = new MetronomeGoalTask("Task 1", DateTime.Parse("2018/06/22 18:33:20"), 60, 100, results);
+            MetronomeGoalTask task = new MetronomeGoalTask("8a62cffc-7f9c-4da9-a79a-13b283215533", "Task 1", DateTime.Parse("2018/06/22 18:33:20"), 60, 100, results);
             Assert.That(task.MinutesPracticed, Is.EqualTo(20));
         }
         [Test]
@@ -117,14 +117,14 @@ namespace CygSoft.SmartSession.GoalManagement.UnitTests.Tests
             };
 
 
-            MetronomeGoalTask task = new MetronomeGoalTask("Task 1", DateTime.Parse("2018/03/18 18:01:20"), 60, 70, results);
+            MetronomeGoalTask task = new MetronomeGoalTask("8a62cffc-7f9c-4da9-a79a-13b283215533", "Task 1", DateTime.Parse("2018/03/18 18:01:20"), 60, 70, results);
             Assert.That(task.StartDate, Is.EqualTo(expectedStartTime));
         }
 
         [Test]
         public void MetronomeSessionResult_Given_StartValue_Higher_Than_Target_Throws_Exception()
         {
-            TestDelegate proc = () => new MetronomeGoalTask("Title 1", DateTime.Parse("2018/06/22 18:33:20"), 61, 60, 
+            TestDelegate proc = () => new MetronomeGoalTask("8a62cffc-7f9c-4da9-a79a-13b283215533", "Title 1", DateTime.Parse("2018/06/22 18:33:20"), 61, 60, 
                 new List<MetronomeSessionResult>());
             Assert.That(proc, Throws.TypeOf<ArgumentOutOfRangeException>());
         }

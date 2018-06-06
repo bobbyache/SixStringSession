@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace CygSoft.SmartSession.GoalManagement.Tasks
 {
-    public abstract class GoalTask : IGoalTask
+    public abstract class GoalTask : IdentityItem, IGoalTask
     {
         protected List<SessionResult> sessionResults;
 
@@ -54,17 +54,15 @@ namespace CygSoft.SmartSession.GoalManagement.Tasks
             }
         }
 
-        public GoalTask(string title)
+        public GoalTask(string title) : base()
         {
-            Id = Guid.NewGuid().ToString();
             CreateDate = DateTime.Now;
             Title = title;
             this.sessionResults = new List<SessionResult>();
         }
 
-        public GoalTask(string title, DateTime createDate, List<SessionResult> results)
+        public GoalTask(string id, string title, DateTime createDate, List<SessionResult> results) : base(id)
         {
-            Id = Guid.NewGuid().ToString();
             CreateDate = createDate;
             Title = title;
             this.sessionResults = results;
@@ -73,8 +71,6 @@ namespace CygSoft.SmartSession.GoalManagement.Tasks
         public abstract double PercentCompleted { get; }
 
         public string Title { get; private set; }
-
-        public string Id { get; private set; }
 
         internal void AddSession(SessionResult sessionResult)
         {

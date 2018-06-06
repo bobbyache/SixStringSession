@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Goals\GoalSerializer.cs" />
     <Compile Include="Tasks\DurationGoalTask.cs" />
     <Compile Include="Sessions\DurationSessionResult.cs" />
     <Compile Include="Goals\Goal.cs" />
@@ -57,9 +58,6 @@
       <Project>{26f5ecf2-47a5-481d-b9ad-e128b19f9eed}</Project>
       <Name>CygSoft.SmartSession.GoalManagement.Infrastructure</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -56,7 +56,7 @@ namespace CygSoft.SmartSession.GoalManagement.UnitTests.Tests
                 new PercentSessionResult(DateTime.Parse("2018/06/22 18:10:00"), DateTime.Parse("2018/06/22 18:15:00"), 50)
             };
 
-            PercentGoalTask task = new PercentGoalTask("Task 1", DateTime.Parse("2018/06/18 18:33:20"), results);
+            PercentGoalTask task = new PercentGoalTask("8a62cffc-7f9c-4da9-a79a-13b283215533", "Task 1", DateTime.Parse("2018/06/18 18:33:20"), results);
             Assert.That(task.MinutesPracticed, Is.EqualTo(10));
         }
 
@@ -69,7 +69,7 @@ namespace CygSoft.SmartSession.GoalManagement.UnitTests.Tests
                 new PercentSessionResult(DateTime.Parse("2018/06/22 18:10:00"), DateTime.Parse("2018/06/22 18:15:00"), 50)
             };
 
-            PercentGoalTask task = new PercentGoalTask("Task 1", DateTime.Parse("2018/06/18 18:33:20"), results);
+            PercentGoalTask task = new PercentGoalTask("8a62cffc-7f9c-4da9-a79a-13b283215533", "Task 1", DateTime.Parse("2018/06/18 18:33:20"), results);
             Assert.That(task.PercentCompleted, Is.EqualTo(50));
         }
 
@@ -83,7 +83,7 @@ namespace CygSoft.SmartSession.GoalManagement.UnitTests.Tests
                 new PercentSessionResult(DateTime.Parse("2018/06/22 18:20:00"), DateTime.Parse("2018/06/22 18:25:00"), 50)
             };
 
-            PercentGoalTask task = new PercentGoalTask("Task 1", DateTime.Parse("2018/06/18 18:33:20"), results);
+            PercentGoalTask task = new PercentGoalTask("8a62cffc-7f9c-4da9-a79a-13b283215533", "Task 1", DateTime.Parse("2018/06/18 18:33:20"), results);
             Assert.That(task.PercentCompleted, Is.EqualTo(70));
         }
 
@@ -113,7 +113,7 @@ namespace CygSoft.SmartSession.GoalManagement.UnitTests.Tests
             };
 
 
-            PercentGoalTask task = new PercentGoalTask("Task 1", DateTime.Parse("2018/03/18 18:01:20"), results);
+            PercentGoalTask task = new PercentGoalTask("8a62cffc-7f9c-4da9-a79a-13b283215533", "Task 1", DateTime.Parse("2018/03/18 18:01:20"), results);
             Assert.That(task.StartDate, Is.EqualTo(expectedStartTime));
         }
 

@@ -13,8 +13,8 @@ namespace CygSoft.SmartSession.GoalManagement.Tasks
         {
         }
 
-        public PercentGoalTask(string title, DateTime createDate, List<PercentSessionResult> results)
-            : base(title, createDate, results.OfType<SessionResult>().ToList())
+        public PercentGoalTask(string id, string title, DateTime createDate, List<PercentSessionResult> results)
+            : base(id, title, createDate, results.OfType<SessionResult>().ToList())
         {
         }
 

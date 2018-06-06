@@ -16,8 +16,8 @@ namespace CygSoft.SmartSession.GoalManagement.Tasks
             this.startSpeed = startSpeed;
         }
 
-        public MetronomeGoalTask(string title, DateTime createDate, int startSpeed, int targetSpeed, List<MetronomeSessionResult> results) 
-            : base(title, createDate, results.OfType<SessionResult>().ToList())
+        public MetronomeGoalTask(string id, string title, DateTime createDate, int startSpeed, int targetSpeed, List<MetronomeSessionResult> results) 
+            : base(id, title, createDate, results.OfType<SessionResult>().ToList())
         {
             if (startSpeed > targetSpeed)
                 throw new ArgumentOutOfRangeException("Start metronome speed cannot exceed the target metronome speed.");
@@ -40,6 +40,7 @@ namespace CygSoft.SmartSession.GoalManagement.Tasks
             }
         }
         public int TargetSpeed => targetSpeed;
+        public int InitialSpeed => startSpeed;
 
         public override double PercentCompleted
         {
@@ -49,7 +50,7 @@ namespace CygSoft.SmartSession.GoalManagement.Tasks
                     return 0;
 
                 int numerator = CurrentSpeed - startSpeed;
-                int denominator = TargetSpeed - startSpeed;
+                int denominator = targetSpeed - startSpeed;
 
                 if (denominator > 0)
                 {
