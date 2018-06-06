@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CygSoft.SmartSession.GoalManagement
+namespace CygSoft.SmartSession.GoalManagement.Sessions
 {
     public abstract class SessionResult
     {

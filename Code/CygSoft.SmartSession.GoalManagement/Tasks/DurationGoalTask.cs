@@ -1,10 +1,11 @@
-﻿using System;
+﻿using CygSoft.SmartSession.GoalManagement.Sessions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CygSoft.SmartSession.GoalManagement
+namespace CygSoft.SmartSession.GoalManagement.Tasks
 {
     public class DurationGoalTask : GoalTask
     {

@@ -1,4 +1,7 @@
-﻿using CygSoft.SmartSession.GoalManagement.Infrastructure;
+﻿using CygSoft.SmartSession.GoalManagement.Goals;
+using CygSoft.SmartSession.GoalManagement.Infrastructure;
+using CygSoft.SmartSession.GoalManagement.Sessions;
+using CygSoft.SmartSession.GoalManagement.Tasks;
 using Moq;
 using NUnit.Framework;
 using System;

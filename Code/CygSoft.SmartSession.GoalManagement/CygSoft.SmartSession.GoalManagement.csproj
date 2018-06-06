@@ -40,17 +40,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DurationGoalTask.cs" />
-    <Compile Include="DurationSessionResult.cs" />
-    <Compile Include="Goal.cs" />
-    <Compile Include="GoalTask.cs" />
-    <Compile Include="MetronomeSessionResult.cs" />
-    <Compile Include="PercentGoalTask.cs" />
-    <Compile Include="MetronomeGoalTask.cs" />
-    <Compile Include="PercentSessionResult.cs" />
+    <Compile Include="Tasks\DurationGoalTask.cs" />
+    <Compile Include="Sessions\DurationSessionResult.cs" />
+    <Compile Include="Goals\Goal.cs" />
+    <Compile Include="Tasks\GoalTask.cs" />
+    <Compile Include="Sessions\MetronomeSessionResult.cs" />
+    <Compile Include="Tasks\PercentGoalTask.cs" />
+    <Compile Include="Tasks\MetronomeGoalTask.cs" />
+    <Compile Include="Sessions\PercentSessionResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SessionResult.cs" />
-    <Compile Include="WeightingCalculator.cs" />
+    <Compile Include="Sessions\SessionResult.cs" />
+    <Compile Include="Goals\WeightingCalculator.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CygSoft.SmartSession.GoalManagement.Infrastructure\CygSoft.SmartSession.GoalManagement.Infrastructure.csproj">
@@ -61,6 +61,7 @@
   <ItemGroup>
     <None Include="ClassDiagram1.cd" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

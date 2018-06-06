@@ -1,8 +1,9 @@
-﻿using System;
+﻿using CygSoft.SmartSession.GoalManagement.Sessions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace CygSoft.SmartSession.GoalManagement
+namespace CygSoft.SmartSession.GoalManagement.Tasks
 {
     public class MetronomeGoalTask : GoalTask
     {

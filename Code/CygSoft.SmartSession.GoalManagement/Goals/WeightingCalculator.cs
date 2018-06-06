@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CygSoft.SmartSession.GoalManagement
+namespace CygSoft.SmartSession.GoalManagement.Goals
 {
     public class WeightingCalculator
     {

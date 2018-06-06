@@ -1,4 +1,6 @@
-﻿using NUnit.Framework;
+﻿using CygSoft.SmartSession.GoalManagement.Sessions;
+using CygSoft.SmartSession.GoalManagement.Tasks;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
