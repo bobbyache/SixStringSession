@@ -40,7 +40,7 @@ namespace CygSoft.SmartSession.GoalManagement.Goals
                             taskNode.Attribute("Title").Value,
                             DateTime.Parse(taskNode.Attribute("DateCreated").Value),
                             int.Parse(taskNode.Attribute("Minutes").Value),
-                            new List<DurationSessionResult>()
+                            GetDurationSessions(taskNode)
 
                         );
                         task.Weighting = int.Parse(taskNode.Attribute("Weighting").Value);
@@ -50,7 +50,7 @@ namespace CygSoft.SmartSession.GoalManagement.Goals
                             taskNode.Attribute("Id").Value,
                             taskNode.Attribute("Title").Value,
                             DateTime.Parse(taskNode.Attribute("DateCreated").Value),
-                            new List<PercentSessionResult>()
+                            GetPercentSessions(taskNode)
                         );
                         task.Weighting = int.Parse(taskNode.Attribute("Weighting").Value);
                         break;
@@ -61,7 +61,7 @@ namespace CygSoft.SmartSession.GoalManagement.Goals
                              DateTime.Parse(taskNode.Attribute("DateCreated").Value),
                              int.Parse(taskNode.Attribute("InitialSpeed").Value),
                              int.Parse(taskNode.Attribute("TargetSpeed").Value),
-                             new List<MetronomeSessionResult>()
+                             GetMetronomeSessions(taskNode)
                          );
                         task.Weighting = int.Parse(taskNode.Attribute("Weighting").Value);
                         break;
@@ -71,6 +71,53 @@ namespace CygSoft.SmartSession.GoalManagement.Goals
                 goalTasks.Add(task);
             }
             return goalTasks.ToArray();
+        }
+
+        private List<MetronomeSessionResult> GetMetronomeSessions(XElement metronomeTask)
+        {
+            List<MetronomeSessionResult> metronomeSessions = new List<MetronomeSessionResult>();
+
+            foreach (XElement sessionNode in metronomeTask.Element("SessionResults").Elements("SessionResult"))
+            {
+                MetronomeSessionResult result = new MetronomeSessionResult(
+                        DateTime.Parse(sessionNode.Attribute("StartTime").Value),
+                        DateTime.Parse(sessionNode.Attribute("EndTime").Value),
+                        int.Parse(sessionNode.Attribute("Speed").Value)
+                    );
+                metronomeSessions.Add(result);
+            }
+            return metronomeSessions;
+        }
+
+        private List<DurationSessionResult> GetDurationSessions(XElement durationTask)
+        {
+            List<DurationSessionResult> durationSessions = new List<DurationSessionResult>();
+
+            foreach (XElement sessionNode in durationTask.Element("SessionResults").Elements("SessionResult"))
+            {
+                DurationSessionResult result = new DurationSessionResult(
+                        DateTime.Parse(sessionNode.Attribute("StartTime").Value),
+                        DateTime.Parse(sessionNode.Attribute("EndTime").Value)
+                    );
+                durationSessions.Add(result);
+            }
+            return durationSessions;
+        }
+
+        private List<PercentSessionResult> GetPercentSessions(XElement durationTask)
+        {
+            List<PercentSessionResult> percentSessions = new List<PercentSessionResult>();
+
+            foreach (XElement sessionNode in durationTask.Element("SessionResults").Elements("SessionResult"))
+            {
+                PercentSessionResult result = new PercentSessionResult(
+                        DateTime.Parse(sessionNode.Attribute("StartTime").Value),
+                        DateTime.Parse(sessionNode.Attribute("EndTime").Value),
+                        int.Parse(sessionNode.Attribute("Percent").Value)
+                    );
+                percentSessions.Add(result);
+            }
+            return percentSessions;
         }
 
         public string Serialize(IGoal goal)
