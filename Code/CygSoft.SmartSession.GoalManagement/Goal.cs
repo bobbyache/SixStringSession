@@ -48,6 +48,9 @@ namespace CygSoft.SmartSession.GoalManagement
 
         internal void AddTask(GoalTask goalTask)
         {
+            if (goalTask.Weighting <= 0)
+                throw new ArgumentOutOfRangeException("Cannot add a task with an invalid weighting");
+
             weightingCalculator.Update(goalTask.Id, goalTask.Weighting);
             goalTasks.Add(goalTask);
             goalTask.WeightingChanged += GoalTask_WeightingChanged;
