@@ -114,5 +114,17 @@ namespace CygSoft.SmartSession.GoalManagement.UnitTests.Tests
             PercentGoalTask task = new PercentGoalTask("Task 1", DateTime.Parse("2018/03/18 18:01:20"), results);
             Assert.That(task.StartDate, Is.EqualTo(expectedStartTime));
         }
+
+        [Test]
+        public void Existing_PercentGoalTask_Raises_WeightingChangedEvent_When_Registered()
+        {
+            var called = false;
+
+            var task = new PercentGoalTask("Duration Task");
+            task.WeightingChanged += (sender, args) => called = true;
+            task.Weighting = 42;
+
+            Assert.IsTrue(called);
+        }
     }
 }

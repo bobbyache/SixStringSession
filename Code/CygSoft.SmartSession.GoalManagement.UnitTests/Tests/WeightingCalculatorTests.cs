@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 namespace CygSoft.SmartSession.GoalManagement.UnitTests.Tests
 {
     [TestFixture]
+    [Category("WeightingCalculator")]
     public class WeightingCalculatorTests
     {
         [Test]
@@ -62,6 +63,51 @@ namespace CygSoft.SmartSession.GoalManagement.UnitTests.Tests
             WeightingCalculator calculator = new WeightingCalculator(1000);
 
             TestDelegate proc = () => calculator.Update("001", 1001);
+            Assert.That(proc, Throws.TypeOf<ArgumentOutOfRangeException>());
+        }
+
+        [Test]
+        public void WeightingCalculator_Returns_Correct_Weighted_Percentage_Given_A_Percentage()
+        {
+            WeightingCalculator calculator = new WeightingCalculator(500);
+
+            calculator.Update("001", 100);
+            calculator.Update("002", 100);
+            calculator.Update("003", 200);
+
+            // Why? Because this adds up to 50% which we know is the actual weighted progress we'd like to see.
+            Assert.That(calculator.GetWeightedPercentage("001", 50), Is.EqualTo(12.5));
+            Assert.That(calculator.GetWeightedPercentage("002", 50), Is.EqualTo(12.5));
+            Assert.That(calculator.GetWeightedPercentage("003", 50), Is.EqualTo(25));
+        }
+
+        [Test]
+        public void WeightingCalculator_GetWeightedPercetage_When_Passed_Percentage_Exceeding_100_Throws_Exception()
+        {
+            WeightingCalculator calculator = new WeightingCalculator(500);
+            calculator.Update("001", 100);
+
+            TestDelegate proc = () => calculator.GetWeightedPercentage("001", 1001);
+            Assert.That(proc, Throws.TypeOf<ArgumentOutOfRangeException>());
+        }
+
+        [Test]
+        public void WeightingCalculator_GetWeightedPercetage_When_Passed_Percentage_LessThan_0_Throws_Exception()
+        {
+            WeightingCalculator calculator = new WeightingCalculator(500);
+            calculator.Update("001", 100);
+
+            TestDelegate proc = () => calculator.GetWeightedPercentage("001", -1);
+            Assert.That(proc, Throws.TypeOf<ArgumentOutOfRangeException>());
+        }
+
+        [Test]
+        public void WeightingCalculator_GetWeightedPercetage_When_Passed_InvalidId_Throws_Exception()
+        {
+            WeightingCalculator calculator = new WeightingCalculator(500);
+            calculator.Update("001", 100);
+
+            TestDelegate proc = () => calculator.GetWeightedPercentage("002", 80);
             Assert.That(proc, Throws.TypeOf<ArgumentOutOfRangeException>());
         }
     }

@@ -9,6 +9,8 @@ namespace CygSoft.SmartSession.GoalManagement
     {
         protected List<SessionResult> results;
 
+        public event EventHandler WeightingChanged;
+
         public int MinutesPracticed
         {
             get
@@ -22,7 +24,19 @@ namespace CygSoft.SmartSession.GoalManagement
             }
         }
 
-        public double Weighting { get; internal set; }
+        private int weighting;
+        public int Weighting
+        {
+            get { return this.weighting; }
+            set
+            {
+                if (this.weighting != value)
+                {
+                    this.weighting = value;
+                    WeightingChanged?.Invoke(this, new EventArgs());
+                }
+            }
+        }
 
         public DateTime CreateDate { get; private set; }
 

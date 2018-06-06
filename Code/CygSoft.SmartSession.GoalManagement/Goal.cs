@@ -9,16 +9,22 @@ namespace CygSoft.SmartSession.GoalManagement
 {
     internal class Goal
     {
+        private WeightingCalculator weightingCalculator;
         private List<IGoalFile> goalFiles = new List<IGoalFile>();
         private List<IGoalTask> goalTasks = new List<IGoalTask>();
 
-        public Goal()
+        public double PercentComplete { get { return 0; } }
+
+        public Goal(int maxTaskWeighting)
         {
+            weightingCalculator = new WeightingCalculator(maxTaskWeighting);
             CreateDate = DateTime.Now;
         }
 
-        internal Goal(IGoalTask[] goalTasks, IGoalFile[] goalFiles)
+        internal Goal(int maxTaskWeighting, IGoalTask[] goalTasks, IGoalFile[] goalFiles)
         {
+            weightingCalculator = new WeightingCalculator(maxTaskWeighting);
+
             if (goalTasks != null)
                 this.goalTasks = new List<IGoalTask>(goalTasks);
 
@@ -30,10 +36,15 @@ namespace CygSoft.SmartSession.GoalManagement
 
         internal void AddTask(GoalTask goalTask)
         {
-            if (goalTasks.Count == 0)
-                goalTask.Weighting = 100;
-
+            weightingCalculator.Update(goalTask.Id, goalTask.Weighting);
             goalTasks.Add(goalTask);
+            goalTask.WeightingChanged += GoalTask_WeightingChanged;
+        }
+
+        private void GoalTask_WeightingChanged(object sender, EventArgs e)
+        {
+            GoalTask goalTask = ((GoalTask)sender);
+            weightingCalculator.Update(goalTask.Id, goalTask.Weighting);
         }
 
         public IGoalFile[] Files => goalFiles.ToArray();

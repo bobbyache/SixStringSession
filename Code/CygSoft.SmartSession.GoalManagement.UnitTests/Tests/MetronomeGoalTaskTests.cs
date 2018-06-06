@@ -126,5 +126,17 @@ namespace CygSoft.SmartSession.GoalManagement.UnitTests.Tests
                 new List<MetronomeSessionResult>());
             Assert.That(proc, Throws.TypeOf<ArgumentOutOfRangeException>());
         }
+
+        [Test]
+        public void Existing_MetronomeGoalTask_Raises_WeightingChangedEvent_When_Registered()
+        {
+            var called = false;
+
+            var task = new MetronomeGoalTask("Duration Task", 50, 80);
+            task.WeightingChanged += (sender, args) => called = true;
+            task.Weighting = 42;
+
+            Assert.IsTrue(called);
+        }
     }
 }

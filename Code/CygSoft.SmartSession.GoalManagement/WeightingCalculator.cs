@@ -57,9 +57,18 @@ namespace CygSoft.SmartSession.GoalManagement
             CalculatePercentages();
         }
 
-        public void Change(string id, double value)
+        public double GetWeightedPercentage(string id, double percent)
         {
-            CalculatePercentages();
+            if (percent < 0)
+                throw new ArgumentOutOfRangeException("Percent cannot be a negative value.");
+
+            if (percent > 100)
+                throw new ArgumentOutOfRangeException("Percent value cannot exceed 100.");
+
+            if (weightings.ContainsKey(id))
+                return (percent / 100) * weightings[id].Percentage;
+            else
+                throw new ArgumentOutOfRangeException($"An item does not exist in the weighting calculator with the ID of {id}");
         }
     }
 }

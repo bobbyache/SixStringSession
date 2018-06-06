@@ -113,6 +113,18 @@ namespace CygSoft.SmartSession.GoalManagement.UnitTests.Tests
             DurationGoalTask task = new DurationGoalTask("Task 1", DateTime.Parse("2018/03/18 18:01:20"), 60, durationSessionResults);
             Assert.That(task.StartDate, Is.EqualTo(expectedStartTime));
         }
+
+        [Test]
+        public void Existing_DurationGoalTask_Raises_WeightingChangedEvent_When_Registered()
+        {
+            var called = false;
+
+            var task = new DurationGoalTask("Duration Task");
+            task.WeightingChanged += (sender, args) => called = true;
+            task.Weighting = 42;
+
+            Assert.IsTrue(called);
+        }
     }
 
 

@@ -18,7 +18,9 @@ namespace CygSoft.SmartSession.GoalManagement.Infrastructure
 
     public interface IWeightedEntity
     {
-        double Weighting { get; }
+        event EventHandler WeightingChanged;
+
+        int Weighting { get; set; }
     }
 
     public interface IGoalFile
