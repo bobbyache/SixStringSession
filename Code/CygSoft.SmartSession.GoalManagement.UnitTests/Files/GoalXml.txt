@@ -1,6 +1,7 @@
 ﻿<Goal Id="0a723447-e366-4e0b-9f00-1590e8fd8adc" MaxTaskWeighting="1000" Title="Goal 1 - First Ever Goal">
 		<Files>
-			<File Title="Instance File Title" Path="\2018-01\45689-1256-4587.gp" />
+			<File Path="C:\Documents\2018-01\45689-1256-4587.gp" />
+			<File Path="C:\Documents\2018-01\American Pie.mwv" />
 		</Files>
 		<Tasks>
 			<Task Id="0bef8bd6-9fda-4115-bb1a-e21f6a8dbeb7" Type="Metronome" Weighting="25" DateCreated="2016-12-16" Title="Learn Measure 1 - 4" InitialSpeed="60" TargetSpeed="120">

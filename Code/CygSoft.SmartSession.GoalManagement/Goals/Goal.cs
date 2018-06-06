@@ -21,7 +21,7 @@ namespace CygSoft.SmartSession.GoalManagement.Goals
             get
             {
                 double summedPercentage = 0;
-                
+
                 foreach (IGoalTask task in goalTasks)
                 {
                     summedPercentage += weightingCalculator.GetItemWeightedPercentage(task.Id, task.PercentCompleted);
@@ -40,13 +40,17 @@ namespace CygSoft.SmartSession.GoalManagement.Goals
         internal Goal(string id, string title, int maxTaskWeighting, IGoalTask[] goalTasks, IGoalFile[] goalFiles) : base(id)
         {
             Title = title;
-            weightingCalculator = new WeightingCalculator(maxTaskWeighting);
 
             if (goalTasks != null)
                 this.goalTasks = new List<IGoalTask>(goalTasks);
 
             if (goalFiles != null)
                 this.goalFiles = new List<IGoalFile>(goalFiles);
+
+            weightingCalculator = new WeightingCalculator(maxTaskWeighting);
+
+            foreach (IGoalTask task in this.goalTasks)
+                weightingCalculator.Update(task.Id, task.Weighting);
         }
 
         public double FileCount => goalFiles.Count();

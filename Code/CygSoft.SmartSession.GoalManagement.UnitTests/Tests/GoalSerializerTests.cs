@@ -19,7 +19,6 @@ namespace CygSoft.SmartSession.GoalManagement.UnitTests.Tests
         public void Goal_When_Deserialized_Populates_Goal_Properties()
         {
             string xml = TxtFile.ReadText("GoalXml.txt");
-            Assert.IsFalse(string.IsNullOrEmpty(xml));
 
             GoalSerializer serializer = new GoalSerializer();
             var goal = serializer.Deserialize(xml);
@@ -34,7 +33,6 @@ namespace CygSoft.SmartSession.GoalManagement.UnitTests.Tests
         public void Goal_When_Deserialized_Populates_All_Goal_Tasks()
         {
             string xml = TxtFile.ReadText("GoalXml.txt");
-            Assert.IsFalse(string.IsNullOrEmpty(xml));
 
             GoalSerializer serializer = new GoalSerializer();
             var goal = serializer.Deserialize(xml);
@@ -46,7 +44,6 @@ namespace CygSoft.SmartSession.GoalManagement.UnitTests.Tests
         public void MetronomeGoalTask_Deserializes_Properties_Correctly()
         {
             string xml = TxtFile.ReadText("GoalXml.txt");
-            Assert.IsFalse(string.IsNullOrEmpty(xml));
 
             GoalSerializer serializer = new GoalSerializer();
             var goal = serializer.Deserialize(xml);
@@ -68,7 +65,6 @@ namespace CygSoft.SmartSession.GoalManagement.UnitTests.Tests
         public void DurationGoalTask_Deserializes_Properties_Correctly()
         {
             string xml = TxtFile.ReadText("GoalXml.txt");
-            Assert.IsFalse(string.IsNullOrEmpty(xml));
 
             GoalSerializer serializer = new GoalSerializer();
             var goal = serializer.Deserialize(xml);
@@ -88,7 +84,6 @@ namespace CygSoft.SmartSession.GoalManagement.UnitTests.Tests
         public void PercentGoalTask_Deserializes_Properties_Correctly()
         {
             string xml = TxtFile.ReadText("GoalXml.txt");
-            Assert.IsFalse(string.IsNullOrEmpty(xml));
 
             GoalSerializer serializer = new GoalSerializer();
             var goal = serializer.Deserialize(xml);
@@ -102,6 +97,15 @@ namespace CygSoft.SmartSession.GoalManagement.UnitTests.Tests
             Assert.That(goalTask.Weighting, Is.EqualTo(25));
             Assert.That(goalTask.MinutesPracticed, Is.EqualTo(22));
             Assert.That(goalTask.PercentCompleted, Is.EqualTo(75));
+        }
+        [Test]
+        public void GoalSerializer_Deserializes_Goal_Files_Correctly()
+        {
+            string xml = TxtFile.ReadText("GoalXml.txt");
+
+            GoalSerializer serializer = new GoalSerializer();
+            var goal = serializer.Deserialize(xml);
+            Assert.That(goal.FileCount, Is.EqualTo(2));
         }
     }
 }

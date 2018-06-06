@@ -105,11 +105,11 @@ namespace CygSoft.SmartSession.GoalManagement.UnitTests.Tests
         [Test]
         public void Goal_New_With_Null_Files_Has_Zero_Files()
         {
-            IGoalTask[] goalTasks = new IGoalTask[]
+            IGoalTask[] goalTasks = (new List<GoalTask>
             {
-                new Mock<IGoalTask>().Object,
-                new Mock<IGoalTask>().Object
-            };
+                new DurationGoalTask("Goal 1", 50),
+                new DurationGoalTask("Goal 2", 50)
+            }).ToArray();
 
             Goal goal = new Goal("d78b888c-fb56-48dc-be71-2219fa4ff577", "Goal 1", 1000, goalTasks, null);
             Assert.That(goal.FileCount, Is.EqualTo(0));
@@ -155,11 +155,11 @@ namespace CygSoft.SmartSession.GoalManagement.UnitTests.Tests
         [Test]
         public void Goal_Existing_Has_SetState_Via_Constructor()
         {
-            IGoalTask[] goalTasks = new IGoalTask[]
+            IGoalTask[] goalTasks = (new List<GoalTask>
             {
-                new Mock<IGoalTask>().Object,
-                new Mock<IGoalTask>().Object
-            };
+                new DurationGoalTask("Goal 1", 50),
+                new DurationGoalTask("Goal 2", 50)
+            }).ToArray();
 
             IGoalFile[] goalFiles = new IGoalFile[]
             {

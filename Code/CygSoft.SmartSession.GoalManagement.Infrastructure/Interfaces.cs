@@ -43,5 +43,9 @@ namespace CygSoft.SmartSession.GoalManagement.Infrastructure
 
     public interface IGoalFile
     {
+        string Extension { get; }
+        string FileName { get; }
+        string FilePath { get; set; }
+        bool Exists { get; }
     }
 }

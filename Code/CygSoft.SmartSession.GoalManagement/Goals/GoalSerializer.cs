@@ -1,4 +1,5 @@
-﻿using CygSoft.SmartSession.GoalManagement.Infrastructure;
+﻿using CygSoft.SmartSession.GoalManagement.Files;
+using CygSoft.SmartSession.GoalManagement.Infrastructure;
 using CygSoft.SmartSession.GoalManagement.Sessions;
 using CygSoft.SmartSession.GoalManagement.Tasks;
 using System;
@@ -19,9 +20,22 @@ namespace CygSoft.SmartSession.GoalManagement.Goals
                 goalNode.Attribute("Id").Value,
                 goalNode.Attribute("Title").Value,
                 int.Parse(goalNode.Attribute("MaxTaskWeighting").Value),
-                DeserializeTasks(goalNode.Element("Tasks")), 
-                null
+                DeserializeTasks(goalNode.Element("Tasks")),
+                DeserializeFiles(goalNode.Element("Files"))
             );
+        }
+
+        private IGoalFile[] DeserializeFiles(XElement filesNode)
+        {
+            List<IGoalFile> goalFiles = new List<IGoalFile>();
+
+            foreach (XElement fileNode in filesNode.Elements("File"))
+            {
+                GoalFile goalFile = new GoalFile();
+                goalFile.FilePath = fileNode.Attribute("Path").Value;
+                goalFiles.Add(goalFile);
+            }
+            return goalFiles.ToArray();
         }
 
         private IGoalTask[] DeserializeTasks(XElement tasksNode)
