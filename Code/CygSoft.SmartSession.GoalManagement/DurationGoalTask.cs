@@ -11,7 +11,10 @@ namespace CygSoft.SmartSession.GoalManagement
         private string title;
         private int targetMinutes;
 
-        public DurationGoalTask(string title) : base(title) { }
+        public DurationGoalTask(string title, int targetMinutes) : base(title)
+        {
+            this.targetMinutes = targetMinutes;
+        }
 
         public DurationGoalTask(string title, DateTime createDate, int targetMinutes, List<DurationSessionResult> results)
             : base(title, createDate, results.OfType<SessionResult>().ToList())
@@ -24,10 +27,10 @@ namespace CygSoft.SmartSession.GoalManagement
         {
             get
             {
-                if (results == null)
+                if (sessionResults == null)
                     return 0;
 
-                var minutes = results.Sum(t => t.Minutes);
+                var minutes = sessionResults.Sum(t => t.Minutes);
                 if (minutes > targetMinutes && targetMinutes != 0)
                     return 100;
 

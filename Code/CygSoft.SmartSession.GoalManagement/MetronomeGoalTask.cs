@@ -29,13 +29,13 @@ namespace CygSoft.SmartSession.GoalManagement
         {
             get
             {
-                if (results == null)
+                if (sessionResults == null)
                     return 0;
 
-                if (results.Count == 0)
+                if (sessionResults.Count == 0)
                     return 0;
 
-                return results.OfType<MetronomeSessionResult>().OrderBy(r => r.StartTime).Last().Speed;
+                return sessionResults.OfType<MetronomeSessionResult>().OrderBy(r => r.StartTime).Last().Speed;
             }
         }
         public int TargetSpeed => targetSpeed;
@@ -57,6 +57,5 @@ namespace CygSoft.SmartSession.GoalManagement
                 return 0;
             }
         }
-
     }
 }

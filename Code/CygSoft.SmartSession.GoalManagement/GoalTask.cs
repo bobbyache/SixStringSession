@@ -7,7 +7,7 @@ namespace CygSoft.SmartSession.GoalManagement
 {
     public abstract class GoalTask : IGoalTask
     {
-        protected List<SessionResult> results;
+        protected List<SessionResult> sessionResults;
 
         public event EventHandler WeightingChanged;
 
@@ -15,12 +15,12 @@ namespace CygSoft.SmartSession.GoalManagement
         {
             get
             {
-                if (results == null)
+                if (sessionResults == null)
                     return 0;
-                if (results.Count == 0)
+                if (sessionResults.Count == 0)
                     return 0;
 
-                return results.Sum(r => r.Minutes);
+                return sessionResults.Sum(r => r.Minutes);
             }
         }
 
@@ -45,11 +45,11 @@ namespace CygSoft.SmartSession.GoalManagement
         {
             get
             {
-                if (results == null)
+                if (sessionResults == null)
                     return null;
-                if (results.Count == 0)
+                if (sessionResults.Count == 0)
                     return null;
-                return results.Min(r => r.StartTime);
+                return sessionResults.Min(r => r.StartTime);
             }
         }
 
@@ -58,7 +58,7 @@ namespace CygSoft.SmartSession.GoalManagement
             Id = Guid.NewGuid().ToString();
             CreateDate = DateTime.Now;
             Title = title;
-            this.results = null;
+            this.sessionResults = new List<SessionResult>();
         }
 
         public GoalTask(string title, DateTime createDate, List<SessionResult> results)
@@ -66,7 +66,7 @@ namespace CygSoft.SmartSession.GoalManagement
             Id = Guid.NewGuid().ToString();
             CreateDate = createDate;
             Title = title;
-            this.results = results;
+            this.sessionResults = results;
         }
 
         public abstract double PercentCompleted { get; }
@@ -74,5 +74,10 @@ namespace CygSoft.SmartSession.GoalManagement
         public string Title { get; private set; }
 
         public string Id { get; private set; }
+
+        internal void AddSession(SessionResult sessionResult)
+        {
+            sessionResults.Add(sessionResult);
+        }
     }
 }

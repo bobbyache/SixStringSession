@@ -46,7 +46,7 @@ namespace CygSoft.SmartSession.GoalManagement.UnitTests.Tests
         public void Weighting_Single_DurationGoalTask_Added_To_Task_Creates_100_Percent_Weighting()
         {
             Goal goal = new Goal(1000);
-            GoalTask goalTask = new DurationGoalTask("Title 1");
+            GoalTask goalTask = new DurationGoalTask("Title 1", 100);
             goalTask.Weighting = 1000;
             goal.AddTask(goalTask);
             Assert.That(goalTask.Weighting, Is.EqualTo(1000));
@@ -56,7 +56,7 @@ namespace CygSoft.SmartSession.GoalManagement.UnitTests.Tests
         public void Goal_Add_DurationTask_Adds_Task_Successfully()
         {
             Goal goal = new Goal(1000);
-            GoalTask goalTask = new DurationGoalTask("Title 1");
+            GoalTask goalTask = new DurationGoalTask("Title 1", 100);
 
             Assert.That(goalTask, Is.TypeOf<DurationGoalTask>());
             Assert.IsFalse(string.IsNullOrEmpty(goalTask.Id));
@@ -174,28 +174,34 @@ namespace CygSoft.SmartSession.GoalManagement.UnitTests.Tests
         [Test]
         public void Goal_With_Two_Unequally_Weighted_Tasks_Returns_Correct_Percent_Complete()
         {
-            //Goal goal = new Goal(100);
+            Goal goal = new Goal(100);
 
-            //MetronomeGoalTask task1 = new MetronomeGoalTask("Metronome Task", 100, 120);
-            //task1.Weighting = 50;
+            MetronomeGoalTask task1 = new MetronomeGoalTask("Metronome Task", 100, 120);
+            task1.Weighting = 50;
 
-            //DurationGoalTask task2 = new DurationGoalTask("Duration Task", /* target minutes */ 60);
-            //task2.Weighting = 100;
+            DurationGoalTask task2 = new DurationGoalTask("Duration Task", 60);
+            task2.Weighting = 100;
 
-            //PercentGoalTask task3 = new PercentGoalTask("Percent Task");
-            //task3.Weighting = 50;
+            PercentGoalTask task3 = new PercentGoalTask("Percent Task");
+            task3.Weighting = 50;
 
-            //goal.AddTask(task1);
-            //goal.AddTask(task2);
-            //goal.AddTask(task3);
+            goal.AddTask(task1);
+            goal.AddTask(task2);
+            goal.AddTask(task3);
 
-            //// all exactly half done...
-            //task1.AddSession(new MetronomeSessionResult(DateTime.Parse("2018/06/22 18:33:20"), DateTime.Parse("2018/06/22 18:38:20"), 110));
-            //task2.AddSession(new DurationSessionResult(DateTime.Parse("2018/06/22 18:00:00"), DateTime.Parse("2018/06/22 18:30:00")));
-            //task3.AddSession(new PercentSessionResult(DateTime.Parse("2018/06/22 18:00:00"), DateTime.Parse("2018/06/22 18:30:00"), 50));
+            // all exactly half done...
+            task1.AddSession(new MetronomeSessionResult(DateTime.Parse("2018/06/22 18:33:20"), DateTime.Parse("2018/06/22 18:38:20"), 110));
+            task2.AddSession(new DurationSessionResult(DateTime.Parse("2018/06/22 18:00:00"), DateTime.Parse("2018/06/22 18:30:00")));
+            task3.AddSession(new PercentSessionResult(DateTime.Parse("2018/06/22 18:00:00"), DateTime.Parse("2018/06/22 18:30:00"), 50));
 
-            //Assert.That(goal.PercentComplete, Is.EqualTo(50));
-            Assert.Fail();
+            Assert.That(goal.PercentComplete, Is.EqualTo(50));
+        }
+
+        [Test]
+        public void Goal_With_No_Tasks_Returns_0_Percent_Complete()
+        {
+            Goal goal = new Goal(100);
+            Assert.That(goal.PercentComplete, Is.EqualTo(0));
         }
     }
 }

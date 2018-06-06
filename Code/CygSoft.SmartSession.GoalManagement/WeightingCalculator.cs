@@ -57,7 +57,7 @@ namespace CygSoft.SmartSession.GoalManagement
             CalculatePercentages();
         }
 
-        public double GetWeightedPercentage(string id, double percent)
+        public double GetItemWeightedPercentage(string id, double percent)
         {
             if (percent < 0)
                 throw new ArgumentOutOfRangeException("Percent cannot be a negative value.");

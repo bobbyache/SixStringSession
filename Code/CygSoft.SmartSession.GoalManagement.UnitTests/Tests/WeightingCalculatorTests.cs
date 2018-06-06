@@ -67,7 +67,7 @@ namespace CygSoft.SmartSession.GoalManagement.UnitTests.Tests
         }
 
         [Test]
-        public void WeightingCalculator_Returns_Correct_Weighted_Percentage_Given_A_Percentage()
+        public void WeightingCalculator_Returns_Correct_Item_Weighted_Percentage_Given_A_Percentage_1()
         {
             WeightingCalculator calculator = new WeightingCalculator(500);
 
@@ -76,9 +76,51 @@ namespace CygSoft.SmartSession.GoalManagement.UnitTests.Tests
             calculator.Update("003", 200);
 
             // Why? Because this adds up to 50% which we know is the actual weighted progress we'd like to see.
-            Assert.That(calculator.GetWeightedPercentage("001", 50), Is.EqualTo(12.5));
-            Assert.That(calculator.GetWeightedPercentage("002", 50), Is.EqualTo(12.5));
-            Assert.That(calculator.GetWeightedPercentage("003", 50), Is.EqualTo(25));
+            Assert.That(calculator.GetItemWeightedPercentage("001", 50), Is.EqualTo(12.5));
+            Assert.That(calculator.GetItemWeightedPercentage("002", 50), Is.EqualTo(12.5));
+            Assert.That(calculator.GetItemWeightedPercentage("003", 50), Is.EqualTo(25));
+        }
+
+        [Test]
+        public void WeightingCalculator_Returns_Multiple_Weighted_Percentage_To_Add_Up_To_50_Percent()
+        {
+            WeightingCalculator calculator = new WeightingCalculator(500);
+
+            calculator.Update("001", 50);
+            calculator.Update("002", 100);
+            calculator.Update("003", 200);
+            calculator.Update("004", 5);
+            calculator.Update("005", 18);
+            calculator.Update("006", 130);
+
+            double value1 = calculator.GetItemWeightedPercentage("001", 50);
+            double value2 = calculator.GetItemWeightedPercentage("002", 50);
+            double value3 = calculator.GetItemWeightedPercentage("003", 50);
+            double value4 = calculator.GetItemWeightedPercentage("004", 50);
+            double value5 = calculator.GetItemWeightedPercentage("005", 50);
+            double value6 = calculator.GetItemWeightedPercentage("006", 50);
+
+            double total = value1 + value2 + value3 + value4 + value5 + value6;
+
+            Assert.That(total, Is.InRange(49.9, 50));
+        }
+
+        [Test]
+        public void WeightingCalculator_Returns_Correct_Total_Weighted_Percentage_As_50_Percent()
+        {
+            WeightingCalculator calculator = new WeightingCalculator(500);
+
+            calculator.Update("001", 50);
+            calculator.Update("002", 100);
+            calculator.Update("003", 200);
+
+            double value1 = calculator.GetItemWeightedPercentage("001", 50);
+            double value2 = calculator.GetItemWeightedPercentage("002", 50);
+            double value3 = calculator.GetItemWeightedPercentage("003", 50);
+
+            double total = value1 + value2 + value3;
+
+            Assert.That(total, Is.InRange(49.9, 50));
         }
 
         [Test]
@@ -87,7 +129,7 @@ namespace CygSoft.SmartSession.GoalManagement.UnitTests.Tests
             WeightingCalculator calculator = new WeightingCalculator(500);
             calculator.Update("001", 100);
 
-            TestDelegate proc = () => calculator.GetWeightedPercentage("001", 1001);
+            TestDelegate proc = () => calculator.GetItemWeightedPercentage("001", 1001);
             Assert.That(proc, Throws.TypeOf<ArgumentOutOfRangeException>());
         }
 
@@ -97,7 +139,7 @@ namespace CygSoft.SmartSession.GoalManagement.UnitTests.Tests
             WeightingCalculator calculator = new WeightingCalculator(500);
             calculator.Update("001", 100);
 
-            TestDelegate proc = () => calculator.GetWeightedPercentage("001", -1);
+            TestDelegate proc = () => calculator.GetItemWeightedPercentage("001", -1);
             Assert.That(proc, Throws.TypeOf<ArgumentOutOfRangeException>());
         }
 
@@ -107,7 +149,7 @@ namespace CygSoft.SmartSession.GoalManagement.UnitTests.Tests
             WeightingCalculator calculator = new WeightingCalculator(500);
             calculator.Update("001", 100);
 
-            TestDelegate proc = () => calculator.GetWeightedPercentage("002", 80);
+            TestDelegate proc = () => calculator.GetItemWeightedPercentage("002", 80);
             Assert.That(proc, Throws.TypeOf<ArgumentOutOfRangeException>());
         }
     }

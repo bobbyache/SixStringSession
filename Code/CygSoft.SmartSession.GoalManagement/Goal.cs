@@ -13,7 +13,19 @@ namespace CygSoft.SmartSession.GoalManagement
         private List<IGoalFile> goalFiles = new List<IGoalFile>();
         private List<IGoalTask> goalTasks = new List<IGoalTask>();
 
-        public double PercentComplete { get { return 0; } }
+        public double PercentComplete
+        {
+            get
+            {
+                double summedPercentage = 0;
+                
+                foreach (IGoalTask task in goalTasks)
+                {
+                    summedPercentage += weightingCalculator.GetItemWeightedPercentage(task.Id, task.PercentCompleted);
+                }
+                return summedPercentage;
+            }
+        }
 
         public Goal(int maxTaskWeighting)
         {

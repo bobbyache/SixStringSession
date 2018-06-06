@@ -21,13 +21,13 @@ namespace CygSoft.SmartSession.GoalManagement
         {
             get
             {
-                if (results == null)
+                if (sessionResults == null)
                     return 0;
 
-                if (results.Count == 0)
+                if (sessionResults.Count == 0)
                     return 0;
 
-                return results.OfType<PercentSessionResult>().Max(r => r.PercentCompleted);
+                return sessionResults.OfType<PercentSessionResult>().Max(r => r.PercentCompleted);
             }
         }
     }
