@@ -1,4 +1,5 @@
-﻿using CygSoft.SmartSession.GoalManagement.Goals;
+﻿using CygSoft.SmartSession.GoalManagement.Files;
+using CygSoft.SmartSession.GoalManagement.Goals;
 using CygSoft.SmartSession.GoalManagement.Infrastructure;
 using CygSoft.SmartSession.GoalManagement.Sessions;
 using CygSoft.SmartSession.GoalManagement.Tasks;
@@ -150,6 +151,48 @@ namespace CygSoft.SmartSession.GoalManagement.UnitTests.Tests
         {
             Goal goal = new Goal("Goal 1", 1000);
             Assert.AreEqual(false, goal.IsConsideredComplete);
+        }
+
+        [Test]
+        public void Goal_AddFile_Adds_File_Correctly_To_FileList()
+        {
+            Goal goal = new Goal("Goal 1", 1000);
+            IGoalFile file = new GoalFile() { FilePath = @"C:\documents\test_file.pdf" };
+            goal.AddFile(file);
+
+            Assert.That(goal.FileCount, Is.EqualTo(1));
+            Assert.That(goal.Files[0].FilePath, Is.EqualTo(@"C:\documents\test_file.pdf"));
+        }
+        [Test]
+        public void Goal_RemoveFile_Removes_File_Correctly_To_FileList()
+        {
+            Goal goal = new Goal("Goal 1", 1000);
+            IGoalFile file = new GoalFile() { FilePath = @"C:\documents\test_file.pdf" };
+            goal.AddFile(file);
+            goal.RemoveFile(file.FilePath);
+
+            Assert.That(goal.FileCount, Is.EqualTo(0));
+        }
+
+        [Test]
+        public void Goal_RemoveTask_Removes_Task_Successfully()
+        {
+            IGoalTask[] goalTasks = (new List<GoalTask>
+            {
+                new DurationGoalTask("aad0723c-9856-435a-b783-4b727087744e", "Goal 1", DateTime.Now, 50, new List<DurationSessionResult>()),
+                new DurationGoalTask("b8a3b5b2-d6b6-4501-8806-ded73f4021ee", "Goal 1", DateTime.Now, 50, new List<DurationSessionResult>())
+            }).ToArray();
+
+            IGoalFile[] goalFiles = new IGoalFile[0];
+
+            Goal goal = new Goal("d78b888c-fb56-48dc-be71-2219fa4ff577", "Goal 1", 1000, goalTasks, goalFiles);
+
+            Assert.That(goal.TaskCount, Is.EqualTo(2));
+
+            goal.RemoveTask("aad0723c-9856-435a-b783-4b727087744e");
+            goal.RemoveTask("b8a3b5b2-d6b6-4501-8806-ded73f4021ee");
+
+            Assert.That(goal.TaskCount, Is.EqualTo(0));
         }
 
         [Test]

@@ -65,6 +65,27 @@ namespace CygSoft.SmartSession.GoalManagement.Goals
             goalTask.WeightingChanged += GoalTask_WeightingChanged;
         }
 
+        internal void RemoveTask(string taskId)
+        {
+            IGoalTask task = this.goalTasks.Where(g => g.Id == taskId).SingleOrDefault();
+            weightingCalculator.RemoveItem(taskId);
+            task.WeightingChanged -= GoalTask_WeightingChanged;
+            goalTasks.Remove(task);
+        }
+
+        internal void AddFile(IGoalFile file)
+        {
+            this.goalFiles.Add(file);
+        }
+
+        internal void RemoveFile(string filePath)
+        {
+            IGoalFile file = this.goalFiles.Where(g => g.FilePath == filePath).SingleOrDefault();
+
+            if (file != null)
+                this.goalFiles.Remove(file);
+        }
+
         private void GoalTask_WeightingChanged(object sender, EventArgs e)
         {
             GoalTask goalTask = ((GoalTask)sender);
