@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2035
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CygSoft.SmartSession.TimerApp", "CygSoft.SmartSession.TimerApp\CygSoft.SmartSession.TimerApp.csproj", "{3CCAD66C-7A6A-4897-8848-E72F3EFC703B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3CCAD66C-7A6A-4897-8848-E72F3EFC703B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CCAD66C-7A6A-4897-8848-E72F3EFC703B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CCAD66C-7A6A-4897-8848-E72F3EFC703B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CCAD66C-7A6A-4897-8848-E72F3EFC703B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5D0B0722-1FDB-4A0B-AC43-8ED53F0F84BB}
+	EndGlobalSection
+EndGlobal
