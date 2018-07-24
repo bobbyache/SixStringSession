@@ -27,6 +27,7 @@ namespace CygSoft.SmartSession.TimerApp
 
         public event EventHandler<CountdownEventArgs> TickTock;
         public event EventHandler<CountdownEventArgs> Resetting;
+        public event EventHandler<CountdownEventArgs> TimeUp;
 
         public double CountdownSeconds { get; private set; }
 
@@ -58,12 +59,16 @@ namespace CygSoft.SmartSession.TimerApp
             TickTock?.Invoke(this, new CountdownEventArgs(value.Item2, value.Item1));
 
             if (DateTime.Now >= _startTime.AddSeconds(CountdownSeconds))
-                Reset();
+                End();
         }
 
-        public void Stop()
+        public void End()
         {
             Reset();
+            //_bankedSeconds = 0;
+            //_startTime = DateTime.MinValue;
+            //_timer.Elapsed -= _timer_Elapsed;
+            //TimeUp?.Invoke(this, new CountdownEventArgs(StartDisplayValue, CountdownSeconds));
         }
 
         public void Reset()

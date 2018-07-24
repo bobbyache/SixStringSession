@@ -20,9 +20,17 @@ namespace CygSoft.SmartSession.TimerApp
         {
             InitializeComponent();
             countDown = new Countdown(aTimer, 5);
+            countDown.Resetting += CountDown_Resetting;
+            countDown.TickTock += CountDown_TickTock;
+            countDown.TimeUp += CountDown_TimeUp;
             lblCurrentTaskTimeLeft.Text = countDown.StartDisplayValue;
             btnStartPause.Text = "Start";
             aTimer.Interval = 500;
+        }
+
+        private void CountDown_TimeUp(object sender, CountdownEventArgs e)
+        {
+            //throw new NotImplementedException();
         }
 
         private void btnStartPause_Click(object sender, EventArgs e)
@@ -31,9 +39,6 @@ namespace CygSoft.SmartSession.TimerApp
             {
                 btnStartPause.Text = "Pause";
                 aTimer.Enabled = true;
-                
-                countDown.Resetting += CountDown_Resetting;
-                countDown.TickTock += CountDown_TickTock;
                 countDown.Start();
             }
             else
@@ -41,7 +46,6 @@ namespace CygSoft.SmartSession.TimerApp
                 btnStartPause.Text = "Start";
                 aTimer.Enabled = false;
                 countDown.Pause();
-                countDown.TickTock -= CountDown_TickTock;
             }
         }
 
@@ -49,7 +53,6 @@ namespace CygSoft.SmartSession.TimerApp
         {
             btnStartPause.InvokeIfRequired(b => b.Text = "Start");
             lblCurrentTaskTimeLeft.InvokeIfRequired(c => c.Text = e.DisplayString);
-            countDown.Resetting -= CountDown_Resetting;
         }
 
         private void CountDown_TickTock(object sender, CountdownEventArgs e)
