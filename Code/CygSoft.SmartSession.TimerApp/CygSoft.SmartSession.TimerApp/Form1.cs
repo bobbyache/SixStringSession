@@ -30,7 +30,8 @@ namespace CygSoft.SmartSession.TimerApp
 
         private void CountDown_TimeUp(object sender, CountdownEventArgs e)
         {
-            //throw new NotImplementedException();
+            btnStartPause.InvokeIfRequired(b => b.Text = "Start");
+            lblCurrentTaskTimeLeft.InvokeIfRequired(c => c.Text = e.DisplayString);
         }
 
         private void btnStartPause_Click(object sender, EventArgs e)

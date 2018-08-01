@@ -48,27 +48,29 @@ namespace CygSoft.SmartSession.TimerApp
 
         public void Pause()
         {
-            _bankedSeconds += Math.Abs(new TimeSpan(_startTime.Ticks).Subtract(new TimeSpan(DateTime.Now.Ticks)).TotalSeconds);
-            _startTime = DateTime.Now;
-            _timer.Elapsed += _timer_Elapsed;
+            _timer.Elapsed -= _timer_Elapsed;
+            double seconds = Math.Abs(new TimeSpan(_startTime.Ticks).Subtract(new TimeSpan(DateTime.Now.Ticks)).TotalSeconds);
+            _bankedSeconds += Math.Floor(seconds);
+            //_startTime = DateTime.Now;
         }
 
         private void _timer_Elapsed(object sender, ElapsedEventArgs e)
         {
-            Tuple<double, string> value = GetValue();
-            TickTock?.Invoke(this, new CountdownEventArgs(value.Item2, value.Item1));
-
             if (DateTime.Now >= _startTime.AddSeconds(CountdownSeconds))
                 End();
+            else
+            {
+                Tuple<double, string> value = GetValue();
+                TickTock?.Invoke(this, new CountdownEventArgs(value.Item2, value.Item1));
+            }
         }
 
         public void End()
         {
-            Reset();
-            //_bankedSeconds = 0;
-            //_startTime = DateTime.MinValue;
-            //_timer.Elapsed -= _timer_Elapsed;
-            //TimeUp?.Invoke(this, new CountdownEventArgs(StartDisplayValue, CountdownSeconds));
+            _bankedSeconds = 0;
+            _startTime = DateTime.MinValue;
+            _timer.Elapsed -= _timer_Elapsed;
+            TimeUp?.Invoke(this, new CountdownEventArgs(StartDisplayValue, CountdownSeconds));
         }
 
         public void Reset()
@@ -83,7 +85,7 @@ namespace CygSoft.SmartSession.TimerApp
         {
             double totalSecondsElapsed = Math.Abs(new TimeSpan(_startTime.Ticks).Subtract(new TimeSpan(DateTime.Now.Ticks)).TotalSeconds);
             double totalSecondsRemaining = CountdownSeconds - (totalSecondsElapsed + _bankedSeconds);
-
+            System.Diagnostics.Debug.WriteLine($"{totalSecondsRemaining} = {CountdownSeconds} - {(totalSecondsElapsed + _bankedSeconds)}");
             return new Tuple<double, string>(totalSecondsRemaining, DisplayTime(totalSecondsRemaining));
         }
 
