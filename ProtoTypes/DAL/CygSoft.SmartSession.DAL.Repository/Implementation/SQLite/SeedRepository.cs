@@ -5,6 +5,28 @@ namespace CygSoft.SmartSession.DAL.Repository.SQLite
 {
     public class SeedRepository : SQLiteContext
     {
+        public void Goal()
+        {
+            var sql = @"
+                INSERT INTO goal (name) VALUES 
+                ('Happy Chappy'),
+                ('Britannia Hotel'),
+                ('Hollywood Bets');
+            ";
+            ExecuteNonQuery(sql);
+        }
+
+        public void Task()
+        {
+            var sql = @"
+                INSERT INTO task (name) VALUES 
+                ('Happy Chappy'),
+                ('Britannia Hotel'),
+                ('Hollywood Bets');
+            ";
+            ExecuteNonQuery(sql);
+        }
+
         public void User()
         {
             var _password = new Hash().Go("password1"); //7C6A180B36896A0A8C02787EEAFB0E4C

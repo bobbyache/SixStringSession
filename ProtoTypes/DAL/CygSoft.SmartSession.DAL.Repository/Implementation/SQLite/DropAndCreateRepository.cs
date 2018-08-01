@@ -5,7 +5,25 @@ namespace CygSoft.SmartSession.DAL.Repository.SQLite
 {
     public class DropAndCreateRepository : SQLiteContext
     {
-        public void User()
+
+        public void Goal()
+        {
+            var sql = @"
+			    DROP TABLE IF EXISTS goal; 
+			    CREATE TABLE Goal (id INTEGER PRIMARY KEY, name VARCHAR(50))
+			    ";
+            ExecuteNonQuery(sql);
+        }
+
+        public void Task()
+        {
+          var sql = @"
+            DROP TABLE IF EXISTS task; 
+            CREATE TABLE Task (id INTEGER PRIMARY KEY, name VARCHAR(50))";
+                  ExecuteNonQuery(sql);
+        }
+
+    public void User()
         {
             var sql = @"
 DROP TABLE IF EXISTS user; 

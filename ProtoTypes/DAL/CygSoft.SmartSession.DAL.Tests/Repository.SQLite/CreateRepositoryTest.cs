@@ -12,6 +12,8 @@ namespace CygSoft.SmartSession.DAL.Tests
         [TestMethod]
         public void CreateRepository_Structure()
         {
+            new DropAndCreateRepository().Goal();
+            new DropAndCreateRepository().Task();
             new DropAndCreateRepository().User();
             new DropAndCreateRepository().Restaurant();
             new DropAndCreateRepository().Score();
@@ -22,6 +24,8 @@ namespace CygSoft.SmartSession.DAL.Tests
         [TestMethod]
         public void CreateRepository_Seed()
         {
+            new SeedRepository().Goal();
+            new SeedRepository().Task();
             new SeedRepository().User();
             new SeedRepository().Restaurant();
             new SeedRepository().Score();

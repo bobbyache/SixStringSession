@@ -78,8 +78,10 @@
   <ItemGroup>
     <Compile Include="Repository.SQLite\CreateRepositoryTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository.SQLite\GoalRepositoryTest.cs" />
     <Compile Include="Repository.SQLite\RestaurantRepositoryTest.cs" />
     <Compile Include="Repository.SQLite\ScoreRepositoryTest.cs" />
+    <Compile Include="Repository.SQLite\TaskRepositoryTest.cs" />
     <Compile Include="Repository.SQLite\UserRepositoryTest.cs" />
   </ItemGroup>
   <ItemGroup>
