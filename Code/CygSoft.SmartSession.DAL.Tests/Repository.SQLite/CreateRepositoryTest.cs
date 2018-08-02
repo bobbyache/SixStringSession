@@ -1,5 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using CygSoft.SmartSession.DAL.Repository.SQLite;
+using CygSoft.SmartSession.BaseRepository.SQLite;
 
 namespace CygSoft.SmartSession.DAL.Tests
 {

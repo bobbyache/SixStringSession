@@ -1,7 +1,7 @@
-﻿using CygSoft.SmartSession.DAL.Repository.Schema;
+﻿using CygSoft.SmartSession.BaseRepository.Schema;
 using System.Collections.Generic;
 
-namespace CygSoft.SmartSession.DAL.Repository.Interface
+namespace CygSoft.SmartSession.BaseRepository.Interface
 {
     public interface IScoreRepository
     {

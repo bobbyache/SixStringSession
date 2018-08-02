@@ -7,8 +7,8 @@
     <ProjectGuid>{D17B7562-736B-41DF-AD2C-31DC62789216}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CygSoft.SmartSession.DAL.Repository</RootNamespace>
-    <AssemblyName>CygSoft.SmartSession.DAL.Repository</AssemblyName>
+    <RootNamespace>CygSoft.SmartSession.BaseRepository</RootNamespace>
+    <AssemblyName>CygSoft.SmartSession.BaseRepository</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>
