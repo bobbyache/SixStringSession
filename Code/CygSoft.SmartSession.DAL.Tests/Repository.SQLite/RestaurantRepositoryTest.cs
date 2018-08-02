@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using CygSoft.SmartSession.DAL.Repository.Interface;
-using CygSoft.SmartSession.DAL.Repository.Schema;
-using CygSoft.SmartSession.DAL.Repository.SQLite;
+using CygSoft.SmartSession.BaseRepository.Interface;
+using CygSoft.SmartSession.BaseRepository.Schema;
+using CygSoft.SmartSession.BaseRepository.SQLite;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace CygSoft.SmartSession.DAL.Tests

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CygSoft.SmartSession.DAL.Repository.Schema
+namespace CygSoft.SmartSession.BaseRepository.Schema
 {
     public class ScoreModel
     {

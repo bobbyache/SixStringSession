@@ -1,8 +1,8 @@
-﻿using CygSoft.SmartSession.DAL.Repository.Implementation;
-using CygSoft.SmartSession.DAL.Repository.Interface;
-using CygSoft.SmartSession.DAL.Repository.Schema;
+﻿using CygSoft.SmartSession.BaseRepository.Implementation;
+using CygSoft.SmartSession.BaseRepository.Interface;
+using CygSoft.SmartSession.BaseRepository.Schema;
 
-namespace CygSoft.SmartSession.DAL.Repository.SQLite
+namespace CygSoft.SmartSession.BaseRepository.SQLite
 {
     public class UserRepository : SQLiteContext, IUserRepository
     {

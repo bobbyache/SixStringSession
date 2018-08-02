@@ -1,7 +1,7 @@
 ﻿
-using CygSoft.SmartSession.DAL.Repository.Implementation;
+using CygSoft.SmartSession.BaseRepository.Implementation;
 
-namespace CygSoft.SmartSession.DAL.Repository.SQLite
+namespace CygSoft.SmartSession.BaseRepository.SQLite
 {
     public class DropAndCreateRepository : SQLiteContext
     {
