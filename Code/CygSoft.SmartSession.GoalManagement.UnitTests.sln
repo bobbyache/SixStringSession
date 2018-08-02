@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CygSoft.SmartSession.GoalMa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CygSoft.SmartSession.GoalManagement", "CygSoft.SmartSession.GoalManagement\CygSoft.SmartSession.GoalManagement.csproj", "{5E5C771F-A122-423A-8CC3-27488E9E054A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CygSoft.SmartSession.GoalManagement.Infrastructure", "CygSoft.SmartSession.GoalManagement.Infrastructure\CygSoft.SmartSession.GoalManagement.Infrastructure.csproj", "{26F5ECF2-47A5-481D-B9AD-E128B19F9EED}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CygSoft.SmartSession.Infrastructure", "CygSoft.SmartSession.GoalManagement.Infrastructure\CygSoft.SmartSession.Infrastructure.csproj", "{26F5ECF2-47A5-481D-B9AD-E128B19F9EED}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CygSoft.SmartSession.DAL.Common", "CygSoft.SmartSession.DAL.Common\CygSoft.SmartSession.DAL.Common.csproj", "{EF8EA07E-F135-480B-A989-C88DD7233C2F}"
 EndProject

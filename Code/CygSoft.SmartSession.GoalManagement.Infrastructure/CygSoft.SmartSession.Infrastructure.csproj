@@ -7,8 +7,8 @@
     <ProjectGuid>{26F5ECF2-47A5-481D-B9AD-E128B19F9EED}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CygSoft.SmartSession.GoalManagement.Infrastructure</RootNamespace>
-    <AssemblyName>CygSoft.SmartSession.GoalManagement.Infrastructure</AssemblyName>
+    <RootNamespace>CygSoft.SmartSession.Infrastructure</RootNamespace>
+    <AssemblyName>CygSoft.SmartSession.Infrastructure</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

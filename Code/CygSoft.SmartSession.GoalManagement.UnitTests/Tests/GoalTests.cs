@@ -1,14 +1,10 @@
 ﻿using CygSoft.SmartSession.GoalManagement.Goals;
-using CygSoft.SmartSession.GoalManagement.Infrastructure;
 using CygSoft.SmartSession.GoalManagement.Sessions;
 using CygSoft.SmartSession.GoalManagement.Tasks;
+using CygSoft.SmartSession.Infrastructure;
 using Moq;
 using NUnit.Framework;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CygSoft.SmartSession.GoalManagement.UnitTests.Tests
 {
