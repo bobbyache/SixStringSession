@@ -1,6 +1,4 @@
-﻿
-
-using CygSoft.SmartSession.Repositories.Implementation;
+﻿using CygSoft.SmartSession.Repositories.Implementation;
 
 namespace CygSoft.SmartSession.BaseRepository.SQLite
 {

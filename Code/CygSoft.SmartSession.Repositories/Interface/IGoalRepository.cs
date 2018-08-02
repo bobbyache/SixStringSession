@@ -1,6 +1,7 @@
 ﻿using CygSoft.SmartSession.Repositories.Schema;using System.Collections.Generic;
 
-namespace CygSoft.SmartSession.Repositories.Interface{
+namespace CygSoft.SmartSession.Repositories.Interface
+{
     public interface IGoalRepository
     {
         int Insert(GoalModel obj);

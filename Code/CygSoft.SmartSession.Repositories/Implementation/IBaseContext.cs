@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 
-namespace CygSoft.SmartSession.Repositories.Implementation{
+namespace CygSoft.SmartSession.Repositories.Implementation
+{
     public interface IBaseContext
     {
         void Open();

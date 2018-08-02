@@ -1,6 +1,7 @@
 ﻿using System;
 
-namespace CygSoft.SmartSession.Repositories.Schema{
+namespace CygSoft.SmartSession.Repositories.Schema
+{
     public class ScoreModel
     {
         public int Id { get; set; }

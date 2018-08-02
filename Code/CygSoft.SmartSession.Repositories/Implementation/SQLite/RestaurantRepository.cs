@@ -2,7 +2,9 @@
 using CygSoft.SmartSession.Repositories.Implementation;
 using CygSoft.SmartSession.Repositories.Interface;
 using CygSoft.SmartSession.Repositories.Schema;
-namespace CygSoft.SmartSession.Repositories.SQLite{
+
+namespace CygSoft.SmartSession.Repositories.SQLite
+{
     public class RestaurantRepository : SQLiteContext, IRestaurantRepository
     {
         public int Insert(RestaurantModel obj)

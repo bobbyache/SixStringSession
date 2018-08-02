@@ -1,4 +1,5 @@
-﻿namespace CygSoft.SmartSession.Repositories.Schema{
+﻿namespace CygSoft.SmartSession.Repositories.Schema
+{
     public class UserModel
     {
         public int Id { get; set; }
