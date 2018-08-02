@@ -4,7 +4,7 @@ using System.Text;
 
 namespace CygSoft.SmartSession.DAL.Common
 {
-    public class Hash
+    public class PasswordHash
     {
         public string Go(string s)
         {

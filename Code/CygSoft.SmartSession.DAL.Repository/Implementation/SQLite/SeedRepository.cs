@@ -29,7 +29,7 @@ namespace CygSoft.SmartSession.DAL.Repository.SQLite
 
         public void User()
         {
-            var _password = new Hash().Go("password1"); //7C6A180B36896A0A8C02787EEAFB0E4C
+            var _password = new PasswordHash().Go("password1"); //7C6A180B36896A0A8C02787EEAFB0E4C
 
             var sql = string.Format(@"
 INSERT INTO user (has_access, cellphone, password, name, surname) VALUES 

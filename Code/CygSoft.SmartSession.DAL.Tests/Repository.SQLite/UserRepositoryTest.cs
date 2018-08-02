@@ -26,7 +26,7 @@ namespace CygSoft.SmartSession.DAL.Tests
         {
             // arrange
             var _cellPhone = cellPhone;
-            var _password = new Hash().Go(password); //"7C6A180B36896A0A8C02787EEAFB0E4C"
+            var _password = new PasswordHash().Go(password); //"7C6A180B36896A0A8C02787EEAFB0E4C"
 
             // act 
             var dbModel = new UserRepository().Select(cellPhone, _password);
@@ -40,7 +40,7 @@ namespace CygSoft.SmartSession.DAL.Tests
         public int Insert(UserModel obj)
         {
             // arrange
-            var password = new Hash().Go("password1"); //"7C6A180B36896A0A8C02787EEAFB0E4C"
+            var password = new PasswordHash().Go("password1"); //"7C6A180B36896A0A8C02787EEAFB0E4C"
             var dbModel = new UserModel()
             {
                 CellPhone = 123456789,
