@@ -1,8 +1,7 @@
-﻿using CygSoft.SmartSession.Repositories.Implementation;
-using CygSoft.SmartSession.Infrastructure;
+﻿using CygSoft.SmartSession.Infrastructure;
+using CygSoft.SmartSession.Repositories.Implementation;
 
-namespace CygSoft.SmartSession.Repositories.SQLite
-{
+namespace CygSoft.SmartSession.Repositories.SQLite{
     public class SeedRepository : SQLiteContext
     {
         public void Goal()

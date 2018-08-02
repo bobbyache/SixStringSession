@@ -1,5 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using CygSoft.SmartSession.BaseRepository.SQLite;
 using CygSoft.SmartSession.Repositories.SQLite;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace CygSoft.SmartSession.Repositories.UnitTests
 {

@@ -88,13 +88,13 @@
     <Compile Include="Repository.SQLite\UserRepositoryTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CygSoft.SmartSession.Repositories\CygSoft.SmartSession.Repositories.csproj">
-      <Project>{d17b7562-736b-41df-ad2c-31dc62789216}</Project>
-      <Name>CygSoft.SmartSession.Repositories</Name>
-    </ProjectReference>
     <ProjectReference Include="..\CygSoft.SmartSession.GoalManagement.Infrastructure\CygSoft.SmartSession.Infrastructure.csproj">
       <Project>{26f5ecf2-47a5-481d-b9ad-e128b19f9eed}</Project>
       <Name>CygSoft.SmartSession.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CygSoft.SmartSession.Repositories\CygSoft.SmartSession.Repositories.csproj">
+      <Project>{d17b7562-736b-41df-ad2c-31dc62789216}</Project>
+      <Name>CygSoft.SmartSession.Repositories</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
