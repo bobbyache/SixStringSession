@@ -7,7 +7,7 @@ namespace CygSoft.SmartSession.Repositories.SQLite
 {
     public class TaskRepository : SQLiteContext, ITaskRepository
     {
-        public int Insert(TaskModel obj)
+        public int Insert(TaskRecord obj)
         {
             var sql = @"
 				INSERT INTO task
@@ -21,26 +21,26 @@ namespace CygSoft.SmartSession.Repositories.SQLite
 				SELECT last_insert_rowid();
 				";
 
-            return Insert<TaskModel>(sql, obj);
+            return Insert<TaskRecord>(sql, obj);
         }
 
-        public TaskModel Select(int id)
+        public TaskRecord Select(int id)
         {
             var sql = @"
 				SELECT * FROM task 
 				WHERE Id = @id;";
 
-            return Select<TaskModel>(sql, new { id });
+            return Select<TaskRecord>(sql, new { id });
         }
 
-        public List<TaskModel> SelectList()
+        public List<TaskRecord> SelectList()
         {
             var sql = @"
 				SELECT * FROM task 
 				ORDER BY name;
 				";
 
-            return SelectList<TaskModel>(sql);
+            return SelectList<TaskRecord>(sql);
         }
     }
 }

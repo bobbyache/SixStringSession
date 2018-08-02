@@ -7,7 +7,7 @@ namespace CygSoft.SmartSession.Repositories.SQLite
 {
     public class ScoreRepository : SQLiteContext, IScoreRepository
     {
-        public int Insert(ScoreModel obj)
+        public int Insert(ScoreRecord obj)
         {
             var sql = @"
 INSERT INTO score
@@ -15,27 +15,27 @@ INSERT INTO score
 VALUES
 (@RestaurantId, @UserId, @InsertDate, @Taste, @Temperature, @Tomorrow);
 SELECT last_insert_rowid();";
-            return Insert<ScoreModel>(
+            return Insert<ScoreRecord>(
                 sql,
                 obj);
         }
 
-        public ScoreModel Select(int id)
+        public ScoreRecord Select(int id)
         {
             var sql = @"
 SELECT * FROM score 
 WHERE Id = @id;";
-            return Select<ScoreModel>(
+            return Select<ScoreRecord>(
                 sql,
                 new { id });
         }
 
-        public List<ScoreModel> SelectList()
+        public List<ScoreRecord> SelectList()
         {
             var sql = @"
 SELECT * FROM score 
 ORDER BY restaurant_id;";
-            return SelectList<ScoreModel>(
+            return SelectList<ScoreRecord>(
                 sql);
         }
     }

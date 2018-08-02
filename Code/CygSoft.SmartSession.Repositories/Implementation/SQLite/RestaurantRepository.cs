@@ -7,7 +7,7 @@ namespace CygSoft.SmartSession.Repositories.SQLite
 {
     public class RestaurantRepository : SQLiteContext, IRestaurantRepository
     {
-        public int Insert(RestaurantModel obj)
+        public int Insert(RestaurantRecord obj)
         {
             var sql = @"
 INSERT INTO restaurant
@@ -15,27 +15,27 @@ INSERT INTO restaurant
 VALUES
 (@Name);
 SELECT last_insert_rowid();";
-            return Insert<RestaurantModel>(
+            return Insert<RestaurantRecord>(
                 sql,
                 obj);
         }
 
-        public RestaurantModel Select(int id)
+        public RestaurantRecord Select(int id)
         {
             var sql = @"
 SELECT * FROM restaurant 
 WHERE id = @id;";
-            return Select<RestaurantModel>(
+            return Select<RestaurantRecord>(
                 sql,
                 new { id });
         }
 
-        public List<RestaurantModel> SelectList()
+        public List<RestaurantRecord> SelectList()
         {
             var sql = @"
 SELECT * FROM restaurant 
 ORDER BY name";
-            return SelectList<RestaurantModel>(
+            return SelectList<RestaurantRecord>(
                 sql);
         }
     }

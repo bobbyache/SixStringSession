@@ -4,8 +4,8 @@ namespace CygSoft.SmartSession.Repositories.Interface
 {
     public interface IRestaurantRepository
     {
-        int Insert(RestaurantModel obj);
-        RestaurantModel Select(int id);
-        List<RestaurantModel> SelectList();
+        int Insert(RestaurantRecord obj);
+        RestaurantRecord Select(int id);
+        List<RestaurantRecord> SelectList();
     }
 }

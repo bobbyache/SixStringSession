@@ -29,10 +29,10 @@ namespace CygSoft.SmartSession.Repositories.UnitTests.Repository.SQLite
     }
 
     #region ITaskRepository
-    public int Insert(TaskModel obj)
+    public int Insert(TaskRecord obj)
     {
       // arrange
-      var taskModel = new TaskModel()
+      var taskModel = new TaskRecord()
       {
         Name = "Task Name"
       };
@@ -46,7 +46,7 @@ namespace CygSoft.SmartSession.Repositories.UnitTests.Repository.SQLite
       return newId;
     }
 
-    public TaskModel Select(int id)
+    public TaskRecord Select(int id)
     {
       // arrange
       int _id = id;
@@ -60,7 +60,7 @@ namespace CygSoft.SmartSession.Repositories.UnitTests.Repository.SQLite
       return taskModel;
     }
 
-    public List<TaskModel> SelectList()
+    public List<TaskRecord> SelectList()
     {
       // arrange
       // act 

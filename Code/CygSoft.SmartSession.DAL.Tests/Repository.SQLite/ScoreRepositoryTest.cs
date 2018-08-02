@@ -29,10 +29,10 @@ namespace CygSoft.SmartSession.Repositories.UnitTests.Repository.SQLite
         }
 
         #region IScoreRepository
-        public int Insert(ScoreModel obj)
+        public int Insert(ScoreRecord obj)
         {
             // arrange
-            var dbModel = new ScoreModel()
+            var dbModel = new ScoreRecord()
             {
                 InsertDate = DateTime.Now,
                 RestaurantId = 1,
@@ -51,7 +51,7 @@ namespace CygSoft.SmartSession.Repositories.UnitTests.Repository.SQLite
             return newId;
         }
 
-        public ScoreModel Select(int id)
+        public ScoreRecord Select(int id)
         {
             // arrange
             int _id = id;
@@ -65,7 +65,7 @@ namespace CygSoft.SmartSession.Repositories.UnitTests.Repository.SQLite
             return dbModel;
         }
 
-        public List<ScoreModel> SelectList()
+        public List<ScoreRecord> SelectList()
         {
             // arrange
             // act 

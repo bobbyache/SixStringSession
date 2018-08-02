@@ -28,10 +28,10 @@ namespace CygSoft.SmartSession.Repositories.UnitTests
         }
 
         #region IRestaurantRepository
-        public int Insert(RestaurantModel obj)
+        public int Insert(RestaurantRecord obj)
         {
             // arrange
-            var dbModel = new RestaurantModel()
+            var dbModel = new RestaurantRecord()
             {
                 Name = "Test Restaurant"
             };
@@ -45,7 +45,7 @@ namespace CygSoft.SmartSession.Repositories.UnitTests
             return newId;
         }
 
-        public RestaurantModel Select(int id)
+        public RestaurantRecord Select(int id)
         {
             // arrange
             int _id = id;
@@ -59,7 +59,7 @@ namespace CygSoft.SmartSession.Repositories.UnitTests
             return dbModel;
         }
 
-        public List<RestaurantModel> SelectList()
+        public List<RestaurantRecord> SelectList()
         {
             // arrange
             // act 

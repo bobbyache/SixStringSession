@@ -6,7 +6,7 @@ namespace CygSoft.SmartSession.Repositories.SQLite
 {
     public class UserRepository : SQLiteContext, IUserRepository
     {
-        public int Insert(UserModel obj)
+        public int Insert(UserRecord obj)
         {
             var sql = @"
 INSERT INTO user
@@ -14,18 +14,18 @@ INSERT INTO user
 VALUES
 (@HasAccess, @CellPhone, @Password, @Name, @Surname);
 SELECT last_insert_rowid();";
-            return Insert<UserModel>(
+            return Insert<UserRecord>(
                 sql,
                 obj);
         }
 
-        public UserModel Select(long cellPhone, string password)
+        public UserRecord Select(long cellPhone, string password)
         {
             var sql = @"
 SELECT * FROM user 
 WHERE cellphone = @cellPhone
 AND password = @password;";
-            return Select<UserModel>(
+            return Select<UserRecord>(
                 sql,
                 new { cellPhone, password });
         }

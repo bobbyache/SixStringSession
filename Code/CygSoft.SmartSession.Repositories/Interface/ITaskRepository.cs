@@ -4,8 +4,8 @@ namespace CygSoft.SmartSession.Repositories.Interface
 {
   public interface ITaskRepository
   {
-    int Insert(TaskModel obj);
-    TaskModel Select(int id);
-    List<TaskModel> SelectList();
+    int Insert(TaskRecord obj);
+    TaskRecord Select(int id);
+    List<TaskRecord> SelectList();
   }
 }

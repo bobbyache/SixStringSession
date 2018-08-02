@@ -7,7 +7,7 @@ namespace CygSoft.SmartSession.Repositories.SQLite
 {
     public class GoalRepository : SQLiteContext, IGoalRepository
     {
-        public int Insert(GoalModel obj)
+        public int Insert(GoalRecord obj)
         {
             var sql = @"
 				INSERT INTO goal
@@ -21,26 +21,26 @@ namespace CygSoft.SmartSession.Repositories.SQLite
 				SELECT last_insert_rowid();
 				";
 
-            return Insert<GoalModel>(sql, obj);
+            return Insert<GoalRecord>(sql, obj);
         }
 
-        public GoalModel Select(int id)
+        public GoalRecord Select(int id)
         {
             var sql = @"
 				SELECT * FROM goal 
 				WHERE Id = @id;";
 
-            return Select<GoalModel>(sql, new { id });
+            return Select<GoalRecord>(sql, new { id });
         }
 
-        public List<GoalModel> SelectList()
+        public List<GoalRecord> SelectList()
         {
             var sql = @"
 				SELECT * FROM goal 
 				ORDER BY name;
 				";
 
-            return SelectList<GoalModel>(sql);
+            return SelectList<GoalRecord>(sql);
         }
     }
 }

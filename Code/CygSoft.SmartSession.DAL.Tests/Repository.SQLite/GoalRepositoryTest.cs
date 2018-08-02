@@ -28,10 +28,10 @@ namespace CygSoft.SmartSession.Repositories.UnitTests.Repository.SQLite
             SelectList();
         }
 
-        public int Insert(GoalModel obj)
+        public int Insert(GoalRecord obj)
         {
             // arrange
-            var goalModel = new GoalModel()
+            var goalModel = new GoalRecord()
             {
                 Name = "Goal Name"
             };
@@ -45,7 +45,7 @@ namespace CygSoft.SmartSession.Repositories.UnitTests.Repository.SQLite
             return newId;
         }
 
-        public GoalModel Select(int id)
+        public GoalRecord Select(int id)
         {
             // arrange
             int _id = id;
@@ -59,7 +59,7 @@ namespace CygSoft.SmartSession.Repositories.UnitTests.Repository.SQLite
             return goalModel;
         }
 
-        public List<GoalModel> SelectList()
+        public List<GoalRecord> SelectList()
         {
             // arrange
             // act 

@@ -1,6 +1,6 @@
 ﻿namespace CygSoft.SmartSession.Repositories.Schema
 {
-    public class UserModel
+    public class UserRecord
     {
         public int Id { get; set; }
         public bool HasAccess { get; set; }

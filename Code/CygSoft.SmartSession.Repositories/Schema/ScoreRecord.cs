@@ -2,7 +2,7 @@
 
 namespace CygSoft.SmartSession.Repositories.Schema
 {
-    public class ScoreModel
+    public class ScoreRecord
     {
         public int Id { get; set; }
         public int RestaurantId { get; set; }

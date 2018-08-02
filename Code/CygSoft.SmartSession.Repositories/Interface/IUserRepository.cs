@@ -3,7 +3,7 @@ namespace CygSoft.SmartSession.Repositories.Interface
 {
     public interface IUserRepository
     {
-        UserModel Select(long cellPhone, string password);
-        int Insert(UserModel obj);
+        UserRecord Select(long cellPhone, string password);
+        int Insert(UserRecord obj);
     }
 }

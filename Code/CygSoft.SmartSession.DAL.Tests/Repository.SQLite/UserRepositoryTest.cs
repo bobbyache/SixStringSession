@@ -22,7 +22,7 @@ namespace CygSoft.SmartSession.Repositories.UnitTests
         }
 
         #region IUserRepository
-        public UserModel Select(long cellPhone, string password)
+        public UserRecord Select(long cellPhone, string password)
         {
             // arrange
             var _cellPhone = cellPhone;
@@ -37,11 +37,11 @@ namespace CygSoft.SmartSession.Repositories.UnitTests
             return dbModel;
         }
 
-        public int Insert(UserModel obj)
+        public int Insert(UserRecord obj)
         {
             // arrange
             var password = new PasswordHash().Go("password1"); //"7C6A180B36896A0A8C02787EEAFB0E4C"
-            var dbModel = new UserModel()
+            var dbModel = new UserRecord()
             {
                 CellPhone = 123456789,
                 HasAccess = true,

@@ -1,6 +1,6 @@
 ﻿namespace CygSoft.SmartSession.Repositories.Schema
 {
-    public class RestaurantModel
+    public class GoalRecord
     {
         public int Id { get; set; }
         public string Name { get; set; }
