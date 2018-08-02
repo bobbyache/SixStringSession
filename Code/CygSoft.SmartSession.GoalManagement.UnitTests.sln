@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CygSoft.SmartSession.GoalMa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CygSoft.SmartSession.Infrastructure", "CygSoft.SmartSession.GoalManagement.Infrastructure\CygSoft.SmartSession.Infrastructure.csproj", "{26F5ECF2-47A5-481D-B9AD-E128B19F9EED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CygSoft.SmartSession.DAL.Common", "CygSoft.SmartSession.DAL.Common\CygSoft.SmartSession.DAL.Common.csproj", "{EF8EA07E-F135-480B-A989-C88DD7233C2F}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CygSoft.SmartSession.DAL.Repository", "CygSoft.SmartSession.DAL.Repository\CygSoft.SmartSession.DAL.Repository.csproj", "{D17B7562-736B-41DF-AD2C-31DC62789216}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CygSoft.SmartSession.DAL.Tests", "CygSoft.SmartSession.DAL.Tests\CygSoft.SmartSession.DAL.Tests.csproj", "{AA850365-CFE7-4573-8381-8A1D2398651B}"
@@ -33,10 +31,6 @@ Global
 		{26F5ECF2-47A5-481D-B9AD-E128B19F9EED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{26F5ECF2-47A5-481D-B9AD-E128B19F9EED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{26F5ECF2-47A5-481D-B9AD-E128B19F9EED}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EF8EA07E-F135-480B-A989-C88DD7233C2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EF8EA07E-F135-480B-A989-C88DD7233C2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EF8EA07E-F135-480B-A989-C88DD7233C2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EF8EA07E-F135-480B-A989-C88DD7233C2F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D17B7562-736B-41DF-AD2C-31DC62789216}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D17B7562-736B-41DF-AD2C-31DC62789216}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D17B7562-736B-41DF-AD2C-31DC62789216}.Release|Any CPU.ActiveCfg = Release|Any CPU

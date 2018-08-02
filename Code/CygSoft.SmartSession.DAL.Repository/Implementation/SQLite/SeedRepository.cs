@@ -1,5 +1,5 @@
-﻿using CygSoft.SmartSession.DAL.Common;
-using CygSoft.SmartSession.DAL.Repository.Implementation;
+﻿using CygSoft.SmartSession.DAL.Repository.Implementation;
+using CygSoft.SmartSession.Infrastructure;
 
 namespace CygSoft.SmartSession.DAL.Repository.SQLite
 {

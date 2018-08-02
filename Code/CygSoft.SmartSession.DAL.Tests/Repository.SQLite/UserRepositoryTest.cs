@@ -1,7 +1,7 @@
 ﻿using CygSoft.SmartSession.DAL.Repository.Interface;
 using CygSoft.SmartSession.DAL.Repository.Schema;
 using CygSoft.SmartSession.DAL.Repository.SQLite;
-using CygSoft.SmartSession.DAL.Common;
+using CygSoft.SmartSession.Infrastructure;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace CygSoft.SmartSession.DAL.Tests
