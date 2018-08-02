@@ -1,11 +1,8 @@
-﻿using CygSoft.SmartSession.Domain.Sessions;
-using CygSoft.SmartSession.Domain.Tasks;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using System;
+using CygSoft.SmartSession.Domain.Tasks;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using CygSoft.SmartSession.Domain.Sessions;
 
 namespace CygSoft.SmartSession.Domain.UnitTests.Tests
 {
