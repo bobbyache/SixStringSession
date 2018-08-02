@@ -1,7 +1,7 @@
-﻿using CygSoft.SmartSession.BaseRepository.Schema;
+﻿using CygSoft.SmartSession.Repositories.Schema;
 using System.Collections.Generic;
 
-namespace CygSoft.SmartSession.BaseRepository.Interface
+namespace CygSoft.SmartSession.Repositories.Interface
 {
     public interface IRestaurantRepository
     {

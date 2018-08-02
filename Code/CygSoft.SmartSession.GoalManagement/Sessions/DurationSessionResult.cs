@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CygSoft.SmartSession.GoalManagement.Sessions
+namespace CygSoft.SmartSession.Domain.Sessions
 {
     public class DurationSessionResult : SessionResult
     {

@@ -5,7 +5,7 @@ using System.Data;
 using System.Data.SQLite;
 using System.Linq;
 
-namespace CygSoft.SmartSession.BaseRepository.Implementation
+namespace CygSoft.SmartSession.Repositories.Implementation
 {
     public class SQLiteContext : IDisposable, IBaseContext
     {

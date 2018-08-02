@@ -7,8 +7,8 @@
     <ProjectGuid>{5E5C771F-A122-423A-8CC3-27488E9E054A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CygSoft.SmartSession.GoalManagement</RootNamespace>
-    <AssemblyName>CygSoft.SmartSession.GoalManagement</AssemblyName>
+    <RootNamespace>CygSoft.SmartSession.Domain</RootNamespace>
+    <AssemblyName>CygSoft.SmartSession.Domain</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -41,6 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\SharedAssemblyInfo.cs">
+      <Link>Properties\SharedAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="Tasks\DurationGoalTask.cs" />
     <Compile Include="Sessions\DurationSessionResult.cs" />
     <Compile Include="Goals\Goal.cs" />

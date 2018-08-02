@@ -1,4 +1,4 @@
-﻿using CygSoft.SmartSession.GoalManagement.Goals;
+﻿using CygSoft.SmartSession.Domain.Goals;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CygSoft.SmartSession.GoalManagement.UnitTests.Tests
+namespace CygSoft.SmartSession.Domain.UnitTests.Tests
 {
     [TestFixture]
     [Category("WeightingCalculator")]

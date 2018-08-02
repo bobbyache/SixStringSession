@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace CygSoft.SmartSession.BaseRepository.Implementation
+namespace CygSoft.SmartSession.Repositories.Implementation
 {
     public interface IBaseContext
     {

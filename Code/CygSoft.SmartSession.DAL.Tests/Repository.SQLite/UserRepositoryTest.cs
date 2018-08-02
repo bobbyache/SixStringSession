@@ -1,10 +1,10 @@
-﻿using CygSoft.SmartSession.BaseRepository.Interface;
-using CygSoft.SmartSession.BaseRepository.Schema;
-using CygSoft.SmartSession.BaseRepository.SQLite;
-using CygSoft.SmartSession.Infrastructure;
+﻿using CygSoft.SmartSession.Infrastructure;
+using CygSoft.SmartSession.Repositories.Interface;
+using CygSoft.SmartSession.Repositories.Schema;
+using CygSoft.SmartSession.Repositories.SQLite;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace CygSoft.SmartSession.DAL.Tests
+namespace CygSoft.SmartSession.Repositories.UnitTests
 {
     [TestClass]
     public class UserRepositoryTest : IUserRepository

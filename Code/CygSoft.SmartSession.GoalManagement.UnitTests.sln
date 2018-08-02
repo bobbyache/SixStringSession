@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2042
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CygSoft.SmartSession.GoalManagement.UnitTests", "CygSoft.SmartSession.GoalManagement.UnitTests\CygSoft.SmartSession.GoalManagement.UnitTests.csproj", "{9AE6DB44-34FA-429B-A330-D7C718F5C408}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CygSoft.SmartSession.Domain.UnitTests", "CygSoft.SmartSession.GoalManagement.UnitTests\CygSoft.SmartSession.Domain.UnitTests.csproj", "{9AE6DB44-34FA-429B-A330-D7C718F5C408}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CygSoft.SmartSession.GoalManagement", "CygSoft.SmartSession.GoalManagement\CygSoft.SmartSession.GoalManagement.csproj", "{5E5C771F-A122-423A-8CC3-27488E9E054A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CygSoft.SmartSession.Domain", "CygSoft.SmartSession.GoalManagement\CygSoft.SmartSession.Domain.csproj", "{5E5C771F-A122-423A-8CC3-27488E9E054A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CygSoft.SmartSession.Infrastructure", "CygSoft.SmartSession.GoalManagement.Infrastructure\CygSoft.SmartSession.Infrastructure.csproj", "{26F5ECF2-47A5-481D-B9AD-E128B19F9EED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CygSoft.SmartSession.BaseRepository", "CygSoft.SmartSession.BaseRepository\CygSoft.SmartSession.BaseRepository.csproj", "{D17B7562-736B-41DF-AD2C-31DC62789216}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CygSoft.SmartSession.Repositories", "CygSoft.SmartSession.Repositories\CygSoft.SmartSession.Repositories.csproj", "{D17B7562-736B-41DF-AD2C-31DC62789216}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CygSoft.SmartSession.DAL.Tests", "CygSoft.SmartSession.DAL.Tests\CygSoft.SmartSession.DAL.Tests.csproj", "{AA850365-CFE7-4573-8381-8A1D2398651B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CygSoft.SmartSession.Repositories.UnitTests", "CygSoft.SmartSession.DAL.Tests\CygSoft.SmartSession.Repositories.UnitTests.csproj", "{AA850365-CFE7-4573-8381-8A1D2398651B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

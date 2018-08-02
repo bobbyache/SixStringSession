@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CygSoft.SmartSession.GoalManagement.Sessions
+namespace CygSoft.SmartSession.Domain.Sessions
 {
     public class PercentSessionResult : SessionResult
     {

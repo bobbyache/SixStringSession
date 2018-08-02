@@ -1,6 +1,6 @@
-﻿using CygSoft.SmartSession.BaseRepository.Schema;
+﻿using CygSoft.SmartSession.Repositories.Schema;
 
-namespace CygSoft.SmartSession.BaseRepository.Interface
+namespace CygSoft.SmartSession.Repositories.Interface
 {
     public interface IUserRepository
     {

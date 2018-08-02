@@ -1,10 +1,10 @@
-﻿using CygSoft.SmartSession.GoalManagement.Tasks;
+﻿using CygSoft.SmartSession.Domain.Tasks;
 using CygSoft.SmartSession.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace CygSoft.SmartSession.GoalManagement.Goals
+namespace CygSoft.SmartSession.Domain.Goals
 {
     internal class Goal
     {

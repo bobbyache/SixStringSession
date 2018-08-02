@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using CygSoft.SmartSession.BaseRepository.Implementation;
-using CygSoft.SmartSession.BaseRepository.Interface;
-using CygSoft.SmartSession.BaseRepository.Schema;
+using CygSoft.SmartSession.Repositories.Implementation;
+using CygSoft.SmartSession.Repositories.Interface;
+using CygSoft.SmartSession.Repositories.Schema;
 
-namespace CygSoft.SmartSession.BaseRepository.SQLite
+namespace CygSoft.SmartSession.Repositories.SQLite
 {
     public class ScoreRepository : SQLiteContext, IScoreRepository
     {

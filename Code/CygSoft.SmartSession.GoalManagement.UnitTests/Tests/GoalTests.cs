@@ -1,12 +1,12 @@
-﻿using CygSoft.SmartSession.GoalManagement.Goals;
-using CygSoft.SmartSession.GoalManagement.Sessions;
-using CygSoft.SmartSession.GoalManagement.Tasks;
+﻿using CygSoft.SmartSession.Domain.Goals;
+using CygSoft.SmartSession.Domain.Sessions;
+using CygSoft.SmartSession.Domain.Tasks;
 using CygSoft.SmartSession.Infrastructure;
 using Moq;
 using NUnit.Framework;
 using System;
 
-namespace CygSoft.SmartSession.GoalManagement.UnitTests.Tests
+namespace CygSoft.SmartSession.Domain.UnitTests.Tests
 {
     [TestFixture]
     public class GoalTests

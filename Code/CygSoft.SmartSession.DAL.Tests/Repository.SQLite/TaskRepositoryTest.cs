@@ -1,11 +1,11 @@
-﻿using CygSoft.SmartSession.BaseRepository.Interface;
-using CygSoft.SmartSession.BaseRepository.Schema;
-using CygSoft.SmartSession.BaseRepository.SQLite;
+﻿using CygSoft.SmartSession.Repositories.Interface;
+using CygSoft.SmartSession.Repositories.Schema;
+using CygSoft.SmartSession.Repositories.SQLite;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 
-namespace CygSoft.SmartSession.DAL.Tests.Repository.SQLite
+namespace CygSoft.SmartSession.Repositories.UnitTests.Repository.SQLite
 {
   [TestClass]
   public class TaskRepositoryTest : ITaskRepository

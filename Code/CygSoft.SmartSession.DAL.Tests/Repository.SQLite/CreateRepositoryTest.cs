@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using CygSoft.SmartSession.BaseRepository.SQLite;
+using CygSoft.SmartSession.Repositories.SQLite;
 
-namespace CygSoft.SmartSession.DAL.Tests
+namespace CygSoft.SmartSession.Repositories.UnitTests
 {
     /// <summary>
     /// The schema can also be stored as .sql scripts ~ this was simpler

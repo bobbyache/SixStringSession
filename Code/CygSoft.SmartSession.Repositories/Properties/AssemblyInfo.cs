@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("CygSoft.SmartSession.Domain.Infrastructure")]
+[assembly: AssemblyTitle("CygSoft.SmartSession.Repositories.")]
 [assembly: AssemblyDescription("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
@@ -14,5 +14,6 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("26f5ecf2-47a5-481d-b9ad-e128b19f9eed")]
+[assembly: Guid("d17b7562-736b-41df-ad2c-31dc62789216")]
+
 

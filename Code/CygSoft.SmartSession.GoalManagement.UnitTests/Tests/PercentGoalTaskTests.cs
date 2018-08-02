@@ -1,5 +1,5 @@
-﻿using CygSoft.SmartSession.GoalManagement.Sessions;
-using CygSoft.SmartSession.GoalManagement.Tasks;
+﻿using CygSoft.SmartSession.Domain.Sessions;
+using CygSoft.SmartSession.Domain.Tasks;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CygSoft.SmartSession.GoalManagement.UnitTests.Tests
+namespace CygSoft.SmartSession.Domain.UnitTests.Tests
 {
     [TestFixture]
     public class PercentGoalTaskTests

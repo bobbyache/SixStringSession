@@ -1,4 +1,4 @@
-﻿namespace CygSoft.SmartSession.BaseRepository.Schema
+﻿namespace CygSoft.SmartSession.Repositories.Schema
 {
   public class TaskModel
   {
