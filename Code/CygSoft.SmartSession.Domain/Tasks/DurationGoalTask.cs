@@ -11,13 +11,6 @@ namespace CygSoft.SmartSession.Domain.Tasks
     {
         public int TargetMinutes { get; set; }
 
-        //public DurationGoalTask(string title, DateTime createDate, int targetMinutes, List<DurationSessionResult> results)
-        //    : base(title, createDate, results.OfType<SessionResult>().ToList())
-        //{
-        //    this.title = title;
-        //    this.targetMinutes = targetMinutes;
-        //}
-
         public override double PercentCompleted
         {
             get

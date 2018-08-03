@@ -1,4 +1,5 @@
-﻿using CygSoft.SmartSession.Infrastructure;
+﻿using CygSoft.SmartSession.Domain.Tasks;
+using CygSoft.SmartSession.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,41 +8,20 @@ namespace CygSoft.SmartSession.Domain.Goals
 {
     public class Goal : EntityBase, IEditableGoal
     {
-        private WeightingCalculator weightingCalculator;
         private List<IGoalFile> goalFiles = new List<IGoalFile>();
         private List<IEditableGoalTask> goalTasks = new List<IEditableGoalTask>();
 
         public string Title { get; set; }
 
-        public double PercentComplete
-        {
-            get
-            {
-                double summedPercentage = 0;
-                
-                foreach (IWeightedEntity task in goalTasks)
-                {
-                    summedPercentage += weightingCalculator.GetItemWeightedPercentage(task.InstanceId, task.PercentCompleted);
-                }
-                return summedPercentage;
-            }
-        }
+        public double PercentComplete => progressCalculator.CalculateTotalProgress();
 
         public Goal()
         {
-
-        }
-
-        public Goal(int maxTaskWeighting)
-        {
-            weightingCalculator = new WeightingCalculator(maxTaskWeighting);
             CreateDate = DateTime.Now;
         }
 
-        internal Goal(int maxTaskWeighting, IEditableGoalTask[] goalTasks, IGoalFile[] goalFiles)
+        internal Goal(IEditableGoalTask[] goalTasks, IGoalFile[] goalFiles)
         {
-            weightingCalculator = new WeightingCalculator(maxTaskWeighting);
-
             if (goalTasks != null)
                 this.goalTasks = new List<IEditableGoalTask>(goalTasks);
 
@@ -53,20 +33,29 @@ namespace CygSoft.SmartSession.Domain.Goals
 
         private void GoalTask_WeightingChanged(object sender, EventArgs e)
         {
-            //GoalTask goalTask = ((GoalTask)sender);
-            IWeightedEntity goalTask = ((IWeightedEntity)sender);
-            weightingCalculator.Update(goalTask.InstanceId, goalTask.Weighting);
+            IWeightedEntity goalTask = ((IWeightedEntity)sender);;
         }
+
+        private ProgressCalculator progressCalculator = new ProgressCalculator();
 
         public void AddTask(IEditableGoalTask goalTask)
         {
             IWeightedEntity weightedTask = goalTask as IWeightedEntity;
 
+            if (goalTask.PercentCompleted < 0)
+                throw new ArgumentOutOfRangeException("Percent cannot be a negative value.");
+
+            if (goalTask.PercentCompleted > 100)
+                throw new ArgumentOutOfRangeException("Percent value cannot exceed 100.");
+
             if (weightedTask.Weighting <= 0)
                 throw new ArgumentOutOfRangeException("Cannot add a task with an invalid weighting");
 
-            weightingCalculator.Update(weightedTask.InstanceId, weightedTask.Weighting);
+            if (weightedTask.Weighting > 100)
+                throw new ArgumentOutOfRangeException("Cannot add a task with an invalid weighting");
+
             goalTasks.Add(goalTask);
+            progressCalculator.Add(goalTask as IWeightedEntity);
             weightedTask.WeightingChanged += GoalTask_WeightingChanged;
         }
 
@@ -77,7 +66,7 @@ namespace CygSoft.SmartSession.Domain.Goals
 
         public int Weighting => 0;
 
-        public bool IsConsideredComplete => false;
+        public bool IsConsideredComplete => PercentComplete == 100;
 
         public int TaskCount
         {

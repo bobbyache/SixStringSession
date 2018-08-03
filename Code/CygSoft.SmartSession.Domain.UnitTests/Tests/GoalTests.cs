@@ -11,18 +11,51 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
     [TestFixture]
     public class GoalTests
     {
-        //[Test]
-        //public void Weighting_Single_PercentGoalTask_Added_To_Task_Creates_100_Percent_Weighting()
-        //{
-        //    Goal goal = new Goal();
-        //    IGoalTask goalTask = goal.AddTask("Title 1", GoalTaskType.Percent);
-        //    Assert.That(goalTask.Weighting, Is.EqualTo(100));
-        //}
+        [Test]
+        public void Test()
+        {
+            var goal = new Goal();
+            var task1 = new PercentGoalTask { Id = 1, CreateDate = DateTime.Now, Title = "Task 1", Weighting = 50 };
+            var task2 = new PercentGoalTask { Id = 1, CreateDate = DateTime.Now, Title = "Task 2", Weighting = 50 };
+
+            goal.AddTask(task1);
+            goal.AddTask(task2);
+
+            task1.AddSession(new PercentSessionResult(DateTime.Now, DateTime.Now.AddMinutes(10), 50));
+            task2.AddSession(new PercentSessionResult(DateTime.Now, DateTime.Now.AddMinutes(10), 50));
+
+            Assert.That(goal.PercentComplete, Is.EqualTo(50));
+            Assert.That(goal.IsConsideredComplete, Is.False);
+        }
+
+        [Test]
+        public void Goal_With_Four_PercentTasks_At_Varying_Percents_And_Weightings_Returns_Correct_PercentComplete()
+        {
+            var goal = new Goal();
+
+            var task1 = new PercentGoalTask { Id = 1, CreateDate = DateTime.Now, Title = "Task 1", Weighting = 25  };
+            var task2 = new PercentGoalTask { Id = 1, CreateDate = DateTime.Now, Title = "Task 2", Weighting = 40 };
+            var task3 = new PercentGoalTask { Id = 1, CreateDate = DateTime.Now, Title = "Task 3", Weighting = 60 };
+            var task4 = new PercentGoalTask { Id = 1, CreateDate = DateTime.Now, Title = "Task 4", Weighting = 75 };
+
+            goal.AddTask(task1);
+            goal.AddTask(task2);
+            goal.AddTask(task3);
+            goal.AddTask(task4);
+
+            task1.AddSession(new PercentSessionResult(DateTime.Now, DateTime.Now.AddMinutes(10), 100));
+            task2.AddSession(new PercentSessionResult(DateTime.Now, DateTime.Now.AddMinutes(10), 60));
+            task3.AddSession(new PercentSessionResult(DateTime.Now, DateTime.Now.AddMinutes(10), 40));
+            task4.AddSession(new PercentSessionResult(DateTime.Now, DateTime.Now.AddMinutes(10), 25));
+
+            Assert.That(goal.PercentComplete, Is.InRange(45.87, 45.9));
+            Assert.That(goal.IsConsideredComplete, Is.False);
+        }
 
         [Test]
         public void One_Goal_Equals_Another_Goal_Correctly()
         {
-            Goal goal = new Goal();
+            var goal = new Goal();
             goal.Id = 23;
             goal.Title = "Hello World";
 
@@ -37,54 +70,52 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         [Test]
         public void Weighting_Single_PercentGoalTask_Added_To_Task_Creates_100_Percent_Weighting()
         {
-            Goal goal = new Goal(1000);
-            //GoalTask goalTask = new PercentGoalTask("Title 1");
+            var goal = new Goal();
             var task = new PercentGoalTask
             {
                 Title = "Task 1",
-                Weighting = 1000
+                Weighting = 100
             };
 
             goal.AddTask(task);
-            Assert.That(task.Weighting, Is.EqualTo(1000));
+            Assert.That(task.Weighting, Is.EqualTo(100));
         }
 
 
         [Test]
         public void Weighting_Single_MetronomeGoalTask_Added_To_Task_Creates_100_Percent_Weighting()
         {
-            Goal goal = new Goal(1000);
-            //GoalTask goalTask = new MetronomeGoalTask("Title 1", 80, 90);
+            var goal = new Goal();
             var task = new PercentGoalTask
             {
                 Title = "Task 1",
-                Weighting = 1000
+                Weighting = 100
             };
 
             goal.AddTask(task);
-            Assert.That(task.Weighting, Is.EqualTo(1000));
+            Assert.That(task.Weighting, Is.EqualTo(100));
         }
 
 
         [Test]
         public void Weighting_Single_DurationGoalTask_Added_To_Task_Creates_100_Percent_Weighting()
         {
-            Goal goal = new Goal(1000);
+            var goal = new Goal();
             var goalTask = new DurationGoalTask
             {
                 TargetMinutes = 100,
                 Title = "Title 1",
-                Weighting = 1000
+                Weighting = 100
             };
 
             goal.AddTask(goalTask);
-            Assert.That(goalTask.Weighting, Is.EqualTo(1000));
+            Assert.That(goalTask.Weighting, Is.EqualTo(100));
         }
 
         [Test]
         public void Goal_Add_DurationTask_Adds_Task_Successfully()
         {
-            Goal goal = new Goal(1000);
+            Goal goal = new Goal();
             var goalTask = new DurationGoalTask
             {
                 TargetMinutes = 100,
@@ -99,7 +130,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         [Test]
         public void Goal_Add_PercentTask_Adds_Task_Successfully()
         {
-            Goal goal = new Goal(1000);
+            Goal goal = new Goal();
             var goalTask = new PercentGoalTask
             {
                 Title = "Title 1"
@@ -113,7 +144,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         [Test]
         public void Goal_Add_MetronomeTask_Adds_Task_Successfully()
         {
-            Goal goal = new Goal(1000);
+            Goal goal = new Goal();
             var goalTask = new MetronomeGoalTask
             {
                 StartSpeed = 80,
@@ -135,7 +166,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                 new Mock<IGoalFile>().Object
             };
 
-            Goal goal = new Goal(1000, null, goalFiles);
+            Goal goal = new Goal(null, goalFiles);
             Assert.That(goal.TaskCount, Is.EqualTo(0));
             Assert.That(goal.Tasks.Length == 0);
         }
@@ -149,7 +180,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                 new Mock<IEditableGoalTask>().Object
             };
 
-            Goal goal = new Goal(1000, goalTasks, null);
+            Goal goal = new Goal(goalTasks, null);
             Assert.That(goal.FileCount, Is.EqualTo(0));
             Assert.That(goal.Files.Length == 0);
         }
@@ -157,28 +188,28 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         [Test]
         public void Goal_New_Has_No_Minutes_Recorded()
         {
-            Goal goal = new Goal(1000);
+            Goal goal = new Goal();
             Assert.AreEqual(0, goal.MinutesPracticed);
         }
 
         [Test]
         public void Goal_New_Has_Zero_TaskCount()
         {
-            Goal goal = new Goal(1000);
+            Goal goal = new Goal();
             Assert.AreEqual(0, goal.TaskCount);
         }
 
         [Test]
         public void Goal_New_Has_Zero_Weighting()
         {
-            Goal goal = new Goal(1000);
+            Goal goal = new Goal();
             Assert.AreEqual(0, goal.Weighting);
         }
 
         [Test]
         public void Goal_New_Has_Set_CreateDate()
         {
-            Goal goal = new Goal(1000);
+            Goal goal = new Goal();
             Assert.AreNotEqual(DateTime.MinValue, goal.CreateDate);
             Assert.AreNotEqual(DateTime.MaxValue, goal.CreateDate);
         }
@@ -186,7 +217,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         [Test]
         public void Goal_New_Is_Not_Considered_Complete()
         {
-            Goal goal = new Goal(1000);
+            Goal goal = new Goal();
             Assert.AreEqual(false, goal.IsConsideredComplete);
         }
 
@@ -205,7 +236,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                 new Mock<IGoalFile>().Object
             };
             
-            Goal goal = new Goal(1000, goalTasks, goalFiles);
+            Goal goal = new Goal(goalTasks, goalFiles);
             Assert.AreEqual(2, goal.FileCount);
             Assert.AreEqual(2, goal.Files.Length);
             Assert.AreEqual(2, goal.TaskCount);
@@ -215,7 +246,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         [Test]
         public void Goal_With_Two_Unequally_Weighted_Tasks_Returns_Correct_Percent_Complete()
         {
-            Goal goal = new Goal(100);
+            Goal goal = new Goal();
 
             var task1 = new MetronomeGoalTask
             {
@@ -225,14 +256,14 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                 Weighting = 50
             };
 
-            DurationGoalTask task2 = new DurationGoalTask
+            var task2 = new DurationGoalTask
             {
                 Weighting = 100,
                 TargetMinutes = 60,
                 Title = "Duration Task"
             };
 
-            PercentGoalTask task3 = new PercentGoalTask();
+            var task3 = new PercentGoalTask();
             task1.Title = "Percent Task";
             task3.Weighting = 50;
 
@@ -251,14 +282,14 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         [Test]
         public void Goal_With_No_Tasks_Returns_0_Percent_Complete()
         {
-            Goal goal = new Goal(100);
+            Goal goal = new Goal();
             Assert.That(goal.PercentComplete, Is.EqualTo(0));
         }
 
         [Test]
         public void Goal_AddTask_With_0_Weighting_Throws_Exception()
         {
-            Goal goal = new Goal(100);
+            Goal goal = new Goal();
 
             var task1 = new MetronomeGoalTask();
             task1.Title = "Metronome Task";
@@ -273,7 +304,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         [Test]
         public void Goal_AddTask_With_Negative_Weighting_Throws_Exception()
         {
-            Goal goal = new Goal(100);
+            Goal goal = new Goal();
 
             var task1 = new MetronomeGoalTask();
             task1.Title = "Metronome Task";
@@ -288,7 +319,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         [Test]
         public void Goal_AddTask_With_Weighting_That_Exceeds_Limit_Throws_Exception()
         {
-            Goal goal = new Goal(100);
+            Goal goal = new Goal();
 
             var task1 = new MetronomeGoalTask();
             task1.Title = "Metronome Task";

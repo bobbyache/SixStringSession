@@ -73,7 +73,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tests\PercentGoalTaskTests.cs" />
     <Compile Include="Tests\MetronomeGoalTaskTests.cs" />
-    <Compile Include="Tests\WeightingCalculatorTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CygSoft.SmartSession.Domain\CygSoft.SmartSession.Domain.csproj">
