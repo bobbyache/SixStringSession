@@ -64,8 +64,9 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             var task = new PercentGoalTask();
             task.Title = "Task 1";
             task.CreateDate = DateTime.Parse("2018/06/18 18:33:20");
+            task.AddSessionRange(results);
+
             Assert.That(task.MinutesPracticed, Is.EqualTo(10));
-            Assert.Fail(); // results must be assigned first to test this properly
         }
 
         [Test]
@@ -80,8 +81,9 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             var task = new PercentGoalTask();
             task.Title = "Task 1";
             task.CreateDate = DateTime.Parse("2018/06/18 18:33:20");
+            task.AddSessionRange(results);
+
             Assert.That(task.PercentCompleted, Is.EqualTo(50));
-            Assert.Fail(); // results must be assigned first to test this properly
         }
 
         [Test]
@@ -97,24 +99,23 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             var task = new PercentGoalTask();
             task.Title = "Task 1";
             task.CreateDate = DateTime.Parse("2018/06/18 18:33:20");
+            task.AddSessionRange(results);
+
             Assert.That(task.PercentCompleted, Is.EqualTo(70));
-            Assert.Fail(); // results must be assigned first to test this properly
         }
 
         [Test]
         public void PercentSessionResult_Given_Value_Above_100_Throws_Exception()
         {
-            //TestDelegate proc = () => new PercentSessionResult(DateTime.Parse("2018/06/22 18:00:00"), DateTime.Parse("2018/06/22 18:05:00"), 101);
-            //Assert.That(proc, Throws.TypeOf<ArgumentOutOfRangeException>());
-            Assert.Fail(); // how best to implement this.
+            TestDelegate proc = () => new PercentSessionResult(DateTime.Parse("2018/06/22 18:00:00"), DateTime.Parse("2018/06/22 18:05:00"), 101);
+            Assert.That(proc, Throws.TypeOf<ArgumentOutOfRangeException>());
         }
 
         [Test]
         public void PercentSessionResult_Given_Value_Below_0_Throws_Exception()
         {
-            //TestDelegate proc = () => new PercentSessionResult(DateTime.Parse("2018/06/22 18:00:00"), DateTime.Parse("2018/06/22 18:05:00"), -1);
-            //Assert.That(proc, Throws.TypeOf<ArgumentOutOfRangeException>());
-            Assert.Fail(); // how best to implement this.
+            TestDelegate proc = () => new PercentSessionResult(DateTime.Parse("2018/06/22 18:00:00"), DateTime.Parse("2018/06/22 18:05:00"), -1);
+            Assert.That(proc, Throws.TypeOf<ArgumentOutOfRangeException>());
         }
 
         [Test]
@@ -132,8 +133,9 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             var task = new PercentGoalTask();
             task.Title = "Task 1";
             task.CreateDate = DateTime.Parse("2018/03/18 18:01:20");
+            task.AddSessionRange(results);
+
             Assert.That(task.StartDate, Is.EqualTo(expectedStartTime));
-            Assert.Fail(); // results must be assigned first to test this properly
         }
 
         [Test]

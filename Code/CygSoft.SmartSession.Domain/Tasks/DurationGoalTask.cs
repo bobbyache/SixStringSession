@@ -7,11 +7,8 @@ using System.Threading.Tasks;
 
 namespace CygSoft.SmartSession.Domain.Tasks
 {
-    public class DurationGoalTask : GoalTask
+    public class DurationGoalTask : GoalTask<DurationSessionResult>
     {
-        //private string title;
-        private int targetMinutes;
-
         public int TargetMinutes { get; set; }
 
         //public DurationGoalTask(string title, DateTime createDate, int targetMinutes, List<DurationSessionResult> results)
@@ -25,14 +22,14 @@ namespace CygSoft.SmartSession.Domain.Tasks
         {
             get
             {
-                if (sessionResults == null)
+                if (sessionResultList == null)
                     return 0;
 
-                var minutes = sessionResults.Sum(t => t.Minutes);
-                if (minutes > targetMinutes && targetMinutes != 0)
+                var minutes = sessionResultList.Sum(t => t.Minutes);
+                if (minutes > TargetMinutes && TargetMinutes != 0)
                     return 100;
 
-                return ((double)minutes / targetMinutes) * 100;
+                return ((double)minutes / TargetMinutes) * 100;
             }
         }
     }

@@ -6,9 +6,11 @@ using System.Linq;
 
 namespace CygSoft.SmartSession.Domain.Tasks
 {
-    public abstract class GoalTask : IGoalTaskRecord, IEditableGoalTask, IWeightedEntity
+    public abstract class GoalTask<T>
+        : IGoalTaskRecord, IEditableGoalTask, IWeightedEntity
+        where T : SessionResult
     {
-        protected List<SessionResult> sessionResults;
+        protected List<T> sessionResultList;
 
         public event EventHandler WeightingChanged;
 
@@ -16,12 +18,12 @@ namespace CygSoft.SmartSession.Domain.Tasks
         {
             get
             {
-                if (sessionResults == null)
+                if (sessionResultList == null)
                     return 0;
-                if (sessionResults.Count == 0)
+                if (sessionResultList.Count == 0)
                     return 0;
 
-                return sessionResults.Sum(r => r.Minutes);
+                return sessionResultList.Sum(r => r.Minutes);
             }
         }
 
@@ -46,11 +48,11 @@ namespace CygSoft.SmartSession.Domain.Tasks
         {
             get
             {
-                if (sessionResults == null)
+                if (sessionResultList == null)
                     return null;
-                if (sessionResults.Count == 0)
+                if (sessionResultList.Count == 0)
                     return null;
-                return sessionResults.Min(r => r.StartTime);
+                return sessionResultList.Min(r => r.StartTime);
             }
         }
 
@@ -58,7 +60,7 @@ namespace CygSoft.SmartSession.Domain.Tasks
         {
             InstanceId = Guid.NewGuid().ToString();
             CreateDate = DateTime.Now;
-            this.sessionResults = new List<SessionResult>();
+            this.sessionResultList = new List<T>();
         }
 
         public abstract double PercentCompleted { get; }
@@ -69,9 +71,14 @@ namespace CygSoft.SmartSession.Domain.Tasks
 
         public string InstanceId { get; }
 
-        internal void AddSession(SessionResult sessionResult)
+        internal void AddSession(T sessionResult)
         {
-            sessionResults.Add(sessionResult);
+            sessionResultList.Add(sessionResult);
+        }
+
+        internal void AddSessionRange(IEnumerable<T> sessionResults)
+        {
+            sessionResultList.AddRange(sessionResults);
         }
     }
 }

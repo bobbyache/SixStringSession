@@ -81,8 +81,8 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             task.StartSpeed = 60;
             task.TargetSpeed = 100;
             task.CreateDate = DateTime.Parse("2018/06/22 18:33:20");
+            task.AddSessionRange(results);
             Assert.That(task.PercentCompleted, Is.EqualTo(50));
-            Assert.Fail(); // Still need to pass results in to test this.
         }
 
         [Test]
@@ -95,9 +95,9 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             task.StartSpeed = 60;
             task.TargetSpeed = 100;
             task.CreateDate = DateTime.Parse("2018/06/22 18:33:20");
+            task.AddSessionRange(results);
 
             Assert.That(task.PercentCompleted, Is.EqualTo(0));
-            Assert.Fail(); // Still need to pass results in to test this.
         }
 
         [Test]
@@ -114,8 +114,9 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             task.StartSpeed = 60;
             task.TargetSpeed = 100;
             task.CreateDate = DateTime.Parse("2018/06/22 18:33:20");
+            task.AddSessionRange(results);
+
             Assert.That(task.PercentCompleted, Is.EqualTo(0));
-            Assert.Fail(); // Still need to pass results in to test this.
         }
 
         [Test]
@@ -132,8 +133,9 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             task.StartSpeed = 60;
             task.TargetSpeed = 100;
             task.CreateDate = DateTime.Parse("2018/06/22 18:33:20");
+            task.AddSessionRange(results);
+
             Assert.That(task.MinutesPracticed, Is.EqualTo(20));
-            Assert.Fail(); // Still need to pass results in to test this.
         }
         [Test]
         public void MetronomeSessionResult_Given_Value_Below_0_Throws_Exception()
@@ -159,18 +161,9 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             task.StartSpeed = 60;
             task.TargetSpeed = 70;
             task.CreateDate = DateTime.Parse("2018/03/18 18:01:20");
+            task.AddSessionRange(results);
 
             Assert.That(task.StartDate, Is.EqualTo(expectedStartTime));
-            Assert.Fail(); // Still need to pass results in to test this.
-        }
-
-        [Test]
-        public void MetronomeSessionResult_Given_StartValue_Higher_Than_Target_Throws_Exception()
-        {
-            //TestDelegate proc = () => new MetronomeGoalTask("Title 1", DateTime.Parse("2018/06/22 18:33:20"), 61, 60, 
-            //    new List<MetronomeSessionResult>());
-            //Assert.That(proc, Throws.TypeOf<ArgumentOutOfRangeException>());
-            Assert.Fail(); // How will one implement this?
         }
 
         [Test]

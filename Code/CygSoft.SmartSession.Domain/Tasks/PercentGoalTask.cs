@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CygSoft.SmartSession.Domain.Tasks
 {
-    public class PercentGoalTask : GoalTask
+    public class PercentGoalTask : GoalTask<PercentSessionResult>
     {
         //public PercentGoalTask(string title) : base(title)
         //{
@@ -22,13 +22,13 @@ namespace CygSoft.SmartSession.Domain.Tasks
         {
             get
             {
-                if (sessionResults == null)
+                if (sessionResultList == null)
                     return 0;
 
-                if (sessionResults.Count == 0)
+                if (sessionResultList.Count == 0)
                     return 0;
 
-                return sessionResults.OfType<PercentSessionResult>().Max(r => r.PercentCompleted);
+                return sessionResultList.OfType<PercentSessionResult>().Max(r => r.PercentCompleted);
             }
         }
     }

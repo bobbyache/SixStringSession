@@ -72,10 +72,10 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                 new DurationSessionResult(DateTime.Parse("2018/06/23 14:33:20"), DateTime.Parse("2018/06/23 18:52:20"))
             };
 
-            //DurationGoalTask task = new DurationGoalTask("Task 1", DateTime.Parse("2018/06/18 18:33:20"), 100, results);
             var task = new DurationGoalTask();
             task.Title = "Task 1";
             task.TargetMinutes = 100;
+            task.AddSessionRange(results);
 
             Assert.That(task.PercentCompleted, Is.EqualTo(100));
         }
@@ -89,26 +89,25 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                 new DurationSessionResult(DateTime.Parse("2018/06/22 18:10:00"), DateTime.Parse("2018/06/22 18:25:00"))
             };
 
-            //DurationGoalTask task = new DurationGoalTask("Task 1", DateTime.Parse("2018/06/20 18:33:20"), 60, results);
             var task = new DurationGoalTask();
             task.Title = "Task 1";
-            task.TargetMinutes = 100;
+            task.TargetMinutes = 60;
+            task.AddSessionRange(results);
             Assert.That(task.PercentCompleted, Is.InRange(33.3, 33.34));
         }
         [Test]
         public void Existing_DurationGoalTask_Adds_Up_SessionResult_Minutes_Correctly()
         {
-            List<DurationSessionResult> durationSessionResults = new List<DurationSessionResult>()
+            List<DurationSessionResult> results = new List<DurationSessionResult>()
             {
                 new DurationSessionResult(DateTime.Parse("2018/06/22 18:00:00"), DateTime.Parse("2018/06/22 18:05:00")),
                 new DurationSessionResult(DateTime.Parse("2018/06/22 18:10:00"), DateTime.Parse("2018/06/22 18:25:00"))
             };
 
-
-            //DurationGoalTask task = new DurationGoalTask("Task 1", DateTime.Parse("2018/06/18 18:33:20"), 60, durationSessionResults);
             var task = new DurationGoalTask();
             task.Title = "Task 1";
             task.TargetMinutes = 100;
+            task.AddSessionRange(results);
             Assert.That(task.MinutesPracticed, Is.EqualTo(20));
         }
 
@@ -124,17 +123,16 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         {
             DateTime expectedStartTime = DateTime.Parse("2018/06/22 18:00:00");
 
-            List<DurationSessionResult> durationSessionResults = new List<DurationSessionResult>()
+            List<DurationSessionResult> results = new List<DurationSessionResult>()
             {
                 new DurationSessionResult(DateTime.Parse("2018/06/22 18:00:00"), DateTime.Parse("2018/06/22 18:05:00")),
                 new DurationSessionResult(DateTime.Parse("2018/06/22 18:10:00"), DateTime.Parse("2018/06/22 18:25:00"))
             };
 
-
-            //DurationGoalTask task = new DurationGoalTask("Task 1", DateTime.Parse("2018/03/18 18:01:20"), 60, durationSessionResults);
             var task = new DurationGoalTask();
             task.Title = "Task 1";
             task.TargetMinutes = 100;
+            task.AddSessionRange(results);
             Assert.That(task.StartDate, Is.EqualTo(expectedStartTime));
         }
 
@@ -143,7 +141,6 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         {
             var called = false;
 
-            //var task = new DurationGoalTask("Duration Task", 100);
             var task = new DurationGoalTask();
             task.Title = "Task 1";
             task.TargetMinutes = 100;

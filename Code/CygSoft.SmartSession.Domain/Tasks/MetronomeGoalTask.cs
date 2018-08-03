@@ -5,33 +5,23 @@ using System.Linq;
 
 namespace CygSoft.SmartSession.Domain.Tasks
 {
-    public class MetronomeGoalTask : GoalTask
+    public class MetronomeGoalTask : GoalTask<MetronomeSessionResult>
     {
-        //public MetronomeGoalTask(string title, DateTime createDate, int startSpeed, int targetSpeed, List<MetronomeSessionResult> results) 
-        //    : base(title, createDate, results.OfType<SessionResult>().ToList())
-        //{
-        //    if (startSpeed > targetSpeed)
-        //        throw new ArgumentOutOfRangeException("Start metronome speed cannot exceed the target metronome speed.");
-
-        //    this.targetSpeed = targetSpeed;
-        //    this.startSpeed = startSpeed;
-        //}
-
-
         public int TargetSpeed { get; set; }
+
         public int StartSpeed { get; set; }
 
         public int CurrentSpeed
         {
             get
             {
-                if (sessionResults == null)
+                if (sessionResultList == null)
                     return 0;
 
-                if (sessionResults.Count == 0)
+                if (sessionResultList.Count == 0)
                     return 0;
 
-                return sessionResults.OfType<MetronomeSessionResult>().OrderBy(r => r.StartTime).Last().Speed;
+                return sessionResultList.OfType<MetronomeSessionResult>().OrderBy(r => r.StartTime).Last().Speed;
             }
         }
 

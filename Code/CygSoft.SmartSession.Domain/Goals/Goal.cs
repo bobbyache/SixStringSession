@@ -55,7 +55,8 @@ namespace CygSoft.SmartSession.Domain.Goals
 
         private void GoalTask_WeightingChanged(object sender, EventArgs e)
         {
-            GoalTask goalTask = ((GoalTask)sender);
+            //GoalTask goalTask = ((GoalTask)sender);
+            IWeightedEntity goalTask = ((IWeightedEntity)sender);
             weightingCalculator.Update(goalTask.InstanceId, goalTask.Weighting);
         }
 
