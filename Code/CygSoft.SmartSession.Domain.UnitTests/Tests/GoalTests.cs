@@ -26,6 +26,20 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         //    goal.
         //}
 
+        [Test]
+        public void One_Goal_Equals_Another_Goal_Correctly()
+        {
+            Goal goal = new Goal();
+            goal.Id = 23;
+            goal.Title = "Hello World";
+
+            Goal anotherGoal = new Goal();
+            goal.Id = 23;
+            goal.Title = "Goodbye World";
+
+            Assert.That(goal, Is.EqualTo(anotherGoal));
+        }
+
 
         [Test]
         public void Weighting_Single_PercentGoalTask_Added_To_Task_Creates_100_Percent_Weighting()

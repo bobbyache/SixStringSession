@@ -13,6 +13,20 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
     public class PercentGoalTaskTests
     {
         [Test]
+        public void One_PercentGoalTask_Equals_Another_PercentGoalTask_Correctly()
+        {
+            var task = new PercentGoalTask();
+            task.Id = 23;
+            task.Title = "Hello World";
+
+            var anotherTask = new PercentGoalTask();
+            anotherTask.Id = 23;
+            anotherTask.Title = "Goodbye World";
+
+            Assert.That(task, Is.EqualTo(anotherTask));
+        }
+
+        [Test]
         public void New_PercentGoalTask_StartDate_IsNull()
         {
             var task = new PercentGoalTask();

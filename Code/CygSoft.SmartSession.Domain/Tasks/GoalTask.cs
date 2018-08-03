@@ -7,7 +7,7 @@ using System.Linq;
 namespace CygSoft.SmartSession.Domain.Tasks
 {
     public abstract class GoalTask<T>
-        : IGoalTaskRecord, IEditableGoalTask, IWeightedEntity
+        : EntityBase, IGoalTaskRecord, IEditableGoalTask, IWeightedEntity
         where T : SessionResult
     {
         protected List<T> sessionResultList;

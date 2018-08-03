@@ -10,6 +10,20 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
     public class DurationGoalTaskTests
     {
         [Test]
+        public void One_DurationGoalTask_Equals_Another_DurationGoalTask_Correctly()
+        {
+            var task = new DurationGoalTask();
+            task.Id = 23;
+            task.Title = "Hello World";
+
+            var anotherTask = new DurationGoalTask();
+            anotherTask.Id = 23;
+            anotherTask.Title = "Goodbye World";
+
+            Assert.That(task, Is.EqualTo(anotherTask));
+        }
+
+        [Test]
         public void New_DurationGoalTask_StartDate_IsNull()
         {
             var task = new DurationGoalTask();
