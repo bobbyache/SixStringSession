@@ -30,10 +30,7 @@ namespace CygSoft.SmartSession.Infrastructure
 
     public interface IWeightedEntity
     {
-        event EventHandler WeightingChanged;
-
         int Weighting { get; set; }
-        string InstanceId { get; }
         double PercentCompleted { get; }
     }
 

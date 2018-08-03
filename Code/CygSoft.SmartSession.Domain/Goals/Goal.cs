@@ -56,7 +56,6 @@ namespace CygSoft.SmartSession.Domain.Goals
 
             goalTasks.Add(goalTask);
             progressCalculator.Add(goalTask as IWeightedEntity);
-            weightedTask.WeightingChanged += GoalTask_WeightingChanged;
         }
 
         public IGoalFile[] Files => goalFiles.ToArray();

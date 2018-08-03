@@ -58,7 +58,6 @@ namespace CygSoft.SmartSession.Domain.Tasks
 
         public GoalTask()
         {
-            InstanceId = Guid.NewGuid().ToString();
             CreateDate = DateTime.Now;
             this.sessionResultList = new List<T>();
         }
@@ -66,9 +65,6 @@ namespace CygSoft.SmartSession.Domain.Tasks
         public abstract double PercentCompleted { get; }
 
         public string Title { get; set; }
-
-
-        public string InstanceId { get; }
 
         internal void AddSession(T sessionResult)
         {
