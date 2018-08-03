@@ -19,13 +19,6 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         //    Assert.That(goalTask.Weighting, Is.EqualTo(100));
         //}
 
-        //[Test]
-        //public void Test()
-        //{
-        //    IEditableGoal goal = new Goal();
-        //    goal.
-        //}
-
         [Test]
         public void One_Goal_Equals_Another_Goal_Correctly()
         {
@@ -34,8 +27,8 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             goal.Title = "Hello World";
 
             Goal anotherGoal = new Goal();
-            goal.Id = 23;
-            goal.Title = "Goodbye World";
+            anotherGoal.Id = 23;
+            anotherGoal.Title = "Goodbye World";
 
             Assert.That(goal, Is.EqualTo(anotherGoal));
         }

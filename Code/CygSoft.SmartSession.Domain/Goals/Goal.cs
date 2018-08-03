@@ -1,5 +1,4 @@
-﻿using CygSoft.SmartSession.Domain.Tasks;
-using CygSoft.SmartSession.Infrastructure;
+﻿using CygSoft.SmartSession.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +11,6 @@ namespace CygSoft.SmartSession.Domain.Goals
         private List<IGoalFile> goalFiles = new List<IGoalFile>();
         private List<IEditableGoalTask> goalTasks = new List<IEditableGoalTask>();
 
-        public int Id { get; set; }
         public string Title { get; set; }
 
         public double PercentComplete
