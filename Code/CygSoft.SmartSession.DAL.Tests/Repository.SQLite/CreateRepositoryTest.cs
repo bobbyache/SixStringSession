@@ -16,8 +16,6 @@ namespace CygSoft.SmartSession.Repositories.UnitTests
             new DropAndCreateRepository().Goal();
             new DropAndCreateRepository().Task();
             new DropAndCreateRepository().User();
-            new DropAndCreateRepository().Restaurant();
-            new DropAndCreateRepository().Score();
 
             //probably should assert something \:D/
         }
@@ -28,8 +26,6 @@ namespace CygSoft.SmartSession.Repositories.UnitTests
             new SeedRepository().Goal();
             new SeedRepository().Task();
             new SeedRepository().User();
-            new SeedRepository().Restaurant();
-            new SeedRepository().Score();
 
             //probably should assert something \:D/
         }

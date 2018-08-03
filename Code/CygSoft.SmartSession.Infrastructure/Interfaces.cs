@@ -15,12 +15,13 @@ namespace CygSoft.SmartSession.Infrastructure
 
         bool IsConsideredComplete { get; }
 
-        void AddTask(IGoalTask goalTask);
+        void AddTask(IEditableGoalTask goalTask);
     }
 
-    public interface IGoalTask : IWeightedEntity
+    public interface IEditableGoalTask : IWeightedEntity
     {
-        string Id { get; }
+        int Id { get; }
+        string InstanceId { get; }
         string Title { get; }
         DateTime CreateDate { get; }
         int MinutesPracticed { get; }

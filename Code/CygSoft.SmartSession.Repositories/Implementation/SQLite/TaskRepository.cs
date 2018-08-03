@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using CygSoft.SmartSession.Domain.Tasks;
 using CygSoft.SmartSession.Repositories.Implementation;
 using CygSoft.SmartSession.Repositories.Interface;
 using CygSoft.SmartSession.Repositories.Schema;
@@ -7,40 +8,40 @@ namespace CygSoft.SmartSession.Repositories.SQLite
 {
     public class TaskRepository : SQLiteContext, ITaskRepository
     {
-        public int Insert(TaskRecord obj)
+        public int Insert(GoalTaskRecord obj)
         {
             var sql = @"
 				INSERT INTO task
 				(
-					name
+					title
 				)
 				VALUES
 				(
-					@Name
+					@Title
 				);
 				SELECT last_insert_rowid();
 				";
 
-            return Insert<TaskRecord>(sql, obj);
+            return Insert<GoalTaskRecord>(sql, obj);
         }
 
-        public TaskRecord Select(int id)
+        public GoalTaskRecord Select(int id)
         {
             var sql = @"
 				SELECT * FROM task 
 				WHERE Id = @id;";
 
-            return Select<TaskRecord>(sql, new { id });
+            return Select<GoalTaskRecord>(sql, new { id });
         }
 
-        public List<TaskRecord> SelectList()
+        public List<GoalTaskRecord> SelectList()
         {
             var sql = @"
 				SELECT * FROM task 
-				ORDER BY name;
+				ORDER BY title;
 				";
 
-            return SelectList<TaskRecord>(sql);
+            return SelectList<GoalTaskRecord>(sql);
         }
     }
 }

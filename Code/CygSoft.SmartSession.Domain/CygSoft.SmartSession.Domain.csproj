@@ -51,6 +51,9 @@
     <Compile Include="Goals\Goal.cs" />
     <Compile Include="Tasks\GoalTask.cs" />
     <Compile Include="Sessions\MetronomeSessionResult.cs" />
+    <Compile Include="Tasks\GoalTaskRecord.cs" />
+    <Compile Include="Tasks\IGoalTaskRecord.cs" />
+    <Compile Include="Tasks\ITaskRepository.cs" />
     <Compile Include="Tasks\PercentGoalTask.cs" />
     <Compile Include="Tasks\MetronomeGoalTask.cs" />
     <Compile Include="Sessions\PercentSessionResult.cs" />

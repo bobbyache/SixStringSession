@@ -10,7 +10,7 @@ namespace CygSoft.SmartSession.Domain.Goals
     {
         private WeightingCalculator weightingCalculator;
         private List<IGoalFile> goalFiles = new List<IGoalFile>();
-        private List<IGoalTask> goalTasks = new List<IGoalTask>();
+        private List<IEditableGoalTask> goalTasks = new List<IEditableGoalTask>();
 
         public int Id { get; set; }
         public string Title { get; set; }
@@ -21,9 +21,9 @@ namespace CygSoft.SmartSession.Domain.Goals
             {
                 double summedPercentage = 0;
                 
-                foreach (IGoalTask task in goalTasks)
+                foreach (IEditableGoalTask task in goalTasks)
                 {
-                    summedPercentage += weightingCalculator.GetItemWeightedPercentage(task.Id, task.PercentCompleted);
+                    summedPercentage += weightingCalculator.GetItemWeightedPercentage(task.InstanceId, task.PercentCompleted);
                 }
                 return summedPercentage;
             }
@@ -40,12 +40,12 @@ namespace CygSoft.SmartSession.Domain.Goals
             CreateDate = DateTime.Now;
         }
 
-        internal Goal(int maxTaskWeighting, IGoalTask[] goalTasks, IGoalFile[] goalFiles)
+        internal Goal(int maxTaskWeighting, IEditableGoalTask[] goalTasks, IGoalFile[] goalFiles)
         {
             weightingCalculator = new WeightingCalculator(maxTaskWeighting);
 
             if (goalTasks != null)
-                this.goalTasks = new List<IGoalTask>(goalTasks);
+                this.goalTasks = new List<IEditableGoalTask>(goalTasks);
 
             if (goalFiles != null)
                 this.goalFiles = new List<IGoalFile>(goalFiles);
@@ -56,15 +56,15 @@ namespace CygSoft.SmartSession.Domain.Goals
         private void GoalTask_WeightingChanged(object sender, EventArgs e)
         {
             GoalTask goalTask = ((GoalTask)sender);
-            weightingCalculator.Update(goalTask.Id, goalTask.Weighting);
+            weightingCalculator.Update(goalTask.InstanceId, goalTask.Weighting);
         }
 
-        public void AddTask(IGoalTask goalTask)
+        public void AddTask(IEditableGoalTask goalTask)
         {
             if (goalTask.Weighting <= 0)
                 throw new ArgumentOutOfRangeException("Cannot add a task with an invalid weighting");
 
-            weightingCalculator.Update(goalTask.Id, goalTask.Weighting);
+            weightingCalculator.Update(goalTask.InstanceId, goalTask.Weighting);
             goalTasks.Add(goalTask);
             goalTask.WeightingChanged += GoalTask_WeightingChanged;
         }
@@ -88,6 +88,6 @@ namespace CygSoft.SmartSession.Domain.Goals
             }
         }
 
-        public IGoalTask[] Tasks => goalTasks.ToArray();
+        public IEditableGoalTask[] Tasks => goalTasks.ToArray();
     }
 }

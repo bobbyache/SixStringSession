@@ -66,7 +66,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             GoalTask goalTask = new DurationGoalTask("Title 1", 100);
 
             Assert.That(goalTask, Is.TypeOf<DurationGoalTask>());
-            Assert.IsFalse(string.IsNullOrEmpty(goalTask.Id));
+            Assert.IsTrue(goalTask.Id == -1);
             Assert.That(goalTask.Title, Is.EqualTo("Title 1"));
         }
 
@@ -77,7 +77,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             GoalTask goalTask = new PercentGoalTask("Title 1");
 
             Assert.That(goalTask, Is.TypeOf<PercentGoalTask>());
-            Assert.IsFalse(string.IsNullOrEmpty(goalTask.Id));
+            Assert.IsTrue(goalTask.Id == -1);
             Assert.That(goalTask.Title, Is.EqualTo("Title 1"));
         }
 
@@ -88,7 +88,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             GoalTask goalTask = new MetronomeGoalTask("Title 1", 80, 90);
 
             Assert.That(goalTask, Is.TypeOf<MetronomeGoalTask>());
-            Assert.IsFalse(string.IsNullOrEmpty(goalTask.Id));
+            Assert.IsTrue(goalTask.Id == -1);
             Assert.That(goalTask.Title, Is.EqualTo("Title 1"));
         }
 
@@ -109,10 +109,10 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         [Test]
         public void Goal_New_With_Null_Files_Has_Zero_Files()
         {
-            IGoalTask[] goalTasks = new IGoalTask[]
+            IEditableGoalTask[] goalTasks = new IEditableGoalTask[]
             {
-                new Mock<IGoalTask>().Object,
-                new Mock<IGoalTask>().Object
+                new Mock<IEditableGoalTask>().Object,
+                new Mock<IEditableGoalTask>().Object
             };
 
             Goal goal = new Goal(1000, goalTasks, null);
@@ -159,10 +159,10 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         [Test]
         public void Goal_Existing_Has_SetState_Via_Constructor()
         {
-            IGoalTask[] goalTasks = new IGoalTask[]
+            IEditableGoalTask[] goalTasks = new IEditableGoalTask[]
             {
-                new Mock<IGoalTask>().Object,
-                new Mock<IGoalTask>().Object
+                new Mock<IEditableGoalTask>().Object,
+                new Mock<IEditableGoalTask>().Object
             };
 
             IGoalFile[] goalFiles = new IGoalFile[]

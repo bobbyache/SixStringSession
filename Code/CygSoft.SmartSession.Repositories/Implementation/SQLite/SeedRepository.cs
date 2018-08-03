@@ -19,7 +19,7 @@ namespace CygSoft.SmartSession.Repositories.SQLite
         public void Task()
         {
             var sql = @"
-                INSERT INTO task (name) VALUES 
+                INSERT INTO task (title) VALUES 
                 ('Happy Chappy'),
                 ('Britannia Hotel'),
                 ('Hollywood Bets');
@@ -36,24 +36,6 @@ INSERT INTO user (has_access, cellphone, password, name, surname) VALUES
 (1, 0820000000, '{0}', 'Joe', 'Blogs'),
 (1, 0830000000, '{0}', 'Sue', 'Blogs');",
 _password);
-            ExecuteNonQuery(sql);
-        }
-
-        public void Restaurant()
-        {
-            var sql = @"
-INSERT INTO restaurant (name) VALUES 
-('Happy Chappy'),
-('Britannia Hotel'),
-('Hollywood Bets');";
-            ExecuteNonQuery(sql);
-        }
-
-        public void Score()
-        {
-            var sql = @"
-INSERT INTO score (restaurant_id, user_id, insert_date, taste, temperature, tomorrow) VALUES 
-(1, 1, CURRENT_TIMESTAMP, 5, 5, 5);";
             ExecuteNonQuery(sql);
         }
     }
