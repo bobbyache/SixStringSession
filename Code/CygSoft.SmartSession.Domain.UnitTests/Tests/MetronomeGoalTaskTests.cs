@@ -15,35 +15,51 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         [Test]
         public void New_MetronomeGoalTask_StartDate_IsNull()
         {
-            MetronomeGoalTask task = new MetronomeGoalTask("Task 1", 80, 120);
+            var task = new MetronomeGoalTask();
+            task.Title = "Task 1";
+            task.StartSpeed = 80;
+            task.TargetSpeed = 120;
+
             Assert.That(task.StartDate, Is.Null);
         }
 
         [Test]
         public void New_MetronomeGoalTask_CreateDate_IsSet()
         {
-            MetronomeGoalTask task = new MetronomeGoalTask("Task 1", 80, 120);
+            var task = new MetronomeGoalTask();
+            task.Title = "Task 1";
+            task.StartSpeed = 80;
+            task.TargetSpeed = 120;
             Assert.That(task.CreateDate, Is.Not.EqualTo(DateTime.MinValue));
         }
 
         [Test]
         public void New_MetronomeGoalTask_Has_0_MinutesPracticed()
         {
-            MetronomeGoalTask task = new MetronomeGoalTask("Task 1", 80, 120);
+            var task = new MetronomeGoalTask();
+            task.Title = "Task 1";
+            task.StartSpeed = 80;
+            task.TargetSpeed = 120;
             Assert.That(task.MinutesPracticed, Is.EqualTo(0));
         }
 
         [Test]
         public void New_MetronomeGoalTask_Has_0_PercentCompleted()
         {
-            MetronomeGoalTask task = new MetronomeGoalTask("Task 1", 80, 120);
+            var task = new MetronomeGoalTask();
+            task.Title = "Task 1";
+            task.StartSpeed = 80;
+            task.TargetSpeed = 120;
             Assert.That(task.PercentCompleted, Is.EqualTo(0));
         }
 
         [Test]
         public void New_MetronomeGoalTask_Has_0_EffortWeighting()
         {
-            MetronomeGoalTask task = new MetronomeGoalTask("Task 1", 80, 120);
+            var task = new MetronomeGoalTask();
+            task.Title = "Task 1";
+            task.StartSpeed = 80;
+            task.TargetSpeed = 120;
             Assert.That(task.Weighting, Is.EqualTo(0));
         }
 
@@ -60,8 +76,13 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                 new MetronomeSessionResult(DateTime.Parse("2018/06/22 18:10:00"), DateTime.Parse("2018/06/22 18:25:00"), 80)
             };
 
-            MetronomeGoalTask task = new MetronomeGoalTask("Task 1", DateTime.Parse("2018/06/22 18:33:20"), 60, 100, results);
+            var task = new MetronomeGoalTask();
+            task.Title = "Task 1";
+            task.StartSpeed = 60;
+            task.TargetSpeed = 100;
+            task.CreateDate = DateTime.Parse("2018/06/22 18:33:20");
             Assert.That(task.PercentCompleted, Is.EqualTo(50));
+            Assert.Fail(); // Still need to pass results in to test this.
         }
 
         [Test]
@@ -69,8 +90,14 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         {
             List<MetronomeSessionResult> results = new List<MetronomeSessionResult>() { };
 
-            MetronomeGoalTask task = new MetronomeGoalTask("Task 1", DateTime.Parse("2018/06/22 18:33:20"), 60, 100, results);
+            MetronomeGoalTask task = new MetronomeGoalTask();
+            task.Title = "Task 1";
+            task.StartSpeed = 60;
+            task.TargetSpeed = 100;
+            task.CreateDate = DateTime.Parse("2018/06/22 18:33:20");
+
             Assert.That(task.PercentCompleted, Is.EqualTo(0));
+            Assert.Fail(); // Still need to pass results in to test this.
         }
 
         [Test]
@@ -82,8 +109,13 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                 new MetronomeSessionResult(DateTime.Parse("2018/06/22 18:10:00"), DateTime.Parse("2018/06/22 18:25:00"), 45)
             };
 
-            MetronomeGoalTask task = new MetronomeGoalTask("Task 1", DateTime.Parse("2018/06/22 18:33:20"), 60, 100, results);
+            MetronomeGoalTask task = new MetronomeGoalTask();
+            task.Title = "Task 1";
+            task.StartSpeed = 60;
+            task.TargetSpeed = 100;
+            task.CreateDate = DateTime.Parse("2018/06/22 18:33:20");
             Assert.That(task.PercentCompleted, Is.EqualTo(0));
+            Assert.Fail(); // Still need to pass results in to test this.
         }
 
         [Test]
@@ -95,8 +127,13 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                 new MetronomeSessionResult(DateTime.Parse("2018/06/22 18:10:00"), DateTime.Parse("2018/06/22 18:25:00"), 45)
             };
 
-            MetronomeGoalTask task = new MetronomeGoalTask("Task 1", DateTime.Parse("2018/06/22 18:33:20"), 60, 100, results);
+            MetronomeGoalTask task = new MetronomeGoalTask();
+            task.Title = "Task 1";
+            task.StartSpeed = 60;
+            task.TargetSpeed = 100;
+            task.CreateDate = DateTime.Parse("2018/06/22 18:33:20");
             Assert.That(task.MinutesPracticed, Is.EqualTo(20));
+            Assert.Fail(); // Still need to pass results in to test this.
         }
         [Test]
         public void MetronomeSessionResult_Given_Value_Below_0_Throws_Exception()
@@ -116,17 +153,24 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                 new MetronomeSessionResult(DateTime.Parse("2018/06/22 18:10:00"), DateTime.Parse("2018/06/22 18:25:00"), 60)
             };
 
+            MetronomeGoalTask task = new MetronomeGoalTask();
 
-            MetronomeGoalTask task = new MetronomeGoalTask("Task 1", DateTime.Parse("2018/03/18 18:01:20"), 60, 70, results);
+            task.Title = "Task 1";
+            task.StartSpeed = 60;
+            task.TargetSpeed = 70;
+            task.CreateDate = DateTime.Parse("2018/03/18 18:01:20");
+
             Assert.That(task.StartDate, Is.EqualTo(expectedStartTime));
+            Assert.Fail(); // Still need to pass results in to test this.
         }
 
         [Test]
         public void MetronomeSessionResult_Given_StartValue_Higher_Than_Target_Throws_Exception()
         {
-            TestDelegate proc = () => new MetronomeGoalTask("Title 1", DateTime.Parse("2018/06/22 18:33:20"), 61, 60, 
-                new List<MetronomeSessionResult>());
-            Assert.That(proc, Throws.TypeOf<ArgumentOutOfRangeException>());
+            //TestDelegate proc = () => new MetronomeGoalTask("Title 1", DateTime.Parse("2018/06/22 18:33:20"), 61, 60, 
+            //    new List<MetronomeSessionResult>());
+            //Assert.That(proc, Throws.TypeOf<ArgumentOutOfRangeException>());
+            Assert.Fail(); // How will one implement this?
         }
 
         [Test]
@@ -134,7 +178,10 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         {
             var called = false;
 
-            var task = new MetronomeGoalTask("Duration Task", 50, 80);
+            var task = new MetronomeGoalTask();
+            task.Title = "Task 1";
+            task.StartSpeed = 50;
+            task.TargetSpeed = 80;
             task.WeightingChanged += (sender, args) => called = true;
             task.Weighting = 42;
 

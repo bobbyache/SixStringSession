@@ -15,35 +15,40 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         [Test]
         public void New_PercentGoalTask_StartDate_IsNull()
         {
-            PercentGoalTask task = new PercentGoalTask("Task 1");
+            var task = new PercentGoalTask();
+            task.Title = "Task 1";
             Assert.That(task.StartDate, Is.Null);
         }
 
         [Test]
         public void New_PercentGoalTask_CreateDate_IsSet()
         {
-            PercentGoalTask task = new PercentGoalTask("Task 1");
+            var task = new PercentGoalTask();
+            task.Title = "Task 1";
             Assert.That(task.CreateDate, Is.Not.EqualTo(DateTime.MinValue));
         }
 
         [Test]
         public void New_PercentGoalTask_Has_0_MinutesPracticed()
         {
-            PercentGoalTask task = new PercentGoalTask("Task 1");
+            var task = new PercentGoalTask();
+            task.Title = "Task 1";
             Assert.That(task.MinutesPracticed, Is.EqualTo(0));
         }
 
         [Test]
         public void New_PercentGoalTask_Has_0_PercentCompleted()
         {
-            PercentGoalTask task = new PercentGoalTask("Task 1");
+            var task = new PercentGoalTask();
+            task.Title = "Task 1";
             Assert.That(task.PercentCompleted, Is.EqualTo(0));
         }
 
         [Test]
         public void New_PercentGoalTask_Has_0_EffortWeighting()
         {
-            PercentGoalTask task = new PercentGoalTask("Task 1");
+            var task = new PercentGoalTask();
+            task.Title = "Task 1";
             Assert.That(task.Weighting, Is.EqualTo(0));
         }
 
@@ -56,8 +61,11 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                 new PercentSessionResult(DateTime.Parse("2018/06/22 18:10:00"), DateTime.Parse("2018/06/22 18:15:00"), 50)
             };
 
-            PercentGoalTask task = new PercentGoalTask("Task 1", DateTime.Parse("2018/06/18 18:33:20"), results);
+            var task = new PercentGoalTask();
+            task.Title = "Task 1";
+            task.CreateDate = DateTime.Parse("2018/06/18 18:33:20");
             Assert.That(task.MinutesPracticed, Is.EqualTo(10));
+            Assert.Fail(); // results must be assigned first to test this properly
         }
 
         [Test]
@@ -69,8 +77,11 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                 new PercentSessionResult(DateTime.Parse("2018/06/22 18:10:00"), DateTime.Parse("2018/06/22 18:15:00"), 50)
             };
 
-            PercentGoalTask task = new PercentGoalTask("Task 1", DateTime.Parse("2018/06/18 18:33:20"), results);
+            var task = new PercentGoalTask();
+            task.Title = "Task 1";
+            task.CreateDate = DateTime.Parse("2018/06/18 18:33:20");
             Assert.That(task.PercentCompleted, Is.EqualTo(50));
+            Assert.Fail(); // results must be assigned first to test this properly
         }
 
         [Test]
@@ -83,22 +94,27 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                 new PercentSessionResult(DateTime.Parse("2018/06/22 18:20:00"), DateTime.Parse("2018/06/22 18:25:00"), 50)
             };
 
-            PercentGoalTask task = new PercentGoalTask("Task 1", DateTime.Parse("2018/06/18 18:33:20"), results);
+            var task = new PercentGoalTask();
+            task.Title = "Task 1";
+            task.CreateDate = DateTime.Parse("2018/06/18 18:33:20");
             Assert.That(task.PercentCompleted, Is.EqualTo(70));
+            Assert.Fail(); // results must be assigned first to test this properly
         }
 
         [Test]
         public void PercentSessionResult_Given_Value_Above_100_Throws_Exception()
         {
-            TestDelegate proc = () => new PercentSessionResult(DateTime.Parse("2018/06/22 18:00:00"), DateTime.Parse("2018/06/22 18:05:00"), 101);
-            Assert.That(proc, Throws.TypeOf<ArgumentOutOfRangeException>());
+            //TestDelegate proc = () => new PercentSessionResult(DateTime.Parse("2018/06/22 18:00:00"), DateTime.Parse("2018/06/22 18:05:00"), 101);
+            //Assert.That(proc, Throws.TypeOf<ArgumentOutOfRangeException>());
+            Assert.Fail(); // how best to implement this.
         }
 
         [Test]
         public void PercentSessionResult_Given_Value_Below_0_Throws_Exception()
         {
-            TestDelegate proc = () => new PercentSessionResult(DateTime.Parse("2018/06/22 18:00:00"), DateTime.Parse("2018/06/22 18:05:00"), -1);
-            Assert.That(proc, Throws.TypeOf<ArgumentOutOfRangeException>());
+            //TestDelegate proc = () => new PercentSessionResult(DateTime.Parse("2018/06/22 18:00:00"), DateTime.Parse("2018/06/22 18:05:00"), -1);
+            //Assert.That(proc, Throws.TypeOf<ArgumentOutOfRangeException>());
+            Assert.Fail(); // how best to implement this.
         }
 
         [Test]
@@ -113,8 +129,11 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             };
 
 
-            PercentGoalTask task = new PercentGoalTask("Task 1", DateTime.Parse("2018/03/18 18:01:20"), results);
+            var task = new PercentGoalTask();
+            task.Title = "Task 1";
+            task.CreateDate = DateTime.Parse("2018/03/18 18:01:20");
             Assert.That(task.StartDate, Is.EqualTo(expectedStartTime));
+            Assert.Fail(); // results must be assigned first to test this properly
         }
 
         [Test]
@@ -122,7 +141,8 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         {
             var called = false;
 
-            var task = new PercentGoalTask("Duration Task");
+            var task = new PercentGoalTask();
+            task.Title = "Task 1";
             task.WeightingChanged += (sender, args) => called = true;
             task.Weighting = 42;
 

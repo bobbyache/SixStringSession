@@ -31,10 +31,12 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         public void Weighting_Single_PercentGoalTask_Added_To_Task_Creates_100_Percent_Weighting()
         {
             Goal goal = new Goal(1000);
-            GoalTask goalTask = new PercentGoalTask("Title 1");
-            goalTask.Weighting = 1000;
-            goal.AddTask(goalTask);
-            Assert.That(goalTask.Weighting, Is.EqualTo(1000));
+            //GoalTask goalTask = new PercentGoalTask("Title 1");
+            var task = new PercentGoalTask();
+            task.Title = "Task 1";
+            task.Weighting = 1000;
+            goal.AddTask(task);
+            Assert.That(task.Weighting, Is.EqualTo(1000));
         }
 
 
@@ -42,10 +44,12 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         public void Weighting_Single_MetronomeGoalTask_Added_To_Task_Creates_100_Percent_Weighting()
         {
             Goal goal = new Goal(1000);
-            GoalTask goalTask = new MetronomeGoalTask("Title 1", 80, 90);
-            goalTask.Weighting = 1000;
-            goal.AddTask(goalTask);
-            Assert.That(goalTask.Weighting, Is.EqualTo(1000));
+            //GoalTask goalTask = new MetronomeGoalTask("Title 1", 80, 90);
+            var task = new PercentGoalTask();
+            task.Title = "Task 1";
+            task.Weighting = 1000;
+            goal.AddTask(task);
+            Assert.That(task.Weighting, Is.EqualTo(1000));
         }
 
 
@@ -53,7 +57,9 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         public void Weighting_Single_DurationGoalTask_Added_To_Task_Creates_100_Percent_Weighting()
         {
             Goal goal = new Goal(1000);
-            GoalTask goalTask = new DurationGoalTask("Title 1", 100);
+            var goalTask = new DurationGoalTask();
+            goalTask.TargetMinutes = 100;
+            goalTask.Title = "Title 1";
             goalTask.Weighting = 1000;
             goal.AddTask(goalTask);
             Assert.That(goalTask.Weighting, Is.EqualTo(1000));
@@ -63,7 +69,9 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         public void Goal_Add_DurationTask_Adds_Task_Successfully()
         {
             Goal goal = new Goal(1000);
-            GoalTask goalTask = new DurationGoalTask("Title 1", 100);
+            var goalTask = new DurationGoalTask();
+            goalTask.TargetMinutes = 100;
+            goalTask.Title = "Title 1";
 
             Assert.That(goalTask, Is.TypeOf<DurationGoalTask>());
             Assert.IsTrue(goalTask.Id == -1);
@@ -74,7 +82,8 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         public void Goal_Add_PercentTask_Adds_Task_Successfully()
         {
             Goal goal = new Goal(1000);
-            GoalTask goalTask = new PercentGoalTask("Title 1");
+            var goalTask = new PercentGoalTask();
+            goalTask.Title = "Title 1";
 
             Assert.That(goalTask, Is.TypeOf<PercentGoalTask>());
             Assert.IsTrue(goalTask.Id == -1);
@@ -85,7 +94,10 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         public void Goal_Add_MetronomeTask_Adds_Task_Successfully()
         {
             Goal goal = new Goal(1000);
-            GoalTask goalTask = new MetronomeGoalTask("Title 1", 80, 90);
+            var goalTask = new MetronomeGoalTask();
+            goalTask.StartSpeed = 80;
+            goalTask.TargetSpeed = 90;
+            goalTask.Title = "Title 1";
 
             Assert.That(goalTask, Is.TypeOf<MetronomeGoalTask>());
             Assert.IsTrue(goalTask.Id == -1);
@@ -183,13 +195,19 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         {
             Goal goal = new Goal(100);
 
-            MetronomeGoalTask task1 = new MetronomeGoalTask("Metronome Task", 100, 120);
+            MetronomeGoalTask task1 = new MetronomeGoalTask();
+            task1.StartSpeed = 100;
+            task1.TargetSpeed = 120;
+            task1.Title = "Metronome Task";
             task1.Weighting = 50;
 
-            DurationGoalTask task2 = new DurationGoalTask("Duration Task", 60);
+            DurationGoalTask task2 = new DurationGoalTask();
             task2.Weighting = 100;
+            task2.TargetMinutes = 60;
+            task1.Title = "Duration Task";
 
-            PercentGoalTask task3 = new PercentGoalTask("Percent Task");
+            PercentGoalTask task3 = new PercentGoalTask();
+            task1.Title = "Percent Task";
             task3.Weighting = 50;
 
             goal.AddTask(task1);
@@ -214,37 +232,42 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         [Test]
         public void Goal_AddTask_With_0_Weighting_Throws_Exception()
         {
-            Goal goal = new Goal(100);
+            //Goal goal = new Goal(100);
 
-            MetronomeGoalTask task1 = new MetronomeGoalTask("Metronome Task", 100, 120);
-            task1.Weighting = 0;
+            //MetronomeGoalTask task1 = new MetronomeGoalTask("Metronome Task", 100, 120);
+            //task1.Weighting = 0;
 
-            TestDelegate proc = () => goal.AddTask(task1);
-            Assert.That(proc, Throws.TypeOf<ArgumentOutOfRangeException>());
+            //TestDelegate proc = () => goal.AddTask(task1);
+            //Assert.That(proc, Throws.TypeOf<ArgumentOutOfRangeException>());
+
+            Assert.Fail(); // how to implement this?
         }
 
         [Test]
         public void Goal_AddTask_With_Negative_Weighting_Throws_Exception()
         {
-            Goal goal = new Goal(100);
+            //Goal goal = new Goal(100);
 
-            MetronomeGoalTask task1 = new MetronomeGoalTask("Metronome Task", 100, 120);
-            task1.Weighting = -1;
+            //MetronomeGoalTask task1 = new MetronomeGoalTask("Metronome Task", 100, 120);
+            //task1.Weighting = -1;
 
-            TestDelegate proc = () => goal.AddTask(task1);
-            Assert.That(proc, Throws.TypeOf<ArgumentOutOfRangeException>());
+            //TestDelegate proc = () => goal.AddTask(task1);
+            //Assert.That(proc, Throws.TypeOf<ArgumentOutOfRangeException>());
+            Assert.Fail(); // How to implement this?
         }
 
         [Test]
         public void Goal_AddTask_With_Weighting_That_Exceeds_Limit_Throws_Exception()
         {
-            Goal goal = new Goal(100);
+            //Goal goal = new Goal(100);
 
-            MetronomeGoalTask task1 = new MetronomeGoalTask("Metronome Task", 100, 120);
-            task1.Weighting = 101;
+            //MetronomeGoalTask task1 = new MetronomeGoalTask("Metronome Task", 100, 120);
+            //task1.Weighting = 101;
 
-            TestDelegate proc = () => goal.AddTask(task1);
-            Assert.That(proc, Throws.TypeOf<ArgumentOutOfRangeException>());
+            //TestDelegate proc = () => goal.AddTask(task1);
+            //Assert.That(proc, Throws.TypeOf<ArgumentOutOfRangeException>());
+
+            Assert.Fail(); // How to implement this?
         }
     }
 }

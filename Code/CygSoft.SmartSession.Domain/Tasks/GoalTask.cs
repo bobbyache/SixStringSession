@@ -39,7 +39,7 @@ namespace CygSoft.SmartSession.Domain.Tasks
             }
         }
 
-        public DateTime CreateDate { get; private set; }
+        public DateTime CreateDate { get; set; }
 
         // inferred by whatever the first session result is...
         public DateTime? StartDate
@@ -57,22 +57,8 @@ namespace CygSoft.SmartSession.Domain.Tasks
         public GoalTask()
         {
             InstanceId = Guid.NewGuid().ToString();
-        }
-
-        public GoalTask(string title) : this()
-        {
-            Id = -1; // Guid.NewGuid().ToString();
             CreateDate = DateTime.Now;
-            Title = title;
             this.sessionResults = new List<SessionResult>();
-        }
-
-        public GoalTask(string title, DateTime createDate, List<SessionResult> results) : this()
-        {
-            Id = -1; // Guid.NewGuid().ToString();
-            CreateDate = createDate;
-            Title = title;
-            this.sessionResults = results;
         }
 
         public abstract double PercentCompleted { get; }
