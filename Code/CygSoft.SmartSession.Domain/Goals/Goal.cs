@@ -21,7 +21,7 @@ namespace CygSoft.SmartSession.Domain.Goals
             {
                 double summedPercentage = 0;
                 
-                foreach (IEditableGoalTask task in goalTasks)
+                foreach (IWeightedEntity task in goalTasks)
                 {
                     summedPercentage += weightingCalculator.GetItemWeightedPercentage(task.InstanceId, task.PercentCompleted);
                 }
@@ -61,12 +61,14 @@ namespace CygSoft.SmartSession.Domain.Goals
 
         public void AddTask(IEditableGoalTask goalTask)
         {
-            if (goalTask.Weighting <= 0)
+            IWeightedEntity weightedTask = goalTask as IWeightedEntity;
+
+            if (weightedTask.Weighting <= 0)
                 throw new ArgumentOutOfRangeException("Cannot add a task with an invalid weighting");
 
-            weightingCalculator.Update(goalTask.InstanceId, goalTask.Weighting);
+            weightingCalculator.Update(weightedTask.InstanceId, weightedTask.Weighting);
             goalTasks.Add(goalTask);
-            goalTask.WeightingChanged += GoalTask_WeightingChanged;
+            weightedTask.WeightingChanged += GoalTask_WeightingChanged;
         }
 
         public IGoalFile[] Files => goalFiles.ToArray();

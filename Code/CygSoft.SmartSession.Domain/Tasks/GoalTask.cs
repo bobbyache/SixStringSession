@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace CygSoft.SmartSession.Domain.Tasks
 {
-    public abstract class GoalTask : IGoalTaskRecord, IEditableGoalTask
+    public abstract class GoalTask : IGoalTaskRecord, IEditableGoalTask, IWeightedEntity
     {
         protected List<SessionResult> sessionResults;
 
@@ -65,7 +65,7 @@ namespace CygSoft.SmartSession.Domain.Tasks
 
         public string Title { get; set; }
 
-        public int Id { get; set; }
+        public int Id { get; set; } = -1;
 
         public string InstanceId { get; }
 

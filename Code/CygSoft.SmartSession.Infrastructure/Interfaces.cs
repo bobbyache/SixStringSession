@@ -1,7 +1,7 @@
 ﻿using System;
 
 namespace CygSoft.SmartSession.Infrastructure
-{
+{ 
     public interface IEditableGoal
     {
         int Id { get; }
@@ -18,10 +18,9 @@ namespace CygSoft.SmartSession.Infrastructure
         void AddTask(IEditableGoalTask goalTask);
     }
 
-    public interface IEditableGoalTask : IWeightedEntity
+    public interface IEditableGoalTask
     {
         int Id { get; }
-        string InstanceId { get; }
         string Title { get; }
         DateTime CreateDate { get; }
         int MinutesPracticed { get; }
@@ -34,6 +33,8 @@ namespace CygSoft.SmartSession.Infrastructure
         event EventHandler WeightingChanged;
 
         int Weighting { get; set; }
+        string InstanceId { get; }
+        double PercentCompleted { get; }
     }
 
     public interface IGoalFile

@@ -251,42 +251,46 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         [Test]
         public void Goal_AddTask_With_0_Weighting_Throws_Exception()
         {
-            //Goal goal = new Goal(100);
+            Goal goal = new Goal(100);
 
-            //MetronomeGoalTask task1 = new MetronomeGoalTask("Metronome Task", 100, 120);
-            //task1.Weighting = 0;
+            var task1 = new MetronomeGoalTask();
+            task1.Title = "Metronome Task";
+            task1.StartSpeed = 100;
+            task1.TargetSpeed = 120;
+            task1.Weighting = 0;
 
-            //TestDelegate proc = () => goal.AddTask(task1);
-            //Assert.That(proc, Throws.TypeOf<ArgumentOutOfRangeException>());
-
-            Assert.Fail(); // how to implement this?
+            TestDelegate proc = () => goal.AddTask(task1);
+            Assert.That(proc, Throws.TypeOf<ArgumentOutOfRangeException>());
         }
 
         [Test]
         public void Goal_AddTask_With_Negative_Weighting_Throws_Exception()
         {
-            //Goal goal = new Goal(100);
+            Goal goal = new Goal(100);
 
-            //MetronomeGoalTask task1 = new MetronomeGoalTask("Metronome Task", 100, 120);
-            //task1.Weighting = -1;
+            var task1 = new MetronomeGoalTask();
+            task1.Title = "Metronome Task";
+            task1.StartSpeed = 100;
+            task1.TargetSpeed = 120;
+            task1.Weighting = -1;
 
-            //TestDelegate proc = () => goal.AddTask(task1);
-            //Assert.That(proc, Throws.TypeOf<ArgumentOutOfRangeException>());
-            Assert.Fail(); // How to implement this?
+            TestDelegate proc = () => goal.AddTask(task1);
+            Assert.That(proc, Throws.TypeOf<ArgumentOutOfRangeException>());
         }
 
         [Test]
         public void Goal_AddTask_With_Weighting_That_Exceeds_Limit_Throws_Exception()
         {
-            //Goal goal = new Goal(100);
+            Goal goal = new Goal(100);
 
-            //MetronomeGoalTask task1 = new MetronomeGoalTask("Metronome Task", 100, 120);
-            //task1.Weighting = 101;
+            var task1 = new MetronomeGoalTask();
+            task1.Title = "Metronome Task";
+            task1.StartSpeed = 100;
+            task1.TargetSpeed = 120;
+            task1.Weighting = 101;
 
-            //TestDelegate proc = () => goal.AddTask(task1);
-            //Assert.That(proc, Throws.TypeOf<ArgumentOutOfRangeException>());
-
-            Assert.Fail(); // How to implement this?
+            TestDelegate proc = () => goal.AddTask(task1);
+            Assert.That(proc, Throws.TypeOf<ArgumentOutOfRangeException>());
         }
     }
 }

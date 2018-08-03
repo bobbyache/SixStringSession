@@ -17,7 +17,7 @@ namespace CygSoft.SmartSession.Domain.Goals
 
         private class Weighting
         {
-            public string Id { get; set; }
+            public string InstanceId { get; set; }
             public int Value { get; set; }
             public double Percentage { get; set; }
         }
@@ -36,7 +36,7 @@ namespace CygSoft.SmartSession.Domain.Goals
             if (weightings.ContainsKey(id))
                 weightings[id].Value = relativeValue;
             else
-                weightings.Add(id, new Weighting { Id = id, Value = relativeValue });
+                weightings.Add(id, new Weighting { InstanceId = id, Value = relativeValue });
 
             CalculatePercentages();
         }
