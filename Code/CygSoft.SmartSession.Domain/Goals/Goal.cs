@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace CygSoft.SmartSession.Domain.Goals
 {
-    public class Goal : EntityBase, IGoalRecord, IEditableGoal
+    public class Goal : EntityBase, IEditableGoal
     {
         private WeightingCalculator weightingCalculator;
         private List<IGoalFile> goalFiles = new List<IGoalFile>();

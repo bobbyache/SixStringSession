@@ -44,7 +44,6 @@
     <Compile Include="..\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Goals\IGoalRecord.cs" />
     <Compile Include="Goals\IGoalRepository.cs" />
     <Compile Include="Tasks\DurationGoalTask.cs" />
     <Compile Include="Sessions\DurationSessionResult.cs" />
@@ -52,7 +51,6 @@
     <Compile Include="Tasks\GoalTask.cs" />
     <Compile Include="Sessions\MetronomeSessionResult.cs" />
     <Compile Include="Tasks\GoalTaskRecord.cs" />
-    <Compile Include="Tasks\IGoalTaskRecord.cs" />
     <Compile Include="Tasks\ITaskRepository.cs" />
     <Compile Include="Tasks\PercentGoalTask.cs" />
     <Compile Include="Tasks\MetronomeGoalTask.cs" />
