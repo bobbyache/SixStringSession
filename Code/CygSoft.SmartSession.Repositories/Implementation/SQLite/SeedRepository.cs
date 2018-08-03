@@ -8,7 +8,7 @@ namespace CygSoft.SmartSession.Repositories.SQLite
         public void Goal()
         {
             var sql = @"
-                INSERT INTO goal (name) VALUES 
+                INSERT INTO goal (title) VALUES 
                 ('Happy Chappy'),
                 ('Britannia Hotel'),
                 ('Hollywood Bets');

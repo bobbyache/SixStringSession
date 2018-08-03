@@ -75,13 +75,11 @@
     <Compile Include="Implementation\SQLite\SeedRepository.cs" />
     <Compile Include="Implementation\SQLite\TaskRepository.cs" />
     <Compile Include="Implementation\SQLite\UserRepository.cs" />
-    <Compile Include="Interface\IGoalRepository.cs" />
     <Compile Include="Interface\IRestaurantRepository.cs" />
     <Compile Include="Interface\IScoreRepository.cs" />
     <Compile Include="Interface\ITaskRepository.cs" />
     <Compile Include="Interface\IUserRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Schema\GoalRecord.cs" />
     <Compile Include="Schema\RestaurantRecord.cs" />
     <Compile Include="Schema\ScoreRecord.cs" />
     <Compile Include="Schema\TaskRecord.cs" />
@@ -95,6 +93,10 @@
     <Folder Include="Implementation\MySQL\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CygSoft.SmartSession.Domain\CygSoft.SmartSession.Domain.csproj">
+      <Project>{5e5c771f-a122-423a-8cc3-27488e9e054a}</Project>
+      <Name>CygSoft.SmartSession.Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CygSoft.SmartSession.Infrastructure\CygSoft.SmartSession.Infrastructure.csproj">
       <Project>{26f5ecf2-47a5-481d-b9ad-e128b19f9eed}</Project>
       <Name>CygSoft.SmartSession.Infrastructure</Name>

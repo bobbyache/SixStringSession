@@ -9,7 +9,7 @@ namespace CygSoft.SmartSession.BaseRepository.SQLite
         {
             var sql = @"
 			    DROP TABLE IF EXISTS goal; 
-			    CREATE TABLE Goal (id INTEGER PRIMARY KEY, name VARCHAR(50))
+			    CREATE TABLE Goal (id INTEGER PRIMARY KEY, title VARCHAR(50))
 			    ";
             ExecuteNonQuery(sql);
         }

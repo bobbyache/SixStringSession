@@ -19,6 +19,14 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         //    Assert.That(goalTask.Weighting, Is.EqualTo(100));
         //}
 
+        //[Test]
+        //public void Test()
+        //{
+        //    IEditableGoal goal = new Goal();
+        //    goal.
+        //}
+
+
         [Test]
         public void Weighting_Single_PercentGoalTask_Added_To_Task_Creates_100_Percent_Weighting()
         {

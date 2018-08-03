@@ -1,46 +1,45 @@
-﻿using System.Collections.Generic;
+﻿using CygSoft.SmartSession.Domain.Goals;
 using CygSoft.SmartSession.Repositories.Implementation;
-using CygSoft.SmartSession.Repositories.Interface;
-using CygSoft.SmartSession.Repositories.Schema;
+using System.Collections.Generic;
 
 namespace CygSoft.SmartSession.Repositories.SQLite
 {
     public class GoalRepository : SQLiteContext, IGoalRepository
     {
-        public int Insert(GoalRecord obj)
+        public int Insert(Goal obj)
         {
             var sql = @"
 				INSERT INTO goal
 				(
-					name
+					title
 				)
 				VALUES
 				(
-					@Name
+					@Title
 				);
 				SELECT last_insert_rowid();
 				";
 
-            return Insert<GoalRecord>(sql, obj);
+            return Insert<Goal>(sql, obj);
         }
 
-        public GoalRecord Select(int id)
+        public Goal Select(int id)
         {
             var sql = @"
 				SELECT * FROM goal 
 				WHERE Id = @id;";
 
-            return Select<GoalRecord>(sql, new { id });
+            return Select<Goal>(sql, new { id });
         }
 
-        public List<GoalRecord> SelectList()
+        public List<Goal> SelectList()
         {
             var sql = @"
 				SELECT * FROM goal 
-				ORDER BY name;
+				ORDER BY title;
 				";
 
-            return SelectList<GoalRecord>(sql);
+            return SelectList<Goal>(sql);
         }
     }
 }

@@ -6,11 +6,14 @@ using System.Linq;
 
 namespace CygSoft.SmartSession.Domain.Goals
 {
-    internal class Goal
+    public class Goal : IGoalRecord, IEditableGoal
     {
         private WeightingCalculator weightingCalculator;
         private List<IGoalFile> goalFiles = new List<IGoalFile>();
         private List<IGoalTask> goalTasks = new List<IGoalTask>();
+
+        public int Id { get; set; }
+        public string Title { get; set; }
 
         public double PercentComplete
         {
@@ -24,6 +27,11 @@ namespace CygSoft.SmartSession.Domain.Goals
                 }
                 return summedPercentage;
             }
+        }
+
+        public Goal()
+        {
+
         }
 
         public Goal(int maxTaskWeighting)
@@ -45,7 +53,13 @@ namespace CygSoft.SmartSession.Domain.Goals
 
         public double FileCount => goalFiles.Count();
 
-        internal void AddTask(GoalTask goalTask)
+        private void GoalTask_WeightingChanged(object sender, EventArgs e)
+        {
+            GoalTask goalTask = ((GoalTask)sender);
+            weightingCalculator.Update(goalTask.Id, goalTask.Weighting);
+        }
+
+        public void AddTask(IGoalTask goalTask)
         {
             if (goalTask.Weighting <= 0)
                 throw new ArgumentOutOfRangeException("Cannot add a task with an invalid weighting");
@@ -53,12 +67,6 @@ namespace CygSoft.SmartSession.Domain.Goals
             weightingCalculator.Update(goalTask.Id, goalTask.Weighting);
             goalTasks.Add(goalTask);
             goalTask.WeightingChanged += GoalTask_WeightingChanged;
-        }
-
-        private void GoalTask_WeightingChanged(object sender, EventArgs e)
-        {
-            GoalTask goalTask = ((GoalTask)sender);
-            weightingCalculator.Update(goalTask.Id, goalTask.Weighting);
         }
 
         public IGoalFile[] Files => goalFiles.ToArray();

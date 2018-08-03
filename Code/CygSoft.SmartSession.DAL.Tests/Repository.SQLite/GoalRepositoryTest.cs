@@ -1,4 +1,5 @@
-﻿using CygSoft.SmartSession.Repositories.Interface;
+﻿using CygSoft.SmartSession.Domain.Goals;
+using CygSoft.SmartSession.Repositories.Interface;
 using CygSoft.SmartSession.Repositories.Schema;
 using CygSoft.SmartSession.Repositories.SQLite;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -28,12 +29,12 @@ namespace CygSoft.SmartSession.Repositories.UnitTests.Repository.SQLite
             SelectList();
         }
 
-        public int Insert(GoalRecord obj)
+        public int Insert(Goal obj)
         {
             // arrange
-            var goalModel = new GoalRecord()
+            var goalModel = new Goal()
             {
-                Name = "Goal Name"
+                Title = "Goal Title"
             };
 
             // act 
@@ -45,7 +46,7 @@ namespace CygSoft.SmartSession.Repositories.UnitTests.Repository.SQLite
             return newId;
         }
 
-        public GoalRecord Select(int id)
+        public Goal Select(int id)
         {
             // arrange
             int _id = id;
@@ -59,7 +60,7 @@ namespace CygSoft.SmartSession.Repositories.UnitTests.Repository.SQLite
             return goalModel;
         }
 
-        public List<GoalRecord> SelectList()
+        public List<Goal> SelectList()
         {
             // arrange
             // act 

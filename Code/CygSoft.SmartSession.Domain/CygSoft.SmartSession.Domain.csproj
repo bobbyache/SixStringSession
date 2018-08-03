@@ -44,6 +44,8 @@
     <Compile Include="..\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Goals\IGoalRecord.cs" />
+    <Compile Include="Goals\IGoalRepository.cs" />
     <Compile Include="Tasks\DurationGoalTask.cs" />
     <Compile Include="Sessions\DurationSessionResult.cs" />
     <Compile Include="Goals\Goal.cs" />

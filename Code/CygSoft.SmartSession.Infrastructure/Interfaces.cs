@@ -2,6 +2,22 @@
 
 namespace CygSoft.SmartSession.Infrastructure
 {
+    public interface IEditableGoal
+    {
+        int Id { get; }
+        string Title { get; set; }
+
+        int MinutesPracticed { get; }
+
+        DateTime CreateDate { get; }
+
+        int Weighting { get; }
+
+        bool IsConsideredComplete { get; }
+
+        void AddTask(IGoalTask goalTask);
+    }
+
     public interface IGoalTask : IWeightedEntity
     {
         string Id { get; }
