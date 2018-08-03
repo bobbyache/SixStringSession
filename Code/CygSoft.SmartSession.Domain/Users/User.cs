@@ -1,6 +1,12 @@
-﻿namespace CygSoft.SmartSession.Repositories.Schema
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace CygSoft.SmartSession.Domain.Users
 {
-    public class UserRecord
+    public class User
     {
         public int Id { get; set; }
         public bool HasAccess { get; set; }

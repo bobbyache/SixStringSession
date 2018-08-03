@@ -32,10 +32,10 @@ namespace CygSoft.SmartSession.Repositories.SQLite
             var _password = new PasswordHash().Go("password1"); //7C6A180B36896A0A8C02787EEAFB0E4C
 
             var sql = string.Format(@"
-INSERT INTO user (has_access, cellphone, password, name, surname) VALUES 
-(1, 0820000000, '{0}', 'Joe', 'Blogs'),
-(1, 0830000000, '{0}', 'Sue', 'Blogs');",
-_password);
+                INSERT INTO user (has_access, cellphone, password, name, surname) VALUES 
+                (1, 0820000000, '{0}', 'Joe', 'Blogs'),
+                (1, 0830000000, '{0}', 'Sue', 'Blogs');",
+                _password);
             ExecuteNonQuery(sql);
         }
     }

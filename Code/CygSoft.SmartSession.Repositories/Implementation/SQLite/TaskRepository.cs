@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
 using CygSoft.SmartSession.Domain.Tasks;
 using CygSoft.SmartSession.Repositories.Implementation;
-using CygSoft.SmartSession.Repositories.Interface;
-using CygSoft.SmartSession.Repositories.Schema;
 
 namespace CygSoft.SmartSession.Repositories.SQLite
 {

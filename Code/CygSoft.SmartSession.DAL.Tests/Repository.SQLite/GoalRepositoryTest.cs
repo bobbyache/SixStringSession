@@ -1,6 +1,4 @@
 ﻿using CygSoft.SmartSession.Domain.Goals;
-using CygSoft.SmartSession.Repositories.Interface;
-using CygSoft.SmartSession.Repositories.Schema;
 using CygSoft.SmartSession.Repositories.SQLite;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;

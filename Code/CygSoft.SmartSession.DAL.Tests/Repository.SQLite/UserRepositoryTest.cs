@@ -1,6 +1,5 @@
-﻿using CygSoft.SmartSession.Infrastructure;
-using CygSoft.SmartSession.Repositories.Interface;
-using CygSoft.SmartSession.Repositories.Schema;
+﻿using CygSoft.SmartSession.Domain.Users;
+using CygSoft.SmartSession.Infrastructure;
 using CygSoft.SmartSession.Repositories.SQLite;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -22,7 +21,7 @@ namespace CygSoft.SmartSession.Repositories.UnitTests
         }
 
         #region IUserRepository
-        public UserRecord Select(long cellPhone, string password)
+        public User Select(long cellPhone, string password)
         {
             // arrange
             var _cellPhone = cellPhone;
@@ -37,11 +36,11 @@ namespace CygSoft.SmartSession.Repositories.UnitTests
             return dbModel;
         }
 
-        public int Insert(UserRecord obj)
+        public int Insert(User obj)
         {
             // arrange
             var password = new PasswordHash().Go("password1"); //"7C6A180B36896A0A8C02787EEAFB0E4C"
-            var dbModel = new UserRecord()
+            var dbModel = new User()
             {
                 CellPhone = 123456789,
                 HasAccess = true,
