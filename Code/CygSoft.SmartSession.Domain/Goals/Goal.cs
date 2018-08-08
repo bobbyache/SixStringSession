@@ -8,35 +8,42 @@ namespace CygSoft.SmartSession.Domain.Goals
 {
     public class Goal : EntityBase, IEditableGoal
     {
-        private List<IGoalFile> goalFiles = new List<IGoalFile>();
         private List<IEditableGoalTask> goalTasks = new List<IEditableGoalTask>();
+        private ProgressCalculator progressCalculator = new ProgressCalculator();
 
         public string Title { get; set; }
-
+        public int MinutesPracticed { get; private set; }
+        public DateTime CreateDate { get; private set; }
+        public int Weighting => 0;
+        public bool IsConsideredComplete => PercentComplete == 100;
         public double PercentComplete => progressCalculator.CalculateTotalProgress();
+        public IEditableGoalTask[] Tasks => goalTasks.ToArray();
+
+        public int TaskCount
+        {
+            get
+            {
+                if (goalTasks != null)
+                    return goalTasks.Count();
+                return 0;
+            }
+        }
 
         public Goal()
         {
             CreateDate = DateTime.Now;
         }
 
-        internal Goal(IEditableGoalTask[] goalTasks, IGoalFile[] goalFiles)
+        internal Goal(IEditableGoalTask[] goalTasks)
         {
             if (goalTasks != null)
                 this.goalTasks = new List<IEditableGoalTask>(goalTasks);
-
-            if (goalFiles != null)
-                this.goalFiles = new List<IGoalFile>(goalFiles);
         }
-
-        public double FileCount => goalFiles.Count();
 
         private void GoalTask_WeightingChanged(object sender, EventArgs e)
         {
-            IWeightedEntity goalTask = ((IWeightedEntity)sender);;
+            IWeightedEntity goalTask = ((IWeightedEntity)sender);
         }
-
-        private ProgressCalculator progressCalculator = new ProgressCalculator();
 
         public void AddTask(IEditableGoalTask goalTask)
         {
@@ -57,26 +64,5 @@ namespace CygSoft.SmartSession.Domain.Goals
             goalTasks.Add(goalTask);
             progressCalculator.Add(goalTask as IWeightedEntity);
         }
-
-        public IGoalFile[] Files => goalFiles.ToArray();
-        public int MinutesPracticed { get; private set; }
-
-        public DateTime CreateDate { get; private set; }
-
-        public int Weighting => 0;
-
-        public bool IsConsideredComplete => PercentComplete == 100;
-
-        public int TaskCount
-        {
-            get
-            {
-                if (goalTasks != null)
-                    return goalTasks.Count();
-                return 0;
-            }
-        }
-
-        public IEditableGoalTask[] Tasks => goalTasks.ToArray();
     }
 }

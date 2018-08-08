@@ -160,29 +160,9 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         [Test]
         public void Goal_New_With_Null_Tasks_Has_Zero_Tasks()
         {
-            IGoalFile[] goalFiles = new IGoalFile[]
-            {
-                new Mock<IGoalFile>().Object,
-                new Mock<IGoalFile>().Object
-            };
-
-            Goal goal = new Goal(null, goalFiles);
+            Goal goal = new Goal(null);
             Assert.That(goal.TaskCount, Is.EqualTo(0));
             Assert.That(goal.Tasks.Length == 0);
-        }
-
-        [Test]
-        public void Goal_New_With_Null_Files_Has_Zero_Files()
-        {
-            IEditableGoalTask[] goalTasks = new IEditableGoalTask[]
-            {
-                new Mock<IEditableGoalTask>().Object,
-                new Mock<IEditableGoalTask>().Object
-            };
-
-            Goal goal = new Goal(goalTasks, null);
-            Assert.That(goal.FileCount, Is.EqualTo(0));
-            Assert.That(goal.Files.Length == 0);
         }
 
         [Test]
@@ -230,15 +210,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                 new Mock<IEditableGoalTask>().Object
             };
 
-            IGoalFile[] goalFiles = new IGoalFile[]
-            {
-                new Mock<IGoalFile>().Object,
-                new Mock<IGoalFile>().Object
-            };
-            
-            Goal goal = new Goal(goalTasks, goalFiles);
-            Assert.AreEqual(2, goal.FileCount);
-            Assert.AreEqual(2, goal.Files.Length);
+            Goal goal = new Goal(goalTasks);
             Assert.AreEqual(2, goal.TaskCount);
             Assert.AreEqual(2, goal.Tasks.Length);
         }

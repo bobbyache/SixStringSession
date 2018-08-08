@@ -33,8 +33,4 @@ namespace CygSoft.SmartSession.Infrastructure
         int Weighting { get; set; }
         double PercentCompleted { get; }
     }
-
-    public interface IGoalFile
-    {
-    }
 }
