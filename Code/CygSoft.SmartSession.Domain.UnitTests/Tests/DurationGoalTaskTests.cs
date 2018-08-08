@@ -149,20 +149,6 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             task.AddSessionRange(results);
             Assert.That(task.StartDate, Is.EqualTo(expectedStartTime));
         }
-
-        [Test]
-        public void Existing_DurationGoalTask_Raises_WeightingChangedEvent_When_Registered()
-        {
-            var called = false;
-
-            var task = new DurationGoalTask();
-            task.Title = "Task 1";
-            task.TargetMinutes = 100;
-            task.WeightingChanged += (sender, args) => called = true;
-            task.Weighting = 42;
-
-            Assert.IsTrue(called);
-        }
     }
 
 

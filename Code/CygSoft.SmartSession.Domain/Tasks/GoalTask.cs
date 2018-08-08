@@ -7,18 +7,12 @@ using System.Linq;
 namespace CygSoft.SmartSession.Domain.Tasks
 {
     public abstract class GoalTask<T>
-        : EntityBase, IEditableGoalTask, IWeightedEntity
+        : BaseTask
         where T : SessionResult
     {
         protected List<T> sessionResultList;
 
-        public event EventHandler WeightingChanged;
-
-        public DateTime CreateDate { get; set; }
-        public abstract double PercentCompleted { get; }
-        public string Title { get; set; }
-
-        public int MinutesPracticed
+        public override int MinutesPracticed
         {
             get
             {
@@ -31,21 +25,7 @@ namespace CygSoft.SmartSession.Domain.Tasks
             }
         }
 
-        private int weighting;
-        public int Weighting
-        {
-            get { return this.weighting; }
-            set
-            {
-                if (this.weighting != value)
-                {
-                    this.weighting = value;
-                    WeightingChanged?.Invoke(this, new EventArgs());
-                }
-            }
-        }
-
-        public DateTime? StartDate
+        public override DateTime? StartDate
         {
             get
             {

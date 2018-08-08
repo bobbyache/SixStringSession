@@ -68,6 +68,7 @@
     <Compile Include="..\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Tests\AggregateGoalTaskTests.cs" />
     <Compile Include="Tests\DurationGoalTaskTests.cs" />
     <Compile Include="Tests\GoalTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

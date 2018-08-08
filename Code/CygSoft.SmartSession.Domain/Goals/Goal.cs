@@ -40,11 +40,6 @@ namespace CygSoft.SmartSession.Domain.Goals
                 this.goalTasks = new List<IEditableGoalTask>(goalTasks);
         }
 
-        private void GoalTask_WeightingChanged(object sender, EventArgs e)
-        {
-            IWeightedEntity goalTask = ((IWeightedEntity)sender);
-        }
-
         public void AddTask(IEditableGoalTask goalTask)
         {
             IWeightedEntity weightedTask = goalTask as IWeightedEntity;

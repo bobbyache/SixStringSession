@@ -3,9 +3,6 @@ using CygSoft.SmartSession.Domain.Tasks;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CygSoft.SmartSession.Domain.UnitTests.Tests
 {
@@ -178,21 +175,6 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             task.AddSessionRange(results);
 
             Assert.That(task.StartDate, Is.EqualTo(expectedStartTime));
-        }
-
-        [Test]
-        public void Existing_MetronomeGoalTask_Raises_WeightingChangedEvent_When_Registered()
-        {
-            var called = false;
-
-            var task = new MetronomeGoalTask();
-            task.Title = "Task 1";
-            task.StartSpeed = 50;
-            task.TargetSpeed = 80;
-            task.WeightingChanged += (sender, args) => called = true;
-            task.Weighting = 42;
-
-            Assert.IsTrue(called);
         }
     }
 }
