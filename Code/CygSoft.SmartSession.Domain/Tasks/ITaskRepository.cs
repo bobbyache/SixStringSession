@@ -4,8 +4,9 @@ namespace CygSoft.SmartSession.Domain.Tasks
 {
     public interface ITaskRepository
     {
-        int Insert(GoalTaskRecord obj);
-        GoalTaskRecord Select(int id);
-        List<GoalTaskRecord> SelectList();
+        int Insert(BaseTask obj);
+
+        BaseTask Select(int id);
+        List<BaseTask> SelectList();
     }
 }

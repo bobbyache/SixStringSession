@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace CygSoft.SmartSession.Repositories.Implementation
 {
-    public class SQLiteContext : IDisposable, IBaseContext
+    public class SQLiteContext : IDisposable
     {
         private readonly SQLiteConnection _dbConn;
         private string _connectionString = "";
@@ -20,77 +20,56 @@ namespace CygSoft.SmartSession.Repositories.Implementation
             DefaultTypeMap.MatchNamesWithUnderscores = true;
         }
 
-        public void Delete(string sql, object parameters = null)
+        protected virtual void Delete(string sql, object parameters = null)
         {
-            using (_dbConn)
+            Open();
+            _dbConn.Execute(sql, parameters);
+        }
+
+        protected virtual int Insert<T>(string sql, object poco)
+        {
+            Open();
+            return _dbConn.ExecuteScalar<int>(sql, (T)poco);
+        }
+
+        protected virtual void InsertBulk<T>(string sql, object listPoco)
+        {
+            Open();
+            using (SQLiteTransaction trans = _dbConn.BeginTransaction())
             {
-                Open();
-                _dbConn.Execute(sql, parameters);
+                _dbConn.Execute(sql, listPoco, transaction: trans);
+                trans.Commit();
             }
         }
 
-        public int Insert<T>(string sql, object poco)
+        protected virtual T Select<T>(string sql, object parameters = null) where T : new()
         {
-            using (_dbConn)
-            {
-                Open();
-                return _dbConn.ExecuteScalar<int>(sql, (T)poco);
-            }
+            Open();
+            var o = _dbConn.Query<T>(sql, parameters).FirstOrDefault();
+            if (o != null)
+                return o;
+
+            return new T();
         }
 
-        public void InsertBulk<T>(string sql, object listPoco)
+        protected virtual List<T> SelectList<T>(string sql, object parameters = null)
         {
-            using (_dbConn)
-            {
-                Open();
-                using (SQLiteTransaction trans = _dbConn.BeginTransaction())
-                {
-                    _dbConn.Execute(sql, listPoco, transaction: trans);
-                    trans.Commit();
-                }
-            }
+            Open();
+            return _dbConn.Query<T>(sql, parameters).ToList();
         }
 
-        public T Select<T>(string sql, object parameters = null) where T : new()
+        protected virtual void Update<T>(string sql, object poco)
         {
-            using (_dbConn)
-            {
-                Open();
-                var o = _dbConn.Query<T>(sql, parameters).FirstOrDefault();
-                if (o != null)
-                    return o;
-
-                return new T();
-            }
+            Open();
+            _dbConn.Execute(sql, (T)poco);
         }
 
-        public List<T> SelectList<T>(string sql, object parameters = null)
+        protected virtual void ExecuteNonQuery(string sql)
         {
-            using (_dbConn)
+            Open();
+            using (SQLiteCommand command = new SQLiteCommand(sql, _dbConn))
             {
-                Open();
-                return _dbConn.Query<T>(sql, parameters).ToList();
-            }
-        }
-
-        public void Update<T>(string sql, object poco)
-        {
-            using (_dbConn)
-            {
-                Open();
-                _dbConn.Execute(sql, (T)poco);
-            }
-        }
-
-        public void ExecuteNonQuery(string sql)
-        {
-            using (_dbConn)
-            {
-                Open();
-                using (SQLiteCommand command = new SQLiteCommand(sql, _dbConn))
-                {
-                    command.ExecuteNonQuery();
-                }
+                command.ExecuteNonQuery();
             }
         }
 
@@ -100,7 +79,8 @@ namespace CygSoft.SmartSession.Repositories.Implementation
             _dbConn.Close();
             _dbConn.Dispose();
         }
-        public void Open()
+
+        protected void Open()
         {
             if (_dbConn.State == ConnectionState.Closed)
                 _dbConn.Open();

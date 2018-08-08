@@ -18,7 +18,7 @@ namespace CygSoft.SmartSession.BaseRepository.SQLite
         {
           var sql = @"
             DROP TABLE IF EXISTS task; 
-            CREATE TABLE Task (id INTEGER PRIMARY KEY, title VARCHAR(50))";
+            CREATE TABLE Task (id INTEGER PRIMARY KEY, title VARCHAR(50), type VARCHAR(1))";
                   ExecuteNonQuery(sql);
         }
 

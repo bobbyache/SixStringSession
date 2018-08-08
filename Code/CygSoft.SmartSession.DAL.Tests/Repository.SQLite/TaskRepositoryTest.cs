@@ -6,69 +6,87 @@ using System.Collections.Generic;
 namespace CygSoft.SmartSession.Repositories.UnitTests.Repository.SQLite
 {
     [TestClass]
-    public class TaskRepositoryTest : ITaskRepository
+    public class TaskRepositoryTest
     {
         [TestMethod]
-        public void TaskRepository_Insert()
+        public void Insert_A_MetronomeTask_Sucessfully()
         {
-            Insert(null);
+            var repository = new TaskRepository();
+            var taskId = repository.Insert(
+                new MetronomeGoalTask
+                {
+                    Title = "Test Metronome Task"
+                }
+            );
+            Assert.IsTrue(taskId > 0);
+
+            var fetchedTask = repository.Select(taskId);
+            Assert.IsNotNull(fetchedTask);
+            Assert.IsInstanceOfType(fetchedTask, typeof(MetronomeGoalTask));
         }
 
         [TestMethod]
-        public void TaskRepository_Select()
+        public void Insert_A_DurationTask_Sucessfully()
         {
-            Select(1);
+            var repository = new TaskRepository();
+            var taskId = repository.Insert(
+                new DurationGoalTask
+                {
+                    Title = "Test Duration Task"
+                }
+            );
+            Assert.IsTrue(taskId > 0);
+
+            var fetchedTask = repository.Select(taskId);
+            Assert.IsNotNull(fetchedTask);
+            Assert.IsInstanceOfType(fetchedTask, typeof(DurationGoalTask));
         }
 
         [TestMethod]
-        public void TaskRepository_SelectList()
+        public void Insert_A_PercentTask_Sucessfully()
         {
-            SelectList();
+            var repository = new TaskRepository();
+            var taskId = repository.Insert(
+                new PercentGoalTask
+                {
+                    Title = "Test Percent Task"
+                }
+            );
+            Assert.IsTrue(taskId > 0);
+
+            var fetchedTask = repository.Select(taskId);
+            Assert.IsNotNull(fetchedTask);
+            Assert.IsInstanceOfType(fetchedTask, typeof(PercentGoalTask));
         }
 
-        #region ITaskRepository
-        public int Insert(GoalTaskRecord obj)
+        [TestMethod]
+        public void Insert_A_AggregateTask_Sucessfully()
         {
-            // arrange
-            var taskModel = new GoalTaskRecord()
-            {
-                Title = "Task Name"
-            };
+            var repository = new TaskRepository();
+            var taskId = repository.Insert(
+                new AggregateTask
+                {
+                    Title = "Test Aggregate Task"
+                }
+            );
+            Assert.IsTrue(taskId > 0);
 
-            // act 
-            var newId = new TaskRepository().Insert(taskModel);
-
-            // assert 
-            Assert.IsTrue(newId > 0);
-
-            return newId;
+            var fetchedTask = repository.Select(taskId);
+            Assert.IsNotNull(fetchedTask);
+            Assert.IsInstanceOfType(fetchedTask, typeof(AggregateTask));
         }
 
-        public GoalTaskRecord Select(int id)
-        {
-            // arrange
-            int _id = id;
+        //public List<BaseTask> SelectList()
+        //{
+        //    // arrange
+        //    // act 
+        //    var taskModel = new TaskRepository().SelectList();
 
-            // act 
-            var taskModel = new TaskRepository().Select(_id);
+        //    // assert 
+        //    Assert.IsTrue(taskModel.Count > 0);
 
-            // assert 
-            Assert.IsTrue(taskModel.Id > 0);
-
-            return taskModel;
-        }
-
-        public List<GoalTaskRecord> SelectList()
-        {
-            // arrange
-            // act 
-            var taskModel = new TaskRepository().SelectList();
-
-            // assert 
-            Assert.IsTrue(taskModel.Count > 0);
-
-            return taskModel;
-        }
-        #endregion
+        //    return taskModel;
+        //}
+        //#endregion
     }
 }

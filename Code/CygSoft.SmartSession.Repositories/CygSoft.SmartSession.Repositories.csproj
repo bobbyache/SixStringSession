@@ -66,7 +66,6 @@
     <Compile Include="..\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Implementation\IBaseContext.cs" />
     <Compile Include="Implementation\SQLiteContext.cs" />
     <Compile Include="Implementation\SQLite\DropAndCreateRepository.cs" />
     <Compile Include="Implementation\SQLite\GoalRepository.cs" />

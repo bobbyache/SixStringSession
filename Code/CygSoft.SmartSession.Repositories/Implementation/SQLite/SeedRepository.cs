@@ -19,10 +19,10 @@ namespace CygSoft.SmartSession.Repositories.SQLite
         public void Task()
         {
             var sql = @"
-                INSERT INTO task (title) VALUES 
-                ('Happy Chappy'),
-                ('Britannia Hotel'),
-                ('Hollywood Bets');
+                INSERT INTO task (title, type) VALUES 
+                ('Happy Chappy', 'P'),
+                ('Britannia Hotel', 'M'),
+                ('Hollywood Bets', 'D');
             ";
             ExecuteNonQuery(sql);
         }
