@@ -14,6 +14,10 @@ namespace CygSoft.SmartSession.Domain.Tasks
 
         public event EventHandler WeightingChanged;
 
+        public DateTime CreateDate { get; set; }
+        public abstract double PercentCompleted { get; }
+        public string Title { get; set; }
+
         public int MinutesPracticed
         {
             get
@@ -41,13 +45,11 @@ namespace CygSoft.SmartSession.Domain.Tasks
             }
         }
 
-        public DateTime CreateDate { get; set; }
-
-        // inferred by whatever the first session result is...
         public DateTime? StartDate
         {
             get
             {
+                // inferred by whatever the first session result is...
                 if (sessionResultList == null)
                     return null;
                 if (sessionResultList.Count == 0)
@@ -61,10 +63,6 @@ namespace CygSoft.SmartSession.Domain.Tasks
             CreateDate = DateTime.Now;
             this.sessionResultList = new List<T>();
         }
-
-        public abstract double PercentCompleted { get; }
-
-        public string Title { get; set; }
 
         internal void AddSession(T sessionResult)
         {

@@ -1,6 +1,4 @@
 ﻿using CygSoft.SmartSession.Domain.Sessions;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace CygSoft.SmartSession.Domain.Tasks
@@ -8,7 +6,6 @@ namespace CygSoft.SmartSession.Domain.Tasks
     public class MetronomeGoalTask : GoalTask<MetronomeSessionResult>
     {
         public int TargetSpeed { get; set; }
-
         public int StartSpeed { get; set; }
 
         public int CurrentSpeed
@@ -21,7 +18,8 @@ namespace CygSoft.SmartSession.Domain.Tasks
                 if (sessionResultList.Count == 0)
                     return 0;
 
-                return sessionResultList.OfType<MetronomeSessionResult>().OrderBy(r => r.StartTime).Last().Speed;
+                return sessionResultList.OfType<MetronomeSessionResult>()
+                    .OrderBy(r => r.StartTime).Last().Speed;
             }
         }
 
