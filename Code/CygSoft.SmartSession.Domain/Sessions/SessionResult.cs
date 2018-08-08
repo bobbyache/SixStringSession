@@ -7,6 +7,9 @@ namespace CygSoft.SmartSession.Domain.Sessions
         private DateTime startTime;
         private DateTime endTime;
 
+        public int Minutes { get { return (int)Math.Round(endTime.Subtract(startTime).TotalMinutes, 0); } }
+        public DateTime StartTime { get { return this.startTime; } }
+
         public SessionResult(DateTime startTime, DateTime endTime)
         {
             if (startTime > endTime)
@@ -15,8 +18,5 @@ namespace CygSoft.SmartSession.Domain.Sessions
             this.startTime = startTime;
             this.endTime = endTime;
         }
-
-        public int Minutes { get { return (int)Math.Round(endTime.Subtract(startTime).TotalMinutes, 0); } }
-        public DateTime StartTime { get { return this.startTime; } }
     }
 }
