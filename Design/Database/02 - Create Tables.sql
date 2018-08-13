@@ -61,10 +61,10 @@ CREATE TABLE [dbo].[Session](
 GO
 
 CREATE TABLE [dbo].[GoalTask](
-	[Id] [int] NOT NULL,
+	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[GoalId] [int] NOT NULL,
-	[Title] [nchar](150) NULL,
-	[Description] [nchar](500) NULL,
+	[Title] [nvarchar](150) NULL,
+	[Description] [nvarchar](500) NULL,
 	[CreateDate] [datetime] NULL,
 	[GoalTaskType] [nchar](1) NULL,
 	[DesiredSpeed] [int] NULL,
