@@ -29,6 +29,11 @@ sqlcmd -S %SQLSERVER% %CREDENTIALS% -d %DATABASE% -i "sp_InsertGoalTask.sql"
 sqlcmd -S %SQLSERVER% %CREDENTIALS% -d %DATABASE% -i "sp_GetTasksByGoal.sql"
 sqlcmd -S %SQLSERVER% %CREDENTIALS% -d %DATABASE% -i "sp_FindGoal.sql"
 sqlcmd -S %SQLSERVER% %CREDENTIALS% -d %DATABASE% -i "sp_FindGoalTask.sql"
+sqlcmd -S %SQLSERVER% %CREDENTIALS% -d %DATABASE% -i "sp_DeleteGoal.sql"
+sqlcmd -S %SQLSERVER% %CREDENTIALS% -d %DATABASE% -i "sp_DeleteGoalTask.sql"
+sqlcmd -S %SQLSERVER% %CREDENTIALS% -d %DATABASE% -i "sp_InsertSession.sql"
+
+
 
 
 sqlcmd -S %SQLSERVER% %CREDENTIALS% -d %DATABASE% -i "99 - Insert Test Data.sql"

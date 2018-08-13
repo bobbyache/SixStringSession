@@ -24,3 +24,9 @@ EXEC dbo.sp_InsertGoalTask @GoalId, 'Test Goal Task 10', 'M', 80,  '2018-05-01'
 EXEC dbo.sp_InsertGoalTask @GoalId, 'Test Goal Task 11', 'P', 80,  '2018-06-01'
 EXEC dbo.sp_InsertGoalTask @GoalId, 'Test Goal Task 12', 'M', 80,  '2018-07-01'
 
+DECLARE @SessionId INT
+EXEC dbo.sp_InsertSession '2018-05-01 10:52:00', '2018-05-01 11:40:00', 'Nothing much to speak of for this session. A few troubles with rhythm.', @SessionId OUTPUT
+SELECT @SessionId
+
+
+

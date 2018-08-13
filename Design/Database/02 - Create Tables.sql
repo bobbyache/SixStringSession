@@ -46,10 +46,10 @@ CREATE TABLE [dbo].[SessionTask](
 GO
 
 CREATE TABLE [dbo].[Session](
-	[Id] [int] NOT NULL,
+	[Id] [int] IDENTITY(1, 1) NOT NULL,
 	[StartTime] [datetime] NOT NULL,
 	[EndTime] [datetime] NOT NULL,
-	[Notes] [nchar](10) NULL,
+	[Notes] [nvarchar](500) NULL,
  CONSTRAINT [PK_Session] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
