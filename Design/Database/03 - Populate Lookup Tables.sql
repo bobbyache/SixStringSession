@@ -1,6 +1,4 @@
 
-USE [SmartSession]
-GO
 
 MERGE 
 	GoalStatus AS target  

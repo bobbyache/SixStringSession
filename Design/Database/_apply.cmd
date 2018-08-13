@@ -1,4 +1,7 @@
-@REM ADD FILES IN ALPHABETICAL ORDER!!!!!!!!!!!!!!!!!!!!!!!
+
+REM _apply.cmd "ROBB-LT02\ROBLT" "SmartSession"
+REM ADD FILES IN ALPHABETICAL ORDER!!!!!!!!!!!!!!!!!!!!!!!
+
 @echo off
 SETLOCAL
 SET SQLSERVER=%1
@@ -18,12 +21,14 @@ ECHO.
 PAUSE
 
 @echo on
-sqlcmd -S %SQLSERVER% %CREDENTIALS% -d %DATABASE% -i "01 - Create Database.sql"
 sqlcmd -S %SQLSERVER% %CREDENTIALS% -d %DATABASE% -i "02 - Create Tables.sql"
 sqlcmd -S %SQLSERVER% %CREDENTIALS% -d %DATABASE% -i "03 - Populate Lookup Tables.sql"
 
 sqlcmd -S %SQLSERVER% %CREDENTIALS% -d %DATABASE% -i "sp_InsertGoal.sql"
 sqlcmd -S %SQLSERVER% %CREDENTIALS% -d %DATABASE% -i "sp_InsertGoalTask.sql"
+sqlcmd -S %SQLSERVER% %CREDENTIALS% -d %DATABASE% -i "sp_GetTasksByGoal.sql"
+sqlcmd -S %SQLSERVER% %CREDENTIALS% -d %DATABASE% -i "sp_FindGoal.sql"
+sqlcmd -S %SQLSERVER% %CREDENTIALS% -d %DATABASE% -i "sp_FindGoalTask.sql"
 
 
 sqlcmd -S %SQLSERVER% %CREDENTIALS% -d %DATABASE% -i "99 - Insert Test Data.sql"

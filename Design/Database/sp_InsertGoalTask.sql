@@ -1,8 +1,5 @@
 
 
-USE [SmartSession]
-GO
-
 /* ===================================================================================================
 	Name:				sp_InsertGoalTask
 	CreatedBy:         	Rob Blake
