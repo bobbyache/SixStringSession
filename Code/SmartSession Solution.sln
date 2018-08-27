@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CygSoft.SmartSession.EF", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CygSoft.SmartSession.EF.UnitTests", "CygSoft.SmartSession.EF.UnitTests\CygSoft.SmartSession.EF.UnitTests.csproj", "{FD9A2E9A-B2A9-417F-AA45-0F7AA5DF7C10}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CygSoft.SmartSession.Desktop", "CygSoft.SmartSession.Desktop\CygSoft.SmartSession.Desktop.csproj", "{A76E9F48-EA83-43CF-B13B-CBAFC62DE5F7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{FD9A2E9A-B2A9-417F-AA45-0F7AA5DF7C10}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FD9A2E9A-B2A9-417F-AA45-0F7AA5DF7C10}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FD9A2E9A-B2A9-417F-AA45-0F7AA5DF7C10}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A76E9F48-EA83-43CF-B13B-CBAFC62DE5F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A76E9F48-EA83-43CF-B13B-CBAFC62DE5F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A76E9F48-EA83-43CF-B13B-CBAFC62DE5F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A76E9F48-EA83-43CF-B13B-CBAFC62DE5F7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
