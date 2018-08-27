@@ -118,11 +118,25 @@
     <Compile Include="Records\SessionPracticeTaskManualProgress.cs" />
     <Compile Include="Records\SessionPracticeTaskMetronome.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Base\ReadOnlyRepository.cs" />
+    <Compile Include="Base\Repository.cs" />
     <Compile Include="SmartSessionContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\CygSoft.Generic.Repository\CygSoft.Generic.Repository.csproj">
+      <Project>{60bdb53c-52be-4aea-8c75-e5883b31d799}</Project>
+      <Name>CygSoft.Generic.Repository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CygSoft.SmartSession.Domain\CygSoft.SmartSession.Domain.csproj">
+      <Project>{5e5c771f-a122-423a-8cc3-27488e9e054a}</Project>
+      <Name>CygSoft.SmartSession.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Repositories\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
