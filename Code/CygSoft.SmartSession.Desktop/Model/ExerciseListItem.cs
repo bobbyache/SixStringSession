@@ -22,13 +22,13 @@ namespace MvvmLight_Prototypes.Model
             }            
         }
 
-        private int suggestedDuration;
-        public int SuggestedDuration
+        private int optimalDuration;
+        public int OptimalDuration
         {
-            get { return suggestedDuration; }
+            get { return optimalDuration; }
             set
             {
-                if (Set(() => SuggestedDuration, ref suggestedDuration, value))
+                if (Set(() => OptimalDuration, ref optimalDuration, value))
                     isDirty = true;
             }
         }

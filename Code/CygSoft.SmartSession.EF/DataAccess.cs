@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using CygSoft.SmartSession.Domain.Exercises;
+using Microsoft.EntityFrameworkCore;
 using SmartSession.Domain.Records;
 using System;
 using System.Linq;

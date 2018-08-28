@@ -55,6 +55,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CygSoft.SmartSession.Domain\CygSoft.SmartSession.Domain.csproj">
+      <Project>{5E5C771F-A122-423A-8CC3-27488E9E054A}</Project>
+      <Name>CygSoft.SmartSession.Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CygSoft.SmartSession.EF\CygSoft.SmartSession.EF.csproj">
       <Project>{A54D81FA-74FA-4367-956A-A8CD41CBE30F}</Project>
       <Name>CygSoft.SmartSession.EF</Name>

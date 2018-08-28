@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using CygSoft.SmartSession.Domain.Exercises;
 using CygSoft.SmartSession.EF;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SmartSession.Domain.Records;
@@ -9,6 +10,8 @@ namespace CygSoft.SmartSession.EF.UnitTests
     [TestClass]
     public class UnitTest1
     {
+
+
         [TestMethod]
         public void Insert_A_Goal()
         {
@@ -38,7 +41,7 @@ namespace CygSoft.SmartSession.EF.UnitTests
                 {
                     Title = "Exercise Title",
                     DifficultyRating = 3,
-                    RequiredDuration = 520,
+                    OptimalDuration = 520,
                     DateCreated = DateTime.Now
                 },
                 Description = "My Description"
@@ -72,7 +75,7 @@ namespace CygSoft.SmartSession.EF.UnitTests
                             DateCreated = DateTime.Now,
                             TargetPracticeDuration = 4,
                             TargetSpeed = 130,
-                            Exercise = new Exercise { Title = "Exercise 234", DateCreated = DateTime.Now, DifficultyRating = 4, RequiredDuration = 5 },                            
+                            Exercise = new Exercise { Title = "Exercise 234", DateCreated = DateTime.Now, DifficultyRating = 4, OptimalDuration = 5 },                            
                         }
                     }
                 });

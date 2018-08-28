@@ -17,7 +17,10 @@ namespace CygSoft.SmartSession.EF.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     DateCreated = table.Column<DateTime>(nullable: false),
                     DifficultyRating = table.Column<int>(nullable: false),
-                    RequiredDuration = table.Column<int>(nullable: false),
+                    Notes = table.Column<string>(nullable: true),
+                    OptimalDuration = table.Column<int>(nullable: false),
+                    PracticalityRating = table.Column<int>(nullable: false),
+                    Scribed = table.Column<bool>(nullable: false),
                     Title = table.Column<string>(nullable: true)
                 },
                 constraints: table =>

@@ -20,7 +20,7 @@ namespace CygSoft.SmartSession.EF.Migrations
                 .HasAnnotation("ProductVersion", "2.0.3-rtm-10026")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("SmartSession.Domain.Records.Exercise", b =>
+            modelBuilder.Entity("CygSoft.SmartSession.Domain.Exercises.Exercise", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -29,7 +29,13 @@ namespace CygSoft.SmartSession.EF.Migrations
 
                     b.Property<int>("DifficultyRating");
 
-                    b.Property<int>("RequiredDuration");
+                    b.Property<string>("Notes");
+
+                    b.Property<int>("OptimalDuration");
+
+                    b.Property<int>("PracticalityRating");
+
+                    b.Property<bool>("Scribed");
 
                     b.Property<string>("Title");
 
@@ -193,7 +199,7 @@ namespace CygSoft.SmartSession.EF.Migrations
 
             modelBuilder.Entity("SmartSession.Domain.Records.PracticeTask", b =>
                 {
-                    b.HasOne("SmartSession.Domain.Records.Exercise", "Exercise")
+                    b.HasOne("CygSoft.SmartSession.Domain.Exercises.Exercise", "Exercise")
                         .WithMany()
                         .HasForeignKey("ExerciseId");
                 });

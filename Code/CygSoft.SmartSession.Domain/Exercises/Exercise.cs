@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SmartSession.Domain.Records
+namespace CygSoft.SmartSession.Domain.Exercises
 {
     public class Exercise
     {
@@ -12,6 +12,9 @@ namespace SmartSession.Domain.Records
         public string Title { get; set; }
         public DateTime DateCreated { get; set; }
         public int DifficultyRating { get; set; }
-        public int RequiredDuration { get; set; }
+        public int OptimalDuration { get; set; }
+        public int PracticalityRating { get; set; }
+        public bool Scribed { get; set; }
+        public string Notes { get; set; }
     }
 }
