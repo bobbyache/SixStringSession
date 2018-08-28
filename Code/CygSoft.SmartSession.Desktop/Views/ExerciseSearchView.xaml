@@ -12,6 +12,9 @@
         <converters:OnScheduleConverter x:Key="OnScheduleConverter"/>
         <converters:StarWidthConverter x:Key="StarWidthConverter"/>
         <converters:TimeDisplayConverter x:Key="TimeDisplayConverter"/>
+        <Style TargetType="{x:Type GridViewColumnHeader}">
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+        </Style>
     </UserControl.Resources>
     <Grid Margin="0,0,0,0">
         <Grid.RowDefinitions>
@@ -37,7 +40,7 @@
             <ListView.View>
                 <GridView>
                     <GridViewColumn Width="600" Header="Title" DisplayMemberBinding="{Binding Title}"/>
-                    <GridViewColumn Width="80" Header="Duration" DisplayMemberBinding="{Binding SuggestedDuration, Converter={StaticResource TimeDisplayConverter}}"/>
+                    <GridViewColumn Width="80" Header="Duration" DisplayMemberBinding="{Binding OptimalDuration, Converter={StaticResource TimeDisplayConverter}}"/>
                     <GridViewColumn Width="100" Header="Difficulty">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>

@@ -27,7 +27,7 @@ namespace CygSoft.SmartSession.EF.Repositories
 
         public IEnumerable<Exercise> Find(string titleFragment)
         {
-            throw new NotImplementedException();
+            return context.Exercises;
         }
 
         public Exercise Get(int id)
@@ -36,6 +36,21 @@ namespace CygSoft.SmartSession.EF.Repositories
                 .Where(s => s.Id == id)
                 .SingleOrDefault();
             return exercise;
+        }
+
+        public void Update(Exercise exercise)
+        {
+            if (exercise.Id <= 0)
+                throw new ArgumentException("An existing exercise must have an id");
+
+            var existingExercise = Get(exercise.Id);
+            existingExercise.Title = exercise.Title;
+            existingExercise.Notes = exercise.Notes;
+            existingExercise.OptimalDuration = exercise.OptimalDuration;
+            existingExercise.PracticalityRating = exercise.PracticalityRating;
+            existingExercise.Scribed = exercise.Scribed;
+            existingExercise.DifficultyRating = exercise.DifficultyRating;
+            context.Update(existingExercise);
         }
     }
 }

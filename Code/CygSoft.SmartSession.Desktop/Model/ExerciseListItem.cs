@@ -11,6 +11,8 @@ namespace MvvmLight_Prototypes.Model
             set { Set(() => IsDirty, ref isDirty, value); }
         }
 
+        public int Id { get; set; }
+
         private string title;
         public string Title
         {

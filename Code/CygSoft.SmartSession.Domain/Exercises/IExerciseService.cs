@@ -8,5 +8,6 @@ namespace CygSoft.SmartSession.Domain.Exercises
         IEnumerable<Exercise> Find(string titleFragment);
         void Delete(int id);
         void Add(Exercise exercise);
+        void Update(Exercise exercise);
     }
 }

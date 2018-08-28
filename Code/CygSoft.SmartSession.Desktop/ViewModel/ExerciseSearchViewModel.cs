@@ -37,6 +37,8 @@ namespace MvvmLight_Prototypes.ViewModel
             DeleteExerciseCommand = new RelayCommand(DeleteExercise, () => SelectedExercise != null);
             EditExerciseCommand = new RelayCommand(EditExercise, () => SelectedExercise != null);
             SearchCommand = new RelayCommand(Search, true);
+
+            Search();
         }
 
         public RelayCommand SearchCommand { get; private set; }
@@ -57,30 +59,48 @@ namespace MvvmLight_Prototypes.ViewModel
             }
         }
 
-        public ObservableCollection<ExerciseListItem> ExerciseList { get; } = new ObservableCollection<ExerciseListItem>()
-        {
-            new ExerciseListItem { Title = "Guitar Solo School: Beginner Lead Guitar Method - Chapter 2: Building Melodies - 2d",
-                DifficultyRating = 3, PracticalityRating = 4, Scribed = false, OptimalDuration = 120, Notes="Here is a sample note" },
-            new ExerciseListItem { Title = "Guitar Solo School: Beginner Lead Guitar Method - Chapter 3: Slides - 3d",
-                DifficultyRating = 3, PracticalityRating = 2, Scribed = false, OptimalDuration = 120, Notes="Get those fingers working, start from 60 to 80 BPM."  },
-            new ExerciseListItem { Title = "Guitar Solo School: Beginner Lead Guitar Method - Chapter 4: Core Bending Licks - Bends around the E String - 4t",
-                DifficultyRating = 3, PracticalityRating = 1, Scribed = false, OptimalDuration = 120, Notes = "Start at 80 BPM, you really want to get to 120 BPM."  },
-            new ExerciseListItem { Title = "Guitar Solo School: Beginner Lead Guitar Method - Chapter 5: Legato - One Fret Pull Off - 5i",
-                DifficultyRating = 3, PracticalityRating = 4, Scribed = false, OptimalDuration = 120  }
-        };
+        public ObservableCollection<ExerciseListItem> ExerciseList { get; private set; } = new ObservableCollection<ExerciseListItem>();
 
         private void Search()
         {
-            throw new NotImplementedException();
+            ExerciseList.Clear();
+
+            foreach (var exercise in exerciseService.Find(""))
+            {
+                var listItem = new ExerciseListItem()
+                {
+                    Id = exercise.Id,
+                    Title = exercise.Title,
+                    DifficultyRating = exercise.DifficultyRating,
+                    OptimalDuration = exercise.OptimalDuration,
+                    PracticalityRating = exercise.PracticalityRating,
+                    Scribed = exercise.Scribed,
+                    Notes = exercise.Notes
+                };
+                ExerciseList.Add(listItem);
+            }
         }
 
         private void EditExercise()
         {
             SelectedExercise.Title = $"Edited - {DateTime.Now}";
+            SelectedExercise.Notes = $"Edited - {DateTime.Now}. This is an extra little note.";
+
+            exerciseService.Update(new Exercise
+            {
+                Id = SelectedExercise.Id,
+                Title = SelectedExercise.Title,
+                DifficultyRating = SelectedExercise.DifficultyRating,
+                PracticalityRating = SelectedExercise.PracticalityRating,
+                Scribed = SelectedExercise.Scribed,
+                OptimalDuration = SelectedExercise.OptimalDuration,
+                Notes = SelectedExercise.Notes
+            });
         }
 
         private void DeleteExercise()
         {
+            exerciseService.Delete(SelectedExercise.Id);
             ExerciseList.Remove(SelectedExercise);
         }
 
@@ -96,6 +116,15 @@ namespace MvvmLight_Prototypes.ViewModel
                 Notes = $"Here is a sample note - {DateTime.Now}"
             };
 
+            exerciseService.Add(new Exercise()
+            {
+                Title = exercise.Title,
+                OptimalDuration = exercise.OptimalDuration,
+                DifficultyRating = exercise.DifficultyRating,
+                PracticalityRating = exercise.PracticalityRating,
+                Scribed = exercise.Scribed,
+                Notes = exercise.Notes
+            });
             ExerciseList.Add(exercise);
             SelectedExercise = exercise;
         }

@@ -33,5 +33,11 @@ namespace CygSoft.SmartSession.Domain.Exercises
         {
             return repository.Get(id);
         }
+
+        public void Update(Exercise exercise)
+        {
+            repository.Update(exercise);
+            repository.SaveChanges();
+        }
     }
 }
