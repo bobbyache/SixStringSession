@@ -12,7 +12,10 @@
   See http://www.galasoft.ch/mvvm
 */
 
+using Castle.Windsor;
+using Castle.Windsor.Installer;
 using CommonServiceLocator;
+using CygSoft.SmartSession.Desktop.DI;
 using GalaSoft.MvvmLight.Ioc;
 
 namespace MvvmLight_Prototypes.ViewModel
@@ -23,47 +26,7 @@ namespace MvvmLight_Prototypes.ViewModel
     /// </summary>
     public class ViewModelLocator
     {
-        /// <summary>
-        /// Initializes a new instance of the ViewModelLocator class.
-        /// </summary>
-        public ViewModelLocator()
-        {
-            ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
-
-            ////if (ViewModelBase.IsInDesignModeStatic)
-            ////{
-            ////    // Create design time view services and models
-            ////    SimpleIoc.Default.Register<IDataService, DesignDataService>();
-            ////}
-            ////else
-            ////{
-            ////    // Create run time view services and models
-            ////    SimpleIoc.Default.Register<IDataService, DataService>();
-            ////}
-
-            SimpleIoc.Default.Register<GoalListViewModel>();
-            SimpleIoc.Default.Register<ExerciseSearchViewModel>();
-        }
-
-        public GoalListViewModel Main
-        {
-            get
-            {
-                return ServiceLocator.Current.GetInstance<GoalListViewModel>();
-            }
-        }
-
-        public ExerciseSearchViewModel ExerciseSearch
-        {
-            get
-            {
-                return ServiceLocator.Current.GetInstance<ExerciseSearchViewModel>();
-            }
-        }
-
-        public static void Cleanup()
-        {
-            // TODO Clear the ViewModels
-        }
+        public GoalListViewModel Main { get => Bootstrapper.Container.Resolve<GoalListViewModel>(); }
+        public ExerciseSearchViewModel ExerciseSearch { get => Bootstrapper.Container.Resolve<ExerciseSearchViewModel>(); }
     }
 }

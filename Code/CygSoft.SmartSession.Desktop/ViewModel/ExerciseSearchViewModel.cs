@@ -1,4 +1,5 @@
-﻿using GalaSoft.MvvmLight;
+﻿using CygSoft.SmartSession.Domain.Exercises;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using MvvmLight_Prototypes.Model;
 using System;
@@ -10,6 +11,7 @@ namespace MvvmLight_Prototypes.ViewModel
     public class ExerciseSearchViewModel : ViewModelBase
     {
 
+        #region Alternative Constructors
         //public ExerciseSearchViewModel(IExerciseService exerciseService, IDialogService dialogService, INavigationService navigationService)
         //{
         //    this.exerciseService = exerciseService;
@@ -23,8 +25,14 @@ namespace MvvmLight_Prototypes.ViewModel
         //    ...
         //}
 
-        public ExerciseSearchViewModel()
+        #endregion
+
+        private IExerciseService exerciseService;
+
+        public ExerciseSearchViewModel(IExerciseService exerciseService)
         {
+            this.exerciseService = exerciseService ?? throw new ArgumentNullException("Service must be provided.");
+
             AddExerciseCommand = new RelayCommand(AddExercise, () => true);
             DeleteExerciseCommand = new RelayCommand(DeleteExercise, () => SelectedExercise != null);
             EditExerciseCommand = new RelayCommand(EditExercise, () => SelectedExercise != null);
@@ -32,7 +40,6 @@ namespace MvvmLight_Prototypes.ViewModel
         }
 
         public RelayCommand SearchCommand { get; private set; }
-
         public RelayCommand AddExerciseCommand { get; private set; }
         public RelayCommand DeleteExerciseCommand { get; private set; }
         public RelayCommand EditExerciseCommand { get; private set; }
