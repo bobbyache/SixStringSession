@@ -91,6 +91,7 @@
     </Compile>
     <Compile Include="Model\ExerciseListItem.cs" />
     <Compile Include="Model\GoalListItem.cs" />
+    <Compile Include="Services\DialogService.cs" />
     <Compile Include="ViewModel\ExerciseSearchViewModel.cs" />
     <Compile Include="ViewModel\GoalListViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />

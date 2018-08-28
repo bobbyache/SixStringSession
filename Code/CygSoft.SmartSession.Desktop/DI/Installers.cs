@@ -1,9 +1,11 @@
 ﻿using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
+using CygSoft.SmartSession.Desktop.Services;
 using CygSoft.SmartSession.Domain.Exercises;
 using CygSoft.SmartSession.EF;
 using CygSoft.SmartSession.EF.Repositories;
+using GalaSoft.MvvmLight.Views;
 using MvvmLight_Prototypes.ViewModel;
 
 namespace CygSoft.SmartSession.Desktop.DI
@@ -17,6 +19,7 @@ namespace CygSoft.SmartSession.Desktop.DI
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
             container.Register(Component.For<SmartSessionContext>().LifestyleSingleton());
+            container.Register(Component.For<IDialogService>().ImplementedBy(typeof(DialogService)));
             container.Register(Component.For<IExerciseRepository>().ImplementedBy(typeof(ExerciseRepository)));
             container.Register(Component.For<IExerciseService>().ImplementedBy(typeof(ExerciseService)));
 

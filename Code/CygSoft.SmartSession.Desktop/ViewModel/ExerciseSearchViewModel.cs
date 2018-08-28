@@ -1,6 +1,7 @@
 ﻿using CygSoft.SmartSession.Domain.Exercises;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Views;
 using MvvmLight_Prototypes.Model;
 using System;
 using System.Collections.ObjectModel;
@@ -28,10 +29,12 @@ namespace MvvmLight_Prototypes.ViewModel
         #endregion
 
         private IExerciseService exerciseService;
+        private IDialogService dialogService;
 
-        public ExerciseSearchViewModel(IExerciseService exerciseService)
+        public ExerciseSearchViewModel(IExerciseService exerciseService, IDialogService dialogService)
         {
             this.exerciseService = exerciseService ?? throw new ArgumentNullException("Service must be provided.");
+            this.dialogService = dialogService ?? throw new ArgumentNullException("Dialog service must be provided.");
 
             AddExerciseCommand = new RelayCommand(AddExercise, () => true);
             DeleteExerciseCommand = new RelayCommand(DeleteExercise, () => SelectedExercise != null);
@@ -83,6 +86,8 @@ namespace MvvmLight_Prototypes.ViewModel
 
         private void EditExercise()
         {
+            dialogService.ShowMessage("Editing...", "Edit");
+
             SelectedExercise.Title = $"Edited - {DateTime.Now}";
             SelectedExercise.Notes = $"Edited - {DateTime.Now}. This is an extra little note.";
 
