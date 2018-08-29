@@ -1,4 +1,5 @@
-﻿using CygSoft.SmartSession.Domain.Exercises;
+﻿using AutoMapper;
+using CygSoft.SmartSession.Domain.Exercises;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
@@ -68,17 +69,7 @@ namespace CygSoft.SmartSession.Desktop.Exercises
 
             foreach (var exercise in exerciseService.Find(""))
             {
-                var listItem = new ExerciseSearchResult()
-                {
-                    Id = exercise.Id,
-                    Title = exercise.Title,
-                    DifficultyRating = exercise.DifficultyRating,
-                    OptimalDuration = exercise.OptimalDuration,
-                    PracticalityRating = exercise.PracticalityRating,
-                    Scribed = exercise.Scribed,
-                    Notes = exercise.Notes
-                };
-                ExerciseList.Add(listItem);
+                ExerciseList.Add(Mapper.Map<ExerciseSearchResult>(exercise));
             }
         }
 
