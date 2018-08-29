@@ -89,7 +89,7 @@
     <Compile Include="Goals\GoalListControl.xaml.cs">
       <DependentUpon>GoalListControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Exercises\ExerciseListItem.cs" />
+    <Compile Include="Exercises\ExerciseSearchResult.cs" />
     <Compile Include="Goals\GoalListItem.cs" />
     <Compile Include="Supports\Services\DialogService.cs" />
     <Compile Include="Exercises\ExerciseSearchViewModel.cs" />
