@@ -4,6 +4,7 @@ using Castle.Windsor;
 using CygSoft.SmartSession.Desktop.Exercises;
 using CygSoft.SmartSession.Desktop.Goals;
 using CygSoft.SmartSession.Desktop.Supports.Services;
+using CygSoft.SmartSession.Desktop.Tasks;
 using CygSoft.SmartSession.Domain.Exercises;
 using CygSoft.SmartSession.EF;
 using CygSoft.SmartSession.EF.Repositories;
@@ -25,6 +26,10 @@ namespace CygSoft.SmartSession.Desktop.Supports.DI
             container.Register(Component.For<IExerciseService>().ImplementedBy(typeof(ExerciseService)));
 
             container.Register(Component.For<ExerciseSearchViewModel>());
+            container.Register(Component.For<TaskSearchViewModel>());
+            container.Register(Component.For<GoalSearchViewModel>());
+            container.Register(Component.For<MainWindowViewModel>());
+
             container.Register(Component.For<GoalListViewModel>());
         }
     }

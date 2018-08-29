@@ -9,9 +9,9 @@
         xmlns:tasks="clr-namespace:CygSoft.SmartSession.Desktop.Tasks"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Window.DataContext>
+    <!--<Window.DataContext>
         <local:MainWindowViewModel />
-    </Window.DataContext>
+    </Window.DataContext>-->
     <Window.Resources>
         <DataTemplate DataType="{x:Type exercises:ExerciseSearchViewModel}">
             <exercises:ExerciseSearchView />
@@ -33,9 +33,11 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Button Grid.Column="0" Content="Tasks" Command="{Binding NavigationCommand}" CommandParameter="TaskSearch" />
             <Button Grid.Column="1" Content="Goals" Command="{Binding NavigationCommand}" CommandParameter="GoalSearch" />
+            <Button Grid.Column="2" Content="Exercises" Command="{Binding NavigationCommand}" CommandParameter="ExerciseSearch" />
         </Grid>
         <ContentControl Grid.Row="1"  Content="{Binding CurrentViewModel}" />
     </Grid>

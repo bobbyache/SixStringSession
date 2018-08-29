@@ -8,9 +8,9 @@ namespace CygSoft.SmartSession.Desktop
 {
     public class MainWindowViewModel : ViewModelBase
     {
-        //private ExerciseSearchViewModel exerciseSearchViewModel;
-        private TaskSearchViewModel taskSearchViewModel = new TaskSearchViewModel();
-        private GoalSearchViewModel goalSearchViewModel = new GoalSearchViewModel();
+        private ExerciseSearchViewModel exerciseSearchViewModel;
+        private TaskSearchViewModel taskSearchViewModel;
+        private GoalSearchViewModel goalSearchViewModel;
 
         private ViewModelBase currentViewModel;
         public ViewModelBase CurrentViewModel
@@ -21,8 +21,11 @@ namespace CygSoft.SmartSession.Desktop
 
         public RelayCommand<string> NavigationCommand { get; private set; }
 
-        public MainWindowViewModel()
+        public MainWindowViewModel(ExerciseSearchViewModel exerciseSearchViewModel, TaskSearchViewModel taskSearchViewModel, GoalSearchViewModel goalSearchViewModel)
         {
+            this.exerciseSearchViewModel = exerciseSearchViewModel;
+            this.taskSearchViewModel = taskSearchViewModel;
+            this.goalSearchViewModel = goalSearchViewModel;
             NavigationCommand = new RelayCommand<string>(OnNavigiation);
         }
 
@@ -35,6 +38,9 @@ namespace CygSoft.SmartSession.Desktop
                     break;
                 case "GoalSearch":
                     CurrentViewModel = goalSearchViewModel;
+                    break;
+                case "ExerciseSearch":
+                    CurrentViewModel = exerciseSearchViewModel;
                     break;
                 default:
                     CurrentViewModel = taskSearchViewModel;

@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using CygSoft.SmartSession.Desktop.Supports.DI;
+using System.Windows;
 
 namespace CygSoft.SmartSession.Desktop
 {
@@ -10,6 +11,7 @@ namespace CygSoft.SmartSession.Desktop
         public MainWindow()
         {
             InitializeComponent();
+            this.DataContext = Bootstrapper.Container.Resolve<MainWindowViewModel>();
         }
     }
 }
