@@ -1,8 +1,7 @@
 using GalaSoft.MvvmLight;
-using MvvmLight_Prototypes.Model;
 using System.Collections.Generic;
 
-namespace MvvmLight_Prototypes.ViewModel
+namespace CygSoft.SmartSession.Desktop.Goals
 {
     /// <summary>
     /// This class contains properties that the main View can data bind to.

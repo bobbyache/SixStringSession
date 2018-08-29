@@ -78,27 +78,27 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Converters\MathConverter.cs" />
-    <Compile Include="Converters\OnScheduleConverter.cs" />
-    <Compile Include="Converters\ProgressForegroundConverter.cs" />
-    <Compile Include="Converters\StarHeightConverter.cs" />
-    <Compile Include="Converters\StarWidthConverter.cs" />
-    <Compile Include="Converters\TimeDisplayConverter.cs" />
-    <Compile Include="DI\Bootstrapper.cs" />
-    <Compile Include="DI\Installers.cs" />
-    <Compile Include="GoalListControl.xaml.cs">
+    <Compile Include="Supports\Converters\MathConverter.cs" />
+    <Compile Include="Supports\Converters\OnScheduleConverter.cs" />
+    <Compile Include="Supports\Converters\ProgressForegroundConverter.cs" />
+    <Compile Include="Supports\Converters\StarHeightConverter.cs" />
+    <Compile Include="Supports\Converters\StarWidthConverter.cs" />
+    <Compile Include="Supports\Converters\TimeDisplayConverter.cs" />
+    <Compile Include="Supports\DI\Bootstrapper.cs" />
+    <Compile Include="Supports\DI\Installers.cs" />
+    <Compile Include="Goals\GoalListControl.xaml.cs">
       <DependentUpon>GoalListControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Model\ExerciseListItem.cs" />
-    <Compile Include="Model\GoalListItem.cs" />
-    <Compile Include="Services\DialogService.cs" />
-    <Compile Include="ViewModel\ExerciseSearchViewModel.cs" />
-    <Compile Include="ViewModel\GoalListViewModel.cs" />
-    <Compile Include="ViewModel\ViewModelLocator.cs" />
-    <Compile Include="Views\ExerciseSearchView.xaml.cs">
+    <Compile Include="Exercises\ExerciseListItem.cs" />
+    <Compile Include="Goals\GoalListItem.cs" />
+    <Compile Include="Supports\Services\DialogService.cs" />
+    <Compile Include="Exercises\ExerciseSearchViewModel.cs" />
+    <Compile Include="Goals\GoalListViewModel.cs" />
+    <Compile Include="Supports\Services\ViewModelLocator.cs" />
+    <Compile Include="Exercises\ExerciseSearchView.xaml.cs">
       <DependentUpon>ExerciseSearchView.xaml</DependentUpon>
     </Compile>
-    <Page Include="GoalListControl.xaml">
+    <Page Include="Goals\GoalListControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -114,11 +114,11 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Resources\Stars.xaml">
+    <Page Include="Supports\Resources\Stars.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ExerciseSearchView.xaml">
+    <Page Include="Exercises\ExerciseSearchView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -164,5 +164,6 @@
       <Name>CygSoft.SmartSession.Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Data;
 
-namespace MvvmLight_Prototypes.Converters
+namespace CygSoft.SmartSession.Desktop.Supports.Converters
 {
     // Does a math equation on the bound value.
     // Use @VALUE in your mathEquation as a substitute for bound value

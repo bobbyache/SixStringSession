@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Data;
 
-namespace MvvmLight_Prototypes.Converters
+namespace CygSoft.SmartSession.Desktop.Supports.Converters
 {
     public class StarWidthConverter : IValueConverter
     {

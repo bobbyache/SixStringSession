@@ -1,14 +1,15 @@
 ﻿using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
-using CygSoft.SmartSession.Desktop.Services;
+using CygSoft.SmartSession.Desktop.Exercises;
+using CygSoft.SmartSession.Desktop.Goals;
+using CygSoft.SmartSession.Desktop.Supports.Services;
 using CygSoft.SmartSession.Domain.Exercises;
 using CygSoft.SmartSession.EF;
 using CygSoft.SmartSession.EF.Repositories;
 using GalaSoft.MvvmLight.Views;
-using MvvmLight_Prototypes.ViewModel;
 
-namespace CygSoft.SmartSession.Desktop.DI
+namespace CygSoft.SmartSession.Desktop.Supports.DI
 {
     // https://github.com/castleproject/Windsor/blob/master/docs/registering-components-one-by-one.md
     // http://tommarien.github.io/blog/2012/04/22/castle-windsor-how-to-register-components

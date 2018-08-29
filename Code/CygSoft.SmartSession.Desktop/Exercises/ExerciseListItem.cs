@@ -1,6 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 
-namespace MvvmLight_Prototypes.Model
+namespace CygSoft.SmartSession.Desktop.Exercises
 {
     public class ExerciseListItem : ObservableObject
     {

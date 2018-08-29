@@ -2,12 +2,10 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
-using MvvmLight_Prototypes.Model;
 using System;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 
-namespace MvvmLight_Prototypes.ViewModel
+namespace CygSoft.SmartSession.Desktop.Exercises
 {
     public class ExerciseSearchViewModel : ViewModelBase
     {

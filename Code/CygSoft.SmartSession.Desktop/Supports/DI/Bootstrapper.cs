@@ -2,7 +2,7 @@
 using Castle.Windsor.Installer;
 using System;
 
-namespace CygSoft.SmartSession.Desktop.DI
+namespace CygSoft.SmartSession.Desktop.Supports.DI
 {
     public class Bootstrapper
     {
