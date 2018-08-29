@@ -78,6 +78,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Goals\GoalSearchView.xaml.cs">
+      <DependentUpon>GoalSearchView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Goals\GoalSearchViewModel.cs" />
+    <Compile Include="MainWindowViewModel.cs" />
     <Compile Include="Supports\Converters\MathConverter.cs" />
     <Compile Include="Supports\Converters\OnScheduleConverter.cs" />
     <Compile Include="Supports\Converters\ProgressForegroundConverter.cs" />
@@ -98,7 +103,15 @@
     <Compile Include="Exercises\ExerciseSearchView.xaml.cs">
       <DependentUpon>ExerciseSearchView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Tasks\TaskSearchView.xaml.cs">
+      <DependentUpon>TaskSearchView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Tasks\TaskSearchViewModel.cs" />
     <Page Include="Goals\GoalListControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Goals\GoalSearchView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -119,6 +132,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Exercises\ExerciseSearchView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Tasks\TaskSearchView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
