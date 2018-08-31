@@ -6,6 +6,9 @@
              xmlns:local="clr-namespace:CygSoft.SmartSession.Desktop.Goals"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <Binding Source="{StaticResource ViewModelLocator}" Path="GoalSearchViewModel" />
+    </UserControl.DataContext>
     <Grid>
         <TextBlock Text="Goal Search View" />
     </Grid>

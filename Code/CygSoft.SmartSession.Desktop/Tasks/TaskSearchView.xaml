@@ -6,6 +6,9 @@
              xmlns:local="clr-namespace:CygSoft.SmartSession.Desktop.Tasks"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <Binding Source="{StaticResource ViewModelLocator}" Path="TaskSearchViewModel" />
+    </UserControl.DataContext>
     <Grid>
         <TextBlock Text="Task Search View" />
     </Grid>

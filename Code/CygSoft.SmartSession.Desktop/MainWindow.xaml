@@ -10,7 +10,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Window.DataContext>
-        <Binding Source="{StaticResource Locator}" Path="Main" />
+        <Binding Source="{StaticResource ViewModelLocator}" Path="MainWindowViewModel" />
     </Window.DataContext>
     <Window.Resources>
         <DataTemplate DataType="{x:Type exercises:ExerciseSearchViewModel}">
