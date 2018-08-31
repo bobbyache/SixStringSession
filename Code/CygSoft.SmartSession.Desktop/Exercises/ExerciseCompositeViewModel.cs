@@ -1,10 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using GalaSoft.MvvmLight.Messaging;
 
 namespace CygSoft.SmartSession.Desktop.Exercises
 {
@@ -26,6 +22,9 @@ namespace CygSoft.SmartSession.Desktop.Exercises
         {
             this.exerciseSearchViewModel = exerciseSearchViewModel;
             this.exerciseEditViewModel = exerciseEditViewModel;
+
+            Messenger.Default.Register<EditExerciseMessage>(this, (m) => OnNavigation("Edit"));
+            Messenger.Default.Register<ExerciseEditedMessage>(this, (m) => OnNavigation("Search"));
 
             NavigationCommand = new RelayCommand<string>(OnNavigation);
             OnNavigation("Search");

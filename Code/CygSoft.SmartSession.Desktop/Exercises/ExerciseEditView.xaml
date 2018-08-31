@@ -6,8 +6,16 @@
              xmlns:local="clr-namespace:CygSoft.SmartSession.Desktop.Exercises"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <Binding Source="{StaticResource ViewModelLocator}" Path="ExerciseEditViewModel" />
+    </UserControl.DataContext>
     <Grid>
-        <TextBlock Text="Goal Search View" />
+        <StackPanel>
+            <TextBlock Text="Exercise Edit View" />
+            <Button Command="{Binding SaveCommand}">Save</Button>
+            <Button Command="{Binding CancelCommand}">Cancel</Button>
+        </StackPanel>
+
         
     </Grid>
 </UserControl>

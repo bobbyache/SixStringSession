@@ -10,7 +10,6 @@
         <Binding Source="{StaticResource ViewModelLocator}" Path="ExerciseSearchViewModel" />
     </UserControl.DataContext>
     <UserControl.Resources>
-
         <converters:MathConverter x:Key="MathConverter"/>
         <converters:ProgressForegroundConverter x:Key="ProgressForegroundConverter"/>
         <converters:OnScheduleConverter x:Key="OnScheduleConverter"/>
@@ -40,6 +39,7 @@
         <ListView Grid.Row="1"  ItemsSource="{Binding ExerciseList}" 
                   SelectionMode="Extended"
                   SelectedItem="{Binding SelectedExercise}"
+                  
                   >
             <ListView.View>
                 <GridView>

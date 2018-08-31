@@ -6,6 +6,8 @@ using GalaSoft.MvvmLight.Command;
 
 namespace CygSoft.SmartSession.Desktop
 {
+    // Multiple Views and View Models: Opening Dialogs.... https://www.youtube.com/watch?v=Dzv8CtUCchY
+
     public class MainWindowViewModel : ViewModelBase
     {
         private ExerciseCompositeViewModel exerciseSearchViewModel;

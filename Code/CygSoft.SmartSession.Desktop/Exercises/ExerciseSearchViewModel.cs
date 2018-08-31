@@ -2,6 +2,7 @@
 using CygSoft.SmartSession.Domain.Exercises;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
 using GalaSoft.MvvmLight.Views;
 using System;
 using System.Collections.ObjectModel;
@@ -75,21 +76,22 @@ namespace CygSoft.SmartSession.Desktop.Exercises
 
         private void EditExercise()
         {
-            dialogService.ShowMessage("Editing...", "Edit");
+            Messenger.Default.Send(new EditExerciseMessage());
+            //dialogService.ShowMessage("Editing...", "Edit");
 
-            SelectedExercise.Title = $"Edited - {DateTime.Now}";
-            SelectedExercise.Notes = $"Edited - {DateTime.Now}. This is an extra little note.";
+            //SelectedExercise.Title = $"Edited - {DateTime.Now}";
+            //SelectedExercise.Notes = $"Edited - {DateTime.Now}. This is an extra little note.";
 
-            exerciseService.Update(new Exercise
-            {
-                Id = SelectedExercise.Id,
-                Title = SelectedExercise.Title,
-                DifficultyRating = SelectedExercise.DifficultyRating,
-                PracticalityRating = SelectedExercise.PracticalityRating,
-                Scribed = SelectedExercise.Scribed,
-                OptimalDuration = SelectedExercise.OptimalDuration,
-                Notes = SelectedExercise.Notes
-            });
+            //exerciseService.Update(new Exercise
+            //{
+            //    Id = SelectedExercise.Id,
+            //    Title = SelectedExercise.Title,
+            //    DifficultyRating = SelectedExercise.DifficultyRating,
+            //    PracticalityRating = SelectedExercise.PracticalityRating,
+            //    Scribed = SelectedExercise.Scribed,
+            //    OptimalDuration = SelectedExercise.OptimalDuration,
+            //    Notes = SelectedExercise.Notes
+            //});
         }
 
         private void DeleteExercise()
