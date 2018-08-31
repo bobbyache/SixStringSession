@@ -6,7 +6,11 @@
              xmlns:converters="clr-namespace:CygSoft.SmartSession.Desktop.Supports.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <Binding Source="{StaticResource Locator}" Path="ExerciseSearch" />
+    </UserControl.DataContext>
     <UserControl.Resources>
+
         <converters:MathConverter x:Key="MathConverter"/>
         <converters:ProgressForegroundConverter x:Key="ProgressForegroundConverter"/>
         <converters:OnScheduleConverter x:Key="OnScheduleConverter"/>
@@ -24,18 +28,18 @@
                 <RowDefinition Height="30" />
             </Grid.RowDefinitions>
             <ToolBar Grid.Row="0">
-            <Button MinWidth="30" Height="30" Content="Add" Command="{Binding ExerciseSearch.AddExerciseCommand, Source={StaticResource Locator}}" />
-            <Button MinWidth="30" Height="30" Content="Edit" Command="{Binding ExerciseSearch.EditExerciseCommand, Source={StaticResource Locator}}" />
+            <Button MinWidth="30" Height="30" Content="Add" Command="{Binding AddExerciseCommand}" />
+            <Button MinWidth="30" Height="30" Content="Edit" Command="{Binding EditExerciseCommand}" />
                 <!--Click="Edit_Click" ></Button>-->
-            <Button MinWidth="30" Height="30" Content="Delete"  Command="{Binding ExerciseSearch.DeleteExerciseCommand, Source={StaticResource Locator}}"></Button>
+            <Button MinWidth="30" Height="30" Content="Delete"  Command="{Binding DeleteExerciseCommand}"></Button>
             <Separator></Separator>
             <TextBox Name="txtKeywords"  MinWidth="300" />
-            <Button HorizontalAlignment="Right" MinWidth="30" Height="30" Content="Search" Command="{Binding ExerciseSearch.SearchCommand, Source={StaticResource Locator}}"/>
+            <Button HorizontalAlignment="Right" MinWidth="30" Height="30" Content="Search" Command="{Binding SearchCommand}"/>
             </ToolBar>
 
-        <ListView Grid.Row="1"  ItemsSource="{Binding ExerciseSearch.ExerciseList, Source={StaticResource Locator}}" 
+        <ListView Grid.Row="1"  ItemsSource="{Binding ExerciseList}" 
                   SelectionMode="Extended"
-                  SelectedItem="{Binding ExerciseSearch.SelectedExercise, Source={StaticResource Locator}}"
+                  SelectedItem="{Binding SelectedExercise}"
                   >
             <ListView.View>
                 <GridView>
@@ -78,8 +82,8 @@
                 <RowDefinition Height="30" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Text="{Binding ExerciseSearch.SelectedExercise.Title, Source={StaticResource Locator}}" FontWeight="Bold" />
-            <TextBlock Grid.Row="1" Text="{Binding ExerciseSearch.SelectedExercise.Notes, Source={StaticResource Locator}}" />
+            <TextBlock Grid.Row="0" Text="{Binding SelectedExercise.Title}" FontWeight="Bold" />
+            <TextBlock Grid.Row="1" Text="{Binding SelectedExercise.Notes}" />
         </Grid>
         <StatusBar Grid.Row="3">
             <StatusBarItem>

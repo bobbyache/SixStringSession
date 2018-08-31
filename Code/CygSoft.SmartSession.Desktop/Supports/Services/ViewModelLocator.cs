@@ -12,6 +12,7 @@ namespace CygSoft.SmartSession.Desktop.Supports.Services
     /// </summary>
     public class ViewModelLocator
     {
+        public MainWindowViewModel Main { get => Bootstrapper.Container.Resolve<MainWindowViewModel>(); }
         public ExerciseSearchViewModel ExerciseSearch { get => Bootstrapper.Container.Resolve<ExerciseSearchViewModel>(); }
         public GoalSearchViewModel GoalSearch { get => Bootstrapper.Container.Resolve<GoalSearchViewModel>(); }
         public TaskSearchViewModel TaskSearch { get => Bootstrapper.Container.Resolve<TaskSearchViewModel>(); }

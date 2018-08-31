@@ -11,7 +11,6 @@ namespace CygSoft.SmartSession.Desktop
         public MainWindow()
         {
             InitializeComponent();
-            this.DataContext = Bootstrapper.Container.Resolve<MainWindowViewModel>();
         }
     }
 }
