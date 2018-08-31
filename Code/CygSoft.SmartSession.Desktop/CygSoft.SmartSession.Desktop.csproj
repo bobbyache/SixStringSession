@@ -85,6 +85,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Exercises\ExerciseCompositeView.xaml.cs">
+      <DependentUpon>ExerciseCompositeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Exercises\ExerciseCompositeViewModel.cs" />
+    <Compile Include="Exercises\ExerciseEditView.xaml.cs">
+      <DependentUpon>ExerciseEditView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Exercises\ExerciseEditViewModel.cs" />
     <Compile Include="Goals\GoalSearchView.xaml.cs">
       <DependentUpon>GoalSearchView.xaml</DependentUpon>
     </Compile>
@@ -114,6 +122,14 @@
       <DependentUpon>TaskSearchView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Tasks\TaskSearchViewModel.cs" />
+    <Page Include="Exercises\ExerciseCompositeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Exercises\ExerciseEditView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Goals\GoalListControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

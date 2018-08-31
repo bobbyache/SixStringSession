@@ -13,9 +13,12 @@
         <Binding Source="{StaticResource ViewModelLocator}" Path="MainWindowViewModel" />
     </Window.DataContext>
     <Window.Resources>
-        <DataTemplate DataType="{x:Type exercises:ExerciseSearchViewModel}">
-            <exercises:ExerciseSearchView />
+        <DataTemplate DataType="{x:Type exercises:ExerciseCompositeViewModel}">
+            <exercises:ExerciseCompositeView />
         </DataTemplate>
+        <!--<DataTemplate DataType="{x:Type exercises:ExerciseSearchViewModel}">
+            <exercises:ExerciseSearchView />
+        </DataTemplate>-->
         <DataTemplate DataType="{x:Type goals:GoalSearchViewModel}">
             <goals:GoalSearchView />
         </DataTemplate>

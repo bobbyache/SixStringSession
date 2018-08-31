@@ -25,9 +25,13 @@ namespace CygSoft.SmartSession.Desktop.Supports.DI
             container.Register(Component.For<IExerciseRepository>().ImplementedBy(typeof(ExerciseRepository)));
             container.Register(Component.For<IExerciseService>().ImplementedBy(typeof(ExerciseService)));
 
+            container.Register(Component.For<ExerciseEditViewModel>());
             container.Register(Component.For<ExerciseSearchViewModel>());
             container.Register(Component.For<TaskSearchViewModel>());
             container.Register(Component.For<GoalSearchViewModel>());
+
+            container.Register(Component.For<ExerciseCompositeViewModel>());
+
             container.Register(Component.For<MainWindowViewModel>());
 
             container.Register(Component.For<GoalListViewModel>());

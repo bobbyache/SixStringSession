@@ -8,10 +8,10 @@ namespace CygSoft.SmartSession.Desktop
 {
     public class MainWindowViewModel : ViewModelBase
     {
-        private ExerciseSearchViewModel exerciseSearchViewModel;
+        private ExerciseCompositeViewModel exerciseSearchViewModel;
         private TaskSearchViewModel taskSearchViewModel;
         private GoalSearchViewModel goalSearchViewModel;
-
+        
         private ViewModelBase currentViewModel;
         public ViewModelBase CurrentViewModel
         {
@@ -21,15 +21,16 @@ namespace CygSoft.SmartSession.Desktop
 
         public RelayCommand<string> NavigationCommand { get; private set; }
 
-        public MainWindowViewModel(ExerciseSearchViewModel exerciseSearchViewModel, TaskSearchViewModel taskSearchViewModel, GoalSearchViewModel goalSearchViewModel)
+        public MainWindowViewModel(ExerciseCompositeViewModel exerciseSearchViewModel, TaskSearchViewModel taskSearchViewModel, GoalSearchViewModel goalSearchViewModel)
         {
             this.exerciseSearchViewModel = exerciseSearchViewModel;
             this.taskSearchViewModel = taskSearchViewModel;
             this.goalSearchViewModel = goalSearchViewModel;
-            NavigationCommand = new RelayCommand<string>(OnNavigiation);
+            NavigationCommand = new RelayCommand<string>(OnNavigation);
+            OnNavigation("ExerciseSearch");
         }
 
-        private void OnNavigiation(string destination)
+        private void OnNavigation(string destination)
         {
             switch (destination)
             {
