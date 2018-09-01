@@ -11,16 +11,11 @@ namespace CygSoft.SmartSession.EF.Repositories
 
         public void Add(Exercise exercise)
         {
-            if (exercise.Id > 0)
-                throw new ArgumentException("A new exercise cannot have an id");
             context.Exercises.Add(exercise);
         }
 
         public void Delete(int id)
         {
-            if (id <= 0)
-                throw new ArgumentException("The Id is invalid and must be greater than 0.");
-
             Exercise exercise = Get(id);
             context.Exercises.Remove(exercise);
         }
@@ -40,16 +35,16 @@ namespace CygSoft.SmartSession.EF.Repositories
 
         public void Update(Exercise exercise)
         {
-            if (exercise.Id <= 0)
-                throw new ArgumentException("An existing exercise must have an id");
-
             var existingExercise = Get(exercise.Id);
+
             existingExercise.Title = exercise.Title;
             existingExercise.Notes = exercise.Notes;
             existingExercise.OptimalDuration = exercise.OptimalDuration;
             existingExercise.PracticalityRating = exercise.PracticalityRating;
             existingExercise.Scribed = exercise.Scribed;
             existingExercise.DifficultyRating = exercise.DifficultyRating;
+            existingExercise.DateModified = exercise.DateModified;
+
             context.Update(existingExercise);
         }
     }

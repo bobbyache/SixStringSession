@@ -90,23 +90,18 @@ namespace CygSoft.SmartSession.Desktop.Exercises
         {
             var exercise = new ExerciseSearchResult
             {
-                Title = $"Added Exercise Item - {DateTime.Now}",
-                DifficultyRating = 3,
-                PracticalityRating = 4,
+                Title = $"New Exercise Item - {DateTime.Now}",
+                DifficultyRating = 0,
+                PracticalityRating = 0,
                 Scribed = false,
-                OptimalDuration = 120,
-                Notes = $"Here is a sample note - {DateTime.Now}"
+                OptimalDuration = 300, //(5 x 60 secs),
+                Notes = null
             };
 
-            exerciseService.Add(new Exercise()
-            {
-                Title = exercise.Title,
-                OptimalDuration = exercise.OptimalDuration,
-                DifficultyRating = exercise.DifficultyRating,
-                PracticalityRating = exercise.PracticalityRating,
-                Scribed = exercise.Scribed,
-                Notes = exercise.Notes
-            });
+            var domainExercise = Mapper.Map<Exercise>(exercise);
+            exerciseService.Add(domainExercise);
+            Mapper.Map(domainExercise, exercise);
+
             ExerciseList.Add(exercise);
             SelectedExercise = exercise;
         }

@@ -16,12 +16,13 @@ namespace CygSoft.SmartSession.EF.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     DateCreated = table.Column<DateTime>(nullable: false),
+                    DateModified = table.Column<DateTime>(nullable: false),
                     DifficultyRating = table.Column<int>(nullable: false),
-                    Notes = table.Column<string>(nullable: true),
+                    Notes = table.Column<string>(type: "nvarchar(1000)", nullable: true),
                     OptimalDuration = table.Column<int>(nullable: false),
                     PracticalityRating = table.Column<int>(nullable: false),
                     Scribed = table.Column<bool>(nullable: false),
-                    Title = table.Column<string>(nullable: true)
+                    Title = table.Column<string>(type: "nvarchar(150)", nullable: false)
                 },
                 constraints: table =>
                 {

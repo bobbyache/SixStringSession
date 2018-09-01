@@ -103,9 +103,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataAccess.cs" />
-    <Compile Include="Migrations\20180827093617_initial.cs" />
-    <Compile Include="Migrations\20180827093617_initial.designer.cs">
-      <DependentUpon>20180827093617_initial.cs</DependentUpon>
+    <Compile Include="Migrations\20180901102046_initial.cs" />
+    <Compile Include="Migrations\20180901102046_initial.designer.cs">
+      <DependentUpon>20180901102046_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\SmartSessionContextModelSnapshot.cs" />
     <Compile Include="Records\Goal.cs" />
