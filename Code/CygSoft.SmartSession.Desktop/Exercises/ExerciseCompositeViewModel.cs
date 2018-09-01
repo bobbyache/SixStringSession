@@ -23,11 +23,17 @@ namespace CygSoft.SmartSession.Desktop.Exercises
             this.exerciseSearchViewModel = exerciseSearchViewModel;
             this.exerciseEditViewModel = exerciseEditViewModel;
 
-            Messenger.Default.Register<EditExerciseMessage>(this, (m) => OnNavigation("Edit"));
+            Messenger.Default.Register<EditExerciseMessage>(this, (m) => MessageEdited(m.Exercise));
             Messenger.Default.Register<ExerciseEditedMessage>(this, (m) => OnNavigation("Search"));
 
             NavigationCommand = new RelayCommand<string>(OnNavigation);
             OnNavigation("Search");
+        }
+
+        private void MessageEdited(ExerciseSearchResult exercise)
+        {
+            exerciseEditViewModel.Exercise = exercise;
+            OnNavigation("Edit");
         }
 
         private void OnNavigation(string destination)

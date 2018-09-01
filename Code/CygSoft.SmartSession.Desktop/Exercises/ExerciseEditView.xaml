@@ -15,28 +15,28 @@
         <converters:StarWidthConverter x:Key="StarWidthConverter"/>
     </UserControl.Resources>
     <DockPanel LastChildFill="False">
-        <StackPanel DockPanel.Dock="Top" Margin="0,0,0,5">
+        <StackPanel DockPanel.Dock="Top" Margin="0,0,0,5" DataContext="{Binding Exercise}">
             <TextBlock Text="Title:" Margin="5"></TextBlock>
-            <TextBox Margin="5"></TextBox>
+            <TextBox Margin="5" Text="{Binding Title}"></TextBox>
             <TextBlock Text="Optimal Duration:" Margin="5"></TextBlock>
-            <TextBox Margin="5"></TextBox>
+            <TextBox  Text="{Binding OptimalDuration}" Margin="5"></TextBox>
             <TextBlock Text="Scribed:" Margin="5"></TextBlock>
-            <TextBox Margin="5"></TextBox>
+            <CheckBox IsChecked="{Binding Scribed}" Margin="5"></CheckBox>
             <TextBlock Text="Difficulty Rating:" Margin="5"></TextBlock>
-            <Slider Value="3" Maximum="5" TickFrequency="1" TickPlacement="BottomRight" IsSnapToTickEnabled="True"></Slider>
+            <Slider  Value="{Binding DifficultyRating}" Maximum="5" TickFrequency="1" TickPlacement="BottomRight" IsSnapToTickEnabled="True"></Slider>
             <TextBlock Text="Practicality Rating:" Margin="5"></TextBlock>
-            
-            <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right">
-                <Slider Value="3" Maximum="5" TickFrequency="1" TickPlacement="BottomRight" IsSnapToTickEnabled="True"></Slider>
+            <Slider  Value="{Binding PracticalityRating}" Maximum="5" TickFrequency="1" TickPlacement="BottomRight" IsSnapToTickEnabled="True"></Slider>
+            <!--<StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right">
+                <Slider  Value="{Binding PracticalityRating}" Maximum="5" TickFrequency="1" TickPlacement="BottomRight" IsSnapToTickEnabled="True"></Slider>
                 <TextBlock>Add 5 stars here... ***** </TextBlock>
-            </StackPanel>
+            </StackPanel>-->
             <TextBlock Text="Notes:" Margin="5"></TextBlock>
-            <TextBox Height="50" Margin="5"></TextBox>
+            <TextBox Text="{Binding Notes}" Height="50" Margin="5"></TextBox>
             
         </StackPanel>
         <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button Content="Save" Margin="5" MinWidth="50" MaxHeight="35" Command="{Binding SaveCommand}" />
-            <Button Content="OK" Margin="5" MinWidth="50" MaxHeight="35" Command="{Binding CancelCommand}" />
+            <Button Content="Cancel" Margin="5" MinWidth="50" MaxHeight="35" Command="{Binding CancelCommand}" />
         </StackPanel>
         
     </DockPanel>

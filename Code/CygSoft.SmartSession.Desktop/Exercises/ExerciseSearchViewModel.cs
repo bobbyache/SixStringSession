@@ -76,22 +76,8 @@ namespace CygSoft.SmartSession.Desktop.Exercises
 
         private void EditExercise()
         {
-            Messenger.Default.Send(new EditExerciseMessage());
-            //dialogService.ShowMessage("Editing...", "Edit");
-
-            //SelectedExercise.Title = $"Edited - {DateTime.Now}";
-            //SelectedExercise.Notes = $"Edited - {DateTime.Now}. This is an extra little note.";
-
-            //exerciseService.Update(new Exercise
-            //{
-            //    Id = SelectedExercise.Id,
-            //    Title = SelectedExercise.Title,
-            //    DifficultyRating = SelectedExercise.DifficultyRating,
-            //    PracticalityRating = SelectedExercise.PracticalityRating,
-            //    Scribed = SelectedExercise.Scribed,
-            //    OptimalDuration = SelectedExercise.OptimalDuration,
-            //    Notes = SelectedExercise.Notes
-            //});
+            Messenger.Default.Send(new EditExerciseMessage(SelectedExercise));
+            //dialogService.ShowMessage($"Edited - {DateTime.Now}. This is an extra little note.", "Edit");
         }
 
         private void DeleteExercise()
