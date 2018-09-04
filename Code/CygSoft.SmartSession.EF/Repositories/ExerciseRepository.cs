@@ -22,7 +22,10 @@ namespace CygSoft.SmartSession.EF.Repositories
 
         public IEnumerable<Exercise> Find(string titleFragment)
         {
-            return context.Exercises;
+            if (!string.IsNullOrEmpty(titleFragment))
+                return context.Exercises.Where(ex => ex.Title.Contains(titleFragment));
+            else
+                return context.Exercises;
         }
 
         public Exercise Get(int id)

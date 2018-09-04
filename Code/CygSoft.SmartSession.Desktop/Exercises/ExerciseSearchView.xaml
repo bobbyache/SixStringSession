@@ -32,8 +32,8 @@
                 <!--Click="Edit_Click" ></Button>-->
             <Button MinWidth="30" Height="30" Content="Delete"  Command="{Binding DeleteExerciseCommand}"></Button>
             <Separator></Separator>
-            <TextBox Name="txtKeywords"  MinWidth="300" />
-            <Button HorizontalAlignment="Right" MinWidth="30" Height="30" Content="Search" Command="{Binding SearchCommand}"/>
+            <TextBox Name="TitleTextBox"  MinWidth="300" />
+            <Button HorizontalAlignment="Right" MinWidth="30" Height="30" Content="Search" Command="{Binding SearchCommand}" CommandParameter="{Binding Text, ElementName=TitleTextBox}"/>
             </ToolBar>
 
         <ListView Grid.Row="1"  ItemsSource="{Binding ExerciseList}" 

@@ -39,12 +39,12 @@ namespace CygSoft.SmartSession.Desktop.Exercises
             AddExerciseCommand = new RelayCommand(AddExercise, () => true);
             DeleteExerciseCommand = new RelayCommand(DeleteExercise, () => SelectedExercise != null);
             EditExerciseCommand = new RelayCommand(EditExercise, () => SelectedExercise != null);
-            SearchCommand = new RelayCommand(Search, true);
+            SearchCommand = new RelayCommand<string>(Search, true);
 
-            Search();
+            Search(null);
         }
 
-        public RelayCommand SearchCommand { get; private set; }
+        public RelayCommand<string> SearchCommand { get; private set; }
         public RelayCommand AddExerciseCommand { get; private set; }
         public RelayCommand DeleteExerciseCommand { get; private set; }
         public RelayCommand EditExerciseCommand { get; private set; }
@@ -64,11 +64,11 @@ namespace CygSoft.SmartSession.Desktop.Exercises
 
         public ObservableCollection<ExerciseSearchResult> ExerciseList { get; private set; } = new ObservableCollection<ExerciseSearchResult>();
 
-        private void Search()
+        private void Search(string titleFragment)
         {
             ExerciseList.Clear();
 
-            foreach (var exercise in exerciseService.Find(""))
+            foreach (var exercise in exerciseService.Find(titleFragment))
             {
                 ExerciseList.Add(Mapper.Map<ExerciseSearchResult>(exercise));
             }
