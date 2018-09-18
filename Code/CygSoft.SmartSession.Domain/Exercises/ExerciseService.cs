@@ -35,7 +35,8 @@ namespace CygSoft.SmartSession.Domain.Exercises
 
         public IEnumerable<Exercise> Find(string titleFragment)
         {
-            return repository.Find(titleFragment);
+            var specification = new ExerciseTitleSpecification(titleFragment);
+            return repository.Find(specification);
         }
 
         public Exercise Get(int id)
