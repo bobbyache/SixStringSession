@@ -1,8 +1,11 @@
-﻿using System;
+﻿using CygSoft.SmartSession.Domain.Common;
+using System;
+using System.Collections.Generic;
 
 namespace CygSoft.SmartSession.EF.Repositories
 {
-    public abstract class BaseRepository : IDisposable
+    public abstract class BaseRepository<TEntity> 
+        : IDisposable where TEntity : Entity
     {
         private bool isDisposed = false;
         protected SmartSessionContext context;
@@ -16,6 +19,28 @@ namespace CygSoft.SmartSession.EF.Repositories
         {
             Dispose(false);
         }
+
+        public abstract TEntity Get(int id);
+
+        public abstract void Add(TEntity entity); // add but don't save
+
+        public abstract void Update(TEntity entity); // update but don't save
+
+        public abstract void Remove(TEntity entity); // remove but don't save
+        public abstract void Remove(int id);
+
+        public abstract IReadOnlyList<TEntity> Find(Specification<TEntity> specification, int page = 0, int pageSize = 100);
+        //{
+            //using (ISession session = SessionFactory.OpenSession())
+            //{
+            //    //return session.Query<T>()
+            //    //    .Where(specification.ToExpression())
+            //    //    .Skip(page * pageSize)
+            //    //    .Take(pageSize)
+            //    //    .ToList();
+            //}
+            //throw new NotImplementedException();
+        //}
 
         public void Dispose()
         {

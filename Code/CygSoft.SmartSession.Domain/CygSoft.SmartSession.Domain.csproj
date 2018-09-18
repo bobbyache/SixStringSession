@@ -46,6 +46,7 @@
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Common\AndSpecification.cs" />
+    <Compile Include="Common\Entity.cs" />
     <Compile Include="Common\OrSpecification.cs" />
     <Compile Include="Common\ParameterReplacer.cs" />
     <Compile Include="Common\Specification.cs" />

@@ -1,23 +1,18 @@
-﻿using CygSoft.SmartSession.Domain.Exercises;
+﻿using CygSoft.SmartSession.Domain.Common;
+using CygSoft.SmartSession.Domain.Exercises;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace CygSoft.SmartSession.EF.Repositories
 {
-    public class ExerciseRepository : BaseRepository, IExerciseRepository
+    public class ExerciseRepository : BaseRepository<Exercise>, IExerciseRepository
     {
         public ExerciseRepository(SmartSessionContext context) : base(context) { }
 
-        public void Add(Exercise exercise)
+        public override IReadOnlyList<Exercise> Find(Specification<Exercise> specification, int page = 0, int pageSize = 100)
         {
-            context.Exercises.Add(exercise);
-        }
-
-        public void Delete(int id)
-        {
-            Exercise exercise = Get(id);
-            context.Exercises.Remove(exercise);
+            throw new NotImplementedException();
         }
 
         public IEnumerable<Exercise> Find(string titleFragment)
@@ -31,7 +26,7 @@ namespace CygSoft.SmartSession.EF.Repositories
                 return context.Exercises;
         }
 
-        public Exercise Get(int id)
+        public override Exercise Get(int id)
         {
             var exercise = context.Exercises
                 .Where(s => s.Id == id)
@@ -39,17 +34,34 @@ namespace CygSoft.SmartSession.EF.Repositories
             return exercise;
         }
 
-        public void Update(Exercise exercise)
+        public override void Add(Exercise exercise)
         {
-            var existingExercise = Get(exercise.Id);
+            context.Exercises.Add(exercise);
+        }
 
-            existingExercise.Title = exercise.Title;
-            existingExercise.Notes = exercise.Notes;
-            existingExercise.OptimalDuration = exercise.OptimalDuration;
-            existingExercise.PracticalityRating = exercise.PracticalityRating;
-            existingExercise.Scribed = exercise.Scribed;
-            existingExercise.DifficultyRating = exercise.DifficultyRating;
-            existingExercise.DateModified = exercise.DateModified;
+        public override void Remove(Exercise entity)
+        {
+            Exercise exercise = Get(entity.Id);
+            context.Exercises.Remove(exercise);
+        }
+
+        public override void Remove(int id)
+        {
+            Exercise exercise = Get(id);
+            context.Exercises.Remove(exercise);
+        }
+
+        public override void Update(Exercise entity)
+        {
+            var existingExercise = Get(entity.Id);
+
+            existingExercise.Title = entity.Title;
+            existingExercise.Notes = entity.Notes;
+            existingExercise.OptimalDuration = entity.OptimalDuration;
+            existingExercise.PracticalityRating = entity.PracticalityRating;
+            existingExercise.Scribed = entity.Scribed;
+            existingExercise.DifficultyRating = entity.DifficultyRating;
+            existingExercise.DateModified = entity.DateModified;
 
             context.Update(existingExercise);
         }

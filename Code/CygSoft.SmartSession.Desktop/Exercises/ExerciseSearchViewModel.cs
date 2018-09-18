@@ -84,7 +84,7 @@ namespace CygSoft.SmartSession.Desktop.Exercises
 
         private void DeleteExercise()
         {
-            exerciseService.Delete(SelectedExercise.Id);
+            exerciseService.Remove(SelectedExercise.Id);
             ExerciseList.Remove(SelectedExercise);
         }
 

@@ -24,12 +24,12 @@ namespace CygSoft.SmartSession.Domain.Exercises
             repository.SaveChanges();
         }
 
-        public void Delete(int id)
+        public void Remove(int id)
         {
             if (id <= 0)
                 throw new ArgumentException("The Id is invalid and must be greater than 0.");
 
-            repository.Delete(id);
+            repository.Remove(id);
             repository.SaveChanges();
         }
 
