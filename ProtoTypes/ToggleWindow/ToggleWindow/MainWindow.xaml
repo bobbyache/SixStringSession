@@ -19,7 +19,7 @@
             <ToggleButton.Content>
                 <StackPanel>
                     <TextBlock>                      
-                        <Run Text="Selection" />                       
+                        <Run Text="Find" />                       
                         <Run Text="q" FontFamily="Wingdings 3" />
                     </TextBlock>
                     <Popup IsOpen="{Binding IsItemsControlOpen, Mode=TwoWay}" StaysOpen="False"
@@ -27,7 +27,7 @@
                            HorizontalOffset="-5" VerticalOffset="3">
                         
                         <Border BorderBrush="SlateBlue" BorderThickness="1"  CornerRadius="2" >
-                            <local:MyUserControl Background="White"  Width="385" />
+                            <local:MyUserControl Background="White"  Width="400" />
                         </Border>
                     </Popup>
                 </StackPanel>

@@ -3,14 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:ToggleWindow"
-             mc:Ignorable="d" Width="385">
+             mc:Ignorable="d" Width="400">
     <DockPanel>
-        <StackPanel DockPanel.Dock="Top" Margin="0,0,0,5">
+        <StackPanel DockPanel.Dock="Top" Margin="5,5,5,5">
 
             <StackPanel  Orientation="Horizontal" >
                 <TextBlock MinWidth="100" Text="Title like..." Margin="2" />
-                <TextBox Margin="2" Width="275" />
+                <TextBox Margin="2" Width="270" />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <TextBlock MinWidth="100" Margin="2" Text="Optimal Duration" />
@@ -32,7 +31,18 @@
                 <CheckBox Margin="2" />
             </StackPanel>
             <StackPanel  Orientation="Horizontal" >
+                <TextBlock MinWidth="100" Text="Has Notes" Margin="2" />
+                <CheckBox Margin="2" />
+            </StackPanel>
+            <StackPanel  Orientation="Horizontal" >
                 <TextBlock MinWidth="100" Text="Date Created" Margin="2" />
+                <TextBlock MinWidth="30" Text="After" Margin="2" />
+                <DatePicker />
+                <TextBlock MinWidth="30" Text="Before" Margin="2" />
+                <DatePicker />
+            </StackPanel>
+            <StackPanel  Orientation="Horizontal" >
+                <TextBlock MinWidth="100" Text="Date Modified" Margin="2" />
                 <TextBlock MinWidth="30" Text="After" Margin="2" />
                 <DatePicker />
                 <TextBlock MinWidth="30" Text="Before" Margin="2" />
