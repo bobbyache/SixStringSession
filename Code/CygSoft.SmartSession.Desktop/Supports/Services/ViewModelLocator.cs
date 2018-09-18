@@ -19,5 +19,6 @@ namespace CygSoft.SmartSession.Desktop.Supports.Services
         public ExerciseSearchViewModel ExerciseSearchViewModel { get => Bootstrapper.Container.Resolve<ExerciseSearchViewModel>(); }
         public GoalSearchViewModel GoalSearchViewModel { get => Bootstrapper.Container.Resolve<GoalSearchViewModel>(); }
         public TaskSearchViewModel TaskSearchViewModel { get => Bootstrapper.Container.Resolve<TaskSearchViewModel>(); }
-    }
+        public ExerciseSearchCriteriaViewModel ExerciseSearchCriteriaViewModel { get => Bootstrapper.Container.Resolve<ExerciseSearchCriteriaViewModel>(); }
+}
 }

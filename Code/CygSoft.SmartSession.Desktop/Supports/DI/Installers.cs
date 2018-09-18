@@ -39,6 +39,8 @@ namespace CygSoft.SmartSession.Desktop.Supports.DI
             container.Register(Component.For<MainWindowViewModel>());
 
             container.Register(Component.For<GoalListViewModel>());
+
+            container.Register(Component.For<ExerciseSearchCriteriaViewModel>());
         }
     }
 }

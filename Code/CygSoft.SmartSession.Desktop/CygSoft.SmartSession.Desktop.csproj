@@ -95,6 +95,10 @@
       <DependentUpon>ExerciseEditView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Exercises\ExerciseEditViewModel.cs" />
+    <Compile Include="Exercises\ExerciseSearchCriteriaView.xaml.cs">
+      <DependentUpon>ExerciseSearchCriteriaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Exercises\ExerciseSearchCriteriaViewModel.cs" />
     <Compile Include="Goals\GoalSearchView.xaml.cs">
       <DependentUpon>GoalSearchView.xaml</DependentUpon>
     </Compile>
@@ -130,6 +134,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Exercises\ExerciseEditView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Exercises\ExerciseSearchCriteriaView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

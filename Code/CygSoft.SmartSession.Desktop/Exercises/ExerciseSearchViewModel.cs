@@ -62,6 +62,20 @@ namespace CygSoft.SmartSession.Desktop.Exercises
             }
         }
 
+        private bool isItemsControlOpen;
+        public bool IsItemsControlOpen
+        {
+            get
+            {
+                return isItemsControlOpen;
+            }
+            set
+            {
+                Set(() => IsItemsControlOpen, ref isItemsControlOpen, value);
+            }
+        }
+
+
         public ObservableCollection<int> DifficultyList { get; private set; } = new ObservableCollection<int> { 1, 2, 3, 4, 5 };
         public ObservableCollection<int> PracticalityList { get; private set; } = new ObservableCollection<int> { 1, 2, 3, 4, 5 };
         public ObservableCollection<ExerciseSearchResult> ExerciseList { get; private set; } = new ObservableCollection<ExerciseSearchResult>();

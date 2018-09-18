@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CygSoft.SmartSession.Desktop.Exercises"
              xmlns:converters="clr-namespace:CygSoft.SmartSession.Desktop.Supports.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
@@ -22,34 +23,42 @@
     <Grid Margin="0,0,0,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="30" />
-            <RowDefinition Height="30" />
             <RowDefinition Height="*" />
                 <RowDefinition Height="100" />
                 <RowDefinition Height="30" />
             </Grid.RowDefinitions>
-            <ToolBar Grid.Row="0">
+        <ToolBar Grid.Row="0">
             <Button MinWidth="30" Height="30" Content="Add" Command="{Binding AddExerciseCommand}" />
             <Button MinWidth="30" Height="30" Content="Edit" Command="{Binding EditExerciseCommand}" />
-                <!--Click="Edit_Click" ></Button>-->
+            <!--Click="Edit_Click" ></Button>-->
             <Button MinWidth="30" Height="30" Content="Delete"  Command="{Binding DeleteExerciseCommand}"></Button>
             <Separator></Separator>
-            <TextBox Name="TitleTextBox"  MinWidth="300" />
-            <Button HorizontalAlignment="Right" MinWidth="30" Height="30" Content="Search" Command="{Binding SearchCommand}" CommandParameter="{Binding Text, ElementName=TitleTextBox}"/>
-            </ToolBar>
-        <ToolBar Grid.Row="1">
-            <TextBlock Text="Title" />
-            <TextBox  MinWidth="150" />
-            <TextBlock Text="Duration (min)" />
-            <TextBox  MinWidth="50" />
-            <TextBlock Text="Difficulty" />
-            <ComboBox MinWidth="50" ItemsSource="{Binding DifficultyList}" />
-            <TextBlock Text="Practicality" />
-            <ComboBox MinWidth="50" ItemsSource="{Binding PracticalityList}" />
-            <Button HorizontalAlignment="Right" MinWidth="30" Height="30" Content="Search" Command="{Binding SearchCommand}" CommandParameter="{Binding Text, ElementName=TitleTextBox}"/>
+            <Button>
+                <ToggleButton
+                      IsChecked="{Binding IsItemsControlOpen, Mode=TwoWay}" 
+                      HorizontalAlignment="Left" Padding="4,2" >
+                    <ToggleButton.Content>
+                        <StackPanel>
+                            <TextBlock>                      
+                        <Run Text="Find" />                       
+                        <Run Text="q" FontFamily="Wingdings 3" />
+                            </TextBlock>
+                            <Popup IsOpen="{Binding IsItemsControlOpen, Mode=TwoWay}" StaysOpen="False"
+                           Placement="Bottom" PopupAnimation="Slide"
+                           HorizontalOffset="-5" VerticalOffset="3">
 
+                                <Border BorderBrush="SlateBlue" BorderThickness="1"  CornerRadius="2" >
+                                    <local:ExerciseSearchCriteriaView Background="White"  Width="400" />
+                                </Border>
+                            </Popup>
+                        </StackPanel>
+                    </ToggleButton.Content>
+                </ToggleButton>
+            </Button>
+
+            <Button HorizontalAlignment="Right" MinWidth="30" Height="30" Content="Search" Command="{Binding SearchCommand}" CommandParameter="{Binding Text, ElementName=TitleTextBox}"/>
         </ToolBar>
-
-        <ListView Grid.Row="2"  ItemsSource="{Binding ExerciseList}" 
+        <ListView Grid.Row="1"  ItemsSource="{Binding ExerciseList}" 
                   SelectionMode="Extended"
                   SelectedItem="{Binding SelectedExercise}"
                   
@@ -90,7 +99,7 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Grid Grid.Row="3">
+        <Grid Grid.Row="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="30" />
                 <RowDefinition Height="*" />
@@ -98,7 +107,7 @@
             <TextBlock Grid.Row="0" Text="{Binding SelectedExercise.Title}" FontWeight="Bold" />
             <TextBlock Grid.Row="1" Text="{Binding SelectedExercise.Notes}" />
         </Grid>
-        <StatusBar Grid.Row="4">
+        <StatusBar Grid.Row="3">
             <StatusBarItem>
                 <TextBlock Text="" />
             </StatusBarItem>
