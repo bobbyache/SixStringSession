@@ -21,8 +21,9 @@
     </UserControl.Resources>
     <Grid Margin="0,0,0,0">
         <Grid.RowDefinitions>
-                <RowDefinition Height="30" />
-                <RowDefinition Height="*" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="*" />
                 <RowDefinition Height="100" />
                 <RowDefinition Height="30" />
             </Grid.RowDefinitions>
@@ -35,8 +36,20 @@
             <TextBox Name="TitleTextBox"  MinWidth="300" />
             <Button HorizontalAlignment="Right" MinWidth="30" Height="30" Content="Search" Command="{Binding SearchCommand}" CommandParameter="{Binding Text, ElementName=TitleTextBox}"/>
             </ToolBar>
+        <ToolBar Grid.Row="1">
+            <TextBlock Text="Title" />
+            <TextBox  MinWidth="150" />
+            <TextBlock Text="Duration (min)" />
+            <TextBox  MinWidth="50" />
+            <TextBlock Text="Difficulty" />
+            <ComboBox MinWidth="50" ItemsSource="{Binding DifficultyList}" />
+            <TextBlock Text="Practicality" />
+            <ComboBox MinWidth="50" ItemsSource="{Binding PracticalityList}" />
+            <Button HorizontalAlignment="Right" MinWidth="30" Height="30" Content="Search" Command="{Binding SearchCommand}" CommandParameter="{Binding Text, ElementName=TitleTextBox}"/>
 
-        <ListView Grid.Row="1"  ItemsSource="{Binding ExerciseList}" 
+        </ToolBar>
+
+        <ListView Grid.Row="2"  ItemsSource="{Binding ExerciseList}" 
                   SelectionMode="Extended"
                   SelectedItem="{Binding SelectedExercise}"
                   
@@ -77,7 +90,7 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Grid Grid.Row="2">
+        <Grid Grid.Row="3">
             <Grid.RowDefinitions>
                 <RowDefinition Height="30" />
                 <RowDefinition Height="*" />
@@ -85,7 +98,7 @@
             <TextBlock Grid.Row="0" Text="{Binding SelectedExercise.Title}" FontWeight="Bold" />
             <TextBlock Grid.Row="1" Text="{Binding SelectedExercise.Notes}" />
         </Grid>
-        <StatusBar Grid.Row="3">
+        <StatusBar Grid.Row="4">
             <StatusBarItem>
                 <TextBlock Text="" />
             </StatusBarItem>

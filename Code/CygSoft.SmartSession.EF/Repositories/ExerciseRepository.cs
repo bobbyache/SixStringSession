@@ -22,6 +22,9 @@ namespace CygSoft.SmartSession.EF.Repositories
 
         public IEnumerable<Exercise> Find(string titleFragment)
         {
+            // Leverage the Specification Pattern, see:
+            // https://hendryluk.wordpress.com/2009/03/23/extensible-query-with-specification-patterns/
+            // and other links under Entity Framework in your PracticeApplication.codecat.
             if (!string.IsNullOrEmpty(titleFragment))
                 return context.Exercises.Where(ex => ex.Title.Contains(titleFragment));
             else
