@@ -6,6 +6,8 @@ namespace CygSoft.SmartSession.EF
 {
     public class SmartSessionContext : DbContext
     {
+        private string connectionString;
+
         public DbSet<Goal> Goals { get; set; }
         public DbSet<PracticeTask> Tasks { get; set; }
 
@@ -17,13 +19,14 @@ namespace CygSoft.SmartSession.EF
 
         //public DbSet<SessionPracticeTask> TaskSessions { get; set; }
 
-        public SmartSessionContext()
+        public SmartSessionContext(string connectionString)
         {
-
+            this.connectionString = connectionString;
         }
         // for dependency injection...
-        public SmartSessionContext(DbContextOptions<SmartSessionContext> options) : base(options)
+        public SmartSessionContext(string connectionString, DbContextOptions<SmartSessionContext> options) : base(options)
         {
+            this.connectionString = connectionString;
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

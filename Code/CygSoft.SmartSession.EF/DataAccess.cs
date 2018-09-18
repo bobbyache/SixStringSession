@@ -13,7 +13,7 @@ namespace CygSoft.SmartSession.EF
             if (goal.Id > 0)
                 throw new ArgumentException("A new goal cannot have an id");
 
-            using (var context = new SmartSessionContext())
+            using (var context = new SmartSessionContext(""))
             {
                 context.Goals.Add(goal);
                 // context.Add(goal); // for polymorphic inserts.
@@ -27,7 +27,7 @@ namespace CygSoft.SmartSession.EF
             if (exercise.Id > 0)
                 throw new ArgumentException("A new exercise cannot have an id");
 
-            using (var context = new SmartSessionContext())
+            using (var context = new SmartSessionContext(""))
             {
                 context.Exercises.Add(exercise);
                 context.SaveChanges();
@@ -39,7 +39,7 @@ namespace CygSoft.SmartSession.EF
             if (task.Id > 0)
                 throw new ArgumentException("A new task cannot have an id");
 
-            using (var context = new SmartSessionContext())
+            using (var context = new SmartSessionContext(""))
             {
                 context.Tasks.Add(task);
                 context.SaveChanges();
@@ -51,7 +51,7 @@ namespace CygSoft.SmartSession.EF
             if (session.Id > 0)
                 throw new ArgumentException("A new session cannot have an id");
 
-            using (var context = new SmartSessionContext())
+            using (var context = new SmartSessionContext(""))
             {
                 context.Sessions.Add(session);
                 context.SaveChanges();
@@ -63,7 +63,7 @@ namespace CygSoft.SmartSession.EF
             if (taskId <= 0)
                 throw new ArgumentException();
 
-            using (var context = new SmartSessionContext())
+            using (var context = new SmartSessionContext(""))
             {
                 var session = context.Tasks
                     .Include(s => s.TaskSessions)
@@ -78,7 +78,7 @@ namespace CygSoft.SmartSession.EF
             if (sessionId <= 0)
                 throw new ArgumentException();
 
-            using (var context = new SmartSessionContext())
+            using (var context = new SmartSessionContext(""))
             {
                 var session = context.Sessions
                     .Include(s => s.SessionTasks)

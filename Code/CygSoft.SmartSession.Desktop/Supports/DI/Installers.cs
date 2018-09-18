@@ -16,11 +16,14 @@ namespace CygSoft.SmartSession.Desktop.Supports.DI
     // http://tommarien.github.io/blog/2012/04/22/castle-windsor-how-to-register-components
     // https://docs.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-7
 
+    // https://stackoverflow.com/questions/27507396/how-to-constructor-inject-a-string-that-is-only-known-at-runtime-windsor-castl
+
     public class Installers : IWindsorInstaller
     {
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
-            container.Register(Component.For<SmartSessionContext>().LifestyleSingleton());
+            container.Register(Component.For<SmartSessionContext>().DependsOn(Dependency.OnConfigValue("connectionString", 
+                Settings.ConnectionString)).LifestyleSingleton());
             container.Register(Component.For<IDialogService>().ImplementedBy(typeof(DialogService)));
 
             container.Register(Component.For<IUnitOfWork>().ImplementedBy(typeof(UnitOfWork)));

@@ -120,6 +120,7 @@
     <Compile Include="Exercises\ExerciseSearchView.xaml.cs">
       <DependentUpon>ExerciseSearchView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Supports\Settings.cs" />
     <Compile Include="Tasks\TaskSearchView.xaml.cs">
       <DependentUpon>TaskSearchView.xaml</DependentUpon>
     </Compile>
