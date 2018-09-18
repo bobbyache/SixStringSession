@@ -5,11 +5,11 @@ namespace CygSoft.SmartSession.Domain.Exercises
 {
     public class ExerciseService : IExerciseService
     {
-        private IExerciseRepository repository;
+        private IUnitOfWork unitOfWork;
 
-        public ExerciseService(IExerciseRepository repository)
+        public ExerciseService(IUnitOfWork unitOfWork)
         {
-            this.repository = repository ?? throw new ArgumentNullException("Repository must be provided.");
+            this.unitOfWork = unitOfWork ?? throw new ArgumentNullException("UnitOfWork must be provided.");
         }
 
         public void Add(Exercise exercise)
@@ -20,8 +20,8 @@ namespace CygSoft.SmartSession.Domain.Exercises
             exercise.DateCreated = DateTime.Now;
             exercise.DateModified = exercise.DateCreated;
 
-            repository.Add(exercise);
-            repository.SaveChanges();
+            unitOfWork.Exercises.Add(exercise);
+            unitOfWork.Complete();
         }
 
         public void Remove(int id)
@@ -29,19 +29,20 @@ namespace CygSoft.SmartSession.Domain.Exercises
             if (id <= 0)
                 throw new ArgumentException("The Id is invalid and must be greater than 0.");
 
-            repository.Remove(id);
-            repository.SaveChanges();
+            var exercise = unitOfWork.Exercises.Get(id);
+            unitOfWork.Exercises.Remove(exercise);
+            unitOfWork.Complete();
         }
 
         public IEnumerable<Exercise> Find(string titleFragment)
         {
             var specification = new ExerciseTitleSpecification(titleFragment);
-            return repository.Find(specification);
+            return unitOfWork.Exercises.Find(specification);
         }
 
         public Exercise Get(int id)
         {
-            return repository.Get(id);
+            return unitOfWork.Exercises.Get(id);
         }
 
         public void Update(Exercise exercise)
@@ -51,8 +52,8 @@ namespace CygSoft.SmartSession.Domain.Exercises
 
             exercise.DateModified = DateTime.Now;
 
-            repository.Update(exercise);
-            repository.SaveChanges();
+            unitOfWork.Exercises.Update(exercise);
+            unitOfWork.Complete();
         }
     }
 }

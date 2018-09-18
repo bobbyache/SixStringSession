@@ -5,9 +5,9 @@ using CygSoft.SmartSession.Desktop.Exercises;
 using CygSoft.SmartSession.Desktop.Goals;
 using CygSoft.SmartSession.Desktop.Supports.Services;
 using CygSoft.SmartSession.Desktop.Tasks;
+using CygSoft.SmartSession.Domain;
 using CygSoft.SmartSession.Domain.Exercises;
 using CygSoft.SmartSession.EF;
-using CygSoft.SmartSession.EF.Repositories;
 using GalaSoft.MvvmLight.Views;
 
 namespace CygSoft.SmartSession.Desktop.Supports.DI
@@ -22,7 +22,8 @@ namespace CygSoft.SmartSession.Desktop.Supports.DI
         {
             container.Register(Component.For<SmartSessionContext>().LifestyleSingleton());
             container.Register(Component.For<IDialogService>().ImplementedBy(typeof(DialogService)));
-            container.Register(Component.For<IExerciseRepository>().ImplementedBy(typeof(ExerciseRepository)));
+
+            container.Register(Component.For<IUnitOfWork>().ImplementedBy(typeof(UnitOfWork)));
             container.Register(Component.For<IExerciseService>().ImplementedBy(typeof(ExerciseService)));
 
             container.Register(Component.For<ExerciseEditViewModel>());

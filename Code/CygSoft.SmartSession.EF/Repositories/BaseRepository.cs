@@ -4,10 +4,9 @@ using System.Collections.Generic;
 
 namespace CygSoft.SmartSession.EF.Repositories
 {
-    public abstract class BaseRepository<TEntity> 
-        : IDisposable where TEntity : Entity
+    public abstract class BaseRepository<TEntity> : IRepository<TEntity>
+        where TEntity : Entity
     {
-        private bool isDisposed = false;
         protected SmartSessionContext context;
 
         public BaseRepository(SmartSessionContext context)
@@ -15,60 +14,13 @@ namespace CygSoft.SmartSession.EF.Repositories
             this.context = context;
         }
 
-        ~BaseRepository()
-        {
-            Dispose(false);
-        }
-
-        public abstract TEntity Get(int id);
-
-        public abstract void Add(TEntity entity); // add but don't save
-
-        public abstract void Update(TEntity entity); // update but don't save
-
-        public abstract void Remove(TEntity entity); // remove but don't save
-        public abstract void Remove(int id);
+        public TEntity Get(int id) => context.Set<TEntity>().Find(id);
+        public void Add(TEntity entity) => context.Add(entity);
+        public void AddRange(IEnumerable<TEntity> entities) => context.AddRange(entities);
+        public void Update(TEntity entity) => context.Update(entity);
+        public void Remove(TEntity entity) => context.Remove(entity);
+        public void RemoveRange(IEnumerable<TEntity> entities) => context.RemoveRange(entities);
 
         public abstract IReadOnlyList<TEntity> Find(Specification<TEntity> specification, int page = 0, int pageSize = 100);
-        //{
-            //using (ISession session = SessionFactory.OpenSession())
-            //{
-            //    //return session.Query<T>()
-            //    //    .Where(specification.ToExpression())
-            //    //    .Skip(page * pageSize)
-            //    //    .Take(pageSize)
-            //    //    .ToList();
-            //}
-            //throw new NotImplementedException();
-        //}
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            // make sure we have not already been disposed!
-            if (!isDisposed)
-            {
-                if (disposing)
-                {
-                    // cleanup managed objects by calling their
-                    // dispose methods.
-                    context.Dispose();
-                }
-                // cleanup unmanaged objects...
-                // should not try to cleanup managed objects here, since the 
-                // garbage collector might have disposed of them already...
-            }
-            isDisposed = true;
-        }
-
-        public void SaveChanges()
-        {
-            context.SaveChanges();
-        }
     }
 }

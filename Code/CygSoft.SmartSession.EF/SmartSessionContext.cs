@@ -24,7 +24,6 @@ namespace CygSoft.SmartSession.EF
         // for dependency injection...
         public SmartSessionContext(DbContextOptions<SmartSessionContext> options) : base(options)
         {
-
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

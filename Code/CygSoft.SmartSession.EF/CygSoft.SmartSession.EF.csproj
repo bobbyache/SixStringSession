@@ -120,8 +120,10 @@
     <Compile Include="Repositories\BaseRepository.cs" />
     <Compile Include="Repositories\ExerciseRepository.cs" />
     <Compile Include="SmartSessionContext.cs" />
+    <Compile Include="UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

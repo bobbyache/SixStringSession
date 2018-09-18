@@ -37,7 +37,8 @@ namespace CygSoft.SmartSession.Desktop.Exercises
 
         private void Save()
         {
-            var domainExercise = Mapper.Map<Exercise>(currentExercise);
+            var domainExercise = exerciseService.Get(currentExercise.Id);
+            Mapper.Map(currentExercise, domainExercise);
             exerciseService.Update(domainExercise);
             Messenger.Default.Send(new ExerciseEditedMessage());
         }
