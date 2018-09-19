@@ -53,8 +53,6 @@
                     </StackPanel>
                 </ToggleButton.Content>
             </ToggleButton>
-
-            <Button HorizontalAlignment="Right" MinWidth="30" Height="30" Content="Search" Command="{Binding SearchCommand}" CommandParameter="{Binding Text, ElementName=TitleTextBox}"/>
         </ToolBar>
         <ListView Grid.Row="1"  ItemsSource="{Binding ExerciseList}" 
                   SelectionMode="Extended"

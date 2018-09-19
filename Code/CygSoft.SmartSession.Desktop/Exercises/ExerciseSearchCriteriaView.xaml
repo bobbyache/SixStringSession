@@ -74,7 +74,7 @@
             <Button Content="Reset" Margin="5,10,5,5" MinWidth="50" Height="20" VerticalAlignment="Top" Command="{Binding ResetCommand}" />
         </StackPanel>
         <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button Content="Search" Margin="5,10,5,5" MinWidth="50" Height="20" VerticalAlignment="Top" />
+            <Button Content="Search" Margin="5,10,5,5" MinWidth="50" Height="20" VerticalAlignment="Top"  Command="{Binding FindCommand}" />
         </StackPanel>
     </DockPanel>
 </UserControl>

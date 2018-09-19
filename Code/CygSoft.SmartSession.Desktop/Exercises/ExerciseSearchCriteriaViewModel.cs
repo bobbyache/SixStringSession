@@ -2,6 +2,7 @@
 using CygSoft.SmartSession.Domain.Exercises;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
 using GalaSoft.MvvmLight.Views;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,12 @@ namespace CygSoft.SmartSession.Desktop.Exercises
             this.dialogService = dialogService ?? throw new ArgumentNullException("Dialog service must be provided.");
 
             ResetCommand = new RelayCommand(Reset, true);
+            FindCommand = new RelayCommand(Find, true);
+        }
+
+        private void Find()
+        {
+            Messenger.Default.Send(new FindExercisesMessage());
         }
 
         private void Reset()
@@ -242,5 +249,7 @@ namespace CygSoft.SmartSession.Desktop.Exercises
         }
 
         public RelayCommand ResetCommand { get; private set; }
+        public RelayCommand FindCommand { get; private set; }
+        
     }
 }
