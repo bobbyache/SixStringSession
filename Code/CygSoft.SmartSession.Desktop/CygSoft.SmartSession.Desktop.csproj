@@ -104,9 +104,11 @@
     </Compile>
     <Compile Include="Goals\GoalSearchViewModel.cs" />
     <Compile Include="MainWindowViewModel.cs" />
+    <Compile Include="Supports\Converters\ComparisonOperatorConverter.cs" />
     <Compile Include="Supports\Converters\MathConverter.cs" />
     <Compile Include="Supports\Converters\OnScheduleConverter.cs" />
     <Compile Include="Supports\Converters\ProgressForegroundConverter.cs" />
+    <Compile Include="Supports\Converters\RatingValuesConverter.cs" />
     <Compile Include="Supports\Converters\StarHeightConverter.cs" />
     <Compile Include="Supports\Converters\StarWidthConverter.cs" />
     <Compile Include="Supports\Converters\TimeDisplayConverter.cs" />

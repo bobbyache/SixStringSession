@@ -31,8 +31,9 @@ namespace CygSoft.SmartSession.Desktop.Exercises
         private IExerciseService exerciseService;
         private IDialogService dialogService;
 
-        public ExerciseSearchViewModel(IExerciseService exerciseService, IDialogService dialogService)
+        public ExerciseSearchViewModel(ExerciseSearchCriteriaViewModel exerciseSearchCriteriaViewModel, IExerciseService exerciseService, IDialogService dialogService)
         {
+            this.exerciseSearchCriteriaViewModel = exerciseSearchCriteriaViewModel ?? throw new ArgumentNullException("Search Criteria Model must be provided.");
             this.exerciseService = exerciseService ?? throw new ArgumentNullException("Service must be provided.");
             this.dialogService = dialogService ?? throw new ArgumentNullException("Dialog service must be provided.");
 
@@ -60,6 +61,13 @@ namespace CygSoft.SmartSession.Desktop.Exercises
                 EditExerciseCommand.RaiseCanExecuteChanged();
                 DeleteExerciseCommand.RaiseCanExecuteChanged();
             }
+        }
+
+        private ExerciseSearchCriteriaViewModel exerciseSearchCriteriaViewModel;
+        public ExerciseSearchCriteriaViewModel ExerciseSearchCriteriaViewModel
+        {
+            get { return exerciseSearchCriteriaViewModel; }
+            set { Set(() => ExerciseSearchCriteriaViewModel, ref exerciseSearchCriteriaViewModel, value); }
         }
 
         private bool isItemsControlOpen;
