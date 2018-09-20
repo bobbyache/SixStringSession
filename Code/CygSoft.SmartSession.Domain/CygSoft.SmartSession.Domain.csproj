@@ -61,6 +61,7 @@
     <Compile Include="Common\OrSpecification.cs" />
     <Compile Include="Common\ParameterReplacer.cs" />
     <Compile Include="Common\Specification.cs" />
+    <Compile Include="Common\TriStateCheck.cs" />
     <Compile Include="Exercises\Exercise.cs" />
     <Compile Include="Exercises\ExerciseDateCreatedSpecification.cs" />
     <Compile Include="Exercises\ExerciseDateModifiedSpecification.cs" />

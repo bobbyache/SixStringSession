@@ -10,9 +10,16 @@ namespace CygSoft.SmartSession.Domain.Exercises
 {
     public class ExerciseIsScribedSpecification : Specification<Exercise>
     {
+        private readonly bool? isScribed;
+
+        public ExerciseIsScribedSpecification(bool? isScribed)
+        {
+            this.isScribed = isScribed;
+        }
+
         public override Expression<Func<Exercise, bool>> ToExpression()
         {
-            throw new NotImplementedException();
+            return exercise => new TriStateCheck().IsSatisfiedBy(exercise.Scribed, isScribed);
         }
     }
 }

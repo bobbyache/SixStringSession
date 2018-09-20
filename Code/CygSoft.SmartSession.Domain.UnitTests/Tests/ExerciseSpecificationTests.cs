@@ -459,17 +459,49 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             Assert.IsTrue(spec.IsSatisfiedBy(exercise));
         }
 
-        //[Test]
-        //public void ExerciseIsScribedSpecification_Given_A_Null_Value_Returns_True)
-        //{
-        //    // any null value means that we cannot constrain to this, so it must always
-        //    // be satisfied.
-        //    var exercise = new Exercise { Scribed = null };
+        [Test]
+        public void ExerciseIsScribedSpecification_Given_A_Null_Value_Returns_True()
+        {
+            // any null value means that we cannot constrain to this, so it must always
+            // be satisfied.
+            var exercise = new Exercise { Scribed = true };
+            var spec = new ExerciseIsScribedSpecification(null);
 
-        //    var spec = new ExercisePracticalityRatingSpecification(null, ComparisonOperators.GreaterThanOrEqualTo);
+            Assert.IsTrue(spec.IsSatisfiedBy(exercise));
+        }
 
-        //    Assert.IsTrue(spec.IsSatisfiedBy(exercise));
-        //}
+        [Test]
+        public void ExerciseHasNotesSpecification_Given_A_Null_Value_Returns_True()
+        {
+            // any null value means that we cannot constrain to this, so it must always
+            // be satisfied.
+            var exercise = new Exercise { Notes = "here is a note" };
+            var spec = new ExerciseIsScribedSpecification(null);
+
+            Assert.IsTrue(spec.IsSatisfiedBy(exercise));
+        }
+
+        [Test]
+        public void ExerciseIsScribedSpecification_Given_A_True_Constraint_Value_Returns_True_When_True()
+        {
+            // any null value means that we cannot constrain to this, so it must always
+            // be satisfied.
+            var exercise = new Exercise { Scribed = true };
+            var spec = new ExerciseIsScribedSpecification(true);
+
+            Assert.IsTrue(spec.IsSatisfiedBy(exercise));
+        }
+
+        [Test]
+        public void ExerciseIsScribedSpecification_Given_A_False_Constraint_Value_Returns_False_When_True()
+        {
+            // any null value means that we cannot constrain to this, so it must always
+            // be satisfied.
+            var exercise = new Exercise { Scribed = true };
+            var spec = new ExerciseIsScribedSpecification(false);
+
+            Assert.IsFalse(spec.IsSatisfiedBy(exercise));
+        }
 
 
 
@@ -477,10 +509,34 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
 
 
 
+        [Test]
+        public void ExerciseHasNotesSpecification_Given_A_True_Constraint_Value_Returns_True_When_Notes_Exist()
+        {
+            // any null value means that we cannot constrain to this, so it must always
+            // be satisfied.
+            var exercise = new Exercise { Notes = "here are some notes." };
+            var spec = new ExerciseHasNotesSpecification(true);
 
+            Assert.IsTrue(spec.IsSatisfiedBy(exercise));
+        }
 
+        [Test]
+        public void ExerciseHasNotesSpecification_Given_A_NoNotes_Constraint_Value_Returns_True_When_NoNotes_Exist()
+        {
+            // any null value means that we cannot constrain to this, so it must always
+            // be satisfied.
+            var exercise1 = new Exercise { Notes = " " };
+            var exercise2 = new Exercise { Notes = "" };
+            var exercise3 = new Exercise { Notes = null };
 
+            var spec = new ExerciseHasNotesSpecification(false);
 
+            var test = string.IsNullOrWhiteSpace(exercise1.Notes);
+
+            Assert.IsTrue(spec.IsSatisfiedBy(exercise1));
+            Assert.IsTrue(spec.IsSatisfiedBy(exercise2));
+            Assert.IsTrue(spec.IsSatisfiedBy(exercise3));
+        }
 
         private DateTime? ParseDate(string date)
         {

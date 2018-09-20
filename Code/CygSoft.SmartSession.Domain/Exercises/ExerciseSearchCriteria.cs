@@ -32,6 +32,8 @@ namespace CygSoft.SmartSession.Domain.Exercises
                 .And(new ExerciseDurationSpecification(OptimalDuration, OptimalDurationOperator))
                 .And(new ExerciseDifficultyRatingSpecification(DifficultyRating, DifficultyRatingOperator))
                 .And(new ExercisePracticalityRatingSpecification(PracticalityRating, PracticalityRatingOperator))
+                .And(new ExerciseIsScribedSpecification(IsScribed))
+                .And(new ExerciseHasNotesSpecification(HasNotes))
             ;
         }
     }
