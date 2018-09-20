@@ -102,6 +102,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\SharedAssemblyInfo.cs">
+      <Link>Properties\SharedAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="DataAccess.cs" />
     <Compile Include="Migrations\20180901102046_initial.cs" />
     <Compile Include="Migrations\20180901102046_initial.designer.cs">
