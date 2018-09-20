@@ -53,8 +53,8 @@
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Common\AndSpecification.cs" />
-    <Compile Include="Common\DateCreatedRangeSpecification.cs" />
-    <Compile Include="Common\DateModifiedRangeSpecification.cs" />
+    <Compile Include="Common\ComparisonCheck.cs" />
+    <Compile Include="Common\DateRangeCheck.cs" />
     <Compile Include="Common\Entity.cs" />
     <Compile Include="Common\Enums.cs" />
     <Compile Include="Common\IRepository.cs" />
@@ -62,9 +62,18 @@
     <Compile Include="Common\ParameterReplacer.cs" />
     <Compile Include="Common\Specification.cs" />
     <Compile Include="Exercises\Exercise.cs" />
+    <Compile Include="Exercises\ExerciseDateCreatedSpecification.cs" />
+    <Compile Include="Exercises\ExerciseDateModifiedSpecification.cs" />
+    <Compile Include="Exercises\ExerciseDifficultyRatingSpecification.cs" />
+    <Compile Include="Exercises\ExerciseDurationSpecification.cs" />
+    <Compile Include="Exercises\ExerciseHasNotesSpecification.cs" />
+    <Compile Include="Exercises\ExerciseIsScribedSpecification.cs" />
+    <Compile Include="Exercises\ExercisePracticalityRatingSpecification.cs" />
+    <Compile Include="Exercises\ExerciseSearchCriteria.cs" />
     <Compile Include="Exercises\ExerciseService.cs" />
     <Compile Include="Exercises\ExerciseTitleSpecification.cs" />
     <Compile Include="Exercises\IExerciseRepository.cs" />
+    <Compile Include="Exercises\IExerciseSearchCriteria.cs" />
     <Compile Include="Exercises\IExerciseService.cs" />
     <Compile Include="Goals\IGoalRepository.cs" />
     <Compile Include="IUnitOfWork.cs" />

@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace CygSoft.SmartSession.Desktop.Exercises
 {
-    public class ExerciseSearchCriteriaViewModel : ViewModelBase
+    public class ExerciseSearchCriteriaViewModel : ViewModelBase, IExerciseSearchCriteria
     {
         private IExerciseService exerciseService;
         private IDialogService dialogService;
@@ -34,9 +34,9 @@ namespace CygSoft.SmartSession.Desktop.Exercises
         private void Reset()
         {
             Title = null;
-            Duration = null;
-            Difficulty = null;
-            Practicality = null;
+            OptimalDuration = null;
+            DifficultyRating = null;
+            PracticalityRating = null;
             OptimalDurationOperator = Domain.Common.ComparisonOperators.Undefined;
             DifficultyRatingOperator = Domain.Common.ComparisonOperators.Undefined;
             PracticalityRatingOperator = Domain.Common.ComparisonOperators.Undefined;
@@ -131,7 +131,7 @@ namespace CygSoft.SmartSession.Desktop.Exercises
 
 
         private int? duration;
-        public int? Duration
+        public int? OptimalDuration
         {
             get
             {
@@ -139,7 +139,7 @@ namespace CygSoft.SmartSession.Desktop.Exercises
             }
             set
             {
-                Set(() => Duration, ref duration, value);
+                Set(() => OptimalDuration, ref duration, value);
             }
         }
 
@@ -157,7 +157,7 @@ namespace CygSoft.SmartSession.Desktop.Exercises
         }
 
         private int? difficulty;
-        public int? Difficulty
+        public int? DifficultyRating
         {
             get
             {
@@ -165,7 +165,7 @@ namespace CygSoft.SmartSession.Desktop.Exercises
             }
             set
             {
-                Set(() => Difficulty, ref difficulty, value);
+                Set(() => DifficultyRating, ref difficulty, value);
             }
         }
 
@@ -183,7 +183,7 @@ namespace CygSoft.SmartSession.Desktop.Exercises
         }
 
         private int? practicality;
-        public int? Practicality
+        public int? PracticalityRating
         {
             get
             {
@@ -191,7 +191,7 @@ namespace CygSoft.SmartSession.Desktop.Exercises
             }
             set
             {
-                Set(() => Practicality, ref practicality, value);
+                Set(() => PracticalityRating, ref practicality, value);
             }
         }
 

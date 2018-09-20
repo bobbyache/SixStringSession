@@ -91,7 +91,9 @@ namespace CygSoft.SmartSession.Desktop.Exercises
         {
             ExerciseList.Clear();
 
-            foreach (var exercise in exerciseService.Find(ExerciseSearchCriteriaViewModel.Title))
+            var searchCriteria = Mapper.Map<ExerciseSearchCriteriaViewModel, ExerciseSearchCriteria>(ExerciseSearchCriteriaViewModel);
+
+            foreach (var exercise in exerciseService.Find(searchCriteria))
             {
                 ExerciseList.Add(Mapper.Map<ExerciseSearchResult>(exercise));
             }

@@ -26,7 +26,7 @@
                 <ComboBox Margin="2" MinWidth="50" ItemsSource="{Binding ComparisonOperators, Mode=OneWay}"  
                           SelectedItem="{Binding OptimalDurationOperator, Converter={StaticResource ComparisonOperatorConverter}}" />
                 <TextBox Margin="2" MinWidth="50" x:Name="OptimalDurationTextBox"
-                         Text="{Binding Duration, Converter={StaticResource RatingValuesConverter}}"
+                         Text="{Binding OptimalDuration, Converter={StaticResource RatingValuesConverter}}"
                          />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
@@ -35,7 +35,7 @@
                           SelectedItem="{Binding PracticalityRatingOperator, Converter={StaticResource ComparisonOperatorConverter}}" />
                 <ComboBox Margin="2" MinWidth="50" 
                           ItemsSource="{Binding RatingValues, Mode=OneWay}"  
-                          SelectedItem="{Binding Practicality, Converter={StaticResource RatingValuesConverter}}"
+                          SelectedItem="{Binding PracticalityRating, Converter={StaticResource RatingValuesConverter}}"
                           />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
@@ -44,7 +44,7 @@
                           SelectedItem="{Binding DifficultyRatingOperator, Converter={StaticResource ComparisonOperatorConverter}}" />
                 <ComboBox Margin="2" MinWidth="50" 
                           ItemsSource="{Binding RatingValues, Mode=OneWay}"  
-                          SelectedItem="{Binding Difficulty, Converter={StaticResource RatingValuesConverter}}"
+                          SelectedItem="{Binding DifficultyRating, Converter={StaticResource RatingValuesConverter}}"
                           />
             </StackPanel>
             <StackPanel  Orientation="Horizontal" >

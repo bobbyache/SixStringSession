@@ -34,10 +34,9 @@ namespace CygSoft.SmartSession.Domain.Exercises
             unitOfWork.Complete();
         }
 
-        public IEnumerable<Exercise> Find(string titleFragment)
+        public IEnumerable<Exercise> Find(ExerciseSearchCriteria searchCriteria)
         {
-            var specification = new ExerciseTitleSpecification(titleFragment);
-            return unitOfWork.Exercises.Find(specification);
+            return unitOfWork.Exercises.Find(searchCriteria.Specification());
         }
 
         public Exercise Get(int id)

@@ -1,25 +1,14 @@
 ﻿using System;
-using System.Linq.Expressions;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace CygSoft.SmartSession.Domain.Common
 {
-    public class DateCreatedRangeSpecification : Specification<Entity>
+    public class DateRangeCheck
     {
-        private readonly DateTime? startDate;
-        private readonly DateTime? endDate;
-
-        public DateCreatedRangeSpecification(DateTime? startDate, DateTime? endDate)
-        {
-            this.startDate = startDate;
-            this.endDate = endDate;
-        }
-
-        public override Expression<Func<Entity, bool>> ToExpression()
-        {
-            return entity => WithinRange(entity.DateCreated);
-        }
-
-        private bool WithinRange(DateTime date)
+        public bool IsSatisfiedBy(DateTime date, DateTime? startDate, DateTime? endDate)
         {
             if (startDate.HasValue && endDate.HasValue)
             {

@@ -44,6 +44,32 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             Assert.IsFalse(spec.IsSatisfiedBy(exercise));
         }
 
+        [Test]
+        public void ExerciseTitleSpecification_When_Passed_Null_Is_True()
+        {
+            // if a title is null or empty, don't try and filter by the field.
+            var exercise = new Exercise
+            {
+                Id = 34,
+                Title = "Lava Girl"
+            };
+            var spec = new ExerciseTitleSpecification(null);
+            Assert.IsTrue(spec.IsSatisfiedBy(exercise));
+        }
+
+        [Test]
+        public void ExerciseTitleSpecification_When_Passed_EmptyText_Is_True()
+        {
+            // if a title is null or empty, don't try and filter by the field.
+            var exercise = new Exercise
+            {
+                Id = 34,
+                Title = "Lava Girl"
+            };
+            var spec = new ExerciseTitleSpecification("");
+            Assert.IsTrue(spec.IsSatisfiedBy(exercise));
+        }
+
         [TestCase("2018-03-11", "2018-03-13")]
         [TestCase(null, "2018-03-13")]
         [TestCase("2018-03-11", null)]
@@ -55,7 +81,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                 DateCreated = new DateTime(2018, 3, 12)
             };
 
-            var spec = new DateCreatedRangeSpecification(ParseDate(startDate), ParseDate(endDate));
+            var spec = new ExerciseDateCreatedSpecification(ParseDate(startDate), ParseDate(endDate));
             Assert.IsTrue(spec.IsSatisfiedBy(exercise));
         }
 
@@ -70,7 +96,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                 DateCreated = new DateTime(2018, 3, 12)
             };
 
-            var spec = new DateCreatedRangeSpecification(ParseDate(startDate), ParseDate(endDate));
+            var spec = new ExerciseDateCreatedSpecification(ParseDate(startDate), ParseDate(endDate));
             Assert.IsFalse(spec.IsSatisfiedBy(exercise));
         }
 
@@ -83,7 +109,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                 DateCreated = new DateTime(2018, 3, 12)
             };
 
-            var spec = new DateCreatedRangeSpecification(null, null);
+            var spec = new ExerciseDateCreatedSpecification(null, null);
             Assert.IsTrue(spec.IsSatisfiedBy(exercise));
         }
 
@@ -95,10 +121,10 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             var exercise = new Exercise
             {
                 Title = "Title",
-                DateCreated = new DateTime(2018, 3, 12)
+                DateModified = new DateTime(2018, 3, 12)
             };
 
-            var spec = new DateModifiedRangeSpecification(ParseDate(startDate), ParseDate(endDate));
+            var spec = new ExerciseDateModifiedSpecification(ParseDate(startDate), ParseDate(endDate));
             Assert.IsTrue(spec.IsSatisfiedBy(exercise));
         }
 
@@ -111,7 +137,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                 DateCreated = new DateTime(2018, 3, 12)
             };
 
-            var spec = new DateModifiedRangeSpecification(null, null);
+            var spec = new ExerciseDateModifiedSpecification(null, null);
             Assert.IsTrue(spec.IsSatisfiedBy(exercise));
         }
 
@@ -123,15 +149,15 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             var exercise = new Exercise
             {
                 Title = "Title",
-                DateCreated = new DateTime(2018, 3, 12)
+                DateModified = new DateTime(2018, 3, 12)
             };
 
-            var spec = new DateModifiedRangeSpecification(ParseDate(startDate), ParseDate(endDate));
+            var spec = new ExerciseDateModifiedSpecification(ParseDate(startDate), ParseDate(endDate));
             Assert.IsFalse(spec.IsSatisfiedBy(exercise));
         }
 
         [Test]
-        public void ExerciseTitleSpecication_Not_Satisfied_By_Both_DateCreated_DateModified_Will_Not_Find()
+        public void ExerciseTitleSpecification_Not_Satisfied_By_Both_DateCreated_DateModified_Will_Not_Find()
         {
             var exercise = new Exercise
             {
@@ -141,14 +167,320 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             };
 
             // should be satisfied...
-            var dateCreatedSpec = new DateCreatedRangeSpecification(new DateTime(2018, 1, 1), new DateTime(2018,6, 1));
+            var dateCreatedSpec = new ExerciseDateCreatedSpecification(new DateTime(2018, 1, 1), new DateTime(2018,6, 1));
             // should not be satified.
-            var dateModifiedSpec = new DateCreatedRangeSpecification(new DateTime(2018, 3, 16), new DateTime(2018, 6, 1));
+            var dateModifiedSpec = new ExerciseDateCreatedSpecification(new DateTime(2018, 3, 16), new DateTime(2018, 6, 1));
 
             var spec = dateCreatedSpec.And(dateModifiedSpec);
 
             Assert.IsFalse(spec.IsSatisfiedBy(exercise));
         }
+
+        [Test]
+        public void ExerciseTitleSpecification_Both_ModifiedDate_And_Title_Within_Range_Returns_True()
+        {
+            var exercise = new Exercise
+            {
+                Title = "Title",
+                DateModified = new DateTime(2018, 3, 15)
+            };
+
+            var spec = new ExerciseTitleSpecification("tit")
+                .And(new ExerciseDateModifiedSpecification(new DateTime(2018, 3, 14), new DateTime(2018, 3, 16)));
+
+
+            Assert.IsTrue(spec.IsSatisfiedBy(exercise));
+        }
+
+        [Test]
+        public void ExerciseTitleSpecification_Both_CreatedDate_And_Title_Within_Range_Returns_True()
+        {
+            var exercise = new Exercise
+            {
+                Title = "Title",
+                DateCreated = new DateTime(2018, 3, 15)
+            };
+
+            var spec = new ExerciseTitleSpecification("tit")
+                .And(new ExerciseDateCreatedSpecification(new DateTime(2018, 3, 14), new DateTime(2018, 3, 16)));
+
+
+            Assert.IsTrue(spec.IsSatisfiedBy(exercise));
+        }
+
+        [Test]
+        public void ExerciseDurationSpecification_Given_Value_LessThan_As_Expected_Returns_True()
+        {
+            var exercise = new Exercise
+            {
+                OptimalDuration = 3
+            };
+
+            var spec = new ExerciseDurationSpecification(4, ComparisonOperators.LessThan);
+
+            Assert.IsTrue(spec.IsSatisfiedBy(exercise));
+        }
+
+        [Test]
+        public void ExerciseDurationSpecification_Given_Value_LessThan_ButActual_IsNot_Returns_False()
+        {
+            var exercise = new Exercise
+            {
+                OptimalDuration = 5
+            };
+
+            var spec = new ExerciseDurationSpecification(4, ComparisonOperators.LessThan);
+
+            Assert.IsFalse(spec.IsSatisfiedBy(exercise));
+        }
+
+        [Test]
+        public void ExerciseDurationSpecification_Given_Value_LessThanOrEqual_As_Expected_Returns_True()
+        {
+            var exercise1 = new Exercise { OptimalDuration = 3 };
+            var exercise2 = new Exercise { OptimalDuration = 2 };
+
+            var spec = new ExerciseDurationSpecification(3, ComparisonOperators.LessThanOrEqualTo);
+
+            Assert.IsTrue(spec.IsSatisfiedBy(exercise1));
+            Assert.IsTrue(spec.IsSatisfiedBy(exercise2));
+        }
+
+        [Test]
+        public void ExerciseDurationSpecification_Given_Value_LessThanOrEqual_ButActual_IsNot_Returns_False()
+        {
+            var exercise1 = new Exercise { OptimalDuration = 5 };
+
+            var spec = new ExerciseDurationSpecification(4, ComparisonOperators.LessThanOrEqualTo);
+
+            Assert.IsFalse(spec.IsSatisfiedBy(exercise1));
+        }
+
+        [Test]
+        public void ExerciseDurationSpecification_Given_Value_GreaterThan_As_Expected_Returns_True()
+        {
+            var exercise1 = new Exercise { OptimalDuration = 3 };
+            var exercise2 = new Exercise { OptimalDuration = 2 };
+
+            var spec = new ExerciseDurationSpecification(1, ComparisonOperators.GreaterThan);
+
+            Assert.IsTrue(spec.IsSatisfiedBy(exercise1));
+            Assert.IsTrue(spec.IsSatisfiedBy(exercise2));
+        }
+
+        [Test]
+        public void ExerciseDurationSpecification_Given_Value_GreaterThanOrEqualTo_As_Expected_Returns_True()
+        {
+            var exercise1 = new Exercise { OptimalDuration = 3 };
+            var exercise2 = new Exercise { OptimalDuration = 2 };
+
+            var spec = new ExerciseDurationSpecification(2, ComparisonOperators.GreaterThanOrEqualTo);
+
+            Assert.IsTrue(spec.IsSatisfiedBy(exercise1));
+            Assert.IsTrue(spec.IsSatisfiedBy(exercise2));
+        }
+
+        [Test]
+        public void ExerciseDurationSpecification_Given_Value_OfNull_Returns_True()
+        {
+            // any null value means that we cannot constrain to this, so it must always
+            // be satisfied.
+            var exercise = new Exercise { OptimalDuration = 2 };
+
+            var spec = new ExerciseDurationSpecification(null, ComparisonOperators.GreaterThanOrEqualTo);
+
+            Assert.IsTrue(spec.IsSatisfiedBy(exercise));
+        }
+
+        [Test]
+        public void ExerciseDifficultyRatingSpecification_Given_Value_LessThan_As_Expected_Returns_True()
+        {
+            var exercise = new Exercise
+            {
+                DifficultyRating = 3
+            };
+
+            var spec = new ExerciseDifficultyRatingSpecification(4, ComparisonOperators.LessThan);
+
+            Assert.IsTrue(spec.IsSatisfiedBy(exercise));
+        }
+
+        [Test]
+        public void ExerciseDifficultyRatingSpecification_Given_Value_LessThan_ButActual_IsNot_Returns_False()
+        {
+            var exercise = new Exercise
+            {
+                DifficultyRating = 5
+            };
+
+            var spec = new ExerciseDifficultyRatingSpecification(4, ComparisonOperators.LessThan);
+
+            Assert.IsFalse(spec.IsSatisfiedBy(exercise));
+        }
+
+        [Test]
+        public void ExerciseDifficultyRatingSpecification_Given_Value_LessThanOrEqual_As_Expected_Returns_True()
+        {
+            var exercise1 = new Exercise { DifficultyRating = 3 };
+            var exercise2 = new Exercise { DifficultyRating = 2 };
+
+            var spec = new ExerciseDifficultyRatingSpecification(3, ComparisonOperators.LessThanOrEqualTo);
+
+            Assert.IsTrue(spec.IsSatisfiedBy(exercise1));
+            Assert.IsTrue(spec.IsSatisfiedBy(exercise2));
+        }
+
+        [Test]
+        public void ExerciseDifficultyRatingSpecification_Given_Value_LessThanOrEqual_ButActual_IsNot_Returns_False()
+        {
+            var exercise1 = new Exercise { DifficultyRating = 5 };
+
+            var spec = new ExerciseDifficultyRatingSpecification(4, ComparisonOperators.LessThanOrEqualTo);
+
+            Assert.IsFalse(spec.IsSatisfiedBy(exercise1));
+        }
+
+        [Test]
+        public void ExerciseDifficultyRatingSpecification_Given_Value_GreaterThan_As_Expected_Returns_True()
+        {
+            var exercise1 = new Exercise { DifficultyRating = 3 };
+            var exercise2 = new Exercise { DifficultyRating = 2 };
+
+            var spec = new ExerciseDifficultyRatingSpecification(1, ComparisonOperators.GreaterThan);
+
+            Assert.IsTrue(spec.IsSatisfiedBy(exercise1));
+            Assert.IsTrue(spec.IsSatisfiedBy(exercise2));
+        }
+
+        [Test]
+        public void ExerciseDifficultyRatingSpecification_Given_Value_GreaterThanOrEqualTo_As_Expected_Returns_True()
+        {
+            var exercise1 = new Exercise { DifficultyRating = 3 };
+            var exercise2 = new Exercise { DifficultyRating = 2 };
+
+            var spec = new ExerciseDifficultyRatingSpecification(2, ComparisonOperators.GreaterThanOrEqualTo);
+
+            Assert.IsTrue(spec.IsSatisfiedBy(exercise1));
+            Assert.IsTrue(spec.IsSatisfiedBy(exercise2));
+        }
+
+        [Test]
+        public void ExerciseDifficultyRatingSpecification_Given_Value_OfNull_Returns_True()
+        {
+            // any null value means that we cannot constrain to this, so it must always
+            // be satisfied.
+            var exercise = new Exercise { DifficultyRating = 2 };
+
+            var spec = new ExerciseDifficultyRatingSpecification(null, ComparisonOperators.GreaterThanOrEqualTo);
+
+            Assert.IsTrue(spec.IsSatisfiedBy(exercise));
+        }
+        [Test]
+        public void ExercisePracticalityRatingSpecification_Given_Value_LessThan_As_Expected_Returns_True()
+        {
+            var exercise = new Exercise
+            {
+                PracticalityRating = 3
+            };
+
+            var spec = new ExercisePracticalityRatingSpecification(4, ComparisonOperators.LessThan);
+
+            Assert.IsTrue(spec.IsSatisfiedBy(exercise));
+        }
+
+        [Test]
+        public void ExercisePracticalityRatingSpecification_Given_Value_LessThan_ButActual_IsNot_Returns_False()
+        {
+            var exercise = new Exercise
+            {
+                PracticalityRating = 5
+            };
+
+            var spec = new ExercisePracticalityRatingSpecification(4, ComparisonOperators.LessThan);
+
+            Assert.IsFalse(spec.IsSatisfiedBy(exercise));
+        }
+
+        [Test]
+        public void ExercisePracticalityRatingSpecification_Given_Value_LessThanOrEqual_As_Expected_Returns_True()
+        {
+            var exercise1 = new Exercise { PracticalityRating = 3 };
+            var exercise2 = new Exercise { PracticalityRating = 2 };
+
+            var spec = new ExercisePracticalityRatingSpecification(3, ComparisonOperators.LessThanOrEqualTo);
+
+            Assert.IsTrue(spec.IsSatisfiedBy(exercise1));
+            Assert.IsTrue(spec.IsSatisfiedBy(exercise2));
+        }
+
+        [Test]
+        public void ExercisePracticalityRatingSpecification_Given_Value_LessThanOrEqual_ButActual_IsNot_Returns_False()
+        {
+            var exercise1 = new Exercise { PracticalityRating = 5 };
+
+            var spec = new ExercisePracticalityRatingSpecification(4, ComparisonOperators.LessThanOrEqualTo);
+
+            Assert.IsFalse(spec.IsSatisfiedBy(exercise1));
+        }
+
+        [Test]
+        public void ExercisePracticalityRatingSpecification_Given_Value_GreaterThan_As_Expected_Returns_True()
+        {
+            var exercise1 = new Exercise { PracticalityRating = 3 };
+            var exercise2 = new Exercise { PracticalityRating = 2 };
+
+            var spec = new ExercisePracticalityRatingSpecification(1, ComparisonOperators.GreaterThan);
+
+            Assert.IsTrue(spec.IsSatisfiedBy(exercise1));
+            Assert.IsTrue(spec.IsSatisfiedBy(exercise2));
+        }
+
+        [Test]
+        public void ExercisePracticalityRatingSpecification_Given_Value_GreaterThanOrEqualTo_As_Expected_Returns_True()
+        {
+            var exercise1 = new Exercise { PracticalityRating = 3 };
+            var exercise2 = new Exercise { PracticalityRating = 2 };
+
+            var spec = new ExercisePracticalityRatingSpecification(2, ComparisonOperators.GreaterThanOrEqualTo);
+
+            Assert.IsTrue(spec.IsSatisfiedBy(exercise1));
+            Assert.IsTrue(spec.IsSatisfiedBy(exercise2));
+        }
+
+        [Test]
+        public void ExercisePracticalityRatingSpecification_Given_Value_OfNull_Returns_True()
+        {
+            // any null value means that we cannot constrain to this, so it must always
+            // be satisfied.
+            var exercise = new Exercise { PracticalityRating = 2 };
+
+            var spec = new ExercisePracticalityRatingSpecification(null, ComparisonOperators.GreaterThanOrEqualTo);
+
+            Assert.IsTrue(spec.IsSatisfiedBy(exercise));
+        }
+
+        //[Test]
+        //public void ExerciseIsScribedSpecification_Given_A_Null_Value_Returns_True)
+        //{
+        //    // any null value means that we cannot constrain to this, so it must always
+        //    // be satisfied.
+        //    var exercise = new Exercise { Scribed = null };
+
+        //    var spec = new ExercisePracticalityRatingSpecification(null, ComparisonOperators.GreaterThanOrEqualTo);
+
+        //    Assert.IsTrue(spec.IsSatisfiedBy(exercise));
+        //}
+
+
+
+
+
+
+
+
+
+
+
 
         private DateTime? ParseDate(string date)
         {
@@ -157,8 +489,5 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             else
                 return DateTime.Parse(date);
         }
-
-        //[Test]
-        //public void ExerciseTitleSpecification_
     }
 }
