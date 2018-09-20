@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CygSoft.SmartSession.Desktop.Exercises"
              xmlns:converters="clr-namespace:CygSoft.SmartSession.Desktop.Supports.Converters"
+             xmlns:validators="clr-namespace:CygSoft.SmartSession.Desktop.Supports.Validators"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.DataContext>
@@ -18,6 +19,13 @@
         <StackPanel DockPanel.Dock="Top" Margin="0,0,0,5" DataContext="{Binding Exercise}">
             <TextBlock Text="Title:" Margin="5"></TextBlock>
             <TextBox Margin="5" Text="{Binding Title}"></TextBox>
+            <!--<TextBox Margin="5">
+                <Binding Path="Title" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <validators:RequiredTextFieldValidator></validators:RequiredTextFieldValidator>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox>-->
             <TextBlock Text="Optimal Duration:" Margin="5"></TextBlock>
             <TextBox  Text="{Binding OptimalDuration}" Margin="5"></TextBox>
             <TextBlock Text="Scribed:" Margin="5"></TextBlock>
