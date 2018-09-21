@@ -78,6 +78,8 @@
     <Compile Include="Exercises\IExerciseService.cs" />
     <Compile Include="Goals\IGoalRepository.cs" />
     <Compile Include="IUnitOfWork.cs" />
+    <Compile Include="Keywords\ExerciseKeyword.cs" />
+    <Compile Include="Keywords\Keyword.cs" />
     <Compile Include="Tasks\AggregateTask.cs" />
     <Compile Include="Tasks\DurationGoalTask.cs" />
     <Compile Include="Sessions\DurationSessionResult.cs" />

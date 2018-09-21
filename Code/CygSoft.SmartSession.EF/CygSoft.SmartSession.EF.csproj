@@ -122,6 +122,7 @@
     <Compile Include="Repositories\BaseRepository.cs" />
     <Compile Include="Repositories\ExerciseRepository.cs" />
     <Compile Include="SmartSessionContext.cs" />
+    <Compile Include="SmartSessionContextFactory.cs" />
     <Compile Include="UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>

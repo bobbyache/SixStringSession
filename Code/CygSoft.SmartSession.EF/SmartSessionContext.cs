@@ -32,7 +32,7 @@ namespace CygSoft.SmartSession.EF
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             // or sql lite or sql ce
-            optionsBuilder.UseSqlServer(@"server=ROBB-LT02\ROBLT;database=SmartSession_EF_2;Integrated Security=True;Connection Reset=true;");
+            optionsBuilder.UseSqlServer(connectionString);
 
         }
 

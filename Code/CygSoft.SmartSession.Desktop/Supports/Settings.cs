@@ -19,7 +19,7 @@ namespace CygSoft.SmartSession.Desktop.Supports
             }
         }
 
-        public static string ConnectionString { get => ConfigurationManager.ConnectionStrings[0].ConnectionString; }
+        public static string ConnectionString { get => ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString; }
 
         public static string AssemblyTitle
         {
