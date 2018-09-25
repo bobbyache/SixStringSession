@@ -1,4 +1,5 @@
 ﻿using CygSoft.SmartSession.Domain.Exercises;
+using CygSoft.SmartSession.Domain.Keywords;
 using Microsoft.EntityFrameworkCore;
 using SmartSession.Domain.Records;
 
@@ -13,6 +14,8 @@ namespace CygSoft.SmartSession.EF
 
         public DbSet<Session> Sessions { get; set; }
         public DbSet<Exercise> Exercises { get; set; }
+
+        public DbSet<Keyword> Keywords { get; set; }
 
 
         //public DbSet<SessionPracticeTask> SessionTasks { get; set; }
@@ -43,6 +46,8 @@ namespace CygSoft.SmartSession.EF
                 .HasKey(s => new { s.GoalId, s.TaskId });
             modelBuilder.Entity<SessionPracticeTask>()
                 .HasKey(s => new { s.SessionId, s.PracticeTaskId });
+            modelBuilder.Entity<ExerciseKeyword>()
+                .HasKey(s => new { s.ExerciseId, s.KeywordId });
         }
     }
 }

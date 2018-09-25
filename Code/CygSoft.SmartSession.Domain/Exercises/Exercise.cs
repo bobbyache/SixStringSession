@@ -1,5 +1,7 @@
 ﻿using CygSoft.SmartSession.Domain.Common;
+using CygSoft.SmartSession.Domain.Keywords;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -16,5 +18,7 @@ namespace CygSoft.SmartSession.Domain.Exercises
         public bool Scribed { get; set; }
         [Column(TypeName = "nvarchar(1000)")]
         public string Notes { get; set; }
+
+        public List<ExerciseKeyword> ExerciseKeywords { get; set; }
     }
 }

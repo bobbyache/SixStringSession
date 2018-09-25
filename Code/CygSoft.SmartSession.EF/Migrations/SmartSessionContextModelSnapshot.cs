@@ -49,6 +49,33 @@ namespace CygSoft.SmartSession.EF.Migrations
                     b.ToTable("Exercises");
                 });
 
+            modelBuilder.Entity("CygSoft.SmartSession.Domain.Keywords.ExerciseKeyword", b =>
+                {
+                    b.Property<int>("ExerciseId");
+
+                    b.Property<int>("KeywordId");
+
+                    b.HasKey("ExerciseId", "KeywordId");
+
+                    b.HasIndex("KeywordId");
+
+                    b.ToTable("ExerciseKeyword");
+                });
+
+            modelBuilder.Entity("CygSoft.SmartSession.Domain.Keywords.Keyword", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Word")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(150)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Keywords");
+                });
+
             modelBuilder.Entity("SmartSession.Domain.Records.Goal", b =>
                 {
                     b.Property<int>("Id")
@@ -187,6 +214,19 @@ namespace CygSoft.SmartSession.EF.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("SessionPracticeTaskMetronome");
+                });
+
+            modelBuilder.Entity("CygSoft.SmartSession.Domain.Keywords.ExerciseKeyword", b =>
+                {
+                    b.HasOne("CygSoft.SmartSession.Domain.Exercises.Exercise", "Exercise")
+                        .WithMany("ExerciseKeywords")
+                        .HasForeignKey("ExerciseId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("CygSoft.SmartSession.Domain.Keywords.Keyword", "Keyword")
+                        .WithMany("KeywordExercises")
+                        .HasForeignKey("KeywordId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("SmartSession.Domain.Records.GoalPracticeTask", b =>

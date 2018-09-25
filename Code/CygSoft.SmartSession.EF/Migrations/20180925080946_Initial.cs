@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace CygSoft.SmartSession.EF.Migrations
 {
-    public partial class initial : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -43,6 +43,19 @@ namespace CygSoft.SmartSession.EF.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Goals", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Keywords",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Word = table.Column<string>(type: "nvarchar(150)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Keywords", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -128,6 +141,30 @@ namespace CygSoft.SmartSession.EF.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ExerciseKeyword",
+                columns: table => new
+                {
+                    ExerciseId = table.Column<int>(nullable: false),
+                    KeywordId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ExerciseKeyword", x => new { x.ExerciseId, x.KeywordId });
+                    table.ForeignKey(
+                        name: "FK_ExerciseKeyword_Exercises_ExerciseId",
+                        column: x => x.ExerciseId,
+                        principalTable: "Exercises",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ExerciseKeyword_Keywords_KeywordId",
+                        column: x => x.KeywordId,
+                        principalTable: "Keywords",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "GoalPracticeTask",
                 columns: table => new
                 {
@@ -197,6 +234,11 @@ namespace CygSoft.SmartSession.EF.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_ExerciseKeyword_KeywordId",
+                table: "ExerciseKeyword",
+                column: "KeywordId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_GoalPracticeTask_TaskId",
                 table: "GoalPracticeTask",
                 column: "TaskId");
@@ -230,10 +272,16 @@ namespace CygSoft.SmartSession.EF.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "ExerciseKeyword");
+
+            migrationBuilder.DropTable(
                 name: "GoalPracticeTask");
 
             migrationBuilder.DropTable(
                 name: "SessionPracticeTask");
+
+            migrationBuilder.DropTable(
+                name: "Keywords");
 
             migrationBuilder.DropTable(
                 name: "Goals");
