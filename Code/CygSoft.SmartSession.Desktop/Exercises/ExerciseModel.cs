@@ -14,18 +14,9 @@ using System.Threading.Tasks;
 
 namespace CygSoft.SmartSession.Desktop.Exercises
 {
-    public class ExerciseModel : ObservableObject, INotifyDataErrorInfo
+    public class ExerciseModel : ValidatableObservableObject, INotifyDataErrorInfo
     {
         public Exercise Exercise { get; }
-
-        private ValidatableObject validator;
-
-        private bool isDirty;
-        public bool IsDirty
-        {
-            get { return isDirty; }
-            set { Set(() => IsDirty, ref isDirty, value); }
-        }
 
         public int Id { get; set; }
 
@@ -36,26 +27,18 @@ namespace CygSoft.SmartSession.Desktop.Exercises
             get { return title; }
             set
             {
-                if (Set(() => Title, ref title, value))
-                {
-                    validator.Validate(() => Title, value);
-                    isDirty = true;
-                }
+                Set(() => Title, ref title, value, true, true);
             }
         }
 
         private int optimalDuration;
-        [Range(0, 10000, ErrorMessage = "Value must be between 0 and 5.")]
+        [Range(0, 10000, ErrorMessage = "Value must be between 0 and 10,000.")]
         public int OptimalDuration
         {
             get { return optimalDuration; }
             set
             {
-                if (Set(() => OptimalDuration, ref optimalDuration, value))
-                {
-                    validator.Validate(() => OptimalDuration, value);
-                    isDirty = true;
-                }
+                Set(() => OptimalDuration, ref optimalDuration, value, true, true);
             }
         }
 
@@ -66,11 +49,7 @@ namespace CygSoft.SmartSession.Desktop.Exercises
             get { return difficultyRating; }
             set
             {
-                if (Set(() => DifficultyRating, ref difficultyRating, value))
-                {
-                    validator.Validate(() => DifficultyRating, value);
-                    isDirty = true;
-                }
+                Set(() => DifficultyRating, ref difficultyRating, value, true, true);
             }
         }
 
@@ -81,11 +60,7 @@ namespace CygSoft.SmartSession.Desktop.Exercises
             get { return practicalityRating; }
             set
             {
-                if (Set(() => PracticalityRating, ref practicalityRating, value))
-                {
-                    validator.Validate(() => PracticalityRating, value);
-                    isDirty = true;
-                }
+                Set(() => PracticalityRating, ref practicalityRating, value, true, true);
             }
         }
 
@@ -95,55 +70,38 @@ namespace CygSoft.SmartSession.Desktop.Exercises
             get { return scribed; }
             set
             {
-                if (Set(() => Scribed, ref scribed, value))
-                    isDirty = true;
+                Set(() => Scribed, ref scribed, value, true, true);
             }
         }
 
         private string notes;
-
-        public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
 
         public string Notes
         {
             get { return notes; }
             set
             {
-                if (Set(() => Notes, ref notes, value))
-                    isDirty = true;
+                Set(() => Notes, ref notes, value, true, true);
             }
         }
 
-        public bool HasErrors => validator.HasErrors;
-
         public ExerciseModel(Exercise exercise)
         {
-            validator = new ValidatableObject(this);
-            validator.ErrorsChanged += Validator_ErrorsChanged;
             this.Exercise = exercise;
-
             Revert();
+            TrackChanges = true;
         }
 
-        private void Validator_ErrorsChanged(object sender, DataErrorsChangedEventArgs e)
-        {
-            if (this.ErrorsChanged != null)
-                ErrorsChanged(this, e);
-        }
-
-        public void Commit()
+        public override void Commit()
         {
             Mapper.Map(this, Exercise);
+            base.Commit();
         }
 
-        public void Revert()
+        public override void Revert()
         {
             Mapper.Map(Exercise, this);
-        }
-
-        public IEnumerable GetErrors(string propertyName)
-        {
-            return validator.GetErrors(propertyName);
+            base.Revert();
         }
     }
 }
