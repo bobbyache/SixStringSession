@@ -14,11 +14,18 @@
     <UserControl.Resources>
         <converters:MathConverter x:Key="MathConverter"/>
         <converters:StarWidthConverter x:Key="StarWidthConverter"/>
+        <Style TargetType="TextBox">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="True" >
+                    <Setter Property="ToolTip" Value="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors).CurrentItem.ErrorContent}" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
     </UserControl.Resources>
     <DockPanel LastChildFill="False">
         <StackPanel DockPanel.Dock="Top" Margin="0,0,0,5" DataContext="{Binding Exercise}">
             <TextBlock Text="Title:" Margin="5"></TextBlock>
-            <TextBox Margin="5" Text="{Binding Title}"></TextBox>
+            <TextBox Margin="5" Text="{Binding Title, ValidatesOnNotifyDataErrors=True}"></TextBox>
             <!--<TextBox Margin="5">
                 <Binding Path="Title" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
@@ -26,14 +33,14 @@
                     </Binding.ValidationRules>
                 </Binding>
             </TextBox>-->
-            <TextBlock Text="Optimal Duration:" Margin="5"></TextBlock>
-            <TextBox  Text="{Binding OptimalDuration}" Margin="5"></TextBox>
+            <TextBlock Name="OptimalDurationTextBox" Text="Optimal Duration:" Margin="5"></TextBlock>
+            <TextBox  Text="{Binding OptimalDuration, ValidatesOnNotifyDataErrors=True}" Margin="5"></TextBox>
             <TextBlock Text="Scribed:" Margin="5"></TextBlock>
             <CheckBox IsChecked="{Binding Scribed}" Margin="5"></CheckBox>
             <TextBlock Text="Difficulty Rating:" Margin="5"></TextBlock>
-            <Slider  Value="{Binding DifficultyRating}" Maximum="5" TickFrequency="1" TickPlacement="BottomRight" IsSnapToTickEnabled="True"></Slider>
+            <Slider  Value="{Binding DifficultyRating, ValidatesOnNotifyDataErrors=True}" Maximum="5" TickFrequency="1" TickPlacement="BottomRight" IsSnapToTickEnabled="True"></Slider>
             <TextBlock Text="Practicality Rating:" Margin="5"></TextBlock>
-            <Slider  Value="{Binding PracticalityRating}" Maximum="5" TickFrequency="1" TickPlacement="BottomRight" IsSnapToTickEnabled="True"></Slider>
+            <Slider  Value="{Binding PracticalityRating, ValidatesOnNotifyDataErrors=True}" Maximum="5" TickFrequency="1" TickPlacement="BottomRight" IsSnapToTickEnabled="True"></Slider>
             <!--<StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right">
                 <Slider  Value="{Binding PracticalityRating}" Maximum="5" TickFrequency="1" TickPlacement="BottomRight" IsSnapToTickEnabled="True"></Slider>
                 <TextBlock>Add 5 stars here... ***** </TextBlock>

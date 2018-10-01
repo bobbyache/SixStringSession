@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -23,6 +24,17 @@ namespace CygSoft.SmartSession.Desktop.Exercises
         public ExerciseEditView()
         {
             InitializeComponent();
+            this.Loaded += (s, e) =>
+            {
+                this.OptimalDurationTextBox.PreviewTextInput += OptimalDurationTextBox_PreviewTextInput;
+            };
+        }
+
+        private void OptimalDurationTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            string onlyNumeric = @"^([0-9]+(.[0-9]+)?)$";
+            Regex regex = new Regex(onlyNumeric);
+            e.Handled = !regex.IsMatch(e.Text);
         }
     }
 }

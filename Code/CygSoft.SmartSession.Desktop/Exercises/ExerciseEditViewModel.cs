@@ -32,14 +32,22 @@ namespace CygSoft.SmartSession.Desktop.Exercises
             this.exerciseService = exerciseService ?? throw new ArgumentNullException("Service must be provided.");
             this.dialogService = dialogService ?? throw new ArgumentNullException("Dialog service must be provided.");
 
-            SaveCommand = new RelayCommand(() => Save(), () => true);
+            SaveCommand = new RelayCommand(() => Save(), () => !exerciseModel.HasErrors);
             CancelCommand = new RelayCommand(() => Cancel(), () => true);
         }
 
         public void StartEdit(ExerciseSearchResult exerciseSearchResult)
         {
             this.exerciseSearchResult = exerciseSearchResult;
+
+            if (this.Exercise != null) this.Exercise.ErrorsChanged -= Exercise_ErrorsChanged;
             this.Exercise = new ExerciseModel(this.exerciseService.Get(exerciseSearchResult.Id));
+            this.Exercise.ErrorsChanged += Exercise_ErrorsChanged;
+        }
+
+        private void Exercise_ErrorsChanged(object sender, DataErrorsChangedEventArgs e)
+        {
+            SaveCommand.RaiseCanExecuteChanged();
         }
 
         private void Save()
