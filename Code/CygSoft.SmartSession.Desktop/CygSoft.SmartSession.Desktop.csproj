@@ -88,16 +88,17 @@
     <Compile Include="..\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Exercises\EditExerciseMessage.cs" />
+    <Compile Include="Exercises\StartEditingExerciseMessage.cs" />
     <Compile Include="Exercises\ExerciseCompositeView.xaml.cs">
       <DependentUpon>ExerciseCompositeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Exercises\ExerciseCompositeViewModel.cs" />
-    <Compile Include="Exercises\ExerciseEditedMessage.cs" />
+    <Compile Include="Exercises\EndEditingExerciseMessage.cs" />
     <Compile Include="Exercises\ExerciseEditView.xaml.cs">
       <DependentUpon>ExerciseEditView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Exercises\ExerciseEditViewModel.cs" />
+    <Compile Include="Exercises\ExerciseModel.cs" />
     <Compile Include="Exercises\ExerciseSearchCriteriaView.xaml.cs">
       <DependentUpon>ExerciseSearchCriteriaView.xaml</DependentUpon>
     </Compile>

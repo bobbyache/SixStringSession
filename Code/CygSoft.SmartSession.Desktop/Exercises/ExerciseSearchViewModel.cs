@@ -101,7 +101,7 @@ namespace CygSoft.SmartSession.Desktop.Exercises
 
         private void EditExercise()
         {
-            Messenger.Default.Send(new EditExerciseMessage(SelectedExercise));
+            Messenger.Default.Send(new StartEditingExerciseMessage(SelectedExercise));
             //dialogService.ShowMessage($"Edited - {DateTime.Now}. This is an extra little note.", "Edit");
         }
 

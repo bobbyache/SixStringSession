@@ -5,6 +5,8 @@ using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using GalaSoft.MvvmLight.Views;
 using System;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace CygSoft.SmartSession.Desktop.Exercises
 {
@@ -13,16 +15,15 @@ namespace CygSoft.SmartSession.Desktop.Exercises
         private IExerciseService exerciseService;
         private IDialogService dialogService;
 
-        private ExerciseSearchResult currentExercise;
-        private ExerciseSearchResult copiedExercise;
+        private ExerciseModel exerciseModel;
+        private ExerciseSearchResult exerciseSearchResult;
 
-        public ExerciseSearchResult Exercise
+        public ExerciseModel Exercise
         {
-            get { return currentExercise; }
-            set
+            get { return exerciseModel; }
+            private set
             {
-                copiedExercise = Mapper.Map<ExerciseSearchResult>(value);
-                Set(() => Exercise, ref currentExercise, value);
+                Set(() => Exercise, ref exerciseModel, value);
             }
         }
 
@@ -35,18 +36,31 @@ namespace CygSoft.SmartSession.Desktop.Exercises
             CancelCommand = new RelayCommand(() => Cancel(), () => true);
         }
 
+        public void StartEdit(ExerciseSearchResult exerciseSearchResult)
+        {
+            this.exerciseSearchResult = exerciseSearchResult;
+            this.Exercise = new ExerciseModel(this.exerciseService.Get(exerciseSearchResult.Id));
+        }
+
         private void Save()
         {
-            var domainExercise = exerciseService.Get(currentExercise.Id);
-            Mapper.Map(currentExercise, domainExercise);
-            exerciseService.Update(domainExercise);
-            Messenger.Default.Send(new ExerciseEditedMessage());
+            exerciseModel.Commit();
+            exerciseService.Update(exerciseModel.Exercise);
+
+            if (exerciseSearchResult != null)
+                Mapper.Map(exerciseModel, exerciseSearchResult);
+
+            Messenger.Default.Send(new EndEditingExerciseMessage(exerciseModel));
         }
 
         private void Cancel()
         {
-            Mapper.Map(copiedExercise, currentExercise);
-            Messenger.Default.Send(new ExerciseEditedMessage());
+            exerciseModel.Revert();
+
+            if (exerciseSearchResult != null)
+                Mapper.Map(exerciseModel, exerciseSearchResult);
+
+            Messenger.Default.Send(new EndEditingExerciseMessage(exerciseModel));
         }
 
         public RelayCommand SaveCommand { get; private set; }
