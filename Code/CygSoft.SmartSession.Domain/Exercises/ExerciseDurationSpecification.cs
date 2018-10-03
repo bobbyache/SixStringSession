@@ -17,8 +17,26 @@ namespace CygSoft.SmartSession.Domain.Exercises
 
         public override Expression<Func<Exercise, bool>> ToExpression()
         {
-            return exercise => new ComparisonCheck()
-                .IsSatisfiedBy(optimalDuration, exercise.OptimalDuration, comparison);
+            if (!optimalDuration.HasValue)
+                return ex => true;
+
+            switch (comparison)
+            {
+                case ComparisonOperators.LessThan:
+                    return ex => ex.OptimalDuration < optimalDuration.Value;
+
+                case ComparisonOperators.LessThanOrEqualTo:
+                    return ex => ex.OptimalDuration <= optimalDuration.Value;
+
+                case ComparisonOperators.GreaterThan:
+                    return ex => ex.OptimalDuration > optimalDuration.Value;
+
+                case ComparisonOperators.GreaterThanOrEqualTo:
+                    return ex=> ex.OptimalDuration >= optimalDuration.Value;
+
+                default:
+                    return ex => false;
+            }
         }
     }
 }

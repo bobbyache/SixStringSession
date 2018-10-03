@@ -21,8 +21,26 @@ namespace CygSoft.SmartSession.Domain.Exercises
 
         public override Expression<Func<Exercise, bool>> ToExpression()
         {
-            return exercise => new ComparisonCheck()
-                 .IsSatisfiedBy(difficultyRating, exercise.DifficultyRating, comparison);
+            if (!difficultyRating.HasValue)
+                return ex => true;
+
+            switch (comparison)
+            {
+                case ComparisonOperators.LessThan:
+                    return ex => ex.DifficultyRating < difficultyRating.Value;
+
+                case ComparisonOperators.LessThanOrEqualTo:
+                    return ex => ex.DifficultyRating <= difficultyRating.Value;
+
+                case ComparisonOperators.GreaterThan:
+                    return ex => ex.DifficultyRating > difficultyRating.Value;
+
+                case ComparisonOperators.GreaterThanOrEqualTo:
+                    return ex => ex.DifficultyRating >= difficultyRating.Value;
+
+                default:
+                    return ex => false;
+            }
 
         }
     }

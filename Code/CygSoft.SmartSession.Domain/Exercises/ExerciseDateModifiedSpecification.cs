@@ -17,7 +17,26 @@ namespace CygSoft.SmartSession.Domain.Exercises
 
         public override Expression<Func<Exercise, bool>> ToExpression()
         {
-            return exercise => new DateRangeCheck().IsSatisfiedBy(exercise.DateModified, startDate, endDate);
+            if (startDate.HasValue && endDate.HasValue)
+            {
+                return ex => ex.DateModified >= startDate && ex.DateModified <= endDate;
+            }
+            else if (!startDate.HasValue && !endDate.HasValue)
+            {
+                return ex => true;
+            }
+            else if (startDate.HasValue)
+            {
+                return ex => ex.DateModified >= startDate;
+            }
+            else if (endDate.HasValue)
+            {
+                return ex => ex.DateModified <= endDate;
+            }
+            else
+            {
+                return ex => false;
+            }
         }
     }
 }

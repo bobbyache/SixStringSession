@@ -19,8 +19,11 @@ namespace CygSoft.SmartSession.Domain.Exercises
 
         public override Expression<Func<Exercise, bool>> ToExpression()
         {
-            
-            return exercise => new TriStateCheck().IsSatisfiedBy(!string.IsNullOrWhiteSpace(exercise.Notes), hasNotes);
+            if (hasNotes == null)
+                return ex => true;
+
+            else
+                return ex => string.IsNullOrWhiteSpace(ex.Notes) == !hasNotes;
         }
     }
 }

@@ -1,10 +1,6 @@
 ﻿using CygSoft.SmartSession.Domain.Common;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CygSoft.SmartSession.Domain.Exercises
 {
@@ -21,7 +17,27 @@ namespace CygSoft.SmartSession.Domain.Exercises
 
         public override Expression<Func<Exercise, bool>> ToExpression()
         {
-            return exercise => new DateRangeCheck().IsSatisfiedBy(exercise.DateCreated, startDate, endDate);
+            if (startDate.HasValue && endDate.HasValue)
+            {
+                return ex => ex.DateCreated >= startDate && ex.DateCreated <= endDate;
+            }
+            else if (!startDate.HasValue && !endDate.HasValue)
+            {
+                return ex => true;
+
+            }
+            else if (startDate.HasValue)
+            {
+                return ex => ex.DateCreated >= startDate;
+            }
+            else if (endDate.HasValue)
+            {
+                return ex => ex.DateCreated <= endDate;
+            }
+            else
+            {
+                return ex => false;
+            }
         }
     }
 }

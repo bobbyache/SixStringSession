@@ -1,10 +1,6 @@
 ﻿using CygSoft.SmartSession.Domain.Common;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CygSoft.SmartSession.Domain.Exercises
 {
@@ -19,7 +15,10 @@ namespace CygSoft.SmartSession.Domain.Exercises
 
         public override Expression<Func<Exercise, bool>> ToExpression()
         {
-            return exercise => ContainsText(exercise, titleFragment);
+            if (string.IsNullOrEmpty(titleFragment))
+                return ex => true;
+            else
+                return ex => ex.Title.ToUpper().Contains(titleFragment.ToUpper());
         }
 
         private bool ContainsText(Exercise exercise, string titleFragment)

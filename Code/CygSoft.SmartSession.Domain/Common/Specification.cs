@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Linq.Expressions;
 
+// https://enterprisecraftsmanship.com/2016/02/08/specification-pattern-c-implementation/
+//  Use IsSatisfiedBy "in memory".
+//  Use ToExpression() when querying through a repository.
+
 // https://github.com/vkhorikov/SpecificationPattern
 
 namespace CygSoft.SmartSession.Domain.Common
