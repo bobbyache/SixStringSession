@@ -15,12 +15,32 @@ namespace CygSoft.SmartSession.EF.Repositories
         {
             var exs = context.Exercises
                 .Include(ex => ex.ExerciseKeywords)
-                    .ThenInclude(post => post.Keyword)
+                    .ThenInclude(keyword => keyword.Keyword)
                 .Where(specification.ToExpression())
 
-                    //    .Skip(page * pageSize)
-                    //    .Take(pageSize)
-                    //    .ToList();
+            //    .Skip(page * pageSize)
+            //    .Take(pageSize)
+            //    .ToList();
+            ;
+
+            return exs.ToList();
+        }
+
+        public IReadOnlyList<Exercise> Find(Specification<Exercise> specification, string[] keywords, int page = 0, int pageSize = 100)
+        {
+
+
+            var exs = context.Exercises
+                .Include(ex => ex.ExerciseKeywords)
+                    .ThenInclude(keyword => keyword.Keyword)
+                .Where(specification.ToExpression())
+
+                .Where(exercise => exercise.ExerciseKeywords
+                    .Select(exKey => exKey.Keyword.Word)
+                    //.Where(w => w == "Vibrato")
+                    .Where(w => keywords.Contains(w))
+                    .Any()
+                    )
             ;
 
             return exs.ToList();

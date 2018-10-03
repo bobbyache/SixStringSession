@@ -1,6 +1,7 @@
 ﻿using CygSoft.SmartSession.Domain.Common;
 using CygSoft.SmartSession.Domain.Exercises.Specifications;
 using System;
+using System.Collections.Generic;
 
 namespace CygSoft.SmartSession.Domain.Exercises
 {
@@ -19,6 +20,12 @@ namespace CygSoft.SmartSession.Domain.Exercises
         public bool? IsScribed { get; set; }
         public int? PracticalityRating { get; set; }
         public string Title { get; set; }
+        public string Keywords { get; set; }
+
+        public string[] KeywordSpecification()
+        {
+            return Keywords.Split(new char[] { ',' });
+        }
 
         public Specification<Exercise> Specification()
         {
@@ -31,7 +38,6 @@ namespace CygSoft.SmartSession.Domain.Exercises
                 .And(new ExercisePracticalityRatingSpecification(PracticalityRating, PracticalityRatingOperator))
                 .And(new ExerciseIsScribedSpecification(IsScribed))
                 .And(new ExerciseHasNotesSpecification(HasNotes))
-                //.And(new ExerciseKeywordsSpecification(new List<string> { "Technique" }))
             ;
         }
     }

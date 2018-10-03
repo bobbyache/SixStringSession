@@ -18,5 +18,7 @@ namespace CygSoft.SmartSession.Domain.Exercises
         bool? IsScribed { get; set; }
         int? PracticalityRating { get; set; }
         string Title { get; set; }
+
+        string Keywords { get; set; }
     }
 }

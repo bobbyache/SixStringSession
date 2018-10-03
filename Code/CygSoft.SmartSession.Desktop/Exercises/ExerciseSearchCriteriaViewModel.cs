@@ -250,6 +250,7 @@ namespace CygSoft.SmartSession.Desktop.Exercises
 
         public RelayCommand ResetCommand { get; private set; }
         public RelayCommand FindCommand { get; private set; }
-        
+
+        public string Keywords { get; set; }
     }
 }

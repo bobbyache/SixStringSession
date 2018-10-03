@@ -7,5 +7,6 @@ namespace CygSoft.SmartSession.Domain.Exercises
     {
         // Only add really custom stuff here like...
         // GetExercisesWhere...
+        IReadOnlyList<Exercise> Find(Specification<Exercise> specification, string[] keywords, int page = 0, int pageSize = 100);
     }
 }

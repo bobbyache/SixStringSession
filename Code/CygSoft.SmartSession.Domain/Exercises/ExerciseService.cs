@@ -36,7 +36,11 @@ namespace CygSoft.SmartSession.Domain.Exercises
 
         public IEnumerable<Exercise> Find(ExerciseSearchCriteria searchCriteria)
         {
-            return unitOfWork.Exercises.Find(searchCriteria.Specification());
+            if (string.IsNullOrWhiteSpace(searchCriteria.Keywords))
+                return unitOfWork.Exercises.Find(searchCriteria.Specification());
+
+            else
+                return unitOfWork.Exercises.Find(searchCriteria.Specification(), searchCriteria.KeywordSpecification());
         }
 
         public Exercise Get(int id)
