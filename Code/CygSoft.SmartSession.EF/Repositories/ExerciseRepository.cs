@@ -1,7 +1,7 @@
 ﻿using CygSoft.SmartSession.Domain.Common;
 using CygSoft.SmartSession.Domain.Exercises;
+using CygSoft.SmartSession.Domain.Keywords;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -14,10 +14,14 @@ namespace CygSoft.SmartSession.EF.Repositories
         public override IReadOnlyList<Exercise> Find(Specification<Exercise> specification, int page = 0, int pageSize = 100)
         {
             var exs = context.Exercises
-                .Where(specification.ToExpression());
-                //    .Skip(page * pageSize)
-                //    .Take(pageSize)
-                //    .ToList();
+                .Include(ex => ex.ExerciseKeywords)
+                    .ThenInclude(post => post.Keyword)
+                .Where(specification.ToExpression())
+
+                    //    .Skip(page * pageSize)
+                    //    .Take(pageSize)
+                    //    .ToList();
+            ;
 
             return exs.ToList();
         }
