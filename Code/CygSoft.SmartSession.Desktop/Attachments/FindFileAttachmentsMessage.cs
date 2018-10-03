@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CygSoft.SmartSession.Desktop.Exercises
+namespace CygSoft.SmartSession.Desktop.Attachments
 {
-    internal class FindExercisesMessage
+    internal class FindFileAttachmentsMessage
     {
     }
 }

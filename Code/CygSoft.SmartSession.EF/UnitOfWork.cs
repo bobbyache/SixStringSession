@@ -1,4 +1,5 @@
 ﻿using CygSoft.SmartSession.Domain;
+using CygSoft.SmartSession.Domain.Attachments;
 using CygSoft.SmartSession.Domain.Exercises;
 using CygSoft.SmartSession.EF.Repositories;
 
@@ -12,9 +13,12 @@ namespace CygSoft.SmartSession.EF
         {
             this.context = context;
             Exercises = new ExerciseRepository(context);
+            FileAttachments = new FileAttachmentRepository(context);
         }
 
         public IExerciseRepository Exercises { get; private set; }
+
+        public IFileAttachmentRepository FileAttachments { get; private set; }
 
         public int Complete()
         {

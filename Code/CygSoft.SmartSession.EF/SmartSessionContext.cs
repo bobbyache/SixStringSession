@@ -1,4 +1,5 @@
-﻿using CygSoft.SmartSession.Domain.Exercises;
+﻿using CygSoft.SmartSession.Domain.Attachments;
+using CygSoft.SmartSession.Domain.Exercises;
 using CygSoft.SmartSession.Domain.Keywords;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -22,6 +23,8 @@ namespace CygSoft.SmartSession.EF
         public DbSet<Session> Sessions { get; set; }
         public DbSet<Exercise> Exercises { get; set; }
         public DbSet<Keyword> Keywords { get; set; }
+        public DbSet<FileAttachment> FileAttachments { get; set; }
+
         //public DbSet<SessionPracticeTask> SessionTasks { get; set; }
         //public DbSet<SessionPracticeTask> TaskSessions { get; set; }
 
@@ -53,6 +56,8 @@ namespace CygSoft.SmartSession.EF
                 .HasKey(s => new { s.SessionId, s.PracticeTaskId });
             modelBuilder.Entity<ExerciseKeyword>()
                 .HasKey(s => new { s.ExerciseId, s.KeywordId });
+            modelBuilder.Entity<FileAttachmentKeyword>()
+                .HasKey(s => new { s.FileAttachmentId, s.KeywordId });
         }
     }
 }

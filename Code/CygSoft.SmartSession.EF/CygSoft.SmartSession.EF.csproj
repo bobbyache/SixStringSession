@@ -112,6 +112,10 @@
     <Compile Include="Migrations\20180925080946_Initial.designer.cs">
       <DependentUpon>20180925080946_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20181003130917_fileattach.cs" />
+    <Compile Include="Migrations\20181003130917_fileattach.designer.cs">
+      <DependentUpon>20181003130917_fileattach.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\SmartSessionContextModelSnapshot.cs" />
     <Compile Include="Records\Goal.cs" />
     <Compile Include="Records\GoalPracticeTask.cs" />
@@ -124,6 +128,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
     <Compile Include="Repositories\ExerciseRepository.cs" />
+    <Compile Include="Repositories\FileAttachmentRepository.cs" />
     <Compile Include="SmartSessionContext.cs" />
     <Compile Include="SmartSessionContextFactory.cs" />
     <Compile Include="UnitOfWork.cs" />

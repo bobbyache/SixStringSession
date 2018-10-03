@@ -1,4 +1,5 @@
-﻿using CygSoft.SmartSession.Domain.Exercises;
+﻿using CygSoft.SmartSession.Domain.Attachments;
+using CygSoft.SmartSession.Domain.Exercises;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,7 @@ namespace CygSoft.SmartSession.Domain
     public interface IUnitOfWork : IDisposable
     {
         IExerciseRepository Exercises { get; }
+        IFileAttachmentRepository FileAttachments { get; }
         int Complete();
     }
 }

@@ -1,4 +1,5 @@
-﻿using CygSoft.SmartSession.Desktop.Exercises;
+﻿using CygSoft.SmartSession.Desktop.Attachments;
+using CygSoft.SmartSession.Desktop.Exercises;
 using CygSoft.SmartSession.Desktop.Goals;
 using CygSoft.SmartSession.Desktop.Tasks;
 using GalaSoft.MvvmLight;
@@ -13,7 +14,9 @@ namespace CygSoft.SmartSession.Desktop
         private ExerciseCompositeViewModel exerciseSearchViewModel;
         private TaskSearchViewModel taskSearchViewModel;
         private GoalSearchViewModel goalSearchViewModel;
-        
+        private FileAttachmentCompositeViewModel fileAttachmentViewModel;
+
+
         private ViewModelBase currentViewModel;
         public ViewModelBase CurrentViewModel
         {
@@ -23,9 +26,11 @@ namespace CygSoft.SmartSession.Desktop
 
         public RelayCommand<string> NavigationCommand { get; private set; }
 
-        public MainWindowViewModel(ExerciseCompositeViewModel exerciseSearchViewModel, TaskSearchViewModel taskSearchViewModel, GoalSearchViewModel goalSearchViewModel)
+        public MainWindowViewModel(ExerciseCompositeViewModel exerciseSearchViewModel, FileAttachmentCompositeViewModel fileAttachmentViewModel, 
+            TaskSearchViewModel taskSearchViewModel, GoalSearchViewModel goalSearchViewModel)
         {
             this.exerciseSearchViewModel = exerciseSearchViewModel;
+            this.fileAttachmentViewModel = fileAttachmentViewModel;
             this.taskSearchViewModel = taskSearchViewModel;
             this.goalSearchViewModel = goalSearchViewModel;
             NavigationCommand = new RelayCommand<string>(OnNavigation);
@@ -44,6 +49,9 @@ namespace CygSoft.SmartSession.Desktop
                     break;
                 case "ExerciseSearch":
                     CurrentViewModel = exerciseSearchViewModel;
+                    break;
+                case "FileAttachmentSearch":
+                    CurrentViewModel = fileAttachmentViewModel;
                     break;
                 default:
                     CurrentViewModel = taskSearchViewModel;

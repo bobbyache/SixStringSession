@@ -89,6 +89,27 @@
     <Compile Include="..\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Attachments\EndEditingFileAttachmentMessage.cs" />
+    <Compile Include="Attachments\FileAttachmentCompositeView.xaml.cs">
+      <DependentUpon>FileAttachmentCompositeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Attachments\FileAttachmentCompositeViewModel.cs" />
+    <Compile Include="Attachments\FileAttachmentEditView.xaml.cs">
+      <DependentUpon>FileAttachmentEditView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Attachments\FileAttachmentEditViewModel.cs" />
+    <Compile Include="Attachments\FileAttachmentModel.cs" />
+    <Compile Include="Attachments\FileAttachmentSearchCriteriaView.xaml.cs">
+      <DependentUpon>FileAttachmentSearchCriteriaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Attachments\FileAttachmentSearchCriteriaViewModel.cs" />
+    <Compile Include="Attachments\FileAttachmentSearchResult.cs" />
+    <Compile Include="Attachments\FileAttachmentSearchView.xaml.cs">
+      <DependentUpon>FileAttachmentSearchView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Attachments\FileAttachmentSearchViewModel.cs" />
+    <Compile Include="Attachments\FindFileAttachmentsMessage.cs" />
+    <Compile Include="Attachments\StartEditingFileAttachmentMessage.cs" />
     <Compile Include="Exercises\StartEditingExerciseMessage.cs" />
     <Compile Include="Exercises\ExerciseCompositeView.xaml.cs">
       <DependentUpon>ExerciseCompositeView.xaml</DependentUpon>
@@ -140,6 +161,22 @@
       <DependentUpon>TaskSearchView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Tasks\TaskSearchViewModel.cs" />
+    <Page Include="Attachments\FileAttachmentCompositeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Attachments\FileAttachmentEditView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Attachments\FileAttachmentSearchCriteriaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Attachments\FileAttachmentSearchView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Exercises\ExerciseCompositeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -3,7 +3,9 @@ USE SmartSession_EF_2
 BEGIN TRANSACTION
 
 DELETE FROM dbo.Keywords
+DELETE FROM dbo.FileAttachments
 DELETE FROM dbo.Exercises
+
 
 INSERT INTO dbo.Keywords
 VALUES
@@ -49,6 +51,15 @@ VALUES
 (
 	(SELECT Id FROM Exercises WHERE Title = 'String Bending Exercise'),
 	(SELECT Id FROM Keywords WHERE Word = 'Technique')
+)
+
+INSERT INTO dbo.FileAttachments (FileTitle, Extension, Notes, DateCreated, DateModified) VALUES ('12_Bar_Blues_Exercise', '.gp', 'Exercise file', GETDATE(), GETDATE())
+
+INSERT INTO [dbo].[FileAttachmentKeyword]
+VALUES
+(
+	(SELECT Id FROM FileAttachments WHERE FileTitle = '12_Bar_Blues_Exercise'),
+	(SELECT Id FROM Keywords WHERE Word = 'Blues')
 )
 
 COMMIT TRANSACTION

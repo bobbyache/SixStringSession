@@ -52,6 +52,17 @@
     <Compile Include="..\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Attachments\FileAttachment.cs" />
+    <Compile Include="Attachments\FileAttachmentSearchCriteria.cs" />
+    <Compile Include="Attachments\FileAttachmentService.cs" />
+    <Compile Include="Attachments\IFileAttachmentRepository.cs" />
+    <Compile Include="Attachments\IFileAttachmentSearchCriteria.cs" />
+    <Compile Include="Attachments\IFileAttachmentService.cs" />
+    <Compile Include="Attachments\Specifications\FileAttachmentDateCreatedSpecification.cs" />
+    <Compile Include="Attachments\Specifications\FileAttachmentDateModifiedSpecification.cs" />
+    <Compile Include="Attachments\Specifications\FileAttachmentExtensionSpecification.cs" />
+    <Compile Include="Attachments\Specifications\FileAttachmentHasNotesSpecification.cs" />
+    <Compile Include="Attachments\Specifications\FileAttachmentTitleSpecification.cs" />
     <Compile Include="Common\AndSpecification.cs" />
     <Compile Include="Common\Entity.cs" />
     <Compile Include="Common\Enums.cs" />
@@ -75,6 +86,7 @@
     <Compile Include="Exercises\IExerciseService.cs" />
     <Compile Include="Goals\IGoalRepository.cs" />
     <Compile Include="IUnitOfWork.cs" />
+    <Compile Include="Keywords\FileAttachmentKeyword.cs" />
     <Compile Include="Keywords\ExerciseKeyword.cs" />
     <Compile Include="Keywords\Keyword.cs" />
     <Compile Include="Tasks\AggregateTask.cs" />
