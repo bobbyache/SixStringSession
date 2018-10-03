@@ -16,7 +16,10 @@
     </UserControl.Resources>
     <DockPanel>
         <StackPanel DockPanel.Dock="Top" Margin="5,5,5,5">
-
+            <StackPanel  Orientation="Horizontal" >
+                <TextBlock MinWidth="100" Text="Keywords" Margin="2" />
+                <TextBox Margin="2" Width="270" Text="{Binding Keywords}"/>
+            </StackPanel>
             <StackPanel  Orientation="Horizontal" >
                 <TextBlock MinWidth="100" Text="Title like..." Margin="2" />
                 <TextBox Margin="2" Width="270" Text="{Binding Title}"/>

@@ -248,9 +248,21 @@ namespace CygSoft.SmartSession.Desktop.Exercises
             }
         }
 
+        private string keywords;
+        public string Keywords
+        {
+            get
+            {
+                return keywords;
+            }
+            set
+            {
+                Set(() => Keywords, ref keywords, value);
+            }
+        }
+
         public RelayCommand ResetCommand { get; private set; }
         public RelayCommand FindCommand { get; private set; }
 
-        public string Keywords { get; set; }
     }
 }
