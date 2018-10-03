@@ -1,25 +1,28 @@
 ﻿using CygSoft.SmartSession.Domain.Exercises;
 using CygSoft.SmartSession.Domain.Keywords;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Console;
 using SmartSession.Domain.Records;
 
 namespace CygSoft.SmartSession.EF
 {
     public class SmartSessionContext : DbContext
     {
+        public static readonly LoggerFactory MyConsoleLoggerFactory = new LoggerFactory(
+            new[]
+            {
+                new ConsoleLoggerProvider((category, level) => category == DbLoggerCategory.Database.Command.Name && level == LogLevel.Information, true)
+            });
+
         private string connectionString;
 
         public DbSet<Goal> Goals { get; set; }
         public DbSet<PracticeTask> Tasks { get; set; }
-
         public DbSet<Session> Sessions { get; set; }
         public DbSet<Exercise> Exercises { get; set; }
-
         public DbSet<Keyword> Keywords { get; set; }
-
-
         //public DbSet<SessionPracticeTask> SessionTasks { get; set; }
-
         //public DbSet<SessionPracticeTask> TaskSessions { get; set; }
 
         public SmartSessionContext(string connectionString)
@@ -35,7 +38,9 @@ namespace CygSoft.SmartSession.EF
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             // or sql lite or sql ce
-            optionsBuilder.UseSqlServer(connectionString);
+            optionsBuilder
+                .UseLoggerFactory(MyConsoleLoggerFactory)
+                .UseSqlServer(connectionString);
 
         }
 
