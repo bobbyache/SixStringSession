@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CygSoft.SmartSession.Domain.Exercises
+namespace CygSoft.SmartSession.Domain.Exercises.Specifications
 {
     public class ExerciseIsScribedSpecification : Specification<Exercise>
     {

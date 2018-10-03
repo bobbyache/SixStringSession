@@ -1,5 +1,6 @@
 ﻿using CygSoft.SmartSession.Domain.Common;
 using CygSoft.SmartSession.Domain.Exercises;
+using CygSoft.SmartSession.Domain.Exercises.Specifications;
 using NUnit.Framework;
 using System;
 

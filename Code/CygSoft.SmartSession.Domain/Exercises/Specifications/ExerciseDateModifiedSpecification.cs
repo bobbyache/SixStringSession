@@ -2,14 +2,14 @@
 using System;
 using System.Linq.Expressions;
 
-namespace CygSoft.SmartSession.Domain.Exercises
+namespace CygSoft.SmartSession.Domain.Exercises.Specifications
 {
-    public class ExerciseDateCreatedSpecification : Specification<Exercise>
+    public class ExerciseDateModifiedSpecification : Specification<Exercise>
     {
         private readonly DateTime? startDate;
         private readonly DateTime? endDate;
 
-        public ExerciseDateCreatedSpecification(DateTime? startDate, DateTime? endDate)
+        public ExerciseDateModifiedSpecification(DateTime? startDate, DateTime? endDate)
         {
             this.startDate = startDate;
             this.endDate = endDate;
@@ -19,20 +19,19 @@ namespace CygSoft.SmartSession.Domain.Exercises
         {
             if (startDate.HasValue && endDate.HasValue)
             {
-                return ex => ex.DateCreated >= startDate && ex.DateCreated <= endDate;
+                return ex => ex.DateModified >= startDate && ex.DateModified <= endDate;
             }
             else if (!startDate.HasValue && !endDate.HasValue)
             {
                 return ex => true;
-
             }
             else if (startDate.HasValue)
             {
-                return ex => ex.DateCreated >= startDate;
+                return ex => ex.DateModified >= startDate;
             }
             else if (endDate.HasValue)
             {
-                return ex => ex.DateCreated <= endDate;
+                return ex => ex.DateModified <= endDate;
             }
             else
             {

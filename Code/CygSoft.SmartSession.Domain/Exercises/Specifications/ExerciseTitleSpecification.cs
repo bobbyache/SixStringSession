@@ -2,7 +2,7 @@
 using System;
 using System.Linq.Expressions;
 
-namespace CygSoft.SmartSession.Domain.Exercises
+namespace CygSoft.SmartSession.Domain.Exercises.Specifications
 {
     public class ExerciseTitleSpecification : Specification<Exercise>
     {
