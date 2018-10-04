@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using CygSoft.SmartSession.Desktop.Supports.Services;
 using CygSoft.SmartSession.Domain.Attachments;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
@@ -16,10 +17,14 @@ namespace CygSoft.SmartSession.Desktop.Attachments
     public class FileAttachmentEditViewModel : ViewModelBase
     {
         private IFileAttachmentService fileAttachmentService;
-        private IDialogService dialogService;
+        private IDialogViewService dialogService;
 
         private FileAttachmentModel fileAttachmentModel;
         private FileAttachmentSearchResult fileAttachmentSearchResult;
+
+        public RelayCommand SaveCommand { get; private set; }
+        public RelayCommand CancelCommand { get; private set; }
+        public RelayCommand OpenFileCommand { get; private set; }
 
         public FileAttachmentModel FileAttachment
         {
@@ -30,13 +35,21 @@ namespace CygSoft.SmartSession.Desktop.Attachments
             }
         }
 
-        public FileAttachmentEditViewModel(IFileAttachmentService fileAttachmentService, IDialogService dialogService)
+        public FileAttachmentEditViewModel(IFileAttachmentService fileAttachmentService, IDialogViewService dialogService)
         {
             this.fileAttachmentService = fileAttachmentService ?? throw new ArgumentNullException("Service must be provided.");
             this.dialogService = dialogService ?? throw new ArgumentNullException("Dialog service must be provided.");
 
             SaveCommand = new RelayCommand(() => Save(), () => !fileAttachmentModel.HasErrors);
             CancelCommand = new RelayCommand(() => Cancel(), () => true);
+            OpenFileCommand = new RelayCommand(() => OpenFile());
+        }
+
+        private void OpenFile()
+        {
+            string filePath;
+            if (dialogService.SelectFile(null, out filePath))
+                fileAttachmentModel.FilePath = filePath;
         }
 
         public void StartEdit(FileAttachmentSearchResult fileAttachmentSearchResult)
@@ -73,8 +86,5 @@ namespace CygSoft.SmartSession.Desktop.Attachments
 
             Messenger.Default.Send(new EndEditingFileAttachmentMessage(fileAttachmentModel));
         }
-
-        public RelayCommand SaveCommand { get; private set; }
-        public RelayCommand CancelCommand { get; private set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using CygSoft.SmartSession.Desktop.Supports.Services;
 using CygSoft.SmartSession.Domain.Exercises;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
@@ -13,7 +14,7 @@ namespace CygSoft.SmartSession.Desktop.Exercises
     {
 
         #region Alternative Constructors
-        //public ExerciseSearchViewModel(IExerciseService exerciseService, IDialogService dialogService, INavigationService navigationService)
+        //public ExerciseSearchViewModel(IExerciseService exerciseService, IDialogViewService dialogService, INavigationService navigationService)
         //{
         //    this.exerciseService = exerciseService;
         //    this.dialogService = dialogService;
@@ -29,9 +30,9 @@ namespace CygSoft.SmartSession.Desktop.Exercises
         #endregion
 
         private IExerciseService exerciseService;
-        private IDialogService dialogService;
+        private IDialogViewService dialogService;
 
-        public ExerciseSearchViewModel(ExerciseSearchCriteriaViewModel exerciseSearchCriteriaViewModel, IExerciseService exerciseService, IDialogService dialogService)
+        public ExerciseSearchViewModel(ExerciseSearchCriteriaViewModel exerciseSearchCriteriaViewModel, IExerciseService exerciseService, IDialogViewService dialogService)
         {
             this.exerciseSearchCriteriaViewModel = exerciseSearchCriteriaViewModel ?? throw new ArgumentNullException("Search Criteria Model must be provided.");
             this.exerciseService = exerciseService ?? throw new ArgumentNullException("Service must be provided.");

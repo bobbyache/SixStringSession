@@ -23,11 +23,24 @@
         </Style>
     </UserControl.Resources>
     <DockPanel LastChildFill="False">
-        <StackPanel DockPanel.Dock="Top" Margin="0,0,0,5" DataContext="{Binding FileAttachment}">
+        <StackPanel DockPanel.Dock="Top" Margin="0,0,0,5">
+            
+            
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Current Extension:" Margin="5"></TextBlock>
+                <TextBlock Text="{Binding FileAttachment.Extension}" Margin="5"></TextBlock>
+            </StackPanel>
+            
+            <TextBlock Text="File Path:" Margin="5"></TextBlock>
+            <StackPanel Orientation="Horizontal">
+                <TextBox Margin="5" MinWidth="300" HorizontalAlignment="Stretch" Text="{Binding FileAttachment.FilePath, ValidatesOnNotifyDataErrors=True}"></TextBox>
+                <Button Content="..." Margin="5" MaxWidth="50" MinWidth="50" MaxHeight="35" Command="{Binding OpenFileCommand}" />
+            </StackPanel>
+            
             <TextBlock Text="File Title:" Margin="5"></TextBlock>
-            <TextBox Margin="5" Text="{Binding Title, ValidatesOnNotifyDataErrors=True}"></TextBox>
+            <TextBox Margin="5" Text="{Binding FileAttachment.FileTitle, ValidatesOnNotifyDataErrors=True}"></TextBox>
             <TextBlock Text="Notes:" Margin="5"></TextBlock>
-            <TextBox Text="{Binding Notes}" Height="50" Margin="5"></TextBox>
+            <TextBox Text="{Binding FileAttachment.Notes}" Height="50" Margin="5"></TextBox>
 
         </StackPanel>
         <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right">

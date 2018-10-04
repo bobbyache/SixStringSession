@@ -1,4 +1,5 @@
-﻿using CygSoft.SmartSession.Domain.Attachments;
+﻿using CygSoft.SmartSession.Desktop.Supports.Services;
+using CygSoft.SmartSession.Domain.Attachments;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
@@ -10,9 +11,9 @@ namespace CygSoft.SmartSession.Desktop.Attachments
     public class FileAttachmentSearchCriteriaViewModel : ViewModelBase, IFileAttachmentSearchCriteria
     {
         private IFileAttachmentService exerciseService;
-        private IDialogService dialogService;
+        private IDialogViewService dialogService;
 
-        public FileAttachmentSearchCriteriaViewModel(IFileAttachmentService exerciseService, IDialogService dialogService)
+        public FileAttachmentSearchCriteriaViewModel(IFileAttachmentService exerciseService, IDialogViewService dialogService)
         {
             this.exerciseService = exerciseService ?? throw new ArgumentNullException("Service must be provided.");
             this.dialogService = dialogService ?? throw new ArgumentNullException("Dialog service must be provided.");

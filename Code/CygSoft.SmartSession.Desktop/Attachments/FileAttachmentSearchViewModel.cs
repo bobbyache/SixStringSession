@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using CygSoft.SmartSession.Desktop.Supports.Services;
 using CygSoft.SmartSession.Domain.Attachments;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
@@ -12,7 +13,7 @@ namespace CygSoft.SmartSession.Desktop.Attachments
     public class FileAttachmentSearchViewModel : ViewModelBase
     {
         #region Alternative Constructors
-        //public FileAttachmentSearchViewModel(IFileAttachmentService fileAttachmentService, IDialogService dialogService, INavigationService navigationService)
+        //public FileAttachmentSearchViewModel(IFileAttachmentService fileAttachmentService, IDialogViewService dialogService, INavigationService navigationService)
         //{
         //    this.fileAttachmentService = fileAttachmentService;
         //    this.dialogService = dialogService;
@@ -28,9 +29,9 @@ namespace CygSoft.SmartSession.Desktop.Attachments
         #endregion
 
         private IFileAttachmentService fileAttachmentService;
-        private IDialogService dialogService;
+        private IDialogViewService dialogService;
 
-        public FileAttachmentSearchViewModel(FileAttachmentSearchCriteriaViewModel fileAttachmentSearchCriteriaViewModel, IFileAttachmentService fileAttachmentService, IDialogService dialogService)
+        public FileAttachmentSearchViewModel(FileAttachmentSearchCriteriaViewModel fileAttachmentSearchCriteriaViewModel, IFileAttachmentService fileAttachmentService, IDialogViewService dialogService)
         {
             this.fileAttachmentSearchCriteriaViewModel = fileAttachmentSearchCriteriaViewModel ?? throw new ArgumentNullException("Search Criteria Model must be provided.");
             this.fileAttachmentService = fileAttachmentService ?? throw new ArgumentNullException("Service must be provided.");

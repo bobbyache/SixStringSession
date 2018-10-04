@@ -1,4 +1,5 @@
-﻿using CygSoft.SmartSession.Domain.Common;
+﻿using CygSoft.SmartSession.Desktop.Supports.Services;
+using CygSoft.SmartSession.Domain.Common;
 using CygSoft.SmartSession.Domain.Exercises;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
@@ -15,9 +16,9 @@ namespace CygSoft.SmartSession.Desktop.Exercises
     public class ExerciseSearchCriteriaViewModel : ViewModelBase, IExerciseSearchCriteria
     {
         private IExerciseService exerciseService;
-        private IDialogService dialogService;
+        private IDialogViewService dialogService;
 
-        public ExerciseSearchCriteriaViewModel(IExerciseService exerciseService, IDialogService dialogService)
+        public ExerciseSearchCriteriaViewModel(IExerciseService exerciseService, IDialogViewService dialogService)
         {
             this.exerciseService = exerciseService ?? throw new ArgumentNullException("Service must be provided.");
             this.dialogService = dialogService ?? throw new ArgumentNullException("Dialog service must be provided.");

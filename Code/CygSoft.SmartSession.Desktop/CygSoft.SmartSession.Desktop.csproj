@@ -149,6 +149,7 @@
     <Compile Include="Supports\Services\DialogService.cs" />
     <Compile Include="Exercises\ExerciseSearchViewModel.cs" />
     <Compile Include="Goals\GoalListViewModel.cs" />
+    <Compile Include="Supports\Services\IDialogViewService.cs" />
     <Compile Include="Supports\Services\ViewModelLocator.cs" />
     <Compile Include="Exercises\ExerciseSearchView.xaml.cs">
       <DependentUpon>ExerciseSearchView.xaml</DependentUpon>

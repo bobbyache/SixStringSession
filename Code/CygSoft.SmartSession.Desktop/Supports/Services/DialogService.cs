@@ -6,8 +6,34 @@ using System.Windows;
 
 namespace CygSoft.SmartSession.Desktop.Supports.Services
 {
-    public class DialogService : IDialogService
+    public class DialogService : IDialogViewService
     {
+        public bool SelectFile(string initialDirectory, out string filePath)
+        {
+            return SelectFile(initialDirectory, null, null, out filePath);
+        }
+
+        public bool SelectFile(string initialDirectory, string defaultExtension, string fileFilters, out string filePath)
+        {
+            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+
+            dlg.Title = "Open File";
+            dlg.DefaultExt = defaultExtension; // ".png";
+            dlg.Filter = fileFilters; // "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif";
+            dlg.InitialDirectory = initialDirectory;
+
+            Nullable<bool> result = dlg.ShowDialog();
+
+            if (result == true)
+            {
+                filePath = dlg.FileName;
+                return true;
+            }
+
+            filePath = null;
+            return false;
+        }
+
         //public void ShowError(Exception Error, string Title)
         //{
         //    MessageBox.Show(Error.ToString(), Title, MessageBoxButton.OK, MessageBoxImage.Error);
@@ -63,10 +89,6 @@ namespace CygSoft.SmartSession.Desktop.Supports.Services
         //    MessageBox.Show(Message, Title, MessageBoxButton.OK, MessageBoxImage.Warning);
         //}
 
-        //Task IDialogService.ShowMessage(string message, string title)
-        //{
-        //    MessageBox.Show(message, message, MessageBoxButton.OK, MessageBoxImage.Information);
-        //}
         public Task ShowError(string message, string title, string buttonText, Action afterHideCallback)
         {
             throw new NotImplementedException();

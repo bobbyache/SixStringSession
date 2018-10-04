@@ -26,7 +26,7 @@ namespace CygSoft.SmartSession.Desktop.Supports.DI
         {
             container.Register(Component.For<SmartSessionContext>().DependsOn(Dependency.OnConfigValue("connectionString", 
                 Settings.ConnectionString)).LifestyleSingleton());
-            container.Register(Component.For<IDialogService>().ImplementedBy(typeof(DialogService)));
+            container.Register(Component.For<IDialogViewService>().ImplementedBy(typeof(DialogService)));
 
             container.Register(Component.For<IUnitOfWork>().ImplementedBy(typeof(UnitOfWork)));
 

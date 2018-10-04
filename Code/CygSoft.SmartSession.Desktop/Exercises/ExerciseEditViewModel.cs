@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using CygSoft.SmartSession.Desktop.Supports.Services;
 using CygSoft.SmartSession.Domain.Exercises;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
@@ -13,7 +14,7 @@ namespace CygSoft.SmartSession.Desktop.Exercises
     public class ExerciseEditViewModel : ViewModelBase
     {
         private IExerciseService exerciseService;
-        private IDialogService dialogService;
+        private IDialogViewService dialogService;
 
         private ExerciseModel exerciseModel;
         private ExerciseSearchResult exerciseSearchResult;
@@ -27,7 +28,7 @@ namespace CygSoft.SmartSession.Desktop.Exercises
             }
         }
 
-        public ExerciseEditViewModel(IExerciseService exerciseService, IDialogService dialogService)
+        public ExerciseEditViewModel(IExerciseService exerciseService, IDialogViewService dialogService)
         {
             this.exerciseService = exerciseService ?? throw new ArgumentNullException("Service must be provided.");
             this.dialogService = dialogService ?? throw new ArgumentNullException("Dialog service must be provided.");
