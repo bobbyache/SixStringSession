@@ -1,7 +1,6 @@
-﻿using CygSoft.SmartSession.Domain.Sessions;
-using System.Linq;
+﻿using System.Linq;
 
-namespace CygSoft.SmartSession.Domain.Tasks
+namespace CygSoft.SmartSession.DomainLegacy
 {
     public class MetronomeGoalTask : GoalTask<MetronomeSessionResult>
     {

@@ -1,4 +1,4 @@
-﻿using CygSoft.SmartSession.Domain.Tasks;
+﻿using CygSoft.SmartSession.DomainLegacy;
 using NUnit.Framework;
 using System;
 
@@ -40,7 +40,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         private PercentGoalTask CreatePercentGoalTask(double percentCompleted, int weighting)
         {
             PercentGoalTask task = new PercentGoalTask();
-            task.AddSession(new Sessions.PercentSessionResult(DateTime.Now.Subtract(new TimeSpan(0, 5, 0)), DateTime.Now, percentCompleted));
+            task.AddSession(new PercentSessionResult(DateTime.Now.Subtract(new TimeSpan(0, 5, 0)), DateTime.Now, percentCompleted));
             task.Weighting = weighting;
 
             return task;

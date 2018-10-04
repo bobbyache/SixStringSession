@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace CygSoft.SmartSession.Domain.Tasks
+namespace CygSoft.SmartSession.DomainLegacy
 {
     public class ProgressCalculator
     {

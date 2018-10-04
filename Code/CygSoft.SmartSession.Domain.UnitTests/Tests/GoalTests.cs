@@ -1,7 +1,5 @@
 ﻿
 using CygSoft.SmartSession.Domain.Goals;
-using CygSoft.SmartSession.Domain.Sessions;
-using CygSoft.SmartSession.Domain.Tasks;
 using CygSoft.SmartSession.DomainLegacy;
 using CygSoft.SmartSession.Infrastructure;
 using Moq;

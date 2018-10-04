@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CygSoft.SmartSession.Domain.Sessions
+namespace CygSoft.SmartSession.DomainLegacy
 {
     public class PercentSessionResult : SessionResult
     {

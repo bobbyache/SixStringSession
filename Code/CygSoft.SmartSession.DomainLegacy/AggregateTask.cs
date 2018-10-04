@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace CygSoft.SmartSession.Domain.Tasks
+namespace CygSoft.SmartSession.DomainLegacy
 {
     public class AggregateTask : BaseTask
     {

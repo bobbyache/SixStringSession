@@ -1,5 +1,4 @@
-﻿using CygSoft.SmartSession.Domain.Sessions;
-using CygSoft.SmartSession.Domain.Tasks;
+﻿using CygSoft.SmartSession.DomainLegacy;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;

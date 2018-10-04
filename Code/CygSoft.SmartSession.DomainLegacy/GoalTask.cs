@@ -1,10 +1,8 @@
-﻿using CygSoft.SmartSession.Domain.Sessions;
-using CygSoft.SmartSession.Infrastructure;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace CygSoft.SmartSession.Domain.Tasks
+namespace CygSoft.SmartSession.DomainLegacy
 {
     public abstract class GoalTask<T>
         : BaseTask

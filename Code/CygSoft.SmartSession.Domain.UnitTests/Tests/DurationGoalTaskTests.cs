@@ -1,8 +1,7 @@
-﻿using NUnit.Framework;
+﻿using CygSoft.SmartSession.DomainLegacy;
+using NUnit.Framework;
 using System;
-using CygSoft.SmartSession.Domain.Tasks;
 using System.Collections.Generic;
-using CygSoft.SmartSession.Domain.Sessions;
 
 namespace CygSoft.SmartSession.Domain.UnitTests.Tests
 {

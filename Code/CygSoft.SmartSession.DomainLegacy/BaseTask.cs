@@ -1,7 +1,7 @@
 ﻿using CygSoft.SmartSession.Infrastructure;
 using System;
 
-namespace CygSoft.SmartSession.Domain.Tasks
+namespace CygSoft.SmartSession.DomainLegacy
 {
     public abstract class BaseTask : EntityBase, IWeightedEntity, IEditableGoalTask
     {

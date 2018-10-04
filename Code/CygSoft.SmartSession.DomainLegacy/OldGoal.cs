@@ -1,4 +1,4 @@
-﻿using CygSoft.SmartSession.Domain.Tasks;
+﻿using CygSoft.SmartSession.DomainLegacy;
 using CygSoft.SmartSession.Infrastructure;
 using System;
 using System.Collections.Generic;
