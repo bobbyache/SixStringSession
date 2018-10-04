@@ -1,63 +1,22 @@
-﻿using CygSoft.SmartSession.Domain.Tasks;
-using CygSoft.SmartSession.Infrastructure;
+﻿using CygSoft.SmartSession.Domain.Common;
+using CygSoft.SmartSession.Domain.Keywords;
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CygSoft.SmartSession.Domain.Goals
 {
-    public class Goal : EntityBase, IEditableGoal
+    public class Goal : Entity
     {
-        private List<IEditableGoalTask> goalTasks = new List<IEditableGoalTask>();
-        private ProgressCalculator progressCalculator = new ProgressCalculator();
-
+        [Required]
+        [Column(TypeName = "nvarchar(150)")]
         public string Title { get; set; }
-        public int MinutesPracticed { get; private set; }
-        public DateTime CreateDate { get; private set; }
-        public int Weighting => 0;
-        public bool IsConsideredComplete => PercentComplete == 100;
-        public double PercentComplete => progressCalculator.CalculateTotalProgress();
-        public IEditableGoalTask[] Tasks => goalTasks.ToArray();
+        [Column(TypeName = "nvarchar(1000)")]
+        public string Notes { get; set; }
 
-        public int TaskCount
-        {
-            get
-            {
-                if (goalTasks != null)
-                    return goalTasks.Count();
-                return 0;
-            }
-        }
-
-        public Goal()
-        {
-            CreateDate = DateTime.Now;
-        }
-
-        internal Goal(IEditableGoalTask[] goalTasks)
-        {
-            if (goalTasks != null)
-                this.goalTasks = new List<IEditableGoalTask>(goalTasks);
-        }
-
-        public void AddTask(IEditableGoalTask goalTask)
-        {
-            IWeightedEntity weightedTask = goalTask as IWeightedEntity;
-
-            if (goalTask.PercentCompleted < 0)
-                throw new ArgumentOutOfRangeException("Percent cannot be a negative value.");
-
-            if (goalTask.PercentCompleted > 100)
-                throw new ArgumentOutOfRangeException("Percent value cannot exceed 100.");
-
-            if (weightedTask.Weighting <= 0)
-                throw new ArgumentOutOfRangeException("Cannot add a task with an invalid weighting");
-
-            if (weightedTask.Weighting > 100)
-                throw new ArgumentOutOfRangeException("Cannot add a task with an invalid weighting");
-
-            goalTasks.Add(goalTask);
-            progressCalculator.Add(goalTask as IWeightedEntity);
-        }
+        public List<GoalKeyword> GoalKeywords { get; set; }
     }
 }
+
+

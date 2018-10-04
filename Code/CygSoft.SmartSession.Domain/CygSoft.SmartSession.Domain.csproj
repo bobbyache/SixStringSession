@@ -84,10 +84,16 @@
     <Compile Include="Exercises\IExerciseRepository.cs" />
     <Compile Include="Exercises\IExerciseSearchCriteria.cs" />
     <Compile Include="Exercises\IExerciseService.cs" />
+    <Compile Include="Goals\GoalSearchCriteria.cs" />
+    <Compile Include="Goals\GoalService.cs" />
     <Compile Include="Goals\IGoalRepository.cs" />
+    <Compile Include="Goals\IGoalSearchCriteria.cs" />
+    <Compile Include="Goals\IGoalService.cs" />
+    <Compile Include="Goals\Specifications.cs" />
     <Compile Include="IUnitOfWork.cs" />
     <Compile Include="Keywords\FileAttachmentKeyword.cs" />
     <Compile Include="Keywords\ExerciseKeyword.cs" />
+    <Compile Include="Keywords\GoalKeyword.cs" />
     <Compile Include="Keywords\Keyword.cs" />
     <Compile Include="Tasks\AggregateTask.cs" />
     <Compile Include="Tasks\DurationGoalTask.cs" />

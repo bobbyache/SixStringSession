@@ -77,6 +77,10 @@
     <Compile Include="Tests\MetronomeGoalTaskTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CygSoft.SmartSession.DomainLegacy\CygSoft.SmartSession.DomainLegacy.csproj">
+      <Project>{b6ff8ee9-b05c-4d1c-ad60-e53a930b3711}</Project>
+      <Name>CygSoft.SmartSession.DomainLegacy</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CygSoft.SmartSession.Domain\CygSoft.SmartSession.Domain.csproj">
       <Project>{5e5c771f-a122-423a-8cc3-27488e9e054a}</Project>
       <Name>CygSoft.SmartSession.Domain</Name>

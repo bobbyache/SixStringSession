@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using CygSoft.SmartSession.Desktop.Attachments;
 using CygSoft.SmartSession.Desktop.Exercises;
+using CygSoft.SmartSession.Desktop.Goals;
 using CygSoft.SmartSession.Domain.Attachments;
 using CygSoft.SmartSession.Domain.Exercises;
+using CygSoft.SmartSession.Domain.Goals;
 using System.Windows;
 
 namespace CygSoft.SmartSession.Desktop
@@ -33,6 +35,14 @@ namespace CygSoft.SmartSession.Desktop
                 cfg.CreateMap<FileAttachmentSearchResult, FileAttachment>();
                 cfg.CreateMap<FileAttachmentSearchResult, FileAttachmentSearchResult>();
                 cfg.CreateMap<FileAttachmentSearchCriteriaViewModel, FileAttachmentSearchCriteria>();
+
+                cfg.CreateMap<GoalModel, Goal>();
+                cfg.CreateMap<Goal, GoalModel>();
+                cfg.CreateMap<Goal, Goal>();
+                cfg.CreateMap<Goal, GoalSearchResult>();
+                cfg.CreateMap<GoalSearchResult, Goal>();
+                cfg.CreateMap<GoalSearchResult, GoalSearchResult>();
+                cfg.CreateMap<GoalSearchCriteriaViewModel, GoalSearchCriteria>();
             });
         }
     }

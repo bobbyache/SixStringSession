@@ -25,14 +25,14 @@ namespace CygSoft.SmartSession.Desktop.UnitTests
             Assert.That(fileAttachmentModel.IsDirty, Is.False);
         }
 
-        [Test]
-        public void FileAttachmentModel_Initialized_With_New_File_Attachment_Has_ValidationErrors()
-        {
-            var fileAttachment = new FileAttachment();
-            var fileAttachmentModel = new FileAttachmentModel(fileAttachment);
+        //[Test]
+        //public void FileAttachmentModel_Initialized_With_New_File_Attachment_Has_ValidationErrors()
+        //{
+        //    var fileAttachment = new FileAttachment();
+        //    var fileAttachmentModel = new FileAttachmentModel(fileAttachment);
 
-            Assert.That(fileAttachmentModel.HasErrors, Is.True);
-        }
+        //    Assert.That(fileAttachmentModel.HasErrors, Is.True);
+        //}
 
         [Test]
         public void FileAttachmentModel_ChangeFilePath_Is_Now_Dirty()

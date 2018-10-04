@@ -20,11 +20,8 @@
         <DataTemplate DataType="{x:Type attach:FileAttachmentCompositeViewModel}">
             <attach:FileAttachmentCompositeView />
         </DataTemplate>
-        <!--<DataTemplate DataType="{x:Type exercises:ExerciseSearchViewModel}">
-            <exercises:ExerciseSearchView />
-        </DataTemplate>-->
-        <DataTemplate DataType="{x:Type goals:GoalSearchViewModel}">
-            <goals:GoalSearchView />
+        <DataTemplate DataType="{x:Type goals:GoalCompositeViewModel}">
+            <goals:GoalCompositeView />
         </DataTemplate>
         <DataTemplate DataType="{x:Type tasks:TaskSearchViewModel}">
             <tasks:TaskSearchView />
@@ -44,9 +41,9 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Button Grid.Column="0" Content="Tasks" Command="{Binding NavigationCommand}" CommandParameter="TaskSearch" />
-            <Button Grid.Column="1" Content="Goals" Command="{Binding NavigationCommand}" CommandParameter="GoalSearch" />
-            <Button Grid.Column="2" Content="Exercises" Command="{Binding NavigationCommand}" CommandParameter="ExerciseSearch" />
-            <Button Grid.Column="0" Content="Files" Command="{Binding NavigationCommand}" CommandParameter="FileAttachmentSearch" />
+            <Button Grid.Column="1" Content="Exercises" Command="{Binding NavigationCommand}" CommandParameter="ExerciseSearch" />
+            <Button Grid.Column="2" Content="Files" Command="{Binding NavigationCommand}" CommandParameter="FileAttachmentSearch" />
+            <Button Grid.Column="3" Content="Goals" Command="{Binding NavigationCommand}" CommandParameter="GoalSearch" />
         </Grid>
         <ContentControl Grid.Row="1"  Content="{Binding CurrentViewModel}" />
     </Grid>

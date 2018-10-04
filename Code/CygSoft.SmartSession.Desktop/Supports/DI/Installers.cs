@@ -9,6 +9,7 @@ using CygSoft.SmartSession.Desktop.Tasks;
 using CygSoft.SmartSession.Domain;
 using CygSoft.SmartSession.Domain.Attachments;
 using CygSoft.SmartSession.Domain.Exercises;
+using CygSoft.SmartSession.Domain.Goals;
 using CygSoft.SmartSession.EF;
 using GalaSoft.MvvmLight.Views;
 
@@ -42,10 +43,16 @@ namespace CygSoft.SmartSession.Desktop.Supports.DI
             container.Register(Component.For<FileAttachmentCompositeViewModel>());
             container.Register(Component.For<FileAttachmentSearchCriteriaViewModel>());
 
-            container.Register(Component.For<TaskSearchViewModel>());
+            container.Register(Component.For<IGoalService>().ImplementedBy(typeof(GoalService)));
+            container.Register(Component.For<GoalEditViewModel>());
             container.Register(Component.For<GoalSearchViewModel>());
-            container.Register(Component.For<MainWindowViewModel>());
+            container.Register(Component.For<GoalCompositeViewModel>());
+            container.Register(Component.For<GoalSearchCriteriaViewModel>());
             container.Register(Component.For<GoalListViewModel>());
+
+            container.Register(Component.For<TaskSearchViewModel>());
+            container.Register(Component.For<MainWindowViewModel>());
+            
         }
     }
 }

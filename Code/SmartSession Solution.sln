@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CygSoft.SmartSession.Deskto
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CygSoft.SmartSession.Desktop.UnitTests", "CygSoft.SmartSession.Desktop.UnitTests\CygSoft.SmartSession.Desktop.UnitTests.csproj", "{D649E315-E43A-4BA7-A5E7-8BA4308DFF57}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CygSoft.SmartSession.DomainLegacy", "CygSoft.SmartSession.DomainLegacy\CygSoft.SmartSession.DomainLegacy.csproj", "{B6FF8EE9-B05C-4D1C-AD60-E53A930B3711}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{D649E315-E43A-4BA7-A5E7-8BA4308DFF57}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D649E315-E43A-4BA7-A5E7-8BA4308DFF57}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D649E315-E43A-4BA7-A5E7-8BA4308DFF57}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6FF8EE9-B05C-4D1C-AD60-E53A930B3711}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6FF8EE9-B05C-4D1C-AD60-E53A930B3711}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6FF8EE9-B05C-4D1C-AD60-E53A930B3711}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6FF8EE9-B05C-4D1C-AD60-E53A930B3711}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+using CygSoft.SmartSession.Domain.Common;
+using System.Collections.Generic;
 
 namespace CygSoft.SmartSession.Domain.Goals
 {
-    public interface IGoalRepository
+    public interface IGoalRepository : IRepository<Goal>
     {
-        int Insert(Goal obj);
-        Goal Select(int id);
-        List<Goal> SelectList();
+        // Only add really custom stuff here like...
+        // GetGoalsWhere...
+        IReadOnlyList<Goal> Find(Specification<Goal> specification, string[] keywords, int page = 0, int pageSize = 100);
     }
 }

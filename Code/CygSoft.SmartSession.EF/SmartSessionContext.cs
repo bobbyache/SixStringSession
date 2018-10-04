@@ -1,10 +1,11 @@
 ﻿using CygSoft.SmartSession.Domain.Attachments;
 using CygSoft.SmartSession.Domain.Exercises;
+using CygSoft.SmartSession.Domain.Goals;
 using CygSoft.SmartSession.Domain.Keywords;
+using CygSoft.SmartSession.DomainLegacy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Console;
-using SmartSession.Domain.Records;
 
 namespace CygSoft.SmartSession.EF
 {
@@ -18,7 +19,7 @@ namespace CygSoft.SmartSession.EF
 
         private string connectionString;
 
-        public DbSet<Goal> Goals { get; set; }
+        public DbSet<CygSoft.SmartSession.Domain.Goals.Goal> Goals { get; set; }
         public DbSet<PracticeTask> Tasks { get; set; }
         public DbSet<Session> Sessions { get; set; }
         public DbSet<Exercise> Exercises { get; set; }
@@ -50,14 +51,16 @@ namespace CygSoft.SmartSession.EF
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // maps a many to many relationship...
-            modelBuilder.Entity<GoalPracticeTask>()
-                .HasKey(s => new { s.GoalId, s.TaskId });
+            //modelBuilder.Entity<GoalPracticeTask>()
+            //    .HasKey(s => new { s.GoalId, s.TaskId });
             modelBuilder.Entity<SessionPracticeTask>()
                 .HasKey(s => new { s.SessionId, s.PracticeTaskId });
             modelBuilder.Entity<ExerciseKeyword>()
                 .HasKey(s => new { s.ExerciseId, s.KeywordId });
             modelBuilder.Entity<FileAttachmentKeyword>()
                 .HasKey(s => new { s.FileAttachmentId, s.KeywordId });
+            modelBuilder.Entity<GoalKeyword>()
+                .HasKey(s => new { s.GoalId, s.KeywordId });
         }
     }
 }

@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace SmartSession.Domain.Records
+namespace CygSoft.SmartSession.DomainLegacy
 {
     public class PracticeTask
     {

@@ -13,7 +13,7 @@ namespace CygSoft.SmartSession.Desktop
     {
         private ExerciseCompositeViewModel exerciseSearchViewModel;
         private TaskSearchViewModel taskSearchViewModel;
-        private GoalSearchViewModel goalSearchViewModel;
+        private GoalCompositeViewModel goalSearchViewModel;
         private FileAttachmentCompositeViewModel fileAttachmentViewModel;
 
 
@@ -27,7 +27,7 @@ namespace CygSoft.SmartSession.Desktop
         public RelayCommand<string> NavigationCommand { get; private set; }
 
         public MainWindowViewModel(ExerciseCompositeViewModel exerciseSearchViewModel, FileAttachmentCompositeViewModel fileAttachmentViewModel, 
-            TaskSearchViewModel taskSearchViewModel, GoalSearchViewModel goalSearchViewModel)
+            TaskSearchViewModel taskSearchViewModel, GoalCompositeViewModel goalSearchViewModel)
         {
             this.exerciseSearchViewModel = exerciseSearchViewModel;
             this.fileAttachmentViewModel = fileAttachmentViewModel;

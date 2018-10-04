@@ -11,7 +11,7 @@ using System;
 namespace CygSoft.SmartSession.EF.Migrations
 {
     [DbContext(typeof(SmartSessionContext))]
-    [Migration("20181004095733_initial")]
+    [Migration("20181004112033_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -75,6 +75,27 @@ namespace CygSoft.SmartSession.EF.Migrations
                     b.ToTable("Exercises");
                 });
 
+            modelBuilder.Entity("CygSoft.SmartSession.Domain.Goals.Goal", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("DateCreated");
+
+                    b.Property<DateTime>("DateModified");
+
+                    b.Property<string>("Notes")
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(150)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Goals");
+                });
+
             modelBuilder.Entity("CygSoft.SmartSession.Domain.Keywords.ExerciseKeyword", b =>
                 {
                     b.Property<int>("ExerciseId");
@@ -101,6 +122,19 @@ namespace CygSoft.SmartSession.EF.Migrations
                     b.ToTable("FileAttachmentKeyword");
                 });
 
+            modelBuilder.Entity("CygSoft.SmartSession.Domain.Keywords.GoalKeyword", b =>
+                {
+                    b.Property<int>("GoalId");
+
+                    b.Property<int>("KeywordId");
+
+                    b.HasKey("GoalId", "KeywordId");
+
+                    b.HasIndex("KeywordId");
+
+                    b.ToTable("GoalKeyword");
+                });
+
             modelBuilder.Entity("CygSoft.SmartSession.Domain.Keywords.Keyword", b =>
                 {
                     b.Property<int>("Id")
@@ -115,38 +149,7 @@ namespace CygSoft.SmartSession.EF.Migrations
                     b.ToTable("Keywords");
                 });
 
-            modelBuilder.Entity("SmartSession.Domain.Records.Goal", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<DateTime>("DateCreated");
-
-                    b.Property<string>("Description");
-
-                    b.Property<DateTime>("TargetCompletionDate");
-
-                    b.Property<string>("Title");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Goals");
-                });
-
-            modelBuilder.Entity("SmartSession.Domain.Records.GoalPracticeTask", b =>
-                {
-                    b.Property<int>("GoalId");
-
-                    b.Property<int>("TaskId");
-
-                    b.HasKey("GoalId", "TaskId");
-
-                    b.HasIndex("TaskId");
-
-                    b.ToTable("GoalPracticeTask");
-                });
-
-            modelBuilder.Entity("SmartSession.Domain.Records.PracticeTask", b =>
+            modelBuilder.Entity("CygSoft.SmartSession.DomainLegacy.PracticeTask", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -172,7 +175,7 @@ namespace CygSoft.SmartSession.EF.Migrations
                     b.ToTable("Tasks");
                 });
 
-            modelBuilder.Entity("SmartSession.Domain.Records.Session", b =>
+            modelBuilder.Entity("CygSoft.SmartSession.DomainLegacy.Session", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -186,7 +189,7 @@ namespace CygSoft.SmartSession.EF.Migrations
                     b.ToTable("Sessions");
                 });
 
-            modelBuilder.Entity("SmartSession.Domain.Records.SessionPracticeTask", b =>
+            modelBuilder.Entity("CygSoft.SmartSession.DomainLegacy.SessionPracticeTask", b =>
                 {
                     b.Property<int>("SessionId");
 
@@ -211,7 +214,7 @@ namespace CygSoft.SmartSession.EF.Migrations
                     b.ToTable("SessionPracticeTask");
                 });
 
-            modelBuilder.Entity("SmartSession.Domain.Records.SessionPracticeTaskDuration", b =>
+            modelBuilder.Entity("CygSoft.SmartSession.DomainLegacy.SessionPracticeTaskDuration", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -227,7 +230,7 @@ namespace CygSoft.SmartSession.EF.Migrations
                     b.ToTable("SessionPracticeTaskDuration");
                 });
 
-            modelBuilder.Entity("SmartSession.Domain.Records.SessionPracticeTaskManualProgress", b =>
+            modelBuilder.Entity("CygSoft.SmartSession.DomainLegacy.SessionPracticeTaskManualProgress", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -239,7 +242,7 @@ namespace CygSoft.SmartSession.EF.Migrations
                     b.ToTable("SessionPracticeTaskManualProgress");
                 });
 
-            modelBuilder.Entity("SmartSession.Domain.Records.SessionPracticeTaskMetronome", b =>
+            modelBuilder.Entity("CygSoft.SmartSession.DomainLegacy.SessionPracticeTaskMetronome", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -281,46 +284,46 @@ namespace CygSoft.SmartSession.EF.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("SmartSession.Domain.Records.GoalPracticeTask", b =>
+            modelBuilder.Entity("CygSoft.SmartSession.Domain.Keywords.GoalKeyword", b =>
                 {
-                    b.HasOne("SmartSession.Domain.Records.Goal", "Goal")
-                        .WithMany()
+                    b.HasOne("CygSoft.SmartSession.Domain.Goals.Goal", "Goal")
+                        .WithMany("GoalKeywords")
                         .HasForeignKey("GoalId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("SmartSession.Domain.Records.PracticeTask", "Task")
+                    b.HasOne("CygSoft.SmartSession.Domain.Keywords.Keyword", "Keyword")
                         .WithMany()
-                        .HasForeignKey("TaskId")
+                        .HasForeignKey("KeywordId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("SmartSession.Domain.Records.PracticeTask", b =>
+            modelBuilder.Entity("CygSoft.SmartSession.DomainLegacy.PracticeTask", b =>
                 {
                     b.HasOne("CygSoft.SmartSession.Domain.Exercises.Exercise", "Exercise")
                         .WithMany()
                         .HasForeignKey("ExerciseId");
                 });
 
-            modelBuilder.Entity("SmartSession.Domain.Records.SessionPracticeTask", b =>
+            modelBuilder.Entity("CygSoft.SmartSession.DomainLegacy.SessionPracticeTask", b =>
                 {
-                    b.HasOne("SmartSession.Domain.Records.SessionPracticeTaskDuration", "Duration")
+                    b.HasOne("CygSoft.SmartSession.DomainLegacy.SessionPracticeTaskDuration", "Duration")
                         .WithMany()
                         .HasForeignKey("DurationId");
 
-                    b.HasOne("SmartSession.Domain.Records.SessionPracticeTaskManualProgress", "ManualProgressEstimate")
+                    b.HasOne("CygSoft.SmartSession.DomainLegacy.SessionPracticeTaskManualProgress", "ManualProgressEstimate")
                         .WithMany()
                         .HasForeignKey("ManualProgressEstimateId");
 
-                    b.HasOne("SmartSession.Domain.Records.SessionPracticeTaskMetronome", "Metronome")
+                    b.HasOne("CygSoft.SmartSession.DomainLegacy.SessionPracticeTaskMetronome", "Metronome")
                         .WithMany()
                         .HasForeignKey("MetronomeId");
 
-                    b.HasOne("SmartSession.Domain.Records.PracticeTask", "PracticeTask")
+                    b.HasOne("CygSoft.SmartSession.DomainLegacy.PracticeTask", "PracticeTask")
                         .WithMany("TaskSessions")
                         .HasForeignKey("PracticeTaskId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("SmartSession.Domain.Records.Session", "Session")
+                    b.HasOne("CygSoft.SmartSession.DomainLegacy.Session", "Session")
                         .WithMany("SessionTasks")
                         .HasForeignKey("SessionId")
                         .OnDelete(DeleteBehavior.Cascade);

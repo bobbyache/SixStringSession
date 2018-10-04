@@ -126,10 +126,27 @@
     </Compile>
     <Compile Include="Exercises\ExerciseSearchCriteriaViewModel.cs" />
     <Compile Include="Exercises\FindExercisesMessage.cs" />
+    <Compile Include="Goals\EndEditingGoalMessage.cs" />
+    <Compile Include="Goals\FindGoalsMessage.cs" />
+    <Compile Include="Goals\GoalCompositeView.xaml.cs">
+      <DependentUpon>GoalCompositeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Goals\GoalCompositeViewModel.cs" />
+    <Compile Include="Goals\GoalEditView.xaml.cs">
+      <DependentUpon>GoalEditView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Goals\GoalEditViewModel.cs" />
+    <Compile Include="Goals\GoalModel.cs" />
+    <Compile Include="Goals\GoalSearchCriteriaView.xaml.cs">
+      <DependentUpon>GoalSearchCriteriaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Goals\GoalSearchCriteriaViewModel.cs" />
+    <Compile Include="Goals\GoalSearchResult.cs" />
     <Compile Include="Goals\GoalSearchView.xaml.cs">
       <DependentUpon>GoalSearchView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Goals\GoalSearchViewModel.cs" />
+    <Compile Include="Goals\StartEditingGoalMessage.cs" />
     <Compile Include="MainWindowViewModel.cs" />
     <Compile Include="Supports\Converters\ComparisonOperatorConverter.cs" />
     <Compile Include="Supports\Converters\MathConverter.cs" />
@@ -190,9 +207,21 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Goals\GoalCompositeView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Goals\GoalEditView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Goals\GoalListControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Goals\GoalSearchCriteriaView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Goals\GoalSearchView.xaml">
       <SubType>Designer</SubType>
