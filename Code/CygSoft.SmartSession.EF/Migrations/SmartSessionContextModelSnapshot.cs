@@ -270,7 +270,7 @@ namespace CygSoft.SmartSession.EF.Migrations
             modelBuilder.Entity("CygSoft.SmartSession.Domain.Keywords.FileAttachmentKeyword", b =>
                 {
                     b.HasOne("CygSoft.SmartSession.Domain.Attachments.FileAttachment", "Attachment")
-                        .WithMany("ExerciseKeywords")
+                        .WithMany("FileAttachmentKeywords")
                         .HasForeignKey("FileAttachmentId")
                         .OnDelete(DeleteBehavior.Cascade);
 

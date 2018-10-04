@@ -17,7 +17,7 @@ namespace CygSoft.SmartSession.EF
             //var optionsBuilder = new DbContextOptionsBuilder<SmartSession>();
             //optionsBuilder.UseSqlite("Data Source=blog.db");
 
-            return new SmartSessionContext(@"server=ROBB-LT02\ROBLT;database=SmartSession_EF_2;Integrated Security=True;Connection Reset=true;");
+            return new SmartSessionContext(@"server=ROBB-LT02\ROBLT;database=SmartSession_EF;Integrated Security=True;Connection Reset=true;");
         }
     }
 }

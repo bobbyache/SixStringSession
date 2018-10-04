@@ -11,8 +11,8 @@ using System;
 namespace CygSoft.SmartSession.EF.Migrations
 {
     [DbContext(typeof(SmartSessionContext))]
-    [Migration("20181003130917_fileattach")]
-    partial class fileattach
+    [Migration("20181004095733_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -271,7 +271,7 @@ namespace CygSoft.SmartSession.EF.Migrations
             modelBuilder.Entity("CygSoft.SmartSession.Domain.Keywords.FileAttachmentKeyword", b =>
                 {
                     b.HasOne("CygSoft.SmartSession.Domain.Attachments.FileAttachment", "Attachment")
-                        .WithMany("ExerciseKeywords")
+                        .WithMany("FileAttachmentKeywords")
                         .HasForeignKey("FileAttachmentId")
                         .OnDelete(DeleteBehavior.Cascade);
 

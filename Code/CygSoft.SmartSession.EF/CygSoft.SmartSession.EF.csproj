@@ -108,13 +108,9 @@
     <Compile Include="..\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Migrations\20180925080946_Initial.cs" />
-    <Compile Include="Migrations\20180925080946_Initial.designer.cs">
-      <DependentUpon>20180925080946_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20181003130917_fileattach.cs" />
-    <Compile Include="Migrations\20181003130917_fileattach.designer.cs">
-      <DependentUpon>20181003130917_fileattach.cs</DependentUpon>
+    <Compile Include="Migrations\20181004095733_initial.cs" />
+    <Compile Include="Migrations\20181004095733_initial.designer.cs">
+      <DependentUpon>20181004095733_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\SmartSessionContextModelSnapshot.cs" />
     <Compile Include="Records\Goal.cs" />
