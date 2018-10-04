@@ -3,6 +3,7 @@ using CygSoft.SmartSession.Domain.Exercises;
 using CygSoft.SmartSession.Domain.Goals;
 using CygSoft.SmartSession.Domain.GoalTasks;
 using CygSoft.SmartSession.Domain.Keywords;
+using CygSoft.SmartSession.Domain.Sessions;
 using CygSoft.SmartSession.DomainLegacy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -25,6 +26,7 @@ namespace CygSoft.SmartSession.EF
         public DbSet<Exercise> Exercises { get; set; }
         public DbSet<Keyword> Keywords { get; set; }
         public DbSet<FileAttachment> FileAttachments { get; set; }
+        public DbSet<PracticeSessionResult> PracticeSessionResults { get; set; }
 
         public SmartSessionContext(string connectionString)
         {

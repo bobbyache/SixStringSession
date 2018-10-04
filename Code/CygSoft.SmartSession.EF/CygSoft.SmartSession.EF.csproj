@@ -108,11 +108,6 @@
     <Compile Include="..\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Migrations\20181004164600_initial.cs" />
-    <Compile Include="Migrations\20181004164600_initial.designer.cs">
-      <DependentUpon>20181004164600_initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\SmartSessionContextModelSnapshot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
     <Compile Include="Repositories\ExerciseRepository.cs" />
@@ -137,6 +132,8 @@
       <Name>CygSoft.SmartSession.Domain</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
