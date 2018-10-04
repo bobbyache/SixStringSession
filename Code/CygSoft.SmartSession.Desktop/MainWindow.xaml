@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:CygSoft.SmartSession.Desktop"
         xmlns:exercises="clr-namespace:CygSoft.SmartSession.Desktop.Exercises"
         xmlns:goals="clr-namespace:CygSoft.SmartSession.Desktop.Goals"
+        xmlns:goalTasks="clr-namespace:CygSoft.SmartSession.Desktop.GoalTasks"
         xmlns:tasks="clr-namespace:CygSoft.SmartSession.Desktop.Tasks"
         xmlns:attach="clr-namespace:CygSoft.SmartSession.Desktop.Attachments"
         mc:Ignorable="d"
@@ -23,6 +24,9 @@
         <DataTemplate DataType="{x:Type goals:GoalCompositeViewModel}">
             <goals:GoalCompositeView />
         </DataTemplate>
+        <DataTemplate DataType="{x:Type goalTasks:GoalTaskCompositeViewModel}">
+            <goalTasks:GoalTaskCompositeView />
+        </DataTemplate>
         <DataTemplate DataType="{x:Type tasks:TaskSearchViewModel}">
             <tasks:TaskSearchView />
         </DataTemplate>
@@ -39,11 +43,13 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Button Grid.Column="0" Content="Tasks" Command="{Binding NavigationCommand}" CommandParameter="TaskSearch" />
             <Button Grid.Column="1" Content="Exercises" Command="{Binding NavigationCommand}" CommandParameter="ExerciseSearch" />
             <Button Grid.Column="2" Content="Files" Command="{Binding NavigationCommand}" CommandParameter="FileAttachmentSearch" />
             <Button Grid.Column="3" Content="Goals" Command="{Binding NavigationCommand}" CommandParameter="GoalSearch" />
+            <Button Grid.Column="4" Content="GoalTasks" Command="{Binding NavigationCommand}" CommandParameter="GoalTaskSearch" />
         </Grid>
         <ContentControl Grid.Row="1"  Content="{Binding CurrentViewModel}" />
     </Grid>

@@ -2,9 +2,11 @@
 using CygSoft.SmartSession.Desktop.Attachments;
 using CygSoft.SmartSession.Desktop.Exercises;
 using CygSoft.SmartSession.Desktop.Goals;
+using CygSoft.SmartSession.Desktop.GoalTasks;
 using CygSoft.SmartSession.Domain.Attachments;
 using CygSoft.SmartSession.Domain.Exercises;
 using CygSoft.SmartSession.Domain.Goals;
+using CygSoft.SmartSession.Domain.GoalTasks;
 using System.Windows;
 
 namespace CygSoft.SmartSession.Desktop
@@ -43,6 +45,14 @@ namespace CygSoft.SmartSession.Desktop
                 cfg.CreateMap<GoalSearchResult, Goal>();
                 cfg.CreateMap<GoalSearchResult, GoalSearchResult>();
                 cfg.CreateMap<GoalSearchCriteriaViewModel, GoalSearchCriteria>();
+
+                cfg.CreateMap<GoalTaskModel, GoalTask>();
+                cfg.CreateMap<GoalTask, GoalTaskModel>();
+                cfg.CreateMap<GoalTask, GoalTask>();
+                cfg.CreateMap<GoalTask, GoalTaskSearchResult>();
+                cfg.CreateMap<GoalTaskSearchResult, GoalTask>();
+                cfg.CreateMap<GoalTaskSearchResult, GoalTaskSearchResult>();
+                cfg.CreateMap<GoalTaskSearchCriteriaViewModel, GoalTaskSearchCriteria>();
             });
         }
     }

@@ -108,9 +108,9 @@
     <Compile Include="..\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Migrations\20181004112033_initial.cs" />
-    <Compile Include="Migrations\20181004112033_initial.designer.cs">
-      <DependentUpon>20181004112033_initial.cs</DependentUpon>
+    <Compile Include="Migrations\20181004132924_initial.cs" />
+    <Compile Include="Migrations\20181004132924_initial.designer.cs">
+      <DependentUpon>20181004132924_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\SmartSessionContextModelSnapshot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -118,6 +118,7 @@
     <Compile Include="Repositories\ExerciseRepository.cs" />
     <Compile Include="Repositories\FileAttachmentRepository.cs" />
     <Compile Include="Repositories\GoalRepository.cs" />
+    <Compile Include="Repositories\GoalTaskRepository.cs" />
     <Compile Include="SmartSessionContext.cs" />
     <Compile Include="SmartSessionContextFactory.cs" />
     <Compile Include="UnitOfWork.cs" />

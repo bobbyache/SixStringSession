@@ -2,6 +2,7 @@
 using CygSoft.SmartSession.Domain.Attachments;
 using CygSoft.SmartSession.Domain.Exercises;
 using CygSoft.SmartSession.Domain.Goals;
+using CygSoft.SmartSession.Domain.GoalTasks;
 using CygSoft.SmartSession.EF.Repositories;
 
 namespace CygSoft.SmartSession.EF
@@ -11,6 +12,7 @@ namespace CygSoft.SmartSession.EF
         private readonly SmartSessionContext context;
 
         public IGoalRepository Goals { get; private set; }
+        public IGoalTaskRepository GoalTasks { get; private set; }
         public IExerciseRepository Exercises { get; private set; }
         public IFileAttachmentRepository FileAttachments { get; private set; }
 
@@ -18,6 +20,7 @@ namespace CygSoft.SmartSession.EF
         {
             this.context = context;
             Goals = new GoalRepository(context);
+            GoalTasks = new GoalTaskRepository(context);
             Exercises = new ExerciseRepository(context);
             FileAttachments = new FileAttachmentRepository(context);
         }

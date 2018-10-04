@@ -1,6 +1,7 @@
 ﻿using CygSoft.SmartSession.Domain.Attachments;
 using CygSoft.SmartSession.Domain.Exercises;
 using CygSoft.SmartSession.Domain.Goals;
+using CygSoft.SmartSession.Domain.GoalTasks;
 using CygSoft.SmartSession.Domain.Keywords;
 using CygSoft.SmartSession.DomainLegacy;
 using Microsoft.EntityFrameworkCore;
@@ -20,6 +21,7 @@ namespace CygSoft.SmartSession.EF
         private string connectionString;
 
         public DbSet<CygSoft.SmartSession.Domain.Goals.Goal> Goals { get; set; }
+        public DbSet<GoalTask> GoalTasks { get; set; }
         public DbSet<PracticeTask> Tasks { get; set; }
         public DbSet<Session> Sessions { get; set; }
         public DbSet<Exercise> Exercises { get; set; }
@@ -61,6 +63,8 @@ namespace CygSoft.SmartSession.EF
                 .HasKey(s => new { s.FileAttachmentId, s.KeywordId });
             modelBuilder.Entity<GoalKeyword>()
                 .HasKey(s => new { s.GoalId, s.KeywordId });
+            modelBuilder.Entity<GoalTaskKeyword>()
+                .HasKey(s => new { s.GoalTaskId, s.KeywordId });
         }
     }
 }

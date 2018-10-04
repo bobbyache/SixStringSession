@@ -4,12 +4,14 @@ using Castle.Windsor;
 using CygSoft.SmartSession.Desktop.Attachments;
 using CygSoft.SmartSession.Desktop.Exercises;
 using CygSoft.SmartSession.Desktop.Goals;
+using CygSoft.SmartSession.Desktop.GoalTasks;
 using CygSoft.SmartSession.Desktop.Supports.Services;
 using CygSoft.SmartSession.Desktop.Tasks;
 using CygSoft.SmartSession.Domain;
 using CygSoft.SmartSession.Domain.Attachments;
 using CygSoft.SmartSession.Domain.Exercises;
 using CygSoft.SmartSession.Domain.Goals;
+using CygSoft.SmartSession.Domain.GoalTasks;
 using CygSoft.SmartSession.EF;
 using GalaSoft.MvvmLight.Views;
 
@@ -49,6 +51,12 @@ namespace CygSoft.SmartSession.Desktop.Supports.DI
             container.Register(Component.For<GoalCompositeViewModel>());
             container.Register(Component.For<GoalSearchCriteriaViewModel>());
             container.Register(Component.For<GoalListViewModel>());
+
+            container.Register(Component.For<IGoalTaskService>().ImplementedBy(typeof(GoalTaskService)));
+            container.Register(Component.For<GoalTaskEditViewModel>());
+            container.Register(Component.For<GoalTaskSearchViewModel>());
+            container.Register(Component.For<GoalTaskCompositeViewModel>());
+            container.Register(Component.For<GoalTaskSearchCriteriaViewModel>());
 
             container.Register(Component.For<TaskSearchViewModel>());
             container.Register(Component.For<MainWindowViewModel>());

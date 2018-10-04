@@ -2,6 +2,7 @@
 using CygSoft.SmartSession.Desktop.Attachments;
 using CygSoft.SmartSession.Desktop.Exercises;
 using CygSoft.SmartSession.Desktop.Goals;
+using CygSoft.SmartSession.Desktop.GoalTasks;
 using CygSoft.SmartSession.Desktop.Supports.DI;
 using CygSoft.SmartSession.Desktop.Tasks;
 
@@ -27,6 +28,12 @@ namespace CygSoft.SmartSession.Desktop.Supports.Services
         public GoalCompositeViewModel GoalCompositeViewModel { get => Bootstrapper.Container.Resolve<GoalCompositeViewModel>(); }
         public GoalSearchViewModel GoalSearchViewModel { get => Bootstrapper.Container.Resolve<GoalSearchViewModel>(); }
         public GoalSearchCriteriaViewModel GoalSearchCriteriaViewModel { get => Bootstrapper.Container.Resolve<GoalSearchCriteriaViewModel>(); }
+
+        public GoalTaskEditViewModel GoalTaskEditViewModel { get => Bootstrapper.Container.Resolve<GoalTaskEditViewModel>(); }
+        public GoalTaskCompositeViewModel GoalTaskCompositeViewModel { get => Bootstrapper.Container.Resolve<GoalTaskCompositeViewModel>(); }
+        public GoalTaskSearchViewModel GoalTaskSearchViewModel { get => Bootstrapper.Container.Resolve<GoalTaskSearchViewModel>(); }
+        public GoalTaskSearchCriteriaViewModel GoalTaskSearchCriteriaViewModel { get => Bootstrapper.Container.Resolve<GoalTaskSearchCriteriaViewModel>(); }
+
 
         public MainWindowViewModel MainWindowViewModel { get => Bootstrapper.Container.Resolve<MainWindowViewModel>(); }
         public TaskSearchViewModel TaskSearchViewModel { get => Bootstrapper.Container.Resolve<TaskSearchViewModel>(); }

@@ -95,6 +95,27 @@ namespace CygSoft.SmartSession.EF.Migrations
                     b.ToTable("Goals");
                 });
 
+            modelBuilder.Entity("CygSoft.SmartSession.Domain.GoalTasks.GoalTask", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("DateCreated");
+
+                    b.Property<DateTime>("DateModified");
+
+                    b.Property<string>("Notes")
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(150)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("GoalTasks");
+                });
+
             modelBuilder.Entity("CygSoft.SmartSession.Domain.Keywords.ExerciseKeyword", b =>
                 {
                     b.Property<int>("ExerciseId");
@@ -132,6 +153,19 @@ namespace CygSoft.SmartSession.EF.Migrations
                     b.HasIndex("KeywordId");
 
                     b.ToTable("GoalKeyword");
+                });
+
+            modelBuilder.Entity("CygSoft.SmartSession.Domain.Keywords.GoalTaskKeyword", b =>
+                {
+                    b.Property<int>("GoalTaskId");
+
+                    b.Property<int>("KeywordId");
+
+                    b.HasKey("GoalTaskId", "KeywordId");
+
+                    b.HasIndex("KeywordId");
+
+                    b.ToTable("GoalTaskKeyword");
                 });
 
             modelBuilder.Entity("CygSoft.SmartSession.Domain.Keywords.Keyword", b =>
@@ -288,6 +322,19 @@ namespace CygSoft.SmartSession.EF.Migrations
                     b.HasOne("CygSoft.SmartSession.Domain.Goals.Goal", "Goal")
                         .WithMany("GoalKeywords")
                         .HasForeignKey("GoalId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("CygSoft.SmartSession.Domain.Keywords.Keyword", "Keyword")
+                        .WithMany()
+                        .HasForeignKey("KeywordId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("CygSoft.SmartSession.Domain.Keywords.GoalTaskKeyword", b =>
+                {
+                    b.HasOne("CygSoft.SmartSession.Domain.GoalTasks.GoalTask", "GoalTask")
+                        .WithMany("GoalTaskKeywords")
+                        .HasForeignKey("GoalTaskId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("CygSoft.SmartSession.Domain.Keywords.Keyword", "Keyword")

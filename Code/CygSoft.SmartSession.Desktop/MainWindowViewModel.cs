@@ -1,6 +1,7 @@
 ﻿using CygSoft.SmartSession.Desktop.Attachments;
 using CygSoft.SmartSession.Desktop.Exercises;
 using CygSoft.SmartSession.Desktop.Goals;
+using CygSoft.SmartSession.Desktop.GoalTasks;
 using CygSoft.SmartSession.Desktop.Tasks;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
@@ -14,6 +15,7 @@ namespace CygSoft.SmartSession.Desktop
         private ExerciseCompositeViewModel exerciseSearchViewModel;
         private TaskSearchViewModel taskSearchViewModel;
         private GoalCompositeViewModel goalSearchViewModel;
+        private GoalTaskCompositeViewModel goalTaskSearchViewModel;
         private FileAttachmentCompositeViewModel fileAttachmentViewModel;
 
 
@@ -27,12 +29,14 @@ namespace CygSoft.SmartSession.Desktop
         public RelayCommand<string> NavigationCommand { get; private set; }
 
         public MainWindowViewModel(ExerciseCompositeViewModel exerciseSearchViewModel, FileAttachmentCompositeViewModel fileAttachmentViewModel, 
-            TaskSearchViewModel taskSearchViewModel, GoalCompositeViewModel goalSearchViewModel)
+            TaskSearchViewModel taskSearchViewModel, GoalCompositeViewModel goalSearchViewModel, GoalTaskCompositeViewModel goalTaskSearchViewModel)
         {
             this.exerciseSearchViewModel = exerciseSearchViewModel;
             this.fileAttachmentViewModel = fileAttachmentViewModel;
             this.taskSearchViewModel = taskSearchViewModel;
             this.goalSearchViewModel = goalSearchViewModel;
+            this.goalTaskSearchViewModel = goalTaskSearchViewModel;
+
             NavigationCommand = new RelayCommand<string>(OnNavigation);
             OnNavigation("ExerciseSearch");
         }
@@ -46,6 +50,9 @@ namespace CygSoft.SmartSession.Desktop
                     break;
                 case "GoalSearch":
                     CurrentViewModel = goalSearchViewModel;
+                    break;
+                case "GoalTaskSearch":
+                    CurrentViewModel = goalTaskSearchViewModel;
                     break;
                 case "ExerciseSearch":
                     CurrentViewModel = exerciseSearchViewModel;
