@@ -9,7 +9,7 @@ namespace CygSoft.SmartSession.Domain.Tasks
         private List<BaseTask> tasks = new List<BaseTask>();
         private ProgressCalculator progressCalculator = new ProgressCalculator();
 
-        public override double PercentCompleted => progressCalculator.CalculateTotalProgress();
+        public override double PercentCompleted() => progressCalculator.CalculateTotalProgress();
 
         public override int MinutesPracticed => throw new NotImplementedException();
 

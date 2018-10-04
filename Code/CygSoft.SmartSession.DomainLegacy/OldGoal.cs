@@ -44,10 +44,10 @@ namespace CygSoft.SmartSession.Domain.Goals
         {
             IWeightedEntity weightedTask = goalTask as IWeightedEntity;
 
-            if (goalTask.PercentCompleted < 0)
+            if (goalTask.PercentCompleted() < 0)
                 throw new ArgumentOutOfRangeException("Percent cannot be a negative value.");
 
-            if (goalTask.PercentCompleted > 100)
+            if (goalTask.PercentCompleted() > 100)
                 throw new ArgumentOutOfRangeException("Percent value cannot exceed 100.");
 
             if (weightedTask.Weighting <= 0)

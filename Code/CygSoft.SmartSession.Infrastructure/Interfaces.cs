@@ -24,13 +24,13 @@ namespace CygSoft.SmartSession.Infrastructure
         string Title { get; }
         DateTime CreateDate { get; }
         int MinutesPracticed { get; }
-        double PercentCompleted { get; }
+        double PercentCompleted();
         DateTime? StartDate { get; }
     }
 
     public interface IWeightedEntity
     {
         int Weighting { get; set; }
-        double PercentCompleted { get; }
+        double PercentCompleted();
     }
 }

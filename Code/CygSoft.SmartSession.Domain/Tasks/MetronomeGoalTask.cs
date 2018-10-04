@@ -23,22 +23,19 @@ namespace CygSoft.SmartSession.Domain.Tasks
             }
         }
 
-        public override double PercentCompleted
+        public override double PercentCompleted()
         {
-            get
-            {
-                if (StartSpeed > CurrentSpeed)
-                    return 0;
-
-                int numerator = CurrentSpeed - StartSpeed;
-                int denominator = TargetSpeed - StartSpeed;
-
-                if (denominator > 0)
-                {
-                    return ((double)numerator / denominator) * 100;
-                }
+            if (StartSpeed > CurrentSpeed)
                 return 0;
+
+            int numerator = CurrentSpeed - StartSpeed;
+            int denominator = TargetSpeed - StartSpeed;
+
+            if (denominator > 0)
+            {
+                return ((double)numerator / denominator) * 100;
             }
+            return 0;
         }
     }
 }
