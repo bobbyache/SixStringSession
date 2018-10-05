@@ -30,7 +30,7 @@ namespace CygSoft.SmartSession.Desktop.Attachments
         }
 
         private string filePath;
-        [Required]
+        [ValidFilePathValidator]
         public string FilePath
         {
             get { return filePath; }
@@ -45,7 +45,7 @@ namespace CygSoft.SmartSession.Desktop.Attachments
         }
 
         private string fileTitle;
-        [Required]
+        [ValidFileName(RequireExtension = false)]
         public string FileTitle
         {
             get { return fileTitle; }

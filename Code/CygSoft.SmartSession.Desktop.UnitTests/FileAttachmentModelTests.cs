@@ -1,4 +1,5 @@
 ﻿using CygSoft.SmartSession.Desktop.Attachments;
+using CygSoft.SmartSession.Desktop.Supports.Validators;
 using CygSoft.SmartSession.Domain.Attachments;
 using NUnit.Framework;
 using System;
@@ -88,6 +89,49 @@ namespace CygSoft.SmartSession.Desktop.UnitTests
 
             Assert.That(fileAttachmentModel.FileTitle, Is.EqualTo("current_file_title"));
             Assert.That(fileAttachmentModel.Extension, Is.EqualTo(".gp"));
+        }
+
+        [Test]
+        public void TestFilenameAttribute()
+        {
+            var rxa = new ValidFileNameAttribute();
+            Assert.IsFalse(rxa.IsValid("pptx."));
+            Assert.IsFalse(rxa.IsValid("pp.tx."));
+            Assert.IsFalse(rxa.IsValid("."));
+            Assert.IsFalse(rxa.IsValid(".pp.tx"));
+            Assert.IsFalse(rxa.IsValid(".pptx"));
+            Assert.IsFalse(rxa.IsValid("pptx"));
+            Assert.IsFalse(rxa.IsValid("a/abc.pptx"));
+            Assert.IsFalse(rxa.IsValid("a\\abc.pptx"));
+            Assert.IsFalse(rxa.IsValid("c:abc.pptx"));
+            Assert.IsFalse(rxa.IsValid("c<abc.pptx"));
+            Assert.IsTrue(rxa.IsValid("abc.pptx"));
+            rxa = new ValidFileNameAttribute { AllowedExtensions = ".pptx" };
+            Assert.IsFalse(rxa.IsValid("abc.docx"));
+            Assert.IsTrue(rxa.IsValid("abc.pptx"));
+        }
+
+
+        [Test]
+        public void TestFilenameAttribute_2()
+        {
+            var rxa = new ValidFileNameAttribute();
+            rxa.RequireExtension = false;
+
+            Assert.IsFalse(rxa.IsValid("pptx."));
+            Assert.IsFalse(rxa.IsValid("pp.tx."));
+            Assert.IsFalse(rxa.IsValid("."));
+            Assert.IsFalse(rxa.IsValid(".pp.tx"));
+            Assert.IsFalse(rxa.IsValid(".pptx"));
+            Assert.IsTrue(rxa.IsValid("pptx"));
+            Assert.IsFalse(rxa.IsValid("a/abc.pptx"));
+            Assert.IsFalse(rxa.IsValid("a\\abc.pptx"));
+            Assert.IsFalse(rxa.IsValid("c:abc.pptx"));
+            Assert.IsFalse(rxa.IsValid("c<abc.pptx"));
+            Assert.IsTrue(rxa.IsValid("abc.pptx"));
+            rxa = new ValidFileNameAttribute { AllowedExtensions = ".pptx" };
+            Assert.IsFalse(rxa.IsValid("abc.docx"));
+            Assert.IsTrue(rxa.IsValid("abc.pptx"));
         }
     }
 }

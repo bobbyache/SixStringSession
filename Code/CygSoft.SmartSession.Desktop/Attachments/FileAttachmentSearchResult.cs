@@ -5,14 +5,9 @@ namespace CygSoft.SmartSession.Desktop.Attachments
 {
     public class FileAttachmentSearchResult : ObservableObject
     {
-        private bool isDirty;
-        public bool IsDirty
-        {
-            get { return isDirty; }
-            set { Set(() => IsDirty, ref isDirty, value); }
-        }
-
         public int Id { get; set; }
+
+        public string FileName { get { return FileTitle + Extension; } }
 
         private string fileTitle;
         public string FileTitle
@@ -20,8 +15,17 @@ namespace CygSoft.SmartSession.Desktop.Attachments
             get { return fileTitle; }
             set
             {
-                if (Set(() => FileTitle, ref fileTitle, value))
-                    isDirty = true;
+                Set(() => FileTitle, ref fileTitle, value);
+            }
+        }
+
+        private string extension;
+        public string Extension
+        {
+            get { return extension; }
+            set
+            {
+                Set(() => Extension, ref extension, value);
             }
         }
 
@@ -31,8 +35,7 @@ namespace CygSoft.SmartSession.Desktop.Attachments
             get { return notes; }
             set
             {
-                if (Set(() => Notes, ref notes, value))
-                    isDirty = true;
+                Set(() => Notes, ref notes, value);
             }
         }
     }
