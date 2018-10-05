@@ -1,11 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CygSoft.SmartSession.Desktop.Attachments
 {
@@ -43,7 +38,7 @@ namespace CygSoft.SmartSession.Desktop.Attachments
 
         private void StartEditingFileAttachment(FileAttachmentSearchResult fileAttachmentSearchResult)
         {
-            fileAttachmentEditViewModel.StartEdit(fileAttachmentSearchResult);
+            fileAttachmentEditViewModel.StartEdit(fileAttachmentSearchResult?.Id);
             OnNavigation("Edit");
         }
 

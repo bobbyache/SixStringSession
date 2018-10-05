@@ -4,7 +4,6 @@ using CygSoft.SmartSession.Domain.Attachments;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
-using GalaSoft.MvvmLight.Views;
 using System;
 using System.Collections.ObjectModel;
 
@@ -12,22 +11,6 @@ namespace CygSoft.SmartSession.Desktop.Attachments
 {
     public class FileAttachmentSearchViewModel : ViewModelBase
     {
-        #region Alternative Constructors
-        //public FileAttachmentSearchViewModel(IFileAttachmentService fileAttachmentService, IDialogViewService dialogService, INavigationService navigationService)
-        //{
-        //    this.fileAttachmentService = fileAttachmentService;
-        //    this.dialogService = dialogService;
-        //    this.navigationService = navigationService;
-        //}
-
-        // for blend:
-        //public FileAttachmentSearchViewModel() : this(new FileAttachmentService(), new DialogService(), new NavigationService())
-        //{
-        //    ...
-        //}
-
-        #endregion
-
         private IFileAttachmentService fileAttachmentService;
         private IDialogViewService dialogService;
 
@@ -42,6 +25,25 @@ namespace CygSoft.SmartSession.Desktop.Attachments
             EditFileAttachmentCommand = new RelayCommand(EditFileAttachment, () => SelectedFileAttachment != null);
 
             Messenger.Default.Register<FindFileAttachmentsMessage>(this, Find);
+            Messenger.Default.Register<EndEditingFileAttachmentMessage>(this, UpdateEditedAttachment);
+        }
+
+        private void UpdateEditedAttachment(EndEditingFileAttachmentMessage obj)
+        {
+
+            if (obj.AddingNew)
+            {
+                var result = Mapper.Map<FileAttachmentSearchResult>(obj.FileAttachmentModel);
+                FileAttachmentList.Add(result);
+                SelectedFileAttachment = result;
+            }
+            else
+            {
+                if (obj.FileAttachmentModel.Id != SelectedFileAttachment.Id)
+                    throw new InvalidOperationException();
+
+                Mapper.Map(obj.FileAttachmentModel, SelectedFileAttachment);
+            }
         }
 
         public RelayCommand AddFileAttachmentCommand { get; private set; }
@@ -102,7 +104,6 @@ namespace CygSoft.SmartSession.Desktop.Attachments
         private void EditFileAttachment()
         {
             Messenger.Default.Send(new StartEditingFileAttachmentMessage(SelectedFileAttachment));
-            //dialogService.ShowMessage($"Edited - {DateTime.Now}. This is an extra little note.", "Edit");
         }
 
         private void DeleteFileAttachment()
@@ -113,19 +114,7 @@ namespace CygSoft.SmartSession.Desktop.Attachments
 
         private void AddFileAttachment()
         {
-            var fileAttachment = new FileAttachmentSearchResult
-            {
-                FileTitle = $"New FileAttachment Item - {DateTime.Now}",
-    
-                Notes = null
-            };
-
-            var domainFileAttachment = Mapper.Map<FileAttachment>(fileAttachment);
-            fileAttachmentService.Add(domainFileAttachment);
-            Mapper.Map(domainFileAttachment, fileAttachment);
-
-            FileAttachmentList.Add(fileAttachment);
-            SelectedFileAttachment = fileAttachment;
+            Messenger.Default.Send(new StartEditingFileAttachmentMessage(null));
         }
     }
 }

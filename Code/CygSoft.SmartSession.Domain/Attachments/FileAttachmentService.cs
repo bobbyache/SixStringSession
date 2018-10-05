@@ -20,8 +20,6 @@ namespace CygSoft.SmartSession.Domain.Attachments
             if (fileAttachment.Id > 0)
                 throw new ArgumentException("A new file attachment cannot have an id");
 
-            fileAttachment.FileTitle = "New File";
-            fileAttachment.Extension = ".txt";
             fileAttachment.DateCreated = DateTime.Now;
             fileAttachment.DateModified = fileAttachment.DateCreated;
 

@@ -1,16 +1,10 @@
-﻿using AutoMapper;
-using CygSoft.SmartSession.Desktop.Supports.Services;
+﻿using CygSoft.SmartSession.Desktop.Supports.Services;
 using CygSoft.SmartSession.Domain.Attachments;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
-using GalaSoft.MvvmLight.Views;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CygSoft.SmartSession.Desktop.Attachments
 {
@@ -20,7 +14,6 @@ namespace CygSoft.SmartSession.Desktop.Attachments
         private IDialogViewService dialogService;
 
         private FileAttachmentModel fileAttachmentModel;
-        private FileAttachmentSearchResult fileAttachmentSearchResult;
 
         public RelayCommand SaveCommand { get; private set; }
         public RelayCommand CancelCommand { get; private set; }
@@ -52,12 +45,18 @@ namespace CygSoft.SmartSession.Desktop.Attachments
                 fileAttachmentModel.FilePath = filePath;
         }
 
-        public void StartEdit(FileAttachmentSearchResult fileAttachmentSearchResult)
+        public void StartEdit(int? fileAttachmentId)
         {
-            this.fileAttachmentSearchResult = fileAttachmentSearchResult;
-
             if (this.FileAttachment != null) this.FileAttachment.ErrorsChanged -= FileAttachment_ErrorsChanged;
-            this.FileAttachment = new FileAttachmentModel(this.fileAttachmentService.Get(fileAttachmentSearchResult.Id));
+
+            if (fileAttachmentId.HasValue)
+            {
+                this.FileAttachment = new FileAttachmentModel(this.fileAttachmentService.Get(fileAttachmentId.Value));
+            }
+            else
+            {
+                this.FileAttachment = new FileAttachmentModel(new FileAttachment());
+            }
             this.FileAttachment.ErrorsChanged += FileAttachment_ErrorsChanged;
         }
 
@@ -69,22 +68,23 @@ namespace CygSoft.SmartSession.Desktop.Attachments
         private void Save()
         {
             fileAttachmentModel.Commit();
-            fileAttachmentService.Update(fileAttachmentModel.FileAttachment);
-
-            if (fileAttachmentSearchResult != null)
-                Mapper.Map(fileAttachmentModel, fileAttachmentSearchResult);
-
-            Messenger.Default.Send(new EndEditingFileAttachmentMessage(fileAttachmentModel));
+            if (fileAttachmentModel.Id <= 0)
+            {
+                fileAttachmentService.Add(fileAttachmentModel.FileAttachment);
+                fileAttachmentModel.Id = fileAttachmentModel.FileAttachment.Id;
+                Messenger.Default.Send(new EndEditingFileAttachmentMessage(fileAttachmentModel, true));
+            }
+            else
+            {
+                fileAttachmentService.Update(fileAttachmentModel.FileAttachment);
+                Messenger.Default.Send(new EndEditingFileAttachmentMessage(fileAttachmentModel, false));
+            }
         }
 
         private void Cancel()
         {
             fileAttachmentModel.Revert();
-
-            if (fileAttachmentSearchResult != null)
-                Mapper.Map(fileAttachmentModel, fileAttachmentSearchResult);
-
-            Messenger.Default.Send(new EndEditingFileAttachmentMessage(fileAttachmentModel));
+            Messenger.Default.Send(new EndEditingFileAttachmentMessage(fileAttachmentModel, false, false));
         }
     }
 }
