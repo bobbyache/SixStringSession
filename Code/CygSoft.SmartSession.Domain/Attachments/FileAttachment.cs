@@ -30,7 +30,10 @@ namespace CygSoft.SmartSession.Domain.Attachments
 
         public void ChangeName(string filePath, string fileTitle)
         {
-            BuildDefinition(filePath, fileTitle);
+            if (filePath == null)
+                this.FileTitle = fileTitle;
+            else
+                BuildDefinition(filePath, fileTitle);
         }
 
         public List<FileAttachmentKeyword> FileAttachmentKeywords { get; set; }
@@ -47,6 +50,11 @@ namespace CygSoft.SmartSession.Domain.Attachments
                 FileTitle = Path.GetFileNameWithoutExtension(path);
                 Extension = Path.GetExtension(path);
             }
+        }
+
+        public string GetFileName()
+        {
+            return FileTitle + Extension;
         }
     }
 }

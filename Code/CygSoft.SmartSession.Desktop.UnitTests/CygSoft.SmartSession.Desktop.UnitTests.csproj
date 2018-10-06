@@ -66,6 +66,7 @@
   <ItemGroup>
     <Compile Include="FileAttachmentModelTests.cs" />
     <Compile Include="FileAttachmentSearchResultTests.cs" />
+    <Compile Include="FileAttachmentEditViewModelTests.cs" />
     <Compile Include="OneTimeSetup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

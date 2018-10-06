@@ -76,6 +76,7 @@ namespace CygSoft.SmartSession.Desktop.Attachments
         public override void Commit()
         {
             Mapper.Map(this, FileAttachment);
+
             FileAttachment.ChangeName(this.FilePath, this.FileTitle);
             base.Commit();
         }

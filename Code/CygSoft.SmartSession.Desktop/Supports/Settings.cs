@@ -21,6 +21,22 @@ namespace CygSoft.SmartSession.Desktop.Supports
 
         public static string ConnectionString { get => ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString; }
 
+        private static string fileAttachmentFolder;
+        public static string FileAttachmentFolder
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(fileAttachmentFolder))
+                    fileAttachmentFolder = ConfigurationManager.AppSettings["FileAttachmentFolder"];
+
+                return fileAttachmentFolder;
+            }
+            set
+            {
+                ConfigurationManager.AppSettings["FileAttachmentFolder"] = value;
+            }
+        }
+
         public static string AssemblyTitle
         {
             get
