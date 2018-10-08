@@ -14,6 +14,8 @@ namespace CygSoft.SmartSession.Domain.Attachments
 
         public FileAttachment(string filePath, string fileTitle)
         {
+            this.SourceFilePath = filePath;
+
             BuildDefinition(filePath, fileTitle);
         }
 
@@ -28,8 +30,13 @@ namespace CygSoft.SmartSession.Domain.Attachments
         [Column(TypeName = "nvarchar(1000)")]
         public string Notes { get; set; }
 
+        [NotMapped]
+        internal string SourceFilePath { get; set; }
+
         public void ChangeName(string filePath, string fileTitle)
         {
+            this.SourceFilePath = filePath;
+
             if (filePath == null)
                 this.FileTitle = fileTitle;
             else

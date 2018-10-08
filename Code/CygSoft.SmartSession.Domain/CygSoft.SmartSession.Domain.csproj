@@ -66,6 +66,8 @@
     <Compile Include="Common\AndSpecification.cs" />
     <Compile Include="Common\Entity.cs" />
     <Compile Include="Common\Enums.cs" />
+    <Compile Include="Common\FileService.cs" />
+    <Compile Include="Common\IFileService.cs" />
     <Compile Include="Common\IRepository.cs" />
     <Compile Include="Common\OrSpecification.cs" />
     <Compile Include="Common\ParameterReplacer.cs" />

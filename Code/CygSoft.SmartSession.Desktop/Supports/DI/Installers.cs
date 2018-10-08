@@ -8,6 +8,7 @@ using CygSoft.SmartSession.Desktop.GoalTasks;
 using CygSoft.SmartSession.Desktop.Supports.Services;
 using CygSoft.SmartSession.Domain;
 using CygSoft.SmartSession.Domain.Attachments;
+using CygSoft.SmartSession.Domain.Common;
 using CygSoft.SmartSession.Domain.Exercises;
 using CygSoft.SmartSession.Domain.Goals;
 using CygSoft.SmartSession.Domain.GoalTasks;
@@ -28,7 +29,11 @@ namespace CygSoft.SmartSession.Desktop.Supports.DI
         {
             container.Register(Component.For<SmartSessionContext>().DependsOn(Dependency.OnConfigValue("connectionString", 
                 Settings.ConnectionString)).LifestyleSingleton());
+
             container.Register(Component.For<IDialogViewService>().ImplementedBy(typeof(DialogService)));
+
+            container.Register(Component.For<IFileService>().ImplementedBy(typeof(FileService))
+                .DependsOn(Dependency.OnConfigValue("folderPath", Settings.FileAttachmentFolder)).LifestyleSingleton());
 
             container.Register(Component.For<IUnitOfWork>().ImplementedBy(typeof(UnitOfWork)));
 
