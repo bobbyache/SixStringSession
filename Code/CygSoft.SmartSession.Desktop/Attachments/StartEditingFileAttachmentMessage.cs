@@ -8,9 +8,9 @@ namespace CygSoft.SmartSession.Desktop.Attachments
 {
     internal class StartEditingFileAttachmentMessage
     {
-        public FileAttachmentSearchResult FileAttachmentSearchResult { get; }
+        public FileAttachmentSearchResultModel FileAttachmentSearchResult { get; }
 
-        public StartEditingFileAttachmentMessage(FileAttachmentSearchResult fileAttachmentSearchResult)
+        public StartEditingFileAttachmentMessage(FileAttachmentSearchResultModel fileAttachmentSearchResult)
         {
             FileAttachmentSearchResult = fileAttachmentSearchResult;
         }

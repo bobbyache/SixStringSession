@@ -2,9 +2,9 @@
 {
     internal class StartEditingExerciseMessage
     {
-        public ExerciseSearchResult ExerciseSearchResult { get;}
+        public ExerciseSearchResultModel ExerciseSearchResult { get;}
 
-        public StartEditingExerciseMessage(ExerciseSearchResult exerciseSearchResult)
+        public StartEditingExerciseMessage(ExerciseSearchResultModel exerciseSearchResult)
         {
             ExerciseSearchResult = exerciseSearchResult;
         }

@@ -36,7 +36,7 @@ namespace CygSoft.SmartSession.Desktop.Attachments
         }
 
 
-        private void StartEditingFileAttachment(FileAttachmentSearchResult fileAttachmentSearchResult)
+        private void StartEditingFileAttachment(FileAttachmentSearchResultModel fileAttachmentSearchResult)
         {
             fileAttachmentEditViewModel.StartEdit(fileAttachmentSearchResult?.Id);
             OnNavigation("Edit");

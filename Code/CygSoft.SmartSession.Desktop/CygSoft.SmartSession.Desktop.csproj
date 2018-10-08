@@ -103,7 +103,7 @@
       <DependentUpon>FileAttachmentSearchCriteriaView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Attachments\FileAttachmentSearchCriteriaViewModel.cs" />
-    <Compile Include="Attachments\FileAttachmentSearchResult.cs" />
+    <Compile Include="Attachments\FileAttachmentSearchResultModel.cs" />
     <Compile Include="Attachments\FileAttachmentSearchView.xaml.cs">
       <DependentUpon>FileAttachmentSearchView.xaml</DependentUpon>
     </Compile>
@@ -141,7 +141,7 @@
       <DependentUpon>GoalSearchCriteriaView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Goals\GoalSearchCriteriaViewModel.cs" />
-    <Compile Include="Goals\GoalSearchResult.cs" />
+    <Compile Include="Goals\GoalSearchResultModel.cs" />
     <Compile Include="Goals\GoalSearchView.xaml.cs">
       <DependentUpon>GoalSearchView.xaml</DependentUpon>
     </Compile>
@@ -162,7 +162,7 @@
       <DependentUpon>GoalTaskSearchCriteriaView.xaml</DependentUpon>
     </Compile>
     <Compile Include="GoalTasks\GoalTaskSearchCriteriaViewModel.cs" />
-    <Compile Include="GoalTasks\GoalTaskSearchResult.cs" />
+    <Compile Include="GoalTasks\GoalTaskSearchResultModel.cs" />
     <Compile Include="GoalTasks\GoalTaskSearchView.xaml.cs">
       <DependentUpon>GoalTaskSearchView.xaml</DependentUpon>
     </Compile>
@@ -182,7 +182,7 @@
     <Compile Include="Goals\GoalListControl.xaml.cs">
       <DependentUpon>GoalListControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Exercises\ExerciseSearchResult.cs" />
+    <Compile Include="Exercises\ExerciseSearchResultModel.cs" />
     <Compile Include="Goals\GoalListItem.cs" />
     <Compile Include="Supports\Services\DialogService.cs" />
     <Compile Include="Exercises\ExerciseSearchViewModel.cs" />
@@ -198,10 +198,6 @@
     <Compile Include="Supports\Validators\ValidatableObject.cs" />
     <Compile Include="Supports\Validators\ValidFileNameAttribute.cs" />
     <Compile Include="Supports\Validators\ValidFilePathValidator.cs" />
-    <Compile Include="Tasks\TaskSearchView.xaml.cs">
-      <DependentUpon>TaskSearchView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Tasks\TaskSearchViewModel.cs" />
     <Page Include="Attachments\FileAttachmentCompositeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -283,10 +279,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Exercises\ExerciseSearchView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Tasks\TaskSearchView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

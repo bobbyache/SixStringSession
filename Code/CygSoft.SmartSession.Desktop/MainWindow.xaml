@@ -7,7 +7,6 @@
         xmlns:exercises="clr-namespace:CygSoft.SmartSession.Desktop.Exercises"
         xmlns:goals="clr-namespace:CygSoft.SmartSession.Desktop.Goals"
         xmlns:goalTasks="clr-namespace:CygSoft.SmartSession.Desktop.GoalTasks"
-        xmlns:tasks="clr-namespace:CygSoft.SmartSession.Desktop.Tasks"
         xmlns:attach="clr-namespace:CygSoft.SmartSession.Desktop.Attachments"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
@@ -26,9 +25,6 @@
         </DataTemplate>
         <DataTemplate DataType="{x:Type goalTasks:GoalTaskCompositeViewModel}">
             <goalTasks:GoalTaskCompositeView />
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type tasks:TaskSearchViewModel}">
-            <tasks:TaskSearchView />
         </DataTemplate>
     </Window.Resources>
 

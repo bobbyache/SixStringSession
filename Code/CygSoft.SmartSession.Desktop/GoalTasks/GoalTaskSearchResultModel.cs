@@ -1,8 +1,8 @@
 using GalaSoft.MvvmLight;
 
-namespace CygSoft.SmartSession.Desktop.Goals
+namespace CygSoft.SmartSession.Desktop.GoalTasks
 {
-    public class GoalSearchResult : ObservableObject
+    public class GoalTaskSearchResultModel : ObservableObject
     {
         private bool isDirty;
         public bool IsDirty

@@ -1,4 +1,4 @@
-USE SmartSession_EF_2
+USE SmartSession_EF
 
 BEGIN TRANSACTION
 

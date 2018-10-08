@@ -36,7 +36,7 @@ namespace CygSoft.SmartSession.Desktop.GoalTasks
         }
 
 
-        private void StartEditingGoalTask(GoalTaskSearchResult goalTaskSearchResult)
+        private void StartEditingGoalTask(GoalTaskSearchResultModel goalTaskSearchResult)
         {
             goalTaskEditViewModel.StartEdit(goalTaskSearchResult);
             OnNavigation("Edit");

@@ -33,7 +33,7 @@ namespace CygSoft.SmartSession.Desktop.Attachments
 
             if (obj.AddingNew)
             {
-                var result = Mapper.Map<FileAttachmentSearchResult>(obj.FileAttachmentModel);
+                var result = Mapper.Map<FileAttachmentSearchResultModel>(obj.FileAttachmentModel);
                 FileAttachmentList.Add(result);
                 SelectedFileAttachment = result;
             }
@@ -50,8 +50,8 @@ namespace CygSoft.SmartSession.Desktop.Attachments
         public RelayCommand DeleteFileAttachmentCommand { get; private set; }
         public RelayCommand EditFileAttachmentCommand { get; private set; }
 
-        private FileAttachmentSearchResult selectedFileAttachment;
-        public FileAttachmentSearchResult SelectedFileAttachment
+        private FileAttachmentSearchResultModel selectedFileAttachment;
+        public FileAttachmentSearchResultModel SelectedFileAttachment
         {
             get { return selectedFileAttachment; }
             set
@@ -86,7 +86,7 @@ namespace CygSoft.SmartSession.Desktop.Attachments
 
         public ObservableCollection<int> DifficultyList { get; private set; } = new ObservableCollection<int> { 1, 2, 3, 4, 5 };
         public ObservableCollection<int> PracticalityList { get; private set; } = new ObservableCollection<int> { 1, 2, 3, 4, 5 };
-        public ObservableCollection<FileAttachmentSearchResult> FileAttachmentList { get; private set; } = new ObservableCollection<FileAttachmentSearchResult>();
+        public ObservableCollection<FileAttachmentSearchResultModel> FileAttachmentList { get; private set; } = new ObservableCollection<FileAttachmentSearchResultModel>();
 
 
         private void Find(FindFileAttachmentsMessage obj)
@@ -97,7 +97,7 @@ namespace CygSoft.SmartSession.Desktop.Attachments
 
             foreach (var fileAttachment in fileAttachmentService.Find(searchCriteria))
             {
-                FileAttachmentList.Add(Mapper.Map<FileAttachmentSearchResult>(fileAttachment));
+                FileAttachmentList.Add(Mapper.Map<FileAttachmentSearchResultModel>(fileAttachment));
             }
         }
 

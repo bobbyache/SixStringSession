@@ -2,7 +2,6 @@
 using CygSoft.SmartSession.Desktop.Exercises;
 using CygSoft.SmartSession.Desktop.Goals;
 using CygSoft.SmartSession.Desktop.GoalTasks;
-using CygSoft.SmartSession.Desktop.Tasks;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 
@@ -13,7 +12,6 @@ namespace CygSoft.SmartSession.Desktop
     public class MainWindowViewModel : ViewModelBase
     {
         private ExerciseCompositeViewModel exerciseSearchViewModel;
-        private TaskSearchViewModel taskSearchViewModel;
         private GoalCompositeViewModel goalSearchViewModel;
         private GoalTaskCompositeViewModel goalTaskSearchViewModel;
         private FileAttachmentCompositeViewModel fileAttachmentViewModel;
@@ -29,11 +27,10 @@ namespace CygSoft.SmartSession.Desktop
         public RelayCommand<string> NavigationCommand { get; private set; }
 
         public MainWindowViewModel(ExerciseCompositeViewModel exerciseSearchViewModel, FileAttachmentCompositeViewModel fileAttachmentViewModel, 
-            TaskSearchViewModel taskSearchViewModel, GoalCompositeViewModel goalSearchViewModel, GoalTaskCompositeViewModel goalTaskSearchViewModel)
+            GoalCompositeViewModel goalSearchViewModel, GoalTaskCompositeViewModel goalTaskSearchViewModel)
         {
             this.exerciseSearchViewModel = exerciseSearchViewModel;
             this.fileAttachmentViewModel = fileAttachmentViewModel;
-            this.taskSearchViewModel = taskSearchViewModel;
             this.goalSearchViewModel = goalSearchViewModel;
             this.goalTaskSearchViewModel = goalTaskSearchViewModel;
 
@@ -45,9 +42,6 @@ namespace CygSoft.SmartSession.Desktop
         {
             switch (destination)
             {
-                case "TaskSearch":
-                    CurrentViewModel = taskSearchViewModel;
-                    break;
                 case "GoalSearch":
                     CurrentViewModel = goalSearchViewModel;
                     break;
@@ -61,7 +55,7 @@ namespace CygSoft.SmartSession.Desktop
                     CurrentViewModel = fileAttachmentViewModel;
                     break;
                 default:
-                    CurrentViewModel = taskSearchViewModel;
+                    CurrentViewModel = goalTaskSearchViewModel;
                     break;
             }
         }

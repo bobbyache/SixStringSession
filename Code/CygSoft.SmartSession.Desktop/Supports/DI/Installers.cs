@@ -6,7 +6,6 @@ using CygSoft.SmartSession.Desktop.Exercises;
 using CygSoft.SmartSession.Desktop.Goals;
 using CygSoft.SmartSession.Desktop.GoalTasks;
 using CygSoft.SmartSession.Desktop.Supports.Services;
-using CygSoft.SmartSession.Desktop.Tasks;
 using CygSoft.SmartSession.Domain;
 using CygSoft.SmartSession.Domain.Attachments;
 using CygSoft.SmartSession.Domain.Exercises;
@@ -58,9 +57,7 @@ namespace CygSoft.SmartSession.Desktop.Supports.DI
             container.Register(Component.For<GoalTaskCompositeViewModel>());
             container.Register(Component.For<GoalTaskSearchCriteriaViewModel>());
 
-            container.Register(Component.For<TaskSearchViewModel>());
             container.Register(Component.For<MainWindowViewModel>());
-            
         }
     }
 }

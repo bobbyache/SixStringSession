@@ -14,6 +14,10 @@ namespace CygSoft.SmartSession.Desktop.UnitTests
     [TestFixture]
     public class FileAttachmentEditViewModelTests
     {
+        // https://stackoverflow.com/questions/7121867/how-can-i-validate-multiple-properties-when-any-of-them-changes
+
+        // Thanks Vincent.  I meant that you could avoid using BindingGroups altogether by implementing IDataErrorInfo and setting the ValidatesOnDataError property of Binding to true.  
+        // https://blogs.msdn.microsoft.com/vinsibal/2008/08/12/wpf-3-5-sp1-feature-bindinggroups-with-item-level-validation/
         [Test]
         public void FileAttachment_ChangeName_With_Empty_Path_Has_Consistent_State()
         {

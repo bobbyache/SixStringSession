@@ -49,8 +49,8 @@ namespace CygSoft.SmartSession.Desktop.Exercises
         public RelayCommand DeleteExerciseCommand { get; private set; }
         public RelayCommand EditExerciseCommand { get; private set; }
 
-        private ExerciseSearchResult selectedExercise;
-        public ExerciseSearchResult SelectedExercise
+        private ExerciseSearchResultModel selectedExercise;
+        public ExerciseSearchResultModel SelectedExercise
         {
             get { return selectedExercise; }
             set
@@ -85,7 +85,7 @@ namespace CygSoft.SmartSession.Desktop.Exercises
 
         public ObservableCollection<int> DifficultyList { get; private set; } = new ObservableCollection<int> { 1, 2, 3, 4, 5 };
         public ObservableCollection<int> PracticalityList { get; private set; } = new ObservableCollection<int> { 1, 2, 3, 4, 5 };
-        public ObservableCollection<ExerciseSearchResult> ExerciseList { get; private set; } = new ObservableCollection<ExerciseSearchResult>();
+        public ObservableCollection<ExerciseSearchResultModel> ExerciseList { get; private set; } = new ObservableCollection<ExerciseSearchResultModel>();
 
 
         private void Find(FindExercisesMessage obj)
@@ -96,7 +96,7 @@ namespace CygSoft.SmartSession.Desktop.Exercises
 
             foreach (var exercise in exerciseService.Find(searchCriteria))
             {
-                ExerciseList.Add(Mapper.Map<ExerciseSearchResult>(exercise));
+                ExerciseList.Add(Mapper.Map<ExerciseSearchResultModel>(exercise));
             }
         }
 
@@ -114,7 +114,7 @@ namespace CygSoft.SmartSession.Desktop.Exercises
 
         private void AddExercise()
         {
-            var exercise = new ExerciseSearchResult
+            var exercise = new ExerciseSearchResultModel
             {
                 Title = $"New Exercise Item - {DateTime.Now}",
                 DifficultyRating = 0,

@@ -17,7 +17,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests
         {
             var fileAttachment = new FileAttachment(@"C:\SmartSession\files\file.txt", null);
             fileAttachment.Id = 8;
-            var result = new FileAttachmentSearchResult();
+            var result = new FileAttachmentSearchResultModel();
 
             result.Id = fileAttachment.Id;
             result.FileTitle = fileAttachment.FileTitle;

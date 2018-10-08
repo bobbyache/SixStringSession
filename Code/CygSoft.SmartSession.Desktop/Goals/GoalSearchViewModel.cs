@@ -49,8 +49,8 @@ namespace CygSoft.SmartSession.Desktop.Goals
         public RelayCommand DeleteGoalCommand { get; private set; }
         public RelayCommand EditGoalCommand { get; private set; }
 
-        private GoalSearchResult selectedGoal;
-        public GoalSearchResult SelectedGoal
+        private GoalSearchResultModel selectedGoal;
+        public GoalSearchResultModel SelectedGoal
         {
             get { return selectedGoal; }
             set
@@ -85,7 +85,7 @@ namespace CygSoft.SmartSession.Desktop.Goals
 
         public ObservableCollection<int> DifficultyList { get; private set; } = new ObservableCollection<int> { 1, 2, 3, 4, 5 };
         public ObservableCollection<int> PracticalityList { get; private set; } = new ObservableCollection<int> { 1, 2, 3, 4, 5 };
-        public ObservableCollection<GoalSearchResult> GoalList { get; private set; } = new ObservableCollection<GoalSearchResult>();
+        public ObservableCollection<GoalSearchResultModel> GoalList { get; private set; } = new ObservableCollection<GoalSearchResultModel>();
 
 
         private void Find(FindGoalsMessage obj)
@@ -96,7 +96,7 @@ namespace CygSoft.SmartSession.Desktop.Goals
 
             foreach (var goal in goalService.Find(searchCriteria))
             {
-                GoalList.Add(Mapper.Map<GoalSearchResult>(goal));
+                GoalList.Add(Mapper.Map<GoalSearchResultModel>(goal));
             }
         }
 
@@ -114,7 +114,7 @@ namespace CygSoft.SmartSession.Desktop.Goals
 
         private void AddGoal()
         {
-            var goal = new GoalSearchResult
+            var goal = new GoalSearchResultModel
             {
                 Title = $"New Goal Item - {DateTime.Now}",
                 Notes = null

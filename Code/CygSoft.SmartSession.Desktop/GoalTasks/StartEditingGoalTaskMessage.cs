@@ -3,9 +3,9 @@ namespace CygSoft.SmartSession.Desktop.GoalTasks
 {
     internal class StartEditingGoalTaskMessage
     {
-        public GoalTaskSearchResult GoalTaskSearchResult { get; }
+        public GoalTaskSearchResultModel GoalTaskSearchResult { get; }
 
-        public StartEditingGoalTaskMessage(GoalTaskSearchResult goalTaskSearchResult)
+        public StartEditingGoalTaskMessage(GoalTaskSearchResultModel goalTaskSearchResult)
         {
             GoalTaskSearchResult = goalTaskSearchResult;
         }

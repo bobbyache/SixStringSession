@@ -2,7 +2,7 @@
 
 namespace CygSoft.SmartSession.Desktop.Exercises
 {
-    public class ExerciseSearchResult : ObservableObject
+    public class ExerciseSearchResultModel : ObservableObject
     {
         private bool isDirty;
         public bool IsDirty

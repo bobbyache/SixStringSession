@@ -2,9 +2,9 @@ namespace CygSoft.SmartSession.Desktop.Goals
 {
     internal class StartEditingGoalMessage
     {
-        public GoalSearchResult GoalSearchResult { get; }
+        public GoalSearchResultModel GoalSearchResult { get; }
 
-        public StartEditingGoalMessage(GoalSearchResult goalSearchResult)
+        public StartEditingGoalMessage(GoalSearchResultModel goalSearchResult)
         {
             GoalSearchResult = goalSearchResult;
         }

@@ -3,7 +3,7 @@
 
 namespace CygSoft.SmartSession.Desktop.Attachments
 {
-    public class FileAttachmentSearchResult : ObservableObject
+    public class FileAttachmentSearchResultModel : ObservableObject
     {
         public int Id { get; set; }
 

@@ -17,7 +17,7 @@ namespace CygSoft.SmartSession.Desktop.Exercises
         private IDialogViewService dialogService;
 
         private ExerciseModel exerciseModel;
-        private ExerciseSearchResult exerciseSearchResult;
+        private ExerciseSearchResultModel exerciseSearchResult;
 
         public ExerciseModel Exercise
         {
@@ -37,7 +37,7 @@ namespace CygSoft.SmartSession.Desktop.Exercises
             CancelCommand = new RelayCommand(() => Cancel(), () => true);
         }
 
-        public void StartEdit(ExerciseSearchResult exerciseSearchResult)
+        public void StartEdit(ExerciseSearchResultModel exerciseSearchResult)
         {
             this.exerciseSearchResult = exerciseSearchResult;
 

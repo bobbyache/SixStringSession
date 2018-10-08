@@ -36,7 +36,7 @@ namespace CygSoft.SmartSession.Desktop.Exercises
         }
 
 
-        private void StartEditingExercise(ExerciseSearchResult exerciseSearchResult)
+        private void StartEditingExercise(ExerciseSearchResultModel exerciseSearchResult)
         {
             exerciseEditViewModel.StartEdit(exerciseSearchResult);
             OnNavigation("Edit");

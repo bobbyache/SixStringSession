@@ -17,7 +17,7 @@ namespace CygSoft.SmartSession.Desktop.GoalTasks
         private IDialogViewService dialogService;
 
         private GoalTaskModel goalTaskModel;
-        private GoalTaskSearchResult goalTaskSearchResult;
+        private GoalTaskSearchResultModel goalTaskSearchResult;
 
         public GoalTaskModel GoalTask
         {
@@ -37,7 +37,7 @@ namespace CygSoft.SmartSession.Desktop.GoalTasks
             CancelCommand = new RelayCommand(() => Cancel(), () => true);
         }
 
-        public void StartEdit(GoalTaskSearchResult goalTaskSearchResult)
+        public void StartEdit(GoalTaskSearchResultModel goalTaskSearchResult)
         {
             this.goalTaskSearchResult = goalTaskSearchResult;
 
