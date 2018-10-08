@@ -32,6 +32,18 @@ namespace CygSoft.SmartSession.Desktop.Supports.Validators
                 return null;
         }
 
+        public void ValidateAll()
+        {
+            var properties = TypeDescriptor.GetProperties(this.contextObject);
+            foreach (var prop in properties)
+            {
+                PropertyDescriptor p = (PropertyDescriptor)prop;
+                if (p.Attributes.OfType<ValidationAttribute>().Any())
+                {
+                    Validate(p.Name, p.GetValue(this.contextObject));
+                }
+            }
+        }
 
         public void Validate<T>(Expression<Func<T>> propertyExpression, T newValue)
         {

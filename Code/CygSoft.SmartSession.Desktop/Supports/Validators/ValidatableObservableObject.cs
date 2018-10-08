@@ -22,7 +22,7 @@ namespace CygSoft.SmartSession.Desktop.Supports.Validators
             }
         }
 
-        private ValidatableObject validator;
+        protected ValidatableObject validator;
 
         public bool HasErrors => validator.HasErrors;
 
@@ -54,6 +54,8 @@ namespace CygSoft.SmartSession.Desktop.Supports.Validators
                     IsDirty = isDirty;
             }
         }
+
+        public virtual void ValidateAll() { validator.ValidateAll(); }
 
         public virtual void Revert() { IsDirty = false; }
 
