@@ -69,7 +69,7 @@ namespace CygSoft.SmartSession.Desktop.Attachments
         {
             this.FileAttachment = fileAttachment;
             Revert();
-            //this.Valid
+            ValidateAll();
             TrackChanges = true;
         }
 

@@ -30,6 +30,8 @@ namespace CygSoft.SmartSession.Desktop.Attachments
 
         private void UpdateEditedAttachment(EndEditingFileAttachmentMessage obj)
         {
+            if (!obj.Edited)
+                return;
 
             if (obj.AddingNew)
             {

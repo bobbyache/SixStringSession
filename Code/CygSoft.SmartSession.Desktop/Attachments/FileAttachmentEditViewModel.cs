@@ -51,13 +51,17 @@ namespace CygSoft.SmartSession.Desktop.Attachments
 
             if (fileAttachmentId.HasValue)
             {
-                this.FileAttachment = new FileAttachmentModel(this.fileAttachmentService.Get(fileAttachmentId.Value));
+                var fileAttachmentModel = new FileAttachmentModel(this.fileAttachmentService.Get(fileAttachmentId.Value));
+                fileAttachmentModel.ErrorsChanged += FileAttachment_ErrorsChanged;
+                this.FileAttachment = fileAttachmentModel;
             }
             else
             {
-                this.FileAttachment = new FileAttachmentModel(new FileAttachment());
+                var fileAttachmentModel = new FileAttachmentModel(new FileAttachment());
+                fileAttachmentModel.ErrorsChanged += FileAttachment_ErrorsChanged;
+                this.FileAttachment = fileAttachmentModel;
             }
-            this.FileAttachment.ErrorsChanged += FileAttachment_ErrorsChanged;
+            
         }
 
         private void FileAttachment_ErrorsChanged(object sender, DataErrorsChangedEventArgs e)
