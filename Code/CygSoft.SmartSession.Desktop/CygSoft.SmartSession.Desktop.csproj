@@ -94,9 +94,11 @@
       <DependentUpon>FileAttachmentCompositeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Attachments\FileAttachmentCompositeViewModel.cs" />
-    <Compile Include="Attachments\FileAttachmentEditView.xaml.cs">
-      <DependentUpon>FileAttachmentEditView.xaml</DependentUpon>
+    <Compile Include="Attachments\FileAttachmentCreateModel.cs" />
+    <Compile Include="Attachments\FileAttachmentCreateView.xaml.cs">
+      <DependentUpon>FileAttachmentCreateView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Attachments\FileAttachmentCreateViewModel.cs" />
     <Compile Include="Attachments\FileAttachmentEditViewModel.cs" />
     <Compile Include="Attachments\FileAttachmentModel.cs" />
     <Compile Include="Attachments\FileAttachmentSearchCriteriaView.xaml.cs">
@@ -108,6 +110,11 @@
       <DependentUpon>FileAttachmentSearchView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Attachments\FileAttachmentSearchViewModel.cs" />
+    <Compile Include="Attachments\FileAttachmentUpdateModel.cs" />
+    <Compile Include="Attachments\FileAttachmentUpdateView.xaml.cs">
+      <DependentUpon>FileAttachmentUpdateView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Attachments\FileAttachmentUpdateViewModel.cs" />
     <Compile Include="Attachments\FindFileAttachmentsMessage.cs" />
     <Compile Include="Attachments\StartEditingFileAttachmentMessage.cs" />
     <Compile Include="Exercises\StartEditingExerciseMessage.cs" />
@@ -202,7 +209,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Attachments\FileAttachmentEditView.xaml">
+    <Page Include="Attachments\FileAttachmentCreateView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -211,6 +218,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Attachments\FileAttachmentSearchView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Attachments\FileAttachmentUpdateView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

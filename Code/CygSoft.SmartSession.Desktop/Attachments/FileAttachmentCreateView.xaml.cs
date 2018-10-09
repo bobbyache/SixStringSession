@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace CygSoft.SmartSession.Desktop.Attachments
 {
     /// <summary>
-    /// Interaction logic for FileAttachmentEditView.xaml
+    /// Interaction logic for FileAttachmentCreateView.xaml
     /// </summary>
-    public partial class FileAttachmentEditView : UserControl
+    public partial class FileAttachmentCreateView : UserControl
     {
-        public FileAttachmentEditView()
+        public FileAttachmentCreateView()
         {
             InitializeComponent();
         }

@@ -18,7 +18,8 @@ namespace CygSoft.SmartSession.Desktop.Supports.Services
         public ExerciseSearchViewModel ExerciseSearchViewModel { get => Bootstrapper.Container.Resolve<ExerciseSearchViewModel>(); }
         public ExerciseSearchCriteriaViewModel ExerciseSearchCriteriaViewModel { get => Bootstrapper.Container.Resolve<ExerciseSearchCriteriaViewModel>(); }
 
-        public FileAttachmentEditViewModel FileAttachmentEditViewModel { get => Bootstrapper.Container.Resolve<FileAttachmentEditViewModel>(); }
+        public FileAttachmentCreateViewModel FileAttachmentCreateViewModel { get => Bootstrapper.Container.Resolve<FileAttachmentCreateViewModel>(); }
+        public FileAttachmentUpdateViewModel FileAttachmentUpdateViewModel { get => Bootstrapper.Container.Resolve<FileAttachmentUpdateViewModel>(); }
         public FileAttachmentCompositeViewModel FileAttachmentCompositeViewModel { get => Bootstrapper.Container.Resolve<FileAttachmentCompositeViewModel>(); }
         public FileAttachmentSearchViewModel FileAttachmentSearchViewModel { get => Bootstrapper.Container.Resolve<FileAttachmentSearchViewModel>(); }
         public FileAttachmentSearchCriteriaViewModel FileAttachmentSearchCriteriaViewModel { get => Bootstrapper.Container.Resolve<FileAttachmentSearchCriteriaViewModel>(); }

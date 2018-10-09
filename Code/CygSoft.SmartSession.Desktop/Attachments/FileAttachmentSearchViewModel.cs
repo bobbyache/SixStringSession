@@ -22,7 +22,7 @@ namespace CygSoft.SmartSession.Desktop.Attachments
 
             AddFileAttachmentCommand = new RelayCommand(AddFileAttachment, () => true);
             DeleteFileAttachmentCommand = new RelayCommand(DeleteFileAttachment, () => SelectedFileAttachment != null);
-            EditFileAttachmentCommand = new RelayCommand(EditFileAttachment, () => SelectedFileAttachment != null);
+            EditFileAttachmentCommand = new RelayCommand(UpdateFileAttachment, () => SelectedFileAttachment != null);
 
             Messenger.Default.Register<FindFileAttachmentsMessage>(this, Find);
             Messenger.Default.Register<EndEditingFileAttachmentMessage>(this, UpdateEditedAttachment);
@@ -103,9 +103,9 @@ namespace CygSoft.SmartSession.Desktop.Attachments
             }
         }
 
-        private void EditFileAttachment()
+        private void UpdateFileAttachment()
         {
-            Messenger.Default.Send(new StartEditingFileAttachmentMessage(SelectedFileAttachment));
+            Messenger.Default.Send(new StartEditingFileAttachmentMessage(SelectedFileAttachment, StartEditingEntityMode.Update));
         }
 
         private void DeleteFileAttachment()
@@ -116,7 +116,7 @@ namespace CygSoft.SmartSession.Desktop.Attachments
 
         private void AddFileAttachment()
         {
-            Messenger.Default.Send(new StartEditingFileAttachmentMessage(null));
+            Messenger.Default.Send(new StartEditingFileAttachmentMessage(null, StartEditingEntityMode.Create));
         }
     }
 }

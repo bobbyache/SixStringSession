@@ -55,7 +55,7 @@ namespace CygSoft.SmartSession.Desktop
                     CurrentViewModel = fileAttachmentViewModel;
                     break;
                 default:
-                    CurrentViewModel = goalTaskSearchViewModel;
+                    CurrentViewModel = fileAttachmentViewModel;
                     break;
             }
         }

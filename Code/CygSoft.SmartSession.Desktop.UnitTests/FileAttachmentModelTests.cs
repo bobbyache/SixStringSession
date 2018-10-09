@@ -43,7 +43,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests
             fileAttachment.Extension = ".txt";
             fileAttachment.Notes = "Some notes.";
 
-            var fileAttachmentModel = new FileAttachmentModel(fileAttachment);
+            var fileAttachmentModel = new FileAttachmentCreateModel(fileAttachment);
             fileAttachmentModel.FilePath = @"C:\SmartSession\newFile.gp";
 
             Assert.That(fileAttachmentModel.IsDirty, Is.True);
@@ -69,7 +69,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests
         public void FileAttachmentModel_ChangeFilePath_Updates_TitleAndExtension()
         {
             var fileAttachment = new FileAttachment();
-            var fileAttachmentModel = new FileAttachmentModel(fileAttachment);
+            var fileAttachmentModel = new FileAttachmentCreateModel(fileAttachment);
 
             fileAttachmentModel.FilePath = @"C:\SmartSession\newFile.gp";
 
@@ -84,7 +84,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests
             fileAttachment.FileTitle = "current_file_title";
             fileAttachment.Extension = ".txt";
 
-            var fileAttachmentModel = new FileAttachmentModel(fileAttachment);
+            var fileAttachmentModel = new FileAttachmentCreateModel(fileAttachment);
             fileAttachmentModel.FilePath = @"C:\SmartSession\newFile.gp";
 
             Assert.That(fileAttachmentModel.FileTitle, Is.EqualTo("current_file_title"));

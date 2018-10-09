@@ -13,8 +13,11 @@
         <DataTemplate DataType="{x:Type local:FileAttachmentSearchViewModel}">
             <local:FileAttachmentSearchView />
         </DataTemplate>
-        <DataTemplate DataType="{x:Type local:FileAttachmentEditViewModel}">
-            <local:FileAttachmentEditView />
+        <DataTemplate DataType="{x:Type local:FileAttachmentCreateViewModel}">
+            <local:FileAttachmentCreateView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type local:FileAttachmentUpdateViewModel}">
+            <local:FileAttachmentUpdateView />
         </DataTemplate>
     </UserControl.Resources>
     <Grid>

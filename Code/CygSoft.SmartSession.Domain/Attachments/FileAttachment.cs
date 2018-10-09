@@ -33,6 +33,9 @@ namespace CygSoft.SmartSession.Domain.Attachments
         [NotMapped]
         internal string SourceFilePath { get; set; }
 
+        [NotMapped]
+        public string FileName => FileTitle + Extension;
+
         public void ChangeName(string filePath, string fileTitle)
         {
             this.SourceFilePath = filePath;
@@ -57,11 +60,6 @@ namespace CygSoft.SmartSession.Domain.Attachments
                 FileTitle = Path.GetFileNameWithoutExtension(path);
                 Extension = Path.GetExtension(path);
             }
-        }
-
-        public string GetFileName()
-        {
-            return FileTitle + Extension;
         }
     }
 }

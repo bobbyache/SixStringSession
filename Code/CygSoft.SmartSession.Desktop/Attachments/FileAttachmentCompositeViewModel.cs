@@ -7,7 +7,8 @@ namespace CygSoft.SmartSession.Desktop.Attachments
     public class FileAttachmentCompositeViewModel : ViewModelBase
     {
         private FileAttachmentSearchViewModel fileAttachmentSearchViewModel;
-        private FileAttachmentEditViewModel fileAttachmentEditViewModel;
+        private FileAttachmentCreateViewModel fileAttachmentCreateViewModel;
+        private FileAttachmentUpdateViewModel fileAttachmentUpdateViewModel;
 
         private ViewModelBase currentViewModel;
         public ViewModelBase CurrentViewModel
@@ -16,45 +17,41 @@ namespace CygSoft.SmartSession.Desktop.Attachments
             set { Set(() => CurrentViewModel, ref currentViewModel, value); }
         }
 
-        public RelayCommand<string> NavigationCommand { get; private set; }
-
-        public FileAttachmentCompositeViewModel(FileAttachmentSearchViewModel fileAttachmentSearchViewModel, FileAttachmentEditViewModel fileAttachmentEditViewModel)
+        public FileAttachmentCompositeViewModel(FileAttachmentSearchViewModel fileAttachmentSearchViewModel, 
+            FileAttachmentCreateViewModel fileAttachmentCreateViewModel, FileAttachmentUpdateViewModel fileAttachmentUpdateViewModel)
         {
             this.fileAttachmentSearchViewModel = fileAttachmentSearchViewModel;
-            this.fileAttachmentEditViewModel = fileAttachmentEditViewModel;
+            this.fileAttachmentCreateViewModel = fileAttachmentCreateViewModel;
+            this.fileAttachmentUpdateViewModel = fileAttachmentUpdateViewModel;
 
-            Messenger.Default.Register<StartEditingFileAttachmentMessage>(this, (m) => StartEditingFileAttachment(m.FileAttachmentSearchResult));
+            Messenger.Default.Register<StartEditingFileAttachmentMessage>(this, (m) => StartEditingFileAttachment(m.FileAttachmentSearchResult, m.Mode));
             Messenger.Default.Register<EndEditingFileAttachmentMessage>(this, (m) => EndEditingFileAttachment(m.FileAttachmentModel));
 
-            NavigationCommand = new RelayCommand<string>(OnNavigation);
-            OnNavigation("Search");
+            NavigateToSearchView();
         }
 
         private void EndEditingFileAttachment(FileAttachmentModel fileAttachmentModel)
         {
-            OnNavigation("Search");
+            NavigateToSearchView();
         }
 
-
-        private void StartEditingFileAttachment(FileAttachmentSearchResultModel fileAttachmentSearchResult)
+        private void NavigateToSearchView()
         {
-            fileAttachmentEditViewModel.StartEdit(fileAttachmentSearchResult?.Id);
-            OnNavigation("Edit");
+            CurrentViewModel = fileAttachmentSearchViewModel;
         }
 
-        private void OnNavigation(string destination)
+        private void StartEditingFileAttachment(FileAttachmentSearchResultModel fileAttachmentSearchResult, StartEditingEntityMode mode)
         {
-            switch (destination)
+            if (mode == StartEditingEntityMode.Create)
             {
-                case "Search":
-                    CurrentViewModel = fileAttachmentSearchViewModel;
-                    break;
-                case "Edit":
-                    CurrentViewModel = fileAttachmentEditViewModel;
-                    break;
-                default:
-                    CurrentViewModel = fileAttachmentSearchViewModel;
-                    break;
+                fileAttachmentCreateViewModel.StartEdit(null);
+                CurrentViewModel = fileAttachmentCreateViewModel;
+            }
+
+            else
+            {
+                fileAttachmentUpdateViewModel.StartEdit(fileAttachmentSearchResult?.Id);
+                CurrentViewModel = fileAttachmentUpdateViewModel;
             }
         }
     }

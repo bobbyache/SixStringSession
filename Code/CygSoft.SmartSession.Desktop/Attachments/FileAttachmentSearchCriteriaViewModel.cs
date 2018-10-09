@@ -10,12 +10,12 @@ namespace CygSoft.SmartSession.Desktop.Attachments
 {
     public class FileAttachmentSearchCriteriaViewModel : ViewModelBase, IFileAttachmentSearchCriteria
     {
-        private IFileAttachmentService exerciseService;
+        private IFileAttachmentService fileAttachmentService;
         private IDialogViewService dialogService;
 
-        public FileAttachmentSearchCriteriaViewModel(IFileAttachmentService exerciseService, IDialogViewService dialogService)
+        public FileAttachmentSearchCriteriaViewModel(IFileAttachmentService fileAttachmentService, IDialogViewService dialogService)
         {
-            this.exerciseService = exerciseService ?? throw new ArgumentNullException("Service must be provided.");
+            this.fileAttachmentService = fileAttachmentService ?? throw new ArgumentNullException("Service must be provided.");
             this.dialogService = dialogService ?? throw new ArgumentNullException("Dialog service must be provided.");
 
             ResetCommand = new RelayCommand(Reset, true);

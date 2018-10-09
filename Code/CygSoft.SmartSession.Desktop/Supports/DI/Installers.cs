@@ -44,7 +44,8 @@ namespace CygSoft.SmartSession.Desktop.Supports.DI
             container.Register(Component.For<ExerciseSearchCriteriaViewModel>());
 
             container.Register(Component.For<IFileAttachmentService>().ImplementedBy(typeof(FileAttachmentService)));
-            container.Register(Component.For<FileAttachmentEditViewModel>());
+            container.Register(Component.For<FileAttachmentCreateViewModel>());
+            container.Register(Component.For<FileAttachmentUpdateViewModel>());
             container.Register(Component.For<FileAttachmentSearchViewModel>());
             container.Register(Component.For<FileAttachmentCompositeViewModel>());
             container.Register(Component.For<FileAttachmentSearchCriteriaViewModel>());

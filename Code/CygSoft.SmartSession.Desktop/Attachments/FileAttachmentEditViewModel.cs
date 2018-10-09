@@ -8,21 +8,21 @@ using System.ComponentModel;
 
 namespace CygSoft.SmartSession.Desktop.Attachments
 {
-    public class FileAttachmentEditViewModel : ViewModelBase
+    public abstract class FileAttachmentEditViewModel : ViewModelBase
     {
-        private IFileAttachmentService fileAttachmentService;
-        private IDialogViewService dialogService;
+        protected IFileAttachmentService fileAttachmentService;
+        protected IDialogViewService dialogService;
 
-        private FileAttachmentModel fileAttachmentModel;
+        protected FileAttachmentModel fileAttachmentModel;
 
         public RelayCommand SaveCommand { get; private set; }
         public RelayCommand CancelCommand { get; private set; }
-        public RelayCommand OpenFileCommand { get; private set; }
+        
 
         public FileAttachmentModel FileAttachment
         {
             get { return fileAttachmentModel; }
-            private set
+            protected set
             {
                 Set(() => FileAttachment, ref fileAttachmentModel, value);
             }
@@ -35,54 +35,20 @@ namespace CygSoft.SmartSession.Desktop.Attachments
 
             SaveCommand = new RelayCommand(() => Save(), () => !fileAttachmentModel.HasErrors);
             CancelCommand = new RelayCommand(() => Cancel(), () => true);
-            OpenFileCommand = new RelayCommand(() => OpenFile());
         }
 
-        private void OpenFile()
-        {
-            string filePath;
-            if (dialogService.SelectFile(null, out filePath))
-                fileAttachmentModel.FilePath = filePath;
+        public virtual void StartEdit(int? fileAttachmentId)
+        {            
         }
 
-        public void StartEdit(int? fileAttachmentId)
-        {
-            if (this.FileAttachment != null) this.FileAttachment.ErrorsChanged -= FileAttachment_ErrorsChanged;
-
-            if (fileAttachmentId.HasValue)
-            {
-                var fileAttachmentModel = new FileAttachmentModel(this.fileAttachmentService.Get(fileAttachmentId.Value));
-                fileAttachmentModel.ErrorsChanged += FileAttachment_ErrorsChanged;
-                this.FileAttachment = fileAttachmentModel;
-            }
-            else
-            {
-                var fileAttachmentModel = new FileAttachmentModel(new FileAttachment());
-                fileAttachmentModel.ErrorsChanged += FileAttachment_ErrorsChanged;
-                this.FileAttachment = fileAttachmentModel;
-            }
-            
-        }
-
-        private void FileAttachment_ErrorsChanged(object sender, DataErrorsChangedEventArgs e)
+        protected void FileAttachment_ErrorsChanged(object sender, DataErrorsChangedEventArgs e)
         {
             SaveCommand.RaiseCanExecuteChanged();
         }
 
-        private void Save()
+        protected virtual void Save()
         {
             fileAttachmentModel.Commit();
-            if (fileAttachmentModel.Id <= 0)
-            {
-                fileAttachmentService.Add(fileAttachmentModel.FileAttachment);
-                fileAttachmentModel.Id = fileAttachmentModel.FileAttachment.Id;
-                Messenger.Default.Send(new EndEditingFileAttachmentMessage(fileAttachmentModel, true));
-            }
-            else
-            {
-                fileAttachmentService.Update(fileAttachmentModel.FileAttachment);
-                Messenger.Default.Send(new EndEditingFileAttachmentMessage(fileAttachmentModel, false));
-            }
         }
 
         private void Cancel()

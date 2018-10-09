@@ -28,8 +28,27 @@ namespace CygSoft.SmartSession.Desktop.UnitTests
             fileAttachment.ChangeName(null, "attachment_2");
             Assert.That(fileAttachment.Extension, Is.EqualTo(".txt"));
             Assert.That(fileAttachment.FileTitle, Is.EqualTo("attachment_2"));
-            Assert.That(fileAttachment.GetFileName(), Is.EqualTo("attachment_2.txt"));
+            Assert.That(fileAttachment.FileName, Is.EqualTo("attachment_2.txt"));
         }
+
+        //[Test]
+        //public void FileAttachmentCreateViewModel_StartEdit_Is_Correctly_Initialized_And_Presented()
+        //{
+        //    Mock<IFileAttachmentService> service = new Mock<IFileAttachmentService>();
+        //    Mock<IDialogViewService> dialogService = new Mock<IDialogViewService>();
+
+        //    FileAttachmentSearchViewModel searchViewModel = new FileAttachmentSearchViewModel(null, service.Object, dialogService.Object);
+
+        //    var compositeViewModel = new FileAttachmentCompositeViewModel()
+
+        //    //FileAttachmentEditViewModel viewModel = new FileAttachmentEditViewModel(service.Object, dialogService.Object);
+
+        //    FileAttachment fileAttachment = new FileAttachment(@"C:\smartsession\files\attachment.txt", null);
+        //    fileAttachment.ChangeName(null, "attachment_2");
+        //    Assert.That(fileAttachment.Extension, Is.EqualTo(".txt"));
+        //    Assert.That(fileAttachment.FileTitle, Is.EqualTo("attachment_2"));
+        //    Assert.That(fileAttachment.FileName, Is.EqualTo("attachment_2.txt"));
+        //}
 
     }
 }

@@ -23,24 +23,9 @@ namespace CygSoft.SmartSession.Desktop.Attachments
         public string Extension
         {
             get { return extension; }
-            private set
+            protected set
             {
                 Set(() => Extension, ref extension, value, true, true);
-            }
-        }
-
-        private string filePath;
-        [ValidFilePathValidator]
-        public string FilePath
-        {
-            get { return filePath; }
-            set
-            {
-                Extension = Path.GetExtension(value);
-                if (string.IsNullOrWhiteSpace(FileTitle))
-                    FileTitle = Path.GetFileNameWithoutExtension(value);
-
-                Set(() => FilePath, ref filePath, value, true, true);
             }
         }
 
@@ -76,8 +61,6 @@ namespace CygSoft.SmartSession.Desktop.Attachments
         public override void Commit()
         {
             Mapper.Map(this, FileAttachment);
-
-            FileAttachment.ChangeName(this.FilePath, this.FileTitle);
             base.Commit();
         }
 
