@@ -15,6 +15,16 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
     public class FileAttachmentTests
     {
         [Test]
+        public void FileAttachment_ChangeName_With_Empty_Path_Has_Consistent_State()
+        {
+            FileAttachment fileAttachment = new FileAttachment(@"C:\smartsession\files\attachment.txt", null);
+            fileAttachment.ChangeName(null, "attachment_2");
+            Assert.That(fileAttachment.Extension, Is.EqualTo(".txt"));
+            Assert.That(fileAttachment.FileTitle, Is.EqualTo("attachment_2"));
+            Assert.That(fileAttachment.FileName, Is.EqualTo("attachment_2.txt"));
+        }
+
+        [Test]
         public void FileAttachment_Constructor_With_ModifiedTitle_No_Extension_Has_Expected_State()
         {
             var filePath = @"C:\SomeOtherFolder\Files\new_file.gp";

@@ -19,15 +19,6 @@ namespace CygSoft.SmartSession.Desktop.UnitTests
         // Thanks Vincent.  I meant that you could avoid using BindingGroups altogether by implementing IDataErrorInfo and setting the ValidatesOnDataError property of Binding to true.  
         // https://blogs.msdn.microsoft.com/vinsibal/2008/08/12/wpf-3-5-sp1-feature-bindinggroups-with-item-level-validation/
 
-        [Test]
-        public void FileAttachment_ChangeName_With_Empty_Path_Has_Consistent_State()
-        {
-            FileAttachment fileAttachment = new FileAttachment(@"C:\smartsession\files\attachment.txt", null);
-            fileAttachment.ChangeName(null, "attachment_2");
-            Assert.That(fileAttachment.Extension, Is.EqualTo(".txt"));
-            Assert.That(fileAttachment.FileTitle, Is.EqualTo("attachment_2"));
-            Assert.That(fileAttachment.FileName, Is.EqualTo("attachment_2.txt"));
-        }
 
         [Test]
         public void FileAttachmentCreateViewModel_StartEdit_Is_Correctly_Initialized_And_Presented()
@@ -55,15 +46,30 @@ namespace CygSoft.SmartSession.Desktop.UnitTests
         }
 
         [Test]
-        public void FileAttachmentUpdateViewModel_StartEdit_Calls_Get_On_FileAttachmentService()
+        public void FileAttachmentUpdateViewModel_StartEdit_Correctly_Sets_FileName()
         {
             Mock<IFileAttachmentService> fileAttachmentService = new Mock<IFileAttachmentService>();
             Mock<IDialogViewService> dialogService = new Mock<IDialogViewService>();
 
-            FileAttachmentUpdateViewModel createViewModel = new FileAttachmentUpdateViewModel(fileAttachmentService.Object, dialogService.Object);
-            createViewModel.StartEdit(2);
+            FileAttachmentUpdateViewModel updateViewModel = GetFileAttachmentUpdateViewModel(2);
+            updateViewModel.StartEdit(2);
 
-            fileAttachmentService.Verify(s => s.Get(It.IsAny<int>()), Times.Once, "FileAttachmentService must call Get() when StartEdit() invoked.");
+            Assert.That(updateViewModel.FileAttachment.FileName, Is.EqualTo("file_title.txt"));
+        }
+
+        [Test]
+        public void FileAttachmentUpdateViewModel_When_Passed_Null_FileAttachment_Throws_Exception()
+        {
+            TestDelegate proc = () => new FileAttachmentUpdateModel(null);
+            Assert.That(proc, Throws.TypeOf<ArgumentNullException>(), "FileAttachment is a required constructor parameter and cannot be null.");
+        }
+
+
+        [Test]
+        public void FileAttachmentCreateViewModel_When_Passed_Null_FileAttachment_Throws_Exception()
+        {
+            TestDelegate proc = () => new FileAttachmentCreateModel(null);
+            Assert.That(proc, Throws.TypeOf<ArgumentNullException>(), "FileAttachment is a required constructor parameter and cannot be null.");
         }
 
         [Test]
@@ -103,14 +109,12 @@ namespace CygSoft.SmartSession.Desktop.UnitTests
         [Test]
         public void FileAttachmentUpdateViewModel_Changes_Title_IsDirty()
         {
-            Mock<IFileAttachmentService> fileAttachmentService = new Mock<IFileAttachmentService>();
-            Mock<IDialogViewService> dialogService = new Mock<IDialogViewService>();
+            FileAttachmentUpdateViewModel updateViewModel = GetFileAttachmentUpdateViewModel(2);
 
-            FileAttachmentUpdateViewModel updateViewModel = new FileAttachmentUpdateViewModel(fileAttachmentService.Object, dialogService.Object);
             updateViewModel.StartEdit(2);
 
             var fileAttachmentModel = updateViewModel.FileAttachment;
-            fileAttachmentModel.FileTitle = "file_title";
+            fileAttachmentModel.FileTitle = "file_title_changed";
 
             Assert.IsTrue(fileAttachmentModel.IsDirty);
         }

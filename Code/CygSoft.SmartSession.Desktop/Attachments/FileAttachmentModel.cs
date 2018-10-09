@@ -50,9 +50,12 @@ namespace CygSoft.SmartSession.Desktop.Attachments
             }
         }
 
+        public string FileName { get { return FileTitle + Extension;; } }
+
         public FileAttachmentModel(FileAttachment fileAttachment)
         {
-            this.FileAttachment = fileAttachment;
+            this.FileAttachment = fileAttachment ?? throw new ArgumentNullException("FileAttachment is a required parameter and must be defined.");
+
             Revert();
             ValidateAll();
             TrackChanges = true;
