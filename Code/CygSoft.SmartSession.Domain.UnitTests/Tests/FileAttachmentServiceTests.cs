@@ -51,19 +51,42 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             var unitOfWork = new Mock<IUnitOfWork>();
             unitOfWork.Setup(s => s.FileAttachments).Returns(new Mock<IFileAttachmentRepository>().Object);
 
-            var fileAttachment = new FileAttachment();
-            var fileAttachmentsRepository = new Mock<IFileAttachmentRepository>();
-
             var fileService = new Mock<IFileService>();
             fileService.Setup(s => s.FileExists(It.IsAny<string>())).Returns(false);
             fileService.Setup(s => s.FolderPath).Returns(@"C:\SmartSession\Files");
 
             var fileAttachmentService = new FileAttachmentService(unitOfWork.Object, fileService.Object);
 
+            var fileAttachment = new FileAttachment();
             fileAttachment.ChangeName(@"C:\SomeOtherFolder\Files\new_file.gp", null);
             fileAttachmentService.Add(fileAttachment);
 
             fileService.Verify(mock => mock.Copy(It.IsAny<string>(), It.IsAny<string>()), Times.Once, "Copy was not called.");
+        }
+
+        [Test]
+        public void FileAttachmentService_Remove_FileAttachment_Successfully_Invokes_Delete_Method_OnFileService()
+        {
+            var repository = new Mock<IFileAttachmentRepository>();
+            repository.Setup(r => r.Get(It.IsAny<int>())).Returns(new FileAttachment
+            {
+                Id = 5,
+                FileTitle = "file_title",
+                Extension = ".txt"
+            });
+
+            var unitOfWork = new Mock<IUnitOfWork>();
+            unitOfWork.Setup(s => s.FileAttachments).Returns(repository.Object);
+
+            var fileService = new Mock<IFileService>();
+            fileService.Setup(s => s.FileExists(It.IsAny<string>())).Returns(true);
+            fileService.Setup(s => s.FolderPath).Returns(@"C:\SmartSession\Files");
+
+            var fileAttachmentService = new FileAttachmentService(unitOfWork.Object, fileService.Object);
+            
+            fileAttachmentService.Remove(5);
+
+            fileService.Verify(mock => mock.Delete(It.IsAny<string>()), Times.Once, "Delete was not called.");
         }
 
         [Test]

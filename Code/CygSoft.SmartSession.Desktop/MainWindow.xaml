@@ -41,11 +41,10 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Content="Tasks" Command="{Binding NavigationCommand}" CommandParameter="TaskSearch" />
-            <Button Grid.Column="1" Content="Exercises" Command="{Binding NavigationCommand}" CommandParameter="ExerciseSearch" />
-            <Button Grid.Column="2" Content="Files" Command="{Binding NavigationCommand}" CommandParameter="FileAttachmentSearch" />
-            <Button Grid.Column="3" Content="Goals" Command="{Binding NavigationCommand}" CommandParameter="GoalSearch" />
-            <Button Grid.Column="4" Content="GoalTasks" Command="{Binding NavigationCommand}" CommandParameter="GoalTaskSearch" />
+            <Button Grid.Column="0" Content="Exercises" Command="{Binding NavigationCommand}" CommandParameter="ExerciseSearch" />
+            <Button Grid.Column="1" Content="Files" Command="{Binding NavigationCommand}" CommandParameter="FileAttachmentSearch" />
+            <Button Grid.Column="2" Content="Goals" Command="{Binding NavigationCommand}" CommandParameter="GoalSearch" />
+            <Button Grid.Column="3" Content="Goal Tasks" Command="{Binding NavigationCommand}" CommandParameter="GoalTaskSearch" />
         </Grid>
         <ContentControl Grid.Row="1"  Content="{Binding CurrentViewModel}" />
     </Grid>

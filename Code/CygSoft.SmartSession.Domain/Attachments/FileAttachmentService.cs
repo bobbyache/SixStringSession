@@ -45,6 +45,9 @@ namespace CygSoft.SmartSession.Domain.Attachments
                 throw new ArgumentException("The Id is invalid and must be greater than 0.");
 
             var fileAttachment = unitOfWork.FileAttachments.Get(id);
+
+            fileService.Delete(fileAttachment.FileName);
+
             unitOfWork.FileAttachments.Remove(fileAttachment);
             unitOfWork.Complete();
         }

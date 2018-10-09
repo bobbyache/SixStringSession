@@ -24,7 +24,6 @@
         <ToolBar Grid.Row="0">
             <Button MinWidth="30" Height="30" Content="Add" Command="{Binding AddFileAttachmentCommand}" />
             <Button MinWidth="30" Height="30" Content="Edit" Command="{Binding EditFileAttachmentCommand}" />
-            <!--Click="Edit_Click" ></Button>-->
             <Button MinWidth="30" Height="30" Content="Delete"  Command="{Binding DeleteFileAttachmentCommand}"></Button>
             <Separator></Separator>
             <ToggleButton

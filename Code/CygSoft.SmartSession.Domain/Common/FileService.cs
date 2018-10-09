@@ -27,5 +27,10 @@ namespace CygSoft.SmartSession.Domain.Common
         {
             File.Copy(sourcefile, destinationfile);
         }
+
+        public void Delete(string fileName)
+        {
+            File.Delete(Path.Combine(FolderPath, fileName));
+        }
     }
 }

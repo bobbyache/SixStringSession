@@ -11,5 +11,6 @@ namespace CygSoft.SmartSession.Domain.Common
         string FolderPath { get; }
         bool FileExists(string fileName);
         void Copy(string sourcefile, string destinationfile);
+        void Delete(string fileName);
     }
 }
