@@ -18,12 +18,10 @@ namespace CygSoft.SmartSession.Desktop.UnitTests
 
         // Thanks Vincent.  I meant that you could avoid using BindingGroups altogether by implementing IDataErrorInfo and setting the ValidatesOnDataError property of Binding to true.  
         // https://blogs.msdn.microsoft.com/vinsibal/2008/08/12/wpf-3-5-sp1-feature-bindinggroups-with-item-level-validation/
+
         [Test]
         public void FileAttachment_ChangeName_With_Empty_Path_Has_Consistent_State()
         {
-            //Mock<IFileAttachmentService> service = new Mock<IFileAttachmentService>();
-            //Mock<IDialogViewService> dialogService = new Mock<IDialogViewService>();
-            //FileAttachmentEditViewModel viewModel = new FileAttachmentEditViewModel(service.Object, dialogService.Object);
             FileAttachment fileAttachment = new FileAttachment(@"C:\smartsession\files\attachment.txt", null);
             fileAttachment.ChangeName(null, "attachment_2");
             Assert.That(fileAttachment.Extension, Is.EqualTo(".txt"));
@@ -31,24 +29,168 @@ namespace CygSoft.SmartSession.Desktop.UnitTests
             Assert.That(fileAttachment.FileName, Is.EqualTo("attachment_2.txt"));
         }
 
+        [Test]
+        public void FileAttachmentCreateViewModel_StartEdit_Is_Correctly_Initialized_And_Presented()
+        {
+            Mock<IFileAttachmentService> fileAttachmentService = new Mock<IFileAttachmentService>();
+            Mock<IDialogViewService> dialogService = new Mock<IDialogViewService>();
+
+            FileAttachmentCreateViewModel createViewModel = new FileAttachmentCreateViewModel(fileAttachmentService.Object, dialogService.Object);
+            createViewModel.StartEdit(null);
+
+            var fileAttachmentModel = createViewModel.FileAttachment;
+            var fileAttachment = fileAttachmentModel.FileAttachment;
+
+            Assert.That(fileAttachmentModel.Id, Is.EqualTo(0));
+            Assert.That(fileAttachmentModel.IsDirty, Is.EqualTo(false));
+            Assert.That(fileAttachmentModel.Notes, Is.EqualTo(null));
+            Assert.That(fileAttachmentModel.Extension, Is.EqualTo(null));
+            Assert.That(fileAttachmentModel.FileTitle, Is.EqualTo(null));
+            Assert.That(fileAttachmentModel.FileAttachment, Is.Not.EqualTo(null));
+
+            Assert.That(fileAttachment.Id, Is.EqualTo(0));
+            Assert.That(fileAttachment.Notes, Is.EqualTo(null));
+            Assert.That(fileAttachment.Extension, Is.EqualTo(null));
+            Assert.That(fileAttachment.FileTitle, Is.EqualTo(null));
+        }
+
+        [Test]
+        public void FileAttachmentUpdateViewModel_StartEdit_Calls_Get_On_FileAttachmentService()
+        {
+            Mock<IFileAttachmentService> fileAttachmentService = new Mock<IFileAttachmentService>();
+            Mock<IDialogViewService> dialogService = new Mock<IDialogViewService>();
+
+            FileAttachmentUpdateViewModel createViewModel = new FileAttachmentUpdateViewModel(fileAttachmentService.Object, dialogService.Object);
+            createViewModel.StartEdit(2);
+
+            fileAttachmentService.Verify(s => s.Get(It.IsAny<int>()), Times.Once, "FileAttachmentService must call Get() when StartEdit() invoked.");
+        }
+
+        [Test]
+        public void FileAttachmentUpdateViewModel_StartEdit_Is_Correctly_Initialized_And_Presented()
+        {
+            FileAttachmentUpdateViewModel createViewModel = GetFileAttachmentUpdateViewModel(2);
+            createViewModel.StartEdit(2);
+
+            var fileAttachmentModel = createViewModel.FileAttachment;
+            var fileAttachment = fileAttachmentModel.FileAttachment;
+
+            Assert.That(fileAttachmentModel.Id, Is.EqualTo(2));
+            Assert.That(fileAttachmentModel.IsDirty, Is.EqualTo(false));
+            Assert.That(fileAttachmentModel.Notes, Is.EqualTo("Here are some notes."));
+            Assert.That(fileAttachmentModel.Extension, Is.EqualTo(".txt"));
+            Assert.That(fileAttachmentModel.FileTitle, Is.EqualTo("file_title"));
+            Assert.That(fileAttachmentModel.FileAttachment, Is.Not.EqualTo(null));
+
+            Assert.That(fileAttachment.Id, Is.EqualTo(2));
+            Assert.That(fileAttachment.Notes, Is.EqualTo("Here are some notes."));
+            Assert.That(fileAttachment.Extension, Is.EqualTo(".txt"));
+            Assert.That(fileAttachment.FileTitle, Is.EqualTo("file_title"));
+        }
+
+        [Test]
+        public void FileAttachmentUpdateViewModel_Changes_Notes_IsDirty()
+        {
+            FileAttachmentUpdateViewModel updateViewModel = GetFileAttachmentUpdateViewModel(2);
+            updateViewModel.StartEdit(2);
+
+            var fileAttachmentModel = updateViewModel.FileAttachment;
+            fileAttachmentModel.Notes = "Changed notes.";
+
+            Assert.IsTrue(fileAttachmentModel.IsDirty);
+        }
+
+        [Test]
+        public void FileAttachmentUpdateViewModel_Changes_Title_IsDirty()
+        {
+            Mock<IFileAttachmentService> fileAttachmentService = new Mock<IFileAttachmentService>();
+            Mock<IDialogViewService> dialogService = new Mock<IDialogViewService>();
+
+            FileAttachmentUpdateViewModel updateViewModel = new FileAttachmentUpdateViewModel(fileAttachmentService.Object, dialogService.Object);
+            updateViewModel.StartEdit(2);
+
+            var fileAttachmentModel = updateViewModel.FileAttachment;
+            fileAttachmentModel.FileTitle = "file_title";
+
+            Assert.IsTrue(fileAttachmentModel.IsDirty);
+        }
+
+
+        [Test]
+        public void FileAttachmentCreateViewModel_Changes_Notes_IsDirty()
+        {
+            Mock<IFileAttachmentService> fileAttachmentService = new Mock<IFileAttachmentService>();
+            Mock<IDialogViewService> dialogService = new Mock<IDialogViewService>();
+
+            FileAttachmentCreateViewModel createViewModel = new FileAttachmentCreateViewModel(fileAttachmentService.Object, dialogService.Object);
+            createViewModel.StartEdit(null);
+
+            var fileAttachmentModel = createViewModel.FileAttachment;
+            fileAttachmentModel.Notes = "Changed notes.";
+
+            Assert.IsTrue(fileAttachmentModel.IsDirty);
+        }
+
+        [Test]
+        public void FileAttachmentCreateViewModel_Changes_Title_IsDirty()
+        {
+            Mock<IFileAttachmentService> fileAttachmentService = new Mock<IFileAttachmentService>();
+            Mock<IDialogViewService> dialogService = new Mock<IDialogViewService>();
+
+            FileAttachmentCreateViewModel createViewModel = new FileAttachmentCreateViewModel(fileAttachmentService.Object, dialogService.Object);
+            createViewModel.StartEdit(null);
+
+            var fileAttachmentModel = createViewModel.FileAttachment;
+            fileAttachmentModel.FileTitle = "file_title";
+
+            Assert.IsTrue(fileAttachmentModel.IsDirty);
+        }
+
+        [Test]
+        public void FileAttachmentCreateViewModel_Changes_FilePath_IsDirty()
+        {
+            Mock<IFileAttachmentService> fileAttachmentService = new Mock<IFileAttachmentService>();
+            Mock<IDialogViewService> dialogService = new Mock<IDialogViewService>();
+
+            FileAttachmentCreateViewModel createViewModel = new FileAttachmentCreateViewModel(fileAttachmentService.Object, dialogService.Object);
+            createViewModel.StartEdit(null);
+
+            var fileAttachmentModel = createViewModel.FileAttachment as FileAttachmentCreateModel;
+            fileAttachmentModel.FilePath = @"C:\SourcePath\file.txt";
+
+            Assert.IsTrue(fileAttachmentModel.IsDirty);
+        }
+
+        private FileAttachmentUpdateViewModel GetFileAttachmentUpdateViewModel(int id)
+        {
+            Mock<IFileAttachmentService> fileAttachmentService = new Mock<IFileAttachmentService>();
+            fileAttachmentService.Setup(s => s.Get(It.IsAny<int>()))
+            .Returns(new FileAttachment
+            {
+                Id = id,
+                DateCreated = DateTime.Now,
+                DateModified = DateTime.Now,
+                Extension = ".txt",
+                FileTitle = "file_title",
+                Notes = "Here are some notes."
+            });
+
+            Mock<IDialogViewService> dialogService = new Mock<IDialogViewService>();
+
+            return new FileAttachmentUpdateViewModel(fileAttachmentService.Object, dialogService.Object);
+        }
+
+
         //[Test]
-        //public void FileAttachmentCreateViewModel_StartEdit_Is_Correctly_Initialized_And_Presented()
+        //public void FileAttachmentCreateViewModel_Ensure_Id_Cannot_Be_Changed_From_Update_ViewModel()
         //{
-        //    Mock<IFileAttachmentService> service = new Mock<IFileAttachmentService>();
-        //    Mock<IDialogViewService> dialogService = new Mock<IDialogViewService>();
+        //    FileAttachmentUpdateViewModel updateViewModel = GetFileAttachmentUpdateViewModel(2);
+        //    updateViewModel.StartEdit(2);
 
-        //    FileAttachmentSearchViewModel searchViewModel = new FileAttachmentSearchViewModel(null, service.Object, dialogService.Object);
+        //    var fileAttachmentModel = updateViewModel.FileAttachment;
+        //    TestDelegate proc = () => fileAttachmentModel.Id = 4;
 
-        //    var compositeViewModel = new FileAttachmentCompositeViewModel()
-
-        //    //FileAttachmentEditViewModel viewModel = new FileAttachmentEditViewModel(service.Object, dialogService.Object);
-
-        //    FileAttachment fileAttachment = new FileAttachment(@"C:\smartsession\files\attachment.txt", null);
-        //    fileAttachment.ChangeName(null, "attachment_2");
-        //    Assert.That(fileAttachment.Extension, Is.EqualTo(".txt"));
-        //    Assert.That(fileAttachment.FileTitle, Is.EqualTo("attachment_2"));
-        //    Assert.That(fileAttachment.FileName, Is.EqualTo("attachment_2.txt"));
+        //    Assert.That(proc, Throws.TypeOf<InvalidOperationException>(), "ID value cannot be changed while editing!");
         //}
-
     }
 }
