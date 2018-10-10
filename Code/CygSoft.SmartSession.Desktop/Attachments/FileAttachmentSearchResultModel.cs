@@ -7,7 +7,25 @@ namespace CygSoft.SmartSession.Desktop.Attachments
     {
         public int Id { get; set; }
 
-        public string FileName { get { return Title + Extension; } }
+        public string FileName
+        {
+            get
+            {
+                if (FileId == null || Extension == null)
+                    return null;
+                return FileId + Extension;
+            }
+        }
+
+        private string fileId;
+        public string FileId
+        {
+            get { return fileId; }
+            set
+            {
+                Set(() => FileId, ref fileId, value);
+            }
+        }
 
         private string title;
         public string Title
@@ -18,6 +36,8 @@ namespace CygSoft.SmartSession.Desktop.Attachments
                 Set(() => Title, ref title, value);
             }
         }
+
+
 
         private string extension;
         public string Extension

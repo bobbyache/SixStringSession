@@ -12,11 +12,11 @@ namespace CygSoft.SmartSession.Domain.Attachments
     {
         public FileAttachment() { }
 
-        public FileAttachment(string filePath, string fileTitle)
+        public FileAttachment(string filePath, string title)
         {
             this.SourceFilePath = filePath;
-
-            BuildDefinition(filePath, fileTitle);
+            Extension = Path.GetExtension(filePath);
+            this.Title = string.IsNullOrWhiteSpace(title) ? Path.GetFileNameWithoutExtension(filePath) : title;
         }
 
         // since we can't use the primary key for part of the file name because
@@ -41,32 +41,23 @@ namespace CygSoft.SmartSession.Domain.Attachments
         internal string SourceFilePath { get; set; }
 
         [NotMapped]
-        public string FileName => Title + Extension;
+        public string FileName
+        {
+            get
+            {
+                if (FileId == null || Extension == null)
+                    return null;
+                return FileId + Extension;
+            }
+        }
 
-        public void ChangeName(string filePath, string fileTitle)
+        public void ChangeName(string filePath, string title)
         {
             this.SourceFilePath = filePath;
-
-            if (filePath == null)
-                this.Title = fileTitle;
-            else
-                BuildDefinition(filePath, fileTitle);
+            Extension = Path.GetExtension(filePath);
+            this.Title = string.IsNullOrWhiteSpace(title) ? Path.GetFileNameWithoutExtension(filePath) : title;
         }
 
         public List<FileAttachmentKeyword> FileAttachmentKeywords { get; set; }
-
-        private void BuildDefinition(string path, string title = null)
-        {
-            if (!string.IsNullOrWhiteSpace(title))
-            {
-                Title = Path.GetFileNameWithoutExtension(title);
-                Extension = Path.GetExtension(path);
-            }
-            else
-            {
-                Title = Path.GetFileNameWithoutExtension(path);
-                Extension = Path.GetExtension(path);
-            }
-        }
     }
 }

@@ -61,7 +61,7 @@ namespace CygSoft.SmartSession.Desktop.Attachments
             }
         }
 
-        public string FileName { get { return Title + Extension;; } }
+        public string FileName { get { return FileId + Extension; } }
 
         public FileAttachmentModel(FileAttachment fileAttachment)
         {

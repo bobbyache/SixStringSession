@@ -19,18 +19,20 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         {
             FileAttachment fileAttachment = new FileAttachment(@"C:\smartsession\files\attachment.txt", null);
             fileAttachment.ChangeName(null, "attachment_2");
-            Assert.That(fileAttachment.Extension, Is.EqualTo(".txt"));
+            Assert.That(fileAttachment.Extension, Is.Null);
             Assert.That(fileAttachment.Title, Is.EqualTo("attachment_2"));
-            Assert.That(fileAttachment.FileName, Is.EqualTo("attachment_2.txt"));
+
+            // because the file attachment has not been added yet, it cannot have a destination file name.
+            Assert.That(fileAttachment.FileName, Is.Null);
         }
 
         [Test]
         public void FileAttachment_Constructor_With_ModifiedTitle_No_Extension_Has_Expected_State()
         {
             var filePath = @"C:\SomeOtherFolder\Files\new_file.gp";
-            var fileTitle = "new_file_modified_name";
+            var title = "new_file_modified_name";
 
-            var fileAttachment = new FileAttachment(filePath, fileTitle);
+            var fileAttachment = new FileAttachment(filePath, title);
 
             Assert.That(fileAttachment.Title, Is.EqualTo("new_file_modified_name"));
             Assert.That(fileAttachment.Extension, Is.EqualTo(".gp"));
@@ -40,11 +42,11 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         public void FileAttachment_Constructor_With_ModifiedTitle_With_Extension_Has_Expected_State()
         {
             var filePath = @"C:\SomeOtherFolder\Files\new_file.gp";
-            var fileTitle = "new_file_modified_name.gp";
+            var title = "new_file_modified_name.gp";
 
-            var fileAttachment = new FileAttachment(filePath, fileTitle);
+            var fileAttachment = new FileAttachment(filePath, title);
 
-            Assert.That(fileAttachment.Title, Is.EqualTo("new_file_modified_name"));
+            Assert.That(fileAttachment.Title, Is.EqualTo("new_file_modified_name.gp"));
             Assert.That(fileAttachment.Extension, Is.EqualTo(".gp"));
         }
 
@@ -52,9 +54,9 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         public void FileAttachment_Constructor_With_Null_Title_No_Extension_Has_Expected_State()
         {
             var filePath = @"C:\SomeOtherFolder\Files\new_file.gp";
-            string fileTitle = null;
+            string title = null;
 
-            var fileAttachment = new FileAttachment(filePath, fileTitle);
+            var fileAttachment = new FileAttachment(filePath, title);
 
             Assert.That(fileAttachment.Title, Is.EqualTo("new_file"));
             Assert.That(fileAttachment.Extension, Is.EqualTo(".gp"));
@@ -64,9 +66,9 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         public void FileAttachment_Constructor_With_Empty_Title_No_Extension_Has_Expected_State()
         {
             var filePath = @"C:\SomeOtherFolder\Files\new_file.gp";
-            string fileTitle = " ";
+            string title = " ";
 
-            var fileAttachment = new FileAttachment(filePath, fileTitle);
+            var fileAttachment = new FileAttachment(filePath, title);
 
             Assert.That(fileAttachment.Title, Is.EqualTo("new_file"));
             Assert.That(fileAttachment.Extension, Is.EqualTo(".gp"));
@@ -76,10 +78,10 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         public void FileAttachment_ChangeName_With_ModifiedTitle_No_Extension_Has_Expected_State()
         {
             var filePath = @"C:\SomeOtherFolder\Files\new_file.gp";
-            var fileTitle = "new_file_modified_name";
+            var title = "new_file_modified_name";
 
             var fileAttachment = new FileAttachment();
-            fileAttachment.ChangeName(filePath, fileTitle);
+            fileAttachment.ChangeName(filePath, title);
 
             Assert.That(fileAttachment.Title, Is.EqualTo("new_file_modified_name"));
             Assert.That(fileAttachment.Extension, Is.EqualTo(".gp"));
@@ -89,12 +91,12 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         public void FileAttachment_ChangeName_With_ModifiedTitle_With_Extension_Has_Expected_State()
         {
             var filePath = @"C:\SomeOtherFolder\Files\new_file.gp";
-            var fileTitle = "new_file_modified_name.gp";
+            var title = "new_file_modified_name.gp";
 
             var fileAttachment = new FileAttachment();
-            fileAttachment.ChangeName(filePath, fileTitle);
+            fileAttachment.ChangeName(filePath, title);
 
-            Assert.That(fileAttachment.Title, Is.EqualTo("new_file_modified_name"));
+            Assert.That(fileAttachment.Title, Is.EqualTo("new_file_modified_name.gp"));
             Assert.That(fileAttachment.Extension, Is.EqualTo(".gp"));
         }
 
@@ -102,10 +104,10 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         public void FileAttachment_ChangeName_With_Null_Title_No_Extension_Has_Expected_State()
         {
             var filePath = @"C:\SomeOtherFolder\Files\new_file.gp";
-            string fileTitle = null;
+            string title = null;
 
             var fileAttachment = new FileAttachment();
-            fileAttachment.ChangeName(filePath, fileTitle);
+            fileAttachment.ChangeName(filePath, title);
 
             Assert.That(fileAttachment.Title, Is.EqualTo("new_file"));
             Assert.That(fileAttachment.Extension, Is.EqualTo(".gp"));
@@ -115,10 +117,10 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         public void FileAttachment_ChangeName_With_Empty_Title_No_Extension_Has_Expected_State()
         {
             var filePath = @"C:\SomeOtherFolder\Files\new_file.gp";
-            string fileTitle = " ";
+            string title = " ";
 
             var fileAttachment = new FileAttachment();
-            fileAttachment.ChangeName(filePath, fileTitle);
+            fileAttachment.ChangeName(filePath, title);
 
             Assert.That(fileAttachment.Title, Is.EqualTo("new_file"));
             Assert.That(fileAttachment.Extension, Is.EqualTo(".gp"));
@@ -128,10 +130,10 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         public void FileAttachment_ChangeName_Sets_FilePath_Property()
         {
             var filePath = @"C:\SmartSession\Files\new_file.gp";
-            string fileTitle = " ";
+            string title = " ";
 
             var fileAttachment = new FileAttachment();
-            fileAttachment.ChangeName(filePath, fileTitle);
+            fileAttachment.ChangeName(filePath, title);
 
             Assert.That(fileAttachment.SourceFilePath, Is.EqualTo(filePath));
 
@@ -141,9 +143,9 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         public void FileAttachment_Constructor_Sets_FilePath_Property()
         {
             var filePath = @"C:\SomeOtherFolder\Files\new_file.gp";
-            string fileTitle = " ";
+            string title = " ";
 
-            var fileAttachment = new FileAttachment(filePath, fileTitle);
+            var fileAttachment = new FileAttachment(filePath, title);
 
             Assert.That(fileAttachment.SourceFilePath, Is.EqualTo(filePath));
         }

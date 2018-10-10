@@ -54,7 +54,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests
             FileAttachmentUpdateViewModel updateViewModel = GetFileAttachmentUpdateViewModel(2);
             updateViewModel.StartEdit(2);
 
-            Assert.That(updateViewModel.FileAttachment.FileName, Is.EqualTo("file_title.txt"));
+            Assert.That(updateViewModel.FileAttachment.FileName, Is.EqualTo("27098039-5725-4564-92FD-2F222621D688.txt"));
         }
 
         [Test]

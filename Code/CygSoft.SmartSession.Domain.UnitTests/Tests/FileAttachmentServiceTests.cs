@@ -54,6 +54,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             var fileService = new Mock<IFileService>();
             fileService.Setup(s => s.FileExists(It.IsAny<string>())).Returns(false);
             fileService.Setup(s => s.FolderPath).Returns(@"C:\SmartSession\Files");
+            fileService.Setup(s => s.GenerateFileId()).Returns(@"27098039-5725-4564-92FD-2F222621D688");
 
             var fileAttachmentService = new FileAttachmentService(unitOfWork.Object, fileService.Object);
 
@@ -73,6 +74,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             var fileService = new Mock<IFileService>();
             fileService.Setup(s => s.FileExists(It.IsAny<string>())).Returns(false);
             fileService.Setup(s => s.FolderPath).Returns(@"C:\SmartSession\Files");
+            fileService.Setup(s => s.GenerateFileId()).Returns(@"27098039-5725-4564-92FD-2F222621D688");
 
             var fileAttachmentService = new FileAttachmentService(unitOfWork.Object, fileService.Object);
 
@@ -116,6 +118,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
 
             var fileAttachment = new FileAttachment();
             fileAttachment.Id = 23;
+            fileAttachment.FileId = @"27098039-5725-4564-92FD-2F222621D688";
             fileAttachment.ChangeName(@"C:\SomeOtherFolder\Files\new_file.gp", null);
 
             var fileAttachmentsRepository = new Mock<IFileAttachmentRepository>();
@@ -123,6 +126,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             var fileService = new Mock<IFileService>();
             fileService.Setup(s => s.FileExists(It.IsAny<string>())).Returns(false);
             fileService.Setup(s => s.FolderPath).Returns(@"C:\SmartSession\Files");
+            fileService.Setup(s => s.GenerateFileId()).Returns(@"27098039-5725-4564-92FD-2F222621D688");
 
             var fileAttachmentService = new FileAttachmentService(unitOfWork.Object, fileService.Object);
 

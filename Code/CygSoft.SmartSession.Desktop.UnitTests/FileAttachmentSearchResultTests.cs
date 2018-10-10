@@ -23,7 +23,8 @@ namespace CygSoft.SmartSession.Desktop.UnitTests
             result.Title = fileAttachment.Title;
             result.Extension = fileAttachment.Extension;
 
-            Assert.That(result.FileName, Is.EqualTo("file.txt"));
+            // because the attachment has not be added yet, it cannot have a destination file name.
+            Assert.That(result.FileName, Is.Null);
         }
     }
 }
