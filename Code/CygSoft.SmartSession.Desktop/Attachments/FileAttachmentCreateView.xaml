@@ -27,7 +27,7 @@
 
             <TextBlock Text="File Path:" Margin="5"></TextBlock>
             <StackPanel Orientation="Horizontal">
-                <TextBox Margin="5" MinWidth="300" HorizontalAlignment="Stretch" Text="{Binding FileAttachment.FilePath, ValidatesOnNotifyDataErrors=True}"></TextBox>
+                <TextBox Margin="5" MinWidth="300" HorizontalAlignment="Stretch" Text="{Binding FileAttachment.SourceFilePath, ValidatesOnNotifyDataErrors=True}"></TextBox>
                 <Button Content="..." Margin="5" MaxWidth="50" MinWidth="50" MaxHeight="35" Command="{Binding OpenFileCommand}" />
             </StackPanel>
 

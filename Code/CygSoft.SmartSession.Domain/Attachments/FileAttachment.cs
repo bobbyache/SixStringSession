@@ -38,7 +38,7 @@ namespace CygSoft.SmartSession.Domain.Attachments
         public string Notes { get; set; }
 
         [NotMapped]
-        internal string SourceFilePath { get; set; }
+        public string SourceFilePath { get; set; }
 
         [NotMapped]
         public string FileName
@@ -49,13 +49,6 @@ namespace CygSoft.SmartSession.Domain.Attachments
                     return null;
                 return FileId + Extension;
             }
-        }
-
-        public void ChangeName(string filePath, string title)
-        {
-            this.SourceFilePath = filePath;
-            Extension = Path.GetExtension(filePath);
-            this.Title = string.IsNullOrWhiteSpace(title) ? Path.GetFileNameWithoutExtension(filePath) : title;
         }
 
         public List<FileAttachmentKeyword> FileAttachmentKeywords { get; set; }

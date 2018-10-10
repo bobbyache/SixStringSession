@@ -1,4 +1,5 @@
-﻿using CygSoft.SmartSession.Desktop.Supports.Validators;
+﻿using AutoMapper;
+using CygSoft.SmartSession.Desktop.Supports.Validators;
 using CygSoft.SmartSession.Domain.Attachments;
 using System.IO;
 
@@ -10,25 +11,25 @@ namespace CygSoft.SmartSession.Desktop.Attachments
         {
         }
 
-        private string filePath;
+        private string sourceFilePath;
         [ValidFilePathValidator]
-        public string FilePath
+        public string SourceFilePath
         {
-            get { return filePath; }
+            get { return sourceFilePath; }
             set
             {
                 Extension = Path.GetExtension(value);
                 if (string.IsNullOrWhiteSpace(Title))
                     Title = Path.GetFileNameWithoutExtension(value);
 
-                Set(() => FilePath, ref filePath, value, true, true);
+                Set(() => SourceFilePath, ref sourceFilePath, value, true, true);
             }
         }
 
         public override void Commit()
         {
+            FileAttachment.SourceFilePath = this.SourceFilePath;
             base.Commit();
-            FileAttachment.ChangeName(this.FilePath, this.Title);
         }
     }
 }

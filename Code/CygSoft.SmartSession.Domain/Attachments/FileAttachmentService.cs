@@ -2,9 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CygSoft.SmartSession.Domain.Attachments
 {
@@ -24,13 +21,13 @@ namespace CygSoft.SmartSession.Domain.Attachments
             if (fileAttachment.Id > 0)
                 throw new ArgumentException("A new file attachment cannot have an id");
 
-            if (fileService.FileExists(fileAttachment.FileName))
-                throw new InvalidOperationException("This operation is invalid as it will overwrite an existing file with the same name.");
-
             if (string.IsNullOrEmpty(fileAttachment.SourceFilePath))
                 throw new InvalidOperationException("Source file path has not been specified.");
 
             fileAttachment.FileId = fileService.GenerateFileId();
+
+            if (fileService.FileExists(fileAttachment.FileName))
+                throw new InvalidOperationException("This operation is invalid as it will overwrite an existing file with the same name.");
 
             fileService.Copy(fileAttachment.SourceFilePath, Path.Combine(fileService.FolderPath, fileAttachment.FileName));
 
@@ -72,9 +69,6 @@ namespace CygSoft.SmartSession.Domain.Attachments
         {
             if (fileAttachment.Id <= 0)
                 throw new ArgumentException("An existing file attachment must have an id");
-
-            if (!string.IsNullOrEmpty(fileAttachment.SourceFilePath))
-                fileService.Copy(fileAttachment.SourceFilePath, Path.Combine(fileService.FolderPath, fileAttachment.FileName));
 
             fileAttachment.DateModified = DateTime.Now;
             

@@ -4,10 +4,6 @@ using CygSoft.SmartSession.Domain.Attachments;
 using Moq;
 using NUnit.Framework;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CygSoft.SmartSession.Desktop.UnitTests
 {
@@ -19,6 +15,40 @@ namespace CygSoft.SmartSession.Desktop.UnitTests
         // Thanks Vincent.  I meant that you could avoid using BindingGroups altogether by implementing IDataErrorInfo and setting the ValidatesOnDataError property of Binding to true.  
         // https://blogs.msdn.microsoft.com/vinsibal/2008/08/12/wpf-3-5-sp1-feature-bindinggroups-with-item-level-validation/
 
+        [Test]
+        public void FileAttachmentCreateViewModel_Save_Correctly_Handles_SourceFilePath_After_Saving()
+        {
+            Mock<IFileAttachmentService> fileAttachmentService = new Mock<IFileAttachmentService>();
+            Mock<IDialogViewService> dialogService = new Mock<IDialogViewService>();
+
+            FileAttachmentCreateViewModel createViewModel = new FileAttachmentCreateViewModel(fileAttachmentService.Object, dialogService.Object);
+            createViewModel.StartEdit(null);
+
+
+            var fileAttachmentCreateModel = (FileAttachmentCreateModel)createViewModel.FileAttachment;
+            fileAttachmentCreateModel.SourceFilePath = @"C:\SomeOtherFolder\Files\new_file.gp";
+            createViewModel.SaveCommand.Execute(null);
+
+            var fileAttachment = fileAttachmentCreateModel.FileAttachment;
+            Assert.That(fileAttachmentCreateModel.SourceFilePath, Is.Null);
+            Assert.That(fileAttachment.SourceFilePath, Is.EqualTo(@"C:\SomeOtherFolder\Files\new_file.gp"));
+        }
+
+        [Test]
+        public void FileAttachmentCreateViewModel_StartEdit_Correctly_Initializes_SourceFilePath()
+        {
+            Mock<IFileAttachmentService> fileAttachmentService = new Mock<IFileAttachmentService>();
+            Mock<IDialogViewService> dialogService = new Mock<IDialogViewService>();
+
+            FileAttachmentCreateViewModel createViewModel = new FileAttachmentCreateViewModel(fileAttachmentService.Object, dialogService.Object);
+            createViewModel.StartEdit(null);
+
+            var fileAttachmentCreateModel = (FileAttachmentCreateModel)createViewModel.FileAttachment;
+            var fileAttachment = fileAttachmentCreateModel.FileAttachment;
+
+            Assert.That(fileAttachmentCreateModel.SourceFilePath, Is.Null);
+            Assert.That(fileAttachment.SourceFilePath, Is.Null);
+        }
 
         [Test]
         public void FileAttachmentCreateViewModel_StartEdit_Is_Correctly_Initialized_And_Presented()
@@ -163,7 +193,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests
             createViewModel.StartEdit(null);
 
             var fileAttachmentModel = createViewModel.FileAttachment as FileAttachmentCreateModel;
-            fileAttachmentModel.FilePath = @"C:\SourcePath\file.txt";
+            fileAttachmentModel.SourceFilePath = @"C:\SourcePath\file.txt";
 
             Assert.IsTrue(fileAttachmentModel.IsDirty);
         }
@@ -187,18 +217,5 @@ namespace CygSoft.SmartSession.Desktop.UnitTests
 
             return new FileAttachmentUpdateViewModel(fileAttachmentService.Object, dialogService.Object);
         }
-
-
-        //[Test]
-        //public void FileAttachmentCreateViewModel_Ensure_Id_Cannot_Be_Changed_From_Update_ViewModel()
-        //{
-        //    FileAttachmentUpdateViewModel updateViewModel = GetFileAttachmentUpdateViewModel(2);
-        //    updateViewModel.StartEdit(2);
-
-        //    var fileAttachmentModel = updateViewModel.FileAttachment;
-        //    TestDelegate proc = () => fileAttachmentModel.Id = 4;
-
-        //    Assert.That(proc, Throws.TypeOf<InvalidOperationException>(), "ID value cannot be changed while editing!");
-        //}
     }
 }

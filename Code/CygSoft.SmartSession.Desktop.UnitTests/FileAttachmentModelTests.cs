@@ -1,12 +1,6 @@
 ﻿using CygSoft.SmartSession.Desktop.Attachments;
-using CygSoft.SmartSession.Desktop.Supports.Validators;
 using CygSoft.SmartSession.Domain.Attachments;
 using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CygSoft.SmartSession.Desktop.UnitTests
 {
@@ -26,15 +20,6 @@ namespace CygSoft.SmartSession.Desktop.UnitTests
             Assert.That(fileAttachmentModel.IsDirty, Is.False);
         }
 
-        //[Test]
-        //public void FileAttachmentModel_Initialized_With_New_File_Attachment_Has_ValidationErrors()
-        //{
-        //    var fileAttachment = new FileAttachment();
-        //    var fileAttachmentModel = new FileAttachmentModel(fileAttachment);
-
-        //    Assert.That(fileAttachmentModel.HasErrors, Is.True);
-        //}
-
         [Test]
         public void FileAttachmentModel_ChangeFilePath_Is_Now_Dirty()
         {
@@ -44,7 +29,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests
             fileAttachment.Notes = "Some notes.";
 
             var fileAttachmentModel = new FileAttachmentCreateModel(fileAttachment);
-            fileAttachmentModel.FilePath = @"C:\SmartSession\newFile.gp";
+            fileAttachmentModel.SourceFilePath = @"C:\SmartSession\newFile.gp";
 
             Assert.That(fileAttachmentModel.IsDirty, Is.True);
         }
@@ -71,7 +56,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests
             var fileAttachment = new FileAttachment();
             var fileAttachmentModel = new FileAttachmentCreateModel(fileAttachment);
 
-            fileAttachmentModel.FilePath = @"C:\SmartSession\newFile.gp";
+            fileAttachmentModel.SourceFilePath = @"C:\SmartSession\newFile.gp";
 
             Assert.That(fileAttachmentModel.Title, Is.EqualTo("newFile"));
             Assert.That(fileAttachmentModel.Extension, Is.EqualTo(".gp"));
@@ -85,53 +70,10 @@ namespace CygSoft.SmartSession.Desktop.UnitTests
             fileAttachment.Extension = ".txt";
 
             var fileAttachmentModel = new FileAttachmentCreateModel(fileAttachment);
-            fileAttachmentModel.FilePath = @"C:\SmartSession\newFile.gp";
+            fileAttachmentModel.SourceFilePath = @"C:\SmartSession\newFile.gp";
 
             Assert.That(fileAttachmentModel.Title, Is.EqualTo("current_file_title"));
             Assert.That(fileAttachmentModel.Extension, Is.EqualTo(".gp"));
-        }
-
-        [Test]
-        public void TestFilenameAttribute()
-        {
-            var rxa = new ValidFileNameAttribute();
-            Assert.IsFalse(rxa.IsValid("pptx."));
-            Assert.IsFalse(rxa.IsValid("pp.tx."));
-            Assert.IsFalse(rxa.IsValid("."));
-            Assert.IsFalse(rxa.IsValid(".pp.tx"));
-            Assert.IsFalse(rxa.IsValid(".pptx"));
-            Assert.IsFalse(rxa.IsValid("pptx"));
-            Assert.IsFalse(rxa.IsValid("a/abc.pptx"));
-            Assert.IsFalse(rxa.IsValid("a\\abc.pptx"));
-            Assert.IsFalse(rxa.IsValid("c:abc.pptx"));
-            Assert.IsFalse(rxa.IsValid("c<abc.pptx"));
-            Assert.IsTrue(rxa.IsValid("abc.pptx"));
-            rxa = new ValidFileNameAttribute { AllowedExtensions = ".pptx" };
-            Assert.IsFalse(rxa.IsValid("abc.docx"));
-            Assert.IsTrue(rxa.IsValid("abc.pptx"));
-        }
-
-
-        [Test]
-        public void TestFilenameAttribute_2()
-        {
-            var rxa = new ValidFileNameAttribute();
-            rxa.RequireExtension = false;
-
-            Assert.IsFalse(rxa.IsValid("pptx."));
-            Assert.IsFalse(rxa.IsValid("pp.tx."));
-            Assert.IsFalse(rxa.IsValid("."));
-            Assert.IsFalse(rxa.IsValid(".pp.tx"));
-            Assert.IsFalse(rxa.IsValid(".pptx"));
-            Assert.IsTrue(rxa.IsValid("pptx"));
-            Assert.IsFalse(rxa.IsValid("a/abc.pptx"));
-            Assert.IsFalse(rxa.IsValid("a\\abc.pptx"));
-            Assert.IsFalse(rxa.IsValid("c:abc.pptx"));
-            Assert.IsFalse(rxa.IsValid("c<abc.pptx"));
-            Assert.IsTrue(rxa.IsValid("abc.pptx"));
-            rxa = new ValidFileNameAttribute { AllowedExtensions = ".pptx" };
-            Assert.IsFalse(rxa.IsValid("abc.docx"));
-            Assert.IsTrue(rxa.IsValid("abc.pptx"));
         }
     }
 }

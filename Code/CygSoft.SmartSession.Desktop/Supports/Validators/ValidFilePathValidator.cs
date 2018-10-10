@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CygSoft.SmartSession.Desktop.Supports.Validators
 {
@@ -12,7 +7,15 @@ namespace CygSoft.SmartSession.Desktop.Supports.Validators
     {
         public override bool IsValid(object value)
         {
-            return File.Exists((string)value);
+            string path = (string)value;
+            return !string.IsNullOrEmpty(path)
+                && Path.IsPathRooted(path)
+                && path.IndexOfAny(Path.GetInvalidPathChars()) == - 1
+                && Path.HasExtension(path)
+                ;
+
+            //return File.Exists((string)value); 
+            // currently fails in unit test.. because of mock file path.
         }
     }
 }

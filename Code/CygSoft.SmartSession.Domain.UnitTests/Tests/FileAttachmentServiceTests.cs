@@ -19,7 +19,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             string fileTitle = " ";
 
             var fileAttachment = new FileAttachment();
-            fileAttachment.ChangeName(null, fileTitle);
+            fileAttachment.SourceFilePath = null;
 
             Mock<IFileService> fileService = new Mock<IFileService>();
             Mock<IUnitOfWork> unitOfWork = new Mock<IUnitOfWork>();
@@ -33,14 +33,13 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         public void FileAttachmentService_Add_FileAttachment_With_FileName_That_Matches_Existing_ThrowsException()
         {
             var unitOfWork = new Mock<IUnitOfWork>();
-            var fileAttachment = new FileAttachment();
+            var fileAttachment = new FileAttachment(@"C:\SomeOtherFolder\Files\new_file.gp", null);
 
             var fileService = new Mock<IFileService>();
-            fileService.Setup(s => s.FileExists(It.IsAny<string>())).Returns(true);
+            fileService.Setup(s => s.FileExists(It.IsAny<string>())).Returns(true); // condition mocked...
 
             var fileAttachmentService = new FileAttachmentService(unitOfWork.Object, fileService.Object);
 
-            fileAttachment.ChangeName(@"C:\SomeOtherFolder\Files\new_file.gp", null);
             TestDelegate testDelegate = () => fileAttachmentService.Add(fileAttachment);
             Assert.That(testDelegate, Throws.TypeOf<InvalidOperationException>());
         }
@@ -58,8 +57,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
 
             var fileAttachmentService = new FileAttachmentService(unitOfWork.Object, fileService.Object);
 
-            var fileAttachment = new FileAttachment();
-            fileAttachment.ChangeName(@"C:\SomeOtherFolder\Files\new_file.gp", null);
+            var fileAttachment = new FileAttachment(@"C:\SomeOtherFolder\Files\new_file.gp", null);
             fileAttachmentService.Add(fileAttachment);
 
             fileService.Verify(fService => fService.GenerateFileId(), Times.Once, "Copy was not called.");
@@ -78,8 +76,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
 
             var fileAttachmentService = new FileAttachmentService(unitOfWork.Object, fileService.Object);
 
-            var fileAttachment = new FileAttachment();
-            fileAttachment.ChangeName(@"C:\SomeOtherFolder\Files\new_file.gp", null);
+            var fileAttachment = new FileAttachment(@"C:\SomeOtherFolder\Files\new_file.gp", null);
             fileAttachmentService.Add(fileAttachment);
 
             fileService.Verify(fService => fService.Copy(It.IsAny<string>(), It.IsAny<string>()), Times.Once, "Copy was not called.");
@@ -111,15 +108,14 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         }
 
         [Test]
-        public void FileAttachmentService_Update_FileAttachment_With_New_SourceFilePath_Invokes_Copy()
+        public void FileAttachmentService_Update_FileAttachment_With_SourceFile_DoesNot_Invoke_Copy()
         {
             var unitOfWork = new Mock<IUnitOfWork>();
             unitOfWork.Setup(s => s.FileAttachments).Returns(new Mock<IFileAttachmentRepository>().Object);
 
-            var fileAttachment = new FileAttachment();
+            var fileAttachment = new FileAttachment(@"C:\SomeOtherFolder\Files\new_file.gp", null);
             fileAttachment.Id = 23;
             fileAttachment.FileId = @"27098039-5725-4564-92FD-2F222621D688";
-            fileAttachment.ChangeName(@"C:\SomeOtherFolder\Files\new_file.gp", null);
 
             var fileAttachmentsRepository = new Mock<IFileAttachmentRepository>();
 
@@ -131,7 +127,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             var fileAttachmentService = new FileAttachmentService(unitOfWork.Object, fileService.Object);
 
             fileAttachmentService.Update(fileAttachment);
-            fileService.Verify(fService => fService.Copy(It.IsAny<string>(), It.IsAny<string>()), Times.Once, "Copy was not called.");
+            fileService.Verify(fService => fService.Copy(It.IsAny<string>(), It.IsAny<string>()), Times.Never, "Copy was not called.");
         }
 
         [Test]
@@ -140,9 +136,8 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             var unitOfWork = new Mock<IUnitOfWork>();
             unitOfWork.Setup(s => s.FileAttachments).Returns(new Mock<IFileAttachmentRepository>().Object);
 
-            var fileAttachment = new FileAttachment();
+            var fileAttachment = new FileAttachment(null, "NewFileName.gp");
             fileAttachment.Id = 23;
-            fileAttachment.ChangeName(null, "NewFileName.gp");
 
             var fileAttachmentsRepository = new Mock<IFileAttachmentRepository>();
 

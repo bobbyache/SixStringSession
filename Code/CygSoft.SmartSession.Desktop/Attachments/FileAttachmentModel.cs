@@ -2,13 +2,8 @@
 using CygSoft.SmartSession.Desktop.Supports.Validators;
 using CygSoft.SmartSession.Domain.Attachments;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CygSoft.SmartSession.Desktop.Attachments
 {
@@ -40,7 +35,6 @@ namespace CygSoft.SmartSession.Desktop.Attachments
         }
 
         private string title;
-        /* [ValidFileName(RequireExtension = false)] */
         [Required]
         public string Title
         {

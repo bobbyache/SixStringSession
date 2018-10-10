@@ -20,7 +20,7 @@ namespace CygSoft.SmartSession.Desktop.Attachments
         {
             string filePath;
             if (dialogService.SelectFile(null, out filePath))
-                ((FileAttachmentCreateModel)fileAttachmentModel).FilePath = filePath;
+                ((FileAttachmentCreateModel)fileAttachmentModel).SourceFilePath = filePath;
         }
 
         public override void StartEdit(int? fileAttachmentId)
@@ -40,6 +40,8 @@ namespace CygSoft.SmartSession.Desktop.Attachments
             {
                 fileAttachmentService.Add(fileAttachmentModel.FileAttachment);
                 fileAttachmentModel.Id = fileAttachmentModel.FileAttachment.Id;
+                ((FileAttachmentCreateModel)fileAttachmentModel).SourceFilePath = null;
+
                 Messenger.Default.Send(new EndEditingFileAttachmentMessage(fileAttachmentModel, true));
             }
             else
