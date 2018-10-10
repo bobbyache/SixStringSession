@@ -18,7 +18,7 @@ namespace CygSoft.SmartSession.Domain.Attachments.Specifications
             if (string.IsNullOrEmpty(titleFragment))
                 return ex => true;
             else
-                return ex => ex.FileTitle.ToUpper().Contains(titleFragment.ToUpper());
+                return ex => ex.Title.ToUpper().Contains(titleFragment.ToUpper());
         }
     }
 }

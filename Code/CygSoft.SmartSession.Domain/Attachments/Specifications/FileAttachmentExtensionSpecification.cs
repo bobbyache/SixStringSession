@@ -22,7 +22,7 @@ namespace CygSoft.SmartSession.Domain.Attachments.Specifications
             if (string.IsNullOrEmpty(extension))
                 return ex => true;
             else
-                return ex => ex.FileTitle.ToUpper().Contains(extension.ToUpper());
+                return ex => ex.Title.ToUpper().Contains(extension.ToUpper());
         }
 
     }

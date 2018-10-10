@@ -18,8 +18,8 @@ namespace CygSoft.SmartSession.Desktop.Attachments
             set
             {
                 Extension = Path.GetExtension(value);
-                if (string.IsNullOrWhiteSpace(FileTitle))
-                    FileTitle = Path.GetFileNameWithoutExtension(value);
+                if (string.IsNullOrWhiteSpace(Title))
+                    Title = Path.GetFileNameWithoutExtension(value);
 
                 Set(() => FilePath, ref filePath, value, true, true);
             }
@@ -28,7 +28,7 @@ namespace CygSoft.SmartSession.Desktop.Attachments
         public override void Commit()
         {
             base.Commit();
-            FileAttachment.ChangeName(this.FilePath, this.FileTitle);
+            FileAttachment.ChangeName(this.FilePath, this.Title);
         }
     }
 }

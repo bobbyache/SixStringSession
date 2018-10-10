@@ -19,9 +19,16 @@ namespace CygSoft.SmartSession.Domain.Attachments
             BuildDefinition(filePath, fileTitle);
         }
 
+        // since we can't use the primary key for part of the file name because
+        // we don't know the primary key until we've saved the file... we have 
+        // to make another field.
+        [Required]
+        [Column(TypeName = "nvarchar(50)")]
+        public string FileId { get; set; }
+
         [Required]
         [Column(TypeName = "nvarchar(150)")]
-        public string FileTitle { get; set; }
+        public string Title { get; set; }
 
         [Required]
         [Column(TypeName = "nvarchar(10)")]
@@ -34,14 +41,14 @@ namespace CygSoft.SmartSession.Domain.Attachments
         internal string SourceFilePath { get; set; }
 
         [NotMapped]
-        public string FileName => FileTitle + Extension;
+        public string FileName => Title + Extension;
 
         public void ChangeName(string filePath, string fileTitle)
         {
             this.SourceFilePath = filePath;
 
             if (filePath == null)
-                this.FileTitle = fileTitle;
+                this.Title = fileTitle;
             else
                 BuildDefinition(filePath, fileTitle);
         }
@@ -52,12 +59,12 @@ namespace CygSoft.SmartSession.Domain.Attachments
         {
             if (!string.IsNullOrWhiteSpace(title))
             {
-                FileTitle = Path.GetFileNameWithoutExtension(title);
+                Title = Path.GetFileNameWithoutExtension(title);
                 Extension = Path.GetExtension(path);
             }
             else
             {
-                FileTitle = Path.GetFileNameWithoutExtension(path);
+                Title = Path.GetFileNameWithoutExtension(path);
                 Extension = Path.GetExtension(path);
             }
         }

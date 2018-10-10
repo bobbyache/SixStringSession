@@ -9,7 +9,7 @@ using System.Windows.Controls;
 
 namespace CygSoft.SmartSession.Desktop.Supports.Validators
 {
-    public class RequiredFileTitleValidator : ValidationRule
+    public class RequiredFileNameValidator : ValidationRule
     {
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {

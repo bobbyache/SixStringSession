@@ -32,5 +32,10 @@ namespace CygSoft.SmartSession.Domain.Common
         {
             File.Delete(Path.Combine(FolderPath, fileName));
         }
+
+        public string GenerateFileId()
+        {
+            return Guid.NewGuid().ToString();
+        }
     }
 }

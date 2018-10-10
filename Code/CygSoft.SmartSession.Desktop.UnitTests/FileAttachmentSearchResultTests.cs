@@ -20,7 +20,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests
             var result = new FileAttachmentSearchResultModel();
 
             result.Id = fileAttachment.Id;
-            result.FileTitle = fileAttachment.FileTitle;
+            result.Title = fileAttachment.Title;
             result.Extension = fileAttachment.Extension;
 
             Assert.That(result.FileName, Is.EqualTo("file.txt"));

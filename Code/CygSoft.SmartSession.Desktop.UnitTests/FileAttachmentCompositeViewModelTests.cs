@@ -22,7 +22,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests
                 DateCreated = DateTime.Now,
                 DateModified = DateTime.Now,
                 Extension = ".txt",
-                FileTitle = "file_title",
+                Title = "file_title",
                 Notes = "Here are some notes."
             });
 
@@ -55,7 +55,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests
             searchResultModel.Id = 3;
             searchResultModel.Extension = ".txt";
             searchResultModel.Notes = "Some notes...";
-            searchResultModel.FileTitle = "file_title";
+            searchResultModel.Title = "file_title";
 
             // no search result selected...
             Messenger.Default.Send(new StartEditingFileAttachmentMessage(searchResultModel, StartEditingEntityMode.Update));
@@ -73,7 +73,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests
                 DateCreated = DateTime.Now,
                 DateModified = DateTime.Now,
                 Extension = ".txt",
-                FileTitle = "file_title",
+                Title = "file_title",
                 Notes = "Here are some notes."
             }); // required for when we call Get() from the service... can't edit a NULL FileAttachment.
 

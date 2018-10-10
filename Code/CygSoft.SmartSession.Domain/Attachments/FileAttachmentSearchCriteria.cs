@@ -15,7 +15,7 @@ namespace CygSoft.SmartSession.Domain.Attachments
         public DateTime? DateModifiedAfter { get; set; }
         public DateTime? DateModifiedBefore { get; set; }
         public bool? HasNotes { get; set; }
-        public string FileTitle { get; set; }
+        public string Title { get; set; }
         public string Extension { get; set; }
         public string Keywords { get; set; }
 
@@ -27,7 +27,7 @@ namespace CygSoft.SmartSession.Domain.Attachments
         public Specification<FileAttachment> Specification()
         {
             return
-                new FileAttachmentTitleSpecification(FileTitle)
+                new FileAttachmentTitleSpecification(Title)
                 .And(new FileAttachmentDateModifiedSpecification(DateModifiedAfter, DateModifiedBefore))
                 .And(new FileAttachmentDateCreatedSpecification(DateCreatedAfter, DateCreatedBefore))
                 .And(new FileAttachmentHasNotesSpecification(HasNotes))

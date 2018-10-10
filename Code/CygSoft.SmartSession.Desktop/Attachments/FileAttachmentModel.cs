@@ -29,14 +29,25 @@ namespace CygSoft.SmartSession.Desktop.Attachments
             }
         }
 
-        private string fileTitle;
-        [ValidFileName(RequireExtension = false)]
-        public string FileTitle
+        private string fileId;
+        public string FileId
         {
-            get { return fileTitle; }
+            get { return fileId; }
             set
             {
-                Set(() => FileTitle, ref fileTitle, value, true, true);
+                Set(() => FileId, ref fileId, value, true, true);
+            }
+        }
+
+        private string title;
+        /* [ValidFileName(RequireExtension = false)] */
+        [Required]
+        public string Title
+        {
+            get { return title; }
+            set
+            {
+                Set(() => Title, ref title, value, true, true);
             }
         }
 
@@ -50,7 +61,7 @@ namespace CygSoft.SmartSession.Desktop.Attachments
             }
         }
 
-        public string FileName { get { return FileTitle + Extension;; } }
+        public string FileName { get { return Title + Extension;; } }
 
         public FileAttachmentModel(FileAttachment fileAttachment)
         {

@@ -36,13 +36,13 @@ namespace CygSoft.SmartSession.Desktop.UnitTests
             Assert.That(fileAttachmentModel.IsDirty, Is.EqualTo(false));
             Assert.That(fileAttachmentModel.Notes, Is.EqualTo(null));
             Assert.That(fileAttachmentModel.Extension, Is.EqualTo(null));
-            Assert.That(fileAttachmentModel.FileTitle, Is.EqualTo(null));
+            Assert.That(fileAttachmentModel.Title, Is.EqualTo(null));
             Assert.That(fileAttachmentModel.FileAttachment, Is.Not.EqualTo(null));
 
             Assert.That(fileAttachment.Id, Is.EqualTo(0));
             Assert.That(fileAttachment.Notes, Is.EqualTo(null));
             Assert.That(fileAttachment.Extension, Is.EqualTo(null));
-            Assert.That(fileAttachment.FileTitle, Is.EqualTo(null));
+            Assert.That(fileAttachment.Title, Is.EqualTo(null));
         }
 
         [Test]
@@ -81,17 +81,20 @@ namespace CygSoft.SmartSession.Desktop.UnitTests
             var fileAttachmentModel = createViewModel.FileAttachment;
             var fileAttachment = fileAttachmentModel.FileAttachment;
 
+            Guid guid;
+
             Assert.That(fileAttachmentModel.Id, Is.EqualTo(2));
             Assert.That(fileAttachmentModel.IsDirty, Is.EqualTo(false));
+            Assert.IsTrue(Guid.TryParse(fileAttachmentModel.FileId, out guid));
             Assert.That(fileAttachmentModel.Notes, Is.EqualTo("Here are some notes."));
             Assert.That(fileAttachmentModel.Extension, Is.EqualTo(".txt"));
-            Assert.That(fileAttachmentModel.FileTitle, Is.EqualTo("file_title"));
+            Assert.That(fileAttachmentModel.Title, Is.EqualTo("file_title"));
             Assert.That(fileAttachmentModel.FileAttachment, Is.Not.EqualTo(null));
 
             Assert.That(fileAttachment.Id, Is.EqualTo(2));
             Assert.That(fileAttachment.Notes, Is.EqualTo("Here are some notes."));
             Assert.That(fileAttachment.Extension, Is.EqualTo(".txt"));
-            Assert.That(fileAttachment.FileTitle, Is.EqualTo("file_title"));
+            Assert.That(fileAttachment.Title, Is.EqualTo("file_title"));
         }
 
         [Test]
@@ -114,7 +117,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests
             updateViewModel.StartEdit(2);
 
             var fileAttachmentModel = updateViewModel.FileAttachment;
-            fileAttachmentModel.FileTitle = "file_title_changed";
+            fileAttachmentModel.Title = "file_title_changed";
 
             Assert.IsTrue(fileAttachmentModel.IsDirty);
         }
@@ -145,7 +148,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests
             createViewModel.StartEdit(null);
 
             var fileAttachmentModel = createViewModel.FileAttachment;
-            fileAttachmentModel.FileTitle = "file_title";
+            fileAttachmentModel.Title = "file_title";
 
             Assert.IsTrue(fileAttachmentModel.IsDirty);
         }
@@ -174,8 +177,9 @@ namespace CygSoft.SmartSession.Desktop.UnitTests
                 Id = id,
                 DateCreated = DateTime.Now,
                 DateModified = DateTime.Now,
+                FileId = "27098039-5725-4564-92FD-2F222621D688",
                 Extension = ".txt",
-                FileTitle = "file_title",
+                Title = "file_title",
                 Notes = "Here are some notes."
             });
 

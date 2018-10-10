@@ -13,7 +13,7 @@ namespace CygSoft.SmartSession.Domain.Attachments
         DateTime? DateModifiedAfter { get; set; }
         DateTime? DateModifiedBefore { get; set; }
         bool? HasNotes { get; set; }
-        string FileTitle { get; set; }
+        string Title { get; set; }
         string Extension { get; set; }
         string Keywords { get; set; }
     }

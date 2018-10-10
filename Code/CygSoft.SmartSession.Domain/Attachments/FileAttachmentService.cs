@@ -30,6 +30,8 @@ namespace CygSoft.SmartSession.Domain.Attachments
             if (string.IsNullOrEmpty(fileAttachment.SourceFilePath))
                 throw new InvalidOperationException("Source file path has not been specified.");
 
+            fileAttachment.FileId = fileService.GenerateFileId();
+
             fileService.Copy(fileAttachment.SourceFilePath, Path.Combine(fileService.FolderPath, fileAttachment.FileName));
 
             fileAttachment.DateCreated = DateTime.Now;

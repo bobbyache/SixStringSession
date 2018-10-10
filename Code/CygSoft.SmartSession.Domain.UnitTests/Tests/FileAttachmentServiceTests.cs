@@ -46,6 +46,25 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         }
 
         [Test]
+        public void FileAttachmentService_Add_FileAttachment_Successfully_Generates_FileId()
+        {
+            var unitOfWork = new Mock<IUnitOfWork>();
+            unitOfWork.Setup(s => s.FileAttachments).Returns(new Mock<IFileAttachmentRepository>().Object);
+
+            var fileService = new Mock<IFileService>();
+            fileService.Setup(s => s.FileExists(It.IsAny<string>())).Returns(false);
+            fileService.Setup(s => s.FolderPath).Returns(@"C:\SmartSession\Files");
+
+            var fileAttachmentService = new FileAttachmentService(unitOfWork.Object, fileService.Object);
+
+            var fileAttachment = new FileAttachment();
+            fileAttachment.ChangeName(@"C:\SomeOtherFolder\Files\new_file.gp", null);
+            fileAttachmentService.Add(fileAttachment);
+
+            fileService.Verify(fService => fService.GenerateFileId(), Times.Once, "Copy was not called.");
+        }
+
+        [Test]
         public void FileAttachmentService_Add_FileAttachment_Successfully_Invokes_Copy_Method()
         {
             var unitOfWork = new Mock<IUnitOfWork>();
@@ -61,7 +80,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             fileAttachment.ChangeName(@"C:\SomeOtherFolder\Files\new_file.gp", null);
             fileAttachmentService.Add(fileAttachment);
 
-            fileService.Verify(mock => mock.Copy(It.IsAny<string>(), It.IsAny<string>()), Times.Once, "Copy was not called.");
+            fileService.Verify(fService => fService.Copy(It.IsAny<string>(), It.IsAny<string>()), Times.Once, "Copy was not called.");
         }
 
         [Test]
@@ -71,7 +90,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             repository.Setup(r => r.Get(It.IsAny<int>())).Returns(new FileAttachment
             {
                 Id = 5,
-                FileTitle = "file_title",
+                Title = "file_title",
                 Extension = ".txt"
             });
 
@@ -86,7 +105,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             
             fileAttachmentService.Remove(5);
 
-            fileService.Verify(mock => mock.Delete(It.IsAny<string>()), Times.Once, "Delete was not called.");
+            fileService.Verify(fService => fService.Delete(It.IsAny<string>()), Times.Once, "Delete was not called.");
         }
 
         [Test]
@@ -108,7 +127,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             var fileAttachmentService = new FileAttachmentService(unitOfWork.Object, fileService.Object);
 
             fileAttachmentService.Update(fileAttachment);
-            fileService.Verify(mock => mock.Copy(It.IsAny<string>(), It.IsAny<string>()), Times.Once, "Copy was not called.");
+            fileService.Verify(fService => fService.Copy(It.IsAny<string>(), It.IsAny<string>()), Times.Once, "Copy was not called.");
         }
 
         [Test]
@@ -130,7 +149,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             var fileAttachmentService = new FileAttachmentService(unitOfWork.Object, fileService.Object);
 
             fileAttachmentService.Update(fileAttachment);
-            fileService.Verify(mock => mock.Copy(It.IsAny<string>(), It.IsAny<string>()), Times.Never, "Copy was called, but shouldn't have.");
+            fileService.Verify(fService => fService.Copy(It.IsAny<string>(), It.IsAny<string>()), Times.Never, "Copy was called, but shouldn't have.");
         }
     }
 }

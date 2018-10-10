@@ -20,7 +20,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             FileAttachment fileAttachment = new FileAttachment(@"C:\smartsession\files\attachment.txt", null);
             fileAttachment.ChangeName(null, "attachment_2");
             Assert.That(fileAttachment.Extension, Is.EqualTo(".txt"));
-            Assert.That(fileAttachment.FileTitle, Is.EqualTo("attachment_2"));
+            Assert.That(fileAttachment.Title, Is.EqualTo("attachment_2"));
             Assert.That(fileAttachment.FileName, Is.EqualTo("attachment_2.txt"));
         }
 
@@ -32,7 +32,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
 
             var fileAttachment = new FileAttachment(filePath, fileTitle);
 
-            Assert.That(fileAttachment.FileTitle, Is.EqualTo("new_file_modified_name"));
+            Assert.That(fileAttachment.Title, Is.EqualTo("new_file_modified_name"));
             Assert.That(fileAttachment.Extension, Is.EqualTo(".gp"));
         }
 
@@ -44,7 +44,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
 
             var fileAttachment = new FileAttachment(filePath, fileTitle);
 
-            Assert.That(fileAttachment.FileTitle, Is.EqualTo("new_file_modified_name"));
+            Assert.That(fileAttachment.Title, Is.EqualTo("new_file_modified_name"));
             Assert.That(fileAttachment.Extension, Is.EqualTo(".gp"));
         }
 
@@ -56,7 +56,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
 
             var fileAttachment = new FileAttachment(filePath, fileTitle);
 
-            Assert.That(fileAttachment.FileTitle, Is.EqualTo("new_file"));
+            Assert.That(fileAttachment.Title, Is.EqualTo("new_file"));
             Assert.That(fileAttachment.Extension, Is.EqualTo(".gp"));
         }
 
@@ -68,7 +68,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
 
             var fileAttachment = new FileAttachment(filePath, fileTitle);
 
-            Assert.That(fileAttachment.FileTitle, Is.EqualTo("new_file"));
+            Assert.That(fileAttachment.Title, Is.EqualTo("new_file"));
             Assert.That(fileAttachment.Extension, Is.EqualTo(".gp"));
         }
 
@@ -81,7 +81,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             var fileAttachment = new FileAttachment();
             fileAttachment.ChangeName(filePath, fileTitle);
 
-            Assert.That(fileAttachment.FileTitle, Is.EqualTo("new_file_modified_name"));
+            Assert.That(fileAttachment.Title, Is.EqualTo("new_file_modified_name"));
             Assert.That(fileAttachment.Extension, Is.EqualTo(".gp"));
         }
 
@@ -94,7 +94,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             var fileAttachment = new FileAttachment();
             fileAttachment.ChangeName(filePath, fileTitle);
 
-            Assert.That(fileAttachment.FileTitle, Is.EqualTo("new_file_modified_name"));
+            Assert.That(fileAttachment.Title, Is.EqualTo("new_file_modified_name"));
             Assert.That(fileAttachment.Extension, Is.EqualTo(".gp"));
         }
 
@@ -107,7 +107,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             var fileAttachment = new FileAttachment();
             fileAttachment.ChangeName(filePath, fileTitle);
 
-            Assert.That(fileAttachment.FileTitle, Is.EqualTo("new_file"));
+            Assert.That(fileAttachment.Title, Is.EqualTo("new_file"));
             Assert.That(fileAttachment.Extension, Is.EqualTo(".gp"));
         }
 
@@ -120,7 +120,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             var fileAttachment = new FileAttachment();
             fileAttachment.ChangeName(filePath, fileTitle);
 
-            Assert.That(fileAttachment.FileTitle, Is.EqualTo("new_file"));
+            Assert.That(fileAttachment.Title, Is.EqualTo("new_file"));
             Assert.That(fileAttachment.Extension, Is.EqualTo(".gp"));
         }
 

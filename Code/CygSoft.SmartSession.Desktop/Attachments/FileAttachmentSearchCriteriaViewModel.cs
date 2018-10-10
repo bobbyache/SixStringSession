@@ -29,7 +29,7 @@ namespace CygSoft.SmartSession.Desktop.Attachments
 
         private void Reset()
         {
-            FileTitle = null;
+            Title = null;
             HasNotes = null;
             DateCreatedBefore = null;
             DateCreatedAfter = null;
@@ -92,16 +92,16 @@ namespace CygSoft.SmartSession.Desktop.Attachments
             }
         }
 
-        private string fileTitle;
-        public string FileTitle
+        private string title;
+        public string Title
         {
             get
             {
-                return fileTitle;
+                return title;
             }
             set
             {
-                Set(() => FileTitle, ref fileTitle, value);
+                Set(() => Title, ref title, value);
             }
         }
 

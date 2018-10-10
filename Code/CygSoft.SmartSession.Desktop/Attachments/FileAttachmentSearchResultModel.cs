@@ -7,15 +7,15 @@ namespace CygSoft.SmartSession.Desktop.Attachments
     {
         public int Id { get; set; }
 
-        public string FileName { get { return FileTitle + Extension; } }
+        public string FileName { get { return Title + Extension; } }
 
-        private string fileTitle;
-        public string FileTitle
+        private string title;
+        public string Title
         {
-            get { return fileTitle; }
+            get { return title; }
             set
             {
-                Set(() => FileTitle, ref fileTitle, value);
+                Set(() => Title, ref title, value);
             }
         }
 
