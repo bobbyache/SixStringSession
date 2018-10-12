@@ -1,12 +1,9 @@
 ﻿using AutoMapper;
 using CygSoft.SmartSession.Desktop.Attachments;
+using CygSoft.SmartSession.Desktop.Exercises;
 using CygSoft.SmartSession.Domain.Attachments;
+using CygSoft.SmartSession.Domain.Exercises;
 using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CygSoft.SmartSession.Desktop.UnitTests
 {
@@ -20,6 +17,8 @@ namespace CygSoft.SmartSession.Desktop.UnitTests
             {
                 cfg.CreateMap<FileAttachmentModel, FileAttachment>();
                 cfg.CreateMap<FileAttachment, FileAttachmentModel>();
+                cfg.CreateMap<ExerciseModel, Exercise>();
+                cfg.CreateMap<Exercise, ExerciseModel>();
             });
         }
 

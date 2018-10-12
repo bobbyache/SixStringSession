@@ -79,6 +79,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExerciseCompositeViewModelTests.cs" />
+    <Compile Include="ExerciseEditViewModelTests.cs" />
+    <Compile Include="ExerciseModelTests.cs" />
+    <Compile Include="ExerciseSearchResultTests.cs" />
     <Compile Include="FileAttachmentCompositeViewModelTests.cs" />
     <Compile Include="FileAttachmentModelTests.cs" />
     <Compile Include="FileAttachmentSearchResultTests.cs" />

@@ -47,7 +47,10 @@
             </StackPanel>-->
             <TextBlock Text="Notes:" Margin="5"></TextBlock>
             <TextBox Text="{Binding Notes}" Height="50" Margin="5"></TextBox>
-            
+            <TextBlock Text="Files:" Margin="5"></TextBlock>
+            <ListView Height="50" Margin="5,0,5,5" AllowDrop="True" Drop="File_Drop">
+                
+            </ListView>
         </StackPanel>
         <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button Content="Save" Margin="5" MinWidth="50" MaxHeight="35" Command="{Binding SaveCommand}" />
