@@ -35,12 +35,24 @@ namespace CygSoft.SmartSession.Desktop.Exercises
 
             SaveCommand = new RelayCommand(() => Save(), () => !exerciseModel.HasErrors);
             CancelCommand = new RelayCommand(() => Cancel(), () => true);
-            AddFilesCommand = new RelayCommand<string[]>((files) => AddFiles(files));
+            DeleteFilesCommand = new RelayCommand(() => DeleteFiles(), () => true);
+            OpenFileCommand = new RelayCommand(() => OpenFile(), () => true);
         }
+
+        private void OpenFile()
+        {
+            exerciseService.OpenFile(Exercise.Id, null);
+        }
+
+        public void DeleteFiles()
+        {
+            exerciseService.DeleteFiles(Exercise.Id);
+        }
+
 
         public void AddFiles(string[] files)
         {
-            string[] theFiles = files;
+            exerciseService.AddFiles(Exercise.Id, files);
         }
 
         public void StartEdit(ExerciseSearchResultModel exerciseSearchResult)
@@ -81,6 +93,8 @@ namespace CygSoft.SmartSession.Desktop.Exercises
         public RelayCommand SaveCommand { get; private set; }
         public RelayCommand CancelCommand { get; private set; }
 
-        public RelayCommand<string[]> AddFilesCommand { get; private set; }
+        public RelayCommand DeleteFilesCommand { get; private set; }
+
+        public RelayCommand OpenFileCommand { get; private set; }
     }
 }

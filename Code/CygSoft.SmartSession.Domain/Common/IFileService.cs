@@ -14,5 +14,15 @@ namespace CygSoft.SmartSession.Domain.Common
         void Delete(string fileName);
 
         string GenerateFileId();
+
+        void AddExerciseFiles(int id, string[] filePaths);
+        void DeleteExerciseFiles(int id, string[] fileNames);
+
+        void DeleteExerciseFiles(int id); // deletes all...
+
+        string[] GetExerciseFiles(int id);
+
+        void OpenExerciseFile(int id, string fileName);
+
     }
 }

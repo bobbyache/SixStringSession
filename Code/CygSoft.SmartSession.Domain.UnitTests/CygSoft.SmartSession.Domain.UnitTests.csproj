@@ -69,9 +69,11 @@
     </Compile>
     <Compile Include="Tests\AggregateGoalTaskTests.cs" />
     <Compile Include="Tests\DurationGoalTaskTests.cs" />
+    <Compile Include="Tests\ExerciseServiceTests.cs" />
     <Compile Include="Tests\ExerciseSpecificationTests.cs" />
     <Compile Include="Tests\FileAttachmentServiceTests.cs" />
     <Compile Include="Tests\FileAttachmentTests.cs" />
+    <Compile Include="Tests\FileServiceTests.cs" />
     <Compile Include="Tests\GoalTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tests\PercentGoalTaskTests.cs" />

@@ -23,9 +23,9 @@
         </Style>
     </UserControl.Resources>
     <DockPanel LastChildFill="False">
-        <StackPanel DockPanel.Dock="Top" Margin="0,0,0,5" DataContext="{Binding Exercise}">
+        <StackPanel DockPanel.Dock="Top" Margin="0,0,0,5">
             <TextBlock Text="Title:" Margin="5"></TextBlock>
-            <TextBox Margin="5" Text="{Binding Title, ValidatesOnNotifyDataErrors=True}"></TextBox>
+            <TextBox Margin="5" Text="{Binding Exercise.Title, ValidatesOnNotifyDataErrors=True}"></TextBox>
             <!--<TextBox Margin="5">
                 <Binding Path="Title" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
@@ -34,23 +34,30 @@
                 </Binding>
             </TextBox>-->
             <TextBlock Name="OptimalDurationTextBox" Text="Optimal Duration:" Margin="5"></TextBlock>
-            <TextBox  Text="{Binding OptimalDuration, ValidatesOnNotifyDataErrors=True}" Margin="5"></TextBox>
+            <TextBox  Text="{Binding Exercise.OptimalDuration, ValidatesOnNotifyDataErrors=True}" Margin="5"></TextBox>
             <TextBlock Text="Scribed:" Margin="5"></TextBlock>
-            <CheckBox IsChecked="{Binding Scribed}" Margin="5"></CheckBox>
+            <CheckBox IsChecked="{Binding Exercise.Scribed}" Margin="5"></CheckBox>
             <TextBlock Text="Difficulty Rating:" Margin="5"></TextBlock>
-            <Slider  Value="{Binding DifficultyRating, ValidatesOnNotifyDataErrors=True}" Maximum="5" TickFrequency="1" TickPlacement="BottomRight" IsSnapToTickEnabled="True"></Slider>
+            <Slider  Value="{Binding Exercise.DifficultyRating, ValidatesOnNotifyDataErrors=True}" Maximum="5" TickFrequency="1" TickPlacement="BottomRight" IsSnapToTickEnabled="True"></Slider>
             <TextBlock Text="Practicality Rating:" Margin="5"></TextBlock>
-            <Slider  Value="{Binding PracticalityRating, ValidatesOnNotifyDataErrors=True}" Maximum="5" TickFrequency="1" TickPlacement="BottomRight" IsSnapToTickEnabled="True"></Slider>
+            <Slider  Value="{Binding Exercise.PracticalityRating, ValidatesOnNotifyDataErrors=True}" Maximum="5" TickFrequency="1" TickPlacement="BottomRight" IsSnapToTickEnabled="True"></Slider>
             <!--<StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right">
                 <Slider  Value="{Binding PracticalityRating}" Maximum="5" TickFrequency="1" TickPlacement="BottomRight" IsSnapToTickEnabled="True"></Slider>
                 <TextBlock>Add 5 stars here... ***** </TextBlock>
             </StackPanel>-->
             <TextBlock Text="Notes:" Margin="5"></TextBlock>
-            <TextBox Text="{Binding Notes}" Height="50" Margin="5"></TextBox>
+            <TextBox Text="{Binding Exercise.Notes}" Height="50" Margin="5"></TextBox>
             <TextBlock Text="Files:" Margin="5"></TextBlock>
-            <ListView Height="50" Margin="5,0,5,5" AllowDrop="True" Drop="File_Drop">
-                
-            </ListView>
+            <DockPanel LastChildFill="True">
+                <StackPanel Orientation="Vertical">
+                    <Button Content="Open..." Margin="5,5,5,5" MinWidth="50" MaxHeight="35" />
+                    <Button Content="Delete" Margin="5,0,5,5" MinWidth="50" MaxHeight="35" Command="{Binding DeleteFilesCommand}" />
+                </StackPanel>
+                <ListView Height="50" Margin="5,5,5,5" AllowDrop="True" Drop="File_Drop">
+
+                </ListView>
+            </DockPanel>
+            
         </StackPanel>
         <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button Content="Save" Margin="5" MinWidth="50" MaxHeight="35" Command="{Binding SaveCommand}" />

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CygSoft.SmartSession.Domain.Common;
+using System;
 using System.Collections.Generic;
 
 namespace CygSoft.SmartSession.Domain.Exercises
@@ -6,10 +7,12 @@ namespace CygSoft.SmartSession.Domain.Exercises
     public class ExerciseService : IExerciseService
     {
         private IUnitOfWork unitOfWork;
+        private IFileService fileService;
 
-        public ExerciseService(IUnitOfWork unitOfWork)
+        public ExerciseService(IUnitOfWork unitOfWork, IFileService fileService)
         {
             this.unitOfWork = unitOfWork ?? throw new ArgumentNullException("UnitOfWork must be provided.");
+            this.fileService = fileService ?? throw new ArgumentNullException("FileService must be provided.");
         }
 
         public void Add(Exercise exercise)
@@ -57,6 +60,31 @@ namespace CygSoft.SmartSession.Domain.Exercises
 
             unitOfWork.Exercises.Update(exercise);
             unitOfWork.Complete();
+        }
+
+        public void AddFiles(int exerciseId, string[] filePaths)
+        {
+            fileService.AddExerciseFiles(exerciseId, filePaths);
+        }
+
+        public void DeleteFiles(int exerciseId, string[] fileNames)
+        {
+            fileService.DeleteExerciseFiles(exerciseId, fileNames);
+        }
+
+        public void DeleteFiles(int exerciseId)
+        {
+            fileService.DeleteExerciseFiles(exerciseId);
+        }
+
+        public string[] GetFiles(int exerciseId)
+        {
+            return fileService.GetExerciseFiles(exerciseId);
+        }
+
+        public void OpenFile(int exerciseId, string fileName)
+        {
+            fileService.OpenExerciseFile(exerciseId, fileName);
         }
     }
 }
