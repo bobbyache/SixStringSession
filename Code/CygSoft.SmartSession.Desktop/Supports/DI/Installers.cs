@@ -1,13 +1,10 @@
 ﻿using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
-using CygSoft.SmartSession.Desktop.Attachments;
 using CygSoft.SmartSession.Desktop.Exercises;
 using CygSoft.SmartSession.Desktop.Goals;
-using CygSoft.SmartSession.Desktop.GoalTasks;
 using CygSoft.SmartSession.Desktop.Supports.Services;
 using CygSoft.SmartSession.Domain;
-using CygSoft.SmartSession.Domain.Attachments;
 using CygSoft.SmartSession.Domain.Common;
 using CygSoft.SmartSession.Domain.Exercises;
 using CygSoft.SmartSession.Domain.Goals;
@@ -43,25 +40,12 @@ namespace CygSoft.SmartSession.Desktop.Supports.DI
             container.Register(Component.For<ExerciseCompositeViewModel>());
             container.Register(Component.For<ExerciseSearchCriteriaViewModel>());
 
-            container.Register(Component.For<IFileAttachmentService>().ImplementedBy(typeof(FileAttachmentService)));
-            container.Register(Component.For<FileAttachmentCreateViewModel>());
-            container.Register(Component.For<FileAttachmentUpdateViewModel>());
-            container.Register(Component.For<FileAttachmentSearchViewModel>());
-            container.Register(Component.For<FileAttachmentCompositeViewModel>());
-            container.Register(Component.For<FileAttachmentSearchCriteriaViewModel>());
-
             container.Register(Component.For<IGoalService>().ImplementedBy(typeof(GoalService)));
             container.Register(Component.For<GoalEditViewModel>());
             container.Register(Component.For<GoalSearchViewModel>());
             container.Register(Component.For<GoalCompositeViewModel>());
             container.Register(Component.For<GoalSearchCriteriaViewModel>());
             container.Register(Component.For<GoalListViewModel>());
-
-            container.Register(Component.For<IGoalTaskService>().ImplementedBy(typeof(GoalTaskService)));
-            container.Register(Component.For<GoalTaskEditViewModel>());
-            container.Register(Component.For<GoalTaskSearchViewModel>());
-            container.Register(Component.For<GoalTaskCompositeViewModel>());
-            container.Register(Component.For<GoalTaskSearchCriteriaViewModel>());
 
             container.Register(Component.For<MainWindowViewModel>());
         }

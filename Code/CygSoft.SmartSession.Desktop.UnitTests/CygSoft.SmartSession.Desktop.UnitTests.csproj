@@ -83,10 +83,6 @@
     <Compile Include="ExerciseEditViewModelTests.cs" />
     <Compile Include="ExerciseModelTests.cs" />
     <Compile Include="ExerciseSearchResultTests.cs" />
-    <Compile Include="FileAttachmentCompositeViewModelTests.cs" />
-    <Compile Include="FileAttachmentModelTests.cs" />
-    <Compile Include="FileAttachmentSearchResultTests.cs" />
-    <Compile Include="FileAttachmentEditViewModelTests.cs" />
     <Compile Include="OneTimeSetup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ValidationAttributeTests.cs" />

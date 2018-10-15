@@ -89,34 +89,6 @@
     <Compile Include="..\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Attachments\EndEditingFileAttachmentMessage.cs" />
-    <Compile Include="Attachments\FileAttachmentCompositeView.xaml.cs">
-      <DependentUpon>FileAttachmentCompositeView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Attachments\FileAttachmentCompositeViewModel.cs" />
-    <Compile Include="Attachments\FileAttachmentCreateModel.cs" />
-    <Compile Include="Attachments\FileAttachmentCreateView.xaml.cs">
-      <DependentUpon>FileAttachmentCreateView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Attachments\FileAttachmentCreateViewModel.cs" />
-    <Compile Include="Attachments\FileAttachmentEditViewModel.cs" />
-    <Compile Include="Attachments\FileAttachmentModel.cs" />
-    <Compile Include="Attachments\FileAttachmentSearchCriteriaView.xaml.cs">
-      <DependentUpon>FileAttachmentSearchCriteriaView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Attachments\FileAttachmentSearchCriteriaViewModel.cs" />
-    <Compile Include="Attachments\FileAttachmentSearchResultModel.cs" />
-    <Compile Include="Attachments\FileAttachmentSearchView.xaml.cs">
-      <DependentUpon>FileAttachmentSearchView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Attachments\FileAttachmentSearchViewModel.cs" />
-    <Compile Include="Attachments\FileAttachmentUpdateModel.cs" />
-    <Compile Include="Attachments\FileAttachmentUpdateView.xaml.cs">
-      <DependentUpon>FileAttachmentUpdateView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Attachments\FileAttachmentUpdateViewModel.cs" />
-    <Compile Include="Attachments\FindFileAttachmentsMessage.cs" />
-    <Compile Include="Attachments\StartEditingFileAttachmentMessage.cs" />
     <Compile Include="Exercises\StartEditingExerciseMessage.cs" />
     <Compile Include="Exercises\ExerciseCompositeView.xaml.cs">
       <DependentUpon>ExerciseCompositeView.xaml</DependentUpon>
@@ -154,27 +126,6 @@
     </Compile>
     <Compile Include="Goals\GoalSearchViewModel.cs" />
     <Compile Include="Goals\StartEditingGoalMessage.cs" />
-    <Compile Include="GoalTasks\EndEditingGoalTaskMessage.cs" />
-    <Compile Include="GoalTasks\FindGoalTasksMessage.cs" />
-    <Compile Include="GoalTasks\GoalTaskCompositeView.xaml.cs">
-      <DependentUpon>GoalTaskCompositeView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="GoalTasks\GoalTaskCompositeViewModel.cs" />
-    <Compile Include="GoalTasks\GoalTaskEditView.xaml.cs">
-      <DependentUpon>GoalTaskEditView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="GoalTasks\GoalTaskEditViewModel.cs" />
-    <Compile Include="GoalTasks\GoalTaskModel.cs" />
-    <Compile Include="GoalTasks\GoalTaskSearchCriteriaView.xaml.cs">
-      <DependentUpon>GoalTaskSearchCriteriaView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="GoalTasks\GoalTaskSearchCriteriaViewModel.cs" />
-    <Compile Include="GoalTasks\GoalTaskSearchResultModel.cs" />
-    <Compile Include="GoalTasks\GoalTaskSearchView.xaml.cs">
-      <DependentUpon>GoalTaskSearchView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="GoalTasks\GoalTaskSearchViewModel.cs" />
-    <Compile Include="GoalTasks\StartEditingGoalTaskMessage.cs" />
     <Compile Include="MainWindowViewModel.cs" />
     <Compile Include="Supports\Converters\ComparisonOperatorConverter.cs" />
     <Compile Include="Supports\Converters\MathConverter.cs" />
@@ -205,26 +156,6 @@
     <Compile Include="Supports\Validators\ValidatableObject.cs" />
     <Compile Include="Supports\Validators\ValidFileNameAttribute.cs" />
     <Compile Include="Supports\Validators\ValidFilePathValidator.cs" />
-    <Page Include="Attachments\FileAttachmentCompositeView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Attachments\FileAttachmentCreateView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Attachments\FileAttachmentSearchCriteriaView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Attachments\FileAttachmentSearchView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Attachments\FileAttachmentUpdateView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Exercises\ExerciseCompositeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -256,22 +187,6 @@
     <Page Include="Goals\GoalSearchView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="GoalTasks\GoalTaskCompositeView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="GoalTasks\GoalTaskEditView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="GoalTasks\GoalTaskSearchCriteriaView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="GoalTasks\GoalTaskSearchView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

@@ -1,7 +1,5 @@
-﻿using CygSoft.SmartSession.Desktop.Attachments;
-using CygSoft.SmartSession.Desktop.Exercises;
+﻿using CygSoft.SmartSession.Desktop.Exercises;
 using CygSoft.SmartSession.Desktop.Goals;
-using CygSoft.SmartSession.Desktop.GoalTasks;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 
@@ -13,9 +11,6 @@ namespace CygSoft.SmartSession.Desktop
     {
         private ExerciseCompositeViewModel exerciseSearchViewModel;
         private GoalCompositeViewModel goalSearchViewModel;
-        private GoalTaskCompositeViewModel goalTaskSearchViewModel;
-        private FileAttachmentCompositeViewModel fileAttachmentViewModel;
-
 
         private ViewModelBase currentViewModel;
         public ViewModelBase CurrentViewModel
@@ -26,13 +21,11 @@ namespace CygSoft.SmartSession.Desktop
 
         public RelayCommand<string> NavigationCommand { get; private set; }
 
-        public MainWindowViewModel(ExerciseCompositeViewModel exerciseSearchViewModel, FileAttachmentCompositeViewModel fileAttachmentViewModel, 
-            GoalCompositeViewModel goalSearchViewModel, GoalTaskCompositeViewModel goalTaskSearchViewModel)
+        public MainWindowViewModel(ExerciseCompositeViewModel exerciseSearchViewModel, 
+            GoalCompositeViewModel goalSearchViewModel)
         {
             this.exerciseSearchViewModel = exerciseSearchViewModel;
-            this.fileAttachmentViewModel = fileAttachmentViewModel;
             this.goalSearchViewModel = goalSearchViewModel;
-            this.goalTaskSearchViewModel = goalTaskSearchViewModel;
 
             NavigationCommand = new RelayCommand<string>(OnNavigation);
             OnNavigation("ExerciseSearch");
@@ -45,17 +38,11 @@ namespace CygSoft.SmartSession.Desktop
                 case "GoalSearch":
                     CurrentViewModel = goalSearchViewModel;
                     break;
-                case "GoalTaskSearch":
-                    CurrentViewModel = goalTaskSearchViewModel;
-                    break;
                 case "ExerciseSearch":
                     CurrentViewModel = exerciseSearchViewModel;
                     break;
-                case "FileAttachmentSearch":
-                    CurrentViewModel = fileAttachmentViewModel;
-                    break;
                 default:
-                    CurrentViewModel = fileAttachmentViewModel;
+                    CurrentViewModel = exerciseSearchViewModel;
                     break;
             }
         }
