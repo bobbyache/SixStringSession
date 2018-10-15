@@ -119,7 +119,6 @@ namespace CygSoft.SmartSession.Desktop.Exercises
                 Title = $"New Exercise Item - {DateTime.Now}",
                 DifficultyRating = 0,
                 PracticalityRating = 0,
-                Scribed = false,
                 OptimalDuration = 300, //(5 x 60 secs),
                 Notes = null
             };

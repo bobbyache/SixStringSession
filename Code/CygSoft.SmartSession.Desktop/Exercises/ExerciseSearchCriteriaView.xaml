@@ -51,10 +51,6 @@
                           />
             </StackPanel>
             <StackPanel  Orientation="Horizontal" >
-                <TextBlock MinWidth="100" Text="Is Scribed" Margin="2" />
-                <CheckBox IsChecked="{Binding IsScribed, Mode=TwoWay}" IsThreeState="True" />
-            </StackPanel>
-            <StackPanel  Orientation="Horizontal" >
                 <TextBlock MinWidth="100" Text="Has Notes" Margin="2" />
                 <CheckBox Margin="2" IsChecked="{Binding HasNotes, Mode=TwoWay}" IsThreeState="True" />
             </StackPanel>

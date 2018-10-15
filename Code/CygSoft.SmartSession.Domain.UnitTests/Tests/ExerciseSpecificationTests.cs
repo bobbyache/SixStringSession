@@ -461,56 +461,6 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         }
 
         [Test]
-        public void ExerciseIsScribedSpecification_Given_A_Null_Value_Returns_True()
-        {
-            // any null value means that we cannot constrain to this, so it must always
-            // be satisfied.
-            var exercise = new Exercise { Scribed = true };
-            var spec = new ExerciseIsScribedSpecification(null);
-
-            Assert.IsTrue(spec.IsSatisfiedBy(exercise));
-        }
-
-        [Test]
-        public void ExerciseHasNotesSpecification_Given_A_Null_Value_Returns_True()
-        {
-            // any null value means that we cannot constrain to this, so it must always
-            // be satisfied.
-            var exercise = new Exercise { Notes = "here is a note" };
-            var spec = new ExerciseIsScribedSpecification(null);
-
-            Assert.IsTrue(spec.IsSatisfiedBy(exercise));
-        }
-
-        [Test]
-        public void ExerciseIsScribedSpecification_Given_A_True_Constraint_Value_Returns_True_When_True()
-        {
-            // any null value means that we cannot constrain to this, so it must always
-            // be satisfied.
-            var exercise = new Exercise { Scribed = true };
-            var spec = new ExerciseIsScribedSpecification(true);
-
-            Assert.IsTrue(spec.IsSatisfiedBy(exercise));
-        }
-
-        [Test]
-        public void ExerciseIsScribedSpecification_Given_A_False_Constraint_Value_Returns_False_When_True()
-        {
-            // any null value means that we cannot constrain to this, so it must always
-            // be satisfied.
-            var exercise = new Exercise { Scribed = true };
-            var spec = new ExerciseIsScribedSpecification(false);
-
-            Assert.IsFalse(spec.IsSatisfiedBy(exercise));
-        }
-
-
-
-
-
-
-
-        [Test]
         public void ExerciseHasNotesSpecification_Given_A_True_Constraint_Value_Returns_True_When_Notes_Exist()
         {
             // any null value means that we cannot constrain to this, so it must always

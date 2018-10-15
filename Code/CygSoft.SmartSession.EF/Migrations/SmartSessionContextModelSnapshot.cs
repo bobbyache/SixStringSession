@@ -67,8 +67,6 @@ namespace CygSoft.SmartSession.EF.Migrations
 
                     b.Property<int>("PracticalityRating");
 
-                    b.Property<bool>("Scribed");
-
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(150)");

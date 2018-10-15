@@ -11,7 +11,7 @@ using System;
 namespace CygSoft.SmartSession.EF.Migrations
 {
     [DbContext(typeof(SmartSessionContext))]
-    [Migration("20181010074530_initial")]
+    [Migration("20181015084146_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -67,8 +67,6 @@ namespace CygSoft.SmartSession.EF.Migrations
                     b.Property<int>("OptimalDuration");
 
                     b.Property<int>("PracticalityRating");
-
-                    b.Property<bool>("Scribed");
 
                     b.Property<string>("Title")
                         .IsRequired()

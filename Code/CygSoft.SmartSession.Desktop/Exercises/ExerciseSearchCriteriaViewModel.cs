@@ -4,12 +4,7 @@ using CygSoft.SmartSession.Domain.Exercises;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
-using GalaSoft.MvvmLight.Views;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CygSoft.SmartSession.Desktop.Exercises
 {
@@ -41,7 +36,6 @@ namespace CygSoft.SmartSession.Desktop.Exercises
             OptimalDurationOperator = Domain.Common.ComparisonOperators.Undefined;
             DifficultyRatingOperator = Domain.Common.ComparisonOperators.Undefined;
             PracticalityRatingOperator = Domain.Common.ComparisonOperators.Undefined;
-            IsScribed = null;
             HasNotes = null;
             DateCreatedBefore = null;
             DateCreatedAfter = null;
@@ -220,19 +214,6 @@ namespace CygSoft.SmartSession.Desktop.Exercises
             set
             {
                 Set(() => Title, ref title, value);
-            }
-        }
-
-        private bool? isScribed;
-        public bool? IsScribed
-        {
-            get
-            {
-                return isScribed;
-            }
-            set
-            {
-                Set(() => IsScribed, ref isScribed, value);
             }
         }
 

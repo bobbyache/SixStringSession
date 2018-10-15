@@ -81,9 +81,9 @@ namespace CygSoft.SmartSession.Domain.GoalTasks.Specifications
     {
         private readonly bool? hasNotes;
 
-        public GoalTaskHasNotesSpecification(bool? isScribed)
+        public GoalTaskHasNotesSpecification(bool? hasNotes)
         {
-            this.hasNotes = isScribed;
+            this.hasNotes = hasNotes;
         }
 
         public override Expression<Func<GoalTask, bool>> ToExpression()

@@ -64,16 +64,6 @@ namespace CygSoft.SmartSession.Desktop.Exercises
             }
         }
 
-        private bool scribed;
-        public bool Scribed
-        {
-            get { return scribed; }
-            set
-            {
-                Set(() => Scribed, ref scribed, value, true, true);
-            }
-        }
-
         private string notes;
 
         public string Notes

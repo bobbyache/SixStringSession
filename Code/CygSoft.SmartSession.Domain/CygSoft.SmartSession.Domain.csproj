@@ -78,7 +78,6 @@
     <Compile Include="Exercises\Specifications\ExerciseDifficultyRatingSpecification.cs" />
     <Compile Include="Exercises\Specifications\ExerciseDurationSpecification.cs" />
     <Compile Include="Exercises\Specifications\ExerciseHasNotesSpecification.cs" />
-    <Compile Include="Exercises\Specifications\ExerciseIsScribedSpecification.cs" />
     <Compile Include="Exercises\Specifications\ExercisePracticalityRatingSpecification.cs" />
     <Compile Include="Exercises\ExerciseSearchCriteria.cs" />
     <Compile Include="Exercises\ExerciseService.cs" />

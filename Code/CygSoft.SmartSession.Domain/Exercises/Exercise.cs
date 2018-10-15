@@ -15,7 +15,6 @@ namespace CygSoft.SmartSession.Domain.Exercises
         public int DifficultyRating { get; set; }
         public int OptimalDuration { get; set; }
         public int PracticalityRating { get; set; }
-        public bool Scribed { get; set; }
         [Column(TypeName = "nvarchar(1000)")]
         public string Notes { get; set; }
 

@@ -12,9 +12,9 @@ namespace CygSoft.SmartSession.Domain.Exercises.Specifications
     {
         private readonly bool? hasNotes;
 
-        public ExerciseHasNotesSpecification(bool? isScribed)
+        public ExerciseHasNotesSpecification(bool? hasNotes)
         {
-            this.hasNotes = isScribed;
+            this.hasNotes = hasNotes;
         }
 
         public override Expression<Func<Exercise, bool>> ToExpression()

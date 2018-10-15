@@ -17,7 +17,6 @@ namespace CygSoft.SmartSession.Domain.Exercises
         public ComparisonOperators PracticalityRatingOperator { get; set; }
         public int? OptimalDuration { get; set; }
         public bool? HasNotes { get; set; }
-        public bool? IsScribed { get; set; }
         public int? PracticalityRating { get; set; }
         public string Title { get; set; }
         public string Keywords { get; set; }
@@ -36,7 +35,6 @@ namespace CygSoft.SmartSession.Domain.Exercises
                 .And(new ExerciseDurationSpecification(OptimalDuration, OptimalDurationOperator))
                 .And(new ExerciseDifficultyRatingSpecification(DifficultyRating, DifficultyRatingOperator))
                 .And(new ExercisePracticalityRatingSpecification(PracticalityRating, PracticalityRatingOperator))
-                .And(new ExerciseIsScribedSpecification(IsScribed))
                 .And(new ExerciseHasNotesSpecification(HasNotes))
             ;
         }

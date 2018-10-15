@@ -15,7 +15,6 @@ namespace CygSoft.SmartSession.Domain.Exercises
         ComparisonOperators PracticalityRatingOperator { get; set; }
         int? OptimalDuration { get; set; }
         bool? HasNotes { get; set; }
-        bool? IsScribed { get; set; }
         int? PracticalityRating { get; set; }
         string Title { get; set; }
 

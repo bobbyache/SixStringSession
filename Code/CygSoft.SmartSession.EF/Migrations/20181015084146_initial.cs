@@ -21,7 +21,6 @@ namespace CygSoft.SmartSession.EF.Migrations
                     Notes = table.Column<string>(type: "nvarchar(1000)", nullable: true),
                     OptimalDuration = table.Column<int>(nullable: false),
                     PracticalityRating = table.Column<int>(nullable: false),
-                    Scribed = table.Column<bool>(nullable: false),
                     Title = table.Column<string>(type: "nvarchar(150)", nullable: false)
                 },
                 constraints: table =>
