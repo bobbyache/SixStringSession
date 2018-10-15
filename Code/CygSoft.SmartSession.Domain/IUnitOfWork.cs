@@ -1,12 +1,6 @@
-﻿using CygSoft.SmartSession.Domain.Attachments;
-using CygSoft.SmartSession.Domain.Exercises;
+﻿using CygSoft.SmartSession.Domain.Exercises;
 using CygSoft.SmartSession.Domain.Goals;
-using CygSoft.SmartSession.Domain.GoalTasks;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CygSoft.SmartSession.Domain
 {
@@ -14,8 +8,6 @@ namespace CygSoft.SmartSession.Domain
     {
         IExerciseRepository Exercises { get; }
         IGoalRepository Goals { get; }
-        IGoalTaskRepository GoalTasks { get; }
-        IFileAttachmentRepository FileAttachments { get; }
         int Complete();
     }
 }

@@ -52,17 +52,6 @@
     <Compile Include="..\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Attachments\FileAttachment.cs" />
-    <Compile Include="Attachments\FileAttachmentSearchCriteria.cs" />
-    <Compile Include="Attachments\FileAttachmentService.cs" />
-    <Compile Include="Attachments\IFileAttachmentRepository.cs" />
-    <Compile Include="Attachments\IFileAttachmentSearchCriteria.cs" />
-    <Compile Include="Attachments\IFileAttachmentService.cs" />
-    <Compile Include="Attachments\Specifications\FileAttachmentDateCreatedSpecification.cs" />
-    <Compile Include="Attachments\Specifications\FileAttachmentDateModifiedSpecification.cs" />
-    <Compile Include="Attachments\Specifications\FileAttachmentExtensionSpecification.cs" />
-    <Compile Include="Attachments\Specifications\FileAttachmentHasNotesSpecification.cs" />
-    <Compile Include="Attachments\Specifications\FileAttachmentTitleSpecification.cs" />
     <Compile Include="Common\AndSpecification.cs" />
     <Compile Include="Common\Entity.cs" />
     <Compile Include="Common\Enums.cs" />
@@ -91,25 +80,14 @@
     <Compile Include="Goals\IGoalSearchCriteria.cs" />
     <Compile Include="Goals\IGoalService.cs" />
     <Compile Include="Goals\Specifications.cs" />
-    <Compile Include="GoalTasks\GoalTask.cs" />
-    <Compile Include="GoalTasks\GoalTaskSearchCriteria.cs" />
-    <Compile Include="GoalTasks\GoalTaskService.cs" />
-    <Compile Include="GoalTasks\IGoalTaskRepository.cs" />
-    <Compile Include="GoalTasks\IGoalTaskSearchCriteria.cs" />
-    <Compile Include="GoalTasks\IGoalTaskService.cs" />
-    <Compile Include="GoalTasks\Specifications.cs" />
     <Compile Include="IUnitOfWork.cs" />
-    <Compile Include="Keywords\FileAttachmentKeyword.cs" />
     <Compile Include="Keywords\ExerciseKeyword.cs" />
     <Compile Include="Keywords\GoalKeyword.cs" />
-    <Compile Include="Keywords\GoalTaskKeyword.cs" />
     <Compile Include="Keywords\Keyword.cs" />
     <Compile Include="Goals\Goal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sessions\PracticeSessionResult.cs" />
     <Compile Include="Sessions\SessionExerciseActivity.cs" />
-    <Compile Include="Users\IUserRepository.cs" />
-    <Compile Include="Users\User.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CygSoft.SmartSession.Infrastructure\CygSoft.SmartSession.Infrastructure.csproj">
@@ -120,9 +98,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Tasks\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

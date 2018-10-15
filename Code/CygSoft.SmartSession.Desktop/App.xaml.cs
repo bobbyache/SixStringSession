@@ -3,7 +3,6 @@ using CygSoft.SmartSession.Desktop.Exercises;
 using CygSoft.SmartSession.Desktop.Goals;
 using CygSoft.SmartSession.Domain.Exercises;
 using CygSoft.SmartSession.Domain.Goals;
-using CygSoft.SmartSession.Domain.GoalTasks;
 using System.Windows;
 
 namespace CygSoft.SmartSession.Desktop

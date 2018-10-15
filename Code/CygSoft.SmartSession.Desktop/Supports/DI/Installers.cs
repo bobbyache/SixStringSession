@@ -8,9 +8,7 @@ using CygSoft.SmartSession.Domain;
 using CygSoft.SmartSession.Domain.Common;
 using CygSoft.SmartSession.Domain.Exercises;
 using CygSoft.SmartSession.Domain.Goals;
-using CygSoft.SmartSession.Domain.GoalTasks;
 using CygSoft.SmartSession.EF;
-using GalaSoft.MvvmLight.Views;
 
 namespace CygSoft.SmartSession.Desktop.Supports.DI
 {

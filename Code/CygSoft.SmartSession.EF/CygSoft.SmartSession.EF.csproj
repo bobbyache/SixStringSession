@@ -116,9 +116,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
     <Compile Include="Repositories\ExerciseRepository.cs" />
-    <Compile Include="Repositories\FileAttachmentRepository.cs" />
     <Compile Include="Repositories\GoalRepository.cs" />
-    <Compile Include="Repositories\GoalTaskRepository.cs" />
     <Compile Include="SmartSessionContext.cs" />
     <Compile Include="SmartSessionContextFactory.cs" />
     <Compile Include="UnitOfWork.cs" />
@@ -128,10 +126,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CygSoft.SmartSession.DomainLegacy\CygSoft.SmartSession.DomainLegacy.csproj">
-      <Project>{B6FF8EE9-B05C-4D1C-AD60-E53A930B3711}</Project>
-      <Name>CygSoft.SmartSession.DomainLegacy</Name>
-    </ProjectReference>
     <ProjectReference Include="..\CygSoft.SmartSession.Domain\CygSoft.SmartSession.Domain.csproj">
       <Project>{5e5c771f-a122-423a-8cc3-27488e9e054a}</Project>
       <Name>CygSoft.SmartSession.Domain</Name>
