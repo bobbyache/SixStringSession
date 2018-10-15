@@ -20,8 +20,12 @@ namespace CygSoft.SmartSession.EF.Migrations
                     DifficultyRating = table.Column<int>(nullable: false),
                     Notes = table.Column<string>(type: "nvarchar(1000)", nullable: true),
                     OptimalDuration = table.Column<int>(nullable: false),
+                    PercentageCompleteCalculationType = table.Column<int>(nullable: false),
                     PracticalityRating = table.Column<int>(nullable: false),
-                    Title = table.Column<string>(type: "nvarchar(150)", nullable: false)
+                    TargetMetronomeSpeed = table.Column<int>(nullable: true),
+                    TargetPracticeTime = table.Column<int>(nullable: true),
+                    Title = table.Column<string>(type: "nvarchar(150)", nullable: false),
+                    Weighting = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -92,6 +96,32 @@ namespace CygSoft.SmartSession.EF.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Keywords", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SessionExerciseActivity",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    AchievedMetronomeSpeed = table.Column<int>(nullable: false),
+                    ComfortMetronomeSpeed = table.Column<int>(nullable: false),
+                    DateCreated = table.Column<DateTime>(nullable: false),
+                    DateModified = table.Column<DateTime>(nullable: false),
+                    EndTime = table.Column<DateTime>(nullable: false),
+                    ExerciseId = table.Column<int>(nullable: false),
+                    StartMetronomeSpeed = table.Column<int>(nullable: false),
+                    StartTime = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SessionExerciseActivity", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_SessionExerciseActivity_Exercises_ExerciseId",
+                        column: x => x.ExerciseId,
+                        principalTable: "Exercises",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -238,6 +268,11 @@ namespace CygSoft.SmartSession.EF.Migrations
                 name: "IX_PracticeSessionResults_GoalTaskId",
                 table: "PracticeSessionResults",
                 column: "GoalTaskId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SessionExerciseActivity_ExerciseId",
+                table: "SessionExerciseActivity",
+                column: "ExerciseId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -258,7 +293,7 @@ namespace CygSoft.SmartSession.EF.Migrations
                 name: "PracticeSessionResults");
 
             migrationBuilder.DropTable(
-                name: "Exercises");
+                name: "SessionExerciseActivity");
 
             migrationBuilder.DropTable(
                 name: "FileAttachments");
@@ -271,6 +306,9 @@ namespace CygSoft.SmartSession.EF.Migrations
 
             migrationBuilder.DropTable(
                 name: "GoalTasks");
+
+            migrationBuilder.DropTable(
+                name: "Exercises");
         }
     }
 }

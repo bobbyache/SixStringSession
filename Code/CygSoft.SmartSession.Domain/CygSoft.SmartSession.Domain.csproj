@@ -107,6 +107,7 @@
     <Compile Include="Goals\Goal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sessions\PracticeSessionResult.cs" />
+    <Compile Include="Sessions\SessionExerciseActivity.cs" />
     <Compile Include="Users\IUserRepository.cs" />
     <Compile Include="Users\User.cs" />
   </ItemGroup>
