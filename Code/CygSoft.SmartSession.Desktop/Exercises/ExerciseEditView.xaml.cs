@@ -26,11 +26,13 @@ namespace CygSoft.SmartSession.Desktop.Exercises
             InitializeComponent();
             this.Loaded += (s, e) =>
             {
-                this.OptimalDurationTextBox.PreviewTextInput += OptimalDurationTextBox_PreviewTextInput;
+                this.OptimalDurationTextBox.PreviewTextInput += TextBox_PreviewTextInput;
+                this.TargetMetronomeSpeedTextBox.PreviewTextInput += TextBox_PreviewTextInput;
+                this.TargetPracticeTimeTextBox.PreviewTextInput += TextBox_PreviewTextInput;
             };
         }
 
-        private void OptimalDurationTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             string onlyNumeric = @"^([0-9]+(.[0-9]+)?)$";
             Regex regex = new Regex(onlyNumeric);

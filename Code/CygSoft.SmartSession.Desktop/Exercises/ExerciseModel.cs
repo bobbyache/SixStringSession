@@ -31,6 +31,39 @@ namespace CygSoft.SmartSession.Desktop.Exercises
             }
         }
 
+        private int targetMetronomeSpeed;
+        [Range(0, 250, ErrorMessage = "Value must be between 0 and 250.")]
+        public int TargetMetronomeSpeed
+        {
+            get { return targetMetronomeSpeed; }
+            set
+            {
+                Set(() => TargetMetronomeSpeed, ref targetMetronomeSpeed, value, true, true);
+            }
+        }
+
+        private int targetPracticeTime;
+        [Range(0, 10000, ErrorMessage = "Value must be between 0 and 10,000.")]
+        public int TargetPracticeTime
+        {
+            get { return targetPracticeTime; }
+            set
+            {
+                Set(() => TargetPracticeTime, ref targetPracticeTime, value, true, true);
+            }
+        }
+
+        private int weighting;
+        [Range(0, 1000, ErrorMessage = "Value must be between 0 and 1000.")]
+        public int Weighting
+        {
+            get { return weighting; }
+            set
+            {
+                Set(() => Weighting, ref weighting, value, true, true);
+            }
+        }
+
         private int optimalDuration;
         [Range(0, 10000, ErrorMessage = "Value must be between 0 and 10,000.")]
         public int OptimalDuration
