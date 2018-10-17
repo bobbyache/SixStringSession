@@ -17,9 +17,9 @@ namespace CygSoft.SmartSession.Domain.Sessions
 
         public int ExerciseId { get; set; }
     
-        public int GetSecondsPracticed()
+        public double GetSecondsPracticed()
         {
-            throw new NotImplementedException();
+            return (EndTime - StartTime).TotalSeconds;
         }
     }
 }

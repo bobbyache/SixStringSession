@@ -18,7 +18,6 @@ namespace CygSoft.SmartSession.EF.Repositories
                 //.Include(ex => ex.ExerciseKeywords)
                 //    .ThenInclude(keyword => keyword.Keyword)
                 .Where(specification.ToExpression())
-
             //    .Skip(page * pageSize)
             //    .Take(pageSize)
             //    .ToList();
