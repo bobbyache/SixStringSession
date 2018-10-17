@@ -14,6 +14,7 @@ namespace CygSoft.SmartSession.EF.Repositories
         public override IReadOnlyList<Exercise> Find(Specification<Exercise> specification, int page = 0, int pageSize = 100)
         {
             var exs = context.Exercises
+                .Include(ex => ex.ExerciseActivity)
                 //.Include(ex => ex.ExerciseKeywords)
                 //    .ThenInclude(keyword => keyword.Keyword)
                 .Where(specification.ToExpression())

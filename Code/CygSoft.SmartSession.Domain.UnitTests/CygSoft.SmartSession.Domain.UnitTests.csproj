@@ -70,6 +70,7 @@
     <Compile Include="Tests\ExerciseSearchCriteriaTests.cs" />
     <Compile Include="Tests\ExerciseServiceTests.cs" />
     <Compile Include="Tests\ExerciseSpecificationTests.cs" />
+    <Compile Include="Tests\ExerciseTests.cs" />
     <Compile Include="Tests\FileServiceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
