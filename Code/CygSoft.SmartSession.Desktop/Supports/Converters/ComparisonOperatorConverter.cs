@@ -44,13 +44,13 @@ namespace CygSoft.SmartSession.Desktop.Supports.Converters
                     return ComparisonOperators.GreaterThan;
 
                 case ">=":
-                    return ComparisonOperators.GreaterThan;
+                    return ComparisonOperators.GreaterThanOrEqualTo;
 
                 case "<":
-                    return ComparisonOperators.GreaterThan;
+                    return ComparisonOperators.LessThan;
 
                 case "<=":
-                    return ComparisonOperators.GreaterThan;
+                    return ComparisonOperators.LessThanOrEqualTo;
 
                 default:
                     return ComparisonOperators.Undefined;

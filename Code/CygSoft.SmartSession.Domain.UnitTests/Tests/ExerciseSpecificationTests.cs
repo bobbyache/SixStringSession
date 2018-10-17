@@ -10,6 +10,178 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
     public class ExerciseSpecificationTests
     {
         [Test]
+        public void ExerciseTargetMetronomeSpeedTimeSpecification_Given_Value_LessThan_As_Expected_Returns_True()
+        {
+            var exercise = new Exercise
+            {
+                TargetMetronomeSpeed = 3
+            };
+
+            var spec = new ExerciseTargetMetronomeSpeedSpecification(4, ComparisonOperators.LessThan);
+
+            Assert.IsTrue(spec.IsSatisfiedBy(exercise));
+        }
+
+        [Test]
+        public void ExerciseTargetMetronomeSpeedTimeSpecification_Given_Value_LessThan_ButActual_IsNot_Returns_False()
+        {
+            var exercise = new Exercise
+            {
+                TargetMetronomeSpeed = 5
+            };
+
+            var spec = new ExerciseTargetMetronomeSpeedSpecification(4, ComparisonOperators.LessThan);
+
+            Assert.IsFalse(spec.IsSatisfiedBy(exercise));
+        }
+
+        [Test]
+        public void ExerciseTargetMetronomeSpeedTimeSpecification_Given_Value_LessThanOrEqual_As_Expected_Returns_True()
+        {
+            var exercise1 = new Exercise { TargetMetronomeSpeed = 3 };
+            var exercise2 = new Exercise { TargetMetronomeSpeed = 2 };
+
+            var spec = new ExerciseTargetMetronomeSpeedSpecification(3, ComparisonOperators.LessThanOrEqualTo);
+
+            Assert.IsTrue(spec.IsSatisfiedBy(exercise1));
+            Assert.IsTrue(spec.IsSatisfiedBy(exercise2));
+        }
+
+        [Test]
+        public void ExerciseTargetMetronomeSpeedTimeSpecification_Given_Value_LessThanOrEqual_ButActual_IsNot_Returns_False()
+        {
+            var exercise1 = new Exercise { TargetMetronomeSpeed = 5 };
+
+            var spec = new ExerciseTargetMetronomeSpeedSpecification(4, ComparisonOperators.LessThanOrEqualTo);
+
+            Assert.IsFalse(spec.IsSatisfiedBy(exercise1));
+        }
+
+        [Test]
+        public void ExerciseTargetMetronomeSpeedTimeSpecification_Given_Value_GreaterThan_As_Expected_Returns_True()
+        {
+            var exercise1 = new Exercise { TargetMetronomeSpeed = 3 };
+            var exercise2 = new Exercise { TargetMetronomeSpeed = 2 };
+
+            var spec = new ExerciseTargetMetronomeSpeedSpecification(1, ComparisonOperators.GreaterThan);
+
+            Assert.IsTrue(spec.IsSatisfiedBy(exercise1));
+            Assert.IsTrue(spec.IsSatisfiedBy(exercise2));
+        }
+
+        [Test]
+        public void ExerciseTargetMetronomeSpeedTimeSpecification_Given_Value_GreaterThanOrEqualTo_As_Expected_Returns_True()
+        {
+            var exercise1 = new Exercise { TargetMetronomeSpeed = 3 };
+            var exercise2 = new Exercise { TargetMetronomeSpeed = 2 };
+
+            var spec = new ExerciseTargetMetronomeSpeedSpecification(2, ComparisonOperators.GreaterThanOrEqualTo);
+
+            Assert.IsTrue(spec.IsSatisfiedBy(exercise1));
+            Assert.IsTrue(spec.IsSatisfiedBy(exercise2));
+        }
+
+        [Test]
+        public void ExerciseTargetMetronomeSpeedTimeSpecification_Given_Value_OfNull_Returns_True()
+        {
+            // any null value means that we cannot constrain to this, so it must always
+            // be satisfied.
+            var exercise = new Exercise { TargetMetronomeSpeed = 2 };
+
+            var spec = new ExerciseTargetMetronomeSpeedSpecification(null, ComparisonOperators.GreaterThanOrEqualTo);
+
+            Assert.IsTrue(spec.IsSatisfiedBy(exercise));
+        }
+
+
+        [Test]
+        public void ExerciseTargetPracticeTimeSpecification_Given_Value_LessThan_As_Expected_Returns_True()
+        {
+            var exercise = new Exercise
+            { 
+                TargetPracticeTime = 3
+            };
+
+            var spec = new ExerciseTargetPracticeTimeSpecification(4, ComparisonOperators.LessThan);
+
+            Assert.IsTrue(spec.IsSatisfiedBy(exercise));
+        }
+
+        [Test]
+        public void ExerciseTargetPracticeTimeSpecification_Given_Value_LessThan_ButActual_IsNot_Returns_False()
+        {
+            var exercise = new Exercise
+            {
+                TargetPracticeTime = 5
+            };
+
+            var spec = new ExerciseTargetPracticeTimeSpecification(4, ComparisonOperators.LessThan);
+
+            Assert.IsFalse(spec.IsSatisfiedBy(exercise));
+        }
+
+        [Test]
+        public void ExerciseTargetPracticeTimeSpecification_Given_Value_LessThanOrEqual_As_Expected_Returns_True()
+        {
+            var exercise1 = new Exercise { TargetPracticeTime = 3 };
+            var exercise2 = new Exercise { TargetPracticeTime = 2 };
+
+            var spec = new ExerciseTargetPracticeTimeSpecification(3, ComparisonOperators.LessThanOrEqualTo);
+
+            Assert.IsTrue(spec.IsSatisfiedBy(exercise1));
+            Assert.IsTrue(spec.IsSatisfiedBy(exercise2));
+        }
+
+        [Test]
+        public void ExerciseTargetPracticeTimeSpecification_Given_Value_LessThanOrEqual_ButActual_IsNot_Returns_False()
+        {
+            var exercise1 = new Exercise { TargetPracticeTime = 5 };
+
+            var spec = new ExerciseTargetPracticeTimeSpecification(4, ComparisonOperators.LessThanOrEqualTo);
+
+            Assert.IsFalse(spec.IsSatisfiedBy(exercise1));
+        }
+
+        [Test]
+        public void ExerciseTargetPracticeTimeSpecification_Given_Value_GreaterThan_As_Expected_Returns_True()
+        {
+            var exercise1 = new Exercise { TargetPracticeTime = 3 };
+            var exercise2 = new Exercise { TargetPracticeTime = 2 };
+
+            var spec = new ExerciseTargetPracticeTimeSpecification(1, ComparisonOperators.GreaterThan);
+
+            Assert.IsTrue(spec.IsSatisfiedBy(exercise1));
+            Assert.IsTrue(spec.IsSatisfiedBy(exercise2));
+        }
+
+        [Test]
+        public void ExerciseTargetPracticeTimeSpecification_Given_Value_GreaterThanOrEqualTo_As_Expected_Returns_True()
+        {
+            var exercise1 = new Exercise { TargetPracticeTime = 3 };
+            var exercise2 = new Exercise { TargetPracticeTime = 2 };
+
+            var spec = new ExerciseTargetPracticeTimeSpecification(2, ComparisonOperators.GreaterThanOrEqualTo);
+
+            Assert.IsTrue(spec.IsSatisfiedBy(exercise1));
+            Assert.IsTrue(spec.IsSatisfiedBy(exercise2));
+        }
+
+        [Test]
+        public void ExerciseTargetPracticeTimeSpecification_Given_Value_OfNull_Returns_True()
+        {
+            // any null value means that we cannot constrain to this, so it must always
+            // be satisfied.
+            var exercise = new Exercise { TargetPracticeTime = 2 };
+
+            var spec = new ExerciseTargetPracticeTimeSpecification(null, ComparisonOperators.GreaterThanOrEqualTo);
+
+            Assert.IsTrue(spec.IsSatisfiedBy(exercise));
+        }
+
+
+
+
+        [Test]
         public void ExerciseTitleSpecification_When_Passed_BeginningPart_Finds_Correctly()
         {
             var exercise = new Exercise

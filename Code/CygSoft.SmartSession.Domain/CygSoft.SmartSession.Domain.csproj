@@ -70,6 +70,8 @@
     <Compile Include="Exercises\Specifications\ExercisePracticalityRatingSpecification.cs" />
     <Compile Include="Exercises\ExerciseSearchCriteria.cs" />
     <Compile Include="Exercises\ExerciseService.cs" />
+    <Compile Include="Exercises\Specifications\ExerciseTargetMetronomeSpeedSpecification.cs" />
+    <Compile Include="Exercises\Specifications\ExerciseTargetPracticeTimeSpecification.cs" />
     <Compile Include="Exercises\Specifications\ExerciseTitleSpecification.cs" />
     <Compile Include="Exercises\IExerciseRepository.cs" />
     <Compile Include="Exercises\IExerciseSearchCriteria.cs" />

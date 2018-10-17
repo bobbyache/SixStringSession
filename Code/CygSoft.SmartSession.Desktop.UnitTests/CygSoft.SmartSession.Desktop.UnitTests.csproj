@@ -79,10 +79,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ExerciseCompositeViewModelTests.cs" />
-    <Compile Include="ExerciseEditViewModelTests.cs" />
+    <Compile Include="Converters\ComparisonOperatorConverterTests.cs" />
     <Compile Include="ExerciseModelTests.cs" />
-    <Compile Include="ExerciseSearchResultTests.cs" />
     <Compile Include="OneTimeSetup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ValidationAttributeTests.cs" />

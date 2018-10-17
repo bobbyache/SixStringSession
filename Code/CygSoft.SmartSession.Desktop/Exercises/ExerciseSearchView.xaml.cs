@@ -36,7 +36,7 @@ namespace CygSoft.SmartSession.Desktop.Exercises
         private void MainWindow_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             e.Handled = true;
-            MessageBox.Show("Here you go!");
+            //MessageBox.Show("Here you go!");
         }
 
     }
