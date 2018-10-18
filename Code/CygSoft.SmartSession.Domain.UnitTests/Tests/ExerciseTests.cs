@@ -1,4 +1,5 @@
 ﻿using CygSoft.SmartSession.Domain.Exercises;
+using CygSoft.SmartSession.Infrastructure.Enums;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;

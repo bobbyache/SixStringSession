@@ -6,15 +6,10 @@ using System.Linq;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using CygSoft.SmartSession.Infrastructure.Enums;
 
 namespace CygSoft.SmartSession.Domain.Exercises
 {
-    public enum PercentCompleteCalculationStrategy
-    {
-        MetronomeSpeed = 0,
-        PracticeTime = 1,
-    }
-
     public class Exercise : Entity
     {
         [Required]

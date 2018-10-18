@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using CygSoft.SmartSession.Desktop.Supports.Validators;
 using CygSoft.SmartSession.Domain.Exercises;
+using CygSoft.SmartSession.Infrastructure.Enums;
 using GalaSoft.MvvmLight;
 using System;
 using System.Collections;
@@ -28,6 +29,16 @@ namespace CygSoft.SmartSession.Desktop.Exercises
             set
             {
                 Set(() => Title, ref title, value, true, true);
+            }
+        }
+
+        private PercentCompleteCalculationStrategy percentageCompleteCalculationType;
+        public PercentCompleteCalculationStrategy PercentageCompleteCalculationType
+        {
+            get { return percentageCompleteCalculationType; }
+            set
+            {
+                Set(() => PercentageCompleteCalculationType, ref percentageCompleteCalculationType, value, true, true);
             }
         }
 

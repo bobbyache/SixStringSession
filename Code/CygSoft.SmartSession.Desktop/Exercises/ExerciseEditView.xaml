@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:CygSoft.SmartSession.Desktop.Exercises"
              xmlns:converters="clr-namespace:CygSoft.SmartSession.Desktop.Supports.Converters"
              xmlns:validators="clr-namespace:CygSoft.SmartSession.Desktop.Supports.Validators"
+             xmlns:enums="clr-namespace:CygSoft.SmartSession.Infrastructure.Enums;assembly=CygSoft.SmartSession.Infrastructure"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.DataContext>
@@ -26,6 +27,16 @@
         <StackPanel DockPanel.Dock="Top" Margin="0,0,0,5">
             <TextBlock Text="Title:" Margin="5"></TextBlock>
             <TextBox Margin="5" Text="{Binding Exercise.Title, ValidatesOnNotifyDataErrors=True}"></TextBox>
+
+            <StackPanel Orientation="Horizontal">
+                <TextBlock MinWidth="115" Margin="2" Text="Progress Calculation Type" />
+                <ComboBox MinWidth="200"
+                    ItemsSource="{Binding Path=Exercise.PercentageCompleteCalculationType, Converter={converters:EnumToCollectionConverter}, Mode=OneTime}"
+          SelectedValuePath="Value"
+          DisplayMemberPath="Description"
+          SelectedValue="{Binding Path=Exercise.PercentageCompleteCalculationType}" />
+            </StackPanel>
+            
             <!--<TextBox Margin="5">
                 <Binding Path="Title" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>

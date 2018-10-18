@@ -128,6 +128,7 @@
     <Compile Include="Goals\StartEditingGoalMessage.cs" />
     <Compile Include="MainWindowViewModel.cs" />
     <Compile Include="Supports\Converters\ComparisonOperatorConverter.cs" />
+    <Compile Include="Supports\Converters\EnumToCollectionConverter.cs" />
     <Compile Include="Supports\Converters\MathConverter.cs" />
     <Compile Include="Supports\Converters\OnScheduleConverter.cs" />
     <Compile Include="Supports\Converters\ProgressForegroundConverter.cs" />
@@ -142,6 +143,8 @@
     </Compile>
     <Compile Include="Exercises\ExerciseSearchResultModel.cs" />
     <Compile Include="Goals\GoalListItem.cs" />
+    <Compile Include="Supports\EnumHelper.cs" />
+    <Compile Include="Supports\MarkupExts\EnumToItemsSource.cs" />
     <Compile Include="Supports\Services\DialogService.cs" />
     <Compile Include="Exercises\ExerciseSearchViewModel.cs" />
     <Compile Include="Goals\GoalListViewModel.cs" />
