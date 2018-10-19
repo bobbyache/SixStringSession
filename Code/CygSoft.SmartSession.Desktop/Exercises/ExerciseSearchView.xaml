@@ -57,8 +57,14 @@
         <ListView Grid.Row="1"  ItemsSource="{Binding ExerciseList}" 
                   SelectionMode="Extended"
                   SelectedItem="{Binding SelectedExercise}"
-                  
                   >
+            <ListBox.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Practice this Exercise" 
+                      Command="{Binding RecordExerciseCommand}" 
+                    />
+                </ContextMenu>
+            </ListBox.ContextMenu>
             <ListView.View>
                 <GridView>
                     <GridViewColumn Width="80" Header="Duration" DisplayMemberBinding="{Binding OptimalDuration, Converter={StaticResource TimeDisplayConverter}}"/>

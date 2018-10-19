@@ -9,14 +9,5 @@
             ExerciseModel = exerciseModel;
         }
     }
-
-
-    public enum PercentCompleteCalculationStrategy
-    {
-        [System.ComponentModel.Description("Metronome Speed")]
-        MetronomeSpeed = 0,
-        [System.ComponentModel.Description("Practice Time")]
-        PracticeTime = 1,
-    }
 }
 

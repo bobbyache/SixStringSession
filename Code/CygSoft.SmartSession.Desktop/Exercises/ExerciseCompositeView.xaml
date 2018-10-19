@@ -16,6 +16,9 @@
         <DataTemplate DataType="{x:Type local:ExerciseEditViewModel}">
             <local:ExerciseEditView />
         </DataTemplate>
+        <DataTemplate DataType="{x:Type local:ExerciseRecorderViewModel}">
+            <local:ExerciseRecorderView />
+        </DataTemplate>
     </UserControl.Resources>
     <Grid>
         <ContentControl Grid.Row="1"  Content="{Binding CurrentViewModel}" />

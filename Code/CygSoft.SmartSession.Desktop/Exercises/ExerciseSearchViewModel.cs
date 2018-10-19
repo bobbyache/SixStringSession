@@ -41,13 +41,21 @@ namespace CygSoft.SmartSession.Desktop.Exercises
             AddExerciseCommand = new RelayCommand(AddExercise, () => true);
             DeleteExerciseCommand = new RelayCommand(DeleteExercise, () => SelectedExercise != null);
             EditExerciseCommand = new RelayCommand(EditExercise, () => SelectedExercise != null);
+            RecordExerciseCommand = new RelayCommand(RecordExercise, () => SelectedExercise != null);
 
             Messenger.Default.Register<FindExercisesMessage>(this, Find);
+        }
+
+        private void RecordExercise()
+        {
+            Messenger.Default.Send(new OpenExerciseRecorderMessage(SelectedExercise.Id));
         }
 
         public RelayCommand AddExerciseCommand { get; private set; }
         public RelayCommand DeleteExerciseCommand { get; private set; }
         public RelayCommand EditExerciseCommand { get; private set; }
+
+        public RelayCommand RecordExerciseCommand { get; private set; }
 
         private ExerciseSearchResultModel selectedExercise;
         public ExerciseSearchResultModel SelectedExercise
