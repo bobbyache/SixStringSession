@@ -31,28 +31,42 @@ namespace CygSoft.SmartSession.Desktop.Exercises
             Messenger.Default.Register<EndEditingExerciseMessage>(this, (m) => EndEditingExercise(m.ExerciseModel));
             Messenger.Default.Register<OpenExerciseRecorderMessage>(this, (m) => RecordExercise(m.ExerciseId));
 
-            NavigationCommand = new RelayCommand<string>(OnNavigation);
-            OnNavigation("Search");
+            Messenger.Default.Register<CancelledExerciseRecordingMessage>(this, (m) => RecordingCancelled());
+            Messenger.Default.Register<SavedExerciseRecordingMessage>(this, (m) => RecordingSaved());
+
+            NavigationCommand = new RelayCommand<string>(NavigateTo);
+            NavigateTo("Search");
+        }
+
+        private void RecordingCancelled()
+        {
+            NavigateTo("Search");
+        }
+
+        private void RecordingSaved()
+        {
+            NavigateTo("Search");
         }
 
         private void RecordExercise(int exerciseId)
         {
-            OnNavigation("Record");
+            exerciseRecorderViewModel.BeginRecordingExercise(exerciseId);
+            NavigateTo("Record");
         }
 
         private void EndEditingExercise(ExerciseModel exerciseModel)
         {
-            OnNavigation("Search");
+            NavigateTo("Search");
         }
 
 
         private void StartEditingExercise(ExerciseSearchResultModel exerciseSearchResult)
         {
             exerciseEditViewModel.StartEdit(exerciseSearchResult);
-            OnNavigation("Edit");
+            NavigateTo("Edit");
         }
 
-        private void OnNavigation(string destination)
+        private void NavigateTo(string destination)
         {
             switch (destination)
             {

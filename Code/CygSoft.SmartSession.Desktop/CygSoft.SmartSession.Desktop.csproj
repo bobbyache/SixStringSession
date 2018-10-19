@@ -89,11 +89,13 @@
     <Compile Include="..\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Exercises\CancelledExerciseRecordingMessage.cs" />
     <Compile Include="Exercises\ExerciseRecorderView.xaml.cs">
       <DependentUpon>ExerciseRecorderView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Exercises\ExerciseRecorderViewModel.cs" />
     <Compile Include="Exercises\OpenExerciseRecorderMessage.cs" />
+    <Compile Include="Exercises\SavedExerciseRecordingMessage.cs" />
     <Compile Include="Exercises\StartEditingExerciseMessage.cs" />
     <Compile Include="Exercises\ExerciseCompositeView.xaml.cs">
       <DependentUpon>ExerciseCompositeView.xaml</DependentUpon>

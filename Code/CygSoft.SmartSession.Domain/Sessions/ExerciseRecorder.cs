@@ -48,6 +48,9 @@ namespace CygSoft.SmartSession.Domain.Sessions
             }
         }
 
+        public DateTime StartTime { get { return recordingSlices.Min(r => r.StartTime); } }
+        public DateTime EndTime { get { return recordingSlices.Max(r => r.EndTime); } }
+
         public ExerciseRecorder(Action tickActionFunc)
         {
             timer.Interval = 1000;
@@ -74,6 +77,14 @@ namespace CygSoft.SmartSession.Domain.Sessions
             timer.Elapsed -= Timer_Elapsed;
             recordingSlices.Add(new RecordingSlice(started, DateTime.Now));
             recordedSeconds = recordingSlices.Sum(r => r.Seconds);
+        }
+
+        public virtual void Clear()
+        {
+            timer.Stop();
+            timer.Elapsed -= Timer_Elapsed;
+            recordingSlices.Clear();
+            recordedSeconds = 0;
         }
     }
 }

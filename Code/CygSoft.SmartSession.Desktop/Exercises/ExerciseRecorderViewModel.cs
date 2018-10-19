@@ -1,6 +1,9 @@
-﻿using CygSoft.SmartSession.Domain.Sessions;
+﻿using CygSoft.SmartSession.Desktop.Supports.Services;
+using CygSoft.SmartSession.Domain.Exercises;
+using CygSoft.SmartSession.Domain.Sessions;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +14,9 @@ namespace CygSoft.SmartSession.Desktop.Exercises
 {
     public class ExerciseRecorderViewModel : ViewModelBase
     {
+        private IExerciseService exerciseService;
+        private IDialogViewService dialogService;
+
         public RelayCommand StartRecordingCommand { get; private set; }
         public RelayCommand PauseRecordingCommand { get; private set; }
 
@@ -26,6 +32,8 @@ namespace CygSoft.SmartSession.Desktop.Exercises
 
         protected bool timing = false;
         protected ExerciseRecorder exerciseRecorder;
+
+        private Exercise exercise;
 
         private string activityRecordedDisplayTime;
         public string ActivityRecordedDisplayTime
@@ -79,22 +87,30 @@ namespace CygSoft.SmartSession.Desktop.Exercises
             }
         }
 
-        public ExerciseRecorderViewModel()
+        public ExerciseRecorderViewModel(IExerciseService exerciseService, IDialogViewService dialogService)
         {
-            this.exerciseRecorder = new ExerciseRecorder(Elapsed);
+            this.exerciseService = exerciseService ?? throw new ArgumentNullException("Service must be provided.");
+            this.dialogService = dialogService ?? throw new ArgumentNullException("Dialog service must be provided.");
 
             StartRecordingCommand = new RelayCommand(() => StartRecording(), () => true);
             PauseRecordingCommand = new RelayCommand(() => PauseRecording(), () => true);
             CancelRecordingCommand = new RelayCommand(() => CancelRecording(), () => true);
             SaveRecordingCommand = new RelayCommand(() => SaveRecording(), () => true);
+        }
 
-            this.comfortSpeed = 82;
-            this.highestSpeed = 93;
-            this.startSpeed = 75;
-            this.ExerciseTitle = "Metallica - Fade to Black - Bars 1 - 10";
-            this.CurrentSpeedInfo = "Current: 105 bpm - Target: 160 bpm";
+        public void BeginRecordingExercise(int exerciseId)
+        {
+            exerciseRecorder = new ExerciseRecorder(Elapsed);
+
+            exercise = exerciseService.Get(exerciseId);
+
+            this.ComfortSpeed = 0;
+            this.HighestSpeed = 0;
+            this.StartSpeed = exercise.GetCurrentComfortSpeed();
+            this.ExerciseTitle = exercise.Title;
+            this.CurrentSpeedInfo = $"Current: {exercise.GetCurrentComfortSpeed()} bpm - Target: {exercise.TargetMetronomeSpeed ?? 0} bpm";
             this.ActivityRecordedDisplayTime = "00:00:00";
-            this.TotalRecordedDisplayTime = "01:22:32";
+            this.TotalRecordedDisplayTime = DisplayTime(exercise.GetSecondsPracticed());
         }
 
         private void Elapsed()
@@ -128,12 +144,28 @@ namespace CygSoft.SmartSession.Desktop.Exercises
 
         private void CancelRecording()
         {
-
+            exerciseRecorder.Clear();
+            Messenger.Default.Send(new CancelledExerciseRecordingMessage());
         }
 
         private void SaveRecording()
         {
+            SessionExerciseActivity exerciseActivity = new SessionExerciseActivity();
+            exerciseActivity.DateCreated = DateTime.Now;
+            exerciseActivity.DateModified = exerciseActivity.DateCreated;
+            exerciseActivity.AchievedMetronomeSpeed = HighestSpeed;
+            exerciseActivity.ComfortMetronomeSpeed = ComfortSpeed;
+            exerciseActivity.StartMetronomeSpeed = StartSpeed;
+            exerciseActivity.ExerciseId = exercise.Id;
+            exerciseActivity.Seconds = (int)exerciseRecorder.Seconds;
+            exerciseActivity.StartTime = exerciseRecorder.StartTime;
+            exerciseActivity.EndTime = exerciseRecorder.EndTime;
 
+            exercise.ExerciseActivity.Add(exerciseActivity);
+            exerciseService.Update(exercise);
+
+            exerciseRecorder.Clear();
+            Messenger.Default.Send(new SavedExerciseRecordingMessage(exercise.Id));
         }
 
     }

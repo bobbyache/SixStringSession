@@ -32,6 +32,14 @@ namespace CygSoft.SmartSession.Domain.Exercises
 
         public List<SessionExerciseActivity> ExerciseActivity { get; set; }
 
+        public int GetCurrentComfortSpeed()
+        {
+            if (!ExerciseActivity.Any())
+                return 0;
+            var endDate = ExerciseActivity.Max(a => a.EndTime);
+            return ExerciseActivity.Where(a => a.EndTime == endDate).Select(a => a.ComfortMetronomeSpeed).SingleOrDefault();
+        }
+
         public double GetPercentComplete()
         {
             // https://stackoverflow.com/questions/47386256/entity-framework-calculate-sum-field-from-child-records
