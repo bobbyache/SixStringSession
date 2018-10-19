@@ -12,14 +12,14 @@ namespace CygSoft.SmartSession.Domain.Sessions
         public int StartMetronomeSpeed { get; set; }
         public int ComfortMetronomeSpeed { get; set; }
         public int AchievedMetronomeSpeed { get; set; }
+
+        public int Seconds { get; set; } // this will be calculated by recording a list of small recording periods.
+
+        // You still need these to work out your metronome calculations.
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
 
         public int ExerciseId { get; set; }
-    
-        public double GetSecondsPracticed()
-        {
-            return (EndTime - StartTime).TotalSeconds;
-        }
+   
     }
 }

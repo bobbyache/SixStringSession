@@ -87,6 +87,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                         StartMetronomeSpeed = 60,
                         ComfortMetronomeSpeed = 70,
                         AchievedMetronomeSpeed = 80,
+                        Seconds = 600, // 10 minutes
                         StartTime = DateTime.Parse("2018/01/02 10:00:00"),
                         EndTime = DateTime.Parse("2018/01/02 10:10:00"),
                         ExerciseId = 1 },
@@ -98,6 +99,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                         StartMetronomeSpeed = 65,
                         ComfortMetronomeSpeed = 75,
                         AchievedMetronomeSpeed = 85,
+                        Seconds = 600, // 10 minutes
                         StartTime = DateTime.Parse("2018/01/03 10:00:00"),
                         EndTime = DateTime.Parse("2018/01/03 10:10:00"),
                         ExerciseId = 1 },
@@ -109,6 +111,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                         StartMetronomeSpeed = 70,
                         ComfortMetronomeSpeed = 80,
                         AchievedMetronomeSpeed = 85,
+                        Seconds = 600, // 10 minutes
                         StartTime = DateTime.Parse("2018/01/04 10:00:00"),
                         EndTime = DateTime.Parse("2018/01/04 10:10:00"),
                         ExerciseId = 1 }

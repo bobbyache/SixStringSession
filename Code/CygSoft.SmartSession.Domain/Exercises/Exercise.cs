@@ -41,6 +41,8 @@ namespace CygSoft.SmartSession.Domain.Exercises
                 if (!TargetMetronomeSpeed.HasValue)
                     return 0;
 
+
+
                 var startDate = ExerciseActivity.Min(a => a.StartTime);
                 var startSpeed = ExerciseActivity.Where(a => a.StartTime == startDate).Select(a => a.ComfortMetronomeSpeed).SingleOrDefault();
 
@@ -70,7 +72,7 @@ namespace CygSoft.SmartSession.Domain.Exercises
         {
             // the way you'd do this is by loading the list of related "SessionExerciseResult" objects that are listed for this
             // exercise and summ the minutes practiced.
-            var secPracticed = ExerciseActivity.Sum(a => a.GetSecondsPracticed());
+            var secPracticed = ExerciseActivity.Sum(a => a.Seconds);
             return secPracticed;
 
         }

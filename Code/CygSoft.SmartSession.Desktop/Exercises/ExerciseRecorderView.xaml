@@ -6,12 +6,15 @@
              xmlns:local="clr-namespace:CygSoft.SmartSession.Desktop.Exercises"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <Binding Source="{StaticResource ViewModelLocator}" Path="ExerciseRecorderViewModel" />
+    </UserControl.DataContext>
     <DockPanel>
         <Border DockPanel.Dock="Bottom" Background="GhostWhite" BorderBrush="Gainsboro" BorderThickness="1" Padding="5" Margin="5">
             <StackPanel Orientation="Vertical">
                 <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
-                    <Button Padding="5" Margin="5">Cancel</Button>
-                    <Button Padding="5" Margin="5">Save</Button>
+                    <Button Padding="5" Margin="5" Command="{Binding CancelRecordingCommand}">Cancel</Button>
+                    <Button Padding="5" Margin="5" Command="{Binding SaveRecordingCommand}">Save</Button>
                 </StackPanel>
             </StackPanel>
         </Border>
@@ -21,32 +24,34 @@
                 <StackPanel Orientation="Vertical">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock TextAlignment="Right" Margin="2" MinWidth="50" >Start</TextBlock>
-                        <TextBox Margin="2" MinWidth="50" />
+                        <TextBox Margin="2" MinWidth="50" Text="{Binding StartSpeed}" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock TextAlignment="Right" Margin="2" MinWidth="50" >Comfort</TextBlock>
-                        <TextBox Margin="2" MinWidth="50" />
+                        <TextBox Margin="2" MinWidth="50" Text="{Binding ComfortSpeed}" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock TextAlignment="Right" Margin="2" MinWidth="50" >Highest</TextBlock>
-                        <TextBox Margin="2" MinWidth="50" />
+                        <TextBox Margin="2" MinWidth="50" Text="{Binding HighestSpeed}" />
                     </StackPanel>
                 </StackPanel>
-
             </StackPanel>
         </Border>
         <Border DockPanel.Dock="Bottom"  Background="GhostWhite" BorderBrush="Gainsboro" BorderThickness="1" Padding="5" Margin="5">
             <StackPanel Orientation="Vertical">
-                <Button Padding="5" Margin="5">Start</Button>
-                <!--<Button Padding="5" Margin="5">Pause</Button>-->
+                <Button Padding="5" Margin="5" Command="{Binding StartRecordingCommand}">Start</Button>
+                <Button Padding="5" Margin="5" Command="{Binding PauseRecordingCommand}">Pause</Button>
             </StackPanel>
         </Border>
         <Border DockPanel.Dock="Bottom" Background="GhostWhite" BorderBrush="Gainsboro" BorderThickness="1" Padding="5" Margin="5">
             <StackPanel VerticalAlignment="Center" Orientation="Vertical">
-                <TextBlock HorizontalAlignment="Center" FontSize="16">Metallica - Fade to Black - Bars 1 - 10</TextBlock>
-                <TextBlock HorizontalAlignment="Center" Margin="15">Recorded Time: 00:23:23</TextBlock>
-                <TextBlock FontFamily="Calibri" FontSize="48" HorizontalAlignment="Center" VerticalAlignment="Center" >00:00:00</TextBlock>
-                <TextBlock HorizontalAlignment="Center" Margin="15">Current: 105 bpm - Target: 160 bpm</TextBlock>
+                <TextBlock HorizontalAlignment="Center" FontSize="16" Text="{Binding ExerciseTitle, Mode=OneWay}"></TextBlock>
+                <StackPanel Width="180">
+                    <TextBlock FontFamily="Calibri" Text="{Binding ActivityRecordedDisplayTime, Mode=OneWay}"  FontSize="48" HorizontalAlignment="Center" VerticalAlignment="Center" ></TextBlock>
+                    <TextBlock FontFamily="Calibri" Text="{Binding TotalRecordedDisplayTime, Mode=OneWay}" HorizontalAlignment="Right" VerticalAlignment="Center" ></TextBlock>
+                </StackPanel>
+
+                <TextBlock HorizontalAlignment="Center" Margin="15" Text="{Binding CurrentSpeedInfo, Mode=OneWay}"></TextBlock>
                 
             </StackPanel>
         </Border>

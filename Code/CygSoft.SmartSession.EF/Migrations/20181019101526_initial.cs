@@ -33,24 +33,6 @@ namespace CygSoft.SmartSession.EF.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "FileAttachments",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    DateCreated = table.Column<DateTime>(nullable: false),
-                    DateModified = table.Column<DateTime>(nullable: false),
-                    Extension = table.Column<string>(type: "nvarchar(10)", nullable: false),
-                    FileId = table.Column<string>(type: "nvarchar(50)", nullable: false),
-                    Notes = table.Column<string>(type: "nvarchar(1000)", nullable: true),
-                    Title = table.Column<string>(type: "nvarchar(150)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_FileAttachments", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Goals",
                 columns: table => new
                 {
@@ -67,25 +49,6 @@ namespace CygSoft.SmartSession.EF.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "GoalTasks",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    DateCreated = table.Column<DateTime>(nullable: false),
-                    DateModified = table.Column<DateTime>(nullable: false),
-                    MinutesPracticed = table.Column<int>(nullable: true),
-                    Notes = table.Column<string>(type: "nvarchar(1000)", nullable: true),
-                    StartDate = table.Column<DateTime>(nullable: true),
-                    Title = table.Column<string>(type: "nvarchar(150)", nullable: false),
-                    Weighting = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_GoalTasks", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Keywords",
                 columns: table => new
                 {
@@ -96,6 +59,23 @@ namespace CygSoft.SmartSession.EF.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Keywords", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PracticeSessionResults",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    DateCreated = table.Column<DateTime>(nullable: false),
+                    DateModified = table.Column<DateTime>(nullable: false),
+                    EndTime = table.Column<DateTime>(nullable: false),
+                    Speed = table.Column<int>(nullable: true),
+                    StartTime = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PracticeSessionResults", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -110,6 +90,7 @@ namespace CygSoft.SmartSession.EF.Migrations
                     DateModified = table.Column<DateTime>(nullable: false),
                     EndTime = table.Column<DateTime>(nullable: false),
                     ExerciseId = table.Column<int>(nullable: false),
+                    Seconds = table.Column<int>(nullable: false),
                     StartMetronomeSpeed = table.Column<int>(nullable: false),
                     StartTime = table.Column<DateTime>(nullable: false)
                 },
@@ -122,30 +103,6 @@ namespace CygSoft.SmartSession.EF.Migrations
                         principalTable: "Exercises",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "PracticeSessionResults",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    DateCreated = table.Column<DateTime>(nullable: false),
-                    DateModified = table.Column<DateTime>(nullable: false),
-                    EndTime = table.Column<DateTime>(nullable: false),
-                    GoalTaskId = table.Column<int>(nullable: true),
-                    Speed = table.Column<int>(nullable: true),
-                    StartTime = table.Column<DateTime>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PracticeSessionResults", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_PracticeSessionResults_GoalTasks_GoalTaskId",
-                        column: x => x.GoalTaskId,
-                        principalTable: "GoalTasks",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -166,30 +123,6 @@ namespace CygSoft.SmartSession.EF.Migrations
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_ExerciseKeyword_Keywords_KeywordId",
-                        column: x => x.KeywordId,
-                        principalTable: "Keywords",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "FileAttachmentKeyword",
-                columns: table => new
-                {
-                    FileAttachmentId = table.Column<int>(nullable: false),
-                    KeywordId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_FileAttachmentKeyword", x => new { x.FileAttachmentId, x.KeywordId });
-                    table.ForeignKey(
-                        name: "FK_FileAttachmentKeyword_FileAttachments_FileAttachmentId",
-                        column: x => x.FileAttachmentId,
-                        principalTable: "FileAttachments",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_FileAttachmentKeyword_Keywords_KeywordId",
                         column: x => x.KeywordId,
                         principalTable: "Keywords",
                         principalColumn: "Id",
@@ -220,54 +153,15 @@ namespace CygSoft.SmartSession.EF.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "GoalTaskKeyword",
-                columns: table => new
-                {
-                    GoalTaskId = table.Column<int>(nullable: false),
-                    KeywordId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_GoalTaskKeyword", x => new { x.GoalTaskId, x.KeywordId });
-                    table.ForeignKey(
-                        name: "FK_GoalTaskKeyword_GoalTasks_GoalTaskId",
-                        column: x => x.GoalTaskId,
-                        principalTable: "GoalTasks",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_GoalTaskKeyword_Keywords_KeywordId",
-                        column: x => x.KeywordId,
-                        principalTable: "Keywords",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
             migrationBuilder.CreateIndex(
                 name: "IX_ExerciseKeyword_KeywordId",
                 table: "ExerciseKeyword",
                 column: "KeywordId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_FileAttachmentKeyword_KeywordId",
-                table: "FileAttachmentKeyword",
-                column: "KeywordId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_GoalKeyword_KeywordId",
                 table: "GoalKeyword",
                 column: "KeywordId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_GoalTaskKeyword_KeywordId",
-                table: "GoalTaskKeyword",
-                column: "KeywordId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_PracticeSessionResults_GoalTaskId",
-                table: "PracticeSessionResults",
-                column: "GoalTaskId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_SessionExerciseActivity_ExerciseId",
@@ -281,13 +175,7 @@ namespace CygSoft.SmartSession.EF.Migrations
                 name: "ExerciseKeyword");
 
             migrationBuilder.DropTable(
-                name: "FileAttachmentKeyword");
-
-            migrationBuilder.DropTable(
                 name: "GoalKeyword");
-
-            migrationBuilder.DropTable(
-                name: "GoalTaskKeyword");
 
             migrationBuilder.DropTable(
                 name: "PracticeSessionResults");
@@ -296,16 +184,10 @@ namespace CygSoft.SmartSession.EF.Migrations
                 name: "SessionExerciseActivity");
 
             migrationBuilder.DropTable(
-                name: "FileAttachments");
-
-            migrationBuilder.DropTable(
                 name: "Goals");
 
             migrationBuilder.DropTable(
                 name: "Keywords");
-
-            migrationBuilder.DropTable(
-                name: "GoalTasks");
 
             migrationBuilder.DropTable(
                 name: "Exercises");
