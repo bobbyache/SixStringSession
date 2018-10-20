@@ -6,6 +6,9 @@
              xmlns:local="clr-namespace:CygSoft.SmartSession.Desktop.Exercises"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    </UserControl.Resources>
     <UserControl.DataContext>
         <Binding Source="{StaticResource ViewModelLocator}" Path="ExerciseRecorderViewModel" />
     </UserControl.DataContext>
@@ -39,8 +42,8 @@
         </Border>
         <Border DockPanel.Dock="Bottom"  Background="GhostWhite" BorderBrush="Gainsboro" BorderThickness="1" Padding="5" Margin="5">
             <StackPanel Orientation="Vertical">
-                <Button Padding="5" Margin="5" Command="{Binding StartRecordingCommand}">Start</Button>
-                <Button Padding="5" Margin="5" Command="{Binding PauseRecordingCommand}">Pause</Button>
+                <Button Padding="5" Margin="5" Command="{Binding StartRecordingCommand}" Visibility="{Binding StartButtonVisible, Converter={StaticResource BooleanToVisibilityConverter}}">Start</Button>
+                <Button Padding="5" Margin="5" Command="{Binding PauseRecordingCommand}" Visibility="{Binding PauseButtonVisible, Converter={StaticResource BooleanToVisibilityConverter}}">Pause</Button>
             </StackPanel>
         </Border>
         <Border DockPanel.Dock="Bottom" Background="GhostWhite" BorderBrush="Gainsboro" BorderThickness="1" Padding="5" Margin="5">

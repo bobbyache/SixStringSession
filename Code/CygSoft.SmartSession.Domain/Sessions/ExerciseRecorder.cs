@@ -34,19 +34,38 @@ namespace CygSoft.SmartSession.Domain.Sessions
     public class ExerciseRecorder
     {
         private Timer timer = new Timer();
-        private DateTime started;
+        private DateTime? recorderStartTime;
+        private DateTime? recorderPauseTime;
 
         private double recordedSeconds;
         private Action tickActionFunc;
+
+        public event EventHandler RecordingStatusChanged;
 
         public double Seconds
         {
             get
             {
-                TimeSpan timeSpan = DateTime.Now - started;
-                return recordedSeconds + timeSpan.TotalSeconds;
+                if (recorderStartTime != null)
+                {
+                    DateTime dateTime = recorderPauseTime ?? DateTime.Now;
+                    TimeSpan timeSpan = dateTime - recorderStartTime.Value;
+
+                    if (Recording)
+                    {
+                        return recordedSeconds + timeSpan.TotalSeconds;
+                    }
+                    else
+                    {
+                        return recordedSeconds;
+                    }
+                }
+
+                return 0;
             }
         }
+
+        public bool Recording { get { return timer.Enabled; } }
 
         public DateTime StartTime { get { return recordingSlices.Min(r => r.StartTime); } }
         public DateTime EndTime { get { return recordingSlices.Max(r => r.EndTime); } }
@@ -61,22 +80,27 @@ namespace CygSoft.SmartSession.Domain.Sessions
 
         public virtual void Start()
         {
-            started = DateTime.Now;
+            recorderPauseTime = null;
+            recorderStartTime = DateTime.Now;
             timer.Elapsed += Timer_Elapsed;
             timer.Start();
+
+            RecordingStatusChanged?.Invoke(this, new EventArgs());
         }
 
         private void Timer_Elapsed(object sender, ElapsedEventArgs e)
         {
-            tickActionFunc();
+            tickActionFunc?.Invoke();
         }
 
         public virtual void Pause()
         {
             timer.Stop();
-            timer.Elapsed -= Timer_Elapsed;
-            recordingSlices.Add(new RecordingSlice(started, DateTime.Now));
+            recorderPauseTime = DateTime.Now;
+            recordingSlices.Add(new RecordingSlice(recorderStartTime.Value, recorderPauseTime.Value));
             recordedSeconds = recordingSlices.Sum(r => r.Seconds);
+
+            RecordingStatusChanged?.Invoke(this, new EventArgs());
         }
 
         public virtual void Clear()
@@ -84,7 +108,11 @@ namespace CygSoft.SmartSession.Domain.Sessions
             timer.Stop();
             timer.Elapsed -= Timer_Elapsed;
             recordingSlices.Clear();
+            recorderStartTime = null;
+            recorderPauseTime = null;
             recordedSeconds = 0;
+
+            RecordingStatusChanged?.Invoke(this, new EventArgs());
         }
     }
 }

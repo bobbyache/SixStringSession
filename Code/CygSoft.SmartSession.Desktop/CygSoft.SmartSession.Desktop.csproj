@@ -164,6 +164,7 @@
     <Compile Include="Supports\Validators\RequiredFileNameValidator.cs" />
     <Compile Include="Supports\Validators\ValidatableObservableObject.cs" />
     <Compile Include="Supports\Validators\ValidatableObject.cs" />
+    <Compile Include="Supports\Validators\ValidatableViewModel.cs" />
     <Compile Include="Supports\Validators\ValidFileNameAttribute.cs" />
     <Compile Include="Supports\Validators\ValidFilePathValidator.cs" />
     <Page Include="Exercises\ExerciseCompositeView.xaml">

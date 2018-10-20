@@ -1,4 +1,5 @@
 ﻿using CygSoft.SmartSession.Desktop.Supports.Services;
+using CygSoft.SmartSession.Desktop.Supports.Validators;
 using CygSoft.SmartSession.Domain.Exercises;
 using CygSoft.SmartSession.Domain.Sessions;
 using GalaSoft.MvvmLight;
@@ -6,13 +7,15 @@ using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace CygSoft.SmartSession.Desktop.Exercises
 {
-    public class ExerciseRecorderViewModel : ViewModelBase
+    public class ExerciseRecorderViewModel : ValidatableViewModel
     {
         private IExerciseService exerciseService;
         private IDialogViewService dialogService;
@@ -35,6 +38,32 @@ namespace CygSoft.SmartSession.Desktop.Exercises
 
         private Exercise exercise;
 
+        private bool startButtonVisible;
+        public bool StartButtonVisible
+        {
+            get
+            {
+                return startButtonVisible;
+            }
+            set
+            {
+                Set(() => StartButtonVisible, ref startButtonVisible, value);
+            }
+        }
+
+        private bool pauseButtonVisible;
+        public bool PauseButtonVisible
+        {
+            get
+            {
+                return pauseButtonVisible;
+            }
+            set
+            {
+                Set(() => PauseButtonVisible, ref pauseButtonVisible, value);
+            }
+        }
+
         private string activityRecordedDisplayTime;
         public string ActivityRecordedDisplayTime
         {
@@ -49,6 +78,7 @@ namespace CygSoft.SmartSession.Desktop.Exercises
         }
 
         private int startSpeed;
+        [Required]
         public int StartSpeed
         {
             get
@@ -57,11 +87,12 @@ namespace CygSoft.SmartSession.Desktop.Exercises
             }
             set
             {
-                Set(() => StartSpeed, ref startSpeed, value);
+                Set(() => StartSpeed, ref startSpeed, value, true, true);
             }
         }
 
         private int comfortSpeed;
+        [Required]
         public int ComfortSpeed
         {
             get
@@ -70,11 +101,12 @@ namespace CygSoft.SmartSession.Desktop.Exercises
             }
             set
             {
-                Set(() => ComfortSpeed, ref comfortSpeed, value);
+                Set(() => ComfortSpeed, ref comfortSpeed, value, true, true);
             }
         }
 
         private int highestSpeed;
+        [Required]
         public int HighestSpeed
         {
             get
@@ -83,7 +115,7 @@ namespace CygSoft.SmartSession.Desktop.Exercises
             }
             set
             {
-                Set(() => HighestSpeed, ref highestSpeed, value);
+                Set(() => HighestSpeed, ref highestSpeed, value, true, true);
             }
         }
 
@@ -92,17 +124,43 @@ namespace CygSoft.SmartSession.Desktop.Exercises
             this.exerciseService = exerciseService ?? throw new ArgumentNullException("Service must be provided.");
             this.dialogService = dialogService ?? throw new ArgumentNullException("Dialog service must be provided.");
 
-            StartRecordingCommand = new RelayCommand(() => StartRecording(), () => true);
-            PauseRecordingCommand = new RelayCommand(() => PauseRecording(), () => true);
-            CancelRecordingCommand = new RelayCommand(() => CancelRecording(), () => true);
-            SaveRecordingCommand = new RelayCommand(() => SaveRecording(), () => true);
+            ErrorsChanged += Exercise_ErrorsChanged;
+            
+            StartRecordingCommand = new RelayCommand(() => StartRecording(), () => !exerciseRecorder.Recording);
+            PauseRecordingCommand = new RelayCommand(() => PauseRecording(), () => exerciseRecorder.Recording);
+            CancelRecordingCommand = new RelayCommand(() => CancelRecording(), () => !exerciseRecorder.Recording);
+            SaveRecordingCommand = new RelayCommand(() => SaveRecording(), CanExecuteSaveCommand);
+        }
+
+        private void ExerciseRecorder_RecordingStatusChanged(object sender, EventArgs e)
+        {
+            StartRecordingCommand.RaiseCanExecuteChanged();
+            PauseRecordingCommand.RaiseCanExecuteChanged();
+        }
+
+        private bool CanExecuteSaveCommand()
+        {
+            var recordingStateValid = exerciseRecorder.Seconds > 0 && !exerciseRecorder.Recording;
+            var speedMetricsStateValid = StartSpeed > 0 && ComfortSpeed > 0 && HighestSpeed > 0 &&  (HighestSpeed >= StartSpeed);
+
+            return recordingStateValid && speedMetricsStateValid;
+        }
+
+        private void Exercise_ErrorsChanged(object sender, DataErrorsChangedEventArgs e)
+        {
+            SaveRecordingCommand.RaiseCanExecuteChanged();
+            CancelRecordingCommand.RaiseCanExecuteChanged();
         }
 
         public void BeginRecordingExercise(int exerciseId)
         {
             exerciseRecorder = new ExerciseRecorder(Elapsed);
+            exerciseRecorder.RecordingStatusChanged += ExerciseRecorder_RecordingStatusChanged;
 
             exercise = exerciseService.Get(exerciseId);
+
+            PauseButtonVisible = false;
+            StartButtonVisible = true;
 
             this.ComfortSpeed = 0;
             this.HighestSpeed = 0;
@@ -128,7 +186,11 @@ namespace CygSoft.SmartSession.Desktop.Exercises
         {
             if (!timing)
             {
+                StartButtonVisible = false;
+                PauseButtonVisible = true;
+
                 exerciseRecorder.Start();
+                this.ValidateAll();
             }
             timing = true;
         }
@@ -137,14 +199,20 @@ namespace CygSoft.SmartSession.Desktop.Exercises
         {
             if (timing)
             {
+                PauseButtonVisible = false;
+                StartButtonVisible = true;
+                
                 exerciseRecorder.Pause();
+                this.ValidateAll();
             }
             timing = false;
         }
 
         private void CancelRecording()
-        {
+        { 
+            exerciseRecorder.RecordingStatusChanged -= ExerciseRecorder_RecordingStatusChanged;
             exerciseRecorder.Clear();
+
             Messenger.Default.Send(new CancelledExerciseRecordingMessage());
         }
 
@@ -164,9 +232,9 @@ namespace CygSoft.SmartSession.Desktop.Exercises
             exercise.ExerciseActivity.Add(exerciseActivity);
             exerciseService.Update(exercise);
 
+            exerciseRecorder.RecordingStatusChanged -= ExerciseRecorder_RecordingStatusChanged;
             exerciseRecorder.Clear();
             Messenger.Default.Send(new SavedExerciseRecordingMessage(exercise.Id));
         }
-
     }
 }
