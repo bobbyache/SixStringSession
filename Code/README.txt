@@ -6,6 +6,11 @@ Controls to Use
 WPF RichTextBoxToolBar Control
 https://www.codeproject.com/Articles/448062/WPF-RichTextBoxToolBar-Control
 
+Fred Grass
+WPF Busy Indicator
+http://fredgrass.blogspot.com/2015/07/wpf-busy-indicator.html
+navigated to from:
+https://stackoverflow.com/questions/2934732/simplest-way-to-create-busy-animation-in-wpf
 
 ===========================================================================
 Code Research

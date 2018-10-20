@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:ctrls="clr-namespace:CygSoft.SmartSession.Desktop"
              xmlns:local="clr-namespace:CygSoft.SmartSession.Desktop.Exercises"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
@@ -48,6 +49,9 @@
         </Border>
         <Border DockPanel.Dock="Bottom" Background="GhostWhite" BorderBrush="Gainsboro" BorderThickness="1" Padding="5" Margin="5">
             <StackPanel VerticalAlignment="Center" Orientation="Vertical">
+                <ctrls:BusyIndicatorView Width="60" Height="60" Visibility="{Binding BusyIndicatorVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    
+                </ctrls:BusyIndicatorView>
                 <TextBlock HorizontalAlignment="Center" FontSize="16" Text="{Binding ExerciseTitle, Mode=OneWay}"></TextBlock>
                 <StackPanel Width="180">
                     <TextBlock FontFamily="Calibri" Text="{Binding ActivityRecordedDisplayTime, Mode=OneWay}"  FontSize="48" HorizontalAlignment="Center" VerticalAlignment="Center" ></TextBlock>

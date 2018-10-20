@@ -89,6 +89,9 @@
     <Compile Include="..\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="BusyIndicatorView.xaml.cs">
+      <DependentUpon>BusyIndicatorView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Exercises\CancelledExerciseRecordingMessage.cs" />
     <Compile Include="Exercises\ExerciseRecorderView.xaml.cs">
       <DependentUpon>ExerciseRecorderView.xaml</DependentUpon>
@@ -167,6 +170,10 @@
     <Compile Include="Supports\Validators\ValidatableViewModel.cs" />
     <Compile Include="Supports\Validators\ValidFileNameAttribute.cs" />
     <Compile Include="Supports\Validators\ValidFilePathValidator.cs" />
+    <Page Include="BusyIndicatorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Exercises\ExerciseCompositeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

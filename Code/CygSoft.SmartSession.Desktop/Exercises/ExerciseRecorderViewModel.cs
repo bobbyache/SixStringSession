@@ -51,6 +51,19 @@ namespace CygSoft.SmartSession.Desktop.Exercises
             }
         }
 
+        private bool busyIndicatorVisible;
+        public bool BusyIndicatorVisible
+        {
+            get
+            {
+                return busyIndicatorVisible;
+            }
+            set
+            {
+                Set(() => BusyIndicatorVisible, ref busyIndicatorVisible, value);
+            }
+        }
+
         private bool pauseButtonVisible;
         public bool PauseButtonVisible
         {
@@ -186,6 +199,7 @@ namespace CygSoft.SmartSession.Desktop.Exercises
         {
             if (!timing)
             {
+                BusyIndicatorVisible = true;
                 StartButtonVisible = false;
                 PauseButtonVisible = true;
 
@@ -199,6 +213,7 @@ namespace CygSoft.SmartSession.Desktop.Exercises
         {
             if (timing)
             {
+                BusyIndicatorVisible = false;
                 PauseButtonVisible = false;
                 StartButtonVisible = true;
                 
