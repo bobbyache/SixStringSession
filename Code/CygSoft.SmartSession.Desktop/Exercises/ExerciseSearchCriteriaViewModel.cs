@@ -30,17 +30,14 @@ namespace CygSoft.SmartSession.Desktop.Exercises
         private void Reset()
         {
             Title = null;
-            OptimalDuration = null;
             DifficultyRating = null;
             PracticalityRating = null;
             TargetMetronomeSpeed = null;
             TargetPracticeTime = null;
             TargetMetronomeSpeedOperator = Domain.Common.ComparisonOperators.Undefined;
             TargetPracticeTimeOperator = Domain.Common.ComparisonOperators.Undefined;
-            OptimalDurationOperator = Domain.Common.ComparisonOperators.Undefined;
             DifficultyRatingOperator = Domain.Common.ComparisonOperators.Undefined;
             PracticalityRatingOperator = Domain.Common.ComparisonOperators.Undefined;
-            HasNotes = null;
             DateCreatedBefore = null;
             DateCreatedAfter = null;
             DateModifiedAfter = null;
@@ -125,33 +122,6 @@ namespace CygSoft.SmartSession.Desktop.Exercises
             set
             {
                 Set(() => DateModifiedBefore, ref dateModifiedBefore, value);
-            }
-        }
-
-
-        private int? duration;
-        public int? OptimalDuration
-        {
-            get
-            {
-                return duration;
-            }
-            set
-            {
-                Set(() => OptimalDuration, ref duration, value);
-            }
-        }
-
-        private ComparisonOperators optimalDurationOperator;
-        public ComparisonOperators OptimalDurationOperator
-        {
-            get
-            {
-                return optimalDurationOperator;
-            }
-            set
-            {
-                Set(() => OptimalDurationOperator, ref optimalDurationOperator, value);
             }
         }
 
@@ -264,19 +234,6 @@ namespace CygSoft.SmartSession.Desktop.Exercises
             set
             {
                 Set(() => Title, ref title, value);
-            }
-        }
-
-        private bool? hasNotes;
-        public bool? HasNotes
-        {
-            get
-            {
-                return hasNotes;
-            }
-            set
-            {
-                Set(() => HasNotes, ref hasNotes, value);
             }
         }
 

@@ -41,14 +41,6 @@
                          />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <TextBlock MinWidth="115" Margin="2" Text="Optimal Duration" />
-                <ComboBox Margin="2" MinWidth="50" ItemsSource="{Binding ComparisonOperators, Mode=OneWay}"  
-                          SelectedItem="{Binding OptimalDurationOperator, Converter={StaticResource ComparisonOperatorConverter}}" />
-                <TextBox Margin="2" MinWidth="50" x:Name="OptimalDurationTextBox"
-                         Text="{Binding OptimalDuration, Converter={StaticResource RatingValuesConverter}}"
-                         />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
                 <TextBlock MinWidth="115" Margin="2" Text="Practicality Rating" />
                 <ComboBox Margin="2" MinWidth="50" ItemsSource="{Binding ComparisonOperators, Mode=OneWay}" 
                           SelectedItem="{Binding PracticalityRatingOperator, Converter={StaticResource ComparisonOperatorConverter}}" />
@@ -65,10 +57,6 @@
                           ItemsSource="{Binding RatingValues, Mode=OneWay}"  
                           SelectedItem="{Binding DifficultyRating, Converter={StaticResource RatingValuesConverter}}"
                           />
-            </StackPanel>
-            <StackPanel  Orientation="Horizontal" >
-                <TextBlock MinWidth="115" Text="Has Notes" Margin="2" />
-                <CheckBox Margin="2" IsChecked="{Binding HasNotes, Mode=TwoWay}" IsThreeState="True" />
             </StackPanel>
             <StackPanel  Orientation="Horizontal" >
                 <TextBlock MinWidth="115" Text="Date Created" Margin="2" />
