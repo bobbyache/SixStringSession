@@ -28,6 +28,8 @@ namespace CygSoft.SmartSession.Domain.Exercises
 
         public int GetCurrentComfortSpeed()
         {
+            if (ExerciseActivity == null)
+                return 0;
             if (!ExerciseActivity.Any())
                 return 0;
             var endDate = ExerciseActivity.Max(a => a.EndTime);

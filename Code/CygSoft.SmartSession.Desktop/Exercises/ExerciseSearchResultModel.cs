@@ -24,17 +24,6 @@ namespace CygSoft.SmartSession.Desktop.Exercises
             }            
         }
 
-        private int optimalDuration;
-        public int OptimalDuration
-        {
-            get { return optimalDuration; }
-            set
-            {
-                if (Set(() => OptimalDuration, ref optimalDuration, value))
-                    isDirty = true;
-            }
-        }
-
         private int difficultyRating;
         public int DifficultyRating
         {
@@ -53,17 +42,6 @@ namespace CygSoft.SmartSession.Desktop.Exercises
             set
             {
                 if (Set(() => PracticalityRating, ref practicalityRating, value))
-                    isDirty = true;
-            }
-        }
-
-        private string notes;
-        public string Notes
-        {
-            get { return notes; }
-            set
-            {
-                if (Set(() => Notes, ref notes, value))
                     isDirty = true;
             }
         }

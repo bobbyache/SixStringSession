@@ -24,8 +24,8 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="30" />
             <RowDefinition Height="*" />
-                <RowDefinition Height="100" />
-                <RowDefinition Height="30" />
+            <RowDefinition Height="100" />
+            <RowDefinition Height="30" />
             </Grid.RowDefinitions>
         <ToolBar Grid.Row="0">
             <Button MinWidth="30" Height="30" Content="Add" Command="{Binding AddExerciseCommand}" />
@@ -67,7 +67,6 @@
             </ListBox.ContextMenu>
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Width="80" Header="Duration" DisplayMemberBinding="{Binding OptimalDuration, Converter={StaticResource TimeDisplayConverter}}"/>
                     <GridViewColumn Width="100" Header="Difficulty">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
@@ -106,7 +105,6 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="0" Text="{Binding SelectedExercise.Title}" FontWeight="Bold" />
-            <TextBlock Grid.Row="1" Text="{Binding SelectedExercise.Notes}" />
         </Grid>
         <StatusBar Grid.Row="3">
             <StatusBarItem>
