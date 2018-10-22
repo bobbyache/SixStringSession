@@ -20,7 +20,6 @@ namespace CygSoft.SmartSession.EF
         public DbSet<CygSoft.SmartSession.Domain.Goals.Goal> Goals { get; set; }
         public DbSet<Exercise> Exercises { get; set; }
         public DbSet<Keyword> Keywords { get; set; }
-        public DbSet<PracticeSessionResult> PracticeSessionResults { get; set; }
 
         public SmartSessionContext(string connectionString)
         {

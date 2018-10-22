@@ -382,90 +382,6 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         }
 
         [Test]
-        public void ExerciseDurationSpecification_Given_Value_LessThan_As_Expected_Returns_True()
-        {
-            var exercise = new Exercise
-            {
-                OptimalDuration = 3
-            };
-
-            var spec = new ExerciseDurationSpecification(4, ComparisonOperators.LessThan);
-
-            Assert.IsTrue(spec.IsSatisfiedBy(exercise));
-        }
-
-        [Test]
-        public void ExerciseDurationSpecification_Given_Value_LessThan_ButActual_IsNot_Returns_False()
-        {
-            var exercise = new Exercise
-            {
-                OptimalDuration = 5
-            };
-
-            var spec = new ExerciseDurationSpecification(4, ComparisonOperators.LessThan);
-
-            Assert.IsFalse(spec.IsSatisfiedBy(exercise));
-        }
-
-        [Test]
-        public void ExerciseDurationSpecification_Given_Value_LessThanOrEqual_As_Expected_Returns_True()
-        {
-            var exercise1 = new Exercise { OptimalDuration = 3 };
-            var exercise2 = new Exercise { OptimalDuration = 2 };
-
-            var spec = new ExerciseDurationSpecification(3, ComparisonOperators.LessThanOrEqualTo);
-
-            Assert.IsTrue(spec.IsSatisfiedBy(exercise1));
-            Assert.IsTrue(spec.IsSatisfiedBy(exercise2));
-        }
-
-        [Test]
-        public void ExerciseDurationSpecification_Given_Value_LessThanOrEqual_ButActual_IsNot_Returns_False()
-        {
-            var exercise1 = new Exercise { OptimalDuration = 5 };
-
-            var spec = new ExerciseDurationSpecification(4, ComparisonOperators.LessThanOrEqualTo);
-
-            Assert.IsFalse(spec.IsSatisfiedBy(exercise1));
-        }
-
-        [Test]
-        public void ExerciseDurationSpecification_Given_Value_GreaterThan_As_Expected_Returns_True()
-        {
-            var exercise1 = new Exercise { OptimalDuration = 3 };
-            var exercise2 = new Exercise { OptimalDuration = 2 };
-
-            var spec = new ExerciseDurationSpecification(1, ComparisonOperators.GreaterThan);
-
-            Assert.IsTrue(spec.IsSatisfiedBy(exercise1));
-            Assert.IsTrue(spec.IsSatisfiedBy(exercise2));
-        }
-
-        [Test]
-        public void ExerciseDurationSpecification_Given_Value_GreaterThanOrEqualTo_As_Expected_Returns_True()
-        {
-            var exercise1 = new Exercise { OptimalDuration = 3 };
-            var exercise2 = new Exercise { OptimalDuration = 2 };
-
-            var spec = new ExerciseDurationSpecification(2, ComparisonOperators.GreaterThanOrEqualTo);
-
-            Assert.IsTrue(spec.IsSatisfiedBy(exercise1));
-            Assert.IsTrue(spec.IsSatisfiedBy(exercise2));
-        }
-
-        [Test]
-        public void ExerciseDurationSpecification_Given_Value_OfNull_Returns_True()
-        {
-            // any null value means that we cannot constrain to this, so it must always
-            // be satisfied.
-            var exercise = new Exercise { OptimalDuration = 2 };
-
-            var spec = new ExerciseDurationSpecification(null, ComparisonOperators.GreaterThanOrEqualTo);
-
-            Assert.IsTrue(spec.IsSatisfiedBy(exercise));
-        }
-
-        [Test]
         public void ExerciseDifficultyRatingSpecification_Given_Value_LessThan_As_Expected_Returns_True()
         {
             var exercise = new Exercise
@@ -632,34 +548,6 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             Assert.IsTrue(spec.IsSatisfiedBy(exercise));
         }
 
-        [Test]
-        public void ExerciseHasNotesSpecification_Given_A_True_Constraint_Value_Returns_True_When_Notes_Exist()
-        {
-            // any null value means that we cannot constrain to this, so it must always
-            // be satisfied.
-            var exercise = new Exercise { Notes = "here are some notes." };
-            var spec = new ExerciseHasNotesSpecification(true);
-
-            Assert.IsTrue(spec.IsSatisfiedBy(exercise));
-        }
-
-        [Test]
-        public void ExerciseHasNotesSpecification_Given_A_NoNotes_Constraint_Value_Returns_True_When_NoNotes_Exist()
-        {
-            // any null value means that we cannot constrain to this, so it must always
-            // be satisfied.
-            var exercise1 = new Exercise { Notes = " " };
-            var exercise2 = new Exercise { Notes = "" };
-            var exercise3 = new Exercise { Notes = null };
-
-            var spec = new ExerciseHasNotesSpecification(false);
-
-            var test = string.IsNullOrWhiteSpace(exercise1.Notes);
-
-            Assert.IsTrue(spec.IsSatisfiedBy(exercise1));
-            Assert.IsTrue(spec.IsSatisfiedBy(exercise2));
-            Assert.IsTrue(spec.IsSatisfiedBy(exercise3));
-        }
 
         private DateTime? ParseDate(string date)
         {

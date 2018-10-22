@@ -11,10 +11,7 @@ namespace CygSoft.SmartSession.Domain.Exercises
         DateTime? DateModifiedBefore { get; set; }
         int? DifficultyRating { get; set; }
         ComparisonOperators DifficultyRatingOperator { get; set; }
-        ComparisonOperators OptimalDurationOperator { get; set; }
         ComparisonOperators PracticalityRatingOperator { get; set; }
-        int? OptimalDuration { get; set; }
-        bool? HasNotes { get; set; }
         int? PracticalityRating { get; set; }
         string Title { get; set; }
 

@@ -37,30 +37,16 @@
           SelectedValue="{Binding Path=Exercise.PercentageCompleteCalculationType}" />
             </StackPanel>
             
-            <!--<TextBox Margin="5">
-                <Binding Path="Title" UpdateSourceTrigger="PropertyChanged">
-                    <Binding.ValidationRules>
-                        <validators:RequiredTextFieldValidator></validators:RequiredTextFieldValidator>
-                    </Binding.ValidationRules>
-                </Binding>
-            </TextBox>-->
-            
             <TextBlock Text="Target Metrononome Speed:" Margin="5"></TextBlock>
             <TextBox  Name="TargetMetronomeSpeedTextBox" Text="{Binding Exercise.TargetMetronomeSpeed, ValidatesOnNotifyDataErrors=True}" Margin="5"></TextBox>
             <TextBlock Text="Target Practice Time:" Margin="5"></TextBlock>
             <TextBox  Name="TargetPracticeTimeTextBox" Text="{Binding Exercise.TargetPracticeTime, ValidatesOnNotifyDataErrors=True}" Margin="5"></TextBox>
             
-            <TextBlock Text="Optimal Duration:" Margin="5"></TextBlock>
-            <TextBox  Name="OptimalDurationTextBox" Text="{Binding Exercise.OptimalDuration, ValidatesOnNotifyDataErrors=True}" Margin="5"></TextBox>
             <TextBlock Text="Difficulty Rating:" Margin="5"></TextBlock>
             <Slider  Value="{Binding Exercise.DifficultyRating, ValidatesOnNotifyDataErrors=True}" Maximum="5" TickFrequency="1" TickPlacement="BottomRight" IsSnapToTickEnabled="True"></Slider>
             <TextBlock Text="Practicality Rating:" Margin="5"></TextBlock>
             <Slider  Value="{Binding Exercise.PracticalityRating, ValidatesOnNotifyDataErrors=True}" Maximum="5" TickFrequency="1" TickPlacement="BottomRight" IsSnapToTickEnabled="True"></Slider>
-            <!--<StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right">
-                <Slider  Value="{Binding PracticalityRating}" Maximum="5" TickFrequency="1" TickPlacement="BottomRight" IsSnapToTickEnabled="True"></Slider>
-                <TextBlock>Add 5 stars here... ***** </TextBlock>
-            </StackPanel>-->
-            <TextBlock Text="Notes:" Margin="5"></TextBlock>
+
             <TextBox Text="{Binding Exercise.Notes}" Height="50" Margin="5"></TextBox>
             <TextBlock Text="Files:" Margin="5"></TextBlock>
             <DockPanel LastChildFill="True">

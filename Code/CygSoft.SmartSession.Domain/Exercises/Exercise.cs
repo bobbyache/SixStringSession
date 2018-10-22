@@ -16,15 +16,9 @@ namespace CygSoft.SmartSession.Domain.Exercises
         [Column(TypeName = "nvarchar(150)")]
         public string Title { get; set; }
         public int DifficultyRating { get; set; }
-        public int OptimalDuration { get; set; }
         public int PracticalityRating { get; set; }
-        [Column(TypeName = "nvarchar(1000)")]
-        public string Notes { get; set; }
-
         public int? TargetMetronomeSpeed { get; set; }
         public int? TargetPracticeTime { get; set; }
-
-        public int Weighting { get; set; } = 1000; // ratio of 1000
 
         public PercentCompleteCalculationStrategy PercentageCompleteCalculationType { get; set; }
 

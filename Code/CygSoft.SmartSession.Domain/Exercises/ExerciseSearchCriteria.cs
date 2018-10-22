@@ -17,10 +17,7 @@ namespace CygSoft.SmartSession.Domain.Exercises
         public ComparisonOperators TargetMetronomeSpeedOperator { get; set; }
         public ComparisonOperators TargetPracticeTimeOperator { get; set; }
         public ComparisonOperators DifficultyRatingOperator { get; set; }
-        public ComparisonOperators OptimalDurationOperator { get; set; }
         public ComparisonOperators PracticalityRatingOperator { get; set; }
-        public int? OptimalDuration { get; set; }
-        public bool? HasNotes { get; set; }
         public int? PracticalityRating { get; set; }
         public string Title { get; set; }
         public string Keywords { get; set; }
@@ -38,10 +35,8 @@ namespace CygSoft.SmartSession.Domain.Exercises
                 .And(new ExerciseDateCreatedSpecification(DateCreatedAfter, DateCreatedBefore))
                 .And(new ExerciseTargetMetronomeSpeedSpecification(TargetMetronomeSpeed, TargetMetronomeSpeedOperator))
                 .And(new ExerciseTargetPracticeTimeSpecification(TargetPracticeTime, TargetPracticeTimeOperator))
-                .And(new ExerciseDurationSpecification(OptimalDuration, OptimalDurationOperator))
                 .And(new ExerciseDifficultyRatingSpecification(DifficultyRating, DifficultyRatingOperator))
                 .And(new ExercisePracticalityRatingSpecification(PracticalityRating, PracticalityRatingOperator))
-                .And(new ExerciseHasNotesSpecification(HasNotes))
             ;
         }
     }

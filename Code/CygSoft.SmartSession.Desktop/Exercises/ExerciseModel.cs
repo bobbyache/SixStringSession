@@ -2,16 +2,8 @@
 using CygSoft.SmartSession.Desktop.Supports.Validators;
 using CygSoft.SmartSession.Domain.Exercises;
 using CygSoft.SmartSession.Infrastructure.Enums;
-using GalaSoft.MvvmLight;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CygSoft.SmartSession.Desktop.Exercises
 {
@@ -64,28 +56,6 @@ namespace CygSoft.SmartSession.Desktop.Exercises
             }
         }
 
-        private int weighting;
-        [Range(0, 1000, ErrorMessage = "Value must be between 0 and 1000.")]
-        public int Weighting
-        {
-            get { return weighting; }
-            set
-            {
-                Set(() => Weighting, ref weighting, value, true, true);
-            }
-        }
-
-        private int optimalDuration;
-        [Range(0, 10000, ErrorMessage = "Value must be between 0 and 10,000.")]
-        public int OptimalDuration
-        {
-            get { return optimalDuration; }
-            set
-            {
-                Set(() => OptimalDuration, ref optimalDuration, value, true, true);
-            }
-        }
-
         private int difficultyRating;
         [Range(0, 5, ErrorMessage = "Value must be between 0 and 5.")]
         public int DifficultyRating
@@ -105,17 +75,6 @@ namespace CygSoft.SmartSession.Desktop.Exercises
             set
             {
                 Set(() => PracticalityRating, ref practicalityRating, value, true, true);
-            }
-        }
-
-        private string notes;
-
-        public string Notes
-        {
-            get { return notes; }
-            set
-            {
-                Set(() => Notes, ref notes, value, true, true);
             }
         }
 

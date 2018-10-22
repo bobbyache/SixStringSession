@@ -12,7 +12,7 @@ using System;
 namespace CygSoft.SmartSession.EF.Migrations
 {
     [DbContext(typeof(SmartSessionContext))]
-    [Migration("20181019101526_initial")]
+    [Migration("20181022114737_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,11 +33,6 @@ namespace CygSoft.SmartSession.EF.Migrations
 
                     b.Property<int>("DifficultyRating");
 
-                    b.Property<string>("Notes")
-                        .HasColumnType("nvarchar(1000)");
-
-                    b.Property<int>("OptimalDuration");
-
                     b.Property<int>("PercentageCompleteCalculationType");
 
                     b.Property<int>("PracticalityRating");
@@ -49,8 +44,6 @@ namespace CygSoft.SmartSession.EF.Migrations
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(150)");
-
-                    b.Property<int>("Weighting");
 
                     b.HasKey("Id");
 
@@ -116,26 +109,6 @@ namespace CygSoft.SmartSession.EF.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Keywords");
-                });
-
-            modelBuilder.Entity("CygSoft.SmartSession.Domain.Sessions.PracticeSessionResult", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<DateTime>("DateCreated");
-
-                    b.Property<DateTime>("DateModified");
-
-                    b.Property<DateTime>("EndTime");
-
-                    b.Property<int?>("Speed");
-
-                    b.Property<DateTime>("StartTime");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("PracticeSessionResults");
                 });
 
             modelBuilder.Entity("CygSoft.SmartSession.Domain.Sessions.SessionExerciseActivity", b =>

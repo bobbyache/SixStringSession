@@ -18,14 +18,11 @@ namespace CygSoft.SmartSession.EF.Migrations
                     DateCreated = table.Column<DateTime>(nullable: false),
                     DateModified = table.Column<DateTime>(nullable: false),
                     DifficultyRating = table.Column<int>(nullable: false),
-                    Notes = table.Column<string>(type: "nvarchar(1000)", nullable: true),
-                    OptimalDuration = table.Column<int>(nullable: false),
                     PercentageCompleteCalculationType = table.Column<int>(nullable: false),
                     PracticalityRating = table.Column<int>(nullable: false),
                     TargetMetronomeSpeed = table.Column<int>(nullable: true),
                     TargetPracticeTime = table.Column<int>(nullable: true),
-                    Title = table.Column<string>(type: "nvarchar(150)", nullable: false),
-                    Weighting = table.Column<int>(nullable: false)
+                    Title = table.Column<string>(type: "nvarchar(150)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -59,23 +56,6 @@ namespace CygSoft.SmartSession.EF.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Keywords", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "PracticeSessionResults",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    DateCreated = table.Column<DateTime>(nullable: false),
-                    DateModified = table.Column<DateTime>(nullable: false),
-                    EndTime = table.Column<DateTime>(nullable: false),
-                    Speed = table.Column<int>(nullable: true),
-                    StartTime = table.Column<DateTime>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PracticeSessionResults", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -176,9 +156,6 @@ namespace CygSoft.SmartSession.EF.Migrations
 
             migrationBuilder.DropTable(
                 name: "GoalKeyword");
-
-            migrationBuilder.DropTable(
-                name: "PracticeSessionResults");
 
             migrationBuilder.DropTable(
                 name: "SessionExerciseActivity");
