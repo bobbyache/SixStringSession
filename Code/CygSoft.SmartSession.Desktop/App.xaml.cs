@@ -18,8 +18,9 @@ namespace CygSoft.SmartSession.Desktop
 
             Mapper.Initialize(cfg =>
             {
-                cfg.CreateMap<ExerciseModel, Exercise>();
-                cfg.CreateMap<Exercise, ExerciseModel>();
+                cfg.CreateMap<ExerciseEditViewModel, Exercise>();
+                cfg.CreateMap<Exercise, ExerciseEditViewModel>();
+
                 cfg.CreateMap<Exercise, Exercise>();
                 cfg.CreateMap<Exercise, ExerciseSearchResultModel>();
                 cfg.CreateMap<ExerciseSearchResultModel, Exercise>();

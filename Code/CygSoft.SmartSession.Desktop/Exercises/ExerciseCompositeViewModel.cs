@@ -28,7 +28,7 @@ namespace CygSoft.SmartSession.Desktop.Exercises
             this.exerciseRecorderViewModel = exerciseRecorderViewModel;
 
             Messenger.Default.Register<StartEditingExerciseMessage>(this, (m) => StartEditingExercise(m.ExerciseSearchResult));
-            Messenger.Default.Register<EndEditingExerciseMessage>(this, (m) => EndEditingExercise(m.ExerciseModel));
+            Messenger.Default.Register<EndEditingExerciseMessage>(this, (m) => EndEditingExercise(m.ExerciseId));
             Messenger.Default.Register<OpenExerciseRecorderMessage>(this, (m) => RecordExercise(m.ExerciseId));
 
             Messenger.Default.Register<CancelledExerciseRecordingMessage>(this, (m) => RecordingCancelled());
@@ -54,7 +54,7 @@ namespace CygSoft.SmartSession.Desktop.Exercises
             NavigateTo("Record");
         }
 
-        private void EndEditingExercise(ExerciseModel exerciseModel)
+        private void EndEditingExercise(int exerciseId)
         {
             NavigateTo("Search");
         }

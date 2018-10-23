@@ -13,8 +13,8 @@ namespace CygSoft.SmartSession.Desktop.UnitTests
         {
             Mapper.Initialize(cfg =>
             {
-                cfg.CreateMap<ExerciseModel, Exercise>();
-                cfg.CreateMap<Exercise, ExerciseModel>();
+                cfg.CreateMap<ExerciseEditViewModel, Exercise>();
+                cfg.CreateMap<Exercise, ExerciseEditViewModel>();
             });
         }
 

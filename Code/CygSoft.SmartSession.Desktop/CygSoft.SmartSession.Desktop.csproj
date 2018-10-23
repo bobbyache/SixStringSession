@@ -109,7 +109,6 @@
       <DependentUpon>ExerciseEditView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Exercises\ExerciseEditViewModel.cs" />
-    <Compile Include="Exercises\ExerciseModel.cs" />
     <Compile Include="Exercises\ExerciseSearchCriteriaView.xaml.cs">
       <DependentUpon>ExerciseSearchCriteriaView.xaml</DependentUpon>
     </Compile>

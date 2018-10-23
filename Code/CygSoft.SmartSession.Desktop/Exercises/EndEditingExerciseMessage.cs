@@ -2,11 +2,11 @@
 {
     internal class EndEditingExerciseMessage
     {
-        public ExerciseModel ExerciseModel { get; }
+        public int ExerciseId { get; }
 
-        public EndEditingExerciseMessage(ExerciseModel exerciseModel)
+        public EndEditingExerciseMessage(int exerciseId)
         {
-            ExerciseModel = exerciseModel;
+            ExerciseId = exerciseId;
         }
     }
 }

@@ -27,28 +27,32 @@
         <Border DockPanel.Dock="Top" Background="GhostWhite" BorderBrush="Gainsboro" BorderThickness="1" Padding="5" Margin="5">
             <StackPanel>
                 <TextBlock Text="Title:" Margin="5"></TextBlock>
-                <TextBox Margin="5" Text="{Binding Exercise.Title, ValidatesOnNotifyDataErrors=True}"></TextBox>
+                <TextBox Margin="5" Text="{Binding Title, ValidatesOnNotifyDataErrors=True}"></TextBox>
             </StackPanel>
         </Border>
         <Border DockPanel.Dock="Top" Background="GhostWhite" BorderBrush="Gainsboro" BorderThickness="1" Padding="5" Margin="5">
-
             <StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock MinWidth="115" Margin="2" Text="Progress Measured by" />
-                    <ComboBox MinWidth="200" ItemsSource="{Binding Path=Exercise.PercentageCompleteCalculationType, Converter={converters:EnumToCollectionConverter}, Mode=OneTime}"
+                    <ComboBox MinWidth="200" ItemsSource="{Binding Path=PercentageCompleteCalculationType, 
+                        Converter={converters:EnumToCollectionConverter}, Mode=OneTime}"
           SelectedValuePath="Value"
           DisplayMemberPath="Description"
-          SelectedValue="{Binding Path=Exercise.PercentageCompleteCalculationType}" />
+          SelectedValue="{Binding Path=PercentageCompleteCalculationType}" />
                     <TextBlock Text="Target Speed:" Margin="5"></TextBlock>
-                    <TextBox MinWidth="60"  Name="TargetMetronomeSpeedTextBox" Text="{Binding Exercise.TargetMetronomeSpeed, ValidatesOnNotifyDataErrors=True}" Margin="5"></TextBox>
+                    <TextBox MinWidth="60"  Name="TargetMetronomeSpeedTextBox" Text="{Binding TargetMetronomeSpeed, ValidatesOnNotifyDataErrors=True}" 
+                             Margin="5"></TextBox>
                     <TextBlock Text="Target Time:" Margin="5"></TextBlock>
-                    <TextBox MinWidth="60" Name="TargetPracticeTimeTextBox" Text="{Binding Exercise.TargetPracticeTime, ValidatesOnNotifyDataErrors=True}" Margin="5"></TextBox>
+                    <TextBox MinWidth="60" Name="TargetPracticeTimeTextBox" Text="{Binding TargetPracticeTime, ValidatesOnNotifyDataErrors=True}" 
+                             Margin="5"></TextBox>
                 </StackPanel>
                 <StackPanel>
                     <TextBlock Text="Difficulty Rating:" Margin="5"></TextBlock>
-                    <Slider  Value="{Binding Exercise.DifficultyRating, ValidatesOnNotifyDataErrors=True}" Maximum="5" TickFrequency="1" TickPlacement="BottomRight" IsSnapToTickEnabled="True"></Slider>
+                    <Slider  Value="{Binding DifficultyRating, ValidatesOnNotifyDataErrors=True}" Maximum="5" TickFrequency="1" 
+                             TickPlacement="BottomRight" IsSnapToTickEnabled="True"></Slider>
                     <TextBlock Text="Practicality Rating:" Margin="5"></TextBlock>
-                    <Slider  Value="{Binding Exercise.PracticalityRating, ValidatesOnNotifyDataErrors=True}" Maximum="5" TickFrequency="1" TickPlacement="BottomRight" IsSnapToTickEnabled="True"></Slider>
+                    <Slider  Value="{Binding PracticalityRating, ValidatesOnNotifyDataErrors=True}" Maximum="5" TickFrequency="1" 
+                             TickPlacement="BottomRight" IsSnapToTickEnabled="True"></Slider>
 
                 </StackPanel>
             </StackPanel>
