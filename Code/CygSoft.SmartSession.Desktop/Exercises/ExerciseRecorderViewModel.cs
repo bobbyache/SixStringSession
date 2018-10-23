@@ -20,6 +20,8 @@ namespace CygSoft.SmartSession.Desktop.Exercises
         private IExerciseService exerciseService;
         private IDialogViewService dialogService;
 
+        public event EventHandler RecordingStatusChanged;
+
         public RelayCommand StartRecordingCommand { get; private set; }
         public RelayCommand PauseRecordingCommand { get; private set; }
 
@@ -138,7 +140,6 @@ namespace CygSoft.SmartSession.Desktop.Exercises
             this.exerciseRecorder = exerciseRecorder ?? throw new ArgumentNullException("Service must be provided.");
 
             this.exerciseRecorder.TickActionCallBack = Elapsed;
-            this.exerciseRecorder.RecordingStatusChanged += ExerciseRecorder_RecordingStatusChanged;
 
             ErrorsChanged += Exercise_ErrorsChanged;
 
@@ -152,6 +153,8 @@ namespace CygSoft.SmartSession.Desktop.Exercises
         {
             StartRecordingCommand.RaiseCanExecuteChanged();
             PauseRecordingCommand.RaiseCanExecuteChanged();
+
+            RecordingStatusChanged?.Invoke(this, new EventArgs());
         }
 
         private bool CanExecuteSaveCommand()
@@ -170,6 +173,8 @@ namespace CygSoft.SmartSession.Desktop.Exercises
 
         public void InitializeRecorder(int exerciseId)
         {
+            this.exerciseRecorder.RecordingStatusChanged += ExerciseRecorder_RecordingStatusChanged;
+
             exercise = exerciseService.Get(exerciseId);
             exerciseRecorder.Clear();
 

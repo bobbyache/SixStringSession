@@ -140,6 +140,37 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.Recorder
                 "Pause() should not have been called because the recorder is is already paused.");
         }
 
+        [Test]
+        public void ExerciseRecorderViewModel_Play_Pause_Cancel_Then_Initialize_StartButton_Enabled()
+        {
+            var exerciseService = new Mock<IExerciseService>();
+            var dialogService = new Mock<IDialogViewService>();
+            var exerciseRecorder = new ExerciseRecorder();
+
+            exerciseService.Setup(svc => svc.Get(It.IsAny<int>())).Returns(GetTestExercise(1));
+
+            ExerciseRecorderViewModel viewModel = new ExerciseRecorderViewModel(exerciseService.Object, dialogService.Object,
+                exerciseRecorder);
+
+            viewModel.InitializeRecorder(3);
+            viewModel.StartRecordingCommand.Execute(null);
+            viewModel.PauseRecordingCommand.Execute(null);
+
+            // Now cancel out...
+            viewModel.CancelRecordingCommand.Execute(null);
+
+            var recordingChangedEventFired = false;
+
+            viewModel.RecordingStatusChanged += (s, e) => recordingChangedEventFired = true;
+
+            // Come in again and ensure that exercise.Recording is false.
+            viewModel.InitializeRecorder(3);
+
+            Assert.That(recordingChangedEventFired, Is.True,
+                "RecordingStatusChanged did not fire as it was supposed to.");
+
+         }
+
         private Exercise GetTestExercise(int id)
         {
             var exercise = new Exercise()
