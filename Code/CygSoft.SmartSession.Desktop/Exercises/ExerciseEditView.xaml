@@ -24,30 +24,37 @@
         </Style>
     </UserControl.Resources>
     <DockPanel LastChildFill="False">
-        <StackPanel DockPanel.Dock="Top" Margin="0,0,0,5">
-            <TextBlock Text="Title:" Margin="5"></TextBlock>
-            <TextBox Margin="5" Text="{Binding Exercise.Title, ValidatesOnNotifyDataErrors=True}"></TextBox>
+        <Border DockPanel.Dock="Top" Background="GhostWhite" BorderBrush="Gainsboro" BorderThickness="1" Padding="5" Margin="5">
+            <StackPanel>
+                <TextBlock Text="Title:" Margin="5"></TextBlock>
+                <TextBox Margin="5" Text="{Binding Exercise.Title, ValidatesOnNotifyDataErrors=True}"></TextBox>
+            </StackPanel>
+        </Border>
+        <Border DockPanel.Dock="Top" Background="GhostWhite" BorderBrush="Gainsboro" BorderThickness="1" Padding="5" Margin="5">
 
-            <StackPanel Orientation="Horizontal">
-                <TextBlock MinWidth="115" Margin="2" Text="Progress Calculation Type" />
-                <ComboBox MinWidth="200"
-                    ItemsSource="{Binding Path=Exercise.PercentageCompleteCalculationType, Converter={converters:EnumToCollectionConverter}, Mode=OneTime}"
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock MinWidth="115" Margin="2" Text="Progress Measured by" />
+                    <ComboBox MinWidth="200" ItemsSource="{Binding Path=Exercise.PercentageCompleteCalculationType, Converter={converters:EnumToCollectionConverter}, Mode=OneTime}"
           SelectedValuePath="Value"
           DisplayMemberPath="Description"
           SelectedValue="{Binding Path=Exercise.PercentageCompleteCalculationType}" />
-            </StackPanel>
-            
-            <TextBlock Text="Target Metrononome Speed:" Margin="5"></TextBlock>
-            <TextBox  Name="TargetMetronomeSpeedTextBox" Text="{Binding Exercise.TargetMetronomeSpeed, ValidatesOnNotifyDataErrors=True}" Margin="5"></TextBox>
-            <TextBlock Text="Target Practice Time:" Margin="5"></TextBlock>
-            <TextBox  Name="TargetPracticeTimeTextBox" Text="{Binding Exercise.TargetPracticeTime, ValidatesOnNotifyDataErrors=True}" Margin="5"></TextBox>
-            
-            <TextBlock Text="Difficulty Rating:" Margin="5"></TextBlock>
-            <Slider  Value="{Binding Exercise.DifficultyRating, ValidatesOnNotifyDataErrors=True}" Maximum="5" TickFrequency="1" TickPlacement="BottomRight" IsSnapToTickEnabled="True"></Slider>
-            <TextBlock Text="Practicality Rating:" Margin="5"></TextBlock>
-            <Slider  Value="{Binding Exercise.PracticalityRating, ValidatesOnNotifyDataErrors=True}" Maximum="5" TickFrequency="1" TickPlacement="BottomRight" IsSnapToTickEnabled="True"></Slider>
+                    <TextBlock Text="Target Speed:" Margin="5"></TextBlock>
+                    <TextBox MinWidth="60"  Name="TargetMetronomeSpeedTextBox" Text="{Binding Exercise.TargetMetronomeSpeed, ValidatesOnNotifyDataErrors=True}" Margin="5"></TextBox>
+                    <TextBlock Text="Target Time:" Margin="5"></TextBlock>
+                    <TextBox MinWidth="60" Name="TargetPracticeTimeTextBox" Text="{Binding Exercise.TargetPracticeTime, ValidatesOnNotifyDataErrors=True}" Margin="5"></TextBox>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock Text="Difficulty Rating:" Margin="5"></TextBlock>
+                    <Slider  Value="{Binding Exercise.DifficultyRating, ValidatesOnNotifyDataErrors=True}" Maximum="5" TickFrequency="1" TickPlacement="BottomRight" IsSnapToTickEnabled="True"></Slider>
+                    <TextBlock Text="Practicality Rating:" Margin="5"></TextBlock>
+                    <Slider  Value="{Binding Exercise.PracticalityRating, ValidatesOnNotifyDataErrors=True}" Maximum="5" TickFrequency="1" TickPlacement="BottomRight" IsSnapToTickEnabled="True"></Slider>
 
-            <TextBox Text="{Binding Exercise.Notes}" Height="50" Margin="5"></TextBox>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+        <StackPanel DockPanel.Dock="Top" Margin="0,0,0,5">
             <TextBlock Text="Files:" Margin="5"></TextBlock>
             <DockPanel LastChildFill="True">
                 <StackPanel Orientation="Vertical">

@@ -154,7 +154,7 @@ namespace CygSoft.SmartSession.Desktop.Exercises
         private bool CanExecuteSaveCommand()
         {
             var recordingStateValid = exerciseRecorder.Seconds > 0 && !exerciseRecorder.Recording;
-            var speedMetricsStateValid = StartSpeed > 0 && ComfortSpeed > 0 && HighestSpeed > 0 &&  (HighestSpeed >= StartSpeed);
+            var speedMetricsStateValid = StartSpeed >= 0 && ComfortSpeed >= 0 && HighestSpeed >= 0 &&  (HighestSpeed >= StartSpeed);
 
             return recordingStateValid && speedMetricsStateValid;
         }
