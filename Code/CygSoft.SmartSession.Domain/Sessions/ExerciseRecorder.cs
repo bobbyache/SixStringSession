@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Timers;
 
 namespace CygSoft.SmartSession.Domain.Sessions
@@ -31,14 +29,16 @@ namespace CygSoft.SmartSession.Domain.Sessions
         }
     }
 
-    public class ExerciseRecorder
+    public class ExerciseRecorder : IExerciseRecorder
     {
         private Timer timer = new Timer();
         private DateTime? recorderStartTime;
         private DateTime? recorderPauseTime;
 
         private double recordedSeconds;
+
         private Action tickActionFunc;
+        public Action TickActionCallBack { set { tickActionFunc = value; } }
 
         public event EventHandler RecordingStatusChanged;
 
@@ -70,10 +70,9 @@ namespace CygSoft.SmartSession.Domain.Sessions
         public DateTime StartTime { get { return recordingSlices.Min(r => r.StartTime); } }
         public DateTime EndTime { get { return recordingSlices.Max(r => r.EndTime); } }
 
-        public ExerciseRecorder(Action tickActionFunc)
+        public ExerciseRecorder()
         {
             timer.Interval = 1000;
-            this.tickActionFunc = tickActionFunc;
         }
 
         private List<RecordingSlice> recordingSlices = new List<RecordingSlice>();

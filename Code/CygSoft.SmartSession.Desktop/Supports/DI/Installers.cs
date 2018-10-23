@@ -8,6 +8,7 @@ using CygSoft.SmartSession.Domain;
 using CygSoft.SmartSession.Domain.Common;
 using CygSoft.SmartSession.Domain.Exercises;
 using CygSoft.SmartSession.Domain.Goals;
+using CygSoft.SmartSession.Domain.Sessions;
 using CygSoft.SmartSession.EF;
 
 namespace CygSoft.SmartSession.Desktop.Supports.DI
@@ -32,6 +33,7 @@ namespace CygSoft.SmartSession.Desktop.Supports.DI
 
             container.Register(Component.For<IUnitOfWork>().ImplementedBy(typeof(UnitOfWork)));
 
+            container.Register(Component.For<IExerciseRecorder>().ImplementedBy(typeof(ExerciseRecorder)));
             container.Register(Component.For<IExerciseService>().ImplementedBy(typeof(ExerciseService)));
             container.Register(Component.For<ExerciseEditViewModel>());
             container.Register(Component.For<ExerciseSearchViewModel>());

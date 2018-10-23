@@ -28,16 +28,18 @@ namespace CygSoft.SmartSession.Domain.Exercises
 
         public int GetCurrentComfortSpeed()
         {
-            if (ExerciseActivity == null)
+            if (ExerciseActivity == null || !ExerciseActivity.Any())
                 return 0;
-            if (!ExerciseActivity.Any())
-                return 0;
+
             var endDate = ExerciseActivity.Max(a => a.EndTime);
             return ExerciseActivity.Where(a => a.EndTime == endDate).Select(a => a.ComfortMetronomeSpeed).SingleOrDefault();
         }
 
         public double GetPercentComplete()
         {
+            if (ExerciseActivity == null || !ExerciseActivity.Any())
+                return 0;
+
             // https://stackoverflow.com/questions/47386256/entity-framework-calculate-sum-field-from-child-records
 
             if (PercentageCompleteCalculationType == PercentCompleteCalculationStrategy.MetronomeSpeed)
@@ -74,6 +76,9 @@ namespace CygSoft.SmartSession.Domain.Exercises
 
         public double GetSecondsPracticed()
         {
+            if (ExerciseActivity == null || !ExerciseActivity.Any())
+                return 0;
+
             // the way you'd do this is by loading the list of related "SessionExerciseResult" objects that are listed for this
             // exercise and summ the minutes practiced.
             var secPracticed = ExerciseActivity.Sum(a => a.Seconds);

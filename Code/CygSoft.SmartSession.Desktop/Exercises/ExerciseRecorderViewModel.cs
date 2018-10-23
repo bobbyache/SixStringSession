@@ -33,8 +33,7 @@ namespace CygSoft.SmartSession.Desktop.Exercises
 
         public string CurrentSpeedInfo { get; private set; }
 
-        protected bool timing = false;
-        protected ExerciseRecorder exerciseRecorder;
+        protected IExerciseRecorder exerciseRecorder;
 
         private Exercise exercise;
 
@@ -132,16 +131,20 @@ namespace CygSoft.SmartSession.Desktop.Exercises
             }
         }
 
-        public ExerciseRecorderViewModel(IExerciseService exerciseService, IDialogViewService dialogService)
+        public ExerciseRecorderViewModel(IExerciseService exerciseService, IDialogViewService dialogService, IExerciseRecorder exerciseRecorder)
         {
             this.exerciseService = exerciseService ?? throw new ArgumentNullException("Service must be provided.");
             this.dialogService = dialogService ?? throw new ArgumentNullException("Dialog service must be provided.");
+            this.exerciseRecorder = exerciseRecorder ?? throw new ArgumentNullException("Service must be provided.");
+
+            this.exerciseRecorder.TickActionCallBack = Elapsed;
+            this.exerciseRecorder.RecordingStatusChanged += ExerciseRecorder_RecordingStatusChanged;
 
             ErrorsChanged += Exercise_ErrorsChanged;
-            
-            StartRecordingCommand = new RelayCommand(() => StartRecording(), () => !exerciseRecorder.Recording);
-            PauseRecordingCommand = new RelayCommand(() => PauseRecording(), () => exerciseRecorder.Recording);
-            CancelRecordingCommand = new RelayCommand(() => CancelRecording(), () => !exerciseRecorder.Recording);
+
+            StartRecordingCommand = new RelayCommand(() => StartRecording(), () => !this.exerciseRecorder.Recording);
+            PauseRecordingCommand = new RelayCommand(() => PauseRecording(), () => this.exerciseRecorder.Recording);
+            CancelRecordingCommand = new RelayCommand(() => CancelRecording(), () => !this.exerciseRecorder.Recording);
             SaveRecordingCommand = new RelayCommand(() => SaveRecording(), CanExecuteSaveCommand);
         }
 
@@ -165,12 +168,10 @@ namespace CygSoft.SmartSession.Desktop.Exercises
             CancelRecordingCommand.RaiseCanExecuteChanged();
         }
 
-        public void BeginRecordingExercise(int exerciseId)
+        public void InitializeRecorder(int exerciseId)
         {
-            exerciseRecorder = new ExerciseRecorder(Elapsed);
-            exerciseRecorder.RecordingStatusChanged += ExerciseRecorder_RecordingStatusChanged;
-
             exercise = exerciseService.Get(exerciseId);
+            exerciseRecorder.Clear();
 
             PauseButtonVisible = false;
             StartButtonVisible = true;
@@ -195,9 +196,9 @@ namespace CygSoft.SmartSession.Desktop.Exercises
             return t.ToString(@"hh\:mm\:ss");
         }
 
-        private void StartRecording()
+        internal void StartRecording()
         {
-            if (!timing)
+            if (!exerciseRecorder.Recording)
             {
                 BusyIndicatorVisible = true;
                 StartButtonVisible = false;
@@ -206,12 +207,11 @@ namespace CygSoft.SmartSession.Desktop.Exercises
                 exerciseRecorder.Start();
                 this.ValidateAll();
             }
-            timing = true;
         }
 
-        private void PauseRecording()
+        internal void PauseRecording()
         {
-            if (timing)
+            if (exerciseRecorder.Recording)
             {
                 BusyIndicatorVisible = false;
                 PauseButtonVisible = false;
@@ -220,7 +220,6 @@ namespace CygSoft.SmartSession.Desktop.Exercises
                 exerciseRecorder.Pause();
                 this.ValidateAll();
             }
-            timing = false;
         }
 
         private void CancelRecording()

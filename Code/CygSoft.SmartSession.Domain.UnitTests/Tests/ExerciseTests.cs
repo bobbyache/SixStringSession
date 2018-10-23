@@ -13,6 +13,44 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
     public class ExerciseTests
     {
         [Test]
+        public void Exercise_GetSecondsPracticed_With_NoActivity_Recorded_Returns_0_Seconds()
+        {
+            Exercise exercise = new Exercise
+            {
+                Id = 1,
+                DateCreated = DateTime.Now,
+                DateModified = DateTime.Now,
+
+                TargetMetronomeSpeed = 100,
+                PercentageCompleteCalculationType = PercentCompleteCalculationStrategy.MetronomeSpeed,
+                ExerciseActivity = null
+            };
+
+            var percentComplete = exercise.GetSecondsPracticed();
+
+            Assert.That(percentComplete, Is.EqualTo(0));
+        }
+
+        [Test]
+        public void Exercise_GetPercentComplete_With_NoActivity_Recorded_Returns_0_Seconds()
+        {
+            Exercise exercise = new Exercise
+            {
+                Id = 1,
+                DateCreated = DateTime.Now,
+                DateModified = DateTime.Now,
+
+                TargetMetronomeSpeed = 100,
+                PercentageCompleteCalculationType = PercentCompleteCalculationStrategy.MetronomeSpeed,
+                ExerciseActivity = null
+            };
+
+            var percentComplete = exercise.GetPercentComplete();
+
+            Assert.That(percentComplete, Is.EqualTo(0));
+        }
+
+        [Test]
         public void Exercise_GetPercentComplete_When_StrategyOn_MetronomeSpeed_CalcsCorrectly()
         {
             Exercise exercise = new Exercise
