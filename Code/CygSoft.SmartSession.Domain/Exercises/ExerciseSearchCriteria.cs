@@ -2,6 +2,7 @@
 using CygSoft.SmartSession.Domain.Exercises.Specifications;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace CygSoft.SmartSession.Domain.Exercises
 {
@@ -24,7 +25,9 @@ namespace CygSoft.SmartSession.Domain.Exercises
 
         public string[] KeywordSpecification()
         {
-            return Keywords.Split(new char[] { ',' });
+            return Keywords.Split(new char[] { ',' })
+                .Select(k => k.Trim().ToUpper())
+                .Where(k => !string.IsNullOrWhiteSpace(k)).ToArray();
         }
 
         public Specification<Exercise> Specification()

@@ -15,8 +15,6 @@ namespace CygSoft.SmartSession.EF.Repositories
         {
             var exs = context.Exercises
                 .Include(ex => ex.ExerciseActivity)
-                //.Include(ex => ex.ExerciseKeywords)
-                //    .ThenInclude(keyword => keyword.Keyword)
                 .Where(specification.ToExpression())
             //    .Skip(page * pageSize)
             //    .Take(pageSize)
@@ -28,19 +26,13 @@ namespace CygSoft.SmartSession.EF.Repositories
 
         public IReadOnlyList<Exercise> Find(Specification<Exercise> specification, string[] keywords, int page = 0, int pageSize = 100)
         {
-
-
             var exs = context.Exercises
-                //.Include(ex => ex.ExerciseKeywords)
-                    //.ThenInclude(keyword => keyword.Keyword)
+                .Include(ex => ex.ExerciseActivity)
                 .Where(specification.ToExpression())
-
-                .Where(exercise => exercise.ExerciseKeywords
-                    .Select(exKey => exKey.Keyword.Word)
-                    //.Where(w => w == "Vibrato")
-                    .Where(w => keywords.Contains(w))
+                .Where(exercise => !keywords
+                    .Except(exercise.ExerciseKeywords.Select(exKey => exKey.Keyword.Word.ToUpper()))
                     .Any()
-                    )
+                )
             ;
 
             return exs.ToList();
