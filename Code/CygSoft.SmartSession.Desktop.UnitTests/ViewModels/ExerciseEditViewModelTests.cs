@@ -5,7 +5,7 @@ using Moq;
 using NUnit.Framework;
 using System;
 
-namespace CygSoft.SmartSession.Desktop.UnitTests
+namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
 {
     [TestFixture]
     public class ExerciseEditViewModelTests
@@ -66,6 +66,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests
                 Assert.AreEqual("Title", exerciseModel.Title);
                 Assert.AreEqual(3, exerciseModel.DifficultyRating);
                 Assert.AreEqual(4, exerciseModel.PracticalityRating);
+                Assert.AreEqual(50, exerciseModel.InitialMetronomeSpeed);
                 Assert.AreEqual(120, exerciseModel.TargetMetronomeSpeed);
                 Assert.AreEqual(15000, exerciseModel.TargetPracticeTime);
             }
@@ -88,6 +89,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests
                 exerciseModel.Title = "Changed Title";
                 exerciseModel.DifficultyRating = 1;
                 exerciseModel.PracticalityRating = 1;
+                exerciseModel.InitialMetronomeSpeed = 50;
                 exerciseModel.TargetMetronomeSpeed = 100;
                 exerciseModel.TargetPracticeTime = 15000;
 
@@ -97,6 +99,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests
                 Assert.AreEqual("Changed Title", exercise.Title);
                 Assert.AreEqual(1, exercise.DifficultyRating);
                 Assert.AreEqual(1, exercise.PracticalityRating);
+                Assert.AreEqual(50, exercise.InitialMetronomeSpeed);
                 Assert.AreEqual(100, exercise.TargetMetronomeSpeed);
                 Assert.AreEqual(15000, exercise.TargetPracticeTime);
             }
@@ -110,6 +113,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests
                 exercise.Title = "Title";
                 exercise.DifficultyRating = 3;
                 exercise.PracticalityRating = 4;
+                exercise.InitialMetronomeSpeed = 50;
                 exercise.TargetMetronomeSpeed = 120;
                 exercise.TargetPracticeTime = 15000;
 

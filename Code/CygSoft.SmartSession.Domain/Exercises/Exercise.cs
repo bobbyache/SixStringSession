@@ -17,6 +17,7 @@ namespace CygSoft.SmartSession.Domain.Exercises
         public string Title { get; set; }
         public int DifficultyRating { get; set; }
         public int PracticalityRating { get; set; }
+        public int? InitialMetronomeSpeed { get; set; }
         public int? TargetMetronomeSpeed { get; set; }
         public int? TargetPracticeTime { get; set; }
 
@@ -47,21 +48,34 @@ namespace CygSoft.SmartSession.Domain.Exercises
                 if (!TargetMetronomeSpeed.HasValue)
                     return 0;
 
+                if (TargetMetronomeSpeed == 0)
+                    return 0;
 
+                if (InitialMetronomeSpeed.HasValue)
+                {
+                    var lastComfortSpeed = GetLastActivityComfortSpeed();
+                    if (lastComfortSpeed <= InitialMetronomeSpeed.Value)
+                        return 0;
 
-                var startDate = ExerciseActivity.Min(a => a.StartTime);
-                var startSpeed = ExerciseActivity.Where(a => a.StartTime == startDate).Select(a => a.ComfortMetronomeSpeed).SingleOrDefault();
+                    var numerator = (double)(TargetMetronomeSpeed.Value - lastComfortSpeed);
+                    var denominator = (double)(TargetMetronomeSpeed.Value - InitialMetronomeSpeed.Value);
+                    
+                    return (numerator / denominator) * 100d;
+                }
+                else
+                {
+                    var firstComfortSpeed = GetFirstActivityComfortSpeed();
+                    var lastComfortSpeed = GetLastActivityComfortSpeed();
 
-                var endDate = ExerciseActivity.Max(a => a.EndTime);
-                var endSpeed = ExerciseActivity.Where(a => a.EndTime == endDate).Select(a => a.ComfortMetronomeSpeed).SingleOrDefault();
+                    if (lastComfortSpeed <= firstComfortSpeed)
+                        return 0;
 
+                    // stagger backwards
+                    var numerator = (double)(TargetMetronomeSpeed.Value - firstComfortSpeed) - (lastComfortSpeed - firstComfortSpeed);
+                    var denominator = (double)(TargetMetronomeSpeed.Value - firstComfortSpeed);
 
-                double startVal = TargetMetronomeSpeed.Value - startSpeed;
-                double endVal = TargetMetronomeSpeed.Value - endSpeed;
-
-                var result = (endVal / startVal) * 100d;
-
-                return result;
+                    return (numerator / denominator) * 100d;
+                }
             }
             else
             {
@@ -70,8 +84,22 @@ namespace CygSoft.SmartSession.Domain.Exercises
 
                 return (GetSecondsPracticed() / TargetPracticeTime.Value) * 100d;
             }
+        }
 
-            throw new NotImplementedException();
+        private int GetFirstActivityComfortSpeed()
+        {
+            // get the last record, get the comfort speed.
+            var lastActivityDate = ExerciseActivity.Min(a => a.EndTime);
+            var comfortSpeed = ExerciseActivity.Where(a => a.EndTime == lastActivityDate).Select(a => a.ComfortMetronomeSpeed).SingleOrDefault();
+            return comfortSpeed;
+        }
+
+        private int GetLastActivityComfortSpeed()
+        {
+            // get the last record, get the comfort speed.
+            var lastActivityDate = ExerciseActivity.Max(a => a.EndTime);
+            var comfortSpeed = ExerciseActivity.Where(a => a.EndTime == lastActivityDate).Select(a => a.ComfortMetronomeSpeed).SingleOrDefault();
+            return comfortSpeed;
         }
 
         public double GetSecondsPracticed()

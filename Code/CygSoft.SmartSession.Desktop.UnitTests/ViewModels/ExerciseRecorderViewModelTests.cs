@@ -6,7 +6,7 @@ using Moq;
 using NUnit.Framework;
 using System;
 
-namespace CygSoft.SmartSession.Desktop.UnitTests.Recorder
+namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
 {
     [TestFixture]
     public class ExerciseRecorderViewModelTests

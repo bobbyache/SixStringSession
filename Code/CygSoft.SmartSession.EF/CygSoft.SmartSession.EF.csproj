@@ -112,6 +112,10 @@
     <Compile Include="Migrations\20181022114737_initial.designer.cs">
       <DependentUpon>20181022114737_initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20181025075758_initial_ext.cs" />
+    <Compile Include="Migrations\20181025075758_initial_ext.designer.cs">
+      <DependentUpon>20181025075758_initial_ext.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\SmartSessionContextModelSnapshot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
