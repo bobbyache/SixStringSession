@@ -13,5 +13,7 @@ namespace CygSoft.SmartSession.Infrastructure.Enums
         MetronomeSpeed = 0,
         [Description("Practice Time")]
         PracticeTime = 1,
+        [Description("Manual Percentage")]
+        BasicPercent = 2
     }
 }

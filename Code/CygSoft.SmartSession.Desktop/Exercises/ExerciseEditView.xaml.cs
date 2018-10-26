@@ -18,6 +18,7 @@ namespace CygSoft.SmartSession.Desktop.Exercises
             {
                 this.TargetMetronomeSpeedTextBox.PreviewTextInput += TextBox_PreviewTextInput;
                 this.TargetPracticeTimeTextBox.PreviewTextInput += TextBox_PreviewTextInput;
+                this.InitialMetronomeSpeedTextBox.PreviewTextInput += TextBox_PreviewTextInput;
             };
         }
 
