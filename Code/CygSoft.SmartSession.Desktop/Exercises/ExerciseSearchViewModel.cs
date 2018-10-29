@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using CygSoft.SmartSession.Desktop.Supports.Services;
 using CygSoft.SmartSession.Domain.Exercises;
+using CygSoft.SmartSession.Infrastructure.Enums;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
@@ -110,8 +111,8 @@ namespace CygSoft.SmartSession.Desktop.Exercises
 
         private void EditExercise()
         {
-            Messenger.Default.Send(new StartEditingExerciseMessage(SelectedExercise));
-            //dialogService.ShowMessage($"Edited - {DateTime.Now}. This is an extra little note.", "Edit");
+            var exercise = this.exerciseService.Get(SelectedExercise.Id);
+            Messenger.Default.Send(new StartEditingExerciseMessage(exercise));
         }
 
         private void DeleteExercise()
@@ -122,19 +123,14 @@ namespace CygSoft.SmartSession.Desktop.Exercises
 
         private void AddExercise()
         {
-            var exercise = new ExerciseSearchResultModel
-            {
-                Title = $"New Exercise Item - {DateTime.Now}",
-                DifficultyRating = 0,
-                PracticalityRating = 0
-            };
+            Messenger.Default.Send(new StartEditingExerciseMessage(exerciseService.Create()));
 
-            var domainExercise = Mapper.Map<Exercise>(exercise);
-            exerciseService.Add(domainExercise);
-            Mapper.Map(domainExercise, exercise);
+            //var domainExercise = Mapper.Map<Exercise>(exercise);
+            //exerciseService.Add(domainExercise);
+            //Mapper.Map(domainExercise, exercise);
 
-            ExerciseList.Add(exercise);
-            SelectedExercise = exercise;
+            //ExerciseList.Add(exercise);
+            //SelectedExercise = exercise;
         }
     }
 }

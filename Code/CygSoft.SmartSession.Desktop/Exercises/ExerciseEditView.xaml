@@ -64,7 +64,7 @@
                     </StackPanel>
                 </StackPanel>
             </Border>
-
+            <!--
             <StackPanel DockPanel.Dock="Top" Margin="0,0,0,5">
                 <TextBlock Text="Files:" Margin="5"></TextBlock>
                 <DockPanel LastChildFill="True">
@@ -78,6 +78,7 @@
                 </DockPanel>
 
             </StackPanel>
+            -->
             <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right">
                 <Button Content="Save" Margin="5" MinWidth="50" MaxHeight="35" Command="{Binding SaveCommand}" />
                 <Button Content="Cancel" Margin="5" MinWidth="50" MaxHeight="35" Command="{Binding CancelCommand}" />

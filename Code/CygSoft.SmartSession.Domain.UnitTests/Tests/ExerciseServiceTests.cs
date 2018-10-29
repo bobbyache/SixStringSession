@@ -14,6 +14,21 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
     public class ExerciseServiceTests
     {
         [Test]
+        public void ExerciseService_CreateNew_Creates_Exercise_With_Proper_Initialisation_State()
+        {
+            var unitOfWork = new Mock<IUnitOfWork>();
+            var fileService = new Mock<IFileService>();
+            var exerciseService = new ExerciseService(unitOfWork.Object, fileService.Object);
+
+            var exercise = exerciseService.Create();
+
+            Assert.That(exercise, Is.Not.Null);
+            Assert.IsTrue(exercise.Title.StartsWith("New Exercise Item - "));
+            Assert.That(exercise.DifficultyRating, Is.EqualTo(0));
+            Assert.That(exercise.PracticalityRating, Is.EqualTo(0));
+        }
+
+        [Test]
         public void ExerciseService_AddFiles_Calls_FileService_AddExerciseFiles()
         {
             var unitOfWork = new Mock<IUnitOfWork>();

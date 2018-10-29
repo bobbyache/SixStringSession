@@ -24,7 +24,6 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="30" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="100" />
             <RowDefinition Height="30" />
             </Grid.RowDefinitions>
         <ToolBar Grid.Row="0">
@@ -99,14 +98,7 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Grid Grid.Row="2">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="30" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Text="{Binding SelectedExercise.Title}" FontWeight="Bold" />
-        </Grid>
-        <StatusBar Grid.Row="3">
+        <StatusBar Grid.Row="2">
             <StatusBarItem>
                 <TextBlock Text="" />
             </StatusBarItem>

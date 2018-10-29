@@ -27,6 +27,17 @@ namespace CygSoft.SmartSession.Domain.Exercises
             unitOfWork.Complete();
         }
 
+        public Exercise Create()
+        {
+            var exercise = new Exercise()
+            {
+                Title = $"New Exercise Item - {DateTime.Now}",
+                DifficultyRating = 0,
+                PracticalityRating = 0
+            };
+            return exercise;
+        }
+
         public void Remove(int id)
         {
             if (id <= 0)

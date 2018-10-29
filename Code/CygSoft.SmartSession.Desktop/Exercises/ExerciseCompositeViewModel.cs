@@ -1,4 +1,6 @@
-﻿using GalaSoft.MvvmLight;
+﻿using CygSoft.SmartSession.Domain.Exercises;
+using CygSoft.SmartSession.Infrastructure.Enums;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 
@@ -9,6 +11,7 @@ namespace CygSoft.SmartSession.Desktop.Exercises
         private ExerciseSearchViewModel exerciseSearchViewModel;
         private ExerciseEditViewModel exerciseEditViewModel;
         private ExerciseRecorderViewModel exerciseRecorderViewModel;
+        private IExerciseService exerciseService;
 
         private ViewModelBase currentViewModel;
         public ViewModelBase CurrentViewModel
@@ -19,16 +22,17 @@ namespace CygSoft.SmartSession.Desktop.Exercises
 
         public RelayCommand<string> NavigationCommand { get; private set; }
 
-        public ExerciseCompositeViewModel(ExerciseSearchViewModel exerciseSearchViewModel, 
+        public ExerciseCompositeViewModel(IExerciseService exerciseService, ExerciseSearchViewModel exerciseSearchViewModel, 
             ExerciseEditViewModel exerciseEditViewModel,
             ExerciseRecorderViewModel exerciseRecorderViewModel)
         {
+            this.exerciseService = exerciseService;
             this.exerciseSearchViewModel = exerciseSearchViewModel;
             this.exerciseEditViewModel = exerciseEditViewModel;
             this.exerciseRecorderViewModel = exerciseRecorderViewModel;
 
-            Messenger.Default.Register<StartEditingExerciseMessage>(this, (m) => StartEditingExercise(m.ExerciseSearchResult));
-            Messenger.Default.Register<EndEditingExerciseMessage>(this, (m) => EndEditingExercise(m.ExerciseId));
+            Messenger.Default.Register<StartEditingExerciseMessage>(this, (m) => StartEditingExercise(m.Exercise));
+            Messenger.Default.Register<EndEditingExerciseMessage>(this, (m) => EndEditingExercise(m.Exercise, m.Operation, m.LifeCycleState));
             Messenger.Default.Register<OpenExerciseRecorderMessage>(this, (m) => RecordExercise(m.ExerciseId));
 
             Messenger.Default.Register<CancelledExerciseRecordingMessage>(this, (m) => RecordingCancelled());
@@ -54,15 +58,24 @@ namespace CygSoft.SmartSession.Desktop.Exercises
             NavigateTo("Record");
         }
 
-        private void EndEditingExercise(int exerciseId)
+        protected virtual void EndEditingExercise(Exercise exercise, EditorCloseOperation operation, 
+            EntityLifeCycleState entityLifeCycleState)
         {
+            if (operation == EditorCloseOperation.Saved)
+            {
+                if (entityLifeCycleState == EntityLifeCycleState.AsExistingEntity)
+                    exerciseService.Update(exercise);
+                else
+                    exerciseService.Add(exercise);
+            }
+
             NavigateTo("Search");
         }
 
 
-        private void StartEditingExercise(ExerciseSearchResultModel exerciseSearchResult)
+        private void StartEditingExercise(Exercise exercise)
         {
-            exerciseEditViewModel.StartEdit(exerciseSearchResult);
+            exerciseEditViewModel.StartEdit(exercise);
             NavigateTo("Edit");
         }
 

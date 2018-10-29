@@ -14,10 +14,7 @@ namespace CygSoft.SmartSession.Desktop.Exercises
 {
     public class ExerciseEditViewModel : ValidatableViewModel
     {
-        private IExerciseService exerciseService;
         private IDialogViewService dialogService;
-
-        private ExerciseSearchResultModel exerciseSearchResult;
 
         public Exercise Exercise { get; private set; }
 
@@ -53,13 +50,13 @@ namespace CygSoft.SmartSession.Desktop.Exercises
             }
             set
             {
-                Set(() => InitialMetronomeSpeed, ref initialMetronomeSpeed, value);
+                Set(() => InitialMetronomeSpeed, ref initialMetronomeSpeed, value, true, true);
             }
         }
 
-        private int targetMetronomeSpeed;
+        private int? targetMetronomeSpeed;
         [Range(0, 250, ErrorMessage = "Value must be between 0 and 250.")]
-        public int TargetMetronomeSpeed
+        public int? TargetMetronomeSpeed
         {
             get { return targetMetronomeSpeed; }
             set
@@ -68,9 +65,9 @@ namespace CygSoft.SmartSession.Desktop.Exercises
             }
         }
 
-        private int targetPracticeTime;
-        [Range(0, 10000, ErrorMessage = "Value must be between 0 and 10,000.")]
-        public int TargetPracticeTime
+        private int? targetPracticeTime;
+        [Range(0, 1000000000, ErrorMessage = "Value must be between 0 and 1,000,000,000.")]
+        public int? TargetPracticeTime
         {
             get { return targetPracticeTime; }
             set
@@ -101,6 +98,19 @@ namespace CygSoft.SmartSession.Desktop.Exercises
             }
         }
 
+        private EntityLifeCycleState lifeCycleState;
+        public EntityLifeCycleState LifeCycleState
+        {
+            get
+            {
+                return lifeCycleState;
+            }
+            set
+            {
+                Set(() => LifeCycleState, ref lifeCycleState, value, false, false);
+            }
+        }
+
         public override void Commit()
         {
             Mapper.Map(this, Exercise);
@@ -113,9 +123,8 @@ namespace CygSoft.SmartSession.Desktop.Exercises
             base.Revert();
         }
 
-        public ExerciseEditViewModel(IExerciseService exerciseService, IDialogViewService dialogService)
+        public ExerciseEditViewModel(IDialogViewService dialogService)
         {
-            this.exerciseService = exerciseService ?? throw new ArgumentNullException("Service must be provided.");
             this.dialogService = dialogService ?? throw new ArgumentNullException("Dialog service must be provided.");
 
             SaveCommand = new RelayCommand(() => Save(), () => !this.HasErrors);
@@ -126,26 +135,26 @@ namespace CygSoft.SmartSession.Desktop.Exercises
 
         private void OpenFile()
         {
-            exerciseService.OpenFile(Exercise.Id, null);
+            //exerciseService.OpenFile(Exercise.Id, null);
         }
 
         public void DeleteFiles()
         {
-            exerciseService.DeleteFiles(Exercise.Id);
+            //exerciseService.DeleteFiles(Exercise.Id);
         }
 
 
         public void AddFiles(string[] files)
         {
-            exerciseService.AddFiles(Exercise.Id, files);
+            //exerciseService.AddFiles(Exercise.Id, files);
         }
 
-        public void StartEdit(ExerciseSearchResultModel exerciseSearchResult)
+        public void StartEdit(Exercise exercise)
         {
-            this.exerciseSearchResult = exerciseSearchResult;
+            LifeCycleState = exercise.Id > 0 ? EntityLifeCycleState.AsExistingEntity : EntityLifeCycleState.AsNewEntity;
+            Exercise = exercise;
 
-            if (this.Exercise != null) this.ErrorsChanged -= Exercise_ErrorsChanged;
-            this.Exercise = this.exerciseService.Get(exerciseSearchResult.Id);
+            if (Exercise != null) this.ErrorsChanged -= Exercise_ErrorsChanged;
 
             this.Revert();
 
@@ -162,22 +171,13 @@ namespace CygSoft.SmartSession.Desktop.Exercises
         private void Save()
         {
             this.Commit();
-            exerciseService.Update(Exercise);
-
-            if (exerciseSearchResult != null)
-                Mapper.Map(this.Exercise, exerciseSearchResult);
-
-            Messenger.Default.Send(new EndEditingExerciseMessage(Exercise.Id));
+            Messenger.Default.Send(new EndEditingExerciseMessage(Exercise, EditorCloseOperation.Saved, LifeCycleState));
         }
 
         private void Cancel()
         {
             this.Revert();
-
-            if (exerciseSearchResult != null)
-                Mapper.Map(this.Exercise, exerciseSearchResult);
-
-            Messenger.Default.Send(new EndEditingExerciseMessage(Exercise.Id));
+            Messenger.Default.Send(new EndEditingExerciseMessage(Exercise, EditorCloseOperation.Canceled, LifeCycleState));
         }
 
         public RelayCommand SaveCommand { get; private set; }

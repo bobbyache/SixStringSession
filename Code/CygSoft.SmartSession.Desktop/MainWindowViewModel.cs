@@ -21,11 +21,11 @@ namespace CygSoft.SmartSession.Desktop
 
         public RelayCommand<string> NavigationCommand { get; private set; }
 
-        public MainWindowViewModel(ExerciseCompositeViewModel exerciseSearchViewModel, 
-            GoalCompositeViewModel goalSearchViewModel)
+        public MainWindowViewModel(ExerciseCompositeViewModel exerciseCompositeViewModel, 
+            GoalCompositeViewModel goalCompositeViewModel)
         {
-            this.exerciseSearchViewModel = exerciseSearchViewModel;
-            this.goalSearchViewModel = goalSearchViewModel;
+            this.exerciseSearchViewModel = exerciseCompositeViewModel;
+            this.goalSearchViewModel = goalCompositeViewModel;
 
             NavigationCommand = new RelayCommand<string>(OnNavigation);
             OnNavigation("ExerciseSearch");

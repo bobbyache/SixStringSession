@@ -1,12 +1,15 @@
-﻿namespace CygSoft.SmartSession.Desktop.Exercises
+﻿using CygSoft.SmartSession.Domain.Exercises;
+using CygSoft.SmartSession.Infrastructure.Enums;
+
+namespace CygSoft.SmartSession.Desktop.Exercises
 {
     internal class StartEditingExerciseMessage
     {
-        public ExerciseSearchResultModel ExerciseSearchResult { get;}
+        public Exercise Exercise { get;}
 
-        public StartEditingExerciseMessage(ExerciseSearchResultModel exerciseSearchResult)
+        public StartEditingExerciseMessage(Exercise exercise)
         {
-            ExerciseSearchResult = exerciseSearchResult;
+            Exercise = exercise;
         }
     }
 }

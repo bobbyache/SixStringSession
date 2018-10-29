@@ -4,6 +4,7 @@ namespace CygSoft.SmartSession.Domain.Exercises
 {
     public interface IExerciseService
     {
+        Exercise Create();
         Exercise Get(int id);
         IEnumerable<Exercise> Find(ExerciseSearchCriteria searchCriteria);
         void Remove(int id);
