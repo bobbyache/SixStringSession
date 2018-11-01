@@ -40,6 +40,7 @@ namespace CygSoft.SmartSession.Domain.Exercises
                 .And(new ExerciseTargetPracticeTimeSpecification(TargetPracticeTime, TargetPracticeTimeOperator))
                 .And(new ExerciseDifficultyRatingSpecification(DifficultyRating, DifficultyRatingOperator))
                 .And(new ExercisePracticalityRatingSpecification(PracticalityRating, PracticalityRatingOperator))
+                //.And(new ExerciseKeywordSpecification(KeywordSpecification()));
             ;
         }
     }

@@ -21,5 +21,17 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         {
             Assert.Fail();
         }
+
+        [Test]
+        public void AddTotalTimePracticedToSearchResults()
+        {
+            Assert.Fail();
+        }
+
+        [Test]
+        public void AddCurrentProgressCalculate_for_Each_Exercise_To_SearchResults()
+        {
+            Assert.Fail();
+        }
     }
 }
