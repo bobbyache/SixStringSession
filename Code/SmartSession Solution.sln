@@ -24,6 +24,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CygSoft.SmartSession.EF.Int
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CygSoft.SmartSession.EF.QueryTestConsole", "CygSoft.SmartSession.EF.QueryTestConsole\CygSoft.SmartSession.EF.QueryTestConsole.csproj", "{61AA0E9F-311F-4CBD-AE67-9C7F96989E4D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CygSoft.SmartSession.Dal.MySql", "CygSoft.SmartSession.Dal.MySql\CygSoft.SmartSession.Dal.MySql.csproj", "{1F594C76-CEF2-4F10-9D61-A76740C13049}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CygSoft.SmartSession.Dal.MySql.IntegrationTests", "CygSoft.SmartSession.Dal.MySql.IntegrationTests\CygSoft.SmartSession.Dal.MySql.IntegrationTests.csproj", "{B324E8AC-7F15-41A2-BA3F-D260D1E2F215}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -62,6 +66,14 @@ Global
 		{61AA0E9F-311F-4CBD-AE67-9C7F96989E4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{61AA0E9F-311F-4CBD-AE67-9C7F96989E4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{61AA0E9F-311F-4CBD-AE67-9C7F96989E4D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F594C76-CEF2-4F10-9D61-A76740C13049}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F594C76-CEF2-4F10-9D61-A76740C13049}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F594C76-CEF2-4F10-9D61-A76740C13049}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F594C76-CEF2-4F10-9D61-A76740C13049}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B324E8AC-7F15-41A2-BA3F-D260D1E2F215}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B324E8AC-7F15-41A2-BA3F-D260D1E2F215}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B324E8AC-7F15-41A2-BA3F-D260D1E2F215}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B324E8AC-7F15-41A2-BA3F-D260D1E2F215}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
