@@ -37,34 +37,10 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
                 DateModified = DateTime.Now,
                 InitialMetronomeSpeed = null,
                 TargetMetronomeSpeed = 150,
-                PercentageCompleteCalculationType = PercentCompleteCalculationStrategy.MetronomeSpeed,
-
-                ExerciseActivity = new List<SessionExerciseActivity>
-                {
-                    new SessionExerciseActivity {
-                        Id = 1,
-                        DateCreated = DateTime.Parse("2018/01/02"),
-                        DateModified = DateTime.Parse("2018/01/02"),
-                        StartMetronomeSpeed = 40,
-                        ComfortMetronomeSpeed = 50,
-                        AchievedMetronomeSpeed = 80,
-                        StartTime = DateTime.Parse("2018/01/02 10:12:00"),
-                        EndTime = DateTime.Parse("2018/01/02 10:15:00"),
-                        ExerciseId = 1 },
-
-                    new SessionExerciseActivity {
-                        Id = 1,
-                        DateCreated = DateTime.Parse("2018/01/03"),
-                        DateModified = DateTime.Parse("2018/01/03"),
-                        StartMetronomeSpeed = 50,
-                        ComfortMetronomeSpeed = 100,
-                        AchievedMetronomeSpeed = 110,
-                        StartTime = DateTime.Parse("2018/01/03 10:12:00"),
-                        EndTime = DateTime.Parse("2018/01/03 10:15:00"),
-                        ExerciseId = 1 }
-                }
-                return exercise;
+                PercentageCompleteCalculationType = PercentCompleteCalculationStrategy.MetronomeSpeed
             };
+
+            return exercise;
         }
     }
 }
