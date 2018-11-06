@@ -8,6 +8,6 @@ namespace CygSoft.SmartSession.Domain
     {
         IExerciseRepository Exercises { get; }
         IGoalRepository Goals { get; }
-        int Complete();
+        int Commit();
     }
 }

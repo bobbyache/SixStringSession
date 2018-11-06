@@ -21,7 +21,7 @@ namespace CygSoft.SmartSession.Domain.Goals
             goal.DateModified = goal.DateCreated;
 
             unitOfWork.Goals.Add(goal);
-            unitOfWork.Complete();
+            unitOfWork.Commit();
         }
 
         public void Remove(int id)
@@ -31,7 +31,7 @@ namespace CygSoft.SmartSession.Domain.Goals
 
             var goal = unitOfWork.Goals.Get(id);
             unitOfWork.Goals.Remove(goal);
-            unitOfWork.Complete();
+            unitOfWork.Commit();
         }
 
         public IEnumerable<Goal> Find(GoalSearchCriteria searchCriteria)
@@ -56,7 +56,7 @@ namespace CygSoft.SmartSession.Domain.Goals
             goal.DateModified = DateTime.Now;
 
             unitOfWork.Goals.Update(goal);
-            unitOfWork.Complete();
+            unitOfWork.Commit();
         }
     }
 }

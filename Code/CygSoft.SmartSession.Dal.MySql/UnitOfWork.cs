@@ -22,23 +22,7 @@ namespace CygSoft.SmartSession.Dal.MySql
         public IGoalRepository Goals { get { return goals ?? (goals = new GoalRepository(_transaction)); } }
         public IExerciseRepository Exercises { get { return exercises ?? (exercises = new ExerciseRepository(_transaction)); } }
 
-        public int Complete()
-        {
-            Commit();
-            return 0;
-        }
-
-        #endregion IUnitOfWork
-
-        public UnitOfWork(string connectionString)
-        {
-            _connection = new MySqlConnection(connectionString);
-            _connection.Open();
-            _transaction = _connection.BeginTransaction();
-        }
-
-
-        protected void Commit()
+        public int Commit()
         {
             try
             {
@@ -55,6 +39,16 @@ namespace CygSoft.SmartSession.Dal.MySql
                 _transaction = _connection.BeginTransaction();
                 resetRepositories();
             }
+            return 0;
+        }
+
+        #endregion IUnitOfWork
+
+        public UnitOfWork(string connectionString)
+        {
+            _connection = new MySqlConnection(connectionString);
+            _connection.Open();
+            _transaction = _connection.BeginTransaction();
         }
 
         private void resetRepositories()

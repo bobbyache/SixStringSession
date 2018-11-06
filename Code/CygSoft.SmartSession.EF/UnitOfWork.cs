@@ -19,7 +19,7 @@ namespace CygSoft.SmartSession.EF
             Exercises = new ExerciseRepository(context);
         }
 
-        public int Complete()
+        public int Commit()
         {
             return context.SaveChanges();
         }

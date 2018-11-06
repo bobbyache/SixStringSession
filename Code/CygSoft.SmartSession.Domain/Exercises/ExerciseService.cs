@@ -24,7 +24,7 @@ namespace CygSoft.SmartSession.Domain.Exercises
             exercise.DateModified = exercise.DateCreated;
 
             unitOfWork.Exercises.Add(exercise);
-            unitOfWork.Complete();
+            unitOfWork.Commit();
         }
 
         public Exercise Create()
@@ -45,7 +45,7 @@ namespace CygSoft.SmartSession.Domain.Exercises
 
             var exercise = unitOfWork.Exercises.Get(id);
             unitOfWork.Exercises.Remove(exercise);
-            unitOfWork.Complete();
+            unitOfWork.Commit();
         }
 
         public IEnumerable<Exercise> Find(ExerciseSearchCriteria searchCriteria)
@@ -70,7 +70,7 @@ namespace CygSoft.SmartSession.Domain.Exercises
             exercise.DateModified = DateTime.Now;
 
             unitOfWork.Exercises.Update(exercise);
-            unitOfWork.Complete();
+            unitOfWork.Commit();
         }
 
         public void AddFiles(int exerciseId, string[] filePaths)

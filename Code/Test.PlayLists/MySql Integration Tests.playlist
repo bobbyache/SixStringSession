@@ -1,1 +1,1 @@
-<Playlist Version="1.0"><Add Test="CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests.ExerciseRepositoryTests.TestIt" /></Playlist>
+<Playlist Version="1.0"><Add Test="CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests.ExerciseRepositoryTests.TestIt" /><Add Test="CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests.ExerciseRepositoryTests.ExerciseRepository_Finds_Existing_2_Exercises" /><Add Test="CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests.ExerciseRepositoryTests.ExerciseRepository_Creates_New_Metronome_Exercise" /></Playlist>
