@@ -34,6 +34,11 @@ namespace CygSoft.SmartSession.Dal.MySql
             throw new System.NotImplementedException();
         }
 
+        public IReadOnlyList<Goal> Find(object criteria)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public Goal Get(int id)
         {
             throw new System.NotImplementedException();

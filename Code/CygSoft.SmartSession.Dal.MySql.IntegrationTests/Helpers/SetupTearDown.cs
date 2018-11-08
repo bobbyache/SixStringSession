@@ -17,6 +17,7 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests
         public void RunBeforeAnyTests()
         {
             RunScript("create-database.sql", Settings.SysConnectionString);
+            RunScript("stored-procs.sql", Settings.AppConnectionString);
             RunScript("test-data.sql", Settings.AppConnectionString);
         }
 

@@ -22,5 +22,10 @@ namespace CygSoft.SmartSession.EF.Repositories
         public void RemoveRange(IEnumerable<TEntity> entities) => context.RemoveRange(entities);
 
         public abstract IReadOnlyList<TEntity> Find(Specification<TEntity> specification, int page = 0, int pageSize = 100);
+
+        public IReadOnlyList<TEntity> Find(object criteria)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

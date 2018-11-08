@@ -24,7 +24,7 @@ CREATE TABLE `exercise` (
   `TargetMetronomeSpeed` int(11) DEFAULT NULL,
   `TargetPracticeTime` int(11) DEFAULT NULL,
   `DateCreated` datetime NOT NULL,
-  `DateModified` datetime NOT NULL,
+  `DateModified` datetime NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
