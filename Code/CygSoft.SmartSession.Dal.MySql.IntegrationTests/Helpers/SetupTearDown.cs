@@ -1,12 +1,7 @@
 ﻿using CygSoft.SmartSession.Dal.MySql.IntegrationTests.Helpers;
 using MySql.Data.MySqlClient;
 using NUnit.Framework;
-using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests
 {

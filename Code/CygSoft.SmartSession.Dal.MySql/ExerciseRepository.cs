@@ -14,34 +14,9 @@ namespace CygSoft.SmartSession.Dal.MySql
         public void Add(Exercise entity)
         {
             entity.Id = Connection.ExecuteScalar<int>(sql: "sp_InsertExercise", 
-                //param: new { }, 
                 param: entity,
                 commandType: CommandType.StoredProcedure
                 );
-
-            //string sql =
-            //    "INSERT INTO Exercise ( " +
-            //    "	Title, " +
-            //    "	DifficultyRating, " +
-            //    "	PracticalityRating, " +
-            //    "	TargetMetronomeSpeed, " +
-            //    "	TargetPracticeTime, " +
-            //    "	PercentageCompleteCalculationType, " +
-            //    "	DateCreated, " +
-            //    "	DateModified " +
-            //    "	) " +
-            //    "VALUES ( " +
-            //    $"	'{entity.Title}', " +
-            //    $"	{entity.DifficultyRating}, " +
-            //    $"	{entity.PracticalityRating}, " +
-            //    $"	{entity.TargetMetronomeSpeed}, " +
-            //    $"	{entity.TargetPracticeTime}, " +
-            //    $"	{(int)entity.PercentageCompleteCalculationType}, " +
-            //    $"	'{entity.DateCreated.ToString("yyyy-MM-ddTHH:mm:ss")}', " +
-            //    $"	'{entity.DateModified.ToString("yyyy-MM-ddTHH:mm:ss")}' " +
-            //    "	); ";
-
-            //entity.Id = Connection.ExecuteScalar<int>(sql);
         }
 
         public void AddRange(IEnumerable<Exercise> entities)
@@ -66,11 +41,15 @@ namespace CygSoft.SmartSession.Dal.MySql
 
         public Exercise Get(int id)
         {
-            throw new System.NotImplementedException();
+            var results = Connection.QuerySingle<Exercise>("sp_GetExerciseById",
+                param: new { _id = id }, commandType: CommandType.StoredProcedure);
+
+            return results;
         }
 
         public void Remove(Exercise entity)
         {
+
             throw new System.NotImplementedException();
         }
 

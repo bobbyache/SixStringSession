@@ -1,12 +1,11 @@
 ﻿using CygSoft.SmartSession.Domain.Common;
 using CygSoft.SmartSession.Domain.Keywords;
 using CygSoft.SmartSession.Domain.Sessions;
-using System;
-using System.Linq;
+using CygSoft.SmartSession.Infrastructure.Enums;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using CygSoft.SmartSession.Infrastructure.Enums;
+using System.Linq;
 
 namespace CygSoft.SmartSession.Domain.Exercises
 {

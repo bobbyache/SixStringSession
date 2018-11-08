@@ -19,9 +19,13 @@ Code Research
 Binding Enums to comboboxes (lists).
 https://stackoverflow.com/questions/6145888/how-to-bind-an-enum-to-a-combobox-control-in-wpf
 
+Fluent mapping for Dapper
+https://medium.com/dapper-net/custom-columns-mapping-1cd45dfd51d6
+
 ===========================================================================
 Credits to...
 ===========================================================================
 https://github.com/timschreiber/DapperUnitOfWork
+https://github.com/timschreiber/DapperUnitOfWork/blob/master/DapperUnitOfWork.Console/Program.cs
 You have taken some of the code from  this site to use in yours see:
 UnitOfWork.cs

@@ -1,17 +1,15 @@
 USE smartsession_tests;
 
-DELIMITER $$
-
-DROP PROCEDURE IF EXISTS `sp_InsertExercise`$$
+DROP PROCEDURE IF EXISTS `sp_InsertExercise`;
 CREATE PROCEDURE `sp_InsertExercise`
 (
 	in title varchar(255), 
-    in difficulty_rating int(11),
-    in practicality_rating int(11),
-    in percentage_complete_calculation_type int(11),
-    in initial_metronome_speed int(11),
-    in target_metronome_speed int(11),
-    in target_practice_time int(11)
+    in difficultyRating int(11),
+    in practicalityRating int(11),
+    in percentageCompleteCalculationType int(11),
+    in initialMetronomeSpeed int(11),
+    in targetMetronomeSpeed int(11),
+    in targetPracticeTime int(11)
 )
 BEGIN
 	INSERT INTO Exercise
@@ -29,18 +27,35 @@ BEGIN
 	VALUES 
     (
 		title,
-        difficulty_rating,
-        practicality_rating,
-        percentage_complete_calculation_type,
-        initial_metronome_speed,
-        target_metronome_speed,
-        target_practice_time,
+        difficultyRating,
+        practicalityRating,
+        percentageCompleteCalculationType,
+        initialMetronomeSpeed,
+        targetMetronomeSpeed,
+        targetPracticeTime,
 		NOW(), 
         NULL
 	);
-	SELECT LAST_INSERT_ID()$$
+	SELECT LAST_INSERT_ID();
 	COMMIT;
-END $$
+END;
 
-DELIMITER ;
+
+DROP PROCEDURE IF EXISTS `sp_GetExerciseById`;
+CREATE PROCEDURE `sp_GetExerciseById`(IN _id int)
+BEGIN
+	SELECT
+		Id,
+		Title, 
+        DifficultyRating, 
+        PracticalityRating, 
+        PercentageCompleteCalculationType, 
+        InitialMetronomeSpeed, 
+        TargetMetronomeSpeed, 
+        TargetPracticeTime, 
+        DateCreated, 
+        DateModified
+	FROM Exercise WHERE Id = _id;
+END;
+
 COMMIT;
