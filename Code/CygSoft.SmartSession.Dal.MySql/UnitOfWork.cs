@@ -12,14 +12,14 @@ namespace CygSoft.SmartSession.Dal.MySql
         private IDbConnection _connection;
         private IDbTransaction _transaction;
 
-        private IGoalRepository goals;
-        private IExerciseRepository exercises;
-
         private bool _disposed;
 
         #region IUnitOfWork
 
+        private IGoalRepository goals;
         public IGoalRepository Goals { get { return goals ?? (goals = new GoalRepository(_transaction)); } }
+
+        private IExerciseRepository exercises;
         public IExerciseRepository Exercises { get { return exercises ?? (exercises = new ExerciseRepository(_transaction)); } }
 
         public int Commit()
