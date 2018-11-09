@@ -28,5 +28,10 @@ namespace CygSoft.SmartSession.EF
         {
             context.Dispose();
         }
+
+        public void Rollback()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

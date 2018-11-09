@@ -6,11 +6,11 @@ CREATE DATABASE `smartsession` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE ut
 USE `smartsession`;
 
 CREATE TABLE `exercise` (
-  `Id` int(11) NOT NULL,
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
   `Title` varchar(255) NOT NULL,
   `DifficultyRating` int(11) NOT NULL,
   `PracticalityRating` int(11)  NOT NULL,
-  `PercentCompleteCalculationType` int(11) NOT NULL,
+  `PercentageCompleteCalculationType` int(11) NOT NULL,
   `InitialMetronomeSpeed` int(11) DEFAULT NULL,
   `TargetMetronomeSpeed` int(11) DEFAULT NULL,
   `TargetPracticeTime` int(11) DEFAULT NULL,

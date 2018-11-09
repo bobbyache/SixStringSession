@@ -16,7 +16,6 @@ namespace CygSoft.SmartSession.Desktop.Supports.DI
     // https://github.com/castleproject/Windsor/blob/master/docs/registering-components-one-by-one.md
     // http://tommarien.github.io/blog/2012/04/22/castle-windsor-how-to-register-components
     // https://docs.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-7
-
     // https://stackoverflow.com/questions/27507396/how-to-constructor-inject-a-string-that-is-only-known-at-runtime-windsor-castl
 
     public class Installers : IWindsorInstaller

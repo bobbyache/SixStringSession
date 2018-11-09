@@ -40,8 +40,6 @@ namespace CygSoft.SmartSession.Domain.Exercises
             if (ExerciseActivity == null || !ExerciseActivity.Any())
                 return 0;
 
-            // https://stackoverflow.com/questions/47386256/entity-framework-calculate-sum-field-from-child-records
-
             if (PercentageCompleteCalculationType == PercentCompleteCalculationStrategy.MetronomeSpeed)
             {
                 if (!TargetMetronomeSpeed.HasValue)

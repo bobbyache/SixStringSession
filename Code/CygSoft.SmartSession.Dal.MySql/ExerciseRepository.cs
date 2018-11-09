@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using CygSoft.SmartSession.Domain.Common;
@@ -41,16 +42,24 @@ namespace CygSoft.SmartSession.Dal.MySql
 
         public Exercise Get(int id)
         {
-            var results = Connection.QuerySingle<Exercise>("sp_GetExerciseById",
-                param: new { _id = id }, commandType: CommandType.StoredProcedure);
+            try
+            {
+                var results = Connection.QuerySingle<Exercise>("sp_GetExerciseById",
+                    param: new { _id = id }, commandType: CommandType.StoredProcedure);
 
-            return results;
+                return results;
+            }
+            catch (InvalidOperationException ex)
+            {
+                throw new DatabaseEntityNotFoundException($"Database entity does not exist for id: {id}", ex);
+            }
+
         }
 
         public void Remove(Exercise entity)
         {
-
-            throw new System.NotImplementedException();
+            var result = Connection.Execute("sp_DeleteExercise",
+                param: new { _id = entity.Id }, commandType: CommandType.StoredProcedure);
         }
 
         public void RemoveRange(IEnumerable<Exercise> entities)
@@ -60,7 +69,18 @@ namespace CygSoft.SmartSession.Dal.MySql
 
         public void Update(Exercise entity)
         {
-            throw new System.NotImplementedException();
+            Connection.ExecuteScalar<int>(sql: "sp_UpdateExercise",
+                param: new {
+                        _id = entity.Id,
+                    	_title = entity.Title, 
+	                    _difficultyRating = entity.DifficultyRating,
+	                    _practicalityRating = entity.PracticalityRating,
+	                    _targetPracticeTime = entity.TargetPracticeTime,
+	                    _targetMetronomeSpeed = entity.TargetMetronomeSpeed,
+	                    _initialMetronomeSpeed = entity.InitialMetronomeSpeed
+                },
+                commandType: CommandType.StoredProcedure
+                );
         }
     }
 }

@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Linq.Expressions;
 
-// https://github.com/vkhorikov/SpecificationPattern
-
 namespace CygSoft.SmartSession.Domain.Common
 {
     public class OrSpecification<T> : Specification<T>
@@ -10,13 +8,11 @@ namespace CygSoft.SmartSession.Domain.Common
         private readonly Specification<T> _left;
         private readonly Specification<T> _right;
 
-
         public OrSpecification(Specification<T> left, Specification<T> right)
         {
             _right = right;
             _left = left;
         }
-
 
         public override Expression<Func<T, bool>> ToExpression()
         {

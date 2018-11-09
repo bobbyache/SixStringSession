@@ -37,7 +37,6 @@ BEGIN
         NULL
 	);
 	SELECT LAST_INSERT_ID();
-	COMMIT;
 END;
 
 
@@ -56,6 +55,34 @@ BEGIN
         DateCreated, 
         DateModified
 	FROM Exercise WHERE Id = _id;
+END;
+
+DROP PROCEDURE IF EXISTS `sp_DeleteExercise`;
+CREATE PROCEDURE `sp_DeleteExercise`(in _id int)
+BEGIN
+	DELETE FROM Exercise WHERE Id = _id;
+END;
+
+DROP PROCEDURE IF EXISTS `sp_UpdateExercise`;
+CREATE PROCEDURE `sp_UpdateExercise`(
+	in _id int, 
+	in _title varchar(255), 
+	in _difficultyRating int,
+	in _practicalityRating int,
+	in _targetPracticeTime int,
+	in _targetMetronomeSpeed int,
+	in _initialMetronomeSpeed int
+	)
+BEGIN
+	UPDATE Exercise SET 
+		Title = _title,
+		DifficultyRating = _difficultyRating,
+		PracticalityRating = _practicalityRating,
+		TargetPracticeTime = _targetPracticeTime,
+		TargetMetronomeSpeed = _targetMetronomeSpeed,
+		InitialMetronomeSpeed = _initialMetronomeSpeed,
+		DateModified = NOW()
+	WHERE Id = _id;
 END;
 
 COMMIT;

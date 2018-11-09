@@ -28,10 +28,10 @@ namespace CygSoft.SmartSession.Dal.MySql
             {
                 _transaction.Commit();
             }
-            catch
+            catch (Exception ex)
             {
                 _transaction.Rollback();
-                throw;
+                throw new DatabaseCommitException("Failed to commit to the database", ex);
             }
             finally
             {
@@ -40,6 +40,24 @@ namespace CygSoft.SmartSession.Dal.MySql
                 resetRepositories();
             }
             return 0;
+        }
+
+        public void Rollback()
+        {
+            try
+            {
+                _transaction.Rollback();
+            }
+            catch (Exception ex)
+            {
+                throw new DatabaseCommitException("Failed to commit to the database", ex);
+            }
+            finally
+            {
+                _transaction.Dispose();
+                _transaction = _connection.BeginTransaction();
+                resetRepositories();
+            }
         }
 
         #endregion IUnitOfWork
