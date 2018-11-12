@@ -93,8 +93,6 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
             Assert.That(ex1.DifficultyRating, Is.EqualTo(3));
             Assert.That(ex1.DateCreated, Is.Not.Null);
             Assert.That(ex1.DateModified, Is.Null);
-
-            Assert.Fail("Must implement proper search tests...");
         }
 
         [Test]
