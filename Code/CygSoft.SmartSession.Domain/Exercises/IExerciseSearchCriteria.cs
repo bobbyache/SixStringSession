@@ -5,10 +5,10 @@ namespace CygSoft.SmartSession.Domain.Exercises
 {
     public interface IExerciseSearchCriteria
     {
-        DateTime? DateCreatedAfter { get; set; }
-        DateTime? DateCreatedBefore { get; set; }
-        DateTime? DateModifiedAfter { get; set; }
-        DateTime? DateModifiedBefore { get; set; }
+        DateTime? FromDateCreated { get; set; }
+        DateTime? ToDateCreated { get; set; }
+        DateTime? FromDateModified { get; set; }
+        DateTime? ToDateModified { get; set; }
         int? DifficultyRating { get; set; }
         ComparisonOperators DifficultyRatingOperator { get; set; }
         ComparisonOperators PracticalityRatingOperator { get; set; }

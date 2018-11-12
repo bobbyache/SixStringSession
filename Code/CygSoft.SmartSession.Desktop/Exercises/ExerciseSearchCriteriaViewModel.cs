@@ -38,10 +38,10 @@ namespace CygSoft.SmartSession.Desktop.Exercises
             TargetPracticeTimeOperator = Domain.Common.ComparisonOperators.Undefined;
             DifficultyRatingOperator = Domain.Common.ComparisonOperators.Undefined;
             PracticalityRatingOperator = Domain.Common.ComparisonOperators.Undefined;
-            DateCreatedBefore = null;
-            DateCreatedAfter = null;
-            DateModifiedAfter = null;
-            DateModifiedBefore = null;
+            ToDateCreated = null;
+            FromDateCreated = null;
+            FromDateModified = null;
+            ToDateModified = null;
         }
 
         public string[] ComparisonOperators
@@ -71,7 +71,7 @@ namespace CygSoft.SmartSession.Desktop.Exercises
 
 
         private DateTime? dateCreatedBefore;
-        public DateTime? DateCreatedBefore
+        public DateTime? ToDateCreated
         {
             get
             {
@@ -79,13 +79,13 @@ namespace CygSoft.SmartSession.Desktop.Exercises
             }
             set
             {
-                Set(() => DateCreatedBefore, ref dateCreatedBefore, value);
+                Set(() => ToDateCreated, ref dateCreatedBefore, value);
             }
         }
 
 
         private DateTime? dateCreatedAfter;
-        public DateTime? DateCreatedAfter
+        public DateTime? FromDateCreated
         {
             get
             {
@@ -93,13 +93,13 @@ namespace CygSoft.SmartSession.Desktop.Exercises
             }
             set
             {
-                Set(() => DateCreatedAfter, ref dateCreatedAfter, value);
+                Set(() => FromDateCreated, ref dateCreatedAfter, value);
             }
         }
 
 
         private DateTime? dateModifiedAfter;
-        public DateTime? DateModifiedAfter
+        public DateTime? FromDateModified
         {
             get
             {
@@ -107,13 +107,13 @@ namespace CygSoft.SmartSession.Desktop.Exercises
             }
             set
             {
-                Set(() => DateModifiedAfter, ref dateModifiedAfter, value);
+                Set(() => FromDateModified, ref dateModifiedAfter, value);
             }
         }
 
 
         private DateTime? dateModifiedBefore;
-        public DateTime? DateModifiedBefore
+        public DateTime? ToDateModified
         {
             get
             {
@@ -121,7 +121,7 @@ namespace CygSoft.SmartSession.Desktop.Exercises
             }
             set
             {
-                Set(() => DateModifiedBefore, ref dateModifiedBefore, value);
+                Set(() => ToDateModified, ref dateModifiedBefore, value);
             }
         }
 

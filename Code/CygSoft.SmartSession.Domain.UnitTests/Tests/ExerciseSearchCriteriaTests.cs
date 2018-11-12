@@ -19,7 +19,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             exercise.DateCreated = DateTime.Parse("2018/03/01");
 
             var searchCriteria = new ExerciseSearchCriteria();
-            searchCriteria.DateCreatedAfter = DateTime.Parse("2018/02/28");
+            searchCriteria.FromDateCreated = DateTime.Parse("2018/02/28");
 
             var specification = searchCriteria.Specification();
             Assert.That(specification.IsSatisfiedBy(exercise), Is.True);

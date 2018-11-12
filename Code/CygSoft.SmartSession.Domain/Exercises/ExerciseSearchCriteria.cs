@@ -8,10 +8,10 @@ namespace CygSoft.SmartSession.Domain.Exercises
 {
     public class ExerciseSearchCriteria : IExerciseSearchCriteria
     {
-        public DateTime? DateCreatedAfter { get; set; }
-        public DateTime? DateCreatedBefore { get; set; }
-        public DateTime? DateModifiedAfter { get; set; }
-        public DateTime? DateModifiedBefore { get; set; }
+        public DateTime? FromDateCreated { get; set; }
+        public DateTime? ToDateCreated { get; set; }
+        public DateTime? FromDateModified { get; set; }
+        public DateTime? ToDateModified { get; set; }
         public int? TargetMetronomeSpeed { get; set; }
         public int? TargetPracticeTime { get; set; }
         public int? DifficultyRating { get; set; }
@@ -34,8 +34,8 @@ namespace CygSoft.SmartSession.Domain.Exercises
         {
             return
                 new ExerciseTitleSpecification(Title)
-                .And(new ExerciseDateModifiedSpecification(DateModifiedAfter, DateModifiedBefore))
-                .And(new ExerciseDateCreatedSpecification(DateCreatedAfter, DateCreatedBefore))
+                .And(new ExerciseDateModifiedSpecification(FromDateModified, ToDateModified))
+                .And(new ExerciseDateCreatedSpecification(FromDateCreated, ToDateCreated))
                 .And(new ExerciseTargetMetronomeSpeedSpecification(TargetMetronomeSpeed, TargetMetronomeSpeedOperator))
                 .And(new ExerciseTargetPracticeTimeSpecification(TargetPracticeTime, TargetPracticeTimeOperator))
                 .And(new ExerciseDifficultyRatingSpecification(DifficultyRating, DifficultyRatingOperator))

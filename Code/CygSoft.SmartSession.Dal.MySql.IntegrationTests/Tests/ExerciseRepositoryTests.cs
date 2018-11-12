@@ -11,55 +11,59 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
     [TestFixture]
     public class ExerciseRepositoryTests
     {
-        
+        [Test]
+        public void ExerciseRepository_Find_Exercise_With_DateModified_Before_ToDateModified()
+        {
+            Funcs.RunScript("delete-all-records.sql", Settings.AppConnectionString);
+            Funcs.RunScript("exercise-find-tests.sql", Settings.AppConnectionString);
+            
+            using (var uow = new UnitOfWork(Settings.AppConnectionString))
+            {
+                IExerciseSearchCriteria crit = new ExerciseSearchCriteria();
+                crit.ToDateModified = new DateTime(2017, 5, 1);
+
+                var exercises = uow.Exercises.Find(crit);
+                Assert.That(exercises.SingleOrDefault, Is.Not.Null);
+                Assert.That(exercises.SingleOrDefault().Title == "Green Exercise 1");
+            }
+        }
 
         [Test]
-        public void ExerciseRepository_Finds_Existing_2_Exercises()
+        public void ExerciseRepository_Find_Exercise_With_DateModified_On_Or_After_ToDateModified()
         {
-            Funcs.RunScript("exercise-find-tests.sql", Settings.AppConnectionString);
             Funcs.RunScript("delete-all-records.sql", Settings.AppConnectionString);
+            Funcs.RunScript("exercise-find-tests.sql", Settings.AppConnectionString);
 
             using (var uow = new UnitOfWork(Settings.AppConnectionString))
             {
-                //var obj = new
-                //{
-                //    _title = null,
+                IExerciseSearchCriteria crit = new ExerciseSearchCriteria();
+                crit.FromDateModified = new DateTime(2017, 6, 1);
 
-                //};
-
-                //var exercises = uow.Exercises.Find(null);
-
-                //ex1 = exercises.Where(e => e.Title == "Test Title 1").SingleOrDefault();
-                //ex2 = exercises.Where(e => e.Title == "Test Title 2").SingleOrDefault();
+                var exercises = uow.Exercises.Find(crit);
+                Assert.That(exercises.SingleOrDefault, Is.Not.Null);
+                Assert.That(exercises.SingleOrDefault().Title == "Green Exercise 2");
             }
-
-
-            Assert.Fail("Not properly implemented yet.");
-
-
-            //Exercise ex1;
-            //Exercise ex2;
-
-            //using (var uow = new UnitOfWork(Settings.AppConnectionString))
-            //{
-            //    var exercises = uow.Exercises.Find(null);
-
-            //    ex1 = exercises.Where(e => e.Title == "Test Title 1").SingleOrDefault();
-            //    ex2 = exercises.Where(e => e.Title == "Test Title 2").SingleOrDefault();
-            //}
-
-            //Assert.IsNotNull(ex1);
-            //Assert.IsNotNull(ex2);
-
-            //Assert.That(ex1.InitialMetronomeSpeed, Is.Null);
-            //Assert.That(ex1.TargetMetronomeSpeed, Is.EqualTo(80));
-            //Assert.That(ex1.TargetPracticeTime, Is.EqualTo(3600));
-            //Assert.That(ex1.PercentageCompleteCalculationType, Is.EqualTo(PercentCompleteCalculationStrategy.PracticeTime));
-            //Assert.That(ex1.PracticalityRating, Is.EqualTo(3));
-            //Assert.That(ex1.DifficultyRating, Is.EqualTo(1));
-            //Assert.That(ex1.DateCreated, Is.EqualTo(DateTime.Parse("2015-10-30 01:02:03")));
-            //Assert.That(ex1.DateModified, Is.EqualTo(DateTime.Parse("2015-11-20 13:50:59")));
         }
+
+        [Test]
+        public void ExerciseRepository_Find_Exercise_With_DateModified_After_FromDateModified_But_After_ToDateModified()
+        {
+            Funcs.RunScript("delete-all-records.sql", Settings.AppConnectionString);
+            Funcs.RunScript("exercise-find-tests.sql", Settings.AppConnectionString);
+
+            using (var uow = new UnitOfWork(Settings.AppConnectionString))
+            {
+                IExerciseSearchCriteria crit = new ExerciseSearchCriteria();
+                crit.FromDateModified = new DateTime(2017, 3, 31);
+                crit.ToDateModified = new DateTime(2017, 4, 2);
+
+                var exercises = uow.Exercises.Find(crit);
+                Assert.That(exercises.SingleOrDefault, Is.Not.Null);
+                Assert.That(exercises.SingleOrDefault().Title == "Green Exercise 1");
+            }
+        }
+
+
 
         [Test]
         public void ExerciseRepository_Creates_A_New_Metronome_Exercise_Successfully()

@@ -85,4 +85,20 @@ BEGIN
 	WHERE Id = _id;
 END;
 
+
+DROP PROCEDURE IF EXISTS `sp_FindExercises`;
+CREATE PROCEDURE `sp_FindExercises`(
+	in _fromDateModified datetime,
+	in _toDateModified datetime
+	)
+BEGIN
+	SELECT * 
+	FROM Exercise
+	WHERE
+		(_fromDateModified IS NULL OR DateModified >= _fromDateModified)
+		AND
+		(_toDateModified IS NULL OR DateModified <= _toDateModified)
+		;
+END;
+
 COMMIT;

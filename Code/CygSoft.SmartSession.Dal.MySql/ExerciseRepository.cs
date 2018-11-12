@@ -37,7 +37,16 @@ namespace CygSoft.SmartSession.Dal.MySql
 
         public IReadOnlyList<Exercise> Find(object criteria)
         {
-            throw new System.NotImplementedException();
+            IExerciseSearchCriteria crit = (IExerciseSearchCriteria)criteria;
+
+            var results = Connection.Query<Exercise>("sp_FindExercises",
+                param: new
+                {
+                    _fromDateModified = crit.FromDateModified,
+                    _toDateModified = crit.ToDateModified
+                }, commandType: CommandType.StoredProcedure);
+
+            return results.ToList();
         }
 
         public Exercise Get(int id)
