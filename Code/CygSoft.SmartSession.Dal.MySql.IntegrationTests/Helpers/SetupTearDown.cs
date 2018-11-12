@@ -19,6 +19,7 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests
         public void RunAfterAnyTests()
         {
             // ...
+            // Funcs.RunScript("delete-all-records.sql", Settings.AppConnectionString);
         }
     }
 }

@@ -88,6 +88,10 @@ END;
 
 DROP PROCEDURE IF EXISTS `sp_FindExercises`;
 CREATE PROCEDURE `sp_FindExercises`(
+	in _title varchar(255),
+	-- in _percentCompleteCalculationType int,
+	in _fromDateCreated datetime,
+	in _toDateCreated datetime,
 	in _fromDateModified datetime,
 	in _toDateModified datetime
 	)
@@ -95,6 +99,14 @@ BEGIN
 	SELECT * 
 	FROM Exercise
 	WHERE
+		(_title IS NULL OR Title LIKE CONCAT('%', _title, '%'))
+		-- AND
+		-- (_percentCompleteCalculationType IS NULL OR PercentCompleteCalculationType = _percentCompleteCalculationType)
+		AND
+		(_fromDateCreated IS NULL OR DateCreated >= _fromDateCreated)
+		AND
+		(_toDateCreated IS NULL OR DateCreated <= _toDateCreated)
+		AND
 		(_fromDateModified IS NULL OR DateModified >= _fromDateModified)
 		AND
 		(_toDateModified IS NULL OR DateModified <= _toDateModified)

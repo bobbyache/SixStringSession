@@ -12,6 +12,44 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
     public class ExerciseRepositoryTests
     {
         [Test]
+        public void ExerciseRepository_Find_Exercise_With_Specific_Title_Gets_Applicable_Recs()
+        {
+            Funcs.RunScript("delete-all-records.sql", Settings.AppConnectionString);
+            Funcs.RunScript("exercise-find-tests.sql", Settings.AppConnectionString);
+
+            using (var uow = new UnitOfWork(Settings.AppConnectionString))
+            {
+                IExerciseSearchCriteria crit = new ExerciseSearchCriteria();
+                crit.Title = "reen exercis";
+
+                var exercises = uow.Exercises.Find(crit);
+                Assert.That(exercises.Where(ex => ex.Title == "Green Exercise").SingleOrDefault(), Is.Not.Null);
+                Assert.That(exercises.Where(ex => ex.Title == "Green Exercise 1").SingleOrDefault(), Is.Not.Null);
+                Assert.That(exercises.Where(ex => ex.Title == "Green Exercise 2").SingleOrDefault(), Is.Not.Null);
+            }
+        }
+
+        [Test]
+        public void ExerciseRepository_Find_Exercise_With_Specific_CalcPercentType_Gets_Applicable_Recs()
+        {
+            Funcs.RunScript("delete-all-records.sql", Settings.AppConnectionString);
+            Funcs.RunScript("exercise-find-tests.sql", Settings.AppConnectionString);
+
+            //using (var uow = new UnitOfWork(Settings.AppConnectionString))
+            //{
+            //    IExerciseSearchCriteria crit = new ExerciseSearchCriteria();
+            //    crit.PercentageCompleteCalculationType = Metronome
+
+            //    var exercises = uow.Exercises.Find(crit);
+            //    Assert.That(exercises.Where(ex => ex.Title == "Orange Exercise").SingleOrDefault(), Is.Not.Null);
+            //    Assert.That(exercises.Where(ex => ex.Title == "Green Exercise 1").SingleOrDefault(), Is.Not.Null);
+            //    Assert.That(exercises.Where(ex => ex.Title == "Green Exercise 2").SingleOrDefault(), Is.Not.Null);
+            //}
+
+            throw new NotImplementedException();
+        }
+
+        [Test]
         public void ExerciseRepository_Find_Exercise_With_DateModified_Before_ToDateModified()
         {
             Funcs.RunScript("delete-all-records.sql", Settings.AppConnectionString);
@@ -25,6 +63,25 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
                 var exercises = uow.Exercises.Find(crit);
                 Assert.That(exercises.SingleOrDefault, Is.Not.Null);
                 Assert.That(exercises.SingleOrDefault().Title == "Green Exercise 1");
+            }
+        }
+
+        [Test]
+        public void ExerciseRepository_Find_Exercise_With_DateCreated_Before_ToDateCreated()
+        {
+            Funcs.RunScript("delete-all-records.sql", Settings.AppConnectionString);
+            Funcs.RunScript("exercise-find-tests.sql", Settings.AppConnectionString);
+
+            using (var uow = new UnitOfWork(Settings.AppConnectionString))
+            {
+                IExerciseSearchCriteria crit = new ExerciseSearchCriteria();
+                crit.ToDateCreated = new DateTime(2015, 5, 2);
+
+                var exercises = uow.Exercises.Find(crit);
+                Assert.That(exercises.Count(), Is.EqualTo(2));
+
+                Assert.That(exercises.Where(ex => ex.Title == "Yellow Exercise").SingleOrDefault(), Is.Not.Null);
+                Assert.That(exercises.Where(ex => ex.Title == "Green Exercise").SingleOrDefault(), Is.Not.Null);
             }
         }
 
@@ -46,6 +103,25 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
         }
 
         [Test]
+        public void ExerciseRepository_Find_Exercise_With_DateCreated_On_Or_After_ToDateCreated()
+        {
+            Funcs.RunScript("delete-all-records.sql", Settings.AppConnectionString);
+            Funcs.RunScript("exercise-find-tests.sql", Settings.AppConnectionString);
+
+            using (var uow = new UnitOfWork(Settings.AppConnectionString))
+            {
+                IExerciseSearchCriteria crit = new ExerciseSearchCriteria();
+                crit.FromDateCreated = new DateTime(2017, 1, 29);
+
+                var exercises = uow.Exercises.Find(crit);
+                Assert.That(exercises.Count(), Is.EqualTo(2));
+
+                Assert.That(exercises.Where(ex => ex.Title == "Green Exercise 1").SingleOrDefault(), Is.Not.Null);
+                Assert.That(exercises.Where(ex => ex.Title == "Green Exercise 2").SingleOrDefault(), Is.Not.Null);
+            }
+        }
+
+        [Test]
         public void ExerciseRepository_Find_Exercise_With_DateModified_After_FromDateModified_But_After_ToDateModified()
         {
             Funcs.RunScript("delete-all-records.sql", Settings.AppConnectionString);
@@ -63,6 +139,23 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
             }
         }
 
+        [Test]
+        public void ExerciseRepository_Find_Exercise_With_DateCreated_After_FromDateCreated_But_After_ToDateCreated()
+        {
+            Funcs.RunScript("delete-all-records.sql", Settings.AppConnectionString);
+            Funcs.RunScript("exercise-find-tests.sql", Settings.AppConnectionString);
+
+            using (var uow = new UnitOfWork(Settings.AppConnectionString))
+            {
+                IExerciseSearchCriteria crit = new ExerciseSearchCriteria();
+                crit.FromDateCreated = new DateTime(2015, 11, 25);
+                crit.ToDateCreated = new DateTime(2016, 2, 2);
+
+                var exercises = uow.Exercises.Find(crit);
+                Assert.That(exercises.Where(ex => ex.Title == "Blue Exercise").SingleOrDefault(), Is.Not.Null);
+                Assert.That(exercises.Where(ex => ex.Title == "Orange Exercise").SingleOrDefault(), Is.Not.Null);
+            }
+        }
 
 
         [Test]

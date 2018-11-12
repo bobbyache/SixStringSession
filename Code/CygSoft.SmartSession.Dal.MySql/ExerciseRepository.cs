@@ -42,6 +42,9 @@ namespace CygSoft.SmartSession.Dal.MySql
             var results = Connection.Query<Exercise>("sp_FindExercises",
                 param: new
                 {
+                    _title = crit.Title,
+                    _fromDateCreated = crit.FromDateCreated,
+                    _toDateCreated = crit.ToDateCreated,
                     _fromDateModified = crit.FromDateModified,
                     _toDateModified = crit.ToDateModified
                 }, commandType: CommandType.StoredProcedure);
