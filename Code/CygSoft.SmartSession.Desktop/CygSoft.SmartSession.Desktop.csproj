@@ -258,13 +258,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CygSoft.SmartSession.Dal.MySql\CygSoft.SmartSession.Dal.MySql.csproj">
+      <Project>{1F594C76-CEF2-4F10-9D61-A76740C13049}</Project>
+      <Name>CygSoft.SmartSession.Dal.MySql</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CygSoft.SmartSession.Domain\CygSoft.SmartSession.Domain.csproj">
       <Project>{5e5c771f-a122-423a-8cc3-27488e9e054a}</Project>
       <Name>CygSoft.SmartSession.Domain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CygSoft.SmartSession.EF\CygSoft.SmartSession.EF.csproj">
-      <Project>{a54d81fa-74fa-4367-956a-a8cd41cbe30f}</Project>
-      <Name>CygSoft.SmartSession.EF</Name>
     </ProjectReference>
     <ProjectReference Include="..\CygSoft.SmartSession.Infrastructure\CygSoft.SmartSession.Infrastructure.csproj">
       <Project>{26f5ecf2-47a5-481d-b9ad-e128b19f9eed}</Project>

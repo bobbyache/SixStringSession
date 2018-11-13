@@ -1,6 +1,7 @@
 ﻿using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
+using CygSoft.SmartSession.Dal.MySql;
 using CygSoft.SmartSession.Desktop.Exercises;
 using CygSoft.SmartSession.Desktop.Goals;
 using CygSoft.SmartSession.Desktop.Supports.Services;
@@ -9,7 +10,6 @@ using CygSoft.SmartSession.Domain.Common;
 using CygSoft.SmartSession.Domain.Exercises;
 using CygSoft.SmartSession.Domain.Goals;
 using CygSoft.SmartSession.Domain.Sessions;
-using CygSoft.SmartSession.EF;
 
 namespace CygSoft.SmartSession.Desktop.Supports.DI
 {
@@ -22,15 +22,13 @@ namespace CygSoft.SmartSession.Desktop.Supports.DI
     {
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
-            container.Register(Component.For<SmartSessionContext>().DependsOn(Dependency.OnConfigValue("connectionString", 
-                Settings.ConnectionString)).LifestyleSingleton());
-
             container.Register(Component.For<IDialogViewService>().ImplementedBy(typeof(DialogService)));
 
             container.Register(Component.For<IFileService>().ImplementedBy(typeof(FileService))
                 .DependsOn(Dependency.OnConfigValue("folderPath", Settings.FileAttachmentFolder)).LifestyleSingleton());
 
-            container.Register(Component.For<IUnitOfWork>().ImplementedBy(typeof(UnitOfWork)));
+            container.Register(Component.For<IUnitOfWork>().ImplementedBy(typeof(UnitOfWork))
+                .DependsOn(Dependency.OnConfigValue("connectionString", Settings.ConnectionString)).LifestyleSingleton());
 
             container.Register(Component.For<IExerciseService>().ImplementedBy(typeof(ExerciseService)));
 

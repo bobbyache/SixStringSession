@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CygSoft.SmartSession.Domain
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CygSoft.SmartSession.Infrastructure", "CygSoft.SmartSession.Infrastructure\CygSoft.SmartSession.Infrastructure.csproj", "{26F5ECF2-47A5-481D-B9AD-E128B19F9EED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CygSoft.SmartSession.EF", "CygSoft.SmartSession.EF\CygSoft.SmartSession.EF.csproj", "{A54D81FA-74FA-4367-956A-A8CD41CBE30F}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CygSoft.SmartSession.Desktop", "CygSoft.SmartSession.Desktop\CygSoft.SmartSession.Desktop.csproj", "{A76E9F48-EA83-43CF-B13B-CBAFC62DE5F7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CygSoft.SmartSession.Desktop.UnitTests", "CygSoft.SmartSession.Desktop.UnitTests\CygSoft.SmartSession.Desktop.UnitTests.csproj", "{D649E315-E43A-4BA7-A5E7-8BA4308DFF57}"
@@ -19,10 +17,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		README.txt = README.txt
 	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CygSoft.SmartSession.EF.IntegrationTests", "CygSoft.SmartSession.EF.IntegrationTests\CygSoft.SmartSession.EF.IntegrationTests.csproj", "{37EB316D-61CD-4D79-AA3A-023740A2F7D6}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CygSoft.SmartSession.EF.QueryTestConsole", "CygSoft.SmartSession.EF.QueryTestConsole\CygSoft.SmartSession.EF.QueryTestConsole.csproj", "{61AA0E9F-311F-4CBD-AE67-9C7F96989E4D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CygSoft.SmartSession.Dal.MySql", "CygSoft.SmartSession.Dal.MySql\CygSoft.SmartSession.Dal.MySql.csproj", "{1F594C76-CEF2-4F10-9D61-A76740C13049}"
 EndProject
@@ -46,10 +40,6 @@ Global
 		{26F5ECF2-47A5-481D-B9AD-E128B19F9EED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{26F5ECF2-47A5-481D-B9AD-E128B19F9EED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{26F5ECF2-47A5-481D-B9AD-E128B19F9EED}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A54D81FA-74FA-4367-956A-A8CD41CBE30F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A54D81FA-74FA-4367-956A-A8CD41CBE30F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A54D81FA-74FA-4367-956A-A8CD41CBE30F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A54D81FA-74FA-4367-956A-A8CD41CBE30F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A76E9F48-EA83-43CF-B13B-CBAFC62DE5F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A76E9F48-EA83-43CF-B13B-CBAFC62DE5F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A76E9F48-EA83-43CF-B13B-CBAFC62DE5F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -58,14 +48,6 @@ Global
 		{D649E315-E43A-4BA7-A5E7-8BA4308DFF57}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D649E315-E43A-4BA7-A5E7-8BA4308DFF57}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D649E315-E43A-4BA7-A5E7-8BA4308DFF57}.Release|Any CPU.Build.0 = Release|Any CPU
-		{37EB316D-61CD-4D79-AA3A-023740A2F7D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{37EB316D-61CD-4D79-AA3A-023740A2F7D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{37EB316D-61CD-4D79-AA3A-023740A2F7D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{37EB316D-61CD-4D79-AA3A-023740A2F7D6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{61AA0E9F-311F-4CBD-AE67-9C7F96989E4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{61AA0E9F-311F-4CBD-AE67-9C7F96989E4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{61AA0E9F-311F-4CBD-AE67-9C7F96989E4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{61AA0E9F-311F-4CBD-AE67-9C7F96989E4D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1F594C76-CEF2-4F10-9D61-A76740C13049}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1F594C76-CEF2-4F10-9D61-A76740C13049}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1F594C76-CEF2-4F10-9D61-A76740C13049}.Release|Any CPU.ActiveCfg = Release|Any CPU

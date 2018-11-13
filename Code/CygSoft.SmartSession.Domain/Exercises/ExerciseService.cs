@@ -50,11 +50,7 @@ namespace CygSoft.SmartSession.Domain.Exercises
 
         public IEnumerable<Exercise> Find(ExerciseSearchCriteria searchCriteria)
         {
-            if (string.IsNullOrWhiteSpace(searchCriteria.Keywords))
-                return unitOfWork.Exercises.Find(searchCriteria.Specification());
-
-            else
-                return unitOfWork.Exercises.Find(searchCriteria.Specification(), searchCriteria.KeywordSpecification());
+            return unitOfWork.Exercises.Find(searchCriteria);
         }
 
         public Exercise Get(int id)
