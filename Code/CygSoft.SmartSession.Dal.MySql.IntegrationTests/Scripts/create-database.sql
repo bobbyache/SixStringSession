@@ -33,9 +33,7 @@ CREATE TABLE `smartsession_tests`.`exerciseactivity` (
   `StartTime` DATETIME NOT NULL COMMENT 'Time is not calculated from StartTime to EndTime, these metrics are just there in order to give context and attach to a diary.',
   `EndTime` DATETIME NOT NULL COMMENT 'Time is not calculated from StartTime to EndTime, these metrics are just there in order to give context and attach to a diary.',
   `Seconds` INT NOT NULL,
-  `StartMetronomeSpeed` INT NOT NULL,
-  `AchievedMetronomeSpeed` INT NOT NULL,
-  `ComfortMetronomeSpeed` INT NOT NULL,
+  `MetronomeSpeed` INT NOT NULL,
   `DateCreated` DATETIME NOT NULL COMMENT 'A generic exercise activity.',
   `DateModified` DATETIME NOT NULL,
   PRIMARY KEY (`Id`));

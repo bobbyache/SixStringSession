@@ -1,5 +1,9 @@
 USE smartsession_tests;
 
+/* ***********************************************************************************************************************
+Exercise
+*********************************************************************************************************************** */
+
 DROP PROCEDURE IF EXISTS `sp_InsertExercise`;
 CREATE PROCEDURE `sp_InsertExercise`
 (
@@ -113,4 +117,91 @@ BEGIN
 		;
 END;
 
+/* ***********************************************************************************************************************
+ExerciseActivity
+*********************************************************************************************************************** */
+
+DROP PROCEDURE IF EXISTS `sp_InsertExerciseActivity`;
+CREATE PROCEDURE `sp_InsertExerciseActivity`
+(
+	_exerciseId,
+	_startTime,
+	_endTime,
+	_seconds,
+	_metronomeSpeed,
+	_achievedMetronomeSpeed,
+	
+	...
+)
+BEGIN
+	INSERT INTO ExerciseActivity
+    (
+		ExerciseId,
+		StartTime,
+		EndTime,
+		Seconds,
+		MetronomeSpeed,
+		DateCreated,
+		DateModified
+	) 
+	VALUES 
+    (
+		_exerciseId,
+		_startTime,
+		_endTime,
+		_seconds,
+		_metronomeSpeed,
+		NOW(), 
+        NULL
+	);
+	SELECT LAST_INSERT_ID();
+END;
+
+DROP PROCEDURE IF EXISTS `sp_GetExerciseActivityById`;
+CREATE PROCEDURE `sp_GetExerciseActivityById`(IN _id int)
+BEGIN
+	SELECT
+		Id,
+		ExerciseId,
+		StartTime,
+		EndTime,
+		Seconds,
+		MetronomeSpeed,
+		DateCreated,
+		DateModified
+	FROM ExerciseActivity WHERE Id = _id;
+END;
+
+DROP PROCEDURE IF EXISTS `sp_DeleteExerciseActivity`;
+CREATE PROCEDURE `sp_DeleteExerciseActivity`(in _id int)
+BEGIN
+	DELETE FROM ExerciseActivity WHERE Id = _id;
+END;
+
+DROP PROCEDURE IF EXISTS `sp_UpdateExerciseActivity`;
+CREATE PROCEDURE `sp_UpdateExerciseActivity`(
+	_startTime,
+	_endTime,
+	_seconds,
+	_metronomeSpeed
+	)
+BEGIN
+	UPDATE ExerciseActivity SET 
+		StartTime,
+		EndTime,
+		Seconds,
+		MetronomeSpeed,
+		DateModified = NOW()
+	WHERE Id = _id;
+END;
+
+DROP PROCEDURE IF EXISTS `sp_GetExerciseActivitiesByExercise`;
+CREATE PROCEDURE `sp_FindExerciseActivitys`(
+	in exerciseId int
+	)
+BEGIN
+	SELECT * 
+	FROM ExerciseActivity
+	WHERE
+		ExerciseId = exerciseId;
 COMMIT;
