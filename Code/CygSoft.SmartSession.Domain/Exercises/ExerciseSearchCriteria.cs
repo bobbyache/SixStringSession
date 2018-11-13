@@ -1,7 +1,5 @@
 ﻿using CygSoft.SmartSession.Domain.Common;
-using CygSoft.SmartSession.Domain.Exercises.Specifications;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace CygSoft.SmartSession.Domain.Exercises
@@ -28,20 +26,6 @@ namespace CygSoft.SmartSession.Domain.Exercises
             return Keywords.Split(new char[] { ',' })
                 .Select(k => k.Trim().ToUpper())
                 .Where(k => !string.IsNullOrWhiteSpace(k)).ToArray();
-        }
-
-        public Specification<Exercise> Specification()
-        {
-            return
-                new ExerciseTitleSpecification(Title)
-                .And(new ExerciseDateModifiedSpecification(FromDateModified, ToDateModified))
-                .And(new ExerciseDateCreatedSpecification(FromDateCreated, ToDateCreated))
-                .And(new ExerciseTargetMetronomeSpeedSpecification(TargetMetronomeSpeed, TargetMetronomeSpeedOperator))
-                .And(new ExerciseTargetPracticeTimeSpecification(TargetPracticeTime, TargetPracticeTimeOperator))
-                .And(new ExerciseDifficultyRatingSpecification(DifficultyRating, DifficultyRatingOperator))
-                .And(new ExercisePracticalityRatingSpecification(PracticalityRating, PracticalityRatingOperator))
-                //.And(new ExerciseKeywordSpecification(KeywordSpecification()));
-            ;
         }
     }
 }

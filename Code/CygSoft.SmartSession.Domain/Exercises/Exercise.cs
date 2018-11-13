@@ -26,13 +26,13 @@ namespace CygSoft.SmartSession.Domain.Exercises
 
         public List<SessionExerciseActivity> ExerciseActivity { get; set; }
 
-        public int GetCurrentComfortSpeed()
+        public int GetLastRecordedSpeed()
         {
             if (ExerciseActivity == null || !ExerciseActivity.Any())
                 return 0;
 
             var endDate = ExerciseActivity.Max(a => a.EndTime);
-            return ExerciseActivity.Where(a => a.EndTime == endDate).Select(a => a.ComfortMetronomeSpeed).SingleOrDefault();
+            return ExerciseActivity.Where(a => a.EndTime == endDate).Select(a => a.MetronomeSpeed).SingleOrDefault();
         }
 
         public double GetPercentComplete()
@@ -50,7 +50,7 @@ namespace CygSoft.SmartSession.Domain.Exercises
 
                 if (InitialMetronomeSpeed.HasValue)
                 {
-                    var lastComfortSpeed = GetLastActivityComfortSpeed();
+                    var lastComfortSpeed = GetLastRecordedSpeed();
                     if (lastComfortSpeed <= InitialMetronomeSpeed.Value)
                         return 0;
 
@@ -61,8 +61,8 @@ namespace CygSoft.SmartSession.Domain.Exercises
                 }
                 else
                 {
-                    var firstComfortSpeed = GetFirstActivityComfortSpeed();
-                    var lastComfortSpeed = GetLastActivityComfortSpeed();
+                    var firstComfortSpeed = GetFirstRecordedSpeed();
+                    var lastComfortSpeed = GetLastRecordedSpeed();
 
                     if (lastComfortSpeed <= firstComfortSpeed)
                         return 0;
@@ -83,19 +83,14 @@ namespace CygSoft.SmartSession.Domain.Exercises
             }
         }
 
-        private int GetFirstActivityComfortSpeed()
+        private int GetFirstRecordedSpeed()
         {
+            if (ExerciseActivity == null || !ExerciseActivity.Any())
+                return 0;
+
             // get the last record, get the comfort speed.
             var lastActivityDate = ExerciseActivity.Min(a => a.EndTime);
-            var comfortSpeed = ExerciseActivity.Where(a => a.EndTime == lastActivityDate).Select(a => a.ComfortMetronomeSpeed).SingleOrDefault();
-            return comfortSpeed;
-        }
-
-        private int GetLastActivityComfortSpeed()
-        {
-            // get the last record, get the comfort speed.
-            var lastActivityDate = ExerciseActivity.Max(a => a.EndTime);
-            var comfortSpeed = ExerciseActivity.Where(a => a.EndTime == lastActivityDate).Select(a => a.ComfortMetronomeSpeed).SingleOrDefault();
+            var comfortSpeed = ExerciseActivity.Where(a => a.EndTime == lastActivityDate).Select(a => a.MetronomeSpeed).SingleOrDefault();
             return comfortSpeed;
         }
 

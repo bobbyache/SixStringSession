@@ -91,45 +91,17 @@ namespace CygSoft.SmartSession.Desktop.Exercises
             }
         }
 
-        private int startSpeed;
+        private int metronomeSpeed;
         [Required]
-        public int StartSpeed
+        public int MetronomeSpeed
         {
             get
             {
-                return startSpeed;
+                return metronomeSpeed;
             }
             set
             {
-                Set(() => StartSpeed, ref startSpeed, value, true, true);
-            }
-        }
-
-        private int comfortSpeed;
-        [Required]
-        public int ComfortSpeed
-        {
-            get
-            {
-                return comfortSpeed;
-            }
-            set
-            {
-                Set(() => ComfortSpeed, ref comfortSpeed, value, true, true);
-            }
-        }
-
-        private int highestSpeed;
-        [Required]
-        public int HighestSpeed
-        {
-            get
-            {
-                return highestSpeed;
-            }
-            set
-            {
-                Set(() => HighestSpeed, ref highestSpeed, value, true, true);
+                Set(() => MetronomeSpeed, ref metronomeSpeed, value, true, true);
             }
         }
 
@@ -160,7 +132,7 @@ namespace CygSoft.SmartSession.Desktop.Exercises
         private bool CanExecuteSaveCommand()
         {
             var recordingStateValid = exerciseRecorder.Seconds > 0 && !exerciseRecorder.Recording;
-            var speedMetricsStateValid = StartSpeed >= 0 && ComfortSpeed >= 0 && HighestSpeed >= 0 &&  (HighestSpeed >= StartSpeed);
+            var speedMetricsStateValid = MetronomeSpeed >= 0;
 
             return recordingStateValid && speedMetricsStateValid;
         }
@@ -181,11 +153,9 @@ namespace CygSoft.SmartSession.Desktop.Exercises
             PauseButtonVisible = false;
             StartButtonVisible = true;
 
-            this.ComfortSpeed = 0;
-            this.HighestSpeed = 0;
-            this.StartSpeed = exercise.GetCurrentComfortSpeed();
+            this.MetronomeSpeed = 0;
             this.ExerciseTitle = exercise.Title;
-            this.CurrentSpeedInfo = $"Current: {exercise.GetCurrentComfortSpeed()} bpm - Target: {exercise.TargetMetronomeSpeed ?? 0} bpm";
+            this.CurrentSpeedInfo = $"Current: {exercise.GetLastRecordedSpeed()} bpm - Target: {exercise.TargetMetronomeSpeed ?? 0} bpm";
             this.ActivityRecordedDisplayTime = "00:00:00";
             this.TotalRecordedDisplayTime = DisplayTime(exercise.GetSecondsPracticed());
         }
@@ -240,9 +210,7 @@ namespace CygSoft.SmartSession.Desktop.Exercises
             SessionExerciseActivity exerciseActivity = new SessionExerciseActivity();
             exerciseActivity.DateCreated = DateTime.Now;
             exerciseActivity.DateModified = exerciseActivity.DateCreated;
-            exerciseActivity.AchievedMetronomeSpeed = HighestSpeed;
-            exerciseActivity.ComfortMetronomeSpeed = ComfortSpeed;
-            exerciseActivity.StartMetronomeSpeed = StartSpeed;
+            exerciseActivity.MetronomeSpeed = MetronomeSpeed;
             exerciseActivity.ExerciseId = exercise.Id;
             exerciseActivity.Seconds = (int)exerciseRecorder.Seconds;
             exerciseActivity.StartTime = exerciseRecorder.StartTime;

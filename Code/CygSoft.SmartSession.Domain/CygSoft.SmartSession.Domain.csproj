@@ -63,15 +63,8 @@
     <Compile Include="Common\ParameterReplacer.cs" />
     <Compile Include="Common\Specification.cs" />
     <Compile Include="Exercises\Exercise.cs" />
-    <Compile Include="Exercises\Specifications\ExerciseDateCreatedSpecification.cs" />
-    <Compile Include="Exercises\Specifications\ExerciseDateModifiedSpecification.cs" />
-    <Compile Include="Exercises\Specifications\ExerciseDifficultyRatingSpecification.cs" />
-    <Compile Include="Exercises\Specifications\ExercisePracticalityRatingSpecification.cs" />
     <Compile Include="Exercises\ExerciseSearchCriteria.cs" />
     <Compile Include="Exercises\ExerciseService.cs" />
-    <Compile Include="Exercises\Specifications\ExerciseTargetMetronomeSpeedSpecification.cs" />
-    <Compile Include="Exercises\Specifications\ExerciseTargetPracticeTimeSpecification.cs" />
-    <Compile Include="Exercises\Specifications\ExerciseTitleSpecification.cs" />
     <Compile Include="Exercises\IExerciseRepository.cs" />
     <Compile Include="Exercises\IExerciseSearchCriteria.cs" />
     <Compile Include="Exercises\IExerciseService.cs" />

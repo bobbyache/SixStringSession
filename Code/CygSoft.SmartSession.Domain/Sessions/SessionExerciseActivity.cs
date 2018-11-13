@@ -9,10 +9,7 @@ namespace CygSoft.SmartSession.Domain.Sessions
 {
     public class SessionExerciseActivity : Entity
     {
-        public int StartMetronomeSpeed { get; set; }
-        public int ComfortMetronomeSpeed { get; set; }
-        public int AchievedMetronomeSpeed { get; set; }
-
+        public int MetronomeSpeed { get; set; }
         public int Seconds { get; set; } // this will be calculated by recording a list of small recording periods.
 
         // You still need these to work out your metronome calculations.

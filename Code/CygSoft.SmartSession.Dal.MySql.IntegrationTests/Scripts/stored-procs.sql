@@ -124,14 +124,11 @@ ExerciseActivity
 DROP PROCEDURE IF EXISTS `sp_InsertExerciseActivity`;
 CREATE PROCEDURE `sp_InsertExerciseActivity`
 (
-	_exerciseId,
-	_startTime,
-	_endTime,
-	_seconds,
-	_metronomeSpeed,
-	_achievedMetronomeSpeed,
-	
-	...
+	in _exerciseId int(11),
+	in _startTime datetime,
+	in _endTime datetime,
+	in _seconds int(11),
+	in _metronomeSpeed int(11)
 )
 BEGIN
 	INSERT INTO ExerciseActivity
@@ -141,8 +138,7 @@ BEGIN
 		EndTime,
 		Seconds,
 		MetronomeSpeed,
-		DateCreated,
-		DateModified
+		DateCreated
 	) 
 	VALUES 
     (
@@ -151,11 +147,11 @@ BEGIN
 		_endTime,
 		_seconds,
 		_metronomeSpeed,
-		NOW(), 
-        NULL
+		NOW()
 	);
 	SELECT LAST_INSERT_ID();
 END;
+
 
 DROP PROCEDURE IF EXISTS `sp_GetExerciseActivityById`;
 CREATE PROCEDURE `sp_GetExerciseActivityById`(IN _id int)
@@ -172,36 +168,48 @@ BEGIN
 	FROM ExerciseActivity WHERE Id = _id;
 END;
 
+
 DROP PROCEDURE IF EXISTS `sp_DeleteExerciseActivity`;
 CREATE PROCEDURE `sp_DeleteExerciseActivity`(in _id int)
 BEGIN
 	DELETE FROM ExerciseActivity WHERE Id = _id;
 END;
 
+
 DROP PROCEDURE IF EXISTS `sp_UpdateExerciseActivity`;
 CREATE PROCEDURE `sp_UpdateExerciseActivity`(
-	_startTime,
-	_endTime,
-	_seconds,
-	_metronomeSpeed
+	_id int,
+	_startTime datetime,
+	_endTime datetime,
+	_seconds int,
+	_metronomeSpeed int
 	)
 BEGIN
 	UPDATE ExerciseActivity SET 
-		StartTime,
-		EndTime,
-		Seconds,
-		MetronomeSpeed,
+		StartTime = _startTime,
+		EndTime = _endTime,
+		Seconds = _seconds,
+		MetronomeSpeed = _metronomeSpeed,
 		DateModified = NOW()
 	WHERE Id = _id;
 END;
 
 DROP PROCEDURE IF EXISTS `sp_GetExerciseActivitiesByExercise`;
 CREATE PROCEDURE `sp_FindExerciseActivitys`(
-	in exerciseId int
+	in _exerciseId int
 	)
 BEGIN
-	SELECT * 
+	SELECT  
+		Id,
+		ExerciseId,
+		StartTime,
+		EndTime,
+		Seconds,
+		MetronomeSpeed,
+		DateCreated,
+		DateModified
 	FROM ExerciseActivity
 	WHERE
-		ExerciseId = exerciseId;
+		ExerciseId = _exerciseId;
+END;
 COMMIT;

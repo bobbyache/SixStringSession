@@ -27,16 +27,8 @@
             <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
                 <StackPanel Orientation="Vertical">
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock TextAlignment="Right" Margin="2" MinWidth="50" >Start</TextBlock>
-                        <TextBox Margin="2" MinWidth="50" Text="{Binding StartSpeed}" />
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock TextAlignment="Right" Margin="2" MinWidth="50" >Comfort</TextBlock>
-                        <TextBox Margin="2" MinWidth="50" Text="{Binding ComfortSpeed}" />
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock TextAlignment="Right" Margin="2" MinWidth="50" >Highest</TextBlock>
-                        <TextBox Margin="2" MinWidth="50" Text="{Binding HighestSpeed}" />
+                        <TextBlock TextAlignment="Right" Margin="2" MinWidth="50" >Speed</TextBlock>
+                        <TextBox Margin="2" MinWidth="50" Text="{Binding MetronomeSpeed}" />
                     </StackPanel>
                 </StackPanel>
             </StackPanel>
