@@ -104,6 +104,7 @@ namespace CygSoft.SmartSession.Dal.MySql
                 commandType: CommandType.StoredProcedure
                 );
 
+            DeleteMissingExerciseActivities(entity);
             InsertNewExerciseActivities(entity);
         }
 
@@ -111,7 +112,7 @@ namespace CygSoft.SmartSession.Dal.MySql
         {
             foreach (ExerciseActivity activity in exercise.ExerciseActivity)
             {
-                if (activity.Id == 0)
+                if (activity.Id <= 0)
                 {
                     Connection.ExecuteScalar<int>(sql: "sp_InsertExerciseActivity",
                     param: new
@@ -125,6 +126,25 @@ namespace CygSoft.SmartSession.Dal.MySql
                     commandType: CommandType.StoredProcedure
                     );
                 }
+            }
+        }
+
+        private void DeleteMissingExerciseActivities(Exercise entity)
+        {
+            var results = Connection.Query<Exercise>("sp_GetExerciseActivitiesByExercise",
+                param: new
+                {
+                    _exerciseId = entity.Id
+                }, commandType: CommandType.StoredProcedure);
+
+            var missingIds = results
+                    .Select(a => a.Id)
+                    .Except(entity.ExerciseActivity.Select(a => a.Id));
+
+            foreach (var id in missingIds)
+            {
+                Connection.Execute("sp_DeleteExerciseActivity",
+                    param: new { _id = id }, commandType: CommandType.StoredProcedure);
             }
         }
     }

@@ -319,7 +319,7 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
             using (var uow = new UnitOfWork(Settings.AppConnectionString))
             {
                 var newExercise = CreateMetronomeExercise();
-                newExercise.Record(80, 3000, DateTime.Parse("2018-03-01 12:15:00"), DateTime.Parse("2018-03-01 12:25:00"));
+                newExercise.AddRecording(80, 3000, DateTime.Parse("2018-03-01 12:15:00"), DateTime.Parse("2018-03-01 12:25:00"));
                 uow.Exercises.Add(newExercise);
                 uow.Commit();
 
@@ -346,7 +346,7 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
                 uow.Exercises.Add(newExercise);
 
                 var retrievedExercise = uow.Exercises.Get(newExercise.Id);
-                retrievedExercise.Record(80, 3000, DateTime.Parse("2018-03-01 12:15:00"), DateTime.Parse("2018-03-01 12:25:00"));
+                retrievedExercise.AddRecording(80, 3000, DateTime.Parse("2018-03-01 12:15:00"), DateTime.Parse("2018-03-01 12:25:00"));
 
                 uow.Exercises.Update(retrievedExercise);
                 uow.Commit();
@@ -359,6 +359,41 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
             Assert.AreEqual(3000, recordedExercise.ExerciseActivity[0].Seconds);
             Assert.AreEqual(DateTime.Parse("2018-03-01 12:15:00"), recordedExercise.ExerciseActivity[0].StartTime);
             Assert.AreEqual(DateTime.Parse("2018-03-01 12:25:00"), recordedExercise.ExerciseActivity[0].EndTime);
+        }
+
+        [Test]
+        public void ExerciseRepository_Removes_A_Deleted_Recording_For_An_Existing_Exercise_Upon_Update()
+        {
+            Funcs.RunScript("delete-all-records.sql", Settings.AppConnectionString);
+
+            using (var uow = new UnitOfWork(Settings.AppConnectionString))
+            {
+                var newExercise = CreateMetronomeExercise();
+                uow.Exercises.Add(newExercise);
+
+                var retrievedExercise = uow.Exercises.Get(newExercise.Id);
+                retrievedExercise.AddRecording(80, 3000, DateTime.Parse("2018-03-01 12:15:00"), DateTime.Parse("2018-03-01 12:25:00"));
+                retrievedExercise.AddRecording(90, 4000, DateTime.Parse("2018-03-02 12:15:00"), DateTime.Parse("2018-03-02 12:25:00"));
+                 
+                uow.Exercises.Update(retrievedExercise);
+                uow.Commit();
+
+                var beforeDeletionExercise = uow.Exercises.Get(retrievedExercise.Id);
+                var deleteActivityId = beforeDeletionExercise.ExerciseActivity[0].Id;
+                var beforeDeleteCount = beforeDeletionExercise.ExerciseActivity.Count;
+
+                beforeDeletionExercise.RemoveRecording(deleteActivityId);
+
+                uow.Exercises.Update(beforeDeletionExercise);
+                uow.Commit();
+
+                var afterDeletionExercise = uow.Exercises.Get(beforeDeletionExercise.Id);
+                var afterDeleteCount = afterDeletionExercise.ExerciseActivity.Count;
+
+                Assert.AreEqual(2, beforeDeleteCount);
+                Assert.AreEqual(1, afterDeleteCount);
+                Assert.IsNull(afterDeletionExercise.ExerciseActivity.Where(a => a.Id == deleteActivityId).SingleOrDefault());
+            }
         }
 
         private Exercise CreateMetronomeExercise()

@@ -107,7 +107,7 @@ namespace CygSoft.SmartSession.Domain.Exercises
 
         }
 
-        public void Record(int speed, int seconds, DateTime startTime, DateTime endTime)
+        public ExerciseActivity AddRecording(int speed, int seconds, DateTime startTime, DateTime endTime)
         {
             var exerciseActivity = new ExerciseActivity
             {
@@ -118,6 +118,23 @@ namespace CygSoft.SmartSession.Domain.Exercises
                 ExerciseId = this.Id
             };
             this.ExerciseActivity.Add(exerciseActivity);
+
+            return exerciseActivity;
         }
+
+        public void RemoveRecording(int exerciseActivityId)
+        {
+            var exerciseActivity = ExerciseActivity.Where(a => a.Id == exerciseActivityId).SingleOrDefault();
+            if (exerciseActivity != null)
+            {
+                RemoveRecording(exerciseActivity);
+            }
+        }
+
+        public void RemoveRecording(ExerciseActivity exerciseActivity)
+        {
+            ExerciseActivity.Remove(exerciseActivity);
+        }
+
     }
 }

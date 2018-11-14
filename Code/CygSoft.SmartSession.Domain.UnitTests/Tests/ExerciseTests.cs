@@ -286,7 +286,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                         ExerciseId = 1 },
 
                     new Sessions.ExerciseActivity {
-                        Id = 1,
+                        Id = 2,
                         DateCreated = DateTime.Parse("2018/01/03"),
                         DateModified = DateTime.Parse("2018/01/03"),
                         MetronomeSpeed = 100,
@@ -325,7 +325,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                         ExerciseId = 1 },
 
                     new Sessions.ExerciseActivity {
-                        Id = 1,
+                        Id = 2,
                         DateCreated = DateTime.Parse("2018/01/03"),
                         DateModified = DateTime.Parse("2018/01/03"),
                         MetronomeSpeed = 50,
@@ -364,7 +364,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                         ExerciseId = 1 },
 
                     new Sessions.ExerciseActivity {
-                        Id = 1,
+                        Id = 2,
                         DateCreated = DateTime.Parse("2018/01/03"),
                         DateModified = DateTime.Parse("2018/01/03"),
                         MetronomeSpeed = 75,
@@ -373,7 +373,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                         ExerciseId = 1 },
 
                     new Sessions.ExerciseActivity {
-                        Id = 1,
+                        Id = 3,
                         DateCreated = DateTime.Parse("2018/01/04"),
                         DateModified = DateTime.Parse("2018/01/04"),
                         MetronomeSpeed = 80,
@@ -413,7 +413,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                         ExerciseId = 1 },
 
                     new Sessions.ExerciseActivity {
-                        Id = 1,
+                        Id = 2,
                         DateCreated = DateTime.Parse("2018/01/03"),
                         DateModified = DateTime.Parse("2018/01/03"),
                         MetronomeSpeed = 75,
@@ -423,7 +423,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                         ExerciseId = 1 },
 
                     new Sessions.ExerciseActivity {
-                        Id = 1,
+                        Id = 3,
                         DateCreated = DateTime.Parse("2018/01/04"),
                         DateModified = DateTime.Parse("2018/01/04"),
                         MetronomeSpeed = 80,
@@ -438,6 +438,49 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             // 30 min is a half hour.
             var percentComplete = exercise.GetPercentComplete();
             Assert.That(percentComplete, Is.EqualTo(50));
+        }
+
+        public void Exercise_AddRecording_Successfully_AddsRecording()
+        {
+            Exercise exercise = new Exercise
+            {
+                Id = 1,
+                DateCreated = DateTime.Now,
+                DateModified = DateTime.Now,
+                InitialMetronomeSpeed = 50,
+                TargetMetronomeSpeed = 150,
+                PercentageCompleteCalculationType = PercentCompleteCalculationStrategy.MetronomeSpeed,
+            };
+
+            int initialActivityCount = exercise.ExerciseActivity.Count;
+
+            exercise.AddRecording(60, 3000, DateTime.Parse("2018/01/04 10:00:00"), DateTime.Parse("2018/01/04 10:10:00"));
+
+            Assert.That(initialActivityCount, Is.EqualTo(0));
+            Assert.That(exercise.ExerciseActivity.Count, Is.EqualTo(1));
+        }
+
+        public void Exercise_RemoveRecording_Successfully_RemovesRecording()
+        {
+            Exercise exercise = new Exercise
+            {
+                Id = 1,
+                DateCreated = DateTime.Now,
+                DateModified = DateTime.Now,
+                InitialMetronomeSpeed = 50,
+                TargetMetronomeSpeed = 150,
+                PercentageCompleteCalculationType = PercentCompleteCalculationStrategy.MetronomeSpeed,
+            };
+            int no_activities = exercise.ExerciseActivity.Count;
+
+            var addedRecording = exercise.AddRecording(60, 3000, DateTime.Parse("2018/01/04 10:00:00"), DateTime.Parse("2018/01/04 10:10:00"));
+            int one_activity = exercise.ExerciseActivity.Count;
+
+            exercise.RemoveRecording(addedRecording);
+
+            Assert.That(no_activities, Is.EqualTo(0));
+            Assert.That(one_activity, Is.EqualTo(1));
+            Assert.That(exercise.ExerciseActivity.Count, Is.EqualTo(0));
         }
     }
 }
