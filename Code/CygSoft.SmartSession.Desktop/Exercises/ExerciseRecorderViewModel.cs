@@ -65,6 +65,22 @@ namespace CygSoft.SmartSession.Desktop.Exercises
             }
         }
 
+        public double CurrentProgress
+        {
+            get
+            {
+                return exercise.GetPercentComplete();
+            }
+        }
+
+        public string CurrentProgressText
+        {
+            get
+            {
+                return $"{Math.Round(exercise.GetPercentComplete(), 1)}% done.";
+            }
+        }
+
         private bool pauseButtonVisible;
         public bool PauseButtonVisible
         {
