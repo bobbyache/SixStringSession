@@ -1,6 +1,7 @@
 ﻿using CygSoft.SmartSession.Domain;
 using CygSoft.SmartSession.Domain.Exercises;
 using CygSoft.SmartSession.Domain.Goals;
+using CygSoft.SmartSession.Domain.Sessions;
 using MySql.Data.MySqlClient;
 using System;
 using System.Data;

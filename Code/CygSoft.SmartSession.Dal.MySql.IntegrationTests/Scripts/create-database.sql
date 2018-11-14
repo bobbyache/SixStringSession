@@ -29,20 +29,20 @@ CREATE TABLE `exercise` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE `smartsession_tests`.`exerciseactivity` (
-  `Id` INT NOT NULL,
+  `Id` INT NOT NULL AUTO_INCREMENT,
   `StartTime` DATETIME NOT NULL COMMENT 'Time is not calculated from StartTime to EndTime, these metrics are just there in order to give context and attach to a diary.',
   `EndTime` DATETIME NOT NULL COMMENT 'Time is not calculated from StartTime to EndTime, these metrics are just there in order to give context and attach to a diary.',
   `Seconds` INT NOT NULL,
   `MetronomeSpeed` INT NOT NULL,
   `DateCreated` DATETIME NOT NULL COMMENT 'A generic exercise activity.',
-  `DateModified` DATETIME NOT NULL,
+  `DateModified` DATETIME NULL,
   PRIMARY KEY (`Id`));
 
 ALTER TABLE `smartsession_tests`.`exerciseactivity` 
 ADD COLUMN `ExerciseId` INT NOT NULL AFTER `Id`;
 ALTER TABLE `smartsession_tests`.`exerciseactivity` 
 ADD CONSTRAINT `fk_exercise`
-  FOREIGN KEY (`Id`)
+  FOREIGN KEY (`ExerciseId`)
   REFERENCES `smartsession_tests`.`exercise` (`Id`)
   ON DELETE NO ACTION
   ON UPDATE NO ACTION;

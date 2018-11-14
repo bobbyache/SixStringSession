@@ -9,7 +9,6 @@ namespace CygSoft.SmartSession.Domain.Common
     public interface IReadOnlyRepository<TEntity> where TEntity : Entity
     {
         TEntity Get(int id);
-        IReadOnlyList<TEntity> Find(Specification<TEntity> specification, int page = 0, int pageSize = 100);
         IReadOnlyList<TEntity> Find(object criteria);
     }
 }

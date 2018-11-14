@@ -36,11 +36,7 @@ namespace CygSoft.SmartSession.Domain.Goals
 
         public IEnumerable<Goal> Find(GoalSearchCriteria searchCriteria)
         {
-            if (string.IsNullOrWhiteSpace(searchCriteria.Keywords))
-                return unitOfWork.Goals.Find(searchCriteria.Specification());
-
-            else
-                return unitOfWork.Goals.Find(searchCriteria.Specification(), searchCriteria.KeywordSpecification());
+            return unitOfWork.Goals.Find(searchCriteria);
         }
 
         public Goal Get(int id)

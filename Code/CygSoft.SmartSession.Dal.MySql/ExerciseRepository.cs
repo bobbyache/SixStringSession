@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using CygSoft.SmartSession.Domain.Common;
 using CygSoft.SmartSession.Domain.Exercises;
+using CygSoft.SmartSession.Domain.Sessions;
 using Dapper;
 
 namespace CygSoft.SmartSession.Dal.MySql
@@ -15,9 +16,19 @@ namespace CygSoft.SmartSession.Dal.MySql
         public void Add(Exercise entity)
         {
             entity.Id = Connection.ExecuteScalar<int>(sql: "sp_InsertExercise", 
-                param: entity,
+                param: new {
+                    _title = entity.Title,
+                    _difficultyRating = entity.DifficultyRating,
+                    _practicalityRating = entity.PracticalityRating,
+                    _percentageCompleteCalculationType = entity.PercentageCompleteCalculationType,
+                    _initialMetronomeSpeed = entity.InitialMetronomeSpeed,
+                    _targetMetronomeSpeed = entity.TargetMetronomeSpeed,
+                    _targetPracticeTime = entity.TargetPracticeTime
+                },
                 commandType: CommandType.StoredProcedure
                 );
+
+            InsertNewExerciseActivities(entity);
         }
 
         public void AddRange(IEnumerable<Exercise> entities)
@@ -25,15 +36,6 @@ namespace CygSoft.SmartSession.Dal.MySql
             throw new System.NotImplementedException();
         }
 
-        public IReadOnlyList<Exercise> Find(Specification<Exercise> specification, string[] keywords, int page = 0, int pageSize = 100)
-        {
-            return Connection.Query<Exercise>("SELECT * FROM Exercise;").ToList();
-        }
-
-        public IReadOnlyList<Exercise> Find(Specification<Exercise> specification, int page = 0, int pageSize = 100)
-        {
-            return Connection.Query<Exercise>("SELECT * FROM Exercise;").ToList();
-        }
 
         public IReadOnlyList<Exercise> Find(object criteria)
         {
@@ -56,10 +58,18 @@ namespace CygSoft.SmartSession.Dal.MySql
         {
             try
             {
-                var results = Connection.QuerySingle<Exercise>("sp_GetExerciseById",
+                var result = Connection.QuerySingle<Exercise>("sp_GetExerciseById",
                     param: new { _id = id }, commandType: CommandType.StoredProcedure);
 
-                return results;
+                var activities = Connection.Query<ExerciseActivity>("sp_GetExerciseActivitiesByExercise",
+                    param: new
+                    {
+                        _exerciseId = id
+                    }, commandType: CommandType.StoredProcedure );
+
+                result.ExerciseActivity = activities.ToList();
+
+                return result;
             }
             catch (InvalidOperationException ex)
             {
@@ -93,6 +103,29 @@ namespace CygSoft.SmartSession.Dal.MySql
                 },
                 commandType: CommandType.StoredProcedure
                 );
+
+            InsertNewExerciseActivities(entity);
+        }
+
+        private void InsertNewExerciseActivities(Exercise exercise)
+        {
+            foreach (ExerciseActivity activity in exercise.ExerciseActivity)
+            {
+                if (activity.Id == 0)
+                {
+                    Connection.ExecuteScalar<int>(sql: "sp_InsertExerciseActivity",
+                    param: new
+                    {
+                        _exerciseId = exercise.Id,
+                        _startTime = activity.StartTime,
+                        _endTime = activity.EndTime,
+                        _seconds = activity.Seconds,
+                        _metronomeSpeed = activity.MetronomeSpeed
+                    },
+                    commandType: CommandType.StoredProcedure
+                    );
+                }
+            }
         }
     }
 }

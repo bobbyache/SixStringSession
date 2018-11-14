@@ -207,16 +207,9 @@ namespace CygSoft.SmartSession.Desktop.Exercises
 
         private void SaveRecording()
         {
-            SessionExerciseActivity exerciseActivity = new SessionExerciseActivity();
-            exerciseActivity.DateCreated = DateTime.Now;
-            exerciseActivity.DateModified = exerciseActivity.DateCreated;
-            exerciseActivity.MetronomeSpeed = MetronomeSpeed;
-            exerciseActivity.ExerciseId = exercise.Id;
-            exerciseActivity.Seconds = (int)exerciseRecorder.Seconds;
-            exerciseActivity.StartTime = exerciseRecorder.StartTime;
-            exerciseActivity.EndTime = exerciseRecorder.EndTime;
+            exercise.Record(MetronomeSpeed, (int)exerciseRecorder.Seconds, 
+                exerciseRecorder.StartTime, exerciseRecorder.EndTime);
 
-            exercise.ExerciseActivity.Add(exerciseActivity);
             exerciseService.Update(exercise);
 
             exerciseRecorder.RecordingStatusChanged -= ExerciseRecorder_RecordingStatusChanged;

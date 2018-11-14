@@ -7,13 +7,13 @@ Exercise
 DROP PROCEDURE IF EXISTS `sp_InsertExercise`;
 CREATE PROCEDURE `sp_InsertExercise`
 (
-	in title varchar(255), 
-    in difficultyRating int(11),
-    in practicalityRating int(11),
-    in percentageCompleteCalculationType int(11),
-    in initialMetronomeSpeed int(11),
-    in targetMetronomeSpeed int(11),
-    in targetPracticeTime int(11)
+	in _title varchar(255), 
+    in _difficultyRating int(11),
+    in _practicalityRating int(11),
+    in _percentageCompleteCalculationType int(11),
+    in _initialMetronomeSpeed int(11),
+    in _targetMetronomeSpeed int(11),
+    in _targetPracticeTime int(11)
 )
 BEGIN
 	INSERT INTO Exercise
@@ -30,13 +30,13 @@ BEGIN
 	) 
 	VALUES 
     (
-		title,
-        difficultyRating,
-        practicalityRating,
-        percentageCompleteCalculationType,
-        initialMetronomeSpeed,
-        targetMetronomeSpeed,
-        targetPracticeTime,
+		_title,
+        _difficultyRating,
+        _practicalityRating,
+        _percentageCompleteCalculationType,
+        _initialMetronomeSpeed,
+        _targetMetronomeSpeed,
+        _targetPracticeTime,
 		NOW(), 
         NULL
 	);
@@ -195,7 +195,7 @@ BEGIN
 END;
 
 DROP PROCEDURE IF EXISTS `sp_GetExerciseActivitiesByExercise`;
-CREATE PROCEDURE `sp_FindExerciseActivitys`(
+CREATE PROCEDURE `sp_GetExerciseActivitiesByExercise`(
 	in _exerciseId int
 	)
 BEGIN

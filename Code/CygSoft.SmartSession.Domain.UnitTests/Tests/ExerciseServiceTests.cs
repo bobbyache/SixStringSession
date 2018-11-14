@@ -1,5 +1,6 @@
 ﻿using CygSoft.SmartSession.Domain.Common;
 using CygSoft.SmartSession.Domain.Exercises;
+using CygSoft.SmartSession.Domain.Sessions;
 using Moq;
 using NUnit.Framework;
 using System;
@@ -85,6 +86,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                 Times.Once, "IFileService.DeleteExerciseFiles was not called.");
 
         }
+
 
         [Test]
         public void ExerciseService_GetFiles_Calls_FileService_GetExerciseFiles()

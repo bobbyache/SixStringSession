@@ -1,5 +1,6 @@
 ﻿using CygSoft.SmartSession.Dal.MySql.IntegrationTests.Helpers;
 using CygSoft.SmartSession.Domain.Exercises;
+using CygSoft.SmartSession.Domain.Sessions;
 using CygSoft.SmartSession.Infrastructure.Enums;
 using NUnit.Framework;
 using NUnit.Framework.Constraints;
@@ -161,6 +162,8 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
         [Test]
         public void ExerciseRepository_Creates_A_New_Metronome_Exercise_Successfully()
         {
+            Funcs.RunScript("delete-all-records.sql", Settings.AppConnectionString);
+
             Exercise ex1;
 
             using (var uow = new UnitOfWork(Settings.AppConnectionString))
@@ -191,6 +194,8 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
         [Test]
         public void ExerciseRepository_Updates_A_Metronome_Exercise_Successfully()
         {
+            Funcs.RunScript("delete-all-records.sql", Settings.AppConnectionString);
+
             Exercise modifiedExercise;
             var currentTime = Funcs.RemoveMilliSeconds(DateTime.Now);
 
@@ -214,6 +219,7 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
                 modifiedExercise = uow.Exercises.Get(existingExercise.Id);
 
                 uow.Exercises.Remove(existingExercise);
+                uow.Commit();
             }
 
             Assert.IsNotNull(modifiedExercise);
@@ -233,6 +239,8 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
         [Test]
         public void ExerciseRepository_UnitOfWork_AddAndModify_Operates_As_Expected()
         {
+            Funcs.RunScript("delete-all-records.sql", Settings.AppConnectionString);
+
             Exercise modifiedExercise;
             var currentTime = Funcs.RemoveMilliSeconds(DateTime.Now);
 
@@ -264,6 +272,8 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
         [Test]
         public void ExerciseRepository_UnitOfWork_Delete_Operates_As_Expected()
         {
+            Funcs.RunScript("delete-all-records.sql", Settings.AppConnectionString);
+
             var currentTime = Funcs.RemoveMilliSeconds(DateTime.Now);
 
             using (var uow = new UnitOfWork(Settings.AppConnectionString))
@@ -283,6 +293,8 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
         [Test]
         public void ExerciseRepository_Deletes_A_New_Metronome_Exercise_Successfully()
         {
+            Funcs.RunScript("delete-all-records.sql", Settings.AppConnectionString);
+
             using (var uow = new UnitOfWork(Settings.AppConnectionString))
             {
                 var newEx = CreateMetronomeExercise();
@@ -295,6 +307,58 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
                 ActualValueDelegate<Exercise> testDelegate = () => uow.Exercises.Get(newEx.Id);
                 Assert.That(testDelegate, Throws.TypeOf<DatabaseEntityNotFoundException>());
             }
+        }
+
+        [Test]
+        public void ExerciseRepository_Updates_A_New_Recording_For_A_New_Exercise_Successfully()
+        {
+            Funcs.RunScript("delete-all-records.sql", Settings.AppConnectionString);
+
+            Exercise recordedExercise;
+
+            using (var uow = new UnitOfWork(Settings.AppConnectionString))
+            {
+                var newExercise = CreateMetronomeExercise();
+                newExercise.Record(80, 3000, DateTime.Parse("2018-03-01 12:15:00"), DateTime.Parse("2018-03-01 12:25:00"));
+                uow.Exercises.Add(newExercise);
+                uow.Commit();
+
+                recordedExercise = uow.Exercises.Get(newExercise.Id);
+            }
+
+            Assert.AreEqual(1, recordedExercise.ExerciseActivity.Count());
+            Assert.AreEqual(80, recordedExercise.ExerciseActivity[0].MetronomeSpeed);
+            Assert.AreEqual(3000, recordedExercise.ExerciseActivity[0].Seconds);
+            Assert.AreEqual(DateTime.Parse("2018-03-01 12:15:00"), recordedExercise.ExerciseActivity[0].StartTime);
+            Assert.AreEqual(DateTime.Parse("2018-03-01 12:25:00"), recordedExercise.ExerciseActivity[0].EndTime);
+        }
+
+        [Test]
+        public void ExerciseRepository_Updates_A_New_Recording_For_An_Existing_Exercise_Successfully()
+        {
+            Funcs.RunScript("delete-all-records.sql", Settings.AppConnectionString);
+
+            Exercise recordedExercise;
+
+            using (var uow = new UnitOfWork(Settings.AppConnectionString))
+            {
+                var newExercise = CreateMetronomeExercise();
+                uow.Exercises.Add(newExercise);
+
+                var retrievedExercise = uow.Exercises.Get(newExercise.Id);
+                retrievedExercise.Record(80, 3000, DateTime.Parse("2018-03-01 12:15:00"), DateTime.Parse("2018-03-01 12:25:00"));
+
+                uow.Exercises.Update(retrievedExercise);
+                uow.Commit();
+
+                recordedExercise = uow.Exercises.Get(retrievedExercise.Id);
+            }
+
+            Assert.AreEqual(1, recordedExercise.ExerciseActivity.Count());
+            Assert.AreEqual(80, recordedExercise.ExerciseActivity[0].MetronomeSpeed);
+            Assert.AreEqual(3000, recordedExercise.ExerciseActivity[0].Seconds);
+            Assert.AreEqual(DateTime.Parse("2018-03-01 12:15:00"), recordedExercise.ExerciseActivity[0].StartTime);
+            Assert.AreEqual(DateTime.Parse("2018-03-01 12:25:00"), recordedExercise.ExerciseActivity[0].EndTime);
         }
 
         private Exercise CreateMetronomeExercise()

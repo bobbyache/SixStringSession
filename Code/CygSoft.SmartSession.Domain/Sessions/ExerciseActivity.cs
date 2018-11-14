@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CygSoft.SmartSession.Domain.Sessions
 {
-    public class SessionExerciseActivity : Entity
+    public class ExerciseActivity : Entity
     {
         public int MetronomeSpeed { get; set; }
         public int Seconds { get; set; } // this will be calculated by recording a list of small recording periods.

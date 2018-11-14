@@ -1,4 +1,5 @@
 ﻿using CygSoft.SmartSession.Domain.Common;
+using CygSoft.SmartSession.Domain.Sessions;
 using System;
 using System.Collections.Generic;
 

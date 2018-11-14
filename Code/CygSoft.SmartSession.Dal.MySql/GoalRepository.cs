@@ -24,16 +24,6 @@ namespace CygSoft.SmartSession.Dal.MySql
             throw new System.NotImplementedException();
         }
 
-        public IReadOnlyList<Goal> Find(Specification<Goal> specification, string[] keywords, int page = 0, int pageSize = 100)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public IReadOnlyList<Goal> Find(Specification<Goal> specification, int page = 0, int pageSize = 100)
-        {
-            throw new System.NotImplementedException();
-        }
-
         public IReadOnlyList<Goal> Find(object criteria)
         {
             throw new System.NotImplementedException();

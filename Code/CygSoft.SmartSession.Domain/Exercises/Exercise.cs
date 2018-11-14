@@ -2,6 +2,7 @@
 using CygSoft.SmartSession.Domain.Keywords;
 using CygSoft.SmartSession.Domain.Sessions;
 using CygSoft.SmartSession.Infrastructure.Enums;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -24,7 +25,7 @@ namespace CygSoft.SmartSession.Domain.Exercises
 
         public List<ExerciseKeyword> ExerciseKeywords { get; set; }
 
-        public List<SessionExerciseActivity> ExerciseActivity { get; set; }
+        public List<ExerciseActivity> ExerciseActivity { get; set; } = new List<ExerciseActivity>();
 
         public int GetLastRecordedSpeed()
         {
@@ -104,6 +105,19 @@ namespace CygSoft.SmartSession.Domain.Exercises
             var secPracticed = ExerciseActivity.Sum(a => a.Seconds);
             return secPracticed;
 
+        }
+
+        public void Record(int speed, int seconds, DateTime startTime, DateTime endTime)
+        {
+            var exerciseActivity = new ExerciseActivity
+            {
+                MetronomeSpeed = speed,
+                Seconds = seconds,
+                StartTime = startTime,
+                EndTime = endTime,
+                ExerciseId = this.Id
+            };
+            this.ExerciseActivity.Add(exerciseActivity);
         }
     }
 }

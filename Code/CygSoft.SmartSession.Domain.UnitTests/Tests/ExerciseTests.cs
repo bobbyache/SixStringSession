@@ -62,9 +62,9 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                 TargetPracticeTime = null,
                 PercentageCompleteCalculationType = PercentCompleteCalculationStrategy.PracticeTime,
 
-                ExerciseActivity = new List<Sessions.SessionExerciseActivity>
+                ExerciseActivity = new List<Sessions.ExerciseActivity>
                 {
-                    new Sessions.SessionExerciseActivity {
+                    new Sessions.ExerciseActivity {
                         Id = 1,
                         DateCreated = DateTime.Parse("2018/01/02"),
                         DateModified = DateTime.Parse("2018/01/02"),
@@ -92,9 +92,9 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                 TargetMetronomeSpeed = null,
                 PercentageCompleteCalculationType = PercentCompleteCalculationStrategy.MetronomeSpeed,
 
-                ExerciseActivity = new List<Sessions.SessionExerciseActivity>
+                ExerciseActivity = new List<Sessions.ExerciseActivity>
                 {
-                    new Sessions.SessionExerciseActivity {
+                    new Sessions.ExerciseActivity {
                         Id = 1,
                         DateCreated = DateTime.Parse("2018/01/02"),
                         DateModified = DateTime.Parse("2018/01/02"),
@@ -122,9 +122,9 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                 TargetMetronomeSpeed = 120,
                 PercentageCompleteCalculationType = PercentCompleteCalculationStrategy.MetronomeSpeed,
 
-                ExerciseActivity = new List<Sessions.SessionExerciseActivity>
+                ExerciseActivity = new List<Sessions.ExerciseActivity>
                 {
-                    new Sessions.SessionExerciseActivity {
+                    new Sessions.ExerciseActivity {
                         Id = 1,
                         DateCreated = DateTime.Parse("2018/01/02"),
                         DateModified = DateTime.Parse("2018/01/02"),
@@ -152,9 +152,9 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                 TargetMetronomeSpeed = 120,
                 PercentageCompleteCalculationType = PercentCompleteCalculationStrategy.MetronomeSpeed,
 
-                ExerciseActivity = new List<Sessions.SessionExerciseActivity>
+                ExerciseActivity = new List<Sessions.ExerciseActivity>
                 {
-                    new Sessions.SessionExerciseActivity {
+                    new Sessions.ExerciseActivity {
                         Id = 1,
                         DateCreated = DateTime.Parse("2018/01/02"),
                         DateModified = DateTime.Parse("2018/01/02"),
@@ -182,9 +182,9 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                 TargetMetronomeSpeed = 120,
                 PercentageCompleteCalculationType = PercentCompleteCalculationStrategy.MetronomeSpeed,
 
-                ExerciseActivity = new List<Sessions.SessionExerciseActivity>
+                ExerciseActivity = new List<Sessions.ExerciseActivity>
                 {
-                    new Sessions.SessionExerciseActivity {
+                    new Sessions.ExerciseActivity {
                         Id = 1,
                         DateCreated = DateTime.Parse("2018/01/02"),
                         DateModified = DateTime.Parse("2018/01/02"),
@@ -213,9 +213,9 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                 TargetMetronomeSpeed = 0,
                 PercentageCompleteCalculationType = PercentCompleteCalculationStrategy.MetronomeSpeed,
 
-                ExerciseActivity = new List<Sessions.SessionExerciseActivity>
+                ExerciseActivity = new List<Sessions.ExerciseActivity>
                 {
-                    new Sessions.SessionExerciseActivity {
+                    new Sessions.ExerciseActivity {
                         Id = 1,
                         DateCreated = DateTime.Parse("2018/01/02"),
                         DateModified = DateTime.Parse("2018/01/02"),
@@ -244,9 +244,9 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                 TargetMetronomeSpeed = 150,
                 PercentageCompleteCalculationType = PercentCompleteCalculationStrategy.MetronomeSpeed,
 
-                ExerciseActivity = new List<Sessions.SessionExerciseActivity>
+                ExerciseActivity = new List<Sessions.ExerciseActivity>
                 {
-                    new Sessions.SessionExerciseActivity {
+                    new Sessions.ExerciseActivity {
                         Id = 1,
                         DateCreated = DateTime.Parse("2018/01/02"),
                         DateModified = DateTime.Parse("2018/01/02"),
@@ -274,9 +274,9 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                 TargetMetronomeSpeed = 150,
                 PercentageCompleteCalculationType = PercentCompleteCalculationStrategy.MetronomeSpeed,
 
-                ExerciseActivity = new List<Sessions.SessionExerciseActivity>
+                ExerciseActivity = new List<Sessions.ExerciseActivity>
                 {
-                    new Sessions.SessionExerciseActivity {
+                    new Sessions.ExerciseActivity {
                         Id = 1,
                         DateCreated = DateTime.Parse("2018/01/02"),
                         DateModified = DateTime.Parse("2018/01/02"),
@@ -285,7 +285,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                         EndTime = DateTime.Parse("2018/01/02 10:15:00"),
                         ExerciseId = 1 },
 
-                    new Sessions.SessionExerciseActivity {
+                    new Sessions.ExerciseActivity {
                         Id = 1,
                         DateCreated = DateTime.Parse("2018/01/03"),
                         DateModified = DateTime.Parse("2018/01/03"),
@@ -313,9 +313,9 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                 TargetMetronomeSpeed = 150,
                 PercentageCompleteCalculationType = PercentCompleteCalculationStrategy.MetronomeSpeed,
 
-                ExerciseActivity = new List<Sessions.SessionExerciseActivity>
+                ExerciseActivity = new List<Sessions.ExerciseActivity>
                 {
-                    new Sessions.SessionExerciseActivity {
+                    new Sessions.ExerciseActivity {
                         Id = 1,
                         DateCreated = DateTime.Parse("2018/01/02"),
                         DateModified = DateTime.Parse("2018/01/02"),
@@ -324,7 +324,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                         EndTime = DateTime.Parse("2018/01/02 10:15:00"),
                         ExerciseId = 1 },
 
-                    new Sessions.SessionExerciseActivity {
+                    new Sessions.ExerciseActivity {
                         Id = 1,
                         DateCreated = DateTime.Parse("2018/01/03"),
                         DateModified = DateTime.Parse("2018/01/03"),
@@ -352,9 +352,9 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                 TargetMetronomeSpeed = 100,
                 PercentageCompleteCalculationType = PercentCompleteCalculationStrategy.MetronomeSpeed,
 
-                ExerciseActivity = new List<Sessions.SessionExerciseActivity>
+                ExerciseActivity = new List<Sessions.ExerciseActivity>
                 {
-                    new Sessions.SessionExerciseActivity {
+                    new Sessions.ExerciseActivity {
                         Id = 1,
                         DateCreated = DateTime.Parse("2018/01/02"),
                         DateModified = DateTime.Parse("2018/01/02"),
@@ -363,7 +363,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                         EndTime = DateTime.Parse("2018/01/02 10:15:00"),
                         ExerciseId = 1 },
 
-                    new Sessions.SessionExerciseActivity {
+                    new Sessions.ExerciseActivity {
                         Id = 1,
                         DateCreated = DateTime.Parse("2018/01/03"),
                         DateModified = DateTime.Parse("2018/01/03"),
@@ -372,7 +372,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                         EndTime = DateTime.Parse("2018/01/03 10:15:00"),
                         ExerciseId = 1 },
 
-                    new Sessions.SessionExerciseActivity {
+                    new Sessions.ExerciseActivity {
                         Id = 1,
                         DateCreated = DateTime.Parse("2018/01/04"),
                         DateModified = DateTime.Parse("2018/01/04"),
@@ -400,9 +400,9 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                 TargetPracticeTime = (int)TimeSpan.FromHours(1).TotalSeconds,
                 PercentageCompleteCalculationType = PercentCompleteCalculationStrategy.PracticeTime,
 
-                ExerciseActivity = new List<Sessions.SessionExerciseActivity>
+                ExerciseActivity = new List<Sessions.ExerciseActivity>
                 {
-                    new Sessions.SessionExerciseActivity {
+                    new Sessions.ExerciseActivity {
                         Id = 1,
                         DateCreated = DateTime.Parse("2018/01/02"),
                         DateModified = DateTime.Parse("2018/01/02"),
@@ -412,7 +412,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                         EndTime = DateTime.Parse("2018/01/02 10:10:00"),
                         ExerciseId = 1 },
 
-                    new Sessions.SessionExerciseActivity {
+                    new Sessions.ExerciseActivity {
                         Id = 1,
                         DateCreated = DateTime.Parse("2018/01/03"),
                         DateModified = DateTime.Parse("2018/01/03"),
@@ -422,7 +422,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                         EndTime = DateTime.Parse("2018/01/03 10:10:00"),
                         ExerciseId = 1 },
 
-                    new Sessions.SessionExerciseActivity {
+                    new Sessions.ExerciseActivity {
                         Id = 1,
                         DateCreated = DateTime.Parse("2018/01/04"),
                         DateModified = DateTime.Parse("2018/01/04"),
