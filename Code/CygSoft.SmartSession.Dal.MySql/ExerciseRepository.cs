@@ -6,6 +6,7 @@ using CygSoft.SmartSession.Domain.Common;
 using CygSoft.SmartSession.Domain.Exercises;
 using CygSoft.SmartSession.Domain.Sessions;
 using Dapper;
+using KellermanSoftware.CompareNetObjects;
 
 namespace CygSoft.SmartSession.Dal.MySql
 {
@@ -106,6 +107,60 @@ namespace CygSoft.SmartSession.Dal.MySql
 
             DeleteMissingExerciseActivities(entity);
             InsertNewExerciseActivities(entity);
+            UpdateChangedExerciseActivities(entity);
+        }
+
+        private void UpdateChangedExerciseActivities(Exercise exercise)
+        {
+            var persistedExercises = GetExerciseActivities(exercise);
+
+            foreach (ExerciseActivity exerciseActivity in exercise.ExerciseActivity)
+            {
+                if (exerciseActivity.Id > 0)
+                {
+                    var persistedCounterPart = persistedExercises.Where(p => p.Id == exerciseActivity.Id).SingleOrDefault();
+                    if (persistedCounterPart != null)
+                    {
+                        CompareLogic compareLogic = new CompareLogic();
+                        ComparisonResult result = compareLogic.Compare(persistedCounterPart, exerciseActivity);
+                        if (!result.AreEqual)
+                        {
+                            UpdateExerciseActivity(exerciseActivity);
+                        }
+                    }
+                }
+            }
+        }
+
+        public void UpdateExerciseActivity(ExerciseActivity exerciseActivity)
+        {
+            Connection.ExecuteScalar<int>(sql: "sp_UpdateExerciseActivity",
+                param: new
+                {
+                    _id = exerciseActivity.Id,
+                    _startTime = exerciseActivity.StartTime,
+                    _endTime = exerciseActivity.EndTime,
+                    _seconds = exerciseActivity.Seconds,
+                    _metronomeSpeed = exerciseActivity.MetronomeSpeed
+                },
+                commandType: CommandType.StoredProcedure
+            );
+        }
+
+        public ExerciseActivity GetExerciseActivity(int id)
+        {
+            try
+            {
+                var result = Connection.QuerySingle<ExerciseActivity>("sp_GetExerciseActivityById",
+                    param: new { _id = id }, commandType: CommandType.StoredProcedure);
+
+                return result;
+            }
+            catch (InvalidOperationException ex)
+            {
+                throw new DatabaseEntityNotFoundException($"Database entity does not exist for id: {id}", ex);
+            }
+
         }
 
         private void InsertNewExerciseActivities(Exercise exercise)
@@ -129,13 +184,20 @@ namespace CygSoft.SmartSession.Dal.MySql
             }
         }
 
+        private IEnumerable<ExerciseActivity> GetExerciseActivities(Exercise entity)
+        {
+            var results = Connection.Query<ExerciseActivity>("sp_GetExerciseActivitiesByExercise",
+            param: new
+            {
+                _exerciseId = entity.Id
+            }, commandType: CommandType.StoredProcedure);
+
+            return results;
+        }
+
         private void DeleteMissingExerciseActivities(Exercise entity)
         {
-            var results = Connection.Query<Exercise>("sp_GetExerciseActivitiesByExercise",
-                param: new
-                {
-                    _exerciseId = entity.Id
-                }, commandType: CommandType.StoredProcedure);
+            var results = GetExerciseActivities(entity);
 
             var missingIds = results
                     .Select(a => a.Id)

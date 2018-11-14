@@ -362,6 +362,44 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
         }
 
         [Test]
+        public void ExerciseRepository_Updates_An_Existing_Recording_Only_If_Changed()
+        {
+            Funcs.RunScript("delete-all-records.sql", Settings.AppConnectionString);
+
+            using (var uow = new UnitOfWork(Settings.AppConnectionString))
+            {
+                var newExercise = CreateMetronomeExercise();
+                newExercise.AddRecording(80, 3000, DateTime.Parse("2018-03-01 12:15:00"), DateTime.Parse("2018-03-01 12:25:00"));
+                newExercise.AddRecording(90, 4000, DateTime.Parse("2018-03-02 12:15:00"), DateTime.Parse("2018-03-02 12:25:00"));
+                uow.Exercises.Add(newExercise);
+
+                uow.Commit();
+
+                var existingExercise = uow.Exercises.Get(newExercise.Id);
+                var exerciseActivity = existingExercise.ExerciseActivity[0];
+
+                exerciseActivity.MetronomeSpeed = 160;
+                exerciseActivity.Seconds = 8000;
+
+                var modifiedId = exerciseActivity.Id;
+
+                uow.Exercises.Update(existingExercise);
+                uow.Commit();
+
+                var modifiedExercise = uow.Exercises.Get(existingExercise.Id);
+
+                var modifiedActivity = modifiedExercise.ExerciseActivity.Where(a => a.Id == modifiedId).SingleOrDefault();
+                var nonModifiedActivity = modifiedExercise.ExerciseActivity.Where(a => a.Id != modifiedId).SingleOrDefault();
+
+                Assert.That(modifiedActivity.MetronomeSpeed, Is.EqualTo(160));
+                Assert.That(modifiedActivity.Seconds, Is.EqualTo(8000));
+                Assert.That(modifiedActivity.DateModified, Is.Not.Null);
+
+                Assert.That(nonModifiedActivity.DateModified, Is.Null);
+            }
+        }
+
+        [Test]
         public void ExerciseRepository_Removes_A_Deleted_Recording_For_An_Existing_Exercise_Upon_Update()
         {
             Funcs.RunScript("delete-all-records.sql", Settings.AppConnectionString);

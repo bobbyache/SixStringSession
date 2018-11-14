@@ -45,3 +45,6 @@ https://github.com/timschreiber/DapperUnitOfWork
 https://github.com/timschreiber/DapperUnitOfWork/blob/master/DapperUnitOfWork.Console/Program.cs
 You have taken some of the code from  this site to use in yours see:
 UnitOfWork.cs
+
+Compare-Net-Objects
+https://github.com/GregFinzer/Compare-Net-Objects
