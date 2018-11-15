@@ -37,7 +37,21 @@ https://enterprisecraftsmanship.com/2016/02/08/specification-pattern-c-implement
  https://archive.codeplex.com/?p=AvalonControlsLib
  http://jobijoy.blogspot.com/2007/10/time-picker-user-control.html
  https://marlongrech.wordpress.com/2007/11/18/time-picker/
+ 
+ DataGrid Custom Columns
+ https://www.wpf-tutorial.com/datagrid-control/custom-columns/
+ 
+ ************ WPF DataGrid Practical Examples *********** (Good)
+ https://www.codeproject.com/Articles/30905/WPF-DataGrid-Practical-Examples
+ 
+ DataGrid in WPF
+ https://www.c-sharpcorner.com/UploadFile/mahesh/datagrid-in-wpf/
+ 
+Styling the DataGrid
+https://blogs.msdn.microsoft.com/jaimer/2009/01/20/styling-microsofts-wpf-datagrid/
 
+WPF Toolkit: DataGrid Feature Walkthrough
+http://mitesh487.blogspot.com/2011/11/wpf-toolkit-datagrid-feature.html
 ===========================================================================
 Credits to...
 ===========================================================================
@@ -48,3 +62,6 @@ UnitOfWork.cs
 
 Compare-Net-Objects
 https://github.com/GregFinzer/Compare-Net-Objects
+
+xceedsoftware/wpftoolkit
+https://github.com/xceedsoftware/wpftoolkit

@@ -1,0 +1,67 @@
+﻿<Window x:Class="WpfDataGrid.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfDataGrid"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:controls="http://schemas.AvalonControls/AvalonControlsLibrary/Controls"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid Margin="10">
+        <DataGrid Name="dgUsers" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+
+                
+
+                <DataGridTemplateColumn Header="DateCreated">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <xctk:DateTimePicker Value="{Binding DateCreated}" BorderThickness="0" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+
+                <DataGridTemplateColumn Header="DateModified">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <xctk:DateTimePicker Value="{Binding DateModified}" BorderThickness="0" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+
+                <DataGridTemplateColumn Header="StartTime">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <xctk:DateTimePicker Value="{Binding StartTime}" BorderThickness="0" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+
+                <DataGridTemplateColumn Header="EndTime">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <xctk:DateTimePicker Value="{Binding EndTime}" BorderThickness="0" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Header="Time">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <controls:TimePicker SelectedHour="15" SelectedMinute="15" SelectedSecond="30" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+
+                <DataGridTextColumn Header="Seconds" Binding="{Binding Seconds}" />
+                <DataGridTextColumn Header="MetronomeSpeed" Binding="{Binding MetronomeSpeed}" />
+
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>
