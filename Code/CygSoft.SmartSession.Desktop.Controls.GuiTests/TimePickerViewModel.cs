@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,14 @@ namespace CygSoft.SmartSession.Desktop.Controls.GuiTests
         public TimePickerViewModel()
         {
             time = new TimeSpan(10, 10, 10);
+            ChangeTimeCommand = new RelayCommand<object>(ChangeTime);
         }
+
+        private void ChangeTime(object currentTime)
+        {
+            TotalTime = (TimeSpan)currentTime;
+        }
+
+        public RelayCommand<object> ChangeTimeCommand { get; private set; }
     }
 }

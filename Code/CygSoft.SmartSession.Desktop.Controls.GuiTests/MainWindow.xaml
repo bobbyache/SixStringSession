@@ -4,9 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CygSoft.SmartSession.Desktop.Controls.GuiTests"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:controls="clr-namespace:CygSoft.SmartSession.Desktop.Controls;assembly=CygSoft.SmartSession.Desktop.Controls"
+        xmlns:mvvmlight="http://www.galasoft.ch/mvvmlight"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    <Window.Resources>
+        <local:SelectedTimeChangedEventArgsConverter x:Key="SelectedTimeChangedEventArgsConverter" />
+    </Window.Resources>
     <Window.DataContext>
         <local:TimePickerViewModel />
     </Window.DataContext>
@@ -14,6 +19,17 @@
         <controls:TimePicker Name="timePicker" Grid.Row="1" 
                           BorderBrush="Silver" BorderThickness="1" 
                           FontFamily="Verdana" FontSize="12" SelectedTime="{Binding TotalTime}" 
-                          SelectedMinute="20" SelectedSecond="40"/>
+                          SelectedMinute="20" SelectedSecond="40">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="SelectedTimeChanged" >
+                    <mvvmlight:EventToCommand 
+                        Command="{Binding ChangeTimeCommand, Mode=OneWay}"
+                        EventArgsConverter="{StaticResource SelectedTimeChangedEventArgsConverter}"
+                        EventArgsConverterParameter="{Binding ElementName=timePicker}"
+                        PassEventArgsToCommand="True"
+                    />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </controls:TimePicker>
     </DockPanel>
 </Window>
