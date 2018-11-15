@@ -243,7 +243,7 @@ namespace CygSoft.SmartSession.Desktop.Controls
         /// </summary>
         public TimePicker()
         {
-            SelectedTime = DateTime.Now.TimeOfDay;
+            //SelectedTime = DateTime.Now.TimeOfDay;
         }
 
         /// <summary>
