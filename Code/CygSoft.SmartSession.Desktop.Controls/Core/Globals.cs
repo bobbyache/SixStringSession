@@ -1,0 +1,16 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace CygSoft.SmartSession.Desktop.Controls.Core
+{
+    /// <summary>
+    /// Class containing global strings
+    /// </summary>
+    internal static class Globals
+    {
+        internal const string UnitTestSymbol = "UNIT_TESTS";
+    }
+}

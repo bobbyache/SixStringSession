@@ -280,6 +280,10 @@
       <Project>{1F594C76-CEF2-4F10-9D61-A76740C13049}</Project>
       <Name>CygSoft.SmartSession.Dal.MySql</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CygSoft.SmartSession.Desktop.Controls\CygSoft.SmartSession.Desktop.Controls.csproj">
+      <Project>{9d209d15-9f7b-4942-85a0-27ec1e739cc6}</Project>
+      <Name>CygSoft.SmartSession.Desktop.Controls</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CygSoft.SmartSession.Domain\CygSoft.SmartSession.Domain.csproj">
       <Project>{5e5c771f-a122-423a-8cc3-27488e9e054a}</Project>
       <Name>CygSoft.SmartSession.Domain</Name>
