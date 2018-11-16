@@ -72,8 +72,7 @@
                 <DataGridTemplateColumn Header="Time">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <controls:TimePicker MinTime="0" SelectedTime="{Binding PracticeTime}">
-                            </controls:TimePicker>
+                            <controls:TimePicker SelectedHour="{Binding Hours, Mode=TwoWay}" SelectedMinute="{Binding Minutes, Mode=TwoWay}" SelectedSecond="{Binding Seconds, Mode=TwoWay}" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

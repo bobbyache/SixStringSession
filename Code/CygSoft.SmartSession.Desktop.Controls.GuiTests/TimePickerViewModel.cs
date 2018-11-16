@@ -46,7 +46,10 @@ namespace CygSoft.SmartSession.Desktop.Controls.GuiTests
                 DateModified = DateTime.Parse("2018-01-02 12:31:56"),
                 StartTime = DateTime.Parse("2018-01-02 12:31:56"),
                 EndTime = DateTime.Parse("2018-01-02 12:31:56"),
-                PracticeTime = new TimeSpan(11, 11, 11),
+                Hours = 4,
+                Minutes = 32,
+                Seconds = 10,
+                //PracticeTime = new TimeSpan(11, 11, 11),
                 MetronomeSpeed = 80
             });
         }
@@ -80,25 +83,60 @@ namespace CygSoft.SmartSession.Desktop.Controls.GuiTests
                 }
             }
 
-            private TimeSpan time;
-            public TimeSpan PracticeTime
-            {
-                get
-                {
-                    return time;
-                }
-                set
-                {
-                    Set(() => PracticeTime, ref time, value);
-                }
-            }
+            //private TimeSpan time;
+            //public TimeSpan PracticeTime
+            //{
+            //    get
+            //    {
+            //        return time;
+            //    }
+            //    set
+            //    {
+            //        Set(() => PracticeTime, ref time, value);
+            //    }
+            //}
 
             // You still need these to work out your metronome calculations.
             public DateTime StartTime { get; set; }
             public DateTime EndTime { get; set; }
 
             public int ExerciseId { get; set; }
-
+            private int hours;
+            public int Hours
+            {
+                get
+                {
+                    return hours;
+                }
+                set
+                {
+                    Set(() => Hours, ref hours, value);
+                }
+            }
+            private int minutes;
+            public int Minutes
+            {
+                get
+                {
+                    return minutes;
+                }
+                set
+                {
+                    Set(() => Minutes, ref minutes, value);
+                }
+            }
+            private int seconds;
+            public int Seconds
+            {
+                get
+                {
+                    return seconds;
+                }
+                set
+                {
+                    Set(() => Seconds, ref seconds, value);
+                }
+            }
         }
     }
 }
