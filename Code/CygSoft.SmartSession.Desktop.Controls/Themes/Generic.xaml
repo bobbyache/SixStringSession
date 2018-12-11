@@ -5,6 +5,7 @@
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/CygSoft.SmartSession.Desktop.Controls;component/Themes/TimePicker.xaml"/>
+        <ResourceDictionary Source="/CygSoft.SmartSession.Desktop.Controls;component/Themes/MyTextControl.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
 </ResourceDictionary>

@@ -11,9 +11,6 @@
     <Grid Margin="10">
         <DataGrid Name="dgUsers" AutoGenerateColumns="False">
             <DataGrid.Columns>
-
-                
-
                 <DataGridTemplateColumn Header="DateCreated">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
