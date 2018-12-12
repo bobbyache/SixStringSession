@@ -51,11 +51,11 @@ namespace CygSoft.SmartSession.Domain.Exercises
 
                 if (InitialMetronomeSpeed.HasValue)
                 {
-                    var lastComfortSpeed = GetLastRecordedSpeed();
-                    if (lastComfortSpeed <= InitialMetronomeSpeed.Value)
+                    var lastSpeed = GetLastRecordedSpeed();
+                    if (lastSpeed <= InitialMetronomeSpeed.Value)
                         return 0;
 
-                    var numerator = (double)(lastComfortSpeed - InitialMetronomeSpeed.Value);
+                    var numerator = (double)(lastSpeed - InitialMetronomeSpeed.Value);
                     var denominator = (double)(TargetMetronomeSpeed.Value - InitialMetronomeSpeed.Value);
                     
                     var percentComplete = (numerator / denominator) * 100d;
@@ -63,15 +63,15 @@ namespace CygSoft.SmartSession.Domain.Exercises
                 }
                 else
                 {
-                    var firstComfortSpeed = GetFirstRecordedSpeed();
-                    var lastComfortSpeed = GetLastRecordedSpeed();
+                    var firstSpeed = GetFirstRecordedSpeed();
+                    var lastSpeed = GetLastRecordedSpeed();
 
-                    if (lastComfortSpeed <= firstComfortSpeed)
+                    if (lastSpeed <= firstSpeed)
                         return 0;
 
                     // stagger backwards
-                    var numerator = (double)(lastComfortSpeed - firstComfortSpeed);
-                    var denominator = (double)(TargetMetronomeSpeed.Value - firstComfortSpeed);
+                    var numerator = (double)(lastSpeed - firstSpeed);
+                    var denominator = (double)(TargetMetronomeSpeed.Value - firstSpeed);
 
                     var percentComplete = (numerator / denominator) * 100d;
                     return percentComplete > 100 ? 100 : percentComplete;
@@ -91,10 +91,10 @@ namespace CygSoft.SmartSession.Domain.Exercises
             if (ExerciseActivity == null || !ExerciseActivity.Any())
                 return 0;
 
-            // get the last record, get the comfort speed.
+            // get the last record, get the speed.
             var lastActivityDate = ExerciseActivity.Min(a => a.EndTime);
-            var comfortSpeed = ExerciseActivity.Where(a => a.EndTime == lastActivityDate).Select(a => a.MetronomeSpeed).SingleOrDefault();
-            return comfortSpeed;
+            var speed = ExerciseActivity.Where(a => a.EndTime == lastActivityDate).Select(a => a.MetronomeSpeed).SingleOrDefault();
+            return speed;
         }
 
         public double GetSecondsPracticed()
