@@ -18,7 +18,6 @@ CREATE TABLE IF NOT EXISTS `exercise` (
   `DifficultyRating` int(11) NOT NULL,
   `PracticalityRating` int(11)  NOT NULL,
   `PercentageCompleteCalculationType` int(11) NOT NULL,
-  `InitialMetronomeSpeed` int(11) DEFAULT NULL,
   `TargetMetronomeSpeed` int(11) DEFAULT NULL,
   `TargetPracticeTime` int(11) DEFAULT NULL,
   `DateCreated` datetime NOT NULL,

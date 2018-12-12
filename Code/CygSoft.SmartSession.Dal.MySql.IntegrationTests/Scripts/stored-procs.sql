@@ -11,7 +11,6 @@ CREATE PROCEDURE `sp_InsertExercise`
     in _difficultyRating int(11),
     in _practicalityRating int(11),
     in _percentageCompleteCalculationType int(11),
-    in _initialMetronomeSpeed int(11),
     in _targetMetronomeSpeed int(11),
     in _targetPracticeTime int(11)
 )
@@ -22,7 +21,6 @@ BEGIN
         DifficultyRating, 
         PracticalityRating, 
         PercentageCompleteCalculationType, 
-        InitialMetronomeSpeed, 
         TargetMetronomeSpeed, 
         TargetPracticeTime, 
         DateCreated, 
@@ -34,7 +32,6 @@ BEGIN
         _difficultyRating,
         _practicalityRating,
         _percentageCompleteCalculationType,
-        _initialMetronomeSpeed,
         _targetMetronomeSpeed,
         _targetPracticeTime,
 		NOW(), 
@@ -53,7 +50,6 @@ BEGIN
         DifficultyRating, 
         PracticalityRating, 
         PercentageCompleteCalculationType, 
-        InitialMetronomeSpeed, 
         TargetMetronomeSpeed, 
         TargetPracticeTime, 
         DateCreated, 
@@ -74,8 +70,7 @@ CREATE PROCEDURE `sp_UpdateExercise`(
 	in _difficultyRating int,
 	in _practicalityRating int,
 	in _targetPracticeTime int,
-	in _targetMetronomeSpeed int,
-	in _initialMetronomeSpeed int
+	in _targetMetronomeSpeed int
 	)
 BEGIN
 	UPDATE Exercise SET 
@@ -84,7 +79,6 @@ BEGIN
 		PracticalityRating = _practicalityRating,
 		TargetPracticeTime = _targetPracticeTime,
 		TargetMetronomeSpeed = _targetMetronomeSpeed,
-		InitialMetronomeSpeed = _initialMetronomeSpeed,
 		DateModified = NOW()
 	WHERE Id = _id;
 END;

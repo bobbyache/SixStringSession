@@ -181,7 +181,6 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
             Assert.IsNotNull(ex1);
 
             Assert.That(ex1.Title, Is.EqualTo("Created Exercise Title"));
-            Assert.That(ex1.InitialMetronomeSpeed, Is.EqualTo(50));
             Assert.That(ex1.TargetMetronomeSpeed, Is.EqualTo(150));
             Assert.That(ex1.TargetPracticeTime, Is.Null);
             Assert.That(ex1.PercentageCompleteCalculationType, Is.EqualTo(PercentCompleteCalculationStrategy.MetronomeSpeed));
@@ -210,7 +209,6 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
                 existingExercise.Title = "Modified Exercise Title";
                 existingExercise.PracticalityRating = 5;
                 existingExercise.DifficultyRating = 5;
-                existingExercise.InitialMetronomeSpeed = 20;
                 existingExercise.TargetMetronomeSpeed = 200;
 
                 uow.Exercises.Update(existingExercise);
@@ -225,7 +223,6 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
             Assert.IsNotNull(modifiedExercise);
 
             Assert.That(modifiedExercise.Title, Is.EqualTo("Modified Exercise Title"));
-            Assert.That(modifiedExercise.InitialMetronomeSpeed, Is.EqualTo(20));
             Assert.That(modifiedExercise.TargetMetronomeSpeed, Is.EqualTo(200));
             Assert.That(modifiedExercise.TargetPracticeTime, Is.Null);
             Assert.That(modifiedExercise.PercentageCompleteCalculationType, Is.EqualTo(PercentCompleteCalculationStrategy.MetronomeSpeed));
@@ -255,7 +252,6 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
                 existingExercise.Title = "Modified Exercise Title";
                 existingExercise.PracticalityRating = 5;
                 existingExercise.DifficultyRating = 5;
-                existingExercise.InitialMetronomeSpeed = 20;
                 existingExercise.TargetMetronomeSpeed = 200;
 
                 uow.Exercises.Update(existingExercise);
@@ -440,7 +436,6 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
             {
                 DateCreated = null,
                 DateModified = null,
-                InitialMetronomeSpeed = 50,
                 TargetMetronomeSpeed = 150,
                 TargetPracticeTime = null,
                 PracticalityRating = 2,

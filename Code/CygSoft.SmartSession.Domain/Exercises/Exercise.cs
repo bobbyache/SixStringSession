@@ -17,7 +17,6 @@ namespace CygSoft.SmartSession.Domain.Exercises
         public string Title { get; set; }
         public int DifficultyRating { get; set; }
         public int PracticalityRating { get; set; }
-        public int? InitialMetronomeSpeed { get; set; }
         public int? TargetMetronomeSpeed { get; set; }
         public int? TargetPracticeTime { get; set; }
 
@@ -49,33 +48,18 @@ namespace CygSoft.SmartSession.Domain.Exercises
                 if (TargetMetronomeSpeed == 0)
                     return 0;
 
-                if (InitialMetronomeSpeed.HasValue)
-                {
-                    var lastSpeed = GetLastRecordedSpeed();
-                    if (lastSpeed <= InitialMetronomeSpeed.Value)
-                        return 0;
+                var firstSpeed = GetFirstRecordedSpeed();
+                var lastSpeed = GetLastRecordedSpeed();
 
-                    var numerator = (double)(lastSpeed - InitialMetronomeSpeed.Value);
-                    var denominator = (double)(TargetMetronomeSpeed.Value - InitialMetronomeSpeed.Value);
-                    
-                    var percentComplete = (numerator / denominator) * 100d;
-                    return percentComplete > 100 ? 100 : percentComplete;
-                }
-                else
-                {
-                    var firstSpeed = GetFirstRecordedSpeed();
-                    var lastSpeed = GetLastRecordedSpeed();
+                if (lastSpeed <= firstSpeed)
+                    return 0;
 
-                    if (lastSpeed <= firstSpeed)
-                        return 0;
+                // stagger backwards
+                var numerator = (double)(lastSpeed - firstSpeed);
+                var denominator = (double)(TargetMetronomeSpeed.Value - firstSpeed);
 
-                    // stagger backwards
-                    var numerator = (double)(lastSpeed - firstSpeed);
-                    var denominator = (double)(TargetMetronomeSpeed.Value - firstSpeed);
-
-                    var percentComplete = (numerator / denominator) * 100d;
-                    return percentComplete > 100 ? 100 : percentComplete;
-                }
+                var percentComplete = (numerator / denominator) * 100d;
+                return percentComplete > 100 ? 100 : percentComplete;
             }
             else
             {

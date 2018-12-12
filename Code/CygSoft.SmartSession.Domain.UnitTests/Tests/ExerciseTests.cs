@@ -118,7 +118,6 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                 Id = 1,
                 DateCreated = DateTime.Now,
                 DateModified = DateTime.Now,
-                InitialMetronomeSpeed = null,
                 TargetMetronomeSpeed = 120,
                 PercentageCompleteCalculationType = PercentCompleteCalculationStrategy.MetronomeSpeed,
 
@@ -137,7 +136,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
 
             var percentComplete = exercise.GetPercentComplete();
 
-            Assert.That(percentComplete, Is.EqualTo(0), "If no InitialMetronomeSpeed has been specified, and there is no activity speed there is no way to calculate progress when calculating by metronome so always return 0% complete");
+            Assert.That(percentComplete, Is.EqualTo(0), "If no activity speed there is no way to calculate progress when calculating by metronome so always return 0% complete");
         }
 
         [Test]
@@ -148,7 +147,6 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                 Id = 1,
                 DateCreated = DateTime.Now,
                 DateModified = DateTime.Now,
-                InitialMetronomeSpeed = 70,
                 TargetMetronomeSpeed = 120,
                 PercentageCompleteCalculationType = PercentCompleteCalculationStrategy.MetronomeSpeed,
 
@@ -167,39 +165,8 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
 
             var percentComplete = exercise.GetPercentComplete();
 
-            Assert.That(percentComplete, Is.EqualTo(0), "If InitialMetronomeSpeed has been specified, and is equal to the current speed, but less than the target speed. Progress should be 0%");
+            Assert.That(percentComplete, Is.EqualTo(0), "Single activity creates an initial speed (and hence a progress start point). Progress should therefore be 0%");
         }
-
-        [Test]
-        public void Exercise_GetPercentComplete_When_StrategyOn_MetronomeSpeed_And_Initial_Metronome_Speed_Is_More_Than_Current_Speed_Returns_0()
-        {
-            Exercise exercise = new Exercise
-            {
-                Id = 1,
-                DateCreated = DateTime.Now,
-                DateModified = DateTime.Now,
-                InitialMetronomeSpeed = 80,
-                TargetMetronomeSpeed = 120,
-                PercentageCompleteCalculationType = PercentCompleteCalculationStrategy.MetronomeSpeed,
-
-                ExerciseActivity = new List<Sessions.ExerciseActivity>
-                {
-                    new Sessions.ExerciseActivity {
-                        Id = 1,
-                        DateCreated = DateTime.Parse("2018/01/02"),
-                        DateModified = DateTime.Parse("2018/01/02"),
-                        MetronomeSpeed = 70,
-                        StartTime = DateTime.Parse("2018/01/02 10:12:00"),
-                        EndTime = DateTime.Parse("2018/01/02 10:15:00"),
-                        ExerciseId = 1 },
-                }
-            };
-
-            var percentComplete = exercise.GetPercentComplete();
-
-            Assert.That(percentComplete, Is.EqualTo(0), "If InitialMetronomeSpeed has been specified, and your current speed is less than the Initially stated speed, your progress must be 0%");
-        }
-
 
         [Test]
         public void Exercise_GetPercentComplete_When_StrategyOn_MetronomeSpeed_And_Target_Is_0_Always_Return_0()
@@ -209,7 +176,6 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                 Id = 1,
                 DateCreated = DateTime.Now,
                 DateModified = DateTime.Now,
-                InitialMetronomeSpeed = 0,
                 TargetMetronomeSpeed = 0,
                 PercentageCompleteCalculationType = PercentCompleteCalculationStrategy.MetronomeSpeed,
 
@@ -233,44 +199,13 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         }
 
         [Test]
-        public void Exercise_GetPercentComplete_When_StrategyOn_MetronomeSpeed_And_Speed_Is_Half_Way_To_Target_Return_50()
+        public void Exercise_GetPercentComplete_On_MetronomeSpeed_Calculates_Progress_Using_Initial_Speed_As_Lower_Bound()
         {
             Exercise exercise = new Exercise
             {
                 Id = 1,
                 DateCreated = DateTime.Now,
                 DateModified = DateTime.Now,
-                InitialMetronomeSpeed = 50,
-                TargetMetronomeSpeed = 150,
-                PercentageCompleteCalculationType = PercentCompleteCalculationStrategy.MetronomeSpeed,
-
-                ExerciseActivity = new List<Sessions.ExerciseActivity>
-                {
-                    new Sessions.ExerciseActivity {
-                        Id = 1,
-                        DateCreated = DateTime.Parse("2018/01/02"),
-                        DateModified = DateTime.Parse("2018/01/02"),
-                        MetronomeSpeed = 100,
-                        StartTime = DateTime.Parse("2018/01/02 10:12:00"),
-                        EndTime = DateTime.Parse("2018/01/02 10:15:00"),
-                        ExerciseId = 1 },
-                }
-            };
-
-            var percentComplete = exercise.GetPercentComplete();
-
-            Assert.That(percentComplete, Is.EqualTo(50), "If InitialMetronomeSpeed has been specified, and your current speed is half way between the Initial and Target Speed, return 50%");
-        }
-
-        [Test]
-        public void Exercise_GetPercentComplete_On_MetronomeSpeed_And_No_InitialMetronomeSpeed_With_Calculates_Progress_Using_Initial_Speed_As_Lower_Bound()
-        {
-            Exercise exercise = new Exercise
-            {
-                Id = 1,
-                DateCreated = DateTime.Now,
-                DateModified = DateTime.Now,
-                InitialMetronomeSpeed = null,
                 TargetMetronomeSpeed = 150,
                 PercentageCompleteCalculationType = PercentCompleteCalculationStrategy.MetronomeSpeed,
 
@@ -298,18 +233,17 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
 
             var percentComplete = exercise.GetPercentComplete();
 
-            Assert.That(percentComplete, Is.EqualTo(50), "When no initial metronome speed has been captured. Calculation should consider the first activity speed as the lower bound for the progress calculation.");
+            Assert.That(percentComplete, Is.EqualTo(50), "Calculation should consider the first activity speed as the lower bound for the progress calculation.");
         }
 
         [Test]
-        public void Exercise_GetPercentComplete_Metronome_No_InitialMetronomeSpeed_And_Last_Activity_Speed_Less_Or_Equal_To_First_Returns_0()
+        public void Exercise_GetPercentComplete_Metronome_And_Last_Activity_Speed_Less_Or_Equal_To_First_Returns_0()
         {
             Exercise exercise = new Exercise
             {
                 Id = 1,
                 DateCreated = DateTime.Now,
                 DateModified = DateTime.Now,
-                InitialMetronomeSpeed = null,
                 TargetMetronomeSpeed = 150,
                 PercentageCompleteCalculationType = PercentCompleteCalculationStrategy.MetronomeSpeed,
 
@@ -337,7 +271,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
 
             var percentComplete = exercise.GetPercentComplete();
 
-            Assert.That(percentComplete, Is.EqualTo(0), "When no initial metronome speed has been captured and activity shows that last speed is equal (or less than) the initial speed should always return 0%");
+            Assert.That(percentComplete, Is.EqualTo(0), "When activity shows that last speed is equal (or less than) the initial speed should always return 0%");
         }
 
         [Test]
@@ -447,7 +381,6 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                 Id = 1,
                 DateCreated = DateTime.Now,
                 DateModified = DateTime.Now,
-                InitialMetronomeSpeed = 50,
                 TargetMetronomeSpeed = 150,
                 PercentageCompleteCalculationType = PercentCompleteCalculationStrategy.MetronomeSpeed,
             };
@@ -467,7 +400,6 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                 Id = 1,
                 DateCreated = DateTime.Now,
                 DateModified = DateTime.Now,
-                InitialMetronomeSpeed = 50,
                 TargetMetronomeSpeed = 150,
                 PercentageCompleteCalculationType = PercentCompleteCalculationStrategy.MetronomeSpeed,
             };
@@ -484,80 +416,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         }
 
         [Test]
-        public void Exercise_With_Initial_Metronome_Speed_CalculatePercentComplete_Progress_Is_Accurately_Measured()
-        {
-            Exercise exercise = new Exercise
-            {
-                Id = 57,
-                DateCreated = DateTime.Parse("2018-10-12 10:56:41"),
-                DateModified = DateTime.Parse("2018-10-12 11:03:59"),
-
-                TargetPracticeTime = null,
-                InitialMetronomeSpeed = 50,
-                TargetMetronomeSpeed = 150,
-                PercentageCompleteCalculationType = PercentCompleteCalculationStrategy.MetronomeSpeed,
-
-                ExerciseActivity = new List<Sessions.ExerciseActivity>
-                {
-                    new Sessions.ExerciseActivity {
-                        Id = 5,
-                        DateCreated = DateTime.Parse("2018-03-01 10:56:41"),
-                        DateModified = null,
-                        MetronomeSpeed = 100,
-                        Seconds = 8000,
-                        StartTime = DateTime.Parse("2018-03-01 12:15:00"),
-                        EndTime = DateTime.Parse("2018-03-01 12:25:00"),
-                        ExerciseId = 57 },
-
-                    new Sessions.ExerciseActivity {
-                        Id = 6,
-                        DateCreated = DateTime.Parse("2018-03-02 10:56:41"),
-                        DateModified = null,
-                        MetronomeSpeed = 100,
-                        Seconds = 4000,
-                        StartTime = DateTime.Parse("2018-03-02 12:15:00"),
-                        EndTime = DateTime.Parse("2018-03-02 12:25:00"),
-                        ExerciseId = 57 }
-                }
-            };
-
-            var percentComplete_50 = exercise.GetPercentComplete();
-
-            exercise.AddRecording(40, 15, DateTime.Parse("2018-12-13 10:03:26"), DateTime.Parse("2018-12-13 10:03:42"));
-            var percentComplete_Below_0 = exercise.GetPercentComplete();
-
-            exercise.AddRecording(110, 15, DateTime.Parse("2018-12-13 11:03:26"), DateTime.Parse("2018-12-13 11:03:42"));
-            var percentComplete_60 = exercise.GetPercentComplete();
-
-            exercise.AddRecording(120, 15, DateTime.Parse("2018-12-14 11:03:26"), DateTime.Parse("2018-12-14 11:03:42"));
-            var percentComplete_70 = exercise.GetPercentComplete();
-
-            exercise.AddRecording(130, 15, DateTime.Parse("2018-12-15 11:03:26"), DateTime.Parse("2018-12-15 11:03:42"));
-            var percentComplete_80 = exercise.GetPercentComplete();
-
-            exercise.AddRecording(140, 15, DateTime.Parse("2018-12-16 11:03:26"), DateTime.Parse("2018-12-16 11:03:42"));
-            var percentComplete_90 = exercise.GetPercentComplete();
-
-            exercise.AddRecording(150, 15, DateTime.Parse("2018-12-17 11:03:26"), DateTime.Parse("2018-12-17 11:03:42"));
-            var percentComplete_100 = exercise.GetPercentComplete();
-
-            exercise.AddRecording(160, 15, DateTime.Parse("2018-12-18 11:03:26"), DateTime.Parse("2018-12-18 11:03:42"));
-            var percentComplete_Above_100 = exercise.GetPercentComplete();
-
-            Assert.That(percentComplete_50, Is.EqualTo(50));
-            Assert.That(percentComplete_60, Is.Not.EqualTo(40)); // Avoid a historical error.
-
-            Assert.That(percentComplete_Below_0, Is.EqualTo(0));
-            Assert.That(percentComplete_60, Is.EqualTo(60));
-            Assert.That(percentComplete_70, Is.EqualTo(70));
-            Assert.That(percentComplete_80, Is.EqualTo(80));
-            Assert.That(percentComplete_90, Is.EqualTo(90));
-            Assert.That(percentComplete_100, Is.EqualTo(100));
-            Assert.That(percentComplete_Above_100, Is.EqualTo(100));
-        }
-
-        [Test]
-        public void Exercise_With_No_Initial_Metronome_Speed_CalculatePercentComplete_Progress_Is_Accurately_Measured()
+        public void Exercise_With_Metronome_Speed_CalculatePercentComplete_Progress_Is_Accurately_Measured()
         {
             Exercise exercise = new Exercise
             {
@@ -566,7 +425,6 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                 DateModified = DateTime.Parse("2018-02-02 11:03:59"),
 
                 TargetPracticeTime = null,
-                InitialMetronomeSpeed = null,
                 TargetMetronomeSpeed = 150,
                 PercentageCompleteCalculationType = PercentCompleteCalculationStrategy.MetronomeSpeed,
 

@@ -41,19 +41,6 @@ namespace CygSoft.SmartSession.Desktop.Exercises
             }
         }
 
-        private int? initialMetronomeSpeed;
-        public int? InitialMetronomeSpeed
-        {
-            get
-            {
-                return initialMetronomeSpeed;
-            }
-            set
-            {
-                Set(() => InitialMetronomeSpeed, ref initialMetronomeSpeed, value, true, true);
-            }
-        }
-
         private int? targetMetronomeSpeed;
         [Range(0, 250, ErrorMessage = "Value must be between 0 and 250.")]
         public int? TargetMetronomeSpeed

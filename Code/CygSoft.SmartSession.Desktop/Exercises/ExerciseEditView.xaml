@@ -39,9 +39,6 @@
                             SelectedValuePath="Value"
                             DisplayMemberPath="Description"
                             SelectedValue="{Binding Path=PercentageCompleteCalculationType}" />
-                    <TextBlock Text="Initial Speed:" Margin="5"></TextBlock>
-                    <TextBox MinWidth="60"  Name="InitialMetronomeSpeedTextBox" Text="{Binding InitialMetronomeSpeed, ValidatesOnNotifyDataErrors=True}" 
-                             Margin="5"></TextBox>
                     <TextBlock Text="Target Speed:" Margin="5"></TextBlock>
                     <TextBox MinWidth="60"  Name="TargetMetronomeSpeedTextBox" Text="{Binding TargetMetronomeSpeed, ValidatesOnNotifyDataErrors=True}" 
                              Margin="5"></TextBox>
