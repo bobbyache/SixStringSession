@@ -438,8 +438,8 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
         {
             Exercise exercise = new Exercise
             {
-                DateCreated = DateTime.Parse("2015-10-30 01:02:03"),
-                DateModified = DateTime.Parse("2015-11-20 13:50:59"),
+                DateCreated = null,
+                DateModified = null,
                 InitialMetronomeSpeed = 50,
                 TargetMetronomeSpeed = 150,
                 TargetPracticeTime = null,
