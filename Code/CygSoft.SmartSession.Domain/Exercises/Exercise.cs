@@ -70,10 +70,11 @@ namespace CygSoft.SmartSession.Domain.Exercises
                         return 0;
 
                     // stagger backwards
-                    var numerator = (double)(TargetMetronomeSpeed.Value - firstComfortSpeed) - (lastComfortSpeed - firstComfortSpeed);
+                    var numerator = (double)(lastComfortSpeed - firstComfortSpeed);
                     var denominator = (double)(TargetMetronomeSpeed.Value - firstComfortSpeed);
 
-                    return (numerator / denominator) * 100d;
+                    var percentComplete = (numerator / denominator) * 100d;
+                    return percentComplete > 100 ? 100 : percentComplete;
                 }
             }
             else

@@ -346,8 +346,8 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             Exercise exercise = new Exercise
             {
                 Id = 1,
-                DateCreated = DateTime.Now,
-                DateModified = DateTime.Now,
+                DateCreated = DateTime.Parse("2018/01/01"),
+                DateModified = null,
 
                 TargetMetronomeSpeed = 100,
                 PercentageCompleteCalculationType = PercentCompleteCalculationStrategy.MetronomeSpeed,
@@ -385,7 +385,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
 
             var percentComplete = exercise.GetPercentComplete();
 
-            Assert.That(percentComplete, Is.InRange(66.6, 66.7));
+            Assert.That(percentComplete, Is.InRange(33.3, 33.4));
         }
 
         [Test]
@@ -484,13 +484,13 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         }
 
         [Test]
-        public void Exercise_When_ActivityAdded_With_Higher_MetronomeSpeed_Ensures_Progress_Is_Increased()
+        public void Exercise_With_Initial_Metronome_Speed_CalculatePercentComplete_Progress_Is_Accurately_Measured()
         {
             Exercise exercise = new Exercise
             {
                 Id = 57,
-                DateCreated = DateTime.Parse("2018-12-12 10:56:41"),
-                DateModified = DateTime.Parse("2018-12-12 11:03:59"),
+                DateCreated = DateTime.Parse("2018-10-12 10:56:41"),
+                DateModified = DateTime.Parse("2018-10-12 11:03:59"),
 
                 TargetPracticeTime = null,
                 InitialMetronomeSpeed = 50,
@@ -501,7 +501,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                 {
                     new Sessions.ExerciseActivity {
                         Id = 5,
-                        DateCreated = DateTime.Parse("2018-12-12 10:56:41"),
+                        DateCreated = DateTime.Parse("2018-03-01 10:56:41"),
                         DateModified = null,
                         MetronomeSpeed = 100,
                         Seconds = 8000,
@@ -511,12 +511,95 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
 
                     new Sessions.ExerciseActivity {
                         Id = 6,
-                        DateCreated = DateTime.Parse("2018-12-12 10:56:41"),
+                        DateCreated = DateTime.Parse("2018-03-02 10:56:41"),
                         DateModified = null,
                         MetronomeSpeed = 100,
                         Seconds = 4000,
                         StartTime = DateTime.Parse("2018-03-02 12:15:00"),
                         EndTime = DateTime.Parse("2018-03-02 12:25:00"),
+                        ExerciseId = 57 }
+                }
+            };
+
+            var percentComplete_50 = exercise.GetPercentComplete();
+
+            exercise.AddRecording(40, 15, DateTime.Parse("2018-12-13 10:03:26"), DateTime.Parse("2018-12-13 10:03:42"));
+            var percentComplete_Below_0 = exercise.GetPercentComplete();
+
+            exercise.AddRecording(110, 15, DateTime.Parse("2018-12-13 11:03:26"), DateTime.Parse("2018-12-13 11:03:42"));
+            var percentComplete_60 = exercise.GetPercentComplete();
+
+            exercise.AddRecording(120, 15, DateTime.Parse("2018-12-14 11:03:26"), DateTime.Parse("2018-12-14 11:03:42"));
+            var percentComplete_70 = exercise.GetPercentComplete();
+
+            exercise.AddRecording(130, 15, DateTime.Parse("2018-12-15 11:03:26"), DateTime.Parse("2018-12-15 11:03:42"));
+            var percentComplete_80 = exercise.GetPercentComplete();
+
+            exercise.AddRecording(140, 15, DateTime.Parse("2018-12-16 11:03:26"), DateTime.Parse("2018-12-16 11:03:42"));
+            var percentComplete_90 = exercise.GetPercentComplete();
+
+            exercise.AddRecording(150, 15, DateTime.Parse("2018-12-17 11:03:26"), DateTime.Parse("2018-12-17 11:03:42"));
+            var percentComplete_100 = exercise.GetPercentComplete();
+
+            exercise.AddRecording(160, 15, DateTime.Parse("2018-12-18 11:03:26"), DateTime.Parse("2018-12-18 11:03:42"));
+            var percentComplete_Above_100 = exercise.GetPercentComplete();
+
+            Assert.That(percentComplete_50, Is.EqualTo(50));
+            Assert.That(percentComplete_60, Is.Not.EqualTo(40)); // Avoid a historical error.
+
+            Assert.That(percentComplete_Below_0, Is.EqualTo(0));
+            Assert.That(percentComplete_60, Is.EqualTo(60));
+            Assert.That(percentComplete_70, Is.EqualTo(70));
+            Assert.That(percentComplete_80, Is.EqualTo(80));
+            Assert.That(percentComplete_90, Is.EqualTo(90));
+            Assert.That(percentComplete_100, Is.EqualTo(100));
+            Assert.That(percentComplete_Above_100, Is.EqualTo(100));
+        }
+
+        [Test]
+        public void Exercise_With_No_Initial_Metronome_Speed_CalculatePercentComplete_Progress_Is_Accurately_Measured()
+        {
+            Exercise exercise = new Exercise
+            {
+                Id = 57,
+                DateCreated = DateTime.Parse("2018-02-02 10:56:41"),
+                DateModified = DateTime.Parse("2018-02-02 11:03:59"),
+
+                TargetPracticeTime = null,
+                InitialMetronomeSpeed = null,
+                TargetMetronomeSpeed = 150,
+                PercentageCompleteCalculationType = PercentCompleteCalculationStrategy.MetronomeSpeed,
+
+                ExerciseActivity = new List<Sessions.ExerciseActivity>
+                {
+                        new Sessions.ExerciseActivity {
+                        Id = 5,
+                        DateCreated = DateTime.Parse("2018-02-03 10:56:41"),
+                        DateModified = null,
+                        MetronomeSpeed = 50,
+                        Seconds = 8000,
+                        StartTime = DateTime.Parse("2018-02-03 12:15:00"),
+                        EndTime = DateTime.Parse("2018-02-03 12:25:00"),
+                        ExerciseId = 57 },
+
+                    new Sessions.ExerciseActivity {
+                        Id = 5,
+                        DateCreated = DateTime.Parse("2018-02-04 10:56:41"),
+                        DateModified = null,
+                        MetronomeSpeed = 100,
+                        Seconds = 8000,
+                        StartTime = DateTime.Parse("2018-02-04 12:15:00"),
+                        EndTime = DateTime.Parse("2018-02-04 12:25:00"),
+                        ExerciseId = 57 },
+
+                    new Sessions.ExerciseActivity {
+                        Id = 6,
+                        DateCreated = DateTime.Parse("2018-02-05 10:56:41"),
+                        DateModified = null,
+                        MetronomeSpeed = 100,
+                        Seconds = 4000,
+                        StartTime = DateTime.Parse("2018-02-05 12:15:00"),
+                        EndTime = DateTime.Parse("2018-02-05 12:25:00"),
                         ExerciseId = 57 }
                 }
             };
