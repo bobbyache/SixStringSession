@@ -55,10 +55,11 @@ namespace CygSoft.SmartSession.Domain.Exercises
                     if (lastComfortSpeed <= InitialMetronomeSpeed.Value)
                         return 0;
 
-                    var numerator = (double)(TargetMetronomeSpeed.Value - lastComfortSpeed);
+                    var numerator = (double)(lastComfortSpeed - InitialMetronomeSpeed.Value);
                     var denominator = (double)(TargetMetronomeSpeed.Value - InitialMetronomeSpeed.Value);
                     
-                    return (numerator / denominator) * 100d;
+                    var percentComplete = (numerator / denominator) * 100d;
+                    return percentComplete > 100 ? 100 : percentComplete;
                 }
                 else
                 {
