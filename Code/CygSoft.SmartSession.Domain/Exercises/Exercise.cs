@@ -20,6 +20,9 @@ namespace CygSoft.SmartSession.Domain.Exercises
         public int? TargetMetronomeSpeed { get; set; }
         public int? TargetPracticeTime { get; set; }
 
+        public int? SpeedProgressWeighting { get; set; }
+        public int? PracticeTimeProgressWeighting { get; set; }
+
         public PercentCompleteCalculationStrategy PercentageCompleteCalculationType { get; set; }
 
         public List<ExerciseKeyword> ExerciseKeywords { get; set; }

@@ -12,7 +12,9 @@ CREATE PROCEDURE `sp_InsertExercise`
     in _practicalityRating int(11),
     in _percentageCompleteCalculationType int(11),
     in _targetMetronomeSpeed int(11),
-    in _targetPracticeTime int(11)
+    in _speedProgressWeighting int(11),
+    in _targetPracticeTime int(11),
+    in _practiceTimeProgressWeighting int(11)
 )
 BEGIN
 	INSERT INTO Exercise
@@ -22,7 +24,9 @@ BEGIN
         PracticalityRating, 
         PercentageCompleteCalculationType, 
         TargetMetronomeSpeed, 
-        TargetPracticeTime, 
+        SpeedProgressWeighting,
+        TargetPracticeTime,
+        PracticeTimeProgressWeighting,
         DateCreated, 
         DateModified
 	) 
@@ -33,7 +37,9 @@ BEGIN
         _practicalityRating,
         _percentageCompleteCalculationType,
         _targetMetronomeSpeed,
+        _speedProgressWeighting,
         _targetPracticeTime,
+        _practiceTimeProgressWeighting,
 		NOW(), 
         NULL
 	);
@@ -51,7 +57,9 @@ BEGIN
         PracticalityRating, 
         PercentageCompleteCalculationType, 
         TargetMetronomeSpeed, 
+        SpeedProgressWeighting,
         TargetPracticeTime, 
+        PracticeTimeProgressWeighting,
         DateCreated, 
         DateModified
 	FROM Exercise WHERE Id = _id;
@@ -70,7 +78,9 @@ CREATE PROCEDURE `sp_UpdateExercise`(
 	in _difficultyRating int,
 	in _practicalityRating int,
 	in _targetPracticeTime int,
-	in _targetMetronomeSpeed int
+    in _practiceTimeProgressWeighting int,
+	in _targetMetronomeSpeed int,
+    in _speedProgressWeighting int
 	)
 BEGIN
 	UPDATE Exercise SET 
@@ -78,7 +88,9 @@ BEGIN
 		DifficultyRating = _difficultyRating,
 		PracticalityRating = _practicalityRating,
 		TargetPracticeTime = _targetPracticeTime,
+        PracticeTimeProgressWeighting = _practiceTimeProgressWeighting,
 		TargetMetronomeSpeed = _targetMetronomeSpeed,
+        SpeedProgressWeighting = _speedProgressWeighting,
 		DateModified = NOW()
 	WHERE Id = _id;
 END;

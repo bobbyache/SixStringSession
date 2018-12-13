@@ -23,7 +23,9 @@ namespace CygSoft.SmartSession.Dal.MySql
                     _practicalityRating = entity.PracticalityRating,
                     _percentageCompleteCalculationType = entity.PercentageCompleteCalculationType,
                     _targetMetronomeSpeed = entity.TargetMetronomeSpeed,
-                    _targetPracticeTime = entity.TargetPracticeTime
+                    _speedProgressWeighting = entity.SpeedProgressWeighting,
+                    _targetPracticeTime = entity.TargetPracticeTime,
+                    _practiceTimeProgressWeighting = entity.PracticeTimeProgressWeighting
                 },
                 commandType: CommandType.StoredProcedure
                 );
@@ -99,6 +101,8 @@ namespace CygSoft.SmartSession.Dal.MySql
 	                    _practicalityRating = entity.PracticalityRating,
 	                    _targetPracticeTime = entity.TargetPracticeTime,
 	                    _targetMetronomeSpeed = entity.TargetMetronomeSpeed,
+                        _speedProgressWeighting = entity.SpeedProgressWeighting,
+                        _practiceTimeProgressWeighting = entity.PracticeTimeProgressWeighting
                 },
                 commandType: CommandType.StoredProcedure
                 );
