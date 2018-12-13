@@ -161,7 +161,7 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
 
 
         [Test]
-        public void ExerciseRepository_Creates_A_New_Metronome_Exercise_Successfully()
+        public void ExerciseRepository_Creates_A_New_Exercise_Successfully()
         {
             Funcs.RunScript("delete-all-records.sql", Settings.AppConnectionString);
 
@@ -183,6 +183,8 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
 
             Assert.That(ex1.Title, Is.EqualTo("Created Exercise Title"));
             Assert.That(ex1.TargetMetronomeSpeed, Is.EqualTo(150));
+            Assert.That(ex1.SpeedProgressWeighting, Is.EqualTo(50));
+            Assert.That(ex1.PracticeTimeProgressWeighting, Is.EqualTo(50));
             Assert.That(ex1.TargetPracticeTime, Is.Null);
             Assert.That(ex1.PercentageCompleteCalculationType, Is.EqualTo(PercentCompleteCalculationStrategy.MetronomeSpeed));
             Assert.That(ex1.PracticalityRating, Is.EqualTo(2));
@@ -192,7 +194,7 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
         }
 
         [Test]
-        public void ExerciseRepository_Updates_A_Metronome_Exercise_Successfully()
+        public void ExerciseRepository_Updates_An_Exercise_Successfully()
         {
             Funcs.RunScript("delete-all-records.sql", Settings.AppConnectionString);
 
@@ -211,6 +213,9 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
                 existingExercise.PracticalityRating = 5;
                 existingExercise.DifficultyRating = 5;
                 existingExercise.TargetMetronomeSpeed = 200;
+                existingExercise.SpeedProgressWeighting = 100;
+                existingExercise.TargetPracticeTime = 5000;
+                existingExercise.PracticeTimeProgressWeighting = 100;
 
                 uow.Exercises.Update(existingExercise);
                 uow.Commit();
@@ -225,13 +230,15 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
 
             Assert.That(modifiedExercise.Title, Is.EqualTo("Modified Exercise Title"));
             Assert.That(modifiedExercise.TargetMetronomeSpeed, Is.EqualTo(200));
-            Assert.That(modifiedExercise.TargetPracticeTime, Is.Null);
             Assert.That(modifiedExercise.PercentageCompleteCalculationType, Is.EqualTo(PercentCompleteCalculationStrategy.MetronomeSpeed));
             Assert.That(modifiedExercise.PracticalityRating, Is.EqualTo(5));
             Assert.That(modifiedExercise.DifficultyRating, Is.EqualTo(5));
             Assert.That(modifiedExercise.DateCreated, Is.Not.Null);
             Assert.That(modifiedExercise.DateModified, Is.Not.Null);
             Assert.That(modifiedExercise.DateModified, Is.GreaterThanOrEqualTo(currentTime));
+            Assert.That(modifiedExercise.SpeedProgressWeighting, Is.EqualTo(100));
+            Assert.That(modifiedExercise.PracticeTimeProgressWeighting, Is.EqualTo(100));
+            Assert.That(modifiedExercise.TargetPracticeTime, Is.EqualTo(5000));
         }
 
         [Test]

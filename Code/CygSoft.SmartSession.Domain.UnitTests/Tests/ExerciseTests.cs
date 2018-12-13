@@ -13,6 +13,14 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
     public class ExerciseTests
     {
         [Test]
+        public void Exercise_Create_Has_Default_Progress_Weightings()
+        {
+            var exercise = new Exercise();
+            Assert.That(exercise.PracticeTimeProgressWeighting, Is.EqualTo(50));
+            Assert.That(exercise.SpeedProgressWeighting, Is.EqualTo(50));
+        }
+
+        [Test]
         public void Exercise_GetSecondsPracticed_With_NoActivity_Recorded_Returns_0_Seconds()
         {
             Exercise exercise = new Exercise

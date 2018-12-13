@@ -52,6 +52,28 @@ namespace CygSoft.SmartSession.Desktop.Exercises
             }
         }
 
+        private int speedProgressWeighting;
+        [Range(0, 100, ErrorMessage = "Value must be between 0 and 100.")]
+        public int SpeedProgressWeighting
+        {
+            get { return speedProgressWeighting; }
+            set
+            {
+                Set(() => SpeedProgressWeighting, ref speedProgressWeighting, value, true, true);
+            }
+        }
+
+        private int practiceTimeProgressWeighting;
+        [Range(0, 100, ErrorMessage = "Value must be between 0 and 100.")]
+        public int PracticeTimeProgressWeighting
+        {
+            get { return practiceTimeProgressWeighting; }
+            set
+            {
+                Set(() => PracticeTimeProgressWeighting, ref practiceTimeProgressWeighting, value, true, true);
+            }
+        }
+
         private int? targetPracticeTime;
         [Range(0, 1000000000, ErrorMessage = "Value must be between 0 and 1,000,000,000.")]
         public int? TargetPracticeTime

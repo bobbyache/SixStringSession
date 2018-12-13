@@ -55,6 +55,8 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
             Assert.AreEqual(4, viewModel.PracticalityRating);
             Assert.AreEqual(120, viewModel.TargetMetronomeSpeed);
             Assert.AreEqual(15000, viewModel.TargetPracticeTime);
+            Assert.AreEqual(50, viewModel.SpeedProgressWeighting);
+            Assert.AreEqual(50, viewModel.PracticeTimeProgressWeighting);
         }
 
         [Test]
@@ -71,6 +73,8 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
             viewModel.PracticalityRating = 1;
             viewModel.TargetMetronomeSpeed = 100;
             viewModel.TargetPracticeTime = 15000;
+            viewModel.PracticeTimeProgressWeighting = 30;
+            viewModel.SpeedProgressWeighting = 70;
 
             viewModel.Commit();
 
@@ -80,6 +84,8 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
             Assert.AreEqual(1, exercise.PracticalityRating);
             Assert.AreEqual(100, exercise.TargetMetronomeSpeed);
             Assert.AreEqual(15000, exercise.TargetPracticeTime);
+            Assert.AreEqual(30, exercise.PracticeTimeProgressWeighting);
+            Assert.AreEqual(70, exercise.SpeedProgressWeighting);
         }
 
         private Exercise GetExistingTestExercise()

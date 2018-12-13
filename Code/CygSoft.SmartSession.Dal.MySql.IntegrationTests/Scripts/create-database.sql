@@ -19,9 +19,9 @@ CREATE TABLE IF NOT EXISTS `exercise` (
   `PracticalityRating` int(11)  NOT NULL,
   `PercentageCompleteCalculationType` int(11) NOT NULL,
   `TargetMetronomeSpeed` int(11) DEFAULT NULL,
-  `SpeedProgressWeighting` int(11) DEFAULT NULL,
+  `SpeedProgressWeighting` int(11) NOT NULL,
   `TargetPracticeTime` int(11) DEFAULT NULL,
-  `PracticeTimeProgressWeighting` int(11) DEFAULT NULL,
+  `PracticeTimeProgressWeighting` int(11) NOT NULL,
   `DateCreated` datetime NOT NULL,
   `DateModified` datetime NULL,
   PRIMARY KEY (`Id`)
