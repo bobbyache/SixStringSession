@@ -1,6 +1,7 @@
 ﻿using CygSoft.SmartSession.Domain.Common;
 using CygSoft.SmartSession.Domain.Keywords;
 using CygSoft.SmartSession.Domain.Sessions;
+using CygSoft.SmartSession.Infrastructure;
 using CygSoft.SmartSession.Infrastructure.Enums;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,23 @@ namespace CygSoft.SmartSession.Domain.Exercises
 {
     public class Exercise : Entity
     {
+        private class WeightedMetric : IWeightedEntity
+        {
+            private readonly double percentCompleted;
+
+            public WeightedMetric(double percentComplete, int weighting)
+            {
+                percentCompleted = percentComplete;
+                Weighting = weighting;
+            }
+            public int Weighting { get; private set; }
+
+            public double PercentCompleted()
+            {
+                return percentCompleted;
+            }
+        }
+
         [Required]
         [Column(TypeName = "nvarchar(150)")]
         public string Title { get; set; }
@@ -43,10 +61,11 @@ namespace CygSoft.SmartSession.Domain.Exercises
             if (ExerciseActivity == null || !ExerciseActivity.Any())
                 return 0;
 
-            if (PercentageCompleteCalculationType == PercentCompleteCalculationStrategy.MetronomeSpeed)
-                return CalculateSpeedPercentComplete();
-            else
-                return CalculatePracticeTimePercentComplete();
+            var calculator = new WeightedProgressCalculator();
+            calculator.Add(new WeightedMetric(CalculateSpeedPercentComplete(), SpeedProgressWeighting));
+            calculator.Add(new WeightedMetric(CalculatePracticeTimePercentComplete(), PracticeTimeProgressWeighting));
+
+            return calculator.CalculateTotalProgress();
         }
 
         private double CalculatePracticeTimePercentComplete()
