@@ -24,13 +24,18 @@
         </Border>
 
         <Border DockPanel.Dock="Bottom"  Background="GhostWhite" BorderBrush="Gainsboro" BorderThickness="1" Padding="5" Margin="5">
-            <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
-                <StackPanel Orientation="Vertical">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock TextAlignment="Right" Margin="2" MinWidth="50" >Speed</TextBlock>
-                        <TextBox Margin="2" MinWidth="50" Text="{Binding MetronomeSpeed}" />
+            <StackPanel>
+                <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock TextAlignment="Right" Margin="2" MinWidth="50" >Speed</TextBlock>
+                            <TextBox Margin="2" MinWidth="50" Text="{Binding MetronomeSpeed}" />
+                        </StackPanel>
                     </StackPanel>
                 </StackPanel>
+                <Slider Margin="5" MinWidth="100" Maximum="100" TickFrequency="1" 
+                            Value="{Binding ManualProgress, ValidatesOnNotifyDataErrors=True}"
+                             TickPlacement="BottomRight" IsSnapToTickEnabled="True"></Slider>
             </StackPanel>
         </Border>
         <Border DockPanel.Dock="Bottom"  Background="GhostWhite" BorderBrush="Gainsboro" BorderThickness="1" Padding="5" Margin="5">

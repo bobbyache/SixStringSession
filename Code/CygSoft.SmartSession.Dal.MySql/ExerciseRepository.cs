@@ -24,7 +24,8 @@ namespace CygSoft.SmartSession.Dal.MySql
                     _targetMetronomeSpeed = entity.TargetMetronomeSpeed,
                     _speedProgressWeighting = entity.SpeedProgressWeighting,
                     _targetPracticeTime = entity.TargetPracticeTime,
-                    _practiceTimeProgressWeighting = entity.PracticeTimeProgressWeighting
+                    _practiceTimeProgressWeighting = entity.PracticeTimeProgressWeighting,
+                    _manualProgressWeighting = entity.ManualProgressWeighting
                 },
                 commandType: CommandType.StoredProcedure
                 );
@@ -101,7 +102,8 @@ namespace CygSoft.SmartSession.Dal.MySql
 	                    _targetPracticeTime = entity.TargetPracticeTime,
 	                    _targetMetronomeSpeed = entity.TargetMetronomeSpeed,
                         _speedProgressWeighting = entity.SpeedProgressWeighting,
-                        _practiceTimeProgressWeighting = entity.PracticeTimeProgressWeighting
+                        _practiceTimeProgressWeighting = entity.PracticeTimeProgressWeighting,
+                        _manualProgressWeighting = entity.ManualProgressWeighting
                 },
                 commandType: CommandType.StoredProcedure
                 );
@@ -142,7 +144,8 @@ namespace CygSoft.SmartSession.Dal.MySql
                     _startTime = exerciseActivity.StartTime,
                     _endTime = exerciseActivity.EndTime,
                     _seconds = exerciseActivity.Seconds,
-                    _metronomeSpeed = exerciseActivity.MetronomeSpeed
+                    _metronomeSpeed = exerciseActivity.MetronomeSpeed,
+                    _manualProgress = exerciseActivity.ManualProgress
                 },
                 commandType: CommandType.StoredProcedure
             );
@@ -177,7 +180,8 @@ namespace CygSoft.SmartSession.Dal.MySql
                         _startTime = activity.StartTime,
                         _endTime = activity.EndTime,
                         _seconds = activity.Seconds,
-                        _metronomeSpeed = activity.MetronomeSpeed
+                        _metronomeSpeed = activity.MetronomeSpeed,
+                        _manualProgress = activity.ManualProgress
                     },
                     commandType: CommandType.StoredProcedure
                     );

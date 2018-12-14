@@ -17,6 +17,7 @@ namespace CygSoft.SmartSession.Domain.Sessions
         public DateTime EndTime { get; set; }
 
         public int ExerciseId { get; set; }
-   
+
+        public int ManualProgress { get; set; }
     }
 }

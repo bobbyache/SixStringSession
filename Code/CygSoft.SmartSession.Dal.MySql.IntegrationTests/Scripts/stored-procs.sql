@@ -13,7 +13,8 @@ CREATE PROCEDURE `sp_InsertExercise`
     in _targetMetronomeSpeed int(11),
     in _speedProgressWeighting int(11),
     in _targetPracticeTime int(11),
-    in _practiceTimeProgressWeighting int(11)
+    in _practiceTimeProgressWeighting int(11),
+    in _manualProgressWeighting int(11)
 )
 BEGIN
 	INSERT INTO Exercise
@@ -25,6 +26,7 @@ BEGIN
         SpeedProgressWeighting,
         TargetPracticeTime,
         PracticeTimeProgressWeighting,
+        ManualProgressWeighting,
         DateCreated, 
         DateModified
 	) 
@@ -37,6 +39,7 @@ BEGIN
         _speedProgressWeighting,
         _targetPracticeTime,
         _practiceTimeProgressWeighting,
+        _manualProgressWeighting,
 		NOW(), 
         NULL
 	);
@@ -56,6 +59,7 @@ BEGIN
         SpeedProgressWeighting,
         TargetPracticeTime, 
         PracticeTimeProgressWeighting,
+        ManualProgressWeighting,
         DateCreated, 
         DateModified
 	FROM Exercise WHERE Id = _id;
@@ -76,7 +80,8 @@ CREATE PROCEDURE `sp_UpdateExercise`(
 	in _targetPracticeTime int,
     in _practiceTimeProgressWeighting int,
 	in _targetMetronomeSpeed int,
-    in _speedProgressWeighting int
+    in _speedProgressWeighting int,
+    in _manualProgressWeighting int
 	)
 BEGIN
 	UPDATE Exercise SET 
@@ -87,6 +92,7 @@ BEGIN
         PracticeTimeProgressWeighting = _practiceTimeProgressWeighting,
 		TargetMetronomeSpeed = _targetMetronomeSpeed,
         SpeedProgressWeighting = _speedProgressWeighting,
+        ManualProgressWeighting = _manualProgressWeighting,
 		DateModified = NOW()
 	WHERE Id = _id;
 END;
@@ -130,7 +136,8 @@ CREATE PROCEDURE `sp_InsertExerciseActivity`
 	in _startTime datetime,
 	in _endTime datetime,
 	in _seconds int(11),
-	in _metronomeSpeed int(11)
+	in _metronomeSpeed int(11),
+    in _manualProgress int(11)
 )
 BEGIN
 	INSERT INTO ExerciseActivity
@@ -140,6 +147,7 @@ BEGIN
 		EndTime,
 		Seconds,
 		MetronomeSpeed,
+        ManualProgress,
 		DateCreated
 	) 
 	VALUES 
@@ -149,6 +157,7 @@ BEGIN
 		_endTime,
 		_seconds,
 		_metronomeSpeed,
+        _manualProgress,
 		NOW()
 	);
 	SELECT LAST_INSERT_ID();
@@ -165,6 +174,7 @@ BEGIN
 		EndTime,
 		Seconds,
 		MetronomeSpeed,
+        ManualProgress,
 		DateCreated,
 		DateModified
 	FROM ExerciseActivity WHERE Id = _id;
@@ -184,7 +194,8 @@ CREATE PROCEDURE `sp_UpdateExerciseActivity`(
 	_startTime datetime,
 	_endTime datetime,
 	_seconds int,
-	_metronomeSpeed int
+	_metronomeSpeed int,
+    _manualProgress int
 	)
 BEGIN
 	UPDATE ExerciseActivity SET 
@@ -192,6 +203,7 @@ BEGIN
 		EndTime = _endTime,
 		Seconds = _seconds,
 		MetronomeSpeed = _metronomeSpeed,
+        ManualProgress = _manualProgress,
 		DateModified = NOW()
 	WHERE Id = _id;
 END;
@@ -208,6 +220,7 @@ BEGIN
 		EndTime,
 		Seconds,
 		MetronomeSpeed,
+        ManualProgress,
 		DateCreated,
 		DateModified
 	FROM ExerciseActivity

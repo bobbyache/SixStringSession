@@ -121,6 +121,17 @@ namespace CygSoft.SmartSession.Desktop.Exercises
             }
         }
 
+        private int manualProgress;
+        [Range(0, 100, ErrorMessage = "Value must be between 0 and 100.")]
+        public int ManualProgress
+        {
+            get { return manualProgress; }
+            set
+            {
+                Set(() => ManualProgress, ref manualProgress, value, true, true);
+            }
+        }
+
         public ExerciseRecorderViewModel(IExerciseService exerciseService, IDialogViewService dialogService, IExerciseRecorder exerciseRecorder)
         {
             this.exerciseService = exerciseService ?? throw new ArgumentNullException("Service must be provided.");
@@ -170,6 +181,7 @@ namespace CygSoft.SmartSession.Desktop.Exercises
             StartButtonVisible = true;
 
             this.MetronomeSpeed = 0;
+            this.ManualProgress = exercise.GetLastRecordedManualProgress();
             this.ExerciseTitle = exercise.Title;
             this.CurrentSpeedInfo = $"Current: {exercise.GetLastRecordedSpeed()} bpm - Target: {exercise.TargetMetronomeSpeed ?? 0} bpm";
             this.ActivityRecordedDisplayTime = "00:00:00";
@@ -223,7 +235,7 @@ namespace CygSoft.SmartSession.Desktop.Exercises
 
         private void SaveRecording()
         {
-            exercise.AddRecording(MetronomeSpeed, (int)exerciseRecorder.Seconds, 
+            exercise.AddRecording(MetronomeSpeed, (int)exerciseRecorder.Seconds, ManualProgress,
                 exerciseRecorder.StartTime, exerciseRecorder.EndTime);
 
             exerciseService.Update(exercise);

@@ -47,8 +47,13 @@
                              Margin="5"></TextBox>
 
                     </StackPanel>
+                    
                     <Slider Margin="5" MinWidth="100" Maximum="100" TickFrequency="1" 
                             Value="{Binding PracticeTimeProgressWeighting, ValidatesOnNotifyDataErrors=True}"
+                             TickPlacement="BottomRight" IsSnapToTickEnabled="True"></Slider>
+                    <TextBlock Text="Manual Progress Weighting:" MinWidth="80" Margin="5"></TextBlock>
+                    <Slider Margin="5" MinWidth="100" Maximum="100" TickFrequency="1" 
+                            Value="{Binding ManualProgressWeighting, ValidatesOnNotifyDataErrors=True}"
                              TickPlacement="BottomRight" IsSnapToTickEnabled="True"></Slider>
                 </StackPanel>
             </Border>

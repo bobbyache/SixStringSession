@@ -40,6 +40,7 @@ namespace CygSoft.SmartSession.Domain.Exercises
 
         public int SpeedProgressWeighting { get; set; } = 50; // half way...
         public int PracticeTimeProgressWeighting { get; set; } = 50; // half way...
+        public int ManualProgressWeighting { get; set; } = 0; // default to no weighting.
 
         public List<ExerciseKeyword> ExerciseKeywords { get; set; }
 
@@ -54,16 +55,31 @@ namespace CygSoft.SmartSession.Domain.Exercises
             return ExerciseActivity.Where(a => a.EndTime == endDate).Select(a => a.MetronomeSpeed).SingleOrDefault();
         }
 
+        public int GetLastRecordedManualProgress()
+        {
+            if (ExerciseActivity == null || !ExerciseActivity.Any())
+                return 0;
+
+            var endDate = ExerciseActivity.Max(a => a.EndTime);
+            return ExerciseActivity.Where(a => a.EndTime == endDate).Select(a => a.ManualProgress).SingleOrDefault();
+        }
+
         public double GetPercentComplete()
         {
             if (ExerciseActivity == null || !ExerciseActivity.Any())
                 return 0;
 
             var calculator = new WeightedProgressCalculator();
+            calculator.Add(new WeightedMetric(GetManualProgressPercentComplete(), ManualProgressWeighting));
             calculator.Add(new WeightedMetric(CalculateSpeedPercentComplete(), SpeedProgressWeighting));
             calculator.Add(new WeightedMetric(CalculatePracticeTimePercentComplete(), PracticeTimeProgressWeighting));
 
             return calculator.CalculateTotalProgress();
+        }
+
+        private double GetManualProgressPercentComplete()
+        {
+            return (double)GetLastManualProgressPercentage();
         }
 
         private double CalculatePracticeTimePercentComplete()
@@ -97,6 +113,17 @@ namespace CygSoft.SmartSession.Domain.Exercises
             return percentComplete > 100 ? 100 : percentComplete;
         }
 
+        private int GetLastManualProgressPercentage()
+        {
+            if (ExerciseActivity == null || !ExerciseActivity.Any())
+                return 0;
+
+            // get the last record, get the speed.
+            var lastActivityDate = ExerciseActivity.Max(a => a.EndTime);
+            var manualProgress = ExerciseActivity.Where(a => a.EndTime == lastActivityDate).Select(a => a.ManualProgress).SingleOrDefault();
+            return manualProgress;
+        }
+
         private int GetFirstRecordedSpeed()
         {
             if (ExerciseActivity == null || !ExerciseActivity.Any())
@@ -120,11 +147,12 @@ namespace CygSoft.SmartSession.Domain.Exercises
 
         }
 
-        public ExerciseActivity AddRecording(int speed, int seconds, DateTime startTime, DateTime endTime)
+        public ExerciseActivity AddRecording(int speed, int seconds, int manualProgress, DateTime startTime, DateTime endTime)
         {
             var exerciseActivity = new ExerciseActivity
             {
                 MetronomeSpeed = speed,
+                ManualProgress = manualProgress,
                 Seconds = seconds,
                 StartTime = startTime,
                 EndTime = endTime,

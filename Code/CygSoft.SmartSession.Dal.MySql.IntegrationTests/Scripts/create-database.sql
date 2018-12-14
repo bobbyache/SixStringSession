@@ -21,6 +21,7 @@ CREATE TABLE IF NOT EXISTS `exercise` (
   `SpeedProgressWeighting` int(11) NOT NULL,
   `TargetPracticeTime` int(11) DEFAULT NULL,
   `PracticeTimeProgressWeighting` int(11) NOT NULL,
+  `ManualProgressWeighting` int(11) NOT NULL,
   `DateCreated` datetime NOT NULL,
   `DateModified` datetime NULL,
   PRIMARY KEY (`Id`)
@@ -33,6 +34,7 @@ CREATE TABLE IF NOT EXISTS `smartsession_tests`.`exerciseactivity` (
   `EndTime` DATETIME NOT NULL COMMENT 'Time is not calculated from StartTime to EndTime, these metrics are just there in order to give context and attach to a diary.',
   `Seconds` INT NOT NULL,
   `MetronomeSpeed` INT NOT NULL,
+  `ManualProgress` INT NOT NULL,
   `DateCreated` DATETIME NOT NULL COMMENT 'A generic exercise activity.',
   `DateModified` DATETIME NULL,
   PRIMARY KEY (`Id`),
