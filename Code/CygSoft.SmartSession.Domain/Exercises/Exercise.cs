@@ -44,33 +44,39 @@ namespace CygSoft.SmartSession.Domain.Exercises
                 return 0;
 
             if (PercentageCompleteCalculationType == PercentCompleteCalculationStrategy.MetronomeSpeed)
-            {
-                if (!TargetMetronomeSpeed.HasValue)
-                    return 0;
-
-                if (TargetMetronomeSpeed == 0)
-                    return 0;
-
-                var firstSpeed = GetFirstRecordedSpeed();
-                var lastSpeed = GetLastRecordedSpeed();
-
-                if (lastSpeed <= firstSpeed)
-                    return 0;
-
-                // stagger backwards
-                var numerator = (double)(lastSpeed - firstSpeed);
-                var denominator = (double)(TargetMetronomeSpeed.Value - firstSpeed);
-
-                var percentComplete = (numerator / denominator) * 100d;
-                return percentComplete > 100 ? 100 : percentComplete;
-            }
+                return CalculateSpeedPercentComplete();
             else
-            {
-                if (!TargetPracticeTime.HasValue)
-                    return 0;
+                return CalculatePracticeTimePercentComplete();
+        }
 
-                return (GetSecondsPracticed() / TargetPracticeTime.Value) * 100d;
-            }
+        private double CalculatePracticeTimePercentComplete()
+        {
+            if (!TargetPracticeTime.HasValue)
+                return 0;
+
+            return (GetSecondsPracticed() / TargetPracticeTime.Value) * 100d;
+        }
+
+        private double CalculateSpeedPercentComplete()
+        {
+            if (!TargetMetronomeSpeed.HasValue)
+                return 0;
+
+            if (TargetMetronomeSpeed == 0)
+                return 0;
+
+            var firstSpeed = GetFirstRecordedSpeed();
+            var lastSpeed = GetLastRecordedSpeed();
+
+            if (lastSpeed <= firstSpeed)
+                return 0;
+
+            // stagger backwards
+            var numerator = (double)(lastSpeed - firstSpeed);
+            var denominator = (double)(TargetMetronomeSpeed.Value - firstSpeed);
+
+            var percentComplete = (numerator / denominator) * 100d;
+            return percentComplete > 100 ? 100 : percentComplete;
         }
 
         private int GetFirstRecordedSpeed()
