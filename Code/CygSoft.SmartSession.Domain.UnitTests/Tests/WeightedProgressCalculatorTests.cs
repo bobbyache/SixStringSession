@@ -17,9 +17,9 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         {
             var calculator = new WeightedProgressCalculator();
 
-            calculator.Add(new WeightedObj(100) { Weighting = 6000 });
-            calculator.Add(new WeightedObj(60) { Weighting = 12000 });
-            calculator.Add(new WeightedObj(25) { Weighting = 6000 });
+            calculator.Add(new WeightedObj(100, 6000));
+            calculator.Add(new WeightedObj(60, 12000));
+            calculator.Add(new WeightedObj(25, 6000));
 
             var progress = calculator.CalculateTotalProgress();
 
@@ -31,10 +31,10 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         {
             var calculator = new WeightedProgressCalculator();
 
-            calculator.Add(new WeightedObj(100) { Weighting = 25 });
-            calculator.Add(new WeightedObj(60) { Weighting = 40 });
-            calculator.Add(new WeightedObj(40) { Weighting = 60 });
-            calculator.Add(new WeightedObj(25) { Weighting = 75 });
+            calculator.Add(new WeightedObj(100, 25));
+            calculator.Add(new WeightedObj(60, 40));
+            calculator.Add(new WeightedObj(40, 60));
+            calculator.Add(new WeightedObj(25, 75));
 
             var progress = calculator.CalculateTotalProgress();
 
@@ -46,16 +46,17 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         {
             var calculator = new WeightedProgressCalculator();
 
-            calculator.Add(new WeightedObj(100) { Weighting = 25 });
-            calculator.Add(new WeightedObj(100) { Weighting = 40 });
-            calculator.Add(new WeightedObj(100) { Weighting = 60 });
-            calculator.Add(new WeightedObj(100) { Weighting = 40 });
-            calculator.Add(new WeightedObj(100) { Weighting = 60 });
-            calculator.Add(new WeightedObj(100) { Weighting = 40 });
-            calculator.Add(new WeightedObj(100) { Weighting = 60 });
-            calculator.Add(new WeightedObj(100) { Weighting = 40 });
-            calculator.Add(new WeightedObj(100) { Weighting = 60 });
-            calculator.Add(new WeightedObj(100) { Weighting = 75 });
+            calculator.Add(new WeightedObj(100, 25));
+            calculator.Add(new WeightedObj(100, 40));
+            calculator.Add(new WeightedObj(100, 60));
+            calculator.Add(new WeightedObj(100, 40));
+            calculator.Add(new WeightedObj(100, 60));
+            calculator.Add(new WeightedObj(100, 40));
+            calculator.Add(new WeightedObj(100, 60));
+            calculator.Add(new WeightedObj(100, 40));
+            calculator.Add(new WeightedObj(100, 60));
+            calculator.Add(new WeightedObj(100, 75));
+
 
             var progress = calculator.CalculateTotalProgress();
 
@@ -66,11 +67,12 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         {
             private readonly double percentCompleted;
 
-            public WeightedObj(double percentComplete)
+            public WeightedObj(double percentComplete, int weighting)
             {
                 percentCompleted = percentComplete;
+                Weighting = weighting;
             }
-            public int Weighting { get; set; }
+            public int Weighting { get; private set; }
 
             public double PercentCompleted()
             {

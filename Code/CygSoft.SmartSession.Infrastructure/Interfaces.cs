@@ -30,7 +30,7 @@ namespace CygSoft.SmartSession.Infrastructure
 
     public interface IWeightedEntity
     {
-        int Weighting { get; set; }
+        int Weighting { get; }
         double PercentCompleted();
     }
 }
