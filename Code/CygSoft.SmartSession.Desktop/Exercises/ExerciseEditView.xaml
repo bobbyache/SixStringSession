@@ -33,12 +33,6 @@
             </Border>
             <Border DockPanel.Dock="Top" Background="GhostWhite" BorderBrush="Gainsboro" BorderThickness="1" Padding="5" Margin="5">
                 <StackPanel Orientation="Vertical">
-                    <TextBlock Margin="2,2,5,2" Text="Progress:" />
-                    <ComboBox MinWidth="150" ItemsSource="{Binding Path=PercentageCompleteCalculationType, 
-                            Converter={converters:EnumToCollectionConverter}, Mode=OneTime}"
-                            SelectedValuePath="Value"
-                            DisplayMemberPath="Description"
-                            SelectedValue="{Binding Path=PercentageCompleteCalculationType}" />
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="Target Speed:" Margin="5" MinWidth="80" ></TextBlock>
                         <TextBox MinWidth="60"  Name="TargetMetronomeSpeedTextBox" Text="{Binding TargetMetronomeSpeed, ValidatesOnNotifyDataErrors=True}" 

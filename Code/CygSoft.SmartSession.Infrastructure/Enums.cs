@@ -18,12 +18,4 @@ namespace CygSoft.SmartSession.Infrastructure.Enums
         Saved,
         Canceled
     }
-
-    public enum PercentCompleteCalculationStrategy
-    {
-        [Description("Metronome Speed")]
-        MetronomeSpeed = 0,
-        [Description("Practice Time")]
-        PracticeTime = 1
-    }
 }

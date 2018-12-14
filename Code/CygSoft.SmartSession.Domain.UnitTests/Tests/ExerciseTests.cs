@@ -28,9 +28,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                 Id = 1,
                 DateCreated = DateTime.Now,
                 DateModified = DateTime.Now,
-
                 TargetMetronomeSpeed = 100,
-                PercentageCompleteCalculationType = PercentCompleteCalculationStrategy.MetronomeSpeed,
                 ExerciseActivity = null
             };
 
@@ -51,7 +49,6 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                 TargetMetronomeSpeed = 100,
                 PracticeTimeProgressWeighting = 50,
                 TargetPracticeTime = 5000,
-                PercentageCompleteCalculationType = PercentCompleteCalculationStrategy.MetronomeSpeed,
                 ExerciseActivity = null
             };
 
@@ -72,7 +69,6 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                 // -----------------------------------------------------
                 SpeedProgressWeighting = 0,
                 TargetPracticeTime = null,
-                PercentageCompleteCalculationType = PercentCompleteCalculationStrategy.PracticeTime,
                 // -----------------------------------------------------
 
                 ExerciseActivity = new List<Sessions.ExerciseActivity>
@@ -106,7 +102,6 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                 PracticeTimeProgressWeighting = 0,
                 TargetMetronomeSpeed = null,
                 // -----------------------------------------------------
-                PercentageCompleteCalculationType = PercentCompleteCalculationStrategy.MetronomeSpeed,
 
                 ExerciseActivity = new List<Sessions.ExerciseActivity>
                 {
@@ -139,7 +134,6 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                 PracticeTimeProgressWeighting = 0,
                 SpeedProgressWeighting = 50,
                 // -----------------------------------------------------
-                PercentageCompleteCalculationType = PercentCompleteCalculationStrategy.MetronomeSpeed,
 
                 ExerciseActivity = new List<Sessions.ExerciseActivity>
                 {
@@ -172,7 +166,6 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                 SpeedProgressWeighting = 50,
                 PracticeTimeProgressWeighting = 0,
                 // -----------------------------------------------------
-                PercentageCompleteCalculationType = PercentCompleteCalculationStrategy.MetronomeSpeed,
 
                 ExerciseActivity = new List<Sessions.ExerciseActivity>
                 {
@@ -205,7 +198,6 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                 PracticeTimeProgressWeighting = 0,
                 SpeedProgressWeighting = 50,
                 // -----------------------------------------------------
-                PercentageCompleteCalculationType = PercentCompleteCalculationStrategy.MetronomeSpeed,
 
                 ExerciseActivity = new List<Sessions.ExerciseActivity>
                 {
@@ -239,7 +231,6 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                 SpeedProgressWeighting = 50,
                 // -----------------------------------------------------
                 TargetMetronomeSpeed = 150,
-                PercentageCompleteCalculationType = PercentCompleteCalculationStrategy.MetronomeSpeed,
 
                 ExerciseActivity = new List<Sessions.ExerciseActivity>
                 {
@@ -281,7 +272,6 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                 PracticeTimeProgressWeighting = 0, // Only calculate progress by metronome speed.
                 SpeedProgressWeighting = 50,
                 // -----------------------------------------------------
-                PercentageCompleteCalculationType = PercentCompleteCalculationStrategy.MetronomeSpeed,
 
                 ExerciseActivity = new List<Sessions.ExerciseActivity>
                 {
@@ -323,7 +313,6 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                 SpeedProgressWeighting = 50,
                 // -----------------------------------------------------
                 TargetMetronomeSpeed = 100,
-                PercentageCompleteCalculationType = PercentCompleteCalculationStrategy.MetronomeSpeed,
 
                 ExerciseActivity = new List<Sessions.ExerciseActivity>
                 {
@@ -374,7 +363,6 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                 PracticeTimeProgressWeighting = 50,
                 // -----------------------------------------------------
                 TargetPracticeTime = (int)TimeSpan.FromHours(1).TotalSeconds,
-                PercentageCompleteCalculationType = PercentCompleteCalculationStrategy.PracticeTime,
 
                 ExerciseActivity = new List<Sessions.ExerciseActivity>
                 {
@@ -424,7 +412,6 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                 DateCreated = DateTime.Now,
                 DateModified = DateTime.Now,
                 TargetMetronomeSpeed = 150,
-                PercentageCompleteCalculationType = PercentCompleteCalculationStrategy.MetronomeSpeed,
             };
 
             int initialActivityCount = exercise.ExerciseActivity.Count;
@@ -443,7 +430,6 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                 DateCreated = DateTime.Now,
                 DateModified = DateTime.Now,
                 TargetMetronomeSpeed = 150,
-                PercentageCompleteCalculationType = PercentCompleteCalculationStrategy.MetronomeSpeed,
             };
             int no_activities = exercise.ExerciseActivity.Count;
 
@@ -472,7 +458,6 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                 PracticeTimeProgressWeighting = 0, // Only calculate progress by metronome speed.
                 SpeedProgressWeighting = 50,
                 // -----------------------------------------------------
-                PercentageCompleteCalculationType = PercentCompleteCalculationStrategy.MetronomeSpeed,
 
                 ExerciseActivity = new List<Sessions.ExerciseActivity>
                 {
@@ -610,7 +595,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                 TargetPracticeTime = 5000,
                 TargetMetronomeSpeed = 150,
                 // -----------------------------------------------------
-                PracticeTimeProgressWeighting = 100, // Only calculate progress by metronome speed.
+                PracticeTimeProgressWeighting = 100, // Only calculate progress by practice time.
                 SpeedProgressWeighting = 0,
                 // -----------------------------------------------------
 
@@ -665,7 +650,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                 TargetPracticeTime = 5000,
                 TargetMetronomeSpeed = 150,
                 // -----------------------------------------------------
-                PracticeTimeProgressWeighting = 50, // Only calculate progress by metronome speed.
+                PracticeTimeProgressWeighting = 50, // Calculate by both
                 SpeedProgressWeighting = 50,
                 // -----------------------------------------------------
 
@@ -705,6 +690,61 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
 
             var progress = exercise.GetPercentComplete();
             Assert.That(progress, Is.EqualTo(75));
+        }
+
+        [Test]
+        public void Exercise_CalculateProgress_With_SameWeighting_But_Seconds_Over_Calculates_Correctly()
+        {
+            Exercise exercise = new Exercise
+            {
+                Id = 57,
+                DateCreated = DateTime.Parse("2018-02-02 10:56:41"),
+                DateModified = DateTime.Parse("2018-02-02 11:03:59"),
+
+                TargetPracticeTime = 100,
+                TargetMetronomeSpeed = 120,
+                // -----------------------------------------------------
+                PracticeTimeProgressWeighting = 50, // Weight exactly the same
+                SpeedProgressWeighting = 50,
+                // -----------------------------------------------------
+
+                ExerciseActivity = new List<Sessions.ExerciseActivity>
+                {
+                        new Sessions.ExerciseActivity {
+                        Id = 5,
+                        DateCreated = DateTime.Parse("2018-02-03 10:56:41"),
+                        DateModified = null,
+                        MetronomeSpeed = 60, // starting point
+                        Seconds = 50,       // 50%
+                        StartTime = DateTime.Parse("2018-02-03 12:15:00"),
+                        EndTime = DateTime.Parse("2018-02-03 12:25:00"),
+                        ExerciseId = 57 },
+
+                    new Sessions.ExerciseActivity {
+                        Id = 5,
+                        DateCreated = DateTime.Parse("2018-02-04 10:56:41"),
+                        DateModified = null,
+                        MetronomeSpeed = 90, // 50%
+                        Seconds = 50,       // 100%
+                        StartTime = DateTime.Parse("2018-02-04 12:15:00"),
+                        EndTime = DateTime.Parse("2018-02-04 12:25:00"),
+                        ExerciseId = 57 },
+
+                    new Sessions.ExerciseActivity {
+                        Id = 6,
+                        DateCreated = DateTime.Parse("2018-02-05 10:56:41"),
+                        DateModified = null,
+                        MetronomeSpeed = 90, // still 50%
+                        Seconds = 100,      // 200%
+                        StartTime = DateTime.Parse("2018-02-05 12:15:00"),
+                        EndTime = DateTime.Parse("2018-02-05 12:25:00"),
+                        ExerciseId = 57 }
+                }
+            };
+
+            // should be 75% because metronome speed at 50%, practice time at 100%, and weightings are exactly the same.
+            var progress = exercise.GetPercentComplete();
+            Assert.That(progress, Is.EqualTo(75));  
         }
     }
 }

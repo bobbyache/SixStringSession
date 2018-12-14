@@ -31,16 +31,6 @@ namespace CygSoft.SmartSession.Desktop.Exercises
             }
         }
 
-        private PercentCompleteCalculationStrategy percentageCompleteCalculationType;
-        public PercentCompleteCalculationStrategy PercentageCompleteCalculationType
-        {
-            get { return percentageCompleteCalculationType; }
-            set
-            {
-                Set(() => PercentageCompleteCalculationType, ref percentageCompleteCalculationType, value, true, true);
-            }
-        }
-
         private int? targetMetronomeSpeed;
         [Range(0, 250, ErrorMessage = "Value must be between 0 and 250.")]
         public int? TargetMetronomeSpeed

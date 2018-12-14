@@ -186,7 +186,6 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
             Assert.That(ex1.SpeedProgressWeighting, Is.EqualTo(50));
             Assert.That(ex1.PracticeTimeProgressWeighting, Is.EqualTo(50));
             Assert.That(ex1.TargetPracticeTime, Is.Null);
-            Assert.That(ex1.PercentageCompleteCalculationType, Is.EqualTo(PercentCompleteCalculationStrategy.MetronomeSpeed));
             Assert.That(ex1.PracticalityRating, Is.EqualTo(2));
             Assert.That(ex1.DifficultyRating, Is.EqualTo(3));
             Assert.That(ex1.DateCreated, Is.Not.Null);
@@ -230,7 +229,6 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
 
             Assert.That(modifiedExercise.Title, Is.EqualTo("Modified Exercise Title"));
             Assert.That(modifiedExercise.TargetMetronomeSpeed, Is.EqualTo(200));
-            Assert.That(modifiedExercise.PercentageCompleteCalculationType, Is.EqualTo(PercentCompleteCalculationStrategy.MetronomeSpeed));
             Assert.That(modifiedExercise.PracticalityRating, Is.EqualTo(5));
             Assert.That(modifiedExercise.DifficultyRating, Is.EqualTo(5));
             Assert.That(modifiedExercise.DateCreated, Is.Not.Null);
@@ -448,8 +446,7 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
                 TargetPracticeTime = null,
                 PracticalityRating = 2,
                 DifficultyRating = 3,
-                Title = "Created Exercise Title",
-                PercentageCompleteCalculationType = PercentCompleteCalculationStrategy.MetronomeSpeed
+                Title = "Created Exercise Title"
             };
 
             return exercise;

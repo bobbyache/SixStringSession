@@ -17,7 +17,6 @@ CREATE TABLE IF NOT EXISTS `exercise` (
   `Title` varchar(255) NOT NULL,
   `DifficultyRating` int(11) NOT NULL,
   `PracticalityRating` int(11)  NOT NULL,
-  `PercentageCompleteCalculationType` int(11) NOT NULL,
   `TargetMetronomeSpeed` int(11) DEFAULT NULL,
   `SpeedProgressWeighting` int(11) NOT NULL,
   `TargetPracticeTime` int(11) DEFAULT NULL,

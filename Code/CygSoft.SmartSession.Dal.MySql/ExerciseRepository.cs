@@ -21,7 +21,6 @@ namespace CygSoft.SmartSession.Dal.MySql
                     _title = entity.Title,
                     _difficultyRating = entity.DifficultyRating,
                     _practicalityRating = entity.PracticalityRating,
-                    _percentageCompleteCalculationType = entity.PercentageCompleteCalculationType,
                     _targetMetronomeSpeed = entity.TargetMetronomeSpeed,
                     _speedProgressWeighting = entity.SpeedProgressWeighting,
                     _targetPracticeTime = entity.TargetPracticeTime,

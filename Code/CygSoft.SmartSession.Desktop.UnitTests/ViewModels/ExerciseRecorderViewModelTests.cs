@@ -182,8 +182,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
                 DifficultyRating = 3,
                 PracticalityRating = 3,
                 TargetMetronomeSpeed = 120,
-                TargetPracticeTime = 3000,
-                PercentageCompleteCalculationType = Infrastructure.Enums.PercentCompleteCalculationStrategy.MetronomeSpeed
+                TargetPracticeTime = 3000
             };
 
             return exercise;

@@ -41,8 +41,6 @@ namespace CygSoft.SmartSession.Domain.Exercises
         public int SpeedProgressWeighting { get; set; } = 50; // half way...
         public int PracticeTimeProgressWeighting { get; set; } = 50; // half way...
 
-        public PercentCompleteCalculationStrategy PercentageCompleteCalculationType { get; set; }
-
         public List<ExerciseKeyword> ExerciseKeywords { get; set; }
 
         public List<ExerciseActivity> ExerciseActivity { get; set; } = new List<ExerciseActivity>();
@@ -73,7 +71,8 @@ namespace CygSoft.SmartSession.Domain.Exercises
             if (!TargetPracticeTime.HasValue)
                 return 0;
 
-            return (GetSecondsPracticed() / TargetPracticeTime.Value) * 100d;
+            var percentComplete = (GetSecondsPracticed() / TargetPracticeTime.Value) * 100d;
+            return percentComplete > 100 ? 100 : percentComplete;
         }
 
         private double CalculateSpeedPercentComplete()
