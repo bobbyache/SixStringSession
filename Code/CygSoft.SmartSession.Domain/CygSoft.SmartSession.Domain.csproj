@@ -62,6 +62,7 @@
     <Compile Include="Common\OrSpecification.cs" />
     <Compile Include="Common\ParameterReplacer.cs" />
     <Compile Include="Common\Specification.cs" />
+    <Compile Include="Common\WeightedProgressCalculator.cs" />
     <Compile Include="Exercises\Exercise.cs" />
     <Compile Include="Exercises\ExerciseSearchCriteria.cs" />
     <Compile Include="Exercises\ExerciseService.cs" />
