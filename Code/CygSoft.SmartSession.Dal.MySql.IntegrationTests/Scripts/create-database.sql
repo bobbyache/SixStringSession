@@ -40,3 +40,23 @@ CREATE TABLE IF NOT EXISTS `smartsession_tests`.`exerciseactivity` (
   PRIMARY KEY (`Id`),
   CONSTRAINT `fk_exerciseactivity_exercise` FOREIGN KEY (`ExerciseId`) REFERENCES `exercise` (`Id`)
 );
+
+CREATE TABLE IF NOT EXISTS `practiceroutine` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `Title` varchar(255) NOT NULL,
+  `DateCreated` datetime NOT NULL,
+  `DateModified` datetime NULL,
+  PRIMARY KEY (`Id`)
+);
+
+CREATE TABLE IF NOT EXISTS `practiceroutineexercise` (
+  `PracticeRoutineId` int(11) NOT NULL,
+  `ExerciseId` int(11) NOT NULL,
+  `AssignedPracticeTime` int(11) NOT NULL,
+  `DifficultyRating` int(11) NOT NULL,
+  `DateCreated` datetime NOT NULL,
+  `DateModified` datetime NULL,
+  PRIMARY KEY (`PracticeRoutineId`, `ExerciseId`),
+  CONSTRAINT `fk_exerciseroutine_exercise` FOREIGN KEY (`ExerciseId`) REFERENCES `exercise` (`Id`),
+  CONSTRAINT `fk_exerciseroutine_practiceroutine` FOREIGN KEY (`PracticeRoutineId`) REFERENCES `practiceroutine` (`Id`)
+);
