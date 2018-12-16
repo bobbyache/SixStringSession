@@ -16,7 +16,7 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
         public void ExerciseRepository_Find_Exercise_With_Specific_Title_Gets_Applicable_Recs()
         {
             Funcs.RunScript("delete-all-records.sql", Settings.AppConnectionString);
-            Funcs.RunScript("exercise-find-tests.sql", Settings.AppConnectionString);
+            Funcs.RunScript("test-data.sql", Settings.AppConnectionString);
 
             using (var uow = new UnitOfWork(Settings.AppConnectionString))
             {
@@ -35,7 +35,7 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
         //public void ExerciseRepository_Find_Exercise_With_Specific_CalcPercentType_Gets_Applicable_Recs()
         //{
         //    Funcs.RunScript("delete-all-records.sql", Settings.AppConnectionString);
-        //    Funcs.RunScript("exercise-find-tests.sql", Settings.AppConnectionString);
+        //    Funcs.RunScript("test-data.sql", Settings.AppConnectionString);
 
         //    //using (var uow = new UnitOfWork(Settings.AppConnectionString))
         //    //{
@@ -55,7 +55,7 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
         public void ExerciseRepository_Find_Exercise_With_DateModified_Before_ToDateModified()
         {
             Funcs.RunScript("delete-all-records.sql", Settings.AppConnectionString);
-            Funcs.RunScript("exercise-find-tests.sql", Settings.AppConnectionString);
+            Funcs.RunScript("test-data.sql", Settings.AppConnectionString);
             
             using (var uow = new UnitOfWork(Settings.AppConnectionString))
             {
@@ -72,7 +72,7 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
         public void ExerciseRepository_Find_Exercise_With_DateCreated_Before_ToDateCreated()
         {
             Funcs.RunScript("delete-all-records.sql", Settings.AppConnectionString);
-            Funcs.RunScript("exercise-find-tests.sql", Settings.AppConnectionString);
+            Funcs.RunScript("test-data.sql", Settings.AppConnectionString);
 
             using (var uow = new UnitOfWork(Settings.AppConnectionString))
             {
@@ -91,7 +91,7 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
         public void ExerciseRepository_Find_Exercise_With_DateModified_On_Or_After_ToDateModified()
         {
             Funcs.RunScript("delete-all-records.sql", Settings.AppConnectionString);
-            Funcs.RunScript("exercise-find-tests.sql", Settings.AppConnectionString);
+            Funcs.RunScript("test-data.sql", Settings.AppConnectionString);
 
             using (var uow = new UnitOfWork(Settings.AppConnectionString))
             {
@@ -108,7 +108,7 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
         public void ExerciseRepository_Find_Exercise_With_DateCreated_On_Or_After_ToDateCreated()
         {
             Funcs.RunScript("delete-all-records.sql", Settings.AppConnectionString);
-            Funcs.RunScript("exercise-find-tests.sql", Settings.AppConnectionString);
+            Funcs.RunScript("test-data.sql", Settings.AppConnectionString);
 
             using (var uow = new UnitOfWork(Settings.AppConnectionString))
             {
@@ -127,7 +127,7 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
         public void ExerciseRepository_Find_Exercise_With_DateModified_After_FromDateModified_But_After_ToDateModified()
         {
             Funcs.RunScript("delete-all-records.sql", Settings.AppConnectionString);
-            Funcs.RunScript("exercise-find-tests.sql", Settings.AppConnectionString);
+            Funcs.RunScript("test-data.sql", Settings.AppConnectionString);
 
             using (var uow = new UnitOfWork(Settings.AppConnectionString))
             {
@@ -145,7 +145,7 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
         public void ExerciseRepository_Find_Exercise_With_DateCreated_After_FromDateCreated_But_After_ToDateCreated()
         {
             Funcs.RunScript("delete-all-records.sql", Settings.AppConnectionString);
-            Funcs.RunScript("exercise-find-tests.sql", Settings.AppConnectionString);
+            Funcs.RunScript("test-data.sql", Settings.AppConnectionString);
 
             using (var uow = new UnitOfWork(Settings.AppConnectionString))
             {

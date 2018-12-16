@@ -99,7 +99,7 @@
     <Content Include="Scripts\delete-all-records.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Scripts\exercise-find-tests.sql">
+    <Content Include="Scripts\test-data.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Scripts\stored-procs.sql">
