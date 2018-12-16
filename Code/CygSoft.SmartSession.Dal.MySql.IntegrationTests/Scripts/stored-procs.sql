@@ -238,9 +238,10 @@ CREATE PROCEDURE `sp_InsertPracticeRoutine`
 	in _title varchar(255)
 )
 BEGIN
-	INSERT INTO Exercise
+	INSERT INTO PracticeRoutine
     (
 		Title, 
+        DateCreated,
         DateModified
 	) 
 	VALUES 
@@ -260,7 +261,7 @@ BEGIN
 		Title, 
         DateCreated, 
         DateModified
-	FROM Exercise WHERE Id = _id;
+	FROM PracticeRoutine WHERE Id = _id;
 END;
 
 DROP PROCEDURE IF EXISTS `sp_FindPracticeRoutines`;
@@ -273,7 +274,7 @@ CREATE PROCEDURE `sp_FindPracticeRoutines`(
 	)
 BEGIN
 	SELECT * 
-	FROM Exercise
+	FROM PracticeRoutine
 	WHERE
 		(_title IS NULL OR Title LIKE CONCAT('%', _title, '%'))
 		-- AND
@@ -292,7 +293,7 @@ END;
 DROP PROCEDURE IF EXISTS `sp_DeletePracticeRoutine`;
 CREATE PROCEDURE `sp_DeletePracticeRoutine`(in _id int)
 BEGIN
-	DELETE FROM Exercise WHERE Id = _id;
+	DELETE FROM PracticeRoutine WHERE Id = _id;
 END;
 
 DROP PROCEDURE IF EXISTS `sp_UpdatePracticeRoutine`;
@@ -301,7 +302,7 @@ CREATE PROCEDURE `sp_UpdatePracticeRoutine`(
 	in _title varchar(255)
 	)
 BEGIN
-	UPDATE Exercise SET 
+	UPDATE PracticeRoutine SET 
 		Title = _title,
 		DateModified = NOW()
 	WHERE Id = _id;

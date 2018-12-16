@@ -1,6 +1,7 @@
 ﻿using CygSoft.SmartSession.Domain;
 using CygSoft.SmartSession.Domain.Exercises;
 using CygSoft.SmartSession.Domain.Goals;
+using CygSoft.SmartSession.Domain.PracticeRoutines;
 using CygSoft.SmartSession.Domain.Sessions;
 using MySql.Data.MySqlClient;
 using System;
@@ -22,6 +23,9 @@ namespace CygSoft.SmartSession.Dal.MySql
 
         private IExerciseRepository exercises;
         public IExerciseRepository Exercises { get { return exercises ?? (exercises = new ExerciseRepository(_transaction)); } }
+
+        private IPracticeRoutineRepository practiceRoutines;
+        public IPracticeRoutineRepository PracticeRoutines { get { return practiceRoutines ?? (practiceRoutines = new PracticeRoutineRepository(_transaction)); } }
 
         public int Commit()
         {
