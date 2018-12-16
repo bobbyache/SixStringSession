@@ -228,3 +228,81 @@ BEGIN
 		ExerciseId = _exerciseId;
 END;
 COMMIT;
+
+
+
+
+DROP PROCEDURE IF EXISTS `sp_InsertPracticeRoutine`;
+CREATE PROCEDURE `sp_InsertPracticeRoutine`
+(
+	in _title varchar(255)
+)
+BEGIN
+	INSERT INTO Exercise
+    (
+		Title, 
+        DateModified
+	) 
+	VALUES 
+    (
+		_title,
+		NOW(), 
+        NULL
+	);
+	SELECT LAST_INSERT_ID();
+END;
+
+DROP PROCEDURE IF EXISTS `sp_GetPracticeRoutineById`;
+CREATE PROCEDURE `sp_GetPracticeRoutineById`(IN _id int)
+BEGIN
+	SELECT
+		Id,
+		Title, 
+        DateCreated, 
+        DateModified
+	FROM Exercise WHERE Id = _id;
+END;
+
+DROP PROCEDURE IF EXISTS `sp_FindPracticeRoutines`;
+CREATE PROCEDURE `sp_FindPracticeRoutines`(
+	in _title varchar(255),
+	in _fromDateCreated datetime,
+	in _toDateCreated datetime,
+	in _fromDateModified datetime,
+	in _toDateModified datetime
+	)
+BEGIN
+	SELECT * 
+	FROM Exercise
+	WHERE
+		(_title IS NULL OR Title LIKE CONCAT('%', _title, '%'))
+		-- AND
+		-- (_percentCompleteCalculationType IS NULL OR PercentCompleteCalculationType = _percentCompleteCalculationType)
+		AND
+		(_fromDateCreated IS NULL OR DateCreated >= _fromDateCreated)
+		AND
+		(_toDateCreated IS NULL OR DateCreated <= _toDateCreated)
+		AND
+		(_fromDateModified IS NULL OR DateModified >= _fromDateModified)
+		AND
+		(_toDateModified IS NULL OR DateModified <= _toDateModified)
+		;
+END;
+
+DROP PROCEDURE IF EXISTS `sp_DeletePracticeRoutine`;
+CREATE PROCEDURE `sp_DeletePracticeRoutine`(in _id int)
+BEGIN
+	DELETE FROM Exercise WHERE Id = _id;
+END;
+
+DROP PROCEDURE IF EXISTS `sp_UpdatePracticeRoutine`;
+CREATE PROCEDURE `sp_UpdatePracticeRoutine`(
+	in _id int, 
+	in _title varchar(255)
+	)
+BEGIN
+	UPDATE Exercise SET 
+		Title = _title,
+		DateModified = NOW()
+	WHERE Id = _id;
+END;

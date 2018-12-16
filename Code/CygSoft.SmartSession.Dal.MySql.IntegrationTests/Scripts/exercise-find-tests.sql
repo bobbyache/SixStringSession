@@ -17,3 +17,12 @@ INSERT INTO Exercise (Title, DifficultyRating, PracticalityRating, TargetMetrono
 
 INSERT INTO Exercise (Title, DifficultyRating, PracticalityRating, TargetMetronomeSpeed, SpeedProgressWeighting, TargetPracticeTime, PracticeTimeProgressWeighting, ManualProgressWeighting, DateCreated, DateModified) 
 	VALUES ('Green Exercise 2', 1, 1, NULL, 50, 50000, 50, 0, '2017-02-01 01:00:00', '2017-06-01 01:00:00');
+
+INSERT INTO PracticeRoutine (Title, DateCreated)
+	VALUES ('Monday', '2017-02-01 01:00:00');
+    
+INSERT INTO PracticeRoutine (Title, DateCreated)
+	VALUES ('Tuesday', '2017-02-01 01:00:00');
+    
+INSERT INTO PracticeRoutine (Title, DateCreated)
+	VALUES ('Wednesday', '2017-02-01 01:00:00');

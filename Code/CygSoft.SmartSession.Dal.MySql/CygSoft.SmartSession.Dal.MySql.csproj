@@ -67,6 +67,7 @@
     <Compile Include="ExerciseRepository.cs" />
     <Compile Include="GoalRepository.cs" />
     <Compile Include="IConnectionManager.cs" />
+    <Compile Include="PracticeRoutineRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepositoryBase.cs" />
     <Compile Include="RepositoryExceptions.cs" />
