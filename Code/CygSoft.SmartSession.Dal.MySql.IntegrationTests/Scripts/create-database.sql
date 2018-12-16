@@ -54,6 +54,7 @@ CREATE TABLE IF NOT EXISTS `practiceroutineexercise` (
   `ExerciseId` int(11) NOT NULL,
   `AssignedPracticeTime` int(11) NOT NULL,
   `DifficultyRating` int(11) NOT NULL,
+  `PracticalityRating` int(11)  NOT NULL,
   `DateCreated` datetime NOT NULL,
   `DateModified` datetime NULL,
   PRIMARY KEY (`PracticeRoutineId`, `ExerciseId`),
