@@ -1,5 +1,6 @@
 ﻿using CygSoft.SmartSession.Desktop.Exercises;
 using CygSoft.SmartSession.Desktop.Goals;
+using CygSoft.SmartSession.Desktop.PracticeRoutines;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 
@@ -9,6 +10,7 @@ namespace CygSoft.SmartSession.Desktop
     {
         private ExerciseCompositeViewModel exerciseSearchViewModel;
         private GoalCompositeViewModel goalSearchViewModel;
+        private PracticeRoutineCompositeViewModel practiceRoutineSearchViewModel;
 
         private ViewModelBase currentViewModel;
         public ViewModelBase CurrentViewModel
@@ -19,11 +21,14 @@ namespace CygSoft.SmartSession.Desktop
 
         public RelayCommand<string> NavigationCommand { get; private set; }
 
-        public MainWindowViewModel(ExerciseCompositeViewModel exerciseCompositeViewModel, 
-            GoalCompositeViewModel goalCompositeViewModel)
+        public MainWindowViewModel(
+            ExerciseCompositeViewModel exerciseCompositeViewModel, 
+            GoalCompositeViewModel goalCompositeViewModel,
+            PracticeRoutineCompositeViewModel practiceRoutineSearchViewModel)
         {
             this.exerciseSearchViewModel = exerciseCompositeViewModel;
             this.goalSearchViewModel = goalCompositeViewModel;
+            this.practiceRoutineSearchViewModel = practiceRoutineSearchViewModel;
 
             NavigationCommand = new RelayCommand<string>(OnNavigation);
             OnNavigation("ExerciseSearch");
@@ -38,6 +43,9 @@ namespace CygSoft.SmartSession.Desktop
                     break;
                 case "ExerciseSearch":
                     CurrentViewModel = exerciseSearchViewModel;
+                    break;
+                case "PracticeRoutineSearch":
+                    CurrentViewModel = practiceRoutineSearchViewModel;
                     break;
                 default:
                     CurrentViewModel = exerciseSearchViewModel;

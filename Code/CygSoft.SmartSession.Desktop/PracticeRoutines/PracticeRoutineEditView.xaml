@@ -12,8 +12,6 @@
         <Binding Source="{StaticResource ViewModelLocator}" Path="PracticeRoutineEditViewModel" />
     </UserControl.DataContext>
     <UserControl.Resources>
-        <converters:MathConverter x:Key="MathConverter"/>
-        <converters:StarWidthConverter x:Key="StarWidthConverter"/>
         <Style TargetType="TextBox">
             <Style.Triggers>
                 <Trigger Property="Validation.HasError" Value="True" >
@@ -23,7 +21,7 @@
         </Style>
     </UserControl.Resources>
     <DockPanel LastChildFill="False">
-        <StackPanel DockPanel.Dock="Top" Margin="0,0,0,5" DataContext="{Binding PracticeRoutine}">
+        <StackPanel DockPanel.Dock="Top" Margin="0,0,0,5">
             <TextBlock Text="Title:" Margin="5"></TextBlock>
             <TextBox Margin="5" Text="{Binding Title, ValidatesOnNotifyDataErrors=True}"></TextBox>
         </StackPanel>
@@ -31,7 +29,5 @@
             <Button Content="Save" Margin="5" MinWidth="50" MaxHeight="35" Command="{Binding SaveCommand}" />
             <Button Content="Cancel" Margin="5" MinWidth="50" MaxHeight="35" Command="{Binding CancelCommand}" />
         </StackPanel>
-
     </DockPanel>
-
 </UserControl>

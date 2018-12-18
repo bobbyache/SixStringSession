@@ -1,6 +1,7 @@
 
 using CygSoft.SmartSession.Desktop.Exercises;
 using CygSoft.SmartSession.Desktop.Goals;
+using CygSoft.SmartSession.Desktop.PracticeRoutines;
 using CygSoft.SmartSession.Desktop.Supports.DI;
 
 namespace CygSoft.SmartSession.Desktop.Supports.Services
@@ -16,6 +17,10 @@ namespace CygSoft.SmartSession.Desktop.Supports.Services
         public ExerciseSearchViewModel ExerciseSearchViewModel { get => Bootstrapper.Container.Resolve<ExerciseSearchViewModel>(); }
         public ExerciseSearchCriteriaViewModel ExerciseSearchCriteriaViewModel { get => Bootstrapper.Container.Resolve<ExerciseSearchCriteriaViewModel>(); }
         public ExerciseRecorderViewModel ExerciseRecorderViewModel { get => Bootstrapper.Container.Resolve<ExerciseRecorderViewModel>(); }
+
+        public PracticeRoutineEditViewModel PracticeRoutineEditViewModel { get => Bootstrapper.Container.Resolve<PracticeRoutineEditViewModel>(); }
+        public PracticeRoutineCompositeViewModel PracticeRoutineCompositeViewModel { get => Bootstrapper.Container.Resolve<PracticeRoutineCompositeViewModel>(); }
+        public PracticeRoutineSearchViewModel PracticeRoutineSearchViewModel { get => Bootstrapper.Container.Resolve<PracticeRoutineSearchViewModel>(); }
 
         public GoalEditViewModel GoalEditViewModel { get => Bootstrapper.Container.Resolve<GoalEditViewModel>(); }
         public GoalCompositeViewModel GoalCompositeViewModel { get => Bootstrapper.Container.Resolve<GoalCompositeViewModel>(); }

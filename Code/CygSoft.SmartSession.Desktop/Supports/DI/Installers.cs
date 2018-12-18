@@ -44,9 +44,8 @@ namespace CygSoft.SmartSession.Desktop.Supports.DI
 
             container.Register(Component.For<IPracticeRoutineService>().ImplementedBy(typeof(PracticeRoutineService)));
             container.Register(Component.For<PracticeRoutineEditViewModel>());
-            //container.Register(Component.For<PracticeRoutineSearchViewModel>());
-            //container.Register(Component.For<PracticeRoutineCompositeViewModel>());
-            //container.Register(Component.For<PracticeRoutineSearchCriteriaViewModel>());
+            container.Register(Component.For<PracticeRoutineSearchViewModel>());
+            container.Register(Component.For<PracticeRoutineCompositeViewModel>());
 
             container.Register(Component.For<IGoalService>().ImplementedBy(typeof(GoalService)));
             container.Register(Component.For<GoalEditViewModel>());

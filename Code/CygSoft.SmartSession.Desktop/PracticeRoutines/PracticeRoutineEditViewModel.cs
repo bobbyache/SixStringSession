@@ -97,6 +97,7 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
             Mapper.Map(PracticeRoutine, this);
             base.Revert();
         }
+
         private void PracticeRoutine_ErrorsChanged(object sender, DataErrorsChangedEventArgs e)
         {
             SaveCommand.RaiseCanExecuteChanged();

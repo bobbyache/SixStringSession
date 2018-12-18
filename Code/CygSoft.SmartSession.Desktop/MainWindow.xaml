@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:CygSoft.SmartSession.Desktop"
         xmlns:exercises="clr-namespace:CygSoft.SmartSession.Desktop.Exercises"
         xmlns:goals="clr-namespace:CygSoft.SmartSession.Desktop.Goals"
+        xmlns:routines="clr-namespace:CygSoft.SmartSession.Desktop.PracticeRoutines"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Window.DataContext>
@@ -18,6 +19,9 @@
         <DataTemplate DataType="{x:Type goals:GoalCompositeViewModel}">
             <goals:GoalCompositeView />
         </DataTemplate>
+        <DataTemplate DataType="{x:Type routines:PracticeRoutineCompositeViewModel}">
+            <routines:PracticeRoutineCompositeView />
+        </DataTemplate>
     </Window.Resources>
 
     <Grid>
@@ -29,9 +33,11 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Button Grid.Column="0" Content="Exercises" Command="{Binding NavigationCommand}" CommandParameter="ExerciseSearch" />
             <Button Grid.Column="1" Content="Goals" Command="{Binding NavigationCommand}" CommandParameter="GoalSearch" />
+            <Button Grid.Column="2" Content="Practice Routines" Command="{Binding NavigationCommand}" CommandParameter="PracticeRoutineSearch" />
         </Grid>
         <ContentControl Grid.Row="1"  Content="{Binding CurrentViewModel}" />
     </Grid>

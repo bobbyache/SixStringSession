@@ -45,13 +45,7 @@ namespace CygSoft.SmartSession.Domain.PracticeRoutines
 
         public IEnumerable<PracticeRoutine> Find(PracticeRoutineSearchCriteria searchCriteria)
         {
-            //if (string.IsNullOrWhiteSpace(searchCriteria.Keywords))
-            //    return unitOfWork.PracticeRoutines.Find(searchCriteria.Specification());
-
-            //else
-            //    return unitOfWork.PracticeRoutines.Find(searchCriteria.Specification(), searchCriteria.KeywordSpecification());
-
-            return null;
+            return unitOfWork.PracticeRoutines.Find(searchCriteria);
         }
 
         public PracticeRoutine Get(int id)
