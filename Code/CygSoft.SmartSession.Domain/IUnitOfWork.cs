@@ -1,5 +1,6 @@
 ﻿using CygSoft.SmartSession.Domain.Exercises;
 using CygSoft.SmartSession.Domain.Goals;
+using CygSoft.SmartSession.Domain.PracticeRoutines;
 using System;
 
 namespace CygSoft.SmartSession.Domain
@@ -8,6 +9,8 @@ namespace CygSoft.SmartSession.Domain
     {
         IExerciseRepository Exercises { get; }
         IGoalRepository Goals { get; }
+        IPracticeRoutineRepository PracticeRoutines { get; }
+
         int Commit();
         void Rollback();
     }

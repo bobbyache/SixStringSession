@@ -67,6 +67,19 @@ namespace CygSoft.SmartSession.Dal.MySql
 
         #endregion IUnitOfWork
 
+        //TODO: Inject repositories into UnitOfWork in order to test interaction between UnitOfWork, service, and repository calls.
+
+        //public UnitOfWork(string connectionString, IExerciseRepository exerciseRepository, IPracticeRoutineRepository practiceRoutineRepository, IGoalRepository goalRepository)
+        //{
+        //    exercises = exerciseRepository ?? throw new ArgumentNullException("ExerciseRepository must be specified.");
+        //    practiceRoutines = practiceRoutineRepository ?? throw new ArgumentNullException("PracticeRoutineRepository must be specified.");
+        //    goals = goalRepository ?? throw new ArgumentNullException("GoalRepository must be specified.");
+
+        //    _connection = new MySqlConnection(connectionString);
+        //    _connection.Open();
+        //    _transaction = _connection.BeginTransaction();
+        //}
+
         public UnitOfWork(string connectionString)
         {
             _connection = new MySqlConnection(connectionString);

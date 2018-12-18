@@ -90,6 +90,7 @@
     <Compile Include="ViewModels\ExerciseRecorderViewModelTests.cs" />
     <Compile Include="ValidationAttributeTests.cs" />
     <Compile Include="ViewModels\ExerciseSearchViewModelTests.cs" />
+    <Compile Include="ViewModels\PracticeRoutineEditViewModelTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CygSoft.SmartSession.Desktop.Controls\CygSoft.SmartSession.Desktop.Controls.csproj">

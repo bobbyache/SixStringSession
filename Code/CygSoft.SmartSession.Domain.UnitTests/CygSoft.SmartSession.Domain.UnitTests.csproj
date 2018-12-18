@@ -72,6 +72,7 @@
     <Compile Include="Tests\ExerciseTests.cs" />
     <Compile Include="Tests\FileServiceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tests\PracticeRoutineServiceTests.cs" />
     <Compile Include="Tests\WeightedProgressCalculatorTests.cs" />
   </ItemGroup>
   <ItemGroup>
