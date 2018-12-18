@@ -20,7 +20,7 @@
             </Style.Triggers>
         </Style>
     </UserControl.Resources>
-    <DockPanel LastChildFill="False">
+    <DockPanel LastChildFill="True">
         <StackPanel DockPanel.Dock="Top" Margin="0,0,0,5">
             <TextBlock Text="Title:" Margin="5"></TextBlock>
             <TextBox Margin="5" Text="{Binding Title, ValidatesOnNotifyDataErrors=True}"></TextBox>
@@ -29,5 +29,46 @@
             <Button Content="Save" Margin="5" MinWidth="50" MaxHeight="35" Command="{Binding SaveCommand}" />
             <Button Content="Cancel" Margin="5" MinWidth="50" MaxHeight="35" Command="{Binding CancelCommand}" />
         </StackPanel>
+        <Border DockPanel.Dock="Bottom"  Background="GhostWhite" BorderBrush="Gainsboro" BorderThickness="1" Padding="5" Margin="5">
+            <StackPanel>
+                <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock TextAlignment="Right" Margin="2" MinWidth="50" >Minutes</TextBlock>
+                            <TextBox Margin="2" MinWidth="50" Text="{Binding AssignedMinutes}" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock TextAlignment="Right" Margin="2" MinWidth="50" >Difficulty</TextBlock>
+                            <Slider Margin="5" MinWidth="100" MaxWidth="200" Maximum="5" TickFrequency="1" 
+                                Value="{Binding DiffultyRating, ValidatesOnNotifyDataErrors=True}"
+                                TickPlacement="BottomRight" IsSnapToTickEnabled="True"></Slider>
+                        </StackPanel>
+                        <TextBlock HorizontalAlignment="Center" Margin="15" Text="{Binding TotalMinutes, Mode=OneWay}"></TextBlock>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="Add" Margin="5" MinWidth="50" MaxHeight="35" Command="{Binding AddExerciseCommand}" />
+            <Button Content="Delete" Margin="5" MinWidth="50" MaxHeight="35" Command="{Binding DeleteExerciseCommand}" />
+        </StackPanel>
+        <ListView DockPanel.Dock="Bottom"  Grid.Row="1" 
+                  SelectionMode="Extended"
+                  SelectedItem="{Binding SelectedPracticeRoutine}"
+                  >
+            <ListBox.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Placeholder Menu Item"
+                    />
+                </ContextMenu>
+            </ListBox.ContextMenu>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="600" Header="Title" DisplayMemberBinding="{Binding Title}"/>
+                    <GridViewColumn Width="50" Header="Minutes" />
+                    <GridViewColumn Width="50" Header="Difficulty" />
+                </GridView>
+            </ListView.View>
+        </ListView>
     </DockPanel>
 </UserControl>

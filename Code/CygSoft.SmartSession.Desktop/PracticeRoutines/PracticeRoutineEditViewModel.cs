@@ -34,6 +34,11 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
             }
         }
 
+        public int TotalMinutes
+        {
+            get { return 60; }
+        }
+
         private EntityLifeCycleState lifeCycleState;
         public EntityLifeCycleState LifeCycleState
         {
