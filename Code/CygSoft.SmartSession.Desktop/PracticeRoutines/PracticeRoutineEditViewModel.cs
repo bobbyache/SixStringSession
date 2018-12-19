@@ -12,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
+using System.Collections.ObjectModel;
 
 namespace CygSoft.SmartSession.Desktop.PracticeRoutines
 {
@@ -19,7 +20,11 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
     {
         private IDialogViewService dialogService;
 
-        public PracticeRoutine PracticeRoutine { get; private set; }
+        public PracticeRoutine PracticeRoutine
+        {
+            get;
+            private set;
+        }
 
         public int Id { get; set; }
 
@@ -31,6 +36,18 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
             set
             {
                 Set(() => Title, ref title, value, true, true);
+            }
+        }
+
+        public ObservableCollection<PracticeRoutineExercise> PracticeRoutineExercises { get; private set; } = new ObservableCollection<PracticeRoutineExercise>();
+
+        private PracticeRoutineExercise selectedPracticeRoutineExercise;
+        public PracticeRoutineExercise SelectedPracticeRoutineExercise
+        {
+            get { return selectedPracticeRoutineExercise; }
+            set
+            {
+                Set(() => SelectedPracticeRoutineExercise, ref selectedPracticeRoutineExercise, value, true, true);
             }
         }
 

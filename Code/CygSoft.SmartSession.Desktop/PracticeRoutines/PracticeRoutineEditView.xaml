@@ -35,12 +35,18 @@
                     <StackPanel Orientation="Vertical">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock TextAlignment="Right" Margin="2" MinWidth="50" >Minutes</TextBlock>
-                            <TextBox Margin="2" MinWidth="50" Text="{Binding AssignedMinutes}" />
+                            <TextBox Margin="2" MinWidth="50" Text="{Binding SelectedPracticeRoutineExercise.AssignedPracticeTime}" />
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock TextAlignment="Right" Margin="2" MinWidth="50" >Difficulty</TextBlock>
                             <Slider Margin="5" MinWidth="100" MaxWidth="200" Maximum="5" TickFrequency="1" 
-                                Value="{Binding DiffultyRating, ValidatesOnNotifyDataErrors=True}"
+                                Value="{Binding SelectedPracticeRoutineExercise.DifficultyRating, ValidatesOnNotifyDataErrors=True}"
+                                TickPlacement="BottomRight" IsSnapToTickEnabled="True"></Slider>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock TextAlignment="Right" Margin="2" MinWidth="50" >Practicality</TextBlock>
+                            <Slider Margin="5" MinWidth="100" MaxWidth="200" Maximum="5" TickFrequency="1" 
+                                Value="{Binding SelectedPracticeRoutineExercise.PracticalityRating, ValidatesOnNotifyDataErrors=True}"
                                 TickPlacement="BottomRight" IsSnapToTickEnabled="True"></Slider>
                         </StackPanel>
                         <TextBlock HorizontalAlignment="Center" Margin="15" Text="{Binding TotalMinutes, Mode=OneWay}"></TextBlock>
@@ -52,9 +58,9 @@
             <Button Content="Add" Margin="5" MinWidth="50" MaxHeight="35" Command="{Binding AddExerciseCommand}" />
             <Button Content="Delete" Margin="5" MinWidth="50" MaxHeight="35" Command="{Binding DeleteExerciseCommand}" />
         </StackPanel>
-        <ListView DockPanel.Dock="Bottom"  Grid.Row="1" 
+        <ListView ItemsSource="{Binding PracticeRoutineExercises}" DockPanel.Dock="Bottom"  Grid.Row="1" 
                   SelectionMode="Extended"
-                  SelectedItem="{Binding SelectedPracticeRoutine}"
+                  SelectedItem="{Binding SelectedPracticeRoutineExercise}"
                   >
             <ListBox.ContextMenu>
                 <ContextMenu>
@@ -65,8 +71,9 @@
             <ListView.View>
                 <GridView>
                     <GridViewColumn Width="600" Header="Title" DisplayMemberBinding="{Binding Title}"/>
-                    <GridViewColumn Width="50" Header="Minutes" />
-                    <GridViewColumn Width="50" Header="Difficulty" />
+                    <GridViewColumn Width="50" Header="Minutes" DisplayMemberBinding="{Binding AssignedPracticeTime}" />
+                    <GridViewColumn Width="50" Header="Difficulty"  DisplayMemberBinding="{Binding DifficultyRating}" />
+                    <GridViewColumn Width="50" Header="Practicality"  DisplayMemberBinding="{Binding PracticalityRating}" />
                 </GridView>
             </ListView.View>
         </ListView>

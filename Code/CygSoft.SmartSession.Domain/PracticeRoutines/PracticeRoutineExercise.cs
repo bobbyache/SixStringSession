@@ -13,6 +13,8 @@ namespace CygSoft.SmartSession.Domain.PracticeRoutines
         public DateTime? DateModified { get; set; }
 
         public int ExerciseId { get; set; }
+
+        public string Title { get; set; } = "Dummy Exercise Title";
         public int PracticeRoutineId { get; set; }
 
         // in seconds
