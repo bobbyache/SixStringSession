@@ -31,6 +31,9 @@ namespace CygSoft.SmartSession.Dal.MySql
                 );
 
             InsertNewExerciseActivities(entity);
+
+            var persistedEntity = Get(entity.Id);
+            entity.DateCreated = persistedEntity.DateCreated;
         }
 
         public void AddRange(IEnumerable<Exercise> entities)

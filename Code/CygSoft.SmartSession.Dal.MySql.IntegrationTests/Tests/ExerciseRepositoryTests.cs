@@ -165,31 +165,36 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
         {
             Funcs.RunScript("delete-all-records.sql", Settings.AppConnectionString);
 
-            Exercise ex1;
+            Exercise nexExercise;
+            Exercise persistedExercise;
 
             using (var uow = new UnitOfWork(Settings.AppConnectionString))
             {
-                Exercise newEx = CreateMetronomeExercise();
-                uow.Exercises.Add(newEx);
+                nexExercise = CreateMetronomeExercise();
+                uow.Exercises.Add(nexExercise);
                 uow.Commit();
 
-                ex1 = uow.Exercises.Get(newEx.Id);
+                persistedExercise = uow.Exercises.Get(nexExercise.Id);
 
-                uow.Exercises.Remove(newEx);
+                uow.Exercises.Remove(nexExercise);
                 uow.Commit();
             }
 
-            Assert.IsNotNull(ex1);
+            Assert.IsNotNull(persistedExercise);
 
-            Assert.That(ex1.Title, Is.EqualTo("Created Exercise Title"));
-            Assert.That(ex1.TargetMetronomeSpeed, Is.EqualTo(150));
-            Assert.That(ex1.SpeedProgressWeighting, Is.EqualTo(50));
-            Assert.That(ex1.PracticeTimeProgressWeighting, Is.EqualTo(50));
-            Assert.That(ex1.TargetPracticeTime, Is.Null);
-            Assert.That(ex1.PracticalityRating, Is.EqualTo(2));
-            Assert.That(ex1.DifficultyRating, Is.EqualTo(3));
-            Assert.That(ex1.DateCreated, Is.Not.Null);
-            Assert.That(ex1.DateModified, Is.Null);
+            Assert.That(nexExercise.DateCreated, Is.Not.Null);
+            Assert.That(nexExercise.DateModified, Is.Null);
+            Assert.That(nexExercise.Id, Is.GreaterThan(0));
+
+            Assert.That(persistedExercise.Title, Is.EqualTo("Created Exercise Title"));
+            Assert.That(persistedExercise.TargetMetronomeSpeed, Is.EqualTo(150));
+            Assert.That(persistedExercise.SpeedProgressWeighting, Is.EqualTo(50));
+            Assert.That(persistedExercise.PracticeTimeProgressWeighting, Is.EqualTo(50));
+            Assert.That(persistedExercise.TargetPracticeTime, Is.Null);
+            Assert.That(persistedExercise.PracticalityRating, Is.EqualTo(2));
+            Assert.That(persistedExercise.DifficultyRating, Is.EqualTo(3));
+            Assert.That(persistedExercise.DateCreated, Is.Not.Null);
+            Assert.That(persistedExercise.DateModified, Is.Null);
         }
 
         [Test]
@@ -374,7 +379,6 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
                 newExercise.AddRecording(80, 3000, 0, DateTime.Parse("2018-03-01 12:15:00"), DateTime.Parse("2018-03-01 12:25:00"));
                 newExercise.AddRecording(90, 4000, 0, DateTime.Parse("2018-03-02 12:15:00"), DateTime.Parse("2018-03-02 12:25:00"));
                 uow.Exercises.Add(newExercise);
-
                 uow.Commit();
 
                 var existingExercise = uow.Exercises.Get(newExercise.Id);

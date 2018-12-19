@@ -73,6 +73,7 @@
     <Compile Include="PracticeRoutines\IPracticeRoutineSearchCriteria.cs" />
     <Compile Include="PracticeRoutines\IPracticeRoutineService.cs" />
     <Compile Include="PracticeRoutines\PracticeRoutine.cs" />
+    <Compile Include="PracticeRoutines\PracticeRoutineExercise.cs" />
     <Compile Include="PracticeRoutines\PracticeRoutineSearchCriteria.cs" />
     <Compile Include="Goals\GoalSearchCriteria.cs" />
     <Compile Include="Goals\GoalService.cs" />

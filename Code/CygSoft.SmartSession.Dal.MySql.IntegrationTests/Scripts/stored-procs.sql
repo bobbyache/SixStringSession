@@ -229,8 +229,9 @@ BEGIN
 END;
 COMMIT;
 
-
-
+/* ***********************************************************************************************************************
+PracticeRoutine
+*********************************************************************************************************************** */
 
 DROP PROCEDURE IF EXISTS `sp_InsertPracticeRoutine`;
 CREATE PROCEDURE `sp_InsertPracticeRoutine`
@@ -306,4 +307,106 @@ BEGIN
 		Title = _title,
 		DateModified = NOW()
 	WHERE Id = _id;
+END;
+
+
+/* ***********************************************************************************************************************
+PracticeRoutineExercise
+*********************************************************************************************************************** */
+
+DROP PROCEDURE IF EXISTS `sp_InsertPracticeRoutineExercise`;
+CREATE PROCEDURE `sp_InsertPracticeRoutineExercise`
+(
+	in _practiceRoutineId int(11),
+    in _exerciseId int(11),
+    in _assignedPracticeTime int(11),
+    in _difficultyRating int(11),
+    in _practicalityRating int(11)
+)
+BEGIN
+	INSERT INTO PracticeRoutineExercise
+    (
+		PracticeRoutineId,
+		ExerciseId,
+		AssignedPracticeTime,
+		DifficultyRating,
+		PracticalityRating,
+		DateCreated
+	) 
+	VALUES 
+    (
+		_practiceRoutineId,
+		_exerciseId,
+		_assignedPracticeTime,
+		_difficultyRating,
+		_practicalityRating,
+		NOW()
+	);
+	SELECT LAST_INSERT_ID();
+END;
+
+DROP PROCEDURE IF EXISTS `sp_UpdatePracticeRoutineExercise`;
+CREATE PROCEDURE `sp_UpdatePracticeRoutineExercise`(
+	in _practiceRoutineId int(11),
+    in _exerciseId int(11),
+    in _assignedPracticeTime int(11),
+    in _difficultyRating int(11),
+    in _practicalityRating int(11)
+	)
+BEGIN
+	UPDATE PracticeRoutineExercise SET 
+		AssignedPracticeTime = _assignedPracticeTime,
+		DifficultyRating = _difficultyRating,
+		PracticalityRating = _practicalityRating,
+		DateModified = NOW()
+	WHERE PracticeRoutineId = _practiceRoutineId AND ExerciseId = _exerciseId;
+END;
+
+DROP PROCEDURE IF EXISTS `sp_GetPracticeRoutineExercisesByPracticeRoutine`;
+CREATE PROCEDURE `sp_GetPracticeRoutineExercisesByPracticeRoutine`(
+	in _practiceRoutineId int
+	)
+BEGIN
+	SELECT  
+		PracticeRoutineId,
+		ExerciseId,
+		AssignedPracticeTime,
+		DifficultyRating,
+		PracticalityRating,
+		DateCreated,
+		DateModified
+	FROM PracticeRoutineExercise
+	WHERE
+		PracticeRoutineId = _practiceRoutineId;
+END;
+COMMIT;
+
+DROP PROCEDURE IF EXISTS `sp_GetPracticeRoutineExerciseById`;
+CREATE PROCEDURE `sp_GetPracticeRoutineExerciseById`(
+	in _practiceRoutineId int,
+    in _exerciseId int
+	)
+BEGIN
+	SELECT  
+		PracticeRoutineId,
+		ExerciseId,
+		AssignedPracticeTime,
+		DifficultyRating,
+		PracticalityRating,
+		DateCreated,
+		DateModified
+	FROM PracticeRoutineExercise
+	WHERE
+		PracticeRoutineId = _practiceRoutineId AND ExerciseId = _exerciseId;
+END;
+COMMIT;
+
+DROP PROCEDURE IF EXISTS `sp_DeletePracticeRoutineExercise`;
+CREATE PROCEDURE `sp_DeletePracticeRoutineExercise`
+(
+	in _practiceRoutineId int,
+    in _exerciseId int
+)
+BEGIN
+	DELETE FROM PracticeRoutineExercise WHERE PracticeRoutineId = _practiceRoutineId AND ExerciseId = _exerciseId;
 END;

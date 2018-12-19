@@ -92,6 +92,7 @@ namespace WpfDataGrid
 
             public int ExerciseId { get; set; }
 
+
         }
 
         //public class User
