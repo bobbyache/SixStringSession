@@ -89,9 +89,14 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
             DeleteExerciseCommand = new RelayCommand(() => DeleteExercise(), () => true);
         }
 
+        public void AddPracticeRoutineExercise(PracticeRoutineExercise routineExercise)
+        {
+            PracticeRoutineExercises.Add(routineExercise);
+        }
+
         private void AddExercise()
         {
-            PracticeRoutineExercises.Add(new PracticeRoutineExercise { AssignedPracticeTime = 300, PracticalityRating = 0, DifficultyRating = 0, Title = "New Exercise" });
+            Messenger.Default.Send(new StartSelectingPracticeRoutineExerciseMessage());
         }
 
         private void DeleteExercise()

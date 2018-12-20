@@ -14,7 +14,7 @@ namespace CygSoft.SmartSession.Domain.PracticeRoutines
 
         public int ExerciseId { get; set; }
 
-        public string Title { get; set; } = "Dummy Exercise Title";
+        public string Title { get; set; }
         public int PracticeRoutineId { get; set; }
 
         // in seconds

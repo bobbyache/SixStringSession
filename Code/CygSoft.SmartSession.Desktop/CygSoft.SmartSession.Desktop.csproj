@@ -119,6 +119,11 @@
       <DependentUpon>ExerciseRecorderView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Exercises\ExerciseRecorderViewModel.cs" />
+    <Compile Include="Exercises\ExerciseSelectionCancelledMessage.cs" />
+    <Compile Include="Exercises\ExerciseSelectionView.xaml.cs">
+      <DependentUpon>ExerciseSelectionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Exercises\ExerciseSelectionViewModel.cs" />
     <Compile Include="Exercises\OpenExerciseRecorderMessage.cs" />
     <Compile Include="Exercises\SavedExerciseRecordingMessage.cs" />
     <Compile Include="Exercises\StartEditingExerciseMessage.cs" />
@@ -159,6 +164,7 @@
     <Compile Include="Goals\StartEditingGoalMessage.cs" />
     <Compile Include="MainWindowViewModel.cs" />
     <Compile Include="PracticeRoutines\EndEditingPracticeRoutineMessage.cs" />
+    <Compile Include="Exercises\ExerciseSelectedMessage.cs" />
     <Compile Include="PracticeRoutines\PracticeRoutineCompositeView.xaml.cs">
       <DependentUpon>PracticeRoutineCompositeView.xaml</DependentUpon>
     </Compile>
@@ -172,6 +178,7 @@
       <DependentUpon>PracticeRoutineSearchView.xaml</DependentUpon>
     </Compile>
     <Compile Include="PracticeRoutines\PracticeRoutineSearchViewModel.cs" />
+    <Compile Include="PracticeRoutines\StartSelectingPracticeRoutineExerciseMessage.cs" />
     <Compile Include="PracticeRoutines\StartEditingPracticeRoutineMessage.cs" />
     <Compile Include="Supports\Converters\ComparisonOperatorConverter.cs" />
     <Compile Include="Supports\Converters\EnumToCollectionConverter.cs" />
@@ -227,6 +234,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Exercises\ExerciseSearchCriteriaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Exercises\ExerciseSelectionView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

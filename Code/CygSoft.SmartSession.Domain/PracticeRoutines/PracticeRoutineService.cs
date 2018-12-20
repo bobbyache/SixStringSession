@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CygSoft.SmartSession.Domain.Exercises;
+using System;
 using System.Collections.Generic;
 
 namespace CygSoft.SmartSession.Domain.PracticeRoutines
@@ -6,10 +7,12 @@ namespace CygSoft.SmartSession.Domain.PracticeRoutines
     public class PracticeRoutineService : IPracticeRoutineService
     {
         private IUnitOfWork unitOfWork;
+        private IExerciseService exerciseService;
 
-        public PracticeRoutineService(IUnitOfWork unitOfWork)
+        public PracticeRoutineService(IUnitOfWork unitOfWork, IExerciseService exerciseService)
         {
             this.unitOfWork = unitOfWork ?? throw new ArgumentNullException("UnitOfWork must be provided.");
+            this.exerciseService = exerciseService ?? throw new ArgumentNullException("ExerciseService must be provided.");
         }
 
         public PracticeRoutine Create()
@@ -62,6 +65,21 @@ namespace CygSoft.SmartSession.Domain.PracticeRoutines
 
             unitOfWork.PracticeRoutines.Update(practiceRoutine);
             unitOfWork.Commit();
+        }
+
+        public PracticeRoutineExercise CreatePracticeRoutineExerciseFor(int exerciseId)
+        {
+            var exercise = exerciseService.Get(exerciseId);
+            var routineExercise = new PracticeRoutineExercise
+            {
+                ExerciseId = exerciseId,
+                Title = exercise.Title,
+                DifficultyRating = 0,
+                PracticalityRating = 0,
+                AssignedPracticeTime = 300
+            };
+
+            return routineExercise;
         }
     }
 }

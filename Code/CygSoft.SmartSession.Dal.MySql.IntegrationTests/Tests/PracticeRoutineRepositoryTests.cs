@@ -174,6 +174,7 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
                 uow.Commit();
 
                 var createdPracticeRoutine = CreatePracticeRoutine();
+
                 createdPracticeRoutine.PracticeRoutineExercises.Add(new PracticeRoutineExercise
                 {
                     ExerciseId = createdExercise.Id,

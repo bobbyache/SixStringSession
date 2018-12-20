@@ -368,16 +368,19 @@ CREATE PROCEDURE `sp_GetPracticeRoutineExercisesByPracticeRoutine`(
 	)
 BEGIN
 	SELECT  
-		PracticeRoutineId,
-		ExerciseId,
-		AssignedPracticeTime,
-		DifficultyRating,
-		PracticalityRating,
-		DateCreated,
-		DateModified
-	FROM PracticeRoutineExercise
+		E.Title,
+		PRE.PracticeRoutineId,
+		PRE.ExerciseId,
+		PRE.AssignedPracticeTime,
+		PRE.DifficultyRating,
+		PRE.PracticalityRating,
+		PRE.DateCreated,
+		PRE.DateModified
+	FROM 
+		PracticeRoutineExercise PRE
+        INNER JOIN Exercise E ON E.Id = PRE.ExerciseId
 	WHERE
-		PracticeRoutineId = _practiceRoutineId;
+		PRE.PracticeRoutineId = _practiceRoutineId;
 END;
 COMMIT;
 
@@ -388,16 +391,19 @@ CREATE PROCEDURE `sp_GetPracticeRoutineExerciseById`(
 	)
 BEGIN
 	SELECT  
-		PracticeRoutineId,
-		ExerciseId,
-		AssignedPracticeTime,
-		DifficultyRating,
-		PracticalityRating,
-		DateCreated,
-		DateModified
-	FROM PracticeRoutineExercise
+		E.Title,
+		PRE.PracticeRoutineId,
+		PRE.ExerciseId,
+		PRE.AssignedPracticeTime,
+		PRE.DifficultyRating,
+		PRE.PracticalityRating,
+		PRE.DateCreated,
+		PRE.DateModified
+	FROM 
+		PracticeRoutineExercise PRE
+        INNER JOIN Exercise E ON E.Id = PRE.ExerciseId
 	WHERE
-		PracticeRoutineId = _practiceRoutineId AND ExerciseId = _exerciseId;
+		PRE.PracticeRoutineId = _practiceRoutineId AND E.Id = _exerciseId;
 END;
 COMMIT;
 

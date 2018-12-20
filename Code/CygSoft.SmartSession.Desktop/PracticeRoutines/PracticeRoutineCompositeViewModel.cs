@@ -16,6 +16,7 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
     {
         private PracticeRoutineSearchViewModel practiceRoutineSearchViewModel;
         private PracticeRoutineEditViewModel practiceRoutineEditViewModel;
+        private ExerciseSelectionViewModel exerciseSelectionViewModel;
         private IPracticeRoutineService practiceRoutineService;
 
         private ViewModelBase currentViewModel;
@@ -27,17 +28,39 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
 
         public RelayCommand<string> NavigationCommand { get; private set; }
 
-        public PracticeRoutineCompositeViewModel(IPracticeRoutineService practiceRoutineService, PracticeRoutineSearchViewModel practiceRoutineSearchViewModel, PracticeRoutineEditViewModel practiceRoutineEditViewModel)
+        public PracticeRoutineCompositeViewModel(IPracticeRoutineService practiceRoutineService, PracticeRoutineSearchViewModel practiceRoutineSearchViewModel, 
+            PracticeRoutineEditViewModel practiceRoutineEditViewModel, ExerciseSelectionViewModel exerciseSelectionViewModel)
         {
             this.practiceRoutineService = practiceRoutineService;
             this.practiceRoutineSearchViewModel = practiceRoutineSearchViewModel;
             this.practiceRoutineEditViewModel = practiceRoutineEditViewModel;
+            this.exerciseSelectionViewModel = exerciseSelectionViewModel;
 
+            Messenger.Default.Register<ExerciseSelectionCancelledMessage>(this, (m) => ExerciseSelectionCancelled());
+            Messenger.Default.Register<ExerciseSelectedMessage>(this, (m) => ExerciseSelected(m.ExerciseId));
+            Messenger.Default.Register<StartSelectingPracticeRoutineExerciseMessage>(this, (m) => StartSelectingPracticeRoutine());
             Messenger.Default.Register<StartEditingPracticeRoutineMessage>(this, (m) => StartEditingPracticeRoutine(m.PracticeRoutine));
             Messenger.Default.Register<EndEditingPracticeRoutineMessage>(this, (m) => EndEditingPracticeRoutine(m.PracticeRoutine, m.Operation, m.LifeCycleState));
 
             NavigationCommand = new RelayCommand<string>(NavigateTo);
             NavigateTo("Search");
+        }
+
+        private void ExerciseSelected(int exerciseId)
+        {
+            var routineExercise = practiceRoutineService.CreatePracticeRoutineExerciseFor(exerciseId);
+            practiceRoutineEditViewModel.AddPracticeRoutineExercise(routineExercise);
+            NavigateTo("Edit");
+        }
+
+        private void ExerciseSelectionCancelled()
+        {
+            NavigateTo("Edit");
+        }
+
+        private void StartSelectingPracticeRoutine()
+        {
+            NavigateTo("SelectExercise");
         }
 
         protected virtual void EndEditingPracticeRoutine(PracticeRoutine practiceRoutine, EditorCloseOperation operation,
@@ -72,9 +95,11 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
                 case "Edit":
                     CurrentViewModel = practiceRoutineEditViewModel;
                     break;
+                case "SelectExercise":
+                    CurrentViewModel = exerciseSelectionViewModel;
+                    break;
                 default:
                     CurrentViewModel = practiceRoutineSearchViewModel;
-                    practiceRoutineSearchViewModel.RefreshRoutines();
                     break;
             }
         }

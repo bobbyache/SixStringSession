@@ -1,4 +1,5 @@
-﻿using CygSoft.SmartSession.Domain.PracticeRoutines;
+﻿using CygSoft.SmartSession.Domain.Exercises;
+using CygSoft.SmartSession.Domain.PracticeRoutines;
 using Moq;
 using NUnit.Framework;
 using System;
@@ -16,12 +17,13 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         public void PracticeRoutineService_CreateNew_Creates_Exercise_With_Proper_Initialisation_State()
         {
             var unitOfWork = new Mock<IUnitOfWork>();
-            var practiceRoutineService = new PracticeRoutineService(unitOfWork.Object);
+            var exerciseService = new Mock<IExerciseService>();
+            var practiceRoutineService = new PracticeRoutineService(unitOfWork.Object, exerciseService.Object);
 
-            var exercise = practiceRoutineService.Create();
+            var practiceRoutine = practiceRoutineService.Create();
 
-            Assert.That(exercise, Is.Not.Null);
-            Assert.IsTrue(exercise.Title.StartsWith("New Practice Routine - "));
+            Assert.That(practiceRoutine, Is.Not.Null);
+            Assert.IsTrue(practiceRoutine.Title.StartsWith("New Practice Routine - "));
         }
 
         // You can't do anything else here unless you inject the repositories into UnitOfWork.
