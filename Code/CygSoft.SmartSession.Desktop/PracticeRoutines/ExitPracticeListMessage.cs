@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CygSoft.SmartSession.Desktop.PracticeRoutines
 {
-    public class SavePracticeRoutineRecordingMessage
+    public class ExitPracticeListMessage
     {
     }
 }

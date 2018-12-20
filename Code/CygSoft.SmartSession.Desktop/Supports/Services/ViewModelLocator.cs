@@ -18,16 +18,19 @@ namespace CygSoft.SmartSession.Desktop.Supports.Services
         public ExerciseSelectionViewModel ExerciseSelectionViewModel { get => Bootstrapper.Container.Resolve<ExerciseSelectionViewModel>(); }
         public ExerciseSearchCriteriaViewModel ExerciseSearchCriteriaViewModel { get => Bootstrapper.Container.Resolve<ExerciseSearchCriteriaViewModel>(); }
         public ExerciseRecorderViewModel ExerciseRecorderViewModel { get => Bootstrapper.Container.Resolve<ExerciseRecorderViewModel>(); }
+                
 
         public PracticeRoutineEditViewModel PracticeRoutineEditViewModel { get => Bootstrapper.Container.Resolve<PracticeRoutineEditViewModel>(); }
         public PracticeRoutineCompositeViewModel PracticeRoutineCompositeViewModel { get => Bootstrapper.Container.Resolve<PracticeRoutineCompositeViewModel>(); }
-        public PracticeRoutineSearchViewModel PracticeRoutineSearchViewModel { get => Bootstrapper.Container.Resolve<PracticeRoutineSearchViewModel>(); }
-        public PracticeRoutineRecorderViewModel PracticeRoutineRecorderViewModel { get => Bootstrapper.Container.Resolve<PracticeRoutineRecorderViewModel>(); }
+        public PracticeRoutineManagementViewModel PracticeRoutineManagementViewModel { get => Bootstrapper.Container.Resolve<PracticeRoutineManagementViewModel>(); }
+        public PracticeRoutineRecordingListViewModel PracticeRoutineRecordingListViewModel { get => Bootstrapper.Container.Resolve<PracticeRoutineRecordingListViewModel>(); }
+
 
         public GoalEditViewModel GoalEditViewModel { get => Bootstrapper.Container.Resolve<GoalEditViewModel>(); }
         public GoalCompositeViewModel GoalCompositeViewModel { get => Bootstrapper.Container.Resolve<GoalCompositeViewModel>(); }
         public GoalSearchViewModel GoalSearchViewModel { get => Bootstrapper.Container.Resolve<GoalSearchViewModel>(); }
         public GoalSearchCriteriaViewModel GoalSearchCriteriaViewModel { get => Bootstrapper.Container.Resolve<GoalSearchCriteriaViewModel>(); }
+
 
         public MainWindowViewModel MainWindowViewModel { get => Bootstrapper.Container.Resolve<MainWindowViewModel>(); }
     }

@@ -14,10 +14,10 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
 {
     public class PracticeRoutineCompositeViewModel : ViewModelBase
     {
-        private PracticeRoutineSearchViewModel practiceRoutineSearchViewModel;
+        private PracticeRoutineManagementViewModel practiceRoutineManagementViewModel;
         private PracticeRoutineEditViewModel practiceRoutineEditViewModel;
+        private PracticeRoutineRecordingListViewModel practiceRoutineRecordingListViewModel;
         private ExerciseSelectionViewModel exerciseSelectionViewModel;
-        private PracticeRoutineRecorderViewModel practiceRoutineRecorderViewModel;
         private IPracticeRoutineService practiceRoutineService;
 
         private ViewModelBase currentViewModel;
@@ -29,21 +29,21 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
 
         public RelayCommand<string> NavigationCommand { get; private set; }
 
-        public PracticeRoutineCompositeViewModel(IPracticeRoutineService practiceRoutineService, PracticeRoutineSearchViewModel practiceRoutineSearchViewModel, 
-            PracticeRoutineEditViewModel practiceRoutineEditViewModel, ExerciseSelectionViewModel exerciseSelectionViewModel, PracticeRoutineRecorderViewModel practiceRoutineRecorderViewModel)
+        public PracticeRoutineCompositeViewModel(IPracticeRoutineService practiceRoutineService, 
+            PracticeRoutineManagementViewModel practiceRoutineManagementViewModel,
+            PracticeRoutineRecordingListViewModel practiceRoutineRecordingListViewModel,
+            PracticeRoutineEditViewModel practiceRoutineEditViewModel, ExerciseSelectionViewModel exerciseSelectionViewModel)
         {
             this.practiceRoutineService = practiceRoutineService;
-            this.practiceRoutineSearchViewModel = practiceRoutineSearchViewModel;
+            this.practiceRoutineManagementViewModel = practiceRoutineManagementViewModel;
             this.practiceRoutineEditViewModel = practiceRoutineEditViewModel;
+            this.practiceRoutineRecordingListViewModel = practiceRoutineRecordingListViewModel;
             this.exerciseSelectionViewModel = exerciseSelectionViewModel;
-            this.practiceRoutineRecorderViewModel = practiceRoutineRecorderViewModel;
 
-            Messenger.Default.Register<CancelRecordingPracticeRoutineMessage>(this, (m) => CancelRecordingPracticeRoutine());
-            Messenger.Default.Register<SavePracticeRoutineRecordingMessage>(this, (m) => SavePracticeRoutineRecording());
-
+            Messenger.Default.Register<ExitPracticeListMessage>(this, (m) => ExitPracticeList());
+            Messenger.Default.Register<ViewPracticeListMessage>(this, (m) => ViewPracticeList());
             Messenger.Default.Register<ExerciseSelectionCancelledMessage>(this, (m) => ExerciseSelectionCancelled());
             Messenger.Default.Register<ExerciseSelectedMessage>(this, (m) => ExerciseSelected(m.ExerciseId));
-            Messenger.Default.Register<StartPracticingRoutineMessage>(this, (m) => StartPracticingRoutine(m.ExercisePracticeRoutineId));
             Messenger.Default.Register<StartSelectingPracticeRoutineExerciseMessage>(this, (m) => StartSelectingPracticeRoutine());
             Messenger.Default.Register<StartEditingPracticeRoutineMessage>(this, (m) => StartEditingPracticeRoutine(m.PracticeRoutine));
             Messenger.Default.Register<EndEditingPracticeRoutineMessage>(this, (m) => EndEditingPracticeRoutine(m.PracticeRoutine, m.Operation, m.LifeCycleState));
@@ -52,17 +52,12 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
             NavigateTo("Search");
         }
 
-        private void SavePracticeRoutineRecording()
+        private void ExitPracticeList()
         {
             NavigateTo("Search");
         }
 
-        private void CancelRecordingPracticeRoutine()
-        {
-            NavigateTo("Search");
-        }
-
-        private void StartPracticingRoutine(int exercisePracticeRoutineId)
+        private void ViewPracticeList()
         {
             NavigateTo("Record");
         }
@@ -110,20 +105,20 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
             switch (destination)
             {
                 case "Search":
-                    CurrentViewModel = practiceRoutineSearchViewModel;
-                    practiceRoutineSearchViewModel.RefreshRoutines();
+                    CurrentViewModel = practiceRoutineManagementViewModel;
+                    practiceRoutineManagementViewModel.RefreshRoutines();
                     break;
                 case "Edit":
                     CurrentViewModel = practiceRoutineEditViewModel;
                     break;
+                case "Record":
+                    CurrentViewModel = practiceRoutineRecordingListViewModel;
+                    break;
                 case "SelectExercise":
                     CurrentViewModel = exerciseSelectionViewModel;
                     break;
-                case "Record":
-                    CurrentViewModel = practiceRoutineRecorderViewModel;
-                    break;
                 default:
-                    CurrentViewModel = practiceRoutineSearchViewModel;
+                    CurrentViewModel = practiceRoutineManagementViewModel;
                     break;
             }
         }

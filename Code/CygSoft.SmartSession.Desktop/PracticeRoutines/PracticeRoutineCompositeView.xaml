@@ -11,14 +11,14 @@
         <Binding Source="{StaticResource ViewModelLocator}" Path="PracticeRoutineCompositeViewModel" />
     </UserControl.DataContext>
     <UserControl.Resources>
-        <DataTemplate DataType="{x:Type local:PracticeRoutineSearchViewModel}">
-            <local:PracticeRoutineSearchView />
+        <DataTemplate DataType="{x:Type local:PracticeRoutineManagementViewModel}">
+            <local:PracticeRoutineManagementView />
         </DataTemplate>
         <DataTemplate DataType="{x:Type local:PracticeRoutineEditViewModel}">
             <local:PracticeRoutineEditView />
         </DataTemplate>
-        <DataTemplate DataType="{x:Type local:PracticeRoutineRecorderViewModel}">
-            <local:PracticeRoutineRecorderView />
+        <DataTemplate DataType="{x:Type local:PracticeRoutineRecordingListViewModel}">
+            <local:PracticeRoutineRecordingListView />
         </DataTemplate>
         <DataTemplate DataType="{x:Type exercises:ExerciseSelectionViewModel}">
             <exercises:ExerciseSelectionView />

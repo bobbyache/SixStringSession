@@ -163,9 +163,9 @@
     <Compile Include="Goals\GoalSearchViewModel.cs" />
     <Compile Include="Goals\StartEditingGoalMessage.cs" />
     <Compile Include="MainWindowViewModel.cs" />
-    <Compile Include="PracticeRoutines\CancelRecordingPracticeRoutineMessage.cs" />
     <Compile Include="PracticeRoutines\EndEditingPracticeRoutineMessage.cs" />
     <Compile Include="Exercises\ExerciseSelectedMessage.cs" />
+    <Compile Include="PracticeRoutines\ExitPracticeListMessage.cs" />
     <Compile Include="PracticeRoutines\PracticeRoutineCompositeView.xaml.cs">
       <DependentUpon>PracticeRoutineCompositeView.xaml</DependentUpon>
     </Compile>
@@ -174,19 +174,18 @@
       <DependentUpon>PracticeRoutineEditView.xaml</DependentUpon>
     </Compile>
     <Compile Include="PracticeRoutines\PracticeRoutineEditViewModel.cs" />
-    <Compile Include="PracticeRoutines\PracticeRoutineRecorderView.xaml.cs">
-      <DependentUpon>PracticeRoutineRecorderView.xaml</DependentUpon>
+    <Compile Include="PracticeRoutines\PracticeRoutineRecordingListView.xaml.cs">
+      <DependentUpon>PracticeRoutineRecordingListView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PracticeRoutines\PracticeRoutineRecorderViewModel.cs" />
+    <Compile Include="PracticeRoutines\PracticeRoutineRecordingListViewModel.cs" />
     <Compile Include="PracticeRoutines\PracticeRoutineSearchResultModel.cs" />
-    <Compile Include="PracticeRoutines\PracticeRoutineSearchView.xaml.cs">
-      <DependentUpon>PracticeRoutineSearchView.xaml</DependentUpon>
+    <Compile Include="PracticeRoutines\PracticeRoutineManagementView.xaml.cs">
+      <DependentUpon>PracticeRoutineManagementView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PracticeRoutines\PracticeRoutineSearchViewModel.cs" />
-    <Compile Include="PracticeRoutines\SavePracticeRoutineRecordingMessage.cs" />
-    <Compile Include="PracticeRoutines\StartPracticingRoutineMessage.cs" />
+    <Compile Include="PracticeRoutines\PracticeRoutineManagementViewModel.cs" />
     <Compile Include="PracticeRoutines\StartSelectingPracticeRoutineExerciseMessage.cs" />
     <Compile Include="PracticeRoutines\StartEditingPracticeRoutineMessage.cs" />
+    <Compile Include="PracticeRoutines\ViewPracticeListMessage.cs" />
     <Compile Include="Supports\Converters\ComparisonOperatorConverter.cs" />
     <Compile Include="Supports\Converters\EnumToCollectionConverter.cs" />
     <Compile Include="Supports\Converters\MathConverter.cs" />
@@ -288,11 +287,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="PracticeRoutines\PracticeRoutineRecorderView.xaml">
+    <Page Include="PracticeRoutines\PracticeRoutineManagementView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="PracticeRoutines\PracticeRoutineSearchView.xaml">
+    <Page Include="PracticeRoutines\PracticeRoutineRecordingListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

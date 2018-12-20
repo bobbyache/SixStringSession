@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace CygSoft.SmartSession.Desktop.PracticeRoutines
 {
     /// <summary>
-    /// Interaction logic for PracticeRoutineSearchView.xaml
+    /// Interaction logic for PracticeRoutineManagementView.xaml
     /// </summary>
-    public partial class PracticeRoutineSearchView : UserControl
+    public partial class PracticeRoutineManagementView : UserControl
     {
-        public PracticeRoutineSearchView()
+        public PracticeRoutineManagementView()
         {
             InitializeComponent();
         }

@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace CygSoft.SmartSession.Desktop.PracticeRoutines
 {
-    public class PracticeRoutineSearchViewModel : ViewModelBase
+    public class PracticeRoutineManagementViewModel : ViewModelBase
     {
 
         #region Alternative Constructors
@@ -35,22 +35,21 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
         private IPracticeRoutineService practiceRoutineService;
         private IDialogViewService dialogService;
 
-        public PracticeRoutineSearchViewModel(IPracticeRoutineService practiceRoutineService, IDialogViewService dialogService)
+        public PracticeRoutineManagementViewModel(IPracticeRoutineService practiceRoutineService, IDialogViewService dialogService)
         {
             this.practiceRoutineService = practiceRoutineService ?? throw new ArgumentNullException("Service must be provided.");
             this.dialogService = dialogService ?? throw new ArgumentNullException("Dialog service must be provided.");
 
-            StartPracticeingRoutineCommand = new RelayCommand(StartPracticeingRoutine, () => true);
+            PracticeCommand = new RelayCommand(Practice, () => true);
             AddPracticeRoutineCommand = new RelayCommand(AddPracticeRoutine, () => true);
             DeletePracticeRoutineCommand = new RelayCommand(DeletePracticeRoutine, () => SelectedPracticeRoutine != null);
             EditPracticeRoutineCommand = new RelayCommand(EditPracticeRoutine, () => SelectedPracticeRoutine != null);
         }
 
-        public RelayCommand StartPracticeingRoutineCommand { get; private set; }
-
         public RelayCommand AddPracticeRoutineCommand { get; private set; }
         public RelayCommand DeletePracticeRoutineCommand { get; private set; }
         public RelayCommand EditPracticeRoutineCommand { get; private set; }
+        public RelayCommand PracticeCommand { get; private set; }
 
         private PracticeRoutineSearchResultModel selectedPracticeRoutine;
         public PracticeRoutineSearchResultModel SelectedPracticeRoutine
@@ -65,27 +64,11 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
             }
         }
 
-        private bool isItemsControlOpen;
-        public bool IsItemsControlOpen
-        {
-            get
-            {
-                return isItemsControlOpen;
-            }
-            set
-            {
-                Set(() => IsItemsControlOpen, ref isItemsControlOpen, value);
-            }
-        }
-
-
-        public ObservableCollection<int> DifficultyList { get; private set; } = new ObservableCollection<int> { 1, 2, 3, 4, 5 };
-        public ObservableCollection<int> PracticalityList { get; private set; } = new ObservableCollection<int> { 1, 2, 3, 4, 5 };
         public ObservableCollection<PracticeRoutineSearchResultModel> PracticeRoutineList { get; private set; } = new ObservableCollection<PracticeRoutineSearchResultModel>();
 
-        private void StartPracticeingRoutine()
+        private void Practice()
         {
-            Messenger.Default.Send(new StartPracticingRoutineMessage(SelectedPracticeRoutine.Id));
+            Messenger.Default.Send(new ViewPracticeListMessage());
         }
 
         public void RefreshRoutines()
