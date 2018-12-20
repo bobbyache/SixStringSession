@@ -18,10 +18,17 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             var exercise = GetMetronomeExercise();
             var newPracticeRoutine = CreatePracticeRoutine();
 
-            var routineExercise = newPracticeRoutine.AddExercise(exercise.Id, 5, 1, 3);
+            newPracticeRoutine.PracticeRoutineExercises.Add(new PracticeRoutineExercise
+            {
+                ExerciseId = exercise.Id,
+                AssignedPracticeTime = 5000,
+                DifficultyRating = 1,
+                PracticalityRating = 3
+            });
 
+            var routineExercise = newPracticeRoutine.PracticeRoutineExercises[0];
 
-            Assert.AreEqual(5, routineExercise.AssignedPracticeTime);
+            Assert.AreEqual(5000, routineExercise.AssignedPracticeTime);
             Assert.AreEqual(1, routineExercise.DifficultyRating);
             Assert.AreEqual(3, routineExercise.PracticalityRating);
         }

@@ -174,11 +174,18 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
                 uow.Commit();
 
                 var createdPracticeRoutine = CreatePracticeRoutine();
-                createdPracticeRoutine.AddExercise(createdExercise.Id, 5000, 2, 3);
+                createdPracticeRoutine.PracticeRoutineExercises.Add(new PracticeRoutineExercise
+                {
+                    ExerciseId = createdExercise.Id,
+                    AssignedPracticeTime = 5000,
+                    DifficultyRating = 2,
+                    PracticalityRating = 3
+                });
+
                 uow.PracticeRoutines.Add(createdPracticeRoutine);
                 uow.Commit();
 
-                var practiceRoutine = uow.PracticeRoutines.Get(createdExercise.Id);
+                var practiceRoutine = uow.PracticeRoutines.Get(createdPracticeRoutine.Id);
                 var practiceRoutineExercise = practiceRoutine.PracticeRoutineExercises[0];
 
                 Assert.That(practiceRoutineExercise.ExerciseId, Is.GreaterThan(0));
@@ -212,7 +219,15 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
                 uow.Commit();
 
                 var existingPracticeRoutine = uow.PracticeRoutines.Get(createdPracticeRoutine.Id);
-                existingPracticeRoutine.AddExercise(createdExercise.Id, 5000, 2, 3);
+
+                existingPracticeRoutine.PracticeRoutineExercises.Add(new PracticeRoutineExercise
+                {
+                    ExerciseId = createdExercise.Id,
+                    AssignedPracticeTime = 5000,
+                    DifficultyRating = 2,
+                    PracticalityRating = 3
+                });
+
                 uow.PracticeRoutines.Update(existingPracticeRoutine);
 
                 var updatedPracticeRoutine = uow.PracticeRoutines.Get(existingPracticeRoutine.Id);
@@ -249,11 +264,20 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
                 uow.Commit();
 
                 var existingPracticeRoutine = uow.PracticeRoutines.Get(createdPracticeRoutine.Id);
-                existingPracticeRoutine.AddExercise(createdExercise.Id, 5000, 2, 3);
+
+                existingPracticeRoutine.PracticeRoutineExercises.Add(new PracticeRoutineExercise
+                {
+                    ExerciseId = createdExercise.Id,
+                    AssignedPracticeTime = 5000,
+                    DifficultyRating = 2,
+                    PracticalityRating = 3
+                });
+
                 uow.PracticeRoutines.Update(existingPracticeRoutine);
 
                 var updatedPracticeRoutine = uow.PracticeRoutines.Get(existingPracticeRoutine.Id);
-                updatedPracticeRoutine.RemoveExercise(updatedPracticeRoutine.PracticeRoutineExercises[0].ExerciseId);
+                updatedPracticeRoutine.PracticeRoutineExercises.Remove(updatedPracticeRoutine.PracticeRoutineExercises[0]);
+
                 var routineExerciseCountAfterDeletion = updatedPracticeRoutine.PracticeRoutineExercises.Count;
 
                 uow.PracticeRoutines.Update(updatedPracticeRoutine);
@@ -278,8 +302,22 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
                 uow.Commit();
 
                 var createdPracticeRoutine = CreatePracticeRoutine();
-                createdPracticeRoutine.AddExercise(createdExercise1.Id, 5000, 2, 2);
-                createdPracticeRoutine.AddExercise(createdExercise2.Id, 10000, 5, 5);
+                createdPracticeRoutine.PracticeRoutineExercises.Add(new PracticeRoutineExercise
+                {
+                    ExerciseId = createdExercise1.Id,
+                    AssignedPracticeTime = 5000,
+                    DifficultyRating = 2,
+                    PracticalityRating = 2
+                });
+
+                createdPracticeRoutine.PracticeRoutineExercises.Add(new PracticeRoutineExercise
+                {
+                    ExerciseId = createdExercise2.Id,
+                    AssignedPracticeTime = 10000,
+                    DifficultyRating = 5,
+                    PracticalityRating = 5
+                });
+
                 uow.PracticeRoutines.Add(createdPracticeRoutine);
                 uow.Commit();
 
