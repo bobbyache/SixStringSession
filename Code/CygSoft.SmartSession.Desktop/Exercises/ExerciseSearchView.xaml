@@ -7,9 +7,6 @@
              xmlns:converters="clr-namespace:CygSoft.SmartSession.Desktop.Supports.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <UserControl.DataContext>
-        <Binding Source="{StaticResource ViewModelLocator}" Path="ExerciseManagementViewModel" />
-    </UserControl.DataContext>
     <UserControl.Resources>
         <converters:MathConverter x:Key="MathConverter"/>
         <converters:ProgressForegroundConverter x:Key="ProgressForegroundConverter"/>

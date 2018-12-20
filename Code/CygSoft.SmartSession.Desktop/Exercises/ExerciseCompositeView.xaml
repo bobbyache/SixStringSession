@@ -10,8 +10,8 @@
         <Binding Source="{StaticResource ViewModelLocator}" Path="ExerciseCompositeViewModel" />
     </UserControl.DataContext>
     <UserControl.Resources>
-        <DataTemplate DataType="{x:Type local:ExerciseSearchViewModel}">
-            <local:ExerciseSearchView />
+        <DataTemplate DataType="{x:Type local:ExerciseManagementViewModel}">
+            <local:ExerciseManagementView />
         </DataTemplate>
         <DataTemplate DataType="{x:Type local:ExerciseEditViewModel}">
             <local:ExerciseEditView />

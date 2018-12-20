@@ -111,6 +111,9 @@
       <DependentUpon>BusyIndicatorView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Exercises\CancelledExerciseRecordingMessage.cs" />
+    <Compile Include="Exercises\ExerciseManagementView.xaml.cs">
+      <DependentUpon>ExerciseManagementView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Exercises\ExerciseManagementViewModel.cs" />
     <Compile Include="Exercises\ExerciseRecorderView.xaml.cs">
       <DependentUpon>ExerciseRecorderView.xaml</DependentUpon>
@@ -212,6 +215,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Exercises\ExerciseEditView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Exercises\ExerciseManagementView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
