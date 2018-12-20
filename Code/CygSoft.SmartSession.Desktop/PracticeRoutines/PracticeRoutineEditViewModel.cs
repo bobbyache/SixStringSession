@@ -39,7 +39,11 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
             }
         }
 
-        public ObservableCollection<PracticeRoutineExercise> PracticeRoutineExercises { get; private set; } = new ObservableCollection<PracticeRoutineExercise>();
+        public ObservableCollection<PracticeRoutineExercise> PracticeRoutineExercises
+        {
+            get;
+            private set;
+        } = new ObservableCollection<PracticeRoutineExercise>();
 
         private PracticeRoutineExercise selectedPracticeRoutineExercise;
         public PracticeRoutineExercise SelectedPracticeRoutineExercise
@@ -72,12 +76,27 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
         public RelayCommand SaveCommand { get; private set; }
         public RelayCommand CancelCommand { get; private set; }
 
+        public RelayCommand AddExerciseCommand { get; private set; }
+        public RelayCommand DeleteExerciseCommand { get; private set; }
+
         public PracticeRoutineEditViewModel(IDialogViewService dialogService)
         {
             this.dialogService = dialogService ?? throw new ArgumentNullException("Dialog service must be provided.");
 
             SaveCommand = new RelayCommand(() => Save(), () => !this.HasErrors);
             CancelCommand = new RelayCommand(() => Cancel(), () => true);
+            AddExerciseCommand = new RelayCommand(() => AddExercise(), () => true);
+            DeleteExerciseCommand = new RelayCommand(() => DeleteExercise(), () => true);
+        }
+
+        private void AddExercise()
+        {
+            PracticeRoutineExercises.Add(new PracticeRoutineExercise { AssignedPracticeTime = 300, PracticalityRating = 0, DifficultyRating = 0, Title = "New Exercise" });
+        }
+
+        private void DeleteExercise()
+        {
+            PracticeRoutineExercises.Remove(SelectedPracticeRoutineExercise);
         }
 
         public void StartEdit(PracticeRoutine practiceRoutine)
