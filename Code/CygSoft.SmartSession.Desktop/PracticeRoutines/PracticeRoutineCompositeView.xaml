@@ -17,6 +17,9 @@
         <DataTemplate DataType="{x:Type local:PracticeRoutineEditViewModel}">
             <local:PracticeRoutineEditView />
         </DataTemplate>
+        <DataTemplate DataType="{x:Type local:PracticeRoutineRecorderViewModel}">
+            <local:PracticeRoutineRecorderView />
+        </DataTemplate>
         <DataTemplate DataType="{x:Type exercises:ExerciseSelectionViewModel}">
             <exercises:ExerciseSelectionView />
         </DataTemplate>

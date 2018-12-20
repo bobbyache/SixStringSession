@@ -17,6 +17,7 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
         private PracticeRoutineSearchViewModel practiceRoutineSearchViewModel;
         private PracticeRoutineEditViewModel practiceRoutineEditViewModel;
         private ExerciseSelectionViewModel exerciseSelectionViewModel;
+        private PracticeRoutineRecorderViewModel practiceRoutineRecorderViewModel;
         private IPracticeRoutineService practiceRoutineService;
 
         private ViewModelBase currentViewModel;
@@ -29,21 +30,41 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
         public RelayCommand<string> NavigationCommand { get; private set; }
 
         public PracticeRoutineCompositeViewModel(IPracticeRoutineService practiceRoutineService, PracticeRoutineSearchViewModel practiceRoutineSearchViewModel, 
-            PracticeRoutineEditViewModel practiceRoutineEditViewModel, ExerciseSelectionViewModel exerciseSelectionViewModel)
+            PracticeRoutineEditViewModel practiceRoutineEditViewModel, ExerciseSelectionViewModel exerciseSelectionViewModel, PracticeRoutineRecorderViewModel practiceRoutineRecorderViewModel)
         {
             this.practiceRoutineService = practiceRoutineService;
             this.practiceRoutineSearchViewModel = practiceRoutineSearchViewModel;
             this.practiceRoutineEditViewModel = practiceRoutineEditViewModel;
             this.exerciseSelectionViewModel = exerciseSelectionViewModel;
+            this.practiceRoutineRecorderViewModel = practiceRoutineRecorderViewModel;
+
+            Messenger.Default.Register<CancelRecordingPracticeRoutineMessage>(this, (m) => CancelRecordingPracticeRoutine());
+            Messenger.Default.Register<SavePracticeRoutineRecordingMessage>(this, (m) => SavePracticeRoutineRecording());
 
             Messenger.Default.Register<ExerciseSelectionCancelledMessage>(this, (m) => ExerciseSelectionCancelled());
             Messenger.Default.Register<ExerciseSelectedMessage>(this, (m) => ExerciseSelected(m.ExerciseId));
+            Messenger.Default.Register<StartPracticingRoutineMessage>(this, (m) => StartPracticingRoutine(m.ExercisePracticeRoutineId));
             Messenger.Default.Register<StartSelectingPracticeRoutineExerciseMessage>(this, (m) => StartSelectingPracticeRoutine());
             Messenger.Default.Register<StartEditingPracticeRoutineMessage>(this, (m) => StartEditingPracticeRoutine(m.PracticeRoutine));
             Messenger.Default.Register<EndEditingPracticeRoutineMessage>(this, (m) => EndEditingPracticeRoutine(m.PracticeRoutine, m.Operation, m.LifeCycleState));
 
             NavigationCommand = new RelayCommand<string>(NavigateTo);
             NavigateTo("Search");
+        }
+
+        private void SavePracticeRoutineRecording()
+        {
+            NavigateTo("Search");
+        }
+
+        private void CancelRecordingPracticeRoutine()
+        {
+            NavigateTo("Search");
+        }
+
+        private void StartPracticingRoutine(int exercisePracticeRoutineId)
+        {
+            NavigateTo("Record");
         }
 
         private void ExerciseSelected(int exerciseId)
@@ -97,6 +118,9 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
                     break;
                 case "SelectExercise":
                     CurrentViewModel = exerciseSelectionViewModel;
+                    break;
+                case "Record":
+                    CurrentViewModel = practiceRoutineRecorderViewModel;
                     break;
                 default:
                     CurrentViewModel = practiceRoutineSearchViewModel;

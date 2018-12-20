@@ -40,10 +40,13 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
             this.practiceRoutineService = practiceRoutineService ?? throw new ArgumentNullException("Service must be provided.");
             this.dialogService = dialogService ?? throw new ArgumentNullException("Dialog service must be provided.");
 
+            StartPracticeingRoutineCommand = new RelayCommand(StartPracticeingRoutine, () => true);
             AddPracticeRoutineCommand = new RelayCommand(AddPracticeRoutine, () => true);
             DeletePracticeRoutineCommand = new RelayCommand(DeletePracticeRoutine, () => SelectedPracticeRoutine != null);
             EditPracticeRoutineCommand = new RelayCommand(EditPracticeRoutine, () => SelectedPracticeRoutine != null);
         }
+
+        public RelayCommand StartPracticeingRoutineCommand { get; private set; }
 
         public RelayCommand AddPracticeRoutineCommand { get; private set; }
         public RelayCommand DeletePracticeRoutineCommand { get; private set; }
@@ -80,6 +83,10 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
         public ObservableCollection<int> PracticalityList { get; private set; } = new ObservableCollection<int> { 1, 2, 3, 4, 5 };
         public ObservableCollection<PracticeRoutineSearchResultModel> PracticeRoutineList { get; private set; } = new ObservableCollection<PracticeRoutineSearchResultModel>();
 
+        private void StartPracticeingRoutine()
+        {
+            Messenger.Default.Send(new StartPracticingRoutineMessage(SelectedPracticeRoutine.Id));
+        }
 
         public void RefreshRoutines()
         {
@@ -106,13 +113,6 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
         private void AddPracticeRoutine()
         {
             Messenger.Default.Send(new StartEditingPracticeRoutineMessage(practiceRoutineService.Create()));
-
-            //var domainPracticeRoutine = Mapper.Map<PracticeRoutine>(practiceRoutine);
-            //practiceRoutineService.Add(domainPracticeRoutine);
-            //Mapper.Map(domainPracticeRoutine, practiceRoutine);
-
-            //PracticeRoutineList.Add(practiceRoutine);
-            //SelectedPracticeRoutine = practiceRoutine;
         }
 
     }

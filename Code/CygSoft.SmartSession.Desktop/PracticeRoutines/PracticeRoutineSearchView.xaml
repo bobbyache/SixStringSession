@@ -31,26 +31,6 @@
             <!--Click="Edit_Click" ></Button>-->
             <Button MinWidth="30" Height="30" Content="Delete"  Command="{Binding DeletePracticeRoutineCommand}"></Button>
             <Separator></Separator>
-            <!--<ToggleButton
-                      IsChecked="{Binding IsItemsControlOpen, Mode=TwoWay}" 
-                      HorizontalAlignment="Left" >
-                <ToggleButton.Content>
-                    <StackPanel>
-                        <TextBlock>                      
-                            <Run Text="Find" />                       
-                            <Run Text="q" FontFamily="Wingdings 3" />
-                        </TextBlock>
-                        <Popup IsOpen="{Binding IsItemsControlOpen, Mode=TwoWay}" StaysOpen="False"
-                                   Placement="Bottom" PopupAnimation="Slide"
-                                   HorizontalOffset="-5" VerticalOffset="3">
-
-                            <Border BorderBrush="SlateBlue" BorderThickness="1"  CornerRadius="2" >
-                                <local:PracticeRoutineSearchCriteriaView Background="White"  Width="410" />
-                            </Border>
-                        </Popup>
-                    </StackPanel>
-                </ToggleButton.Content>
-            </ToggleButton>-->
         </ToolBar>
         <ListView Grid.Row="1"  ItemsSource="{Binding PracticeRoutineList}" 
                   SelectionMode="Extended"
@@ -58,8 +38,7 @@
                   >
             <ListBox.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Header="Placeholder Menu Item"
-                    />
+                    <MenuItem Header="Practice This..." Command="{Binding StartPracticeingRoutineCommand}" />
                 </ContextMenu>
             </ListBox.ContextMenu>
             <ListView.View>
