@@ -16,9 +16,22 @@ namespace CygSoft.SmartSession.Domain.PracticeRoutines
 
         public string Title { get; set; }
         public int PracticeRoutineId { get; set; }
+        
+        public int AssignedPracticeTime { get; set; } // in seconds
 
-        // in seconds
-        public int AssignedPracticeTime { get; set; }
+        public int Seconds { get { return AssignedPracticeTime; } set { AssignedPracticeTime = value; } }
+
+        public int Minutes
+        {
+            get
+            {
+                if (AssignedPracticeTime == 0)
+                    return 0;
+
+                return (int)Math.Ceiling((double)AssignedPracticeTime / 60);
+            }
+            set { AssignedPracticeTime = value * 60; }
+        }
 
         // 1 - 5
         public int DifficultyRating { get; set; }

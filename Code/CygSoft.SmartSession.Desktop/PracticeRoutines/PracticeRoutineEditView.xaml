@@ -35,7 +35,7 @@
                     <StackPanel Orientation="Vertical">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock TextAlignment="Right" Margin="2" MinWidth="50" >Minutes</TextBlock>
-                            <TextBox Margin="2" MinWidth="50" Text="{Binding SelectedPracticeRoutineExercise.AssignedPracticeTime}" />
+                            <TextBox Margin="2" MinWidth="50" Text="{Binding SelectedPracticeRoutineExercise.Minutes}" />
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock TextAlignment="Right" Margin="2" MinWidth="50" >Difficulty</TextBlock>
@@ -49,7 +49,11 @@
                                 Value="{Binding SelectedPracticeRoutineExercise.PracticalityRating, ValidatesOnNotifyDataErrors=True}"
                                 TickPlacement="BottomRight" IsSnapToTickEnabled="True"></Slider>
                         </StackPanel>
-                        <TextBlock HorizontalAlignment="Center" Margin="15" Text="{Binding TotalMinutes, Mode=OneWay}"></TextBlock>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock MinWidth="20" HorizontalAlignment="Center" Margin="15" Text="{Binding TotalMinutes, Mode=OneWay}"></TextBlock>
+                            <TextBlock TextAlignment="Right" Margin="2" MinWidth="50" >Total Minutes</TextBlock>
+                        </StackPanel>
+                        
                     </StackPanel>
                 </StackPanel>
             </StackPanel>
@@ -71,7 +75,7 @@
             <ListView.View>
                 <GridView>
                     <GridViewColumn Width="600" Header="Title" DisplayMemberBinding="{Binding Title}"/>
-                    <GridViewColumn Width="50" Header="Minutes" DisplayMemberBinding="{Binding AssignedPracticeTime}" />
+                    <GridViewColumn Width="50" Header="Minutes" DisplayMemberBinding="{Binding Minutes}" />
                     <GridViewColumn Width="50" Header="Difficulty"  DisplayMemberBinding="{Binding DifficultyRating}" />
                     <GridViewColumn Width="50" Header="Practicality"  DisplayMemberBinding="{Binding PracticalityRating}" />
                 </GridView>

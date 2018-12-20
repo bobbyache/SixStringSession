@@ -57,7 +57,12 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
 
         public int TotalMinutes
         {
-            get { return 60; }
+            get
+            {
+                if (PracticeRoutineExercises.Any())
+                    return PracticeRoutineExercises.Sum(p => p.Minutes);
+                return 0;
+            }
         }
 
         private EntityLifeCycleState lifeCycleState;
