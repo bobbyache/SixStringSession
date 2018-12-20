@@ -111,6 +111,7 @@
       <DependentUpon>BusyIndicatorView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Exercises\CancelledExerciseRecordingMessage.cs" />
+    <Compile Include="Exercises\ExerciseManagementViewModel.cs" />
     <Compile Include="Exercises\ExerciseRecorderView.xaml.cs">
       <DependentUpon>ExerciseRecorderView.xaml</DependentUpon>
     </Compile>

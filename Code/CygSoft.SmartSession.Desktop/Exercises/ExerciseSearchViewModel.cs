@@ -11,52 +11,34 @@ using System.Collections.ObjectModel;
 
 namespace CygSoft.SmartSession.Desktop.Exercises
 {
-    public class ExerciseSearchViewModel : ViewModelBase
+    public abstract class ExerciseSearchViewModel : ViewModelBase
     {
-
-        #region Alternative Constructors
-        //public ExerciseSearchViewModel(IExerciseService exerciseService, IDialogViewService dialogService, INavigationService navigationService)
-        //{
-        //    this.exerciseService = exerciseService;
-        //    this.dialogService = dialogService;
-        //    this.navigationService = navigationService;
-        //}
-
-        // for blend:
-        //public ExerciseSearchViewModel() : this(new ExerciseService(), new DialogService(), new NavigationService())
-        //{
-        //    ...
-        //}
-
-        #endregion
-
         private IExerciseService exerciseService;
         private IDialogViewService dialogService;
 
-        public ExerciseSearchViewModel(ExerciseSearchCriteriaViewModel exerciseSearchCriteriaViewModel, IExerciseService exerciseService, IDialogViewService dialogService)
+        public ExerciseSearchViewModel(ExerciseSearchCriteriaViewModel exerciseSearchCriteriaViewModel, IExerciseService exerciseService, 
+            IDialogViewService dialogService)
         {
-            this.exerciseSearchCriteriaViewModel = exerciseSearchCriteriaViewModel ?? throw new ArgumentNullException("Search Criteria Model must be provided.");
+            this.exerciseSearchCriteriaViewModel = exerciseSearchCriteriaViewModel ?? 
+                throw new ArgumentNullException("Search Criteria Model must be provided.");
             this.exerciseService = exerciseService ?? throw new ArgumentNullException("Service must be provided.");
             this.dialogService = dialogService ?? throw new ArgumentNullException("Dialog service must be provided.");
 
             AddExerciseCommand = new RelayCommand(AddExercise, () => true);
             DeleteExerciseCommand = new RelayCommand(DeleteExercise, () => SelectedExercise != null);
             EditExerciseCommand = new RelayCommand(EditExercise, () => SelectedExercise != null);
-            RecordExerciseCommand = new RelayCommand(RecordExercise, () => SelectedExercise != null);
+            SelectExerciseCommand = new RelayCommand(SelectExercise, () => SelectedExercise != null);
 
             Messenger.Default.Register<FindExercisesMessage>(this, Find);
         }
 
-        private void RecordExercise()
-        {
-            Messenger.Default.Send(new OpenExerciseRecorderMessage(SelectedExercise.Id));
-        }
+        protected virtual void SelectExercise() { }
 
         public RelayCommand AddExerciseCommand { get; private set; }
         public RelayCommand DeleteExerciseCommand { get; private set; }
         public RelayCommand EditExerciseCommand { get; private set; }
 
-        public RelayCommand RecordExerciseCommand { get; private set; }
+        public RelayCommand SelectExerciseCommand { get; private set; }
 
         private ExerciseSearchResultModel selectedExercise;
         public ExerciseSearchResultModel SelectedExercise
@@ -124,13 +106,6 @@ namespace CygSoft.SmartSession.Desktop.Exercises
         private void AddExercise()
         {
             Messenger.Default.Send(new StartEditingExerciseMessage(exerciseService.Create()));
-
-            //var domainExercise = Mapper.Map<Exercise>(exercise);
-            //exerciseService.Add(domainExercise);
-            //Mapper.Map(domainExercise, exercise);
-
-            //ExerciseList.Add(exercise);
-            //SelectedExercise = exercise;
         }
     }
 }

@@ -8,7 +8,7 @@ namespace CygSoft.SmartSession.Desktop.Exercises
 {
     public class ExerciseCompositeViewModel : ViewModelBase
     {
-        private ExerciseSearchViewModel exerciseSearchViewModel;
+        private ExerciseManagementViewModel exerciseManagementViewModel;
         private ExerciseEditViewModel exerciseEditViewModel;
         private ExerciseRecorderViewModel exerciseRecorderViewModel;
         private IExerciseService exerciseService;
@@ -22,12 +22,12 @@ namespace CygSoft.SmartSession.Desktop.Exercises
 
         public RelayCommand<string> NavigationCommand { get; private set; }
 
-        public ExerciseCompositeViewModel(IExerciseService exerciseService, ExerciseSearchViewModel exerciseSearchViewModel, 
+        public ExerciseCompositeViewModel(IExerciseService exerciseService, ExerciseManagementViewModel exerciseManagementViewModel, 
             ExerciseEditViewModel exerciseEditViewModel,
             ExerciseRecorderViewModel exerciseRecorderViewModel)
         {
             this.exerciseService = exerciseService;
-            this.exerciseSearchViewModel = exerciseSearchViewModel;
+            this.exerciseManagementViewModel = exerciseManagementViewModel;
             this.exerciseEditViewModel = exerciseEditViewModel;
             this.exerciseRecorderViewModel = exerciseRecorderViewModel;
 
@@ -84,7 +84,7 @@ namespace CygSoft.SmartSession.Desktop.Exercises
             switch (destination)
             {
                 case "Search":
-                    CurrentViewModel = exerciseSearchViewModel;
+                    CurrentViewModel = exerciseManagementViewModel;
                     break;
                 case "Edit":
                     CurrentViewModel = exerciseEditViewModel;
@@ -93,7 +93,7 @@ namespace CygSoft.SmartSession.Desktop.Exercises
                     CurrentViewModel = exerciseRecorderViewModel;
                     break;
                 default:
-                    CurrentViewModel = exerciseSearchViewModel;
+                    CurrentViewModel = exerciseManagementViewModel;
                     break;
             }
         }
