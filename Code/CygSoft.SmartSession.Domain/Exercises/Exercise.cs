@@ -146,36 +146,5 @@ namespace CygSoft.SmartSession.Domain.Exercises
             return secPracticed;
 
         }
-
-        public ExerciseActivity AddRecording(int speed, int seconds, int manualProgress, DateTime startTime, DateTime endTime)
-        {
-            var exerciseActivity = new ExerciseActivity
-            {
-                MetronomeSpeed = speed,
-                ManualProgress = manualProgress,
-                Seconds = seconds,
-                StartTime = startTime,
-                EndTime = endTime,
-                ExerciseId = this.Id
-            };
-            this.ExerciseActivity.Add(exerciseActivity);
-
-            return exerciseActivity;
-        }
-
-        public void RemoveRecording(int exerciseActivityId)
-        {
-            var exerciseActivity = ExerciseActivity.Where(a => a.Id == exerciseActivityId).SingleOrDefault();
-            if (exerciseActivity != null)
-            {
-                RemoveRecording(exerciseActivity);
-            }
-        }
-
-        public void RemoveRecording(ExerciseActivity exerciseActivity)
-        {
-            ExerciseActivity.Remove(exerciseActivity);
-        }
-
     }
 }

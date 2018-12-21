@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CygSoft.SmartSession.Domain.Sessions;
+using System;
 using System.Collections.Generic;
 
 namespace CygSoft.SmartSession.Domain.Exercises
@@ -6,6 +7,8 @@ namespace CygSoft.SmartSession.Domain.Exercises
     public interface IExerciseService
     {
         Exercise Create();
+        ExerciseActivity CreateExerciseActivity(int speed, int seconds, int manualProgress, DateTime startTime, DateTime endTime);
+
         Exercise Get(int id);
         IEnumerable<Exercise> Find(ExerciseSearchCriteria searchCriteria);
         void Remove(int id);

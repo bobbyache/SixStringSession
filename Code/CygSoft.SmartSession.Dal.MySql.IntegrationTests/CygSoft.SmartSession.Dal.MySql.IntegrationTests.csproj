@@ -102,6 +102,10 @@
       <Project>{26f5ecf2-47a5-481d-b9ad-e128b19f9eed}</Project>
       <Name>CygSoft.SmartSession.Infrastructure</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CygSoft.SmartSession.UnitTests.Infrastructure\CygSoft.SmartSession.UnitTests.Infrastructure.csproj">
+      <Project>{71865433-9232-4299-a827-257664bbb16e}</Project>
+      <Name>CygSoft.SmartSession.UnitTests.Infrastructure</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

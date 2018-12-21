@@ -91,6 +91,7 @@
     <Compile Include="Sessions\ExerciseRecorder.cs" />
     <Compile Include="Sessions\IExerciseRecorder.cs" />
     <Compile Include="Sessions\ExerciseActivity.cs" />
+    <Compile Include="Sessions\RecordingSlice.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CygSoft.SmartSession.Infrastructure\CygSoft.SmartSession.Infrastructure.csproj">

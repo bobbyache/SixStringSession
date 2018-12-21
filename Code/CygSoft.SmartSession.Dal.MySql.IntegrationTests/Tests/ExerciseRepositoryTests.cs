@@ -2,6 +2,7 @@
 using CygSoft.SmartSession.Domain.Exercises;
 using CygSoft.SmartSession.Domain.Sessions;
 using CygSoft.SmartSession.Infrastructure.Enums;
+using CygSoft.SmartSession.UnitTests.Infrastructure;
 using NUnit.Framework;
 using NUnit.Framework.Constraints;
 using System;
@@ -326,7 +327,8 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
             using (var uow = new UnitOfWork(Settings.AppConnectionString))
             {
                 var newExercise = CreateMetronomeExercise();
-                newExercise.AddRecording(80, 3000, 0, DateTime.Parse("2018-03-01 12:15:00"), DateTime.Parse("2018-03-01 12:25:00"));
+                
+                newExercise.ExerciseActivity.Add(EntityFactory.CreateExerciseActivity());
                 uow.Exercises.Add(newExercise);
                 uow.Commit();
 
@@ -353,7 +355,7 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
                 uow.Exercises.Add(newExercise);
 
                 var retrievedExercise = uow.Exercises.Get(newExercise.Id);
-                retrievedExercise.AddRecording(80, 3000, 0, DateTime.Parse("2018-03-01 12:15:00"), DateTime.Parse("2018-03-01 12:25:00"));
+                retrievedExercise.ExerciseActivity.Add(EntityFactory.CreateExerciseActivity());
 
                 uow.Exercises.Update(retrievedExercise);
                 uow.Commit();
@@ -376,8 +378,13 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
             using (var uow = new UnitOfWork(Settings.AppConnectionString))
             {
                 var newExercise = CreateMetronomeExercise();
-                newExercise.AddRecording(80, 3000, 0, DateTime.Parse("2018-03-01 12:15:00"), DateTime.Parse("2018-03-01 12:25:00"));
-                newExercise.AddRecording(90, 4000, 0, DateTime.Parse("2018-03-02 12:15:00"), DateTime.Parse("2018-03-02 12:25:00"));
+
+                newExercise.ExerciseActivity.Add(EntityFactory.CreateExerciseActivity(speed:80, seconds:3000, 
+                    startTime: "2018-03-01 12:15:00", endTime: "2018-03-01 12:25:00"));
+
+                newExercise.ExerciseActivity.Add(EntityFactory.CreateExerciseActivity(speed: 90, seconds: 4000,
+                    startTime: "2018-03-02 12:15:00", endTime: "2018-03-02 12:25:00"));
+
                 uow.Exercises.Add(newExercise);
                 uow.Commit();
 
@@ -416,17 +423,21 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
                 uow.Exercises.Add(newExercise);
 
                 var retrievedExercise = uow.Exercises.Get(newExercise.Id);
-                retrievedExercise.AddRecording(80, 3000, 0, DateTime.Parse("2018-03-01 12:15:00"), DateTime.Parse("2018-03-01 12:25:00"));
-                retrievedExercise.AddRecording(90, 4000, 0, DateTime.Parse("2018-03-02 12:15:00"), DateTime.Parse("2018-03-02 12:25:00"));
+
+                retrievedExercise.ExerciseActivity.Add(EntityFactory.CreateExerciseActivity(speed: 80, seconds: 3000,
+                    startTime: "2018-03-01 12:15:00", endTime: "2018-03-01 12:25:00"));
+
+                retrievedExercise.ExerciseActivity.Add(EntityFactory.CreateExerciseActivity(speed: 90, seconds: 4000,
+                    startTime: "2018-03-02 12:15:00", endTime: "2018-03-02 12:25:00"));
                  
                 uow.Exercises.Update(retrievedExercise);
                 uow.Commit();
 
                 var beforeDeletionExercise = uow.Exercises.Get(retrievedExercise.Id);
-                var deleteActivityId = beforeDeletionExercise.ExerciseActivity[0].Id;
                 var beforeDeleteCount = beforeDeletionExercise.ExerciseActivity.Count;
 
-                beforeDeletionExercise.RemoveRecording(deleteActivityId);
+                var deleteActivity = beforeDeletionExercise.ExerciseActivity[0];
+                beforeDeletionExercise.ExerciseActivity.Remove(deleteActivity);
 
                 uow.Exercises.Update(beforeDeletionExercise);
                 uow.Commit();
@@ -436,7 +447,7 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
 
                 Assert.AreEqual(2, beforeDeleteCount);
                 Assert.AreEqual(1, afterDeleteCount);
-                Assert.IsNull(afterDeletionExercise.ExerciseActivity.Where(a => a.Id == deleteActivityId).SingleOrDefault());
+                Assert.IsNull(afterDeletionExercise.ExerciseActivity.Where(a => a.Id == deleteActivity.Id).SingleOrDefault());
             }
         }
 

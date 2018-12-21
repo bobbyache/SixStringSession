@@ -39,6 +39,19 @@ namespace CygSoft.SmartSession.Domain.Exercises
             return exercise;
         }
 
+        public ExerciseActivity CreateExerciseActivity(int speed, int seconds, int manualProgress, DateTime startTime, DateTime endTime)
+        {
+            var exerciseActivity = new ExerciseActivity
+            {
+                MetronomeSpeed = speed,
+                ManualProgress = manualProgress,
+                Seconds = seconds,
+                StartTime = startTime,
+                EndTime = endTime
+            };
+            return exerciseActivity;
+        }
+
         public void Remove(int id)
         {
             if (id <= 0)

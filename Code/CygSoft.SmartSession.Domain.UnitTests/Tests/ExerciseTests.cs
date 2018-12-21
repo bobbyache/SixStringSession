@@ -1,5 +1,6 @@
 ﻿using CygSoft.SmartSession.Domain.Exercises;
 using CygSoft.SmartSession.Infrastructure.Enums;
+using CygSoft.SmartSession.UnitTests.Infrastructure;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -425,7 +426,8 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
 
             int initialActivityCount = exercise.ExerciseActivity.Count;
 
-            exercise.AddRecording(60, 3000, 0, DateTime.Parse("2018/01/04 10:00:00"), DateTime.Parse("2018/01/04 10:10:00"));
+            exercise.ExerciseActivity.Add(EntityFactory.CreateExerciseActivity(speed: 60, seconds: 3000,
+                startTime: "2018/01/04 10:00:00", endTime: "2018/01/04 10:10:00"));
 
             Assert.That(initialActivityCount, Is.EqualTo(0));
             Assert.That(exercise.ExerciseActivity.Count, Is.EqualTo(1));
@@ -442,10 +444,13 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             };
             int no_activities = exercise.ExerciseActivity.Count;
 
-            var addedRecording = exercise.AddRecording(60, 3000, 0, DateTime.Parse("2018/01/04 10:00:00"), DateTime.Parse("2018/01/04 10:10:00"));
+            var addedRecording = EntityFactory.CreateExerciseActivity(speed: 60, seconds: 3000,
+                startTime: "2018/01/04 10:00:00", endTime: "2018/01/04 10:10:00");
+
+            exercise.ExerciseActivity.Add(addedRecording);
             int one_activity = exercise.ExerciseActivity.Count;
 
-            exercise.RemoveRecording(addedRecording);
+            exercise.ExerciseActivity.Remove(addedRecording);
 
             Assert.That(no_activities, Is.EqualTo(0));
             Assert.That(one_activity, Is.EqualTo(1));
@@ -505,25 +510,32 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
 
             var percentComplete_50 = exercise.GetPercentComplete();
 
-            exercise.AddRecording(40, 15, 0, DateTime.Parse("2018-12-13 10:03:26"), DateTime.Parse("2018-12-13 10:03:42"));
+            exercise.ExerciseActivity.Add(EntityFactory.CreateExerciseActivity(speed: 40, seconds: 15,
+                startTime: "2018-12-13 10:03:26", endTime: "2018-12-13 10:03:42"));
             var percentComplete_Below_0 = exercise.GetPercentComplete();
 
-            exercise.AddRecording(110, 15, 0, DateTime.Parse("2018-12-13 11:03:26"), DateTime.Parse("2018-12-13 11:03:42"));
+            exercise.ExerciseActivity.Add(EntityFactory.CreateExerciseActivity(speed: 110, seconds: 15,
+                startTime: "2018-12-13 11:03:26", endTime: "2018-12-13 11:03:42"));
             var percentComplete_60 = exercise.GetPercentComplete();
 
-            exercise.AddRecording(120, 15, 0, DateTime.Parse("2018-12-14 11:03:26"), DateTime.Parse("2018-12-14 11:03:42"));
+            exercise.ExerciseActivity.Add(EntityFactory.CreateExerciseActivity(speed: 120, seconds: 15,
+                startTime: "2018-12-14 11:03:26", endTime: "2018-12-14 11:03:42"));
             var percentComplete_70 = exercise.GetPercentComplete();
 
-            exercise.AddRecording(130, 15, 0, DateTime.Parse("2018-12-15 11:03:26"), DateTime.Parse("2018-12-15 11:03:42"));
+            exercise.ExerciseActivity.Add(EntityFactory.CreateExerciseActivity(speed: 130, seconds: 15,
+                startTime: "2018-12-15 11:03:26", endTime: "2018-12-15 11:03:42"));
             var percentComplete_80 = exercise.GetPercentComplete();
 
-            exercise.AddRecording(140, 15, 0, DateTime.Parse("2018-12-16 11:03:26"), DateTime.Parse("2018-12-16 11:03:42"));
+            exercise.ExerciseActivity.Add(EntityFactory.CreateExerciseActivity(speed: 140, seconds: 15,
+                startTime: "2018-12-16 11:03:26", endTime: "2018-12-16 11:03:42"));
             var percentComplete_90 = exercise.GetPercentComplete();
 
-            exercise.AddRecording(150, 15, 0, DateTime.Parse("2018-12-17 11:03:26"), DateTime.Parse("2018-12-17 11:03:42"));
+            exercise.ExerciseActivity.Add(EntityFactory.CreateExerciseActivity(speed: 150, seconds: 15,
+                startTime: "2018-12-17 11:03:26", endTime: "2018-12-17 11:03:42"));
             var percentComplete_100 = exercise.GetPercentComplete();
 
-            exercise.AddRecording(160, 15, 0, DateTime.Parse("2018-12-18 11:03:26"), DateTime.Parse("2018-12-18 11:03:42"));
+            exercise.ExerciseActivity.Add(EntityFactory.CreateExerciseActivity(speed: 160, seconds: 15,
+                startTime: "2018-12-18 11:03:26", endTime: "2018-12-18 11:03:42"));
             var percentComplete_Above_100 = exercise.GetPercentComplete();
 
             Assert.That(percentComplete_50, Is.EqualTo(50));
