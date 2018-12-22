@@ -1,5 +1,6 @@
 ﻿using CygSoft.SmartSession.Dal.MySql.IntegrationTests.Helpers;
 using CygSoft.SmartSession.Domain.Exercises;
+using CygSoft.SmartSession.Domain.PracticeRoutines;
 using CygSoft.SmartSession.Domain.Sessions;
 using CygSoft.SmartSession.Infrastructure.Enums;
 using CygSoft.SmartSession.UnitTests.Infrastructure;
@@ -85,6 +86,48 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
 
                 Assert.That(exercises.Where(ex => ex.Title == "Yellow Exercise").SingleOrDefault(), Is.Not.Null);
                 Assert.That(exercises.Where(ex => ex.Title == "Green Exercise").SingleOrDefault(), Is.Not.Null);
+            }
+        }
+
+        [Test]
+        public void ExerciseRepository_Get_Exercises_By_PracticeRoutine()
+        {
+            Funcs.RunScript("delete-all-records.sql", Settings.AppConnectionString);
+            Funcs.RunScript("test-data.sql", Settings.AppConnectionString);
+
+            using (var uow = new UnitOfWork(Settings.AppConnectionString))
+            {
+                var exercise1 = EntityFactory.CreateExercise(title: "Yellow Exercise", targetSpeed: 120, targetpracticeTime: 300);
+                var exercise2 = EntityFactory.CreateExercise(title: "Green Exercise", targetSpeed: 120, targetpracticeTime: 300);
+                var exercise3 = EntityFactory.CreateExercise(title: "Blue Exercise", targetSpeed: 120, targetpracticeTime: 300);
+
+                exercise1.ExerciseActivity.Add(EntityFactory.CreateExerciseActivity());
+                exercise1.ExerciseActivity.Add(EntityFactory.CreateExerciseActivity());
+                exercise2.ExerciseActivity.Add(EntityFactory.CreateExerciseActivity());
+                exercise2.ExerciseActivity.Add(EntityFactory.CreateExerciseActivity());
+
+                uow.Exercises.Add(exercise1);
+                uow.Exercises.Add(exercise2);
+                uow.Exercises.Add(exercise3);
+                uow.Commit();
+
+                var practiceRoutine1 = EntityFactory.CreatePracticeRoutine("Yellow Routine");
+                var practiceRoutine2 = EntityFactory.CreatePracticeRoutine("Not Important Routine");
+
+                practiceRoutine1.PracticeRoutineExercises.Add(EntityFactory.CreatePracticeRoutineExercise(exercise1));
+                practiceRoutine1.PracticeRoutineExercises.Add(EntityFactory.CreatePracticeRoutineExercise(exercise2));
+                practiceRoutine2.PracticeRoutineExercises.Add(EntityFactory.CreatePracticeRoutineExercise(exercise3));
+
+                uow.PracticeRoutines.Add(practiceRoutine1);
+                uow.PracticeRoutines.Add(practiceRoutine2);
+
+                uow.Commit();
+
+                var exercises = uow.Exercises.GetPracticeRoutineExercises(practiceRoutine1.Id);
+
+                Assert.That(exercises.Count, Is.EqualTo(2));
+                Assert.That(exercises[0].ExerciseActivity.Count, Is.EqualTo(2));
+                Assert.That(exercises[1].ExerciseActivity.Count, Is.EqualTo(2));
             }
         }
 

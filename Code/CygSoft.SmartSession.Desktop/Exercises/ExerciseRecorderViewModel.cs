@@ -175,7 +175,7 @@ namespace CygSoft.SmartSession.Desktop.Exercises
             this.exerciseRecorder.RecordingStatusChanged += ExerciseRecorder_RecordingStatusChanged;
 
             exercise = exerciseService.Get(exerciseId);
-            exerciseRecorder.Clear();
+            exerciseRecorder.Reset();
 
             PauseButtonVisible = false;
             StartButtonVisible = true;
@@ -207,7 +207,7 @@ namespace CygSoft.SmartSession.Desktop.Exercises
                 StartButtonVisible = false;
                 PauseButtonVisible = true;
 
-                exerciseRecorder.Start();
+                exerciseRecorder.Resume();
                 this.ValidateAll();
             }
         }
@@ -228,7 +228,7 @@ namespace CygSoft.SmartSession.Desktop.Exercises
         private void CancelRecording()
         { 
             exerciseRecorder.RecordingStatusChanged -= ExerciseRecorder_RecordingStatusChanged;
-            exerciseRecorder.Clear();
+            exerciseRecorder.Reset();
 
             Messenger.Default.Send(new CancelledExerciseRecordingMessage());
         }
@@ -236,13 +236,13 @@ namespace CygSoft.SmartSession.Desktop.Exercises
         private void SaveRecording()
         {
             var exerciseActivity = exerciseService.CreateExerciseActivity(MetronomeSpeed, (int)exerciseRecorder.Seconds, ManualProgress, 
-                exerciseRecorder.StartTime, exerciseRecorder.EndTime);
+                exerciseRecorder.StartTime.Value, exerciseRecorder.EndTime.Value);
             exercise.ExerciseActivity.Add(exerciseActivity);
 
             exerciseService.Update(exercise);
 
             exerciseRecorder.RecordingStatusChanged -= ExerciseRecorder_RecordingStatusChanged;
-            exerciseRecorder.Clear();
+            exerciseRecorder.Reset();
             Messenger.Default.Send(new SavedExerciseRecordingMessage(exercise.Id));
         }
     }

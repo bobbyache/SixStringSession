@@ -68,7 +68,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
             // Now start!
             viewModel.StartRecordingCommand.Execute(null);
 
-            exerciseRecorder.Verify(m => m.Start(), Times.Once, "Start() should have been invoked.");
+            exerciseRecorder.Verify(m => m.Resume(), Times.Once, "Start() should have been invoked.");
         }
 
         [Test]
@@ -112,7 +112,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
             // try starting...
             viewModel.StartRecordingCommand.Execute(null);
 
-            exerciseRecorder.Verify(m => m.Start(), Times.Never, 
+            exerciseRecorder.Verify(m => m.Resume(), Times.Never, 
                 "Start() should not have been called because the recorder is is already recording.");
         }
 

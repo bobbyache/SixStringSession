@@ -125,6 +125,19 @@ BEGIN
 		;
 END;
 
+DROP PROCEDURE IF EXISTS `sp_GetPracticeRoutineExercises`;
+CREATE PROCEDURE `sp_GetPracticeRoutineExercises`(
+	in _practiceRoutineId int
+	)
+BEGIN
+SELECT e.* 
+FROM 
+	exercise e
+    INNER JOIN practiceroutineexercise pre on pre.ExerciseId = e.Id
+WHERE
+	pre.PracticeRoutineId = _practiceRoutineId;
+END;
+
 /* ***********************************************************************************************************************
 ExerciseActivity
 *********************************************************************************************************************** */
@@ -180,7 +193,27 @@ BEGIN
 	FROM ExerciseActivity WHERE Id = _id;
 END;
 
+DROP PROCEDURE IF EXISTS `sp_GetExerciseActivityByIds`;
+CREATE PROCEDURE `sp_GetExerciseActivityByIds`(IN _ids TEXT)
+BEGIN
+	SELECT
+		Id,
+		ExerciseId,
+		StartTime,
+		EndTime,
+		Seconds,
+		MetronomeSpeed,
+        ManualProgress,
+		DateCreated,
+		DateModified
+	FROM ExerciseActivity 
+    WHERE 
+		FIND_IN_SET(ExerciseId, _ids) > 0
+        ;
+END;
 
+
+    
 DROP PROCEDURE IF EXISTS `sp_DeleteExerciseActivity`;
 CREATE PROCEDURE `sp_DeleteExerciseActivity`(in _id int)
 BEGIN
@@ -416,3 +449,5 @@ CREATE PROCEDURE `sp_DeletePracticeRoutineExercise`
 BEGIN
 	DELETE FROM PracticeRoutineExercise WHERE PracticeRoutineId = _practiceRoutineId AND ExerciseId = _exerciseId;
 END;
+
+

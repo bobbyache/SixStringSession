@@ -59,6 +59,31 @@ namespace CygSoft.SmartSession.Dal.MySql
             return results.ToList();
         }
 
+        public IReadOnlyList<Exercise> GetPracticeRoutineExercises(int practiceRoutineId)
+        {
+            var exercises = Connection.Query<Exercise>("sp_GetPracticeRoutineExercises",
+                param: new
+                {
+                    _practiceRoutineId = practiceRoutineId
+                }, commandType: CommandType.StoredProcedure);
+
+            string delimitedIds = string.Join(",", exercises.Select(ex => ex.Id));
+
+            var activities = Connection.Query<ExerciseActivity>("sp_GetExerciseActivityByIds",
+            param: new
+            {
+                _ids = delimitedIds
+            }, commandType: CommandType.StoredProcedure);
+
+
+            foreach (var exercise in exercises)
+            {
+                exercise.ExerciseActivity = activities.Where(a => a.ExerciseId == exercise.Id).ToList();
+            }
+
+            return exercises.ToList();
+        }
+
         public Exercise Get(int id)
         {
             try

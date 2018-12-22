@@ -70,6 +70,15 @@ namespace CygSoft.SmartSession.Domain.Sessions
         public DateTime? StartTime { get; private set; }
         public DateTime? EndTime { get; private set; }
 
+        public string DisplayTime
+        {
+            get
+            {
+                TimeSpan t = TimeSpan.FromSeconds(Seconds);
+                return t.ToString(@"hh\:mm\:ss");
+            }
+        }
+
         public ExerciseRecorder()
         {
             timer.Interval = 1000;

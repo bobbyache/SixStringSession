@@ -183,6 +183,7 @@
       <DependentUpon>PracticeRoutineManagementView.xaml</DependentUpon>
     </Compile>
     <Compile Include="PracticeRoutines\PracticeRoutineManagementViewModel.cs" />
+    <Compile Include="PracticeRoutines\RecordableExerciseViewModel.cs" />
     <Compile Include="PracticeRoutines\StartSelectingPracticeRoutineExerciseMessage.cs" />
     <Compile Include="PracticeRoutines\StartEditingPracticeRoutineMessage.cs" />
     <Compile Include="PracticeRoutines\ViewPracticeListMessage.cs" />

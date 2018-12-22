@@ -10,6 +10,8 @@ namespace CygSoft.SmartSession.Domain.Sessions
         DateTime? StartTime { get; }
         Action TickActionCallBack { set; }
 
+        string DisplayTime { get; }
+
         event EventHandler RecordingStatusChanged;
 
         void Reset();

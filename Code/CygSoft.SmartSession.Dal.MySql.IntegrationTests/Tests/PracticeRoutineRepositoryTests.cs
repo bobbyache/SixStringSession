@@ -1,6 +1,7 @@
 ﻿using CygSoft.SmartSession.Dal.MySql.IntegrationTests.Helpers;
 using CygSoft.SmartSession.Domain.Exercises;
 using CygSoft.SmartSession.Domain.PracticeRoutines;
+using CygSoft.SmartSession.UnitTests.Infrastructure;
 using NUnit.Framework;
 using NUnit.Framework.Constraints;
 using System;
@@ -41,7 +42,7 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
 
             using (var uow = new UnitOfWork(Settings.AppConnectionString))
             {
-                PracticeRoutine newPracticeRoutine = CreatePracticeRoutine();
+                PracticeRoutine newPracticeRoutine = EntityFactory.CreatePracticeRoutine("New Practice Routine");
                 uow.PracticeRoutines.Add(newPracticeRoutine);
                 uow.Commit();
 
@@ -68,7 +69,7 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
 
             using (var uow = new UnitOfWork(Settings.AppConnectionString))
             {
-                PracticeRoutine newPracticeRoutine = CreatePracticeRoutine();
+                PracticeRoutine newPracticeRoutine = EntityFactory.CreatePracticeRoutine("New Practice Routine");
                 uow.PracticeRoutines.Add(newPracticeRoutine);
                 uow.Commit();
 
@@ -103,7 +104,7 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
 
             using (var uow = new UnitOfWork(Settings.AppConnectionString))
             {
-                PracticeRoutine newPracticeRoutine = CreatePracticeRoutine();
+                PracticeRoutine newPracticeRoutine = EntityFactory.CreatePracticeRoutine("New Practice Routine");
                 uow.PracticeRoutines.Add(newPracticeRoutine);
                 // --- do not commit !!!
 
@@ -131,7 +132,7 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
 
             using (var uow = new UnitOfWork(Settings.AppConnectionString))
             {
-                PracticeRoutine newPracticeRoutine = CreatePracticeRoutine();
+                PracticeRoutine newPracticeRoutine = EntityFactory.CreatePracticeRoutine("New Practice Routine");
                 uow.PracticeRoutines.Add(newPracticeRoutine);
                 uow.Commit();
 
@@ -150,7 +151,7 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
 
             using (var uow = new UnitOfWork(Settings.AppConnectionString))
             {
-                var newEx = CreatePracticeRoutine();
+                var newEx = EntityFactory.CreatePracticeRoutine("New Practice Routine");
                 uow.PracticeRoutines.Add(newEx);
                 uow.Commit();
 
@@ -173,7 +174,7 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
                 uow.Exercises.Add(createdExercise);
                 uow.Commit();
 
-                var createdPracticeRoutine = CreatePracticeRoutine();
+                var createdPracticeRoutine = EntityFactory.CreatePracticeRoutine("New Practice Routine");
 
                 createdPracticeRoutine.PracticeRoutineExercises.Add(new PracticeRoutineExercise
                 {
@@ -215,7 +216,7 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
                 uow.Exercises.Add(createdExercise);
                 uow.Commit();
 
-                var createdPracticeRoutine = CreatePracticeRoutine();
+                var createdPracticeRoutine = EntityFactory.CreatePracticeRoutine("New Practice Routine");
                 uow.PracticeRoutines.Add(createdPracticeRoutine);
                 uow.Commit();
 
@@ -260,7 +261,7 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
                 uow.Exercises.Add(createdExercise);
                 uow.Commit();
 
-                var createdPracticeRoutine = CreatePracticeRoutine();
+                var createdPracticeRoutine = EntityFactory.CreatePracticeRoutine("New Practice Routine");
                 uow.PracticeRoutines.Add(createdPracticeRoutine);
                 uow.Commit();
 
@@ -302,7 +303,7 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
                 uow.Exercises.Add(createdExercise2);
                 uow.Commit();
 
-                var createdPracticeRoutine = CreatePracticeRoutine();
+                var createdPracticeRoutine = EntityFactory.CreatePracticeRoutine("New Practice Routine");
                 createdPracticeRoutine.PracticeRoutineExercises.Add(new PracticeRoutineExercise
                 {
                     ExerciseId = createdExercise1.Id,
@@ -368,15 +369,6 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
             };
 
             return exercise;
-        }
-
-
-        private PracticeRoutine CreatePracticeRoutine()
-        {
-            return new PracticeRoutine()
-            {
-                Title = "New Practice Routine"              
-            };
         }
     }
 }

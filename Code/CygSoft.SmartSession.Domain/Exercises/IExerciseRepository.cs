@@ -7,5 +7,6 @@ namespace CygSoft.SmartSession.Domain.Exercises
     public interface IExerciseRepository : IRepository<Exercise>
     {
         // Only add really custom stuff here...
+        IReadOnlyList<Exercise> GetPracticeRoutineExercises(int practiceRoutineId);
     }
 }
