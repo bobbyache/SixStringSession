@@ -2,6 +2,7 @@
 using CygSoft.SmartSession.Desktop.Supports.Services;
 using CygSoft.SmartSession.Domain.Exercises;
 using CygSoft.SmartSession.Domain.PracticeRoutines;
+using CygSoft.SmartSession.Infrastructure;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
@@ -37,8 +38,23 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
             }
         }
 
+        private string displayTime;
+        public string DisplayTime
+        {
+            get
+            {
+                return displayTime;
+            }
+            set
+            {
+                Set(() => DisplayTime, ref displayTime, value);
+            }
+        }
+
+
         public PracticeRoutineRecordingListViewModel(IPracticeRoutineService practiceRoutineService,  IExerciseService exerciseService, IDialogViewService dialogService)
         {
+            RecordableExercises.ListChanged += RecordableExercises_ListChanged;
             this.practiceRoutineService = practiceRoutineService ?? throw new ArgumentNullException("Practice Routine Service must be provided.");
             this.exerciseService = exerciseService ?? throw new ArgumentNullException("Exercise Service must be provided.");
             this.dialogService = dialogService ?? throw new ArgumentNullException("Dialog service must be provided.");
@@ -47,8 +63,15 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
             ExitCommand = new RelayCommand(Exit, () => true);
         }
 
+        private void RecordableExercises_ListChanged(object sender, ListChangedEventArgs e)
+        {
+            double TotalSecondsPracticed = (int)RecordableExercises.Sum(r => r.Seconds);
+            DisplayTime = TimeFuncs.DisplayTimeFromSeconds(TotalSecondsPracticed);
+        }
+
         public void InitializeSession(int practiceRoutineId)
         {
+            RecordableExercises.Clear();
             var exercises = exerciseService.GetPracticeRoutineExercises(practiceRoutineId);
             foreach (var exercise in exercises)
             {

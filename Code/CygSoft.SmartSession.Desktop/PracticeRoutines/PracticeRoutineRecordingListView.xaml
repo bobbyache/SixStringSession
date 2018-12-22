@@ -3,9 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:CygSoft.SmartSession.Desktop.PracticeRoutines"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-                xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
              xmlns:local1="http://www.galasoft.ch/mvvmlight"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
@@ -19,13 +17,16 @@
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
             <RowDefinition Height="*" />
             <RowDefinition Height="30" />
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="1" DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right">
+        <TextBlock FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Text="{Binding DisplayTime}"></TextBlock>
+
+        <StackPanel Grid.Row="2" DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button Content="Exit" Margin="5" MinWidth="50" MaxHeight="35" Command="{Binding ExitCommand}" />
         </StackPanel>
-        <ListView Grid.Row="0" ItemsSource="{Binding RecordableExercises}" DockPanel.Dock="Bottom" 
+        <ListView Grid.Row="1" ItemsSource="{Binding RecordableExercises}" DockPanel.Dock="Bottom" 
                   SelectionMode="Extended"
                   SelectedItem="{Binding SelectedRecordableExercise}" >
             <i:Interaction.Triggers>

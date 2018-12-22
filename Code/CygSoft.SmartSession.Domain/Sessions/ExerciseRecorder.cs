@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CygSoft.SmartSession.Infrastructure;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Timers;
@@ -70,14 +71,7 @@ namespace CygSoft.SmartSession.Domain.Sessions
         public DateTime? StartTime { get; private set; }
         public DateTime? EndTime { get; private set; }
 
-        public string DisplayTime
-        {
-            get
-            {
-                TimeSpan t = TimeSpan.FromSeconds(Seconds);
-                return t.ToString(@"hh\:mm\:ss");
-            }
-        }
+        public string DisplayTime { get => TimeFuncs.DisplayTimeFromSeconds(Seconds); }
 
         public ExerciseRecorder()
         {

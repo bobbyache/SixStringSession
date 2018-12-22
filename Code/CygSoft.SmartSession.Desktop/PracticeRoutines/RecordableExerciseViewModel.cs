@@ -27,6 +27,19 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
             }
         }
 
+        private double seconds;
+        public double Seconds
+        {
+            get
+            {
+                return seconds;
+            }
+            set
+            {
+                Set(() => Seconds, ref seconds, value);
+            }
+        }
+
         private string status;
         public string Status
         {
@@ -87,6 +100,7 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
 
         private void TickTock()
         {
+            Seconds = exerciseRecorder.Seconds;
             DisplayTime = exerciseRecorder.DisplayTime;
         }
 
