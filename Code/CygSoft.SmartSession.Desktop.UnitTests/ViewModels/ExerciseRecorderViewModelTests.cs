@@ -179,8 +179,6 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
                 Id = id,
                 DateCreated = new DateTime(2018, 9, 12),
                 DateModified = new DateTime(2018, 9, 12),
-                DifficultyRating = 3,
-                PracticalityRating = 3,
                 TargetMetronomeSpeed = 120,
                 TargetPracticeTime = 3000
             };

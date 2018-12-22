@@ -40,6 +40,7 @@ namespace CygSoft.SmartSession.Desktop
                 cfg.CreateMap<PracticeRoutineSearchResultModel, PracticeRoutine>();
                 cfg.CreateMap<PracticeRoutineSearchResultModel, PracticeRoutineSearchResultModel>();
                 //cfg.CreateMap<PracticeRoutineSearchCriteriaViewModel, PracticeRoutineSearchCriteria>();
+                cfg.CreateMap<PracticeRoutineExerciseViewModel, PracticeRoutineExercise>();
 
                 cfg.CreateMap<GoalModel, Goal>();
                 cfg.CreateMap<Goal, GoalModel>();

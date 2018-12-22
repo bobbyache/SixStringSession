@@ -54,8 +54,6 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
             {
                 TargetMetronomeSpeed = 150,
                 TargetPracticeTime = 50000,
-                PracticalityRating = 2,
-                DifficultyRating = 3,
                 Title = "Created Exercise Title"
             };
 

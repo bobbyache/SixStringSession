@@ -63,34 +63,6 @@
             </ListBox.ContextMenu>
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Width="100" Header="Difficulty">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <Grid Width="80" Height="16">
-                                    <Rectangle Opacity=".1" Fill="{DynamicResource FiveStars}" />
-                                    <Rectangle Fill="{DynamicResource FiveStars}">
-                                        <Rectangle.Clip>
-                                            <RectangleGeometry Rect="{Binding DifficultyRating, Converter={StaticResource StarWidthConverter}}" />
-                                        </Rectangle.Clip>
-                                    </Rectangle>
-                                </Grid>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Width="100" Header="Practicality">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <Grid Width="80" Height="16">
-                                    <Rectangle Opacity=".1" Fill="{DynamicResource FiveStars}" />
-                                    <Rectangle Fill="{DynamicResource FiveStars}">
-                                        <Rectangle.Clip>
-                                            <RectangleGeometry Rect="{Binding PracticalityRating, Converter={StaticResource StarWidthConverter}}" />
-                                        </Rectangle.Clip>
-                                    </Rectangle>
-                                </Grid>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
                     <GridViewColumn Width="600" Header="Title" DisplayMemberBinding="{Binding Title}"/>
                 </GridView>
             </ListView.View>

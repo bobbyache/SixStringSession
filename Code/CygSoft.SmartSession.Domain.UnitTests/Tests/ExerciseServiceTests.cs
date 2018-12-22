@@ -25,8 +25,6 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
 
             Assert.That(exercise, Is.Not.Null);
             Assert.IsTrue(exercise.Title.StartsWith("New Exercise Item - "));
-            Assert.That(exercise.DifficultyRating, Is.EqualTo(0));
-            Assert.That(exercise.PracticalityRating, Is.EqualTo(0));
         }
 
         [Test]

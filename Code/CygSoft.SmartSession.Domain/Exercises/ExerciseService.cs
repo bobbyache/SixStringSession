@@ -33,8 +33,6 @@ namespace CygSoft.SmartSession.Domain.Exercises
             var exercise = new Exercise()
             {
                 Title = $"New Exercise Item - {DateTime.Now}",
-                DifficultyRating = 0,
-                PracticalityRating = 0
             };
             return exercise;
         }

@@ -8,8 +8,6 @@ DROP PROCEDURE IF EXISTS `sp_InsertExercise`;
 CREATE PROCEDURE `sp_InsertExercise`
 (
 	in _title varchar(255), 
-    in _difficultyRating int(11),
-    in _practicalityRating int(11),
     in _targetMetronomeSpeed int(11),
     in _speedProgressWeighting int(11),
     in _targetPracticeTime int(11),
@@ -20,8 +18,6 @@ BEGIN
 	INSERT INTO Exercise
     (
 		Title, 
-        DifficultyRating, 
-        PracticalityRating, 
         TargetMetronomeSpeed, 
         SpeedProgressWeighting,
         TargetPracticeTime,
@@ -33,8 +29,6 @@ BEGIN
 	VALUES 
     (
 		_title,
-        _difficultyRating,
-        _practicalityRating,
         _targetMetronomeSpeed,
         _speedProgressWeighting,
         _targetPracticeTime,
@@ -53,8 +47,6 @@ BEGIN
 	SELECT
 		Id,
 		Title, 
-        DifficultyRating, 
-        PracticalityRating, 
         TargetMetronomeSpeed, 
         SpeedProgressWeighting,
         TargetPracticeTime, 
@@ -75,8 +67,6 @@ DROP PROCEDURE IF EXISTS `sp_UpdateExercise`;
 CREATE PROCEDURE `sp_UpdateExercise`(
 	in _id int, 
 	in _title varchar(255), 
-	in _difficultyRating int,
-	in _practicalityRating int,
 	in _targetPracticeTime int,
     in _practiceTimeProgressWeighting int,
 	in _targetMetronomeSpeed int,
@@ -86,8 +76,6 @@ CREATE PROCEDURE `sp_UpdateExercise`(
 BEGIN
 	UPDATE Exercise SET 
 		Title = _title,
-		DifficultyRating = _difficultyRating,
-		PracticalityRating = _practicalityRating,
 		TargetPracticeTime = _targetPracticeTime,
         PracticeTimeProgressWeighting = _practiceTimeProgressWeighting,
 		TargetMetronomeSpeed = _targetMetronomeSpeed,

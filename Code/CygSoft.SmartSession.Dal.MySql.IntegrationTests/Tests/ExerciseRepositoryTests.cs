@@ -235,8 +235,6 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
             Assert.That(persistedExercise.SpeedProgressWeighting, Is.EqualTo(50));
             Assert.That(persistedExercise.PracticeTimeProgressWeighting, Is.EqualTo(50));
             Assert.That(persistedExercise.TargetPracticeTime, Is.Null);
-            Assert.That(persistedExercise.PracticalityRating, Is.EqualTo(2));
-            Assert.That(persistedExercise.DifficultyRating, Is.EqualTo(3));
             Assert.That(persistedExercise.DateCreated, Is.Not.Null);
             Assert.That(persistedExercise.DateModified, Is.Null);
         }
@@ -258,8 +256,6 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
                 Exercise existingExercise = uow.Exercises.Get(newExercise.Id);
 
                 existingExercise.Title = "Modified Exercise Title";
-                existingExercise.PracticalityRating = 5;
-                existingExercise.DifficultyRating = 5;
                 existingExercise.TargetMetronomeSpeed = 200;
                 existingExercise.SpeedProgressWeighting = 100;
                 existingExercise.TargetPracticeTime = 5000;
@@ -278,8 +274,6 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
 
             Assert.That(modifiedExercise.Title, Is.EqualTo("Modified Exercise Title"));
             Assert.That(modifiedExercise.TargetMetronomeSpeed, Is.EqualTo(200));
-            Assert.That(modifiedExercise.PracticalityRating, Is.EqualTo(5));
-            Assert.That(modifiedExercise.DifficultyRating, Is.EqualTo(5));
             Assert.That(modifiedExercise.DateCreated, Is.Not.Null);
             Assert.That(modifiedExercise.DateModified, Is.Not.Null);
             Assert.That(modifiedExercise.DateModified, Is.GreaterThanOrEqualTo(currentTime));
@@ -305,8 +299,6 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
                 Exercise existingExercise = uow.Exercises.Get(newExercise.Id);
 
                 existingExercise.Title = "Modified Exercise Title";
-                existingExercise.PracticalityRating = 5;
-                existingExercise.DifficultyRating = 5;
                 existingExercise.TargetMetronomeSpeed = 200;
 
                 uow.Exercises.Update(existingExercise);
@@ -502,8 +494,6 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
                 DateModified = null,
                 TargetMetronomeSpeed = 150,
                 TargetPracticeTime = null,
-                PracticalityRating = 2,
-                DifficultyRating = 3,
                 Title = "Created Exercise Title"
             };
 

@@ -51,8 +51,6 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
             Assert.AreEqual(EntityLifeCycleState.AsExistingEntity, viewModel.LifeCycleState);
             Assert.AreEqual(2, viewModel.Id);
             Assert.AreEqual("Title", viewModel.Title);
-            Assert.AreEqual(3, viewModel.DifficultyRating);
-            Assert.AreEqual(4, viewModel.PracticalityRating);
             Assert.AreEqual(120, viewModel.TargetMetronomeSpeed);
             Assert.AreEqual(15000, viewModel.TargetPracticeTime);
             Assert.AreEqual(50, viewModel.SpeedProgressWeighting);
@@ -69,8 +67,6 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
             viewModel.StartEdit(exercise);
 
             viewModel.Title = "Changed Title";
-            viewModel.DifficultyRating = 1;
-            viewModel.PracticalityRating = 1;
             viewModel.TargetMetronomeSpeed = 100;
             viewModel.TargetPracticeTime = 15000;
             viewModel.PracticeTimeProgressWeighting = 30;
@@ -80,8 +76,6 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
 
             Assert.AreEqual(2, exercise.Id);
             Assert.AreEqual("Changed Title", exercise.Title);
-            Assert.AreEqual(1, exercise.DifficultyRating);
-            Assert.AreEqual(1, exercise.PracticalityRating);
             Assert.AreEqual(100, exercise.TargetMetronomeSpeed);
             Assert.AreEqual(15000, exercise.TargetPracticeTime);
             Assert.AreEqual(30, exercise.PracticeTimeProgressWeighting);
@@ -95,8 +89,6 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
             exercise.DateModified = DateTime.Parse("2018/07/03");
             exercise.Id = 2;
             exercise.Title = "Title";
-            exercise.DifficultyRating = 3;
-            exercise.PracticalityRating = 4;
             exercise.TargetMetronomeSpeed = 120;
             exercise.TargetPracticeTime = 15000;
 

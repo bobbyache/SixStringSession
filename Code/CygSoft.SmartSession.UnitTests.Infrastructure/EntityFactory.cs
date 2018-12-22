@@ -51,8 +51,6 @@ namespace CygSoft.SmartSession.UnitTests.Infrastructure
                 SpeedProgressWeighting = speedProgressWeighting.HasValue ? speedProgressWeighting.Value : 0,
                 TargetMetronomeSpeed = targetSpeed.HasValue ? targetSpeed.Value : 0,
                 PracticeTimeProgressWeighting = practiceTimeProgressWeighting.HasValue ? practiceTimeProgressWeighting.Value : 0,
-                DifficultyRating = difficultyRating.HasValue ? difficultyRating.Value : 0,
-                PracticalityRating = practicalityRating.HasValue ? practicalityRating.Value : 0,
                 ManualProgressWeighting = manualProgressWeighting.HasValue ? manualProgressWeighting.Value : 0,
                 TargetPracticeTime = targetpracticeTime,
                 ExerciseActivity = exerciseActivity ?? new List<ExerciseActivity>()
@@ -74,8 +72,6 @@ namespace CygSoft.SmartSession.UnitTests.Infrastructure
                 SpeedProgressWeighting = speedProgressWeighting.HasValue ? speedProgressWeighting.Value : 0,
                 TargetMetronomeSpeed = targetSpeed.HasValue ? targetSpeed.Value : 0,
                 PracticeTimeProgressWeighting = practiceTimeProgressWeighting.HasValue ? practiceTimeProgressWeighting.Value : 0,
-                DifficultyRating = difficultyRating.HasValue ? difficultyRating.Value : 0,
-                PracticalityRating = practicalityRating.HasValue ? practicalityRating.Value : 0,
                 ManualProgressWeighting = manualProgressWeighting.HasValue ? manualProgressWeighting.Value : 0,
                 TargetPracticeTime = targetpracticeTime,
                 ExerciseActivity = exerciseActivity ?? new List<ExerciseActivity>()

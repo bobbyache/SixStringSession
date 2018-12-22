@@ -19,8 +19,6 @@ namespace CygSoft.SmartSession.Dal.MySql
             entity.Id = Connection.ExecuteScalar<int>(sql: "sp_InsertExercise", 
                 param: new {
                     _title = entity.Title,
-                    _difficultyRating = entity.DifficultyRating,
-                    _practicalityRating = entity.PracticalityRating,
                     _targetMetronomeSpeed = entity.TargetMetronomeSpeed,
                     _speedProgressWeighting = entity.SpeedProgressWeighting,
                     _targetPracticeTime = entity.TargetPracticeTime,
@@ -125,8 +123,6 @@ namespace CygSoft.SmartSession.Dal.MySql
                 param: new {
                         _id = entity.Id,
                     	_title = entity.Title, 
-	                    _difficultyRating = entity.DifficultyRating,
-	                    _practicalityRating = entity.PracticalityRating,
 	                    _targetPracticeTime = entity.TargetPracticeTime,
 	                    _targetMetronomeSpeed = entity.TargetMetronomeSpeed,
                         _speedProgressWeighting = entity.SpeedProgressWeighting,

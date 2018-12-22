@@ -13,6 +13,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
+using CygSoft.SmartSession.Infrastructure;
 
 namespace CygSoft.SmartSession.Desktop.PracticeRoutines
 {
@@ -39,11 +40,11 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
             }
         }
 
-        public ObservableCollection<PracticeRoutineExercise> PracticeRoutineExercises
+        public BindingList<PracticeRoutineExercise> PracticeRoutineExercises
         {
             get;
             private set;
-        } = new ObservableCollection<PracticeRoutineExercise>();
+        } = new BindingList<PracticeRoutineExercise>();
 
         private PracticeRoutineExercise selectedPracticeRoutineExercise;
         public PracticeRoutineExercise SelectedPracticeRoutineExercise
@@ -55,13 +56,16 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
             }
         }
 
-        public int TotalMinutes
+        private string displayTime;
+        public string DisplayTime
         {
             get
             {
-                if (PracticeRoutineExercises.Any())
-                    return PracticeRoutineExercises.Sum(p => p.Minutes);
-                return 0;
+                return displayTime;
+            }
+            set
+            {
+                Set(() => DisplayTime, ref displayTime, value);
             }
         }
 
@@ -86,12 +90,21 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
 
         public PracticeRoutineEditViewModel(IDialogViewService dialogService)
         {
+            this.PracticeRoutineExercises.ListChanged += PracticeRoutineExercises_ListChanged;
             this.dialogService = dialogService ?? throw new ArgumentNullException("Dialog service must be provided.");
 
             SaveCommand = new RelayCommand(() => Save(), () => !this.HasErrors);
             CancelCommand = new RelayCommand(() => Cancel(), () => true);
             AddExerciseCommand = new RelayCommand(() => AddExercise(), () => true);
             DeleteExerciseCommand = new RelayCommand(() => DeleteExercise(), () => true);
+        }
+
+        private void PracticeRoutineExercises_ListChanged(object sender, ListChangedEventArgs e)
+        {
+            if (PracticeRoutineExercises.Any())
+                DisplayTime = $"Total Time: {TimeFuncs.DisplayTimeFromSeconds(PracticeRoutineExercises.Sum(p => p.Seconds))}";
+            else
+                DisplayTime = $"Total Time: {TimeFuncs.DisplayTimeFromSeconds(0)}";
         }
 
         public void AddPracticeRoutineExercise(PracticeRoutineExercise routineExercise)

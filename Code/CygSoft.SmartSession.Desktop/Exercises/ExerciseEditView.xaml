@@ -47,7 +47,7 @@
                              Margin="5"></TextBox>
 
                     </StackPanel>
-                    
+
                     <Slider Margin="5" MinWidth="100" Maximum="100" TickFrequency="1" 
                             Value="{Binding PracticeTimeProgressWeighting, ValidatesOnNotifyDataErrors=True}"
                              TickPlacement="BottomRight" IsSnapToTickEnabled="True"></Slider>
@@ -57,35 +57,6 @@
                              TickPlacement="BottomRight" IsSnapToTickEnabled="True"></Slider>
                 </StackPanel>
             </Border>
-            <Border DockPanel.Dock="Top" Background="GhostWhite" BorderBrush="Gainsboro" BorderThickness="1" Padding="5" Margin="5">
-                <StackPanel>
-
-                    <StackPanel>
-                        <TextBlock Text="Difficulty Rating:" Margin="5"></TextBlock>
-                        <Slider  Value="{Binding DifficultyRating, ValidatesOnNotifyDataErrors=True}" Maximum="5" TickFrequency="1" 
-                             TickPlacement="BottomRight" IsSnapToTickEnabled="True"></Slider>
-                        <TextBlock Text="Practicality Rating:" Margin="5"></TextBlock>
-                        <Slider  Value="{Binding PracticalityRating, ValidatesOnNotifyDataErrors=True}" Maximum="5" TickFrequency="1" 
-                             TickPlacement="BottomRight" IsSnapToTickEnabled="True"></Slider>
-
-                    </StackPanel>
-                </StackPanel>
-            </Border>
-            <!--
-            <StackPanel DockPanel.Dock="Top" Margin="0,0,0,5">
-                <TextBlock Text="Files:" Margin="5"></TextBlock>
-                <DockPanel LastChildFill="True">
-                    <StackPanel Orientation="Vertical">
-                        <Button Content="Open..." Margin="5,5,5,5" MinWidth="50" MaxHeight="35" />
-                        <Button Content="Delete" Margin="5,0,5,5" MinWidth="50" MaxHeight="35" Command="{Binding DeleteFilesCommand}" />
-                    </StackPanel>
-                    <ListView Height="50" Margin="5,5,5,5" AllowDrop="True" Drop="File_Drop">
-
-                    </ListView>
-                </DockPanel>
-
-            </StackPanel>
-            -->
             <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right">
                 <Button Content="Save" Margin="5" MinWidth="50" MaxHeight="35" Command="{Binding SaveCommand}" />
                 <Button Content="Cancel" Margin="5" MinWidth="50" MaxHeight="35" Command="{Binding CancelCommand}" />

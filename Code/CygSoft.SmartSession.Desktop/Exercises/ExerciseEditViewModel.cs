@@ -86,28 +86,6 @@ namespace CygSoft.SmartSession.Desktop.Exercises
             }
         }
 
-        private int difficultyRating;
-        [Range(0, 5, ErrorMessage = "Value must be between 0 and 5.")]
-        public int DifficultyRating
-        {
-            get { return difficultyRating; }
-            set
-            {
-                Set(() => DifficultyRating, ref difficultyRating, value, true, true);
-            }
-        }
-
-        private int practicalityRating;
-        [Range(0, 5, ErrorMessage = "Value must be between 0 and 5.")]
-        public int PracticalityRating
-        {
-            get { return practicalityRating; }
-            set
-            {
-                Set(() => PracticalityRating, ref practicalityRating, value, true, true);
-            }
-        }
-
         private EntityLifeCycleState lifeCycleState;
         public EntityLifeCycleState LifeCycleState
         {

@@ -33,8 +33,6 @@ namespace CygSoft.SmartSession.Domain.Exercises
         [Required]
         [Column(TypeName = "nvarchar(150)")]
         public string Title { get; set; }
-        public int DifficultyRating { get; set; }
-        public int PracticalityRating { get; set; }
         public int? TargetMetronomeSpeed { get; set; }
         public int? TargetPracticeTime { get; set; }
 

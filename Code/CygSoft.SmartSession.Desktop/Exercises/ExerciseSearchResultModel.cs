@@ -23,27 +23,5 @@ namespace CygSoft.SmartSession.Desktop.Exercises
                     isDirty = true;
             }            
         }
-
-        private int difficultyRating;
-        public int DifficultyRating
-        {
-            get { return difficultyRating; }
-            set
-            {
-                if (Set(() => DifficultyRating, ref difficultyRating, value))
-                    isDirty = true;
-            }
-        }
-
-        private int practicalityRating;
-        public int PracticalityRating
-        {
-            get { return practicalityRating; }
-            set
-            {
-                if (Set(() => PracticalityRating, ref practicalityRating, value))
-                    isDirty = true;
-            }
-        }
     }
 }

@@ -22,6 +22,7 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+        <converters:StarWidthConverter x:Key="StarWidthConverter"/>
     </UserControl.Resources>
     <DockPanel LastChildFill="True">
         <StackPanel DockPanel.Dock="Top" Margin="0,0,0,5">
@@ -53,8 +54,7 @@
                                 TickPlacement="BottomRight" IsSnapToTickEnabled="True"></Slider>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock MinWidth="20" HorizontalAlignment="Center" Margin="15" Text="{Binding TotalMinutes, Mode=OneWay}"></TextBlock>
-                            <TextBlock TextAlignment="Right" Margin="2" MinWidth="50" >Total Minutes</TextBlock>
+                            <TextBlock MinWidth="20" HorizontalAlignment="Center" Margin="15" Text="{Binding DisplayTime, Mode=OneWay}"></TextBlock>
                         </StackPanel>
                         
                     </StackPanel>
@@ -79,8 +79,34 @@
                 <GridView>
                     <GridViewColumn Width="500" Header="Title" DisplayMemberBinding="{Binding Title}"/>
                     <GridViewColumn Width="60" Header="Minutes" DisplayMemberBinding="{Binding Minutes}" />
-                    <GridViewColumn Width="60" Header="Difficulty"  DisplayMemberBinding="{Binding DifficultyRating}" />
-                    <GridViewColumn Width="60" Header="Practicality"  DisplayMemberBinding="{Binding PracticalityRating}" />
+                    <GridViewColumn Width="100" Header="Difficulty">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Grid Width="80" Height="16">
+                                    <Rectangle Opacity=".1" Fill="{DynamicResource FiveStars}" />
+                                    <Rectangle Fill="{DynamicResource FiveStars}">
+                                        <Rectangle.Clip>
+                                            <RectangleGeometry Rect="{Binding DifficultyRating, Converter={StaticResource StarWidthConverter}}" />
+                                        </Rectangle.Clip>
+                                    </Rectangle>
+                                </Grid>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Width="100" Header="Practicality">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Grid Width="80" Height="16">
+                                    <Rectangle Opacity=".1" Fill="{DynamicResource FiveStars}" />
+                                    <Rectangle Fill="{DynamicResource FiveStars}">
+                                        <Rectangle.Clip>
+                                            <RectangleGeometry Rect="{Binding PracticalityRating, Converter={StaticResource StarWidthConverter}}" />
+                                        </Rectangle.Clip>
+                                    </Rectangle>
+                                </Grid>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>

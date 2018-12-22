@@ -4,6 +4,7 @@ using System.Linq;
 
 namespace CygSoft.SmartSession.Domain.Exercises
 {
+    //TODO: Remove DifficultyRating and PracticalityRating from search.
     public class ExerciseSearchCriteria : IExerciseSearchCriteria
     {
         public DateTime? FromDateCreated { get; set; }

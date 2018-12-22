@@ -346,8 +346,6 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
             {
                 TargetMetronomeSpeed = 150,
                 TargetPracticeTime = 50000,
-                PracticalityRating = 2,
-                DifficultyRating = 3,
                 Title = "Created Exercise Title"
             };
 
@@ -363,8 +361,6 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
                 DateModified = DateTime.Parse("2018-03-01 12:15:00"),
                 TargetMetronomeSpeed = 150,
                 TargetPracticeTime = 50000,
-                PracticalityRating = 2,
-                DifficultyRating = 3,
                 Title = "Created Exercise Title"
             };
 
