@@ -23,8 +23,9 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
         private IExerciseService exerciseService;
         private IDialogViewService dialogService;
 
+        public RelayCommand CancelCommand { get; private set; }
+        public RelayCommand SaveCommand { get; private set; }
         public RelayCommand StartExercisingCommand { get; private set; }
-        public RelayCommand ExitCommand { get; private set; }
 
         public BindingList<RecordableExerciseViewModel> RecordableExercises { get; set; } = new BindingList<RecordableExerciseViewModel>();
 
@@ -59,8 +60,9 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
             this.exerciseService = exerciseService ?? throw new ArgumentNullException("Exercise Service must be provided.");
             this.dialogService = dialogService ?? throw new ArgumentNullException("Dialog service must be provided.");
 
+            CancelCommand = new RelayCommand(() => Cancel(), () => true);
+            SaveCommand = new RelayCommand(() => Save(), () => true);
             StartExercisingCommand = new RelayCommand(StartExercising, () => true);
-            ExitCommand = new RelayCommand(Exit, () => true);
         }
 
         private void RecordableExercises_ListChanged(object sender, ListChangedEventArgs e)
@@ -79,9 +81,27 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
             }
         }
 
-        private void Exit()
-        {
+        private void Save()
+        { 
+            foreach (var recordableExercise in RecordableExercises)
+            {
+                if (recordableExercise.Seconds > 0)
+                {
+                    var exerciseActivity = exerciseService.CreateExerciseActivity(80, (int)recordableExercise.Seconds, 50, DateTime.Now, DateTime.Now);
+                    recordableExercise.Exercise.ExerciseActivity.Add(exerciseActivity);
+                }
+            }
+
+            var exercises = RecordableExercises.Select(r => r.Exercise);
+            exerciseService.Update(exercises);
+
             Messenger.Default.Send(new ExitPracticeListMessage());
+        }
+
+        private void Cancel()
+        {
+            if (dialogService.YesNoPrompt("Cancel Session?", "Are you sure you want to cancel the session? All data will be lost!"))
+                Messenger.Default.Send(new ExitPracticeListMessage());
         }
 
         private void StartExercising()
@@ -96,8 +116,6 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
                 }
                 SelectedRecordableExercise.Start();
             }
-
-            //Messenger.Default.Send(new ExitPracticeListMessage());
         }
     }
 }

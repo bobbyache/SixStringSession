@@ -80,9 +80,19 @@ namespace CygSoft.SmartSession.Domain.Exercises
             if (exercise.Id <= 0)
                 throw new ArgumentException("An existing exercise must have an id");
 
-            exercise.DateModified = DateTime.Now;
-
             unitOfWork.Exercises.Update(exercise);
+            unitOfWork.Commit();
+        }
+
+        public void Update(IEnumerable<Exercise> exercises)
+        {
+            foreach (var exercise in exercises)
+            {
+                if (exercise.Id <= 0)
+                    throw new ArgumentException("An existing exercise must have an id");
+            }
+
+            unitOfWork.Exercises.Update(exercises);
             unitOfWork.Commit();
         }
 

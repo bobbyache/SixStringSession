@@ -137,6 +137,14 @@ namespace CygSoft.SmartSession.Dal.MySql
             UpdateChangedExerciseActivities(entity);
         }
 
+        public void Update(IEnumerable<Exercise> exercises)
+        {
+            foreach (var exercise in exercises)
+            {
+                Update(exercise);
+            }
+        }
+
         private void UpdateChangedExerciseActivities(Exercise exercise)
         {
             var persistedExercises = GetExerciseActivities(exercise);

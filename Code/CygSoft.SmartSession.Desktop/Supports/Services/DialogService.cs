@@ -34,6 +34,14 @@ namespace CygSoft.SmartSession.Desktop.Supports.Services
             return false;
         }
 
+        public bool YesNoPrompt(string caption, string message)
+        {
+            MessageBoxResult result = MessageBox.Show(message, caption, MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.Yes)
+                return true;
+            return false;
+        }
+
         //public void ShowError(Exception Error, string Title)
         //{
         //    MessageBox.Show(Error.ToString(), Title, MessageBoxButton.OK, MessageBoxImage.Error);

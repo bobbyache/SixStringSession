@@ -8,5 +8,7 @@ namespace CygSoft.SmartSession.Domain.Exercises
     {
         // Only add really custom stuff here...
         IReadOnlyList<Exercise> GetPracticeRoutineExercises(int practiceRoutineId);
+
+        void Update(IEnumerable<Exercise> exercises);
     }
 }

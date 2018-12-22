@@ -24,7 +24,8 @@
         <TextBlock FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Text="{Binding DisplayTime}"></TextBlock>
 
         <StackPanel Grid.Row="2" DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button Content="Exit" Margin="5" MinWidth="50" MaxHeight="35" Command="{Binding ExitCommand}" />
+            <Button Content="Cancel Session" Margin="5" MinWidth="50" MaxHeight="35" Command="{Binding CancelCommand}" />
+            <Button Content="Save Session" Margin="5" MinWidth="50" MaxHeight="35" Command="{Binding SaveCommand}" />
         </StackPanel>
         <ListView Grid.Row="1" ItemsSource="{Binding RecordableExercises}" DockPanel.Dock="Bottom" 
                   SelectionMode="Extended"

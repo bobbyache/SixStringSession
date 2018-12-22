@@ -29,9 +29,6 @@ namespace CygSoft.SmartSession.Domain.PracticeRoutines
             if (practiceRoutine.Id > 0)
                 throw new ArgumentException("A new practiceRoutine cannot have an id");
 
-            practiceRoutine.DateCreated = DateTime.Now;
-            practiceRoutine.DateModified = practiceRoutine.DateCreated;
-
             unitOfWork.PracticeRoutines.Add(practiceRoutine);
             unitOfWork.Commit();
         }
@@ -60,8 +57,6 @@ namespace CygSoft.SmartSession.Domain.PracticeRoutines
         {
             if (practiceRoutine.Id <= 0)
                 throw new ArgumentException("An existing practiceRoutine must have an id");
-
-            practiceRoutine.DateModified = DateTime.Now;
 
             unitOfWork.PracticeRoutines.Update(practiceRoutine);
             unitOfWork.Commit();

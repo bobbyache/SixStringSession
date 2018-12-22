@@ -15,6 +15,7 @@ namespace CygSoft.SmartSession.Domain.Exercises
         void Remove(int id);
         void Add(Exercise exercise);
         void Update(Exercise exercise);
+        void Update(IEnumerable<Exercise> exercises);
 
         void AddFiles(int exerciseId, string[] filePaths);
         void DeleteFiles(int exerciseId);
