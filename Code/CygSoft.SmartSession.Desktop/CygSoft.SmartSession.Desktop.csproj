@@ -55,6 +55,7 @@
     <Reference Include="GalaSoft.MvvmLight.Platform, Version=5.4.1.0, Culture=neutral, PublicKeyToken=5f873c45e98af8a1, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmLightLibs.5.4.1\lib\net45\GalaSoft.MvvmLight.Platform.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Expression.Interactions, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
@@ -187,6 +188,7 @@
     <Compile Include="PracticeRoutines\StartSelectingPracticeRoutineExerciseMessage.cs" />
     <Compile Include="PracticeRoutines\StartEditingPracticeRoutineMessage.cs" />
     <Compile Include="PracticeRoutines\ViewPracticeListMessage.cs" />
+    <Compile Include="Supports\Converters\BoolToValueConverter.cs" />
     <Compile Include="Supports\Converters\ComparisonOperatorConverter.cs" />
     <Compile Include="Supports\Converters\EnumToCollectionConverter.cs" />
     <Compile Include="Supports\Converters\MathConverter.cs" />

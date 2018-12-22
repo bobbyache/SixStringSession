@@ -27,6 +27,19 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
             }
         }
 
+        private string status;
+        public string Status
+        {
+            get
+            {
+                return status;
+            }
+            set
+            {
+                Set(() => Status, ref status, value);
+            }
+        }
+
         private bool recording;
         public bool Recording
         {
@@ -62,17 +75,19 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
 
             Title = exercise.Title;
             Recording = exerciseRecorder.Recording;
+            Status = exerciseRecorder.Recording ? "RECORDING..." : "";
             DisplayTime = exerciseRecorder.DisplayTime;
         }
 
         private void ExerciseRecorder_RecordingStatusChanged(object sender, EventArgs e)
         {
-            recording = exerciseRecorder.Recording;
+            Status = exerciseRecorder.Recording ? "RECORDING..." : "";
+            Recording = exerciseRecorder.Recording;
         }
 
         private void TickTock()
         {
-            displayTime = exerciseRecorder.DisplayTime;
+            DisplayTime = exerciseRecorder.DisplayTime;
         }
 
         public void Start()
@@ -83,7 +98,7 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
             }
         }
 
-        internal void PauseRecording()
+        internal void Pause()
         {
             if (exerciseRecorder.Recording)
             {
@@ -91,7 +106,7 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
             }
         }
 
-        private void CancelRecording()
+        private void Reset()
         {
             exerciseRecorder.Reset();
         }

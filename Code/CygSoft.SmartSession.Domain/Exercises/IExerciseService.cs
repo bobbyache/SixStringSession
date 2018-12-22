@@ -11,6 +11,7 @@ namespace CygSoft.SmartSession.Domain.Exercises
 
         Exercise Get(int id);
         IEnumerable<Exercise> Find(ExerciseSearchCriteria searchCriteria);
+        IEnumerable<Exercise> GetPracticeRoutineExercises(int practiceRoutineId);
         void Remove(int id);
         void Add(Exercise exercise);
         void Update(Exercise exercise);

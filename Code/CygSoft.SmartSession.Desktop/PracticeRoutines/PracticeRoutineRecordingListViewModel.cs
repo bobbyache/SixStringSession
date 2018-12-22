@@ -22,10 +22,20 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
         private IExerciseService exerciseService;
         private IDialogViewService dialogService;
 
-        public RelayCommand PracticeCommand { get; private set; }
+        public RelayCommand StartExercisingCommand { get; private set; }
         public RelayCommand ExitCommand { get; private set; }
 
         public BindingList<RecordableExerciseViewModel> RecordableExercises { get; set; } = new BindingList<RecordableExerciseViewModel>();
+
+        private RecordableExerciseViewModel selectedRecordableExercise;
+        public RecordableExerciseViewModel SelectedRecordableExercise
+        {
+            get { return selectedRecordableExercise; }
+            set
+            {
+                Set(() => SelectedRecordableExercise, ref selectedRecordableExercise, value);
+            }
+        }
 
         public PracticeRoutineRecordingListViewModel(IPracticeRoutineService practiceRoutineService,  IExerciseService exerciseService, IDialogViewService dialogService)
         {
@@ -33,14 +43,17 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
             this.exerciseService = exerciseService ?? throw new ArgumentNullException("Exercise Service must be provided.");
             this.dialogService = dialogService ?? throw new ArgumentNullException("Dialog service must be provided.");
 
-            PracticeCommand = new RelayCommand(Practice, () => true);
+            StartExercisingCommand = new RelayCommand(StartExercising, () => true);
             ExitCommand = new RelayCommand(Exit, () => true);
         }
 
-        public void InitializeSession(PracticeRoutine practiceRoutine)
+        public void InitializeSession(int practiceRoutineId)
         {
-            foreach (var exercise in practiceRoutine.PracticeRoutineExercises)
-            { }
+            var exercises = exerciseService.GetPracticeRoutineExercises(practiceRoutineId);
+            foreach (var exercise in exercises)
+            {
+                RecordableExercises.Add(new RecordableExerciseViewModel(exercise));
+            }
         }
 
         private void Exit()
@@ -48,9 +61,20 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
             Messenger.Default.Send(new ExitPracticeListMessage());
         }
 
-        private void Practice()
+        private void StartExercising()
         {
-            Messenger.Default.Send(new ExitPracticeListMessage());
+            if (SelectedRecordableExercise.Recording)
+                SelectedRecordableExercise.Pause();
+            else
+            {
+                foreach (var item in RecordableExercises)
+                {
+                    if (item.Recording) item.Pause();
+                }
+                SelectedRecordableExercise.Start();
+            }
+
+            //Messenger.Default.Send(new ExitPracticeListMessage());
         }
     }
 }

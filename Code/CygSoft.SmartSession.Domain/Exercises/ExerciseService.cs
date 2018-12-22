@@ -67,6 +67,11 @@ namespace CygSoft.SmartSession.Domain.Exercises
             return unitOfWork.Exercises.Find(searchCriteria);
         }
 
+        public IEnumerable<Exercise> GetPracticeRoutineExercises(int practiceRoutineId)
+        {
+            return unitOfWork.Exercises.GetPracticeRoutineExercises(practiceRoutineId);
+        }
+
         public Exercise Get(int id)
         {
             return unitOfWork.Exercises.Get(id);

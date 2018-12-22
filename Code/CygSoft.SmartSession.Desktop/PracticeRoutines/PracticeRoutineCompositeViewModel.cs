@@ -41,7 +41,7 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
             this.exerciseSelectionViewModel = exerciseSelectionViewModel;
 
             Messenger.Default.Register<ExitPracticeListMessage>(this, (m) => ExitPracticeList());
-            Messenger.Default.Register<ViewPracticeListMessage>(this, (m) => ViewPracticeList());
+            Messenger.Default.Register<ViewPracticeListMessage>(this, (m) => ViewPracticeList(m.PracticeRoutineId));
             Messenger.Default.Register<ExerciseSelectionCancelledMessage>(this, (m) => ExerciseSelectionCancelled());
             Messenger.Default.Register<ExerciseSelectedMessage>(this, (m) => ExerciseSelected(m.ExerciseId));
             Messenger.Default.Register<StartSelectingPracticeRoutineExerciseMessage>(this, (m) => StartSelectingPracticeRoutine());
@@ -57,8 +57,9 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
             NavigateTo("Search");
         }
 
-        private void ViewPracticeList()
+        private void ViewPracticeList(int practiceRoutineId)
         {
+            practiceRoutineRecordingListViewModel.InitializeSession(practiceRoutineId);
             NavigateTo("Record");
         }
 
