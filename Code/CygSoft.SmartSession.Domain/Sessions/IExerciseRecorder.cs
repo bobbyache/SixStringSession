@@ -4,16 +4,19 @@ namespace CygSoft.SmartSession.Domain.Sessions
 {
     public interface IExerciseRecorder
     {
-        DateTime EndTime { get; }
+        DateTime? EndTime { get; }
         bool Recording { get; }
         double Seconds { get; }
-        DateTime StartTime { get; }
+        DateTime? StartTime { get; }
         Action TickActionCallBack { set; }
 
         event EventHandler RecordingStatusChanged;
 
-        void Clear();
+        void Reset();
         void Pause();
-        void Start();
+        void Resume();
+
+        void AddSeconds(int seconds);
+        void SubstractSeconds(int seconds);
     }
 }

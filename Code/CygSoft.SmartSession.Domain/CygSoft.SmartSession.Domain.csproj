@@ -69,6 +69,7 @@
     <Compile Include="Exercises\IExerciseRepository.cs" />
     <Compile Include="Exercises\IExerciseSearchCriteria.cs" />
     <Compile Include="Exercises\IExerciseService.cs" />
+    <Compile Include="Exercises\RecordableExercise.cs" />
     <Compile Include="PracticeRoutines\IPracticeRoutineRepository.cs" />
     <Compile Include="PracticeRoutines\IPracticeRoutineSearchCriteria.cs" />
     <Compile Include="PracticeRoutines\IPracticeRoutineService.cs" />
@@ -91,7 +92,6 @@
     <Compile Include="Sessions\ExerciseRecorder.cs" />
     <Compile Include="Sessions\IExerciseRecorder.cs" />
     <Compile Include="Sessions\ExerciseActivity.cs" />
-    <Compile Include="Sessions\RecordingSlice.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CygSoft.SmartSession.Infrastructure\CygSoft.SmartSession.Infrastructure.csproj">
