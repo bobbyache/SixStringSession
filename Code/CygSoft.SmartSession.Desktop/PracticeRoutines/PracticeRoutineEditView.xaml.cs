@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CygSoft.SmartSession.Desktop.Supports.Validators;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,12 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
         public PracticeRoutineEditView()
         {
             InitializeComponent();
+            this.MinutesTextBox.PreviewTextInput += TextBox_PreviewTextInput;
+        }
+
+        private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !ValidatorFuncs.TextIsInteger(e.Text);
         }
     }
 }

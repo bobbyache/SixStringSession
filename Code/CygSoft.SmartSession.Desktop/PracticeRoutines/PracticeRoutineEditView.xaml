@@ -39,7 +39,7 @@
                     <StackPanel Orientation="Vertical">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock TextAlignment="Right" Margin="2" MinWidth="50" >Minutes</TextBlock>
-                            <TextBox Margin="2" MinWidth="50" Text="{Binding SelectedPracticeRoutineExercise.Minutes}" />
+                            <TextBox x:Name="MinutesTextBox" Margin="2" MinWidth="50" Text="{Binding SelectedPracticeRoutineExercise.Minutes}" />
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock TextAlignment="Right" Margin="2" MinWidth="50" >Difficulty</TextBlock>

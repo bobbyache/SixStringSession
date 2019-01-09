@@ -40,7 +40,7 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
             this.practiceRoutineService = practiceRoutineService ?? throw new ArgumentNullException("Service must be provided.");
             this.dialogService = dialogService ?? throw new ArgumentNullException("Dialog service must be provided.");
 
-            PracticeCommand = new RelayCommand(Practice, () => true);
+            PracticeCommand = new RelayCommand(Practice, () => SelectedPracticeRoutine != null);
             AddPracticeRoutineCommand = new RelayCommand(AddPracticeRoutine, () => true);
             DeletePracticeRoutineCommand = new RelayCommand(DeletePracticeRoutine, () => SelectedPracticeRoutine != null);
             EditPracticeRoutineCommand = new RelayCommand(EditPracticeRoutine, () => SelectedPracticeRoutine != null);
@@ -58,6 +58,7 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
             set
             {
                 Set(() => SelectedPracticeRoutine, ref selectedPracticeRoutine, value);
+                PracticeCommand.RaiseCanExecuteChanged();
                 AddPracticeRoutineCommand.RaiseCanExecuteChanged();
                 EditPracticeRoutineCommand.RaiseCanExecuteChanged();
                 DeletePracticeRoutineCommand.RaiseCanExecuteChanged();

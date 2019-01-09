@@ -14,6 +14,11 @@ namespace CygSoft.SmartSession.Desktop.Supports.Validators
             return TextIsInteger(text);
         }
 
+        public static bool TextIsPracticeTime(string text)
+        {
+            return TextIsInteger(text);
+        }
+
         public static bool TextIsInteger(string text)
         {
             string onlyNumeric = @"^([0-9]+(.[0-9]+)?)$";
