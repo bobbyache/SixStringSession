@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CygSoft.SmartSession.Desktop.Supports.Validators;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,6 +27,8 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
         {
             InitializeComponent();
         }
+
+        //TODO: Create a Numeric-Only textbox control (see ExerciseEditView e.Handled = !ValidatorFuncs.TextIsMetronomeSpeed(e.Text);
 
         private void TextBox_PreviewMouseDoubleClick(object sender, MouseButtonEventArgs e)
         {

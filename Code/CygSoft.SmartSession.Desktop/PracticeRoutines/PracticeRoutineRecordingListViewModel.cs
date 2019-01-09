@@ -93,7 +93,7 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
             }
 
             var exercises = RecordableExercises.Select(r => r.Exercise);
-            exerciseService.Update(exercises);
+            exerciseService.Update(exercises.OfType<Exercise>());
 
             Messenger.Default.Send(new ExitPracticeListMessage());
         }

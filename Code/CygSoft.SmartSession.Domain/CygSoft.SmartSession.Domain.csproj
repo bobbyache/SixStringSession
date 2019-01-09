@@ -66,6 +66,7 @@
     <Compile Include="Exercises\Exercise.cs" />
     <Compile Include="Exercises\ExerciseSearchCriteria.cs" />
     <Compile Include="Exercises\ExerciseService.cs" />
+    <Compile Include="Exercises\IExercise.cs" />
     <Compile Include="Exercises\IExerciseRepository.cs" />
     <Compile Include="Exercises\IExerciseSearchCriteria.cs" />
     <Compile Include="Exercises\IExerciseService.cs" />

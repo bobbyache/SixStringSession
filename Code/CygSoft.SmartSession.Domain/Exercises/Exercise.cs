@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace CygSoft.SmartSession.Domain.Exercises
 {
-    public class Exercise : Entity
+    public class Exercise : Entity, IExercise
     {
         private class WeightedMetric : IWeightedEntity
         {

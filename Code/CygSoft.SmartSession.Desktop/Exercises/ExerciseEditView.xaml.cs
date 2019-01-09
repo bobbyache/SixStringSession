@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CygSoft.SmartSession.Desktop.Supports.Validators;
+using System;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
@@ -23,9 +24,7 @@ namespace CygSoft.SmartSession.Desktop.Exercises
 
         private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            string onlyNumeric = @"^([0-9]+(.[0-9]+)?)$";
-            Regex regex = new Regex(onlyNumeric);
-            e.Handled = !regex.IsMatch(e.Text);
+            e.Handled = !ValidatorFuncs.TextIsMetronomeSpeed(e.Text);
         }
 
         private void File_Drop(object sender, DragEventArgs e)

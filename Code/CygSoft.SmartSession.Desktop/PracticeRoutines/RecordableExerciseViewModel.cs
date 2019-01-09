@@ -11,7 +11,7 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
 {
     public class RecordableExerciseViewModel : ViewModelBase
     {
-        public Exercise Exercise { get; set; }
+        public IExercise Exercise { get; set; }
         private IExerciseRecorder exerciseRecorder;
 
         private string displayTime;
@@ -79,7 +79,7 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
             }
         }
 
-        public RecordableExerciseViewModel(Exercise exercise)
+        public RecordableExerciseViewModel(IExercise exercise)
         {
             this.Exercise = exercise;
             exerciseRecorder = new ExerciseRecorder();
