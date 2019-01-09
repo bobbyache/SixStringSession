@@ -68,7 +68,8 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
 
         private void Practice()
         {
-            Messenger.Default.Send(new ViewPracticeListMessage(SelectedPracticeRoutine.Id));
+            if (SelectedPracticeRoutine != null)
+                Messenger.Default.Send(new ViewPracticeListMessage(SelectedPracticeRoutine.Id));
         }
 
         public void RefreshRoutines()

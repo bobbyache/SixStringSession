@@ -43,15 +43,6 @@
             </ListBox.ContextMenu>
             <ListView.View>
                 <GridView>
-                    <GridViewColumn>
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <Grid>
-                                    <Button>Start</Button>
-                                </Grid>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
                     <GridViewColumn Width="150" Header="Title">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
@@ -66,7 +57,7 @@
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <Grid Width="150">
-                                    <TextBox Width="40" Text="{Binding MetronomeSpeed}" />
+                                    <TextBox PreviewMouseDoubleClick="TextBox_PreviewMouseDoubleClick" Width="40" Text="{Binding MetronomeSpeed}" />
                                 </Grid>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
@@ -75,15 +66,15 @@
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <Grid Width="150" Height="35">
-                                    <Slider Minimum="0" Maximum="100" VerticalAlignment="Center" HorizontalAlignment="Stretch">
+                                    <Slider PreviewMouseDoubleClick="Slider_PreviewMouseDoubleClick" Minimum="0" Maximum="100" VerticalAlignment="Center" HorizontalAlignment="Stretch">
                                         <Slider.Template>
                                             <ControlTemplate TargetType="{x:Type Slider}">
                                                 <Grid Background="#05000000">
-                                                    <ctrls:PopupEx x:Name="InfoPopup" Width="Auto" Height="Auto" PlacementTarget="{Binding ElementName=Thumb}" Placement="Top" StaysOpen="False" IsOpen="False" AllowsTransparency="True">
+                                                    <ctrls:PopupLabel x:Name="InfoPopup" Width="Auto" Height="Auto" PlacementTarget="{Binding ElementName=Thumb}" Placement="Top" StaysOpen="False" IsOpen="False" AllowsTransparency="True">
                                                         <Border Padding="2" CornerRadius="3" Background="#555C5C5C">
-                                                            <TextBlock Foreground="Black" Text="{Binding ElementName=PART_Track, Path=Value, StringFormat=Zoom:{0:0}%}"></TextBlock>
+                                                            <TextBlock Foreground="Black" Text="{Binding ElementName=PART_Track, Path=Value, StringFormat=Progress: {0:0}%}"></TextBlock>
                                                         </Border>
-                                                    </ctrls:PopupEx>
+                                                    </ctrls:PopupLabel>
                                                     <Track x:Name="PART_Track">
                                                         <Track.Thumb>
                                                             <Thumb x:Name="Thumb" Width="10" Height="20">

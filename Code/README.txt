@@ -52,6 +52,10 @@ https://blogs.msdn.microsoft.com/jaimer/2009/01/20/styling-microsofts-wpf-datagr
 
 WPF Toolkit: DataGrid Feature Walkthrough
 http://mitesh487.blogspot.com/2011/11/wpf-toolkit-datagrid-feature.html
+
+Make Tooltip of WPF slider stay on screen while dragging
+https://stackoverflow.com/questions/26270740/make-tooltip-of-wpf-slider-stay-on-screen-while-dragging
+
 ===========================================================================
 Credits to...
 ===========================================================================

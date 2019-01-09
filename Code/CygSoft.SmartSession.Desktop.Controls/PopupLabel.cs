@@ -3,7 +3,7 @@ using System.Windows.Controls.Primitives;
 
 namespace CygSoft.SmartSession.Desktop.Controls
 {
-    public class PopupEx : Popup
+    public class PopupLabel : Popup
     {
         protected override void OnOpened(EventArgs e)
         {
