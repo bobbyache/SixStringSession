@@ -36,5 +36,34 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
         {
             e.Handled = true;
         }
+
+        private void ListViewItem_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            // https://stackoverflow.com/questions/5750722/how-to-detect-modifier-key-states-in-wpf
+
+            if (e.Key == Key.Space)
+                MessageBox.Show("Start or Stop exercise.");
+
+            if (Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                // Debugging:
+                // System.Diagnostics.Debug.WriteLine($"{e.SystemKey} or {e.Key}");
+
+                if (e.Key == Key.Left)
+                    MessageBox.Show($"Move progress back");
+                if (e.Key == Key.Right)
+                    MessageBox.Show($"Move progress forward");
+
+                if (e.Key == Key.S)
+                {
+                    MessageBox.Show($"Focus and Highlight current speed.");
+                }
+            }
+
+            //// Use this to execute commands!
+            //// -------------------------------------------------------------------
+            ////var viewModel = DataContext as YourViewModel;
+            ////viewModel.YourCommand.Execute(null);
+        }
     }
 }

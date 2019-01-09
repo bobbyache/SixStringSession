@@ -31,6 +31,11 @@
         <ListView Grid.Row="1" ItemsSource="{Binding RecordableExercises}" DockPanel.Dock="Bottom" 
                   SelectionMode="Extended"
                   SelectedItem="{Binding SelectedRecordableExercise}" >
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <EventSetter Event="PreviewKeyDown" Handler="ListViewItem_PreviewKeyDown" />
+                </Style>
+            </ListView.ItemContainerStyle>
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="MouseDoubleClick">
                     <local1:EventToCommand Command="{Binding StartExercisingCommand}" />
