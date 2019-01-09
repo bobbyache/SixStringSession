@@ -42,9 +42,47 @@
             </ListBox.ContextMenu>
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Width="500" Header="Title" DisplayMemberBinding="{Binding Title}"/>
+                    <GridViewColumn>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Button>Start</Button>
+                                </Grid>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Width="150" Header="Title">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Grid Width="500">
+                                    <TextBlock HorizontalAlignment="Left" Text="{Binding Title}" />
+                                </Grid>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
                     <GridViewColumn Width="60" Header="Time" DisplayMemberBinding="{Binding DisplayTime}" />
-                    <GridViewColumn Width="60" Header="Recording" DisplayMemberBinding="{Binding Status}" />
+                    <GridViewColumn Width="150" Header="Speed">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Grid Width="150">
+                                    <TextBox Width="40" Text="{Binding MetronomeSpeed}" />
+                                </Grid>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Width="150" Header="Manual Progress">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Grid Width="150" Height="35">
+                                    <Slider Margin="5" MinWidth="60" Height="25" Maximum="100" TickFrequency="1" 
+                                        Value="{Binding ManualProgress}"
+                                         TickPlacement="BottomRight" IsSnapToTickEnabled="True">
+                                    </Slider>
+                                </Grid>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding Status}" />
                 </GridView>
             </ListView.View>
         </ListView>
