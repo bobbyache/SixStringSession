@@ -1,4 +1,4 @@
-﻿<ResourceDictionary
+<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:local="clr-namespace:CygSoft.SmartSession.Desktop.Controls"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
@@ -7,5 +7,4 @@
         <ResourceDictionary Source="/CygSoft.SmartSession.Desktop.Controls;component/Themes/TimePicker.xaml"/>
         <ResourceDictionary Source="/CygSoft.SmartSession.Desktop.Controls;component/Themes/MyTextControl.xaml" />
     </ResourceDictionary.MergedDictionaries>
-
 </ResourceDictionary>

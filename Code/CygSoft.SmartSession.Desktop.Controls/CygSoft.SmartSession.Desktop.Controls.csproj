@@ -65,6 +65,7 @@
     <Compile Include="Core\Globals.cs" />
     <Compile Include="Core\MathUtil.cs" />
     <Compile Include="PlayPlay\MyTextControl.cs" />
+    <Compile Include="PopupEx.cs" />
     <Compile Include="TimePicker\TimePicker.cs" />
   </ItemGroup>
   <ItemGroup>
