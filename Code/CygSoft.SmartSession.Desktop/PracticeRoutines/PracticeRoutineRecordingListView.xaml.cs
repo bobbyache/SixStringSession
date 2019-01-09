@@ -39,31 +39,39 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
 
         private void ListViewItem_PreviewKeyDown(object sender, KeyEventArgs e)
         {
-            // https://stackoverflow.com/questions/5750722/how-to-detect-modifier-key-states-in-wpf
+            // ==================================================================================================================
+            // THE COMMENTED CODE BELOW IS WORKING, YOU JUST HAVEN'T FOUND A WAY TO FOCUS ON THE TEXTBOX WITHIN IT FROM CODE !!!
+            // ==================================================================================================================
 
-            if (e.Key == Key.Space)
-                MessageBox.Show("Start or Stop exercise.");
+            //var listviewItem = sender as ListViewItem;
 
-            if (Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl))
-            {
-                // Debugging:
-                // System.Diagnostics.Debug.WriteLine($"{e.SystemKey} or {e.Key}");
+            //// https://stackoverflow.com/questions/5750722/how-to-detect-modifier-key-states-in-wpf
 
-                if (e.Key == Key.Left)
-                    MessageBox.Show($"Move progress back");
-                if (e.Key == Key.Right)
-                    MessageBox.Show($"Move progress forward");
+            //if (e.Key == Key.Space)
+            //    MessageBox.Show("Start or Stop exercise.");
 
-                if (e.Key == Key.S)
-                {
-                    MessageBox.Show($"Focus and Highlight current speed.");
-                }
-            }
+            //if (Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl))
+            //{
+            //    // Debugging:
+            //    // System.Diagnostics.Debug.WriteLine($"{e.SystemKey} or {e.Key}");
 
-            //// Use this to execute commands!
-            //// -------------------------------------------------------------------
-            ////var viewModel = DataContext as YourViewModel;
-            ////viewModel.YourCommand.Execute(null);
+            //    if (e.Key == Key.Left)
+            //        MessageBox.Show($"Move progress back");
+            //    if (e.Key == Key.Right)
+            //        MessageBox.Show($"Move progress forward");
+
+            //    if (e.Key == Key.S)
+            //    {
+            //        // this does not work:
+            //        // https://social.msdn.microsoft.com/Forums/vstudio/en-US/1e9a98c3-b4be-40af-99bd-828491ddcd69/set-focus-of-textbox-in-listview?forum=wpf
+            //        MessageBox.Show($"Focus and Highlight current speed.");
+            //    }
+            //}
+
+            ////// Use this to execute commands!
+            ////// -------------------------------------------------------------------
+            //////var viewModel = DataContext as YourViewModel;
+            //////viewModel.YourCommand.Execute(null);
         }
     }
 }
