@@ -87,7 +87,8 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
             {
                 if (recordableExercise.Seconds > 0)
                 {
-                    var exerciseActivity = exerciseService.CreateExerciseActivity(80, (int)recordableExercise.Seconds, 50, DateTime.Now, DateTime.Now);
+                    var exerciseActivity = exerciseService.CreateExerciseActivity(recordableExercise.MetronomeSpeed, 
+                        (int)recordableExercise.Seconds, recordableExercise.ManualProgress, DateTime.Now, DateTime.Now);
                     recordableExercise.Exercise.ExerciseActivity.Add(exerciseActivity);
                 }
             }

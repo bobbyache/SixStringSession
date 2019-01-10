@@ -81,6 +81,7 @@
                                                         </Border>
                                                     </ctrls:PopupLabel>
                                                     <Track x:Name="PART_Track">
+                                                        <!--<Track x:Name="PART_Track" Value="{Binding ManualProgress}">-->
                                                         <Track.Thumb>
                                                             <Thumb x:Name="Thumb" Width="10" Height="20">
                                                             </Thumb>

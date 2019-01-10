@@ -27,6 +27,32 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
             }
         }
 
+        private int manualProgress;
+        public int ManualProgress
+        {
+            get
+            {
+                return manualProgress;
+            }
+            set
+            {
+                Set(() => ManualProgress, ref manualProgress, value);
+            }
+        }
+
+        private int metronomeSpeed;
+        public int MetronomeSpeed
+        {
+            get
+            {
+                return metronomeSpeed;
+            }
+            set
+            {
+                Set(() => MetronomeSpeed, ref metronomeSpeed, value);
+            }
+        }
+
         private double seconds;
         public double Seconds
         {
@@ -90,6 +116,8 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
             Recording = exerciseRecorder.Recording;
             Status = exerciseRecorder.Recording ? "RECORDING..." : "";
             DisplayTime = exerciseRecorder.DisplayTime;
+            ManualProgress = exercise.GetLastRecordedManualProgress();
+            MetronomeSpeed = exercise.GetLastRecordedSpeed();
         }
 
         private void ExerciseRecorder_RecordingStatusChanged(object sender, EventArgs e)

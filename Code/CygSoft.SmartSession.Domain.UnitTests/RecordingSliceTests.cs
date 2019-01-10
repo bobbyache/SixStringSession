@@ -7,8 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-//TODO:What to do about these tests?
-
 namespace CygSoft.SmartSession.Domain.UnitTests
 {
     [TestFixture]
