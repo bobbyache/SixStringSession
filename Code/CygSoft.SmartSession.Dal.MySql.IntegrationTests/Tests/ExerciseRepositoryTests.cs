@@ -22,8 +22,10 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
 
             using (var uow = new UnitOfWork(Settings.AppConnectionString))
             {
-                IExerciseSearchCriteria crit = new ExerciseSearchCriteria();
-                crit.Title = "reen exercis";
+                IExerciseSearchCriteria crit = new ExerciseSearchCriteria
+                {
+                    Title = "reen exercis"
+                };
 
                 var exercises = uow.Exercises.Find(crit);
                 Assert.That(exercises.Where(ex => ex.Title == "Green Exercise").SingleOrDefault(), Is.Not.Null);
@@ -32,7 +34,7 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
             }
         }
 
-        //TODO:This needs to be implemented.
+        //TODO: Test for checking for an exercise below or above a specific calculation percent should be implemented.
         //[Test]
         //public void ExerciseRepository_Find_Exercise_With_Specific_CalcPercentType_Gets_Applicable_Recs()
         //{
@@ -61,8 +63,10 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
             
             using (var uow = new UnitOfWork(Settings.AppConnectionString))
             {
-                IExerciseSearchCriteria crit = new ExerciseSearchCriteria();
-                crit.ToDateModified = new DateTime(2017, 5, 1);
+                IExerciseSearchCriteria crit = new ExerciseSearchCriteria
+                {
+                    ToDateModified = new DateTime(2017, 5, 1)
+                };
 
                 var exercises = uow.Exercises.Find(crit);
                 Assert.That(exercises.SingleOrDefault, Is.Not.Null);
@@ -78,8 +82,10 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
 
             using (var uow = new UnitOfWork(Settings.AppConnectionString))
             {
-                IExerciseSearchCriteria crit = new ExerciseSearchCriteria();
-                crit.ToDateCreated = new DateTime(2015, 5, 2);
+                IExerciseSearchCriteria crit = new ExerciseSearchCriteria
+                {
+                    ToDateCreated = new DateTime(2015, 5, 2)
+                };
 
                 var exercises = uow.Exercises.Find(crit);
                 Assert.That(exercises.Count(), Is.EqualTo(2));
@@ -139,8 +145,10 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
 
             using (var uow = new UnitOfWork(Settings.AppConnectionString))
             {
-                IExerciseSearchCriteria crit = new ExerciseSearchCriteria();
-                crit.FromDateModified = new DateTime(2017, 6, 1);
+                IExerciseSearchCriteria crit = new ExerciseSearchCriteria
+                {
+                    FromDateModified = new DateTime(2017, 6, 1)
+                };
 
                 var exercises = uow.Exercises.Find(crit);
                 Assert.That(exercises.SingleOrDefault, Is.Not.Null);
@@ -156,8 +164,10 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
 
             using (var uow = new UnitOfWork(Settings.AppConnectionString))
             {
-                IExerciseSearchCriteria crit = new ExerciseSearchCriteria();
-                crit.FromDateCreated = new DateTime(2017, 1, 29);
+                IExerciseSearchCriteria crit = new ExerciseSearchCriteria
+                {
+                    FromDateCreated = new DateTime(2017, 1, 29)
+                };
 
                 var exercises = uow.Exercises.Find(crit);
                 Assert.That(exercises.Count(), Is.EqualTo(2));
@@ -175,9 +185,11 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
 
             using (var uow = new UnitOfWork(Settings.AppConnectionString))
             {
-                IExerciseSearchCriteria crit = new ExerciseSearchCriteria();
-                crit.FromDateModified = new DateTime(2017, 3, 31);
-                crit.ToDateModified = new DateTime(2017, 4, 2);
+                IExerciseSearchCriteria crit = new ExerciseSearchCriteria
+                {
+                    FromDateModified = new DateTime(2017, 3, 31),
+                    ToDateModified = new DateTime(2017, 4, 2)
+                };
 
                 var exercises = uow.Exercises.Find(crit);
                 Assert.That(exercises.SingleOrDefault, Is.Not.Null);
@@ -193,9 +205,11 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
 
             using (var uow = new UnitOfWork(Settings.AppConnectionString))
             {
-                IExerciseSearchCriteria crit = new ExerciseSearchCriteria();
-                crit.FromDateCreated = new DateTime(2015, 11, 25);
-                crit.ToDateCreated = new DateTime(2016, 2, 2);
+                IExerciseSearchCriteria crit = new ExerciseSearchCriteria
+                {
+                    FromDateCreated = new DateTime(2015, 11, 25),
+                    ToDateCreated = new DateTime(2016, 2, 2)
+                };
 
                 var exercises = uow.Exercises.Find(crit);
                 Assert.That(exercises.Where(ex => ex.Title == "Blue Exercise").SingleOrDefault(), Is.Not.Null);
@@ -296,7 +310,6 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
                 uow.Exercises.Add(newExercise);
                 // --- do not commit !!!
 
-                //TODO: Try get rid of all these exercise casts using IExercise.
                 IExercise existingExercise = uow.Exercises.Get(newExercise.Id);
 
                 existingExercise.Title = "Modified Exercise Title";
@@ -308,7 +321,7 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
 
                 uow.Rollback();
 
-                ActualValueDelegate<IExercise> testDelegate = () => uow.Exercises.Get(modifiedExercise.Id);
+                IExercise testDelegate() => uow.Exercises.Get(modifiedExercise.Id);
                 Assert.That(testDelegate, Throws.TypeOf<DatabaseEntityNotFoundException>());
             }
         }
@@ -348,7 +361,7 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
                 uow.Exercises.Remove(newEx);
                 uow.Commit();
 
-                ActualValueDelegate<IExercise> testDelegate = () => uow.Exercises.Get(newEx.Id);
+                IExercise testDelegate() => uow.Exercises.Get(newEx.Id);
                 Assert.That(testDelegate, Throws.TypeOf<DatabaseEntityNotFoundException>());
             }
         }

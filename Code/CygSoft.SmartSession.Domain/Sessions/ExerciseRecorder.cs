@@ -8,7 +8,7 @@ namespace CygSoft.SmartSession.Domain.Sessions
 {
     public class ExerciseRecorder : IExerciseRecorder
     {
-        private class RecordingSlice
+        internal class RecordingSlice
         {
             public DateTime StartTime { get; }
             public DateTime EndTime { get; }

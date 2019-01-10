@@ -42,7 +42,7 @@ namespace CygSoft.SmartSession.Dal.MySql
             {
                 _transaction.Dispose();
                 _transaction = _connection.BeginTransaction();
-                resetRepositories();
+                ResetRepositories();
             }
             return 0;
         }
@@ -61,7 +61,7 @@ namespace CygSoft.SmartSession.Dal.MySql
             {
                 _transaction.Dispose();
                 _transaction = _connection.BeginTransaction();
-                resetRepositories();
+                ResetRepositories();
             }
         }
 
@@ -87,7 +87,7 @@ namespace CygSoft.SmartSession.Dal.MySql
             _transaction = _connection.BeginTransaction();
         }
 
-        private void resetRepositories()
+        private void ResetRepositories()
         {
             goals = null;
             exercises = null;
@@ -95,11 +95,11 @@ namespace CygSoft.SmartSession.Dal.MySql
 
         public void Dispose()
         {
-            dispose(true);
+            DoDispose(true);
             GC.SuppressFinalize(this);
         }
 
-        private void dispose(bool disposing)
+        private void DoDispose(bool disposing)
         {
             if (!_disposed)
             {
@@ -122,7 +122,7 @@ namespace CygSoft.SmartSession.Dal.MySql
 
         ~UnitOfWork()
         {
-            dispose(false);
+            DoDispose(false);
         }
     }
 }
