@@ -30,14 +30,10 @@ namespace CygSoft.SmartSession.Desktop.Exercises
         private void Reset()
         {
             Title = null;
-            DifficultyRating = null;
-            PracticalityRating = null;
             TargetMetronomeSpeed = null;
             TargetPracticeTime = null;
             TargetMetronomeSpeedOperator = Domain.Common.ComparisonOperators.Undefined;
             TargetPracticeTimeOperator = Domain.Common.ComparisonOperators.Undefined;
-            DifficultyRatingOperator = Domain.Common.ComparisonOperators.Undefined;
-            PracticalityRatingOperator = Domain.Common.ComparisonOperators.Undefined;
             ToDateCreated = null;
             FromDateCreated = null;
             FromDateModified = null;
@@ -55,20 +51,6 @@ namespace CygSoft.SmartSession.Desktop.Exercises
                 "<="
             };
         }
-
-        public string[] RatingValues
-        {
-            get => new string[]
-            {
-                "",
-                "1",
-                "2",
-                "3",
-                "4",
-                "5"
-            };
-        }
-
 
         private DateTime? dateCreatedBefore;
         public DateTime? ToDateCreated
@@ -124,59 +106,6 @@ namespace CygSoft.SmartSession.Desktop.Exercises
                 Set(() => ToDateModified, ref dateModifiedBefore, value);
             }
         }
-
-        private int? difficulty;
-        public int? DifficultyRating
-        {
-            get
-            {
-                return difficulty;
-            }
-            set
-            {
-                Set(() => DifficultyRating, ref difficulty, value);
-            }
-        }
-
-        private ComparisonOperators difficultyRatingOperator;
-        public ComparisonOperators DifficultyRatingOperator
-        {
-            get
-            {
-                return difficultyRatingOperator;
-            }
-            set
-            {
-                Set(() => DifficultyRatingOperator, ref difficultyRatingOperator, value);
-            }
-        }
-
-        private int? practicality;
-        public int? PracticalityRating
-        {
-            get
-            {
-                return practicality;
-            }
-            set
-            {
-                Set(() => PracticalityRating, ref practicality, value);
-            }
-        }
-
-        private ComparisonOperators practicalityRatingOperator;
-        public ComparisonOperators PracticalityRatingOperator
-        {
-            get
-            {
-                return practicalityRatingOperator;
-            }
-            set
-            {
-                Set(() => PracticalityRatingOperator, ref practicalityRatingOperator, value);
-            }
-        }
-
 
         private int? targetMetronomeSpeed;
         public int? TargetMetronomeSpeed

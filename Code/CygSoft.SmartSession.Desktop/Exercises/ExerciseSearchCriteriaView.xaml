@@ -40,24 +40,6 @@
                          Text="{Binding TargetPracticeTime, Converter={StaticResource RatingValuesConverter}}"
                          />
             </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock MinWidth="115" Margin="2" Text="Practicality Rating" />
-                <ComboBox Margin="2" MinWidth="50" ItemsSource="{Binding ComparisonOperators, Mode=OneWay}" 
-                          SelectedItem="{Binding PracticalityRatingOperator, Converter={StaticResource ComparisonOperatorConverter}}" />
-                <ComboBox Margin="2" MinWidth="50" 
-                          ItemsSource="{Binding RatingValues, Mode=OneWay}"  
-                          SelectedItem="{Binding PracticalityRating, Converter={StaticResource RatingValuesConverter}}"
-                          />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock MinWidth="115" Margin="2" Text="Difficulty Rating" />
-                <ComboBox Margin="2" MinWidth="50" ItemsSource="{Binding ComparisonOperators, Mode=OneWay}" 
-                          SelectedItem="{Binding DifficultyRatingOperator, Converter={StaticResource ComparisonOperatorConverter}}" />
-                <ComboBox Margin="2" MinWidth="50" 
-                          ItemsSource="{Binding RatingValues, Mode=OneWay}"  
-                          SelectedItem="{Binding DifficultyRating, Converter={StaticResource RatingValuesConverter}}"
-                          />
-            </StackPanel>
             <StackPanel  Orientation="Horizontal" >
                 <TextBlock MinWidth="115" Text="Date Created" Margin="2" />
                 <TextBlock MinWidth="30" Text="After" Margin="2" />
