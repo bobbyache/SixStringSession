@@ -374,8 +374,6 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
             Assert.AreEqual(1, recordedExercise.ExerciseActivity.Count());
             Assert.AreEqual(80, recordedExercise.ExerciseActivity[0].MetronomeSpeed);
             Assert.AreEqual(3000, recordedExercise.ExerciseActivity[0].Seconds);
-            Assert.AreEqual(DateTime.Parse("2018-03-01 12:15:00"), recordedExercise.ExerciseActivity[0].StartTime);
-            Assert.AreEqual(DateTime.Parse("2018-03-01 12:25:00"), recordedExercise.ExerciseActivity[0].EndTime);
         }
 
         [Test]
@@ -402,8 +400,6 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
             Assert.AreEqual(1, recordedExercise.ExerciseActivity.Count());
             Assert.AreEqual(80, recordedExercise.ExerciseActivity[0].MetronomeSpeed);
             Assert.AreEqual(3000, recordedExercise.ExerciseActivity[0].Seconds);
-            Assert.AreEqual(DateTime.Parse("2018-03-01 12:15:00"), recordedExercise.ExerciseActivity[0].StartTime);
-            Assert.AreEqual(DateTime.Parse("2018-03-01 12:25:00"), recordedExercise.ExerciseActivity[0].EndTime);
         }
 
         [Test]
@@ -415,11 +411,9 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
             {
                 var newExercise = CreateMetronomeExercise();
 
-                newExercise.ExerciseActivity.Add(EntityFactory.CreateExerciseActivity(speed:80, seconds:3000, 
-                    startTime: "2018-03-01 12:15:00", endTime: "2018-03-01 12:25:00"));
+                newExercise.ExerciseActivity.Add(EntityFactory.CreateExerciseActivity(speed:80, seconds:3000));
 
-                newExercise.ExerciseActivity.Add(EntityFactory.CreateExerciseActivity(speed: 90, seconds: 4000,
-                    startTime: "2018-03-02 12:15:00", endTime: "2018-03-02 12:25:00"));
+                newExercise.ExerciseActivity.Add(EntityFactory.CreateExerciseActivity(speed: 90, seconds: 4000));
 
                 uow.Exercises.Add(newExercise);
                 uow.Commit();
@@ -460,11 +454,9 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
 
                 var retrievedExercise = uow.Exercises.Get(newExercise.Id);
 
-                retrievedExercise.ExerciseActivity.Add(EntityFactory.CreateExerciseActivity(speed: 80, seconds: 3000,
-                    startTime: "2018-03-01 12:15:00", endTime: "2018-03-01 12:25:00"));
+                retrievedExercise.ExerciseActivity.Add(EntityFactory.CreateExerciseActivity(speed: 80, seconds: 3000));
 
-                retrievedExercise.ExerciseActivity.Add(EntityFactory.CreateExerciseActivity(speed: 90, seconds: 4000,
-                    startTime: "2018-03-02 12:15:00", endTime: "2018-03-02 12:25:00"));
+                retrievedExercise.ExerciseActivity.Add(EntityFactory.CreateExerciseActivity(speed: 90, seconds: 4000));
                  
                 uow.Exercises.Update(retrievedExercise);
                 uow.Commit();

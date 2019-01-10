@@ -173,8 +173,6 @@ namespace CygSoft.SmartSession.Dal.MySql
                 param: new
                 {
                     _id = exerciseActivity.Id,
-                    _startTime = exerciseActivity.StartTime,
-                    _endTime = exerciseActivity.EndTime,
                     _seconds = exerciseActivity.Seconds,
                     _metronomeSpeed = exerciseActivity.MetronomeSpeed,
                     _manualProgress = exerciseActivity.ManualProgress
@@ -209,8 +207,6 @@ namespace CygSoft.SmartSession.Dal.MySql
                     param: new
                     {
                         _exerciseId = exercise.Id,
-                        _startTime = activity.StartTime,
-                        _endTime = activity.EndTime,
                         _seconds = activity.Seconds,
                         _metronomeSpeed = activity.MetronomeSpeed,
                         _manualProgress = activity.ManualProgress

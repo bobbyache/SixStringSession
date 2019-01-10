@@ -134,8 +134,6 @@ DROP PROCEDURE IF EXISTS `sp_InsertExerciseActivity`;
 CREATE PROCEDURE `sp_InsertExerciseActivity`
 (
 	in _exerciseId int(11),
-	in _startTime datetime,
-	in _endTime datetime,
 	in _seconds int(11),
 	in _metronomeSpeed int(11),
     in _manualProgress int(11)
@@ -144,8 +142,6 @@ BEGIN
 	INSERT INTO ExerciseActivity
     (
 		ExerciseId,
-		StartTime,
-		EndTime,
 		Seconds,
 		MetronomeSpeed,
         ManualProgress,
@@ -154,8 +150,6 @@ BEGIN
 	VALUES 
     (
 		_exerciseId,
-		_startTime,
-		_endTime,
 		_seconds,
 		_metronomeSpeed,
         _manualProgress,
@@ -171,8 +165,6 @@ BEGIN
 	SELECT
 		Id,
 		ExerciseId,
-		StartTime,
-		EndTime,
 		Seconds,
 		MetronomeSpeed,
         ManualProgress,
@@ -187,8 +179,6 @@ BEGIN
 	SELECT
 		Id,
 		ExerciseId,
-		StartTime,
-		EndTime,
 		Seconds,
 		MetronomeSpeed,
         ManualProgress,
@@ -212,16 +202,12 @@ END;
 DROP PROCEDURE IF EXISTS `sp_UpdateExerciseActivity`;
 CREATE PROCEDURE `sp_UpdateExerciseActivity`(
 	_id int,
-	_startTime datetime,
-	_endTime datetime,
 	_seconds int,
 	_metronomeSpeed int,
     _manualProgress int
 	)
 BEGIN
 	UPDATE ExerciseActivity SET 
-		StartTime = _startTime,
-		EndTime = _endTime,
 		Seconds = _seconds,
 		MetronomeSpeed = _metronomeSpeed,
         ManualProgress = _manualProgress,
@@ -237,8 +223,6 @@ BEGIN
 	SELECT  
 		Id,
 		ExerciseId,
-		StartTime,
-		EndTime,
 		Seconds,
 		MetronomeSpeed,
         ManualProgress,

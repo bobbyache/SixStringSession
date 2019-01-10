@@ -81,8 +81,6 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                         DateModified = DateTime.Parse("2018/01/02"),
                         MetronomeSpeed = 70,
                         Seconds = 600, // 10 minutes
-                        StartTime = DateTime.Parse("2018/01/02 10:00:00"),
-                        EndTime = DateTime.Parse("2018/01/02 10:10:00"),
                         ExerciseId = 1 }
                 }
             };
@@ -113,8 +111,6 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                         DateCreated = DateTime.Parse("2018/01/02"),
                         DateModified = DateTime.Parse("2018/01/02"),
                         MetronomeSpeed = 70,
-                        StartTime = DateTime.Parse("2018/01/02 10:12:00"),
-                        EndTime = DateTime.Parse("2018/01/02 10:15:00"),
                         ExerciseId = 1 },
                 }
             };
@@ -146,8 +142,6 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                         DateCreated = DateTime.Parse("2018/01/02"),
                         DateModified = DateTime.Parse("2018/01/02"),
                         MetronomeSpeed = 70,
-                        StartTime = DateTime.Parse("2018/01/02 10:12:00"),
-                        EndTime = DateTime.Parse("2018/01/02 10:15:00"),
                         ExerciseId = 1 },
                 }
             };
@@ -179,8 +173,6 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                         DateCreated = DateTime.Parse("2018/01/02"),
                         DateModified = DateTime.Parse("2018/01/02"),
                         MetronomeSpeed = 70,
-                        StartTime = DateTime.Parse("2018/01/02 10:12:00"),
-                        EndTime = DateTime.Parse("2018/01/02 10:15:00"),
                         ExerciseId = 1 },
                 }
             };
@@ -212,8 +204,6 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                         DateCreated = DateTime.Parse("2018/01/02"),
                         DateModified = DateTime.Parse("2018/01/02"),
                         MetronomeSpeed = 100,
-                        StartTime = DateTime.Parse("2018/01/02 10:12:00"),
-                        EndTime = DateTime.Parse("2018/01/02 10:15:00"),
                         ExerciseId = 1 },
                 }
             };
@@ -246,8 +236,6 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                         DateCreated = DateTime.Parse("2018/01/02"),
                         DateModified = DateTime.Parse("2018/01/02"),
                         MetronomeSpeed = 50,
-                        StartTime = DateTime.Parse("2018/01/02 10:12:00"),
-                        EndTime = DateTime.Parse("2018/01/02 10:15:00"),
                         ExerciseId = 1 },
 
                     new Sessions.ExerciseActivity {
@@ -255,8 +243,6 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                         DateCreated = DateTime.Parse("2018/01/03"),
                         DateModified = DateTime.Parse("2018/01/03"),
                         MetronomeSpeed = 100,
-                        StartTime = DateTime.Parse("2018/01/03 10:12:00"),
-                        EndTime = DateTime.Parse("2018/01/03 10:15:00"),
                         ExerciseId = 1 }
                 }
             };
@@ -288,8 +274,6 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                         DateCreated = DateTime.Parse("2018/01/02"),
                         DateModified = DateTime.Parse("2018/01/02"),
                         MetronomeSpeed = 50,
-                        StartTime = DateTime.Parse("2018/01/02 10:12:00"),
-                        EndTime = DateTime.Parse("2018/01/02 10:15:00"),
                         ExerciseId = 1 },
 
                     new Sessions.ExerciseActivity {
@@ -297,8 +281,6 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                         DateCreated = DateTime.Parse("2018/01/03"),
                         DateModified = DateTime.Parse("2018/01/03"),
                         MetronomeSpeed = 50,
-                        StartTime = DateTime.Parse("2018/01/03 10:12:00"),
-                        EndTime = DateTime.Parse("2018/01/03 10:15:00"),
                         ExerciseId = 1 }
                 }
             };
@@ -330,8 +312,6 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                         DateCreated = DateTime.Parse("2018/01/02"),
                         DateModified = DateTime.Parse("2018/01/02"),
                         MetronomeSpeed = 70,
-                        StartTime = DateTime.Parse("2018/01/02 10:12:00"),
-                        EndTime = DateTime.Parse("2018/01/02 10:15:00"),
                         ExerciseId = 1 },
 
                     new Sessions.ExerciseActivity {
@@ -339,8 +319,6 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                         DateCreated = DateTime.Parse("2018/01/03"),
                         DateModified = DateTime.Parse("2018/01/03"),
                         MetronomeSpeed = 75,
-                        StartTime = DateTime.Parse("2018/01/03 10:12:00"),
-                        EndTime = DateTime.Parse("2018/01/03 10:15:00"),
                         ExerciseId = 1 },
 
                     new Sessions.ExerciseActivity {
@@ -348,8 +326,6 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                         DateCreated = DateTime.Parse("2018/01/04"),
                         DateModified = DateTime.Parse("2018/01/04"),
                         MetronomeSpeed = 80,
-                        StartTime = DateTime.Parse("2018/01/04 10:12:00"),
-                        EndTime = DateTime.Parse("2018/01/04 10:15:00"),
                         ExerciseId = 1 }
                 }
             };
@@ -382,8 +358,6 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                         DateModified = DateTime.Parse("2018/01/02"),
                         MetronomeSpeed = 70,
                         Seconds = 600, // 10 minutes
-                        StartTime = DateTime.Parse("2018/01/02 10:00:00"),
-                        EndTime = DateTime.Parse("2018/01/02 10:10:00"),
                         ExerciseId = 1 },
 
                     new Sessions.ExerciseActivity {
@@ -392,8 +366,6 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                         DateModified = DateTime.Parse("2018/01/03"),
                         MetronomeSpeed = 75,
                         Seconds = 600, // 10 minutes
-                        StartTime = DateTime.Parse("2018/01/03 10:00:00"),
-                        EndTime = DateTime.Parse("2018/01/03 10:10:00"),
                         ExerciseId = 1 },
 
                     new Sessions.ExerciseActivity {
@@ -402,8 +374,6 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                         DateModified = DateTime.Parse("2018/01/04"),
                         MetronomeSpeed = 80,
                         Seconds = 600, // 10 minutes
-                        StartTime = DateTime.Parse("2018/01/04 10:00:00"),
-                        EndTime = DateTime.Parse("2018/01/04 10:10:00"),
                         ExerciseId = 1 }
                 }
             };
@@ -426,8 +396,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
 
             int initialActivityCount = exercise.ExerciseActivity.Count;
 
-            exercise.ExerciseActivity.Add(EntityFactory.CreateExerciseActivity(speed: 60, seconds: 3000,
-                startTime: "2018/01/04 10:00:00", endTime: "2018/01/04 10:10:00"));
+            exercise.ExerciseActivity.Add(EntityFactory.CreateExerciseActivity(speed: 60, seconds: 3000));
 
             Assert.That(initialActivityCount, Is.EqualTo(0));
             Assert.That(exercise.ExerciseActivity.Count, Is.EqualTo(1));
@@ -444,8 +413,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             };
             int no_activities = exercise.ExerciseActivity.Count;
 
-            var addedRecording = EntityFactory.CreateExerciseActivity(speed: 60, seconds: 3000,
-                startTime: "2018/01/04 10:00:00", endTime: "2018/01/04 10:10:00");
+            var addedRecording = EntityFactory.CreateExerciseActivity(speed: 60, seconds: 3000);
 
             exercise.ExerciseActivity.Add(addedRecording);
             int one_activity = exercise.ExerciseActivity.Count;
@@ -482,8 +450,6 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                         DateModified = null,
                         MetronomeSpeed = 50,
                         Seconds = 8000,
-                        StartTime = DateTime.Parse("2018-02-03 12:15:00"),
-                        EndTime = DateTime.Parse("2018-02-03 12:25:00"),
                         ExerciseId = 57 },
 
                     new Sessions.ExerciseActivity {
@@ -492,8 +458,6 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                         DateModified = null,
                         MetronomeSpeed = 100,
                         Seconds = 8000,
-                        StartTime = DateTime.Parse("2018-02-04 12:15:00"),
-                        EndTime = DateTime.Parse("2018-02-04 12:25:00"),
                         ExerciseId = 57 },
 
                     new Sessions.ExerciseActivity {
@@ -502,40 +466,31 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                         DateModified = null,
                         MetronomeSpeed = 100,
                         Seconds = 4000,
-                        StartTime = DateTime.Parse("2018-02-05 12:15:00"),
-                        EndTime = DateTime.Parse("2018-02-05 12:25:00"),
                         ExerciseId = 57 }
                 }
             };
 
             var percentComplete_50 = exercise.GetPercentComplete();
 
-            exercise.ExerciseActivity.Add(EntityFactory.CreateExerciseActivity(speed: 40, seconds: 15,
-                startTime: "2018-12-13 10:03:26", endTime: "2018-12-13 10:03:42"));
+            exercise.ExerciseActivity.Add(EntityFactory.CreateExerciseActivity(speed: 40, seconds: 15, dateCreated: "2018-02-06 10:56:41"));
             var percentComplete_Below_0 = exercise.GetPercentComplete();
 
-            exercise.ExerciseActivity.Add(EntityFactory.CreateExerciseActivity(speed: 110, seconds: 15,
-                startTime: "2018-12-13 11:03:26", endTime: "2018-12-13 11:03:42"));
+            exercise.ExerciseActivity.Add(EntityFactory.CreateExerciseActivity(speed: 110, seconds: 15, dateCreated: "2018-02-07 10:56:41"));
             var percentComplete_60 = exercise.GetPercentComplete();
 
-            exercise.ExerciseActivity.Add(EntityFactory.CreateExerciseActivity(speed: 120, seconds: 15,
-                startTime: "2018-12-14 11:03:26", endTime: "2018-12-14 11:03:42"));
+            exercise.ExerciseActivity.Add(EntityFactory.CreateExerciseActivity(speed: 120, seconds: 15, dateCreated: "2018-02-08 10:56:41"));
             var percentComplete_70 = exercise.GetPercentComplete();
 
-            exercise.ExerciseActivity.Add(EntityFactory.CreateExerciseActivity(speed: 130, seconds: 15,
-                startTime: "2018-12-15 11:03:26", endTime: "2018-12-15 11:03:42"));
+            exercise.ExerciseActivity.Add(EntityFactory.CreateExerciseActivity(speed: 130, seconds: 15, dateCreated: "2018-02-09 10:56:41"));
             var percentComplete_80 = exercise.GetPercentComplete();
 
-            exercise.ExerciseActivity.Add(EntityFactory.CreateExerciseActivity(speed: 140, seconds: 15,
-                startTime: "2018-12-16 11:03:26", endTime: "2018-12-16 11:03:42"));
+            exercise.ExerciseActivity.Add(EntityFactory.CreateExerciseActivity(speed: 140, seconds: 15, dateCreated: "2018-02-10 10:56:41"));
             var percentComplete_90 = exercise.GetPercentComplete();
 
-            exercise.ExerciseActivity.Add(EntityFactory.CreateExerciseActivity(speed: 150, seconds: 15,
-                startTime: "2018-12-17 11:03:26", endTime: "2018-12-17 11:03:42"));
+            exercise.ExerciseActivity.Add(EntityFactory.CreateExerciseActivity(speed: 150, seconds: 15, dateCreated: "2018-02-11 10:56:41"));
             var percentComplete_100 = exercise.GetPercentComplete();
 
-            exercise.ExerciseActivity.Add(EntityFactory.CreateExerciseActivity(speed: 160, seconds: 15,
-                startTime: "2018-12-18 11:03:26", endTime: "2018-12-18 11:03:42"));
+            exercise.ExerciseActivity.Add(EntityFactory.CreateExerciseActivity(speed: 160, seconds: 15, dateCreated: "2018-02-12 10:56:41"));
             var percentComplete_Above_100 = exercise.GetPercentComplete();
 
             Assert.That(percentComplete_50, Is.EqualTo(50));
@@ -576,8 +531,6 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                         DateModified = null,
                         MetronomeSpeed = 50,
                         Seconds = 8000,
-                        StartTime = DateTime.Parse("2018-02-03 12:15:00"),
-                        EndTime = DateTime.Parse("2018-02-03 12:25:00"),
                         ExerciseId = 57 },
 
                     new Sessions.ExerciseActivity {
@@ -586,8 +539,6 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                         DateModified = null,
                         MetronomeSpeed = 100,
                         Seconds = 8000,
-                        StartTime = DateTime.Parse("2018-02-04 12:15:00"),
-                        EndTime = DateTime.Parse("2018-02-04 12:25:00"),
                         ExerciseId = 57 },
 
                     new Sessions.ExerciseActivity {
@@ -596,8 +547,6 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                         DateModified = null,
                         MetronomeSpeed = 150,
                         Seconds = 4000,
-                        StartTime = DateTime.Parse("2018-02-05 12:15:00"),
-                        EndTime = DateTime.Parse("2018-02-05 12:25:00"),
                         ExerciseId = 57 }
                 }
             };
@@ -631,8 +580,6 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                         DateModified = null,
                         MetronomeSpeed = 50,
                         Seconds = 1000,
-                        StartTime = DateTime.Parse("2018-02-03 12:15:00"),
-                        EndTime = DateTime.Parse("2018-02-03 12:25:00"),
                         ExerciseId = 57 },
 
                     new Sessions.ExerciseActivity {
@@ -641,8 +588,6 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                         DateModified = null,
                         MetronomeSpeed = 100,
                         Seconds = 2000,
-                        StartTime = DateTime.Parse("2018-02-04 12:15:00"),
-                        EndTime = DateTime.Parse("2018-02-04 12:25:00"),
                         ExerciseId = 57 },
 
                     new Sessions.ExerciseActivity {
@@ -651,8 +596,6 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                         DateModified = null,
                         MetronomeSpeed = 110,
                         Seconds = 2000,
-                        StartTime = DateTime.Parse("2018-02-05 12:15:00"),
-                        EndTime = DateTime.Parse("2018-02-05 12:25:00"),
                         ExerciseId = 57 }
                 }
             };
@@ -687,8 +630,6 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                         DateModified = null,
                         MetronomeSpeed = 50,
                         Seconds = 1000,
-                        StartTime = DateTime.Parse("2018-02-03 12:15:00"),
-                        EndTime = DateTime.Parse("2018-02-03 12:25:00"),
                         ExerciseId = 57 },
 
                     new Sessions.ExerciseActivity {
@@ -697,8 +638,6 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                         DateModified = null,
                         MetronomeSpeed = 100,
                         Seconds = 1000,
-                        StartTime = DateTime.Parse("2018-02-04 12:15:00"),
-                        EndTime = DateTime.Parse("2018-02-04 12:25:00"),
                         ExerciseId = 57 },
 
                     new Sessions.ExerciseActivity {
@@ -707,8 +646,6 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                         DateModified = null,
                         MetronomeSpeed = 150,
                         Seconds = 500,
-                        StartTime = DateTime.Parse("2018-02-05 12:15:00"),
-                        EndTime = DateTime.Parse("2018-02-05 12:25:00"),
                         ExerciseId = 57 }
                 }
             };
@@ -742,8 +679,6 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                         DateModified = null,
                         MetronomeSpeed = 60, // starting point
                         Seconds = 50,       // 50%
-                        StartTime = DateTime.Parse("2018-02-03 12:15:00"),
-                        EndTime = DateTime.Parse("2018-02-03 12:25:00"),
                         ExerciseId = 57 },
 
                     new Sessions.ExerciseActivity {
@@ -752,8 +687,6 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                         DateModified = null,
                         MetronomeSpeed = 90, // 50%
                         Seconds = 50,       // 100%
-                        StartTime = DateTime.Parse("2018-02-04 12:15:00"),
-                        EndTime = DateTime.Parse("2018-02-04 12:25:00"),
                         ExerciseId = 57 },
 
                     new Sessions.ExerciseActivity {
@@ -762,8 +695,6 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                         DateModified = null,
                         MetronomeSpeed = 90, // still 50%
                         Seconds = 100,      // 200%
-                        StartTime = DateTime.Parse("2018-02-05 12:15:00"),
-                        EndTime = DateTime.Parse("2018-02-05 12:25:00"),
                         ExerciseId = 57 }
                 }
             };
@@ -802,8 +733,6 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                         MetronomeSpeed = 60,
                         Seconds = 50,
                         ManualProgress = 20,
-                        StartTime = DateTime.Parse("2018-02-03 12:15:00"),
-                        EndTime = DateTime.Parse("2018-02-03 12:25:00"),
                         ExerciseId = 57 },
 
                     new Sessions.ExerciseActivity {
@@ -813,8 +742,6 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                         MetronomeSpeed = 60,
                         Seconds = 25,
                         ManualProgress = 65,
-                        StartTime = DateTime.Parse("2018-02-04 12:15:00"),
-                        EndTime = DateTime.Parse("2018-02-04 12:25:00"),
                         ExerciseId = 57 },
 
                     new Sessions.ExerciseActivity {
@@ -824,8 +751,6 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                         MetronomeSpeed = 60,
                         Seconds = 25,
                         ManualProgress = 100,
-                        StartTime = DateTime.Parse("2018-02-05 12:15:00"),
-                        EndTime = DateTime.Parse("2018-02-05 12:25:00"),
                         ExerciseId = 57 }
                 }
             };

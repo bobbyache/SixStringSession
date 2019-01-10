@@ -7,18 +7,11 @@ using System.Threading.Tasks;
 
 namespace CygSoft.SmartSession.Domain.Sessions
 {
-    //TODO: Remove StartTime and EndTime for an exercise activity. It is not necessary or useful in any way.
     public class ExerciseActivity : Entity
     {
         public int MetronomeSpeed { get; set; }
         public int Seconds { get; set; } // this will be calculated by recording a list of small recording periods.
-
-        // You still need these to work out your metronome calculations.
-        public DateTime StartTime { get; set; }
-        public DateTime EndTime { get; set; }
-
         public int ExerciseId { get; set; }
-
         public int ManualProgress { get; set; }
     }
 }

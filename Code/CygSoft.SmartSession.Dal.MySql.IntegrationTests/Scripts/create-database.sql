@@ -28,8 +28,6 @@ CREATE TABLE IF NOT EXISTS `exercise` (
 CREATE TABLE IF NOT EXISTS `smartsession_tests`.`exerciseactivity` (
   `Id` INT NOT NULL AUTO_INCREMENT,
   `ExerciseId` INT NOT NULL,
-  `StartTime` DATETIME NOT NULL COMMENT 'Time is not calculated from StartTime to EndTime, these metrics are just there in order to give context and attach to a diary.',
-  `EndTime` DATETIME NOT NULL COMMENT 'Time is not calculated from StartTime to EndTime, these metrics are just there in order to give context and attach to a diary.',
   `Seconds` INT NOT NULL,
   `MetronomeSpeed` INT NOT NULL,
   `ManualProgress` INT NOT NULL,

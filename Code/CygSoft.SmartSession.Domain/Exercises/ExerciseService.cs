@@ -44,9 +44,7 @@ namespace CygSoft.SmartSession.Domain.Exercises
             {
                 MetronomeSpeed = speed,
                 ManualProgress = manualProgress,
-                Seconds = seconds,
-                StartTime = startTime,
-                EndTime = endTime
+                Seconds = seconds
             };
             return exerciseActivity;
         }

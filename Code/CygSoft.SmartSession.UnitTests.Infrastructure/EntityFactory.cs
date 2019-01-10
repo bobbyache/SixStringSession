@@ -79,8 +79,7 @@ namespace CygSoft.SmartSession.UnitTests.Infrastructure
             return exercise;
         }
 
-        public static ExerciseActivity CreateExerciseActivity(int? exerciseId = null, int? speed = null, int? manualProgress = null, int? seconds = null,
-            string startTime = null, string endTime = null)
+        public static ExerciseActivity CreateExerciseActivity(int? exerciseId = null, int? speed = null, int? manualProgress = null, int? seconds = null, string dateCreated = null)
         {
             var exerciseActivity = new ExerciseActivity
             {
@@ -88,15 +87,14 @@ namespace CygSoft.SmartSession.UnitTests.Infrastructure
                 MetronomeSpeed = speed.HasValue ? speed.Value : 80,
                 ManualProgress = manualProgress.HasValue ? manualProgress.Value : 0,
                 Seconds = seconds.HasValue ? seconds.Value : 3000,
-                StartTime = !string.IsNullOrEmpty(startTime) ? DateTime.Parse(startTime) : DateTime.Parse("2018-03-01 12:15:00"),
-                EndTime = !string.IsNullOrEmpty(endTime) ? DateTime.Parse(endTime) : DateTime.Parse("2018-03-01 12:25:00"),
-                ExerciseId = exerciseId.HasValue ? exerciseId.Value : 0
+                ExerciseId = exerciseId.HasValue ? exerciseId.Value : 0,
+                DateCreated = !string.IsNullOrEmpty(dateCreated) ? DateTime.Parse(dateCreated) : DateTime.Now,
+                DateModified = null
             };
             return exerciseActivity;
         }
 
-        public static ExerciseActivity GetExerciseActivity(int id, int exerciseId, int? speed = null, int? manualProgress = null, int? seconds = null,
-            string startTime = null, string endTime = null)
+        public static ExerciseActivity GetExerciseActivity(int id, int exerciseId, int? speed = null, int? manualProgress = null, int? seconds = null, string dateCreated = null)
         {
             var exerciseActivity = new ExerciseActivity
             {
@@ -104,9 +102,9 @@ namespace CygSoft.SmartSession.UnitTests.Infrastructure
                 MetronomeSpeed = speed.HasValue ? speed.Value : 80,
                 ManualProgress = manualProgress.HasValue ? manualProgress.Value : 0,
                 Seconds = seconds.HasValue ? seconds.Value : 3000,
-                StartTime = !string.IsNullOrEmpty(startTime) ? DateTime.Parse(startTime) : DateTime.Parse("2018-03-01 12:15:00"),
-                EndTime = !string.IsNullOrEmpty(endTime) ? DateTime.Parse(endTime) : DateTime.Parse("2018-03-01 12:25:00"),
-                ExerciseId = exerciseId
+                ExerciseId = exerciseId,
+                DateCreated = !string.IsNullOrEmpty(dateCreated) ? DateTime.Parse(dateCreated) : DateTime.Now,
+                DateModified = null
             };
             return exerciseActivity;
         }

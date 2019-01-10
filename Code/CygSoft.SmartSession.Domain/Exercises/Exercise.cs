@@ -49,8 +49,18 @@ namespace CygSoft.SmartSession.Domain.Exercises
             if (ExerciseActivity == null || !ExerciseActivity.Any())
                 return 0;
 
-            var endDate = ExerciseActivity.Max(a => a.EndTime);
-            return ExerciseActivity.Where(a => a.EndTime == endDate).Select(a => a.MetronomeSpeed).SingleOrDefault();
+            var endDate = ExerciseActivity.Max(a => a.DateCreated);
+            return ExerciseActivity.Where(a => a.DateCreated == endDate).Select(a => a.MetronomeSpeed).SingleOrDefault();
+        }
+
+        private int GetFirstRecordedSpeed()
+        {
+            if (ExerciseActivity == null || !ExerciseActivity.Any())
+                return 0;
+
+            var startDate = ExerciseActivity.Min(a => a.DateCreated);
+            var speed = ExerciseActivity.Where(a => a.DateCreated == startDate).Select(a => a.MetronomeSpeed).SingleOrDefault();
+            return speed;
         }
 
         public int GetLastRecordedManualProgress()
@@ -58,8 +68,8 @@ namespace CygSoft.SmartSession.Domain.Exercises
             if (ExerciseActivity == null || !ExerciseActivity.Any())
                 return 0;
 
-            var endDate = ExerciseActivity.Max(a => a.EndTime);
-            return ExerciseActivity.Where(a => a.EndTime == endDate).Select(a => a.ManualProgress).SingleOrDefault();
+            var endDate = ExerciseActivity.Max(a => a.DateCreated);
+            return ExerciseActivity.Where(a => a.DateCreated == endDate).Select(a => a.ManualProgress).SingleOrDefault();
         }
 
         public double GetPercentComplete()
@@ -117,20 +127,9 @@ namespace CygSoft.SmartSession.Domain.Exercises
                 return 0;
 
             // get the last record, get the speed.
-            var lastActivityDate = ExerciseActivity.Max(a => a.EndTime);
-            var manualProgress = ExerciseActivity.Where(a => a.EndTime == lastActivityDate).Select(a => a.ManualProgress).SingleOrDefault();
+            var lastActivityDate = ExerciseActivity.Max(a => a.DateCreated);
+            var manualProgress = ExerciseActivity.Where(a => a.DateCreated == lastActivityDate).Select(a => a.ManualProgress).SingleOrDefault();
             return manualProgress;
-        }
-
-        private int GetFirstRecordedSpeed()
-        {
-            if (ExerciseActivity == null || !ExerciseActivity.Any())
-                return 0;
-
-            // get the last record, get the speed.
-            var lastActivityDate = ExerciseActivity.Min(a => a.EndTime);
-            var speed = ExerciseActivity.Where(a => a.EndTime == lastActivityDate).Select(a => a.MetronomeSpeed).SingleOrDefault();
-            return speed;
         }
 
         public double GetSecondsPracticed()
