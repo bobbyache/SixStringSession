@@ -2,6 +2,13 @@
 
 namespace CygSoft.SmartSession.Infrastructure
 { 
+    public interface IEntity
+    {
+        int Id { get; set; }
+        DateTime? DateCreated { get; set; }
+        DateTime? DateModified { get; set; }
+    }
+
     public interface IEditableGoal
     {
         int Id { get; }

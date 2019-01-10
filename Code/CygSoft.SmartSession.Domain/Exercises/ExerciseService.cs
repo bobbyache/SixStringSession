@@ -1,6 +1,7 @@
 ﻿using CygSoft.SmartSession.Domain.Common;
 using CygSoft.SmartSession.Domain.Sessions;
 using System;
+using System.Linq;
 using System.Collections.Generic;
 
 namespace CygSoft.SmartSession.Domain.Exercises
@@ -62,17 +63,17 @@ namespace CygSoft.SmartSession.Domain.Exercises
 
         public IEnumerable<Exercise> Find(ExerciseSearchCriteria searchCriteria)
         {
-            return unitOfWork.Exercises.Find(searchCriteria);
+            return unitOfWork.Exercises.Find(searchCriteria).OfType<Exercise>();
         }
 
         public IEnumerable<Exercise> GetPracticeRoutineExercises(int practiceRoutineId)
         {
-            return unitOfWork.Exercises.GetPracticeRoutineExercises(practiceRoutineId);
+            return unitOfWork.Exercises.GetPracticeRoutineExercises(practiceRoutineId).OfType<Exercise>();
         }
 
         public Exercise Get(int id)
         {
-            return unitOfWork.Exercises.Get(id);
+            return (Exercise)unitOfWork.Exercises.Get(id);
         }
 
         public void Update(Exercise exercise)

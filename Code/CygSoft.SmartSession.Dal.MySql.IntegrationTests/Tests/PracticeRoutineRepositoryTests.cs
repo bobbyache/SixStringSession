@@ -29,7 +29,7 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
                 crit.Title = "monday";
 
                 var PracticeRoutines = uow.PracticeRoutines.Find(crit);
-                Assert.That(PracticeRoutines.Where(ex => ex.Title == "Monday").SingleOrDefault(), Is.Not.Null);
+                Assert.That(PracticeRoutines.Where(ex => ex.Title == "Monday Routine").SingleOrDefault(), Is.Not.Null);
             }
         }
 

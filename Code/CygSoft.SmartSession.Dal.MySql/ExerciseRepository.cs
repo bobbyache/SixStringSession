@@ -14,7 +14,7 @@ namespace CygSoft.SmartSession.Dal.MySql
     {
         public ExerciseRepository(IDbTransaction transaction) : base(transaction) { }
 
-        public void Add(Exercise entity)
+        public void Add(IExercise entity)
         {
             entity.Id = Connection.ExecuteScalar<int>(sql: "sp_InsertExercise", 
                 param: new {
@@ -34,13 +34,13 @@ namespace CygSoft.SmartSession.Dal.MySql
             entity.DateCreated = persistedEntity.DateCreated;
         }
 
-        public void AddRange(IEnumerable<Exercise> entities)
+        public void AddRange(IEnumerable<IExercise> entities)
         {
             throw new System.NotImplementedException();
         }
 
 
-        public IReadOnlyList<Exercise> Find(object criteria)
+        public IReadOnlyList<IExercise> Find(object criteria)
         {
             IExerciseSearchCriteria crit = (IExerciseSearchCriteria)criteria;
 
@@ -57,7 +57,7 @@ namespace CygSoft.SmartSession.Dal.MySql
             return results.ToList();
         }
 
-        public IReadOnlyList<Exercise> GetPracticeRoutineExercises(int practiceRoutineId)
+        public IReadOnlyList<IExercise> GetPracticeRoutineExercises(int practiceRoutineId)
         {
             var exercises = Connection.Query<Exercise>("sp_GetPracticeRoutineExercises",
                 param: new
@@ -82,7 +82,7 @@ namespace CygSoft.SmartSession.Dal.MySql
             return exercises.ToList();
         }
 
-        public Exercise Get(int id)
+        public IExercise Get(int id)
         {
             try
             {
@@ -106,18 +106,18 @@ namespace CygSoft.SmartSession.Dal.MySql
 
         }
 
-        public void Remove(Exercise entity)
+        public void Remove(IExercise entity)
         {
             var result = Connection.Execute("sp_DeleteExercise",
                 param: new { _id = entity.Id }, commandType: CommandType.StoredProcedure);
         }
 
-        public void RemoveRange(IEnumerable<Exercise> entities)
+        public void RemoveRange(IEnumerable<IExercise> entities)
         {
             throw new System.NotImplementedException();
         }
 
-        public void Update(Exercise entity)
+        public void Update(IExercise entity)
         {
             Connection.ExecuteScalar<int>(sql: "sp_UpdateExercise",
                 param: new {
@@ -137,7 +137,7 @@ namespace CygSoft.SmartSession.Dal.MySql
             UpdateChangedExerciseActivities(entity);
         }
 
-        public void Update(IEnumerable<Exercise> exercises)
+        public void Update(IEnumerable<IExercise> exercises)
         {
             foreach (var exercise in exercises)
             {
@@ -145,7 +145,7 @@ namespace CygSoft.SmartSession.Dal.MySql
             }
         }
 
-        private void UpdateChangedExerciseActivities(Exercise exercise)
+        private void UpdateChangedExerciseActivities(IExercise exercise)
         {
             var persistedExercises = GetExerciseActivities(exercise);
 
@@ -199,7 +199,7 @@ namespace CygSoft.SmartSession.Dal.MySql
 
         }
 
-        private void InsertNewExerciseActivities(Exercise exercise)
+        private void InsertNewExerciseActivities(IExercise exercise)
         {
             foreach (ExerciseActivity activity in exercise.ExerciseActivity)
             {
@@ -221,7 +221,7 @@ namespace CygSoft.SmartSession.Dal.MySql
             }
         }
 
-        private IEnumerable<ExerciseActivity> GetExerciseActivities(Exercise entity)
+        private IEnumerable<ExerciseActivity> GetExerciseActivities(IExercise entity)
         {
             var results = Connection.Query<ExerciseActivity>("sp_GetExerciseActivitiesByExercise",
             param: new
@@ -232,7 +232,7 @@ namespace CygSoft.SmartSession.Dal.MySql
             return results;
         }
 
-        private void DeleteMissingExerciseActivities(Exercise entity)
+        private void DeleteMissingExerciseActivities(IExercise entity)
         {
             var results = GetExerciseActivities(entity);
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CygSoft.SmartSession.Infrastructure;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CygSoft.SmartSession.Domain.Common
 {
-    public abstract class Entity
+    public abstract class Entity : IEntity
     {
         public int Id { get; set; }
         public DateTime? DateCreated { get; set; }

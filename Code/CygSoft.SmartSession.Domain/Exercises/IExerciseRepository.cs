@@ -4,11 +4,11 @@ using System.Collections.Generic;
 
 namespace CygSoft.SmartSession.Domain.Exercises
 {
-    public interface IExerciseRepository : IRepository<Exercise>
+    public interface IExerciseRepository : IRepository<IExercise>
     {
         // Only add really custom stuff here...
-        IReadOnlyList<Exercise> GetPracticeRoutineExercises(int practiceRoutineId);
+        IReadOnlyList<IExercise> GetPracticeRoutineExercises(int practiceRoutineId);
 
-        void Update(IEnumerable<Exercise> exercises);
+        void Update(IEnumerable<IExercise> exercises);
     }
 }
