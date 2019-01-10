@@ -5,9 +5,9 @@ namespace CygSoft.SmartSession.Desktop.Exercises
 {
     internal class StartEditingExerciseMessage
     {
-        public Exercise Exercise { get;}
+        public IExercise Exercise { get;}
 
-        public StartEditingExerciseMessage(Exercise exercise)
+        public StartEditingExerciseMessage(IExercise exercise)
         {
             Exercise = exercise;
         }

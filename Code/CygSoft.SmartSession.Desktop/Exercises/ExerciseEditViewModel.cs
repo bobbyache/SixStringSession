@@ -16,7 +16,7 @@ namespace CygSoft.SmartSession.Desktop.Exercises
     {
         private IDialogViewService dialogService;
 
-        public Exercise Exercise { get; private set; }
+        public IExercise Exercise { get; private set; }
 
         public int Id { get; set; }
 
@@ -137,7 +137,7 @@ namespace CygSoft.SmartSession.Desktop.Exercises
             //exerciseService.AddFiles(Exercise.Id, files);
         }
 
-        public void StartEdit(Exercise exercise)
+        public void StartEdit(IExercise exercise)
         {
             LifeCycleState = exercise.Id > 0 ? EntityLifeCycleState.AsExistingEntity : EntityLifeCycleState.AsNewEntity;
             Exercise = exercise;

@@ -140,7 +140,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
 
         }
 
-        protected override void EndEditingExercise(Exercise exercise, EditorCloseOperation operation, EntityLifeCycleState entityLifeCycleState)
+        protected override void EndEditingExercise(IExercise exercise, EditorCloseOperation operation, EntityLifeCycleState entityLifeCycleState)
         {
             EndEditinExerciseCalled = true;
             EndEditOperation = operation;

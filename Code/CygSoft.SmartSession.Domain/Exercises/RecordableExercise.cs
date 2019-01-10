@@ -10,10 +10,10 @@ namespace CygSoft.SmartSession.Domain.Exercises
 {
     public class RecordableExercise
     {
-        internal Exercise Exercise { get; private set; }
+        internal IExercise Exercise { get; private set; }
         private IExerciseRecorder exerciseRecorder;
 
-        public RecordableExercise(Exercise exercise)
+        public RecordableExercise(IExercise exercise)
         {
             this.Exercise = exercise ?? throw new ArgumentNullException("Exercise must be provided.");
             this.exerciseRecorder = new ExerciseRecorder();

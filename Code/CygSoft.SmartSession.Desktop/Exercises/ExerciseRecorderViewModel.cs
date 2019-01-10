@@ -37,7 +37,7 @@ namespace CygSoft.SmartSession.Desktop.Exercises
 
         protected IExerciseRecorder exerciseRecorder;
 
-        private Exercise exercise;
+        private IExercise exercise;
 
         private bool startButtonVisible;
         public bool StartButtonVisible

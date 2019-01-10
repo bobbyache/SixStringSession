@@ -17,7 +17,7 @@ namespace CygSoft.SmartSession.Domain.Exercises
             this.fileService = fileService ?? throw new ArgumentNullException("FileService must be provided.");
         }
 
-        public void Add(Exercise exercise)
+        public void Add(IExercise exercise)
         {
             if (exercise.Id > 0)
                 throw new ArgumentException("A new exercise cannot have an id");
@@ -29,7 +29,7 @@ namespace CygSoft.SmartSession.Domain.Exercises
             unitOfWork.Commit();
         }
 
-        public Exercise Create()
+        public IExercise Create()
         {
             var exercise = new Exercise()
             {
@@ -61,22 +61,22 @@ namespace CygSoft.SmartSession.Domain.Exercises
             unitOfWork.Commit();
         }
 
-        public IEnumerable<Exercise> Find(ExerciseSearchCriteria searchCriteria)
+        public IEnumerable<IExercise> Find(ExerciseSearchCriteria searchCriteria)
         {
-            return unitOfWork.Exercises.Find(searchCriteria).OfType<Exercise>();
+            return unitOfWork.Exercises.Find(searchCriteria);
         }
 
-        public IEnumerable<Exercise> GetPracticeRoutineExercises(int practiceRoutineId)
+        public IEnumerable<IExercise> GetPracticeRoutineExercises(int practiceRoutineId)
         {
-            return unitOfWork.Exercises.GetPracticeRoutineExercises(practiceRoutineId).OfType<Exercise>();
+            return unitOfWork.Exercises.GetPracticeRoutineExercises(practiceRoutineId);
         }
 
-        public Exercise Get(int id)
+        public IExercise Get(int id)
         {
-            return (Exercise)unitOfWork.Exercises.Get(id);
+            return unitOfWork.Exercises.Get(id);
         }
 
-        public void Update(Exercise exercise)
+        public void Update(IExercise exercise)
         {
             if (exercise.Id <= 0)
                 throw new ArgumentException("An existing exercise must have an id");
@@ -85,7 +85,7 @@ namespace CygSoft.SmartSession.Domain.Exercises
             unitOfWork.Commit();
         }
 
-        public void Update(IEnumerable<Exercise> exercises)
+        public void Update(IEnumerable<IExercise> exercises)
         {
             foreach (var exercise in exercises)
             {

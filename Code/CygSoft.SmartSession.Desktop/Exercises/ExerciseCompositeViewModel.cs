@@ -58,7 +58,7 @@ namespace CygSoft.SmartSession.Desktop.Exercises
             NavigateTo("Record");
         }
 
-        protected virtual void EndEditingExercise(Exercise exercise, EditorCloseOperation operation, 
+        protected virtual void EndEditingExercise(IExercise exercise, EditorCloseOperation operation, 
             EntityLifeCycleState entityLifeCycleState)
         {
             if (operation == EditorCloseOperation.Saved)
@@ -73,7 +73,7 @@ namespace CygSoft.SmartSession.Desktop.Exercises
         }
 
 
-        private void StartEditingExercise(Exercise exercise)
+        private void StartEditingExercise(IExercise exercise)
         {
             exerciseEditViewModel.StartEdit(exercise);
             NavigateTo("Edit");

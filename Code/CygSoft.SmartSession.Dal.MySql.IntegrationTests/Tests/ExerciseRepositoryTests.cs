@@ -209,8 +209,8 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
         {
             Funcs.RunScript("delete-all-records.sql", Settings.AppConnectionString);
 
-            Exercise nexExercise;
-            Exercise persistedExercise;
+            IExercise nexExercise;
+            IExercise persistedExercise;
 
             using (var uow = new UnitOfWork(Settings.AppConnectionString))
             {
@@ -218,7 +218,7 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
                 uow.Exercises.Add(nexExercise);
                 uow.Commit();
 
-                persistedExercise = (Exercise)uow.Exercises.Get(nexExercise.Id);
+                persistedExercise = uow.Exercises.Get(nexExercise.Id);
 
                 uow.Exercises.Remove(nexExercise);
                 uow.Commit();
@@ -244,16 +244,16 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
         {
             Funcs.RunScript("delete-all-records.sql", Settings.AppConnectionString);
 
-            Exercise modifiedExercise;
+            IExercise modifiedExercise;
             var currentTime = Funcs.RemoveMilliSeconds(DateTime.Now);
 
             using (var uow = new UnitOfWork(Settings.AppConnectionString))
             {
-                Exercise newExercise = CreateMetronomeExercise();
+                IExercise newExercise = CreateMetronomeExercise();
                 uow.Exercises.Add(newExercise);
                 uow.Commit();
 
-                Exercise existingExercise = (Exercise)uow.Exercises.Get(newExercise.Id);
+                IExercise existingExercise = uow.Exercises.Get(newExercise.Id);
 
                 existingExercise.Title = "Modified Exercise Title";
                 existingExercise.TargetMetronomeSpeed = 200;
@@ -264,7 +264,7 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
                 uow.Exercises.Update(existingExercise);
                 uow.Commit();
 
-                modifiedExercise = (Exercise)uow.Exercises.Get(existingExercise.Id);
+                modifiedExercise = uow.Exercises.Get(existingExercise.Id);
 
                 uow.Exercises.Remove(existingExercise);
                 uow.Commit();
@@ -287,7 +287,7 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
         {
             Funcs.RunScript("delete-all-records.sql", Settings.AppConnectionString);
 
-            Exercise modifiedExercise;
+            IExercise modifiedExercise;
             var currentTime = Funcs.RemoveMilliSeconds(DateTime.Now);
 
             using (var uow = new UnitOfWork(Settings.AppConnectionString))
@@ -297,18 +297,18 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
                 // --- do not commit !!!
 
                 //TODO: Try get rid of all these exercise casts using IExercise.
-                Exercise existingExercise = (Exercise)uow.Exercises.Get(newExercise.Id);
+                IExercise existingExercise = uow.Exercises.Get(newExercise.Id);
 
                 existingExercise.Title = "Modified Exercise Title";
                 existingExercise.TargetMetronomeSpeed = 200;
 
                 uow.Exercises.Update(existingExercise);
                 // --- do not commit !!!
-                modifiedExercise = (Exercise)uow.Exercises.Get(existingExercise.Id);
+                modifiedExercise = uow.Exercises.Get(existingExercise.Id);
 
                 uow.Rollback();
 
-                ActualValueDelegate<Exercise> testDelegate = () => (Exercise)uow.Exercises.Get(modifiedExercise.Id);
+                ActualValueDelegate<IExercise> testDelegate = () => uow.Exercises.Get(modifiedExercise.Id);
                 Assert.That(testDelegate, Throws.TypeOf<DatabaseEntityNotFoundException>());
             }
         }
@@ -348,7 +348,7 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
                 uow.Exercises.Remove(newEx);
                 uow.Commit();
 
-                ActualValueDelegate<Exercise> testDelegate = () => (Exercise)uow.Exercises.Get(newEx.Id);
+                ActualValueDelegate<IExercise> testDelegate = () => uow.Exercises.Get(newEx.Id);
                 Assert.That(testDelegate, Throws.TypeOf<DatabaseEntityNotFoundException>());
             }
         }
@@ -358,7 +358,7 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
         {
             Funcs.RunScript("delete-all-records.sql", Settings.AppConnectionString);
 
-            Exercise recordedExercise;
+            IExercise recordedExercise;
 
             using (var uow = new UnitOfWork(Settings.AppConnectionString))
             {
@@ -368,7 +368,7 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
                 uow.Exercises.Add(newExercise);
                 uow.Commit();
 
-                recordedExercise = (Exercise)uow.Exercises.Get(newExercise.Id);
+                recordedExercise = uow.Exercises.Get(newExercise.Id);
             }
 
             Assert.AreEqual(1, recordedExercise.ExerciseActivity.Count());
@@ -383,7 +383,7 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
         {
             Funcs.RunScript("delete-all-records.sql", Settings.AppConnectionString);
 
-            Exercise recordedExercise;
+            IExercise recordedExercise;
 
             using (var uow = new UnitOfWork(Settings.AppConnectionString))
             {
@@ -396,7 +396,7 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
                 uow.Exercises.Update(retrievedExercise);
                 uow.Commit();
 
-                recordedExercise = (Exercise)uow.Exercises.Get(retrievedExercise.Id);
+                recordedExercise = uow.Exercises.Get(retrievedExercise.Id);
             }
 
             Assert.AreEqual(1, recordedExercise.ExerciseActivity.Count());
