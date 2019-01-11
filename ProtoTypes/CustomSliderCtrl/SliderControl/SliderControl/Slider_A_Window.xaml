@@ -16,7 +16,7 @@
                 <StackPanel.DataContext>
                     <local:SomeTemplateViewModel />
                 </StackPanel.DataContext>
-                <TextBlock Text="This is some template"/>
+                <TextBlock Text="This prototype is design to show how one could simply bind a slide bar back to another field's property."/>
                 <Slider 
                     Height="30" 
                     IsSnapToTickEnabled="True" 
@@ -33,8 +33,19 @@
                     </i:Interaction.Triggers>
                 </Slider>
                 <!-- Show current value, just for sake of it... -->
+                <TextBlock
+                    Text="{Binding CurrentManualProgress}"
+                    FontWeight="Bold"
+                    FontSize="24">
+                </TextBlock>
+                <Button Command="{Binding IncreaseManualProgressCommand}">
+                    Increase
+                </Button>
+                <Button Command="{Binding DecreaseManualProgressCommand}">
+                    Decrease
+                </Button>
                 <TextBlock 
-                    Text="{Binding Value}"
+                    Text="{Binding ProgressInformationText}"
                     FontWeight="Bold"
                     FontSize="24">
                 </TextBlock>
