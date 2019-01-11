@@ -1,0 +1,32 @@
+﻿<Window x:Class="SliderControl.Slider_Listview_Window"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SliderControl"
+        mc:Ignorable="d"
+        Title="Slider_Listview_Window" Height="450" Width="800">
+    <Window.DataContext>
+        <local:SomeTemplateListViewModel />
+    </Window.DataContext>
+    <Grid Margin="0,0,0,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+        </Grid.RowDefinitions>
+        <ListBox x:Name="MyList" ItemsSource="{Binding List}" SelectedItem="{Binding SelectedItem}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <local:RecordableExerciseItemCtrl />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="Add" Margin="5" MinWidth="50" MaxHeight="35" Command="{Binding AddCommand}" />
+            <Button Content="Delete" Margin="5" MinWidth="50" MaxHeight="35" Command="{Binding DeleteCommand}" />
+            <Button Content="Increment" Margin="5" MinWidth="50" MaxHeight="35" Command="{Binding IncrementCommand}" />
+            <!--<Button Content="Decrement" Margin="5" MinWidth="50" MaxHeight="35" Command="{Binding IncrementCommand}" />-->
+        </StackPanel>
+    </Grid>
+</Window>

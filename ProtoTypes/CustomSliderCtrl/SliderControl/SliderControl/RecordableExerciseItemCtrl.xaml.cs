@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace SliderControl
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for RecordableExerciseItemCtrl.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class RecordableExerciseItemCtrl : UserControl
     {
-        public MainWindow()
+        public RecordableExerciseItemCtrl()
         {
             InitializeComponent();
         }

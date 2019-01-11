@@ -16,11 +16,11 @@ namespace SliderControl
         public SomeTemplateViewModel()
         {
             // Create command setting Value as Slider's NewValue
-            ValueChangedCommand = new RelayCommand<RoutedPropertyChangedEventArgs<double>>(
-                args => CurrentManualProgress = args.NewValue);
-
+           ValueChangedCommand = new RelayCommand<RoutedPropertyChangedEventArgs<double>>(args => CurrentManualProgress = args.NewValue);
             DecreaseManualProgressCommand = new RelayCommand(() => DecreaseManualProgress(), () => true);
             IncreaseManualProgressCommand = new RelayCommand(() => IncreaseManualProgress(), () => true);
+
+
 
             InitialManualProgress = 35;
             CurrentManualProgress = 35;
@@ -66,7 +66,7 @@ namespace SliderControl
             }
         }
 
-        public ICommand ValueChangedCommand { get; set; }
+        public ICommand ValueChangedCommand { get; private set; }
         public RelayCommand DecreaseManualProgressCommand { get; private set; }
         public RelayCommand IncreaseManualProgressCommand { get; private set; }
 
