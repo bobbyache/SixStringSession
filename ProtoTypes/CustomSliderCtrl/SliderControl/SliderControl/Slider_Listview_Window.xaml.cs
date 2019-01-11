@@ -22,9 +22,26 @@ namespace SliderControl
         public Slider_Listview_Window()
         {
             InitializeComponent();
+        }
 
-            //SomeTemplateListViewModel dataList = new SomeTemplateListViewModel();
-            //this.DataContext = dataList;
+        private void RecordableExerciseItemCtrl_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            var item = ((ListBoxItem)sender).Content as SomeTemplateViewModel;
+
+            if (item == null)
+                return;
+
+            if (Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                // Debugging:
+                // System.Diagnostics.Debug.WriteLine($"{e.SystemKey} or {e.Key}");
+
+                if (e.Key == Key.Left)
+                    item.DecreaseManualProgressCommand.Execute(null);
+
+                if (e.Key == Key.Right)
+                    item.IncreaseManualProgressCommand.Execute(null);
+            }
         }
     }
 }

@@ -16,6 +16,11 @@
             <RowDefinition Height="30" />
         </Grid.RowDefinitions>
         <ListBox x:Name="MyList" ItemsSource="{Binding List}" SelectedItem="{Binding SelectedItem}">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <EventSetter Event="PreviewKeyDown" Handler="RecordableExerciseItemCtrl_PreviewKeyDown" />
+                </Style>
+            </ListBox.ItemContainerStyle>
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <local:RecordableExerciseItemCtrl />
