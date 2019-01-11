@@ -8,10 +8,7 @@
             xmlns:command="http://www.galasoft.ch/mvvmlight"
              mc:Ignorable="d" d:DesignWidth="800" Height="56.657">
     <StackPanel Orientation="Horizontal" Margin="15">
-        <!-- Wrong DataContext can drive you mad!1 -->
-        <StackPanel.DataContext>
-            <local:SomeTemplateViewModel />
-        </StackPanel.DataContext>
+        <TextBlock MinWidth="150" Text="{Binding Title}"></TextBlock>
         <Button MinWidth="20" MaxHeight="20" Command="{Binding DecreaseManualProgressCommand}">
             &lt;
         </Button>

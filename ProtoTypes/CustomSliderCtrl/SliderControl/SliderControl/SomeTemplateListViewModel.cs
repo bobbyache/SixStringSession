@@ -52,12 +52,15 @@ namespace SliderControl
 
         private void Delete()
         {
-            throw new NotImplementedException();
+            List.Remove(SelectedItem);
         }
 
         private void Decrement()
         {
-            List.Remove(SelectedItem);
+            if (SelectedItem != null)
+            {
+                SelectedItem.DecreaseManualProgressCommand.Execute(null);
+            }
         }
 
         private void Increment()
@@ -65,14 +68,14 @@ namespace SliderControl
             if (SelectedItem != null)
             {
                 SelectedItem.IncreaseManualProgressCommand.Execute(null);
-                //RaisePropertyChanged("List");
             }
-            //SelectedItem
         }
 
         private void Add()
         {
-            List.Add(new SomeTemplateViewModel());
+            var item = new SomeTemplateViewModel();
+            List.Add(item);
+            SelectedItem = item;
         }
     }
 }

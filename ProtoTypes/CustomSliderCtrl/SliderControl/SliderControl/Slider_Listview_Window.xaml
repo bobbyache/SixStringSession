@@ -25,8 +25,8 @@
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button Content="Add" Margin="5" MinWidth="50" MaxHeight="35" Command="{Binding AddCommand}" />
             <Button Content="Delete" Margin="5" MinWidth="50" MaxHeight="35" Command="{Binding DeleteCommand}" />
+            <Button Content="Decrement" Margin="5" MinWidth="50" MaxHeight="35" Command="{Binding DecrementCommand}" />
             <Button Content="Increment" Margin="5" MinWidth="50" MaxHeight="35" Command="{Binding IncrementCommand}" />
-            <!--<Button Content="Decrement" Margin="5" MinWidth="50" MaxHeight="35" Command="{Binding IncrementCommand}" />-->
         </StackPanel>
     </Grid>
 </Window>

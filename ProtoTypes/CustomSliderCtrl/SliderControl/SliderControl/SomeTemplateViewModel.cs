@@ -16,14 +16,26 @@ namespace SliderControl
         public SomeTemplateViewModel()
         {
             // Create command setting Value as Slider's NewValue
-           ValueChangedCommand = new RelayCommand<RoutedPropertyChangedEventArgs<double>>(args => CurrentManualProgress = args.NewValue);
+            ValueChangedCommand = new RelayCommand<RoutedPropertyChangedEventArgs<double>>(args => CurrentManualProgress = args.NewValue);
             DecreaseManualProgressCommand = new RelayCommand(() => DecreaseManualProgress(), () => true);
             IncreaseManualProgressCommand = new RelayCommand(() => IncreaseManualProgress(), () => true);
 
-
-
             InitialManualProgress = 35;
             CurrentManualProgress = 35;
+            Title = $"Item No: {new Random().Next().ToString()}";
+        }
+
+        private string title;
+        public string Title
+        {
+            get
+            {
+                return title;
+            }
+            set
+            {
+                Set(() => Title, ref title, value);
+            }
         }
 
         private double currentManualProgress;
@@ -79,7 +91,7 @@ namespace SliderControl
         private void IncreaseManualProgress()
         {
             if (CurrentManualProgress < 100)
-            CurrentManualProgress++;
+                CurrentManualProgress++;
         }
     }
 }
