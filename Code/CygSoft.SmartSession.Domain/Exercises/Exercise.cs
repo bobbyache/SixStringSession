@@ -99,6 +99,16 @@ namespace CygSoft.SmartSession.Domain.Exercises
             return percentComplete > 100 ? 100 : percentComplete;
         }
 
+        public double GetPracticeTimeProgress()
+        {
+            return CalculatePracticeTimePercentComplete();
+        }
+
+        public double GetSpeedProgress()
+        {
+            return CalculateSpeedPercentComplete();
+        }
+
         private double CalculateSpeedPercentComplete()
         {
             if (!TargetMetronomeSpeed.HasValue)

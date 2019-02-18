@@ -167,6 +167,45 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
             }
         }
 
+        private int overallProgress;
+        public int OverallProgress
+        {
+            get
+            {
+                return overallProgress;
+            }
+            set
+            {
+                Set(() => OverallProgress, ref overallProgress, value);
+            }
+        }
+
+        private int speedProgress;
+        public int SpeedProgress
+        {
+            get
+            {
+                return speedProgress;
+            }
+            set
+            {
+                Set(() => SpeedProgress, ref speedProgress, value);
+            }
+        }
+
+        private int practiceTimeProgress;
+        public int PracticeTimeProgress
+        {
+            get
+            {
+                return practiceTimeProgress;
+            }
+            set
+            {
+                Set(() => PracticeTimeProgress, ref practiceTimeProgress, value);
+            }
+        }
+
         public RelayCommand IncrementManualProgressCommand { get; private set; }
         public RelayCommand DecrementManualProgressCommand { get; private set; }
 
@@ -180,6 +219,10 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
             exerciseRecorder = new ExerciseRecorder();
             exerciseRecorder.TickActionCallBack = TickTock;
             exerciseRecorder.RecordingStatusChanged += ExerciseRecorder_RecordingStatusChanged;
+
+            OverallProgress = (int)Math.Round(exercise.GetPercentComplete(), 0);
+            SpeedProgress = (int)Math.Round(exercise.GetSpeedProgress(), 0);
+            PracticeTimeProgress = (int)Math.Round(exercise.GetPracticeTimeProgress(), 0);
 
             Title = exercise.Title;
             Recording = exerciseRecorder.Recording;

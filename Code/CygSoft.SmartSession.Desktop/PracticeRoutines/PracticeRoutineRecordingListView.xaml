@@ -26,13 +26,16 @@
         <TextBlock Grid.Row="0" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding DisplayTime}"></TextBlock>
         <DockPanel Grid.Row="1" HorizontalAlignment="Stretch" LastChildFill="True">
             <practiceroutines:ExerciseInstanceListView DockPanel.Dock="Left" MinWidth="400" />
-            <practiceroutines:ExerciseInstanceEditView DockPanel.Dock="Right" VerticalAlignment="Center" HorizontalAlignment="Center" />
+            <DockPanel DockPanel.Dock="Right" LastChildFill="True">
+                <practiceroutines:ExerciseInstanceSummaryView DockPanel.Dock="Top" HorizontalAlignment="Stretch" />
+                <ScrollViewer DockPanel.Dock="Bottom">
+                    <practiceroutines:ExerciseInstanceEditView HorizontalAlignment="Center" />
+                </ScrollViewer>
+            </DockPanel>
         </DockPanel>
-        
         <StackPanel Grid.Row="2" DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button Content="Cancel Session" Margin="5" MinWidth="50" MaxHeight="35" Command="{Binding CancelCommand}" />
             <Button Content="Save Session" Margin="5" MinWidth="50" MaxHeight="35" Command="{Binding SaveCommand}" />
         </StackPanel>
-        
     </Grid>
 </UserControl>

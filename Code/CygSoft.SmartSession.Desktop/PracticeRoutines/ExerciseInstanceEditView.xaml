@@ -12,11 +12,7 @@
         <Binding Source="{StaticResource ViewModelLocator}" Path="PracticeRoutineRecordingListViewModel.SelectedRecordableExercise" />
     </UserControl.DataContext>
     <StackPanel HorizontalAlignment="Center">
-        <Border CornerRadius="10" Padding="5" Margin="10" BorderBrush="Black" BorderThickness="2">
-            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-                <TextBlock HorizontalAlignment="Center" Text="{Binding Title}"></TextBlock>
-            </StackPanel>
-        </Border>
+
         <Border CornerRadius="10" Padding="20" Margin="10" BorderBrush="Black" BorderThickness="2">
             <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
                 <TextBlock Margin="20" HorizontalAlignment="Center">Metronome Speed</TextBlock>
@@ -59,7 +55,7 @@
                             Maximum="100" 
                             SmallChange="1" 
                             IsMoveToPointEnabled="True" Value="{Binding ManualProgress}">
-                            
+
                             <!-- Bind/pass event as command -->
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="ValueChanged">
@@ -68,7 +64,7 @@
                         PassEventArgsToCommand="True" />
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
-                            
+
                         </Slider>
                         <Button MinWidth="20" MaxHeight="20" Command="{Binding IncrementManualProgressCommand}">
                             &gt;
@@ -78,6 +74,17 @@
                     <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding ManualProgressInformationText}" />
 
                 </StackPanel>
+            </StackPanel>
+        </Border>
+
+        <Border CornerRadius="10" Padding="5" Margin="10" BorderBrush="Black" BorderThickness="2">
+            <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
+                <TextBlock HorizontalAlignment="Center">Overall Progress</TextBlock>
+                <ProgressBar MinHeight="10" MinWidth="200" HorizontalAlignment="Center" Value="{Binding OverallProgress}" />
+                <TextBlock HorizontalAlignment="Center">Speed Progress</TextBlock>
+                <ProgressBar MinHeight="10" MinWidth="200" HorizontalAlignment="Center" Value="{Binding SpeedProgress}" />
+                <TextBlock HorizontalAlignment="Center">Time Progress</TextBlock>
+                <ProgressBar MinHeight="10" MinWidth="200" HorizontalAlignment="Center" Value="{Binding PracticeTimeProgress}" />
             </StackPanel>
         </Border>
     </StackPanel>

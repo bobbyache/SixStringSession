@@ -15,6 +15,9 @@ namespace CygSoft.SmartSession.Domain.Exercises
         int? TargetPracticeTime { get; set; }
         string Title { get; set; }
 
+        double GetPracticeTimeProgress();
+        double GetSpeedProgress();
+
         int GetLastRecordedManualProgress();
         int GetLastRecordedSpeed();
         double GetPercentComplete();

@@ -172,6 +172,9 @@
     <Compile Include="PracticeRoutines\ExerciseInstanceListView.xaml.cs">
       <DependentUpon>ExerciseInstanceListView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PracticeRoutines\ExerciseInstanceSummaryView.xaml.cs">
+      <DependentUpon>ExerciseInstanceSummaryView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PracticeRoutines\ExerciseInstanceView.xaml.cs">
       <DependentUpon>ExerciseInstanceView.xaml</DependentUpon>
     </Compile>
@@ -298,6 +301,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PracticeRoutines\ExerciseInstanceListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PracticeRoutines\ExerciseInstanceSummaryView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
