@@ -1,5 +1,6 @@
 ﻿using CygSoft.SmartSession.Domain.Exercises;
 using CygSoft.SmartSession.Domain.Sessions;
+using CygSoft.SmartSession.Infrastructure;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using System;
@@ -206,12 +207,33 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
             }
         }
 
+        private string totalPracticeTime;
+        public string TotalPracticeTime
+        {
+            get
+            {
+                return totalPracticeTime;
+            }
+            set
+            {
+                Set(() => TotalPracticeTime, ref totalPracticeTime, value);
+            }
+        }
+
         public RelayCommand IncrementManualProgressCommand { get; private set; }
         public RelayCommand DecrementManualProgressCommand { get; private set; }
 
         public RelayCommand DecrementMetronomeSpeedCommand { get; private set; }
 
         public RelayCommand IncrementMetronomeSpeedCommand { get; private set; }
+
+        public RelayCommand IncrementMinutesPracticedCommand { get; private set; }
+
+        public RelayCommand IncrementSecondsPracticedCommand { get; private set; }
+
+        public RelayCommand DecrementSecondsPracticedCommand { get; private set; }
+
+        public RelayCommand DecrementMinutesPracticedCommand { get; private set; }
 
         public RecordableExerciseViewModel(IExercise exercise)
         {
@@ -223,6 +245,8 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
             OverallProgress = (int)Math.Round(exercise.GetPercentComplete(), 0);
             SpeedProgress = (int)Math.Round(exercise.GetSpeedProgress(), 0);
             PracticeTimeProgress = (int)Math.Round(exercise.GetPracticeTimeProgress(), 0);
+
+            TotalPracticeTime = TimeFuncs.DisplayTimeFromSeconds(exercise.GetSecondsPracticed());
 
             Title = exercise.Title;
             Recording = exerciseRecorder.Recording;
@@ -239,6 +263,61 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
             DecrementMetronomeSpeedCommand = new RelayCommand(() => DecrementMetronomeSpeed(), () => true);
             IncrementMetronomeSpeedCommand = new RelayCommand(() => IncrementMetronomeSpeed(), () => true);
 
+            IncrementMinutesPracticedCommand = new RelayCommand(() => IncrementMinutesPracticed(), () => true);
+            IncrementSecondsPracticedCommand = new RelayCommand(() => IncrementSecondsPracticed(), () => true);
+
+            DecrementSecondsPracticedCommand = new RelayCommand(() => DecrementSecondsPracticed(), () => true);
+            DecrementMinutesPracticedCommand = new RelayCommand(() => DecrementMinutesPracticed(), () => true);
+
+        }
+
+        private void DecrementMinutesPracticed()
+        {
+            if (exerciseRecorder.Recording)
+            {
+                exerciseRecorder.Pause();
+                exerciseRecorder.SubtractMinutes(1);
+                exerciseRecorder.Resume();
+            }
+            else
+                exerciseRecorder.SubtractMinutes(1);
+
+        }
+
+        private void DecrementSecondsPracticed()
+        {
+            if (exerciseRecorder.Recording)
+            {
+                exerciseRecorder.Pause();
+                exerciseRecorder.SubstractSeconds(1);
+                exerciseRecorder.Resume();
+            }
+            else
+                exerciseRecorder.SubstractSeconds(1);
+        }
+
+        private void IncrementSecondsPracticed()
+        {
+            if (exerciseRecorder.Recording)
+            {
+                exerciseRecorder.Pause();
+                exerciseRecorder.AddSeconds(1);
+                exerciseRecorder.Resume();
+            }
+            else
+                exerciseRecorder.AddSeconds(1);
+        }
+
+        private void IncrementMinutesPracticed()
+        {
+            if (exerciseRecorder.Recording)
+            {
+                exerciseRecorder.Pause();
+                exerciseRecorder.AddMinutes(1);
+                exerciseRecorder.Resume();
+            }
+            else
+                exerciseRecorder.AddMinutes(1);
         }
 
         private void DecrementMetronomeSpeed()

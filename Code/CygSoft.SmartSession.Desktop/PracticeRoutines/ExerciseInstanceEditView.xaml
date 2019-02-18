@@ -27,11 +27,11 @@
             <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
                 <TextBlock Margin="20" HorizontalAlignment="Center">Time</TextBlock>
                 <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-                    <Button Margin="2" MinWidth="30">&lt;&lt;</Button>
-                    <Button Margin="2" MinWidth="30">&lt;</Button>
+                    <Button Margin="2" MinWidth="30" Command="{Binding DecrementMinutesPracticedCommand}">&lt;&lt;</Button>
+                    <Button Margin="2" MinWidth="30" Command="{Binding DecrementSecondsPracticedCommand}">&lt;</Button>
                     <TextBlock HorizontalAlignment="Center" TextAlignment="Center" MinWidth="50" Text="{Binding DisplayTime}" />
-                    <Button Margin="2" MinWidth="30">&gt;</Button>
-                    <Button Margin="2" MinWidth="30">&gt;&gt;</Button>
+                    <Button Margin="2" MinWidth="30" Command="{Binding IncrementSecondsPracticedCommand}">&gt;</Button>
+                    <Button Margin="2" MinWidth="30" Command="{Binding IncrementMinutesPracticedCommand}">&gt;&gt;</Button>
                 </StackPanel>
             </StackPanel>
         </Border>
@@ -79,6 +79,8 @@
 
         <Border CornerRadius="10" Padding="5" Margin="10" BorderBrush="Black" BorderThickness="2">
             <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
+                <TextBlock HorizontalAlignment="Center">Overall Practice Time</TextBlock>
+                <TextBlock HorizontalAlignment="Center" Text="{Binding TotalPracticeTime}" />
                 <TextBlock HorizontalAlignment="Center">Overall Progress</TextBlock>
                 <ProgressBar MinHeight="10" MinWidth="200" HorizontalAlignment="Center" Value="{Binding OverallProgress}" />
                 <TextBlock HorizontalAlignment="Center">Speed Progress</TextBlock>
