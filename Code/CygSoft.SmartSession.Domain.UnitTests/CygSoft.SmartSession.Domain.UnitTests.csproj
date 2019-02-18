@@ -68,6 +68,7 @@
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="RecordingSliceTests.cs" />
+    <Compile Include="Tests\ExerciseRecorderTests.cs" />
     <Compile Include="Tests\ExerciseServiceTests.cs" />
     <Compile Include="Tests\ExerciseTests.cs" />
     <Compile Include="Tests\FileServiceTests.cs" />

@@ -6,6 +6,7 @@
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:local1="http://www.galasoft.ch/mvvmlight"
              xmlns:ctrls="clr-namespace:CygSoft.SmartSession.Desktop.Controls;assembly=CygSoft.SmartSession.Desktop.Controls"
+             xmlns:practiceroutines="clr-namespace:CygSoft.SmartSession.Desktop.PracticeRoutines"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.DataContext>
@@ -22,90 +23,16 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="30" />
         </Grid.RowDefinitions>
-        <TextBlock FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Text="{Binding DisplayTime}"></TextBlock>
-
+        <TextBlock Grid.Row="0" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding DisplayTime}"></TextBlock>
+        <DockPanel Grid.Row="1" HorizontalAlignment="Stretch" LastChildFill="True">
+            <practiceroutines:ExerciseInstanceListView DockPanel.Dock="Left" MinWidth="400" />
+            <practiceroutines:ExerciseInstanceEditView DockPanel.Dock="Right" VerticalAlignment="Center" HorizontalAlignment="Center" />
+        </DockPanel>
+        
         <StackPanel Grid.Row="2" DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button Content="Cancel Session" Margin="5" MinWidth="50" MaxHeight="35" Command="{Binding CancelCommand}" />
             <Button Content="Save Session" Margin="5" MinWidth="50" MaxHeight="35" Command="{Binding SaveCommand}" />
         </StackPanel>
-        <ListView Grid.Row="1" ItemsSource="{Binding RecordableExercises}" DockPanel.Dock="Bottom" 
-                  SelectionMode="Extended"
-                  SelectedItem="{Binding SelectedRecordableExercise}" >
-            <ListView.ItemContainerStyle>
-                <Style TargetType="ListViewItem">
-                    <EventSetter Event="PreviewKeyDown" Handler="ListViewItem_PreviewKeyDown" />
-                </Style>
-            </ListView.ItemContainerStyle>
-            <i:Interaction.Triggers>
-                <i:EventTrigger EventName="MouseDoubleClick">
-                    <local1:EventToCommand Command="{Binding StartExercisingCommand}" />
-                </i:EventTrigger>
-            </i:Interaction.Triggers>
-                <ListBox.ContextMenu>
-                <ContextMenu>
-                    <MenuItem Header="Placeholder Menu Item" Command="{Binding StartExercisingCommand}" />
-                </ContextMenu>
-            </ListBox.ContextMenu>
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Width="150" Header="Title">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <Grid Width="500">
-                                    <TextBlock HorizontalAlignment="Left" Text="{Binding Title}" />
-                                </Grid>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Width="60" Header="Time" DisplayMemberBinding="{Binding DisplayTime}" />
-                    <GridViewColumn Width="150" Header="Speed">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <Grid Width="150">
-                                    <TextBox PreviewMouseDoubleClick="TextBox_PreviewMouseDoubleClick" Width="40" Text="{Binding MetronomeSpeed}" />
-                                </Grid>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Width="150" Header="Manual Progress">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <Grid Width="150" Height="35">
-                                    <Slider PreviewMouseDoubleClick="Slider_PreviewMouseDoubleClick" Minimum="0" Maximum="100" VerticalAlignment="Center" HorizontalAlignment="Stretch">
-                                        <Slider.Template>
-                                            <ControlTemplate TargetType="{x:Type Slider}">
-                                                <Grid Background="#05000000">
-                                                    <ctrls:PopupLabel x:Name="InfoPopup" Width="Auto" Height="Auto" PlacementTarget="{Binding ElementName=Thumb}" Placement="Top" StaysOpen="False" IsOpen="False" AllowsTransparency="True">
-                                                        <Border Padding="2" CornerRadius="3" Background="#555C5C5C">
-                                                            <TextBlock Foreground="Black" Text="{Binding ElementName=PART_Track, Path=Value, StringFormat=Progress: {0:0}%}"></TextBlock>
-                                                        </Border>
-                                                    </ctrls:PopupLabel>
-                                                    <Track x:Name="PART_Track">
-                                                        <!--<Track x:Name="PART_Track" Value="{Binding ManualProgress}">-->
-                                                        <Track.Thumb>
-                                                            <Thumb x:Name="Thumb" Width="10" Height="20">
-                                                            </Thumb>
-                                                        </Track.Thumb>
-                                                    </Track>
-                                                </Grid>
-                                                <ControlTemplate.Triggers>
-                                                    <Trigger SourceName="Thumb" Property="IsDragging" Value="True">
-                                                        <Setter Value="True" TargetName="InfoPopup" Property="IsOpen" />
-                                                    </Trigger>
-                                                    <Trigger SourceName="Thumb" Property="IsDragging" Value="False">
-                                                        <Setter Value="False" TargetName="InfoPopup" Property="IsOpen" />
-                                                    </Trigger>
-                                                </ControlTemplate.Triggers>
-                                            </ControlTemplate>
-                                        </Slider.Template>
-                                    </Slider>
-                                </Grid>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding Status}" />
-                </GridView>
-            </ListView.View>
-        </ListView>
+        
     </Grid>
 </UserControl>

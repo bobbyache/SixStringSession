@@ -36,9 +36,9 @@ namespace CygSoft.SmartSession.Domain.Sessions
         private DateTime? recorderStartTime;
         private DateTime? recorderPauseTime;
 
-        private double recordedSeconds;
+        protected double recordedSeconds;
 
-        private Action tickActionFunc;
+        protected Action tickActionFunc;
         public Action TickActionCallBack { set { tickActionFunc = value; } }
 
         public event EventHandler RecordingStatusChanged;
@@ -62,7 +62,7 @@ namespace CygSoft.SmartSession.Domain.Sessions
                     }
                 }
 
-                return 0;
+                return recordedSeconds;
             }
         }
 
@@ -138,6 +138,43 @@ namespace CygSoft.SmartSession.Domain.Sessions
             {
                 recordedSeconds -= seconds;
                 if (recordedSeconds < 0) recordedSeconds = 0;
+
+                tickActionFunc?.Invoke();
+            }
+        }
+
+        public void AddMinutes(int minutes)
+        {
+            if (!Recording)
+            {
+                if (minutes <= 0)
+                    return;
+
+                int currentSeconds = (int)Math.Round(recordedSeconds, 0);
+                int remainingSeconds = currentSeconds % 60;
+                int fullMinutes = minutes - 1;
+                currentSeconds += (fullMinutes * 60) + (60 - remainingSeconds);
+
+                recordedSeconds = currentSeconds;
+
+                tickActionFunc?.Invoke();
+            }
+        }
+
+        public void SubtractMinutes(int minutes)
+        {
+            if (!Recording)
+            {
+                int currentSeconds = (int)Math.Round(recordedSeconds, 0);
+
+                int remainingSeconds = currentSeconds % 60;
+                int fullMinutes = minutes - 1;
+                double resultantSeconds = currentSeconds -= (fullMinutes * 60) + remainingSeconds;
+
+                if (resultantSeconds <= 0)
+                    recordedSeconds = 0;
+                else
+                    recordedSeconds = resultantSeconds;
 
                 tickActionFunc?.Invoke();
             }
