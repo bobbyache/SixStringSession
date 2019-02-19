@@ -227,6 +227,10 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
 
         public RelayCommand IncrementMetronomeSpeedCommand { get; private set; }
 
+        public RelayCommand DecrementMetronomeSpeedByTenCommand { get; private set; }
+
+        public RelayCommand IncrementMetronomeSpeedByTenCommand { get; private set; }
+
         public RelayCommand IncrementMinutesPracticedCommand { get; private set; }
 
         public RelayCommand IncrementSecondsPracticedCommand { get; private set; }
@@ -260,6 +264,9 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
             IncrementManualProgressCommand = new RelayCommand(() => IncrementManualProgress(), () => true);
             DecrementManualProgressCommand = new RelayCommand(() => DecrementManualProgress(), () => true);
 
+            DecrementMetronomeSpeedByTenCommand = new RelayCommand(() => DecrementMetronomeSpeedByTen(), () => true);
+            IncrementMetronomeSpeedByTenCommand = new RelayCommand(() => IncrementMetronomeSpeedByTen(), () => true);
+
             DecrementMetronomeSpeedCommand = new RelayCommand(() => DecrementMetronomeSpeed(), () => true);
             IncrementMetronomeSpeedCommand = new RelayCommand(() => IncrementMetronomeSpeed(), () => true);
 
@@ -269,6 +276,19 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
             DecrementSecondsPracticedCommand = new RelayCommand(() => DecrementSecondsPracticed(), () => true);
             DecrementMinutesPracticedCommand = new RelayCommand(() => DecrementMinutesPracticed(), () => true);
 
+        }
+
+        private void DecrementMetronomeSpeedByTen()
+        {
+            if (MetronomeSpeed > 10)
+            {
+                MetronomeSpeed -= 10;
+            }
+        }
+
+        private void IncrementMetronomeSpeedByTen()
+        {
+            MetronomeSpeed += 10;
         }
 
         private void DecrementMinutesPracticed()

@@ -17,9 +17,11 @@
             <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
                 <TextBlock Margin="20" HorizontalAlignment="Center">Metronome Speed</TextBlock>
                 <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                    <Button Margin="2" MinWidth="30" Command="{Binding DecrementMetronomeSpeedByTenCommand}">&lt;&lt;</Button>
                     <Button Margin="2" MinWidth="30" Command="{Binding DecrementMetronomeSpeedCommand}">&lt;</Button>
                     <TextBlock HorizontalAlignment="Center" TextAlignment="Center" MinWidth="50" Text="{Binding MetronomeSpeedInformationText}" />
                     <Button Margin="2" MinWidth="30" Command="{Binding IncrementMetronomeSpeedCommand}">&gt;</Button>
+                    <Button Margin="2" MinWidth="30" Command="{Binding IncrementMetronomeSpeedByTenCommand}">&gt;&gt;</Button>
                 </StackPanel>
             </StackPanel>
         </Border>
