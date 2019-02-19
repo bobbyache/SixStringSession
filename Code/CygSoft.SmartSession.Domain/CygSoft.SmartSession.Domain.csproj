@@ -70,7 +70,6 @@
     <Compile Include="Exercises\IExerciseRepository.cs" />
     <Compile Include="Exercises\IExerciseSearchCriteria.cs" />
     <Compile Include="Exercises\IExerciseService.cs" />
-    <Compile Include="Exercises\RecordableExercise.cs" />
     <Compile Include="PracticeRoutines\IPracticeRoutineRepository.cs" />
     <Compile Include="PracticeRoutines\IPracticeRoutineSearchCriteria.cs" />
     <Compile Include="PracticeRoutines\IPracticeRoutineService.cs" />
@@ -89,6 +88,7 @@
     <Compile Include="Keywords\Keyword.cs" />
     <Compile Include="Goals\Goal.cs" />
     <Compile Include="PracticeRoutines\PracticeRoutineService.cs" />
+    <Compile Include="PracticeRoutines\RecordablePracticeRoutine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sessions\ExerciseRecorder.cs" />
     <Compile Include="Sessions\IExerciseRecorder.cs" />
