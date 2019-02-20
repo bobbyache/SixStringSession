@@ -8,15 +8,15 @@ namespace CygSoft.SmartSession.Domain.RecordingRoutines
 {
     public interface ISpeedProgress
     {
-        int? InitialSpeed { get; }
-        int? CurrentSpeed { get; }
+        int InitialSpeed { get; }
+        int CurrentSpeed { get; }
 
-        int? TargetSpeed { get; }
+        int TargetSpeed { get; }
 
         int Weighting { get; }
         double CalculateProgress();
 
-        void Increase(int value);
-        void Decrease(int value);
+        void AddTicks(int ticks);
+        void SubtractTicks(int ticks);
     }
 }

@@ -20,8 +20,8 @@ namespace CygSoft.SmartSession.Domain.Sessions
 
         void AddSeconds(int seconds);
         void SubstractSeconds(int seconds);
-        void AddMinutes(int v);
-        void SubtractMinutes(int v);
+        void AddMinutes(int minutes);
+        void SubtractMinutes(int minutes);
 
         void Dispose();
     }

@@ -93,8 +93,11 @@
     <Compile Include="RecordingRoutines\IPracticeTimeProgress.cs" />
     <Compile Include="RecordingRoutines\IRecordingExercise.cs" />
     <Compile Include="RecordingRoutines\ISpeedProgress.cs" />
+    <Compile Include="RecordingRoutines\ManualProgress.cs" />
+    <Compile Include="RecordingRoutines\PracticeTimeProgress.cs" />
     <Compile Include="RecordingRoutines\RecordingExercise.cs" />
     <Compile Include="RecordingRoutines\RecordingRoutine.cs" />
+    <Compile Include="RecordingRoutines\SpeedProgress.cs" />
     <Compile Include="Sessions\Recorder.cs" />
     <Compile Include="Sessions\IRecorder.cs" />
     <Compile Include="Sessions\ExerciseActivity.cs" />
