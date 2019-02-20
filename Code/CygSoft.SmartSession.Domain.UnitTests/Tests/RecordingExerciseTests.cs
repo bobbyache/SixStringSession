@@ -447,6 +447,24 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             }
         }
 
+        [Test]
+        public void Displays_Correct_TotalSecondsDisplay()
+        {
+            var recorder = new TestRecorder(300);
+            var manualProgress = new Mock<IManualProgress>();
+            var speedProgress = new Mock<ISpeedProgress>();
+
+            var practiceTimeProgress = new Mock<IPracticeTimeProgress>();
+            practiceTimeProgress.Setup(obj => obj.CurrentTime).Returns(600);
+            practiceTimeProgress.Setup(obj => obj.CalculateProgress()).Returns(50);
+
+            using (var recordingExercise = new RecordingExercise(recorder, "Exercise Title", speedProgress.Object, practiceTimeProgress.Object, manualProgress.Object))
+            {
+                Assert.That(recordingExercise.TotalSecondsDisplay, Is.EqualTo("00:10:00"));
+                Assert.That(recordingExercise.RecordedSecondsDisplay, Is.EqualTo("00:05:00"));
+            }
+        }
+
         public class TestRecorder : Recorder
         {
             public TestRecorder(double initialSeconds) : base()

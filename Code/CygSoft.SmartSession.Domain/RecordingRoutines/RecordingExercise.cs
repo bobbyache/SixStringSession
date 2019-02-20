@@ -1,4 +1,5 @@
 ﻿using CygSoft.SmartSession.Domain.Sessions;
+using CygSoft.SmartSession.Infrastructure;
 using System;
 
 namespace CygSoft.SmartSession.Domain.RecordingRoutines
@@ -49,7 +50,7 @@ namespace CygSoft.SmartSession.Domain.RecordingRoutines
 
         public double CurrentOverAllProgress => throw new NotImplementedException();
 
-        public string TotalSecondsDisplay => throw new NotImplementedException();
+        public string TotalSecondsDisplay { get => TimeFuncs.DisplayTimeFromSeconds(CurrentTotalSeconds); }
 
         public event EventHandler RecordingStatusChanged;
 
