@@ -1,5 +1,11 @@
 ﻿USE `smartsession_tests`;
 
+DELETE FROM PracticeRoutineExercise WHERE ExerciseId > -1;
+DELETE FROM PracticeRoutine WHERE Id > -1;
+DELETE FROM PracticeRoutine WHERE Id > -1;
+DELETE FROM ExerciseActivity WHERE Id > -1;
+DELETE FROM Exercise WHERE Id > -1;
+
 INSERT INTO Exercise (Title, TargetMetronomeSpeed, SpeedProgressWeighting, TargetPracticeTime, PracticeTimeProgressWeighting, ManualProgressWeighting, DateCreated, DateModified) 
 	VALUES ('Yellow Exercise', 80, 50, NULL, 50, 0, '2015-02-01 01:00:00', NULL);
 

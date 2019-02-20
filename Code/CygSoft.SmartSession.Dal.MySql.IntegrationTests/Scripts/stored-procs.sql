@@ -372,20 +372,67 @@ CREATE PROCEDURE `sp_GetPracticeRoutineExercisesByPracticeRoutine`(
 	in _practiceRoutineId int
 	)
 BEGIN
-	SELECT  
-		E.Title,
-		PRE.PracticeRoutineId,
-		PRE.ExerciseId,
+
+    DROP TEMPORARY TABLE IF EXISTS LastMetronomeSpeeds;
+    
+    CREATE TEMPORARY TABLE LastMetronomeSpeeds
+    SELECT DISTINCT
+		E.Id AS ExerciseId, 
+        EA.MetronomeSpeed AS LastRecordedSpeed,
+        EA.ManualProgress AS LastRecordedManualProgress,
+        SUM(EA.Seconds) AS TotalSeconds
+    FROM
+		ExerciseActivity EA
+        INNER JOIN Exercise E ON E.Id = EA.ExerciseId
+        INNER JOIN PracticeRoutineExercise PRE ON PRE.ExerciseId = E.Id
+        INNER JOIN PracticeRoutine PR ON PR.Id = PRE.PracticeRoutineId
+		INNER JOIN
+        (
+			SELECT
+				E.Id, 
+				MAX(EA.Id) AS LastId
+			FROM
+				ExerciseActivity EA
+				INNER JOIN Exercise E ON E.Id = EA.ExerciseId
+				INNER JOIN PracticeRoutineExercise PRE ON PRE.ExerciseId = E.Id
+				INNER JOIN PracticeRoutine PR ON PR.Id = PRE.PracticeRoutineId
+			WHERE
+				PR.Id = _practiceRoutineId
+			GROUP BY
+				E.Id
+        ) LS ON LS.Id = EA.ExerciseId AND LS.LastId = EA.Id
+	GROUP BY
+		E.Id, 
+        EA.MetronomeSpeed, 
+        EA.ManualProgress
+	;
+    
+    SELECT 
+		E.Id AS ExerciseId,
+        PRE.PracticeRoutineId,
+        E.Title,
+        LM.LastRecordedSpeed,
+        LM.LastRecordedManualProgress,
+        LM.TotalSeconds AS TotalPracticeTime,
 		PRE.AssignedPracticeTime,
-		PRE.DifficultyRating,
-		PRE.PracticalityRating,
-		PRE.DateCreated,
-		PRE.DateModified
-	FROM 
-		PracticeRoutineExercise PRE
-        INNER JOIN Exercise E ON E.Id = PRE.ExerciseId
+        PRE.DifficultyRating, 
+        PRE.PracticalityRating,
+        E.TargetMetronomeSpeed, 
+        E.TargetPracticeTime AS TargetPracticeTime,
+        PRE.DateCreated,
+        PRE.DateModified
+    FROM
+		Exercise E
+		INNER JOIN PracticeRoutineExercise PRE ON PRE.ExerciseId = E.Id
+		INNER JOIN PracticeRoutine PR ON PR.Id = PRE.PracticeRoutineId
+        LEFT JOIN LastMetronomeSpeeds LM ON LM.ExerciseId = E.Id
 	WHERE
-		PRE.PracticeRoutineId = _practiceRoutineId;
+		PR.Id = _practiceRoutineId
+        
+	;
+    
+    DROP TEMPORARY TABLE IF EXISTS LastMetronomeSpeeds;
+
 END;
 COMMIT;
 

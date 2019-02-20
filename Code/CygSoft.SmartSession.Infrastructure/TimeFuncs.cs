@@ -13,5 +13,13 @@ namespace CygSoft.SmartSession.Infrastructure
             TimeSpan t = TimeSpan.FromSeconds(seconds);
             return t.ToString(@"hh\:mm\:ss");
         }
+
+        public static string DisplayTimeFromSeconds(double? seconds)
+        {
+            if (seconds.HasValue)
+                return DisplayTimeFromSeconds(seconds.Value);
+            else
+                return "00:00:00";
+        }
     }
 }
