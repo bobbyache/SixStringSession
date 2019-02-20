@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CygSoft.SmartSession.Domain.UnitTests
+namespace CygSoft.SmartSession.Domain.UnitTests.Tests
 {
     [TestFixture]
     public class RecordingSliceTests
