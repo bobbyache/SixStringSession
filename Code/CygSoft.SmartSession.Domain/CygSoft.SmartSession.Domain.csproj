@@ -88,7 +88,6 @@
     <Compile Include="Keywords\Keyword.cs" />
     <Compile Include="Goals\Goal.cs" />
     <Compile Include="PracticeRoutines\PracticeRoutineService.cs" />
-    <Compile Include="PracticeRoutines\RecordablePracticeRoutine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sessions\ExerciseRecorder.cs" />
     <Compile Include="Sessions\IExerciseRecorder.cs" />
