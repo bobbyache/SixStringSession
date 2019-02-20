@@ -519,6 +519,42 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             }
         }
 
+        [Test]
+        public void When_SpeedRecorded_Changes_Current_Speed_Positively_And_SpeedProgress_Reflects_This_Correctly()
+        {
+            var recorder = new Mock<IRecorder>();
+            var manualProgress = new Mock<IManualProgress>();
+            var practiceTimeProgress = new Mock<IPracticeTimeProgress>();
+
+            var speedProgress = new SpeedProgress(50, 100, 150, 100);
+
+            using (var recordingExercise = new RecordingExercise(recorder.Object, "Exercise Title", speedProgress, practiceTimeProgress.Object, manualProgress.Object))
+            {
+                recordingExercise.IncrementSpeed(25);
+
+                Assert.AreEqual(125, recordingExercise.CurrentSpeed);
+                Assert.That(recordingExercise.CurrentSpeedProgress, Is.EqualTo(75));
+            }
+        }
+
+        [Test]
+        public void When_SpeedRecorded_Changes_Current_Speed_Negatively_And_SpeedProgress_Reflects_This_Correctly()
+        {
+            var recorder = new Mock<IRecorder>();
+            var manualProgress = new Mock<IManualProgress>();
+            var practiceTimeProgress = new Mock<IPracticeTimeProgress>();
+
+            var speedProgress = new SpeedProgress(50, 100, 150, 100);
+
+            using (var recordingExercise = new RecordingExercise(recorder.Object, "Exercise Title", speedProgress, practiceTimeProgress.Object, manualProgress.Object))
+            {
+                recordingExercise.DecrementSpeed(25);
+
+                Assert.AreEqual(75, recordingExercise.CurrentSpeed);
+                Assert.That(recordingExercise.CurrentSpeedProgress, Is.EqualTo(25));
+            }
+        }
+
         public class TestRecorder : Recorder
         {
             public TestRecorder(double initialSeconds) : base()

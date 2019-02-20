@@ -31,6 +31,9 @@ namespace CygSoft.SmartSession.Domain.RecordingRoutines
         void Pause();
         void Resume();
 
+        void IncrementSpeed(int ticks);
+        void DecrementSpeed(int ticks);
+
         void AddSeconds(int seconds);
         void SubstractSeconds(int seconds);
         void AddMinutes(int minutes);

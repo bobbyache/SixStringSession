@@ -54,7 +54,7 @@ namespace CygSoft.SmartSession.Domain.RecordingRoutines
 
         public int? CurrentSpeed { get => speedProgress.CurrentSpeed; }
 
-        public int CurrentTotalSeconds //{ get =>  practiceTimeProgress.CurrentTime + recorder.Seconds; }
+        public int CurrentTotalSeconds
         {
             get
             {
@@ -132,6 +132,16 @@ namespace CygSoft.SmartSession.Domain.RecordingRoutines
         public void SubtractMinutes(int minutes)
         {
             recorder.SubtractMinutes(minutes);
+        }
+
+        public void IncrementSpeed(int ticks)
+        {
+            speedProgress = speedProgress.AddTicks(ticks);
+        }
+
+        public void DecrementSpeed(int ticks)
+        {
+            speedProgress = speedProgress.SubtractTicks(ticks);
         }
 
         #region Implement IDisposable

@@ -99,10 +99,10 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                 weighting: 100
             );
 
-            speedProgress.AddTicks(25);
+            var newSpeedProgress = speedProgress.AddTicks(25);
 
-            Assert.AreEqual(150, speedProgress.CurrentSpeed);
-            Assert.That(speedProgress.CalculateProgress(), Is.EqualTo(50));
+            Assert.AreEqual(150, newSpeedProgress.CurrentSpeed);
+            Assert.That(newSpeedProgress.CalculateProgress(), Is.EqualTo(50));
         }
 
         [Test]
@@ -115,10 +115,10 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                 weighting: 100
             );
 
-            speedProgress.SubtractTicks(25);
+            var newSpeedProgress = speedProgress.SubtractTicks(25);
 
-            Assert.AreEqual(125, speedProgress.CurrentSpeed);
-            Assert.That(speedProgress.CalculateProgress(), Is.EqualTo(25));
+            Assert.AreEqual(125, newSpeedProgress.CurrentSpeed);
+            Assert.That(newSpeedProgress.CalculateProgress(), Is.EqualTo(25));
         }
     }
 }

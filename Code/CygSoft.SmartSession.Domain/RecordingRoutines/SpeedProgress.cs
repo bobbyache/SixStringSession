@@ -38,14 +38,22 @@ namespace CygSoft.SmartSession.Domain.RecordingRoutines
             return percentComplete > 100 ? 100 : percentComplete;
         }
 
-        public void AddTicks(int ticks)
+        public ISpeedProgress AddTicks(int ticks)
         {
-            CurrentSpeed += ticks;
+            var currentTicks = CurrentSpeed + ticks;
+            var progress = new SpeedProgress(this.InitialSpeed, currentTicks, this.TargetSpeed, this.Weighting);
+
+            return progress;
         }
 
-        public void SubtractTicks(int ticks)
+        public ISpeedProgress SubtractTicks(int ticks)
         {
-            CurrentSpeed -= ticks;
+            var currentTicks = CurrentSpeed - ticks;
+            if (currentTicks < 0) currentTicks = 0;
+
+            var progress = new SpeedProgress(this.InitialSpeed, currentTicks, this.TargetSpeed, this.Weighting);
+
+            return progress;
         }
     }
 }
