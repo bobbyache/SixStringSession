@@ -46,7 +46,7 @@ namespace CygSoft.SmartSession.Domain.RecordingRoutines
 
         public void Reset()
         {
-            throw new NotImplementedException();
+            recorder.Reset();
         }
 
         public void Resume()

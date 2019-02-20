@@ -289,6 +289,39 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             }
         }
 
+        [Test]
+        public void RecordingStatusChanged_Event_Fired_On_Pause()
+        {
+            var called = false;
+            var recorder = new TestRecorder(110);
+
+            using (var recordingExercise = new RecordingExercise(recorder))
+            {
+                recordingExercise.Resume();
+                recordingExercise.RecordingStatusChanged += (sender, args) => called = true;
+                recordingExercise.Pause();
+
+                Assert.IsTrue(called);
+            }
+        }
+
+        [Test]
+        public void RecordingStatusChanged_Event_Fired_On_Reset()
+        {
+            var called = false;
+            var recorder = new TestRecorder(110);
+
+            using (var recordingExercise = new RecordingExercise(recorder))
+            {
+                recordingExercise.Resume();
+                recordingExercise.Pause();
+                recordingExercise.RecordingStatusChanged += (sender, args) => called = true;
+                recordingExercise.Reset();
+
+                Assert.IsTrue(called);
+            }
+        }
+
         public class TestRecorder : Recorder
         {
             public TestRecorder(double initialSeconds) : base()
