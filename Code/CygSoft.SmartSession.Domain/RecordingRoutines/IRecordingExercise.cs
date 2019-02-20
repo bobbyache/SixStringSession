@@ -8,10 +8,22 @@ namespace CygSoft.SmartSession.Domain.RecordingRoutines
 {
     public interface IRecordingExercise
     {
+        string Title { get; }
+
+        int? CurrentSpeed { get; }
+        int CurrentTotalSeconds { get; }
+
+        double CurrentManualProgress { get; }
+        double CurrentTimeProgress { get; }
+        double CurrentSpeedProgress { get; }
+        double CurrentOverAllProgress { get; }
+
         bool Recording { get; }
         double RecordedSeconds { get; }
         Action TickActionCallBack { set; }
+
         string RecordedSecondsDisplay { get; }
+        string TotalSecondsDisplay { get; }
 
         event EventHandler RecordingStatusChanged;
 

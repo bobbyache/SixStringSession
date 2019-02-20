@@ -7,9 +7,23 @@ namespace CygSoft.SmartSession.Domain.RecordingRoutines
     {
         private IRecorder recorder;
 
-        public RecordingExercise(IRecorder recorder)
+        protected int speedProgressWeighting;
+        protected int practiceTimeProgressWeighting;
+        protected int manualProgressWeighting;
+
+        protected ISpeedProgress speedProgress;
+        protected IPracticeTimeProgress practiceTimeProgress;
+        protected IManualProgress manualProgress;
+
+        public RecordingExercise(IRecorder recorder, string title, 
+            ISpeedProgress speedProgress, IPracticeTimeProgress practiceTimeProgress, IManualProgress manualProgress)
         {
+            Title = title;
             this.recorder = recorder ?? throw new ArgumentNullException("Recorder must be specified.");
+            this.speedProgress = speedProgress ?? throw new ArgumentNullException("Progress element must be specified.");
+            this.practiceTimeProgress = practiceTimeProgress ?? throw new ArgumentNullException("Progress element must be specified.");
+            this.manualProgress = manualProgress ?? throw new ArgumentNullException("Progress element must be specified.");
+
             this.recorder.RecordingStatusChanged += Recorder_RecordingStatusChanged;
         }
 
@@ -20,6 +34,22 @@ namespace CygSoft.SmartSession.Domain.RecordingRoutines
         public Action TickActionCallBack { set => recorder.TickActionCallBack = value; }
 
         public string RecordedSecondsDisplay { get => recorder.DisplayTime; }
+
+        public string Title { get; private set; }
+
+        public int? CurrentSpeed { get => speedProgress.CurrentSpeed; }
+
+        public int CurrentTotalSeconds { get => practiceTimeProgress.CurrentTime; }
+
+        public double CurrentManualProgress { get => manualProgress.CalculateProgress(); }
+
+        public double CurrentTimeProgress { get => practiceTimeProgress.CalculateProgress(); }
+
+        public double CurrentSpeedProgress { get => speedProgress.CalculateProgress(); }
+
+        public double CurrentOverAllProgress => throw new NotImplementedException();
+
+        public string TotalSecondsDisplay => throw new NotImplementedException();
 
         public event EventHandler RecordingStatusChanged;
 
