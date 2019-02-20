@@ -520,7 +520,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         }
 
         [Test]
-        public void When_SpeedRecorded_Changes_Current_Speed_Positively_And_SpeedProgress_Reflects_This_Correctly()
+        public void When_SpeedRecorded_Changes_Current_Speed_Positively_SpeedProgress_Reflects_This_Correctly()
         {
             var recorder = new Mock<IRecorder>();
             var manualProgress = new Mock<IManualProgress>();
@@ -538,7 +538,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         }
 
         [Test]
-        public void When_SpeedRecorded_Changes_Current_Speed_Negatively_And_SpeedProgress_Reflects_This_Correctly()
+        public void When_SpeedRecorded_Changes_Current_Speed_Negatively_SpeedProgress_Reflects_This_Correctly()
         {
             var recorder = new Mock<IRecorder>();
             var manualProgress = new Mock<IManualProgress>();
@@ -552,6 +552,40 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
 
                 Assert.AreEqual(75, recordingExercise.CurrentSpeed);
                 Assert.That(recordingExercise.CurrentSpeedProgress, Is.EqualTo(25));
+            }
+        }
+
+        [Test]
+        public void When_ManualProgress_Changes_Current_Progress_Positively_ManualProgress_Reflects_This_Correctly()
+        {
+            var recorder = new Mock<IRecorder>();
+            var speedProgress = new Mock<ISpeedProgress>();
+            var practiceTimeProgress = new Mock<IPracticeTimeProgress>();
+
+            var manualProgress = new ManualProgress(100, 100);
+
+            using (var recordingExercise = new RecordingExercise(recorder.Object, "Exercise Title", speedProgress.Object, practiceTimeProgress.Object, manualProgress))
+            {
+                recordingExercise.IncrementManualProgress(25);
+
+                Assert.That(recordingExercise.CurrentManualProgress, Is.EqualTo(125));
+            }
+        }
+
+        [Test]
+        public void When_ManualProgress_Changes_Current_Progress_Negatively_ManualProgress_Reflects_This_Correctly()
+        {
+            var recorder = new Mock<IRecorder>();
+            var speedProgress = new Mock<ISpeedProgress>();
+            var practiceTimeProgress = new Mock<IPracticeTimeProgress>();
+
+            var manualProgress = new ManualProgress(100, 100);
+
+            using (var recordingExercise = new RecordingExercise(recorder.Object, "Exercise Title", speedProgress.Object, practiceTimeProgress.Object, manualProgress))
+            {
+                recordingExercise.DecrementManualProgress(25);
+
+                Assert.That(recordingExercise.CurrentManualProgress, Is.EqualTo(75));
             }
         }
 

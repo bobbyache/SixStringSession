@@ -41,10 +41,9 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                 weighting: 100
             );
 
-            manualProgress.Increase(10);
+            var newManualProgress = manualProgress.Increase(10);
 
-            Assert.AreEqual(60, manualProgress.Value);
-            Assert.That(manualProgress.CalculateProgress(), Is.EqualTo(60));
+            Assert.That(newManualProgress.CalculateProgress(), Is.EqualTo(60));
         }
 
         [Test]
@@ -55,10 +54,9 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                 weighting: 100
             );
 
-            manualProgress.Decrease(10);
+            var newManualProgress = manualProgress.Decrease(10); manualProgress.Decrease(10);
 
-            Assert.AreEqual(40, manualProgress.Value);
-            Assert.That(manualProgress.CalculateProgress(), Is.EqualTo(40));
+            Assert.That(newManualProgress.CalculateProgress(), Is.EqualTo(40));
         }
     }
 }

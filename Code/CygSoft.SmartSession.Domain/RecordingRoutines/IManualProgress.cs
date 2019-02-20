@@ -11,7 +11,7 @@ namespace CygSoft.SmartSession.Domain.RecordingRoutines
         int Weighting { get; }
         double CalculateProgress();
 
-        void Increase(int value);
-        void Decrease(int value);
+        IManualProgress Increase(int value);
+        IManualProgress Decrease(int value);
     }
 }

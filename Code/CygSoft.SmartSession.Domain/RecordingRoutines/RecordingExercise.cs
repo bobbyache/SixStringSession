@@ -144,6 +144,17 @@ namespace CygSoft.SmartSession.Domain.RecordingRoutines
             speedProgress = speedProgress.SubtractTicks(ticks);
         }
 
+        public void IncrementManualProgress(int value)
+        {
+            manualProgress = manualProgress.Increase(value);
+        }
+
+        public void DecrementManualProgress(int value)
+        {
+            manualProgress = manualProgress.Decrease(value);
+        }
+
+
         #region Implement IDisposable
 
         private bool isDisposed = false;

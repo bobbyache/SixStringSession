@@ -22,14 +22,22 @@ namespace CygSoft.SmartSession.Domain.RecordingRoutines
             return Value;
         }
 
-        public void Decrease(int value)
+        public IManualProgress Decrease(int value)
         {
-            Value -= value;
+            var newValue = Value - value;
+            if (newValue < 0) newValue = 0;
+
+            var progress = new ManualProgress(newValue, this.Weighting);
+
+            return progress;
         }
 
-        public void Increase(int value)
+        public IManualProgress Increase(int value)
         {
-            Value += value;
+            var newValue = Value + value;
+            var progress = new ManualProgress(newValue, this.Weighting);
+
+            return progress;
         }
     }
 }
