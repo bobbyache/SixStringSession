@@ -2,7 +2,7 @@
 
 namespace CygSoft.SmartSession.Domain.Sessions
 {
-    public interface IExerciseRecorder
+    public interface IRecorder
     {
         DateTime? EndTime { get; }
         bool Recording { get; }
@@ -22,5 +22,7 @@ namespace CygSoft.SmartSession.Domain.Sessions
         void SubstractSeconds(int seconds);
         void AddMinutes(int v);
         void SubtractMinutes(int v);
+
+        void Dispose();
     }
 }

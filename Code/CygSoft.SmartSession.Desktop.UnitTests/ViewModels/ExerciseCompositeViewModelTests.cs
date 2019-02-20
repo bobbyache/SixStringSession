@@ -19,7 +19,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         [Test]
         public void ExerciseCompositeViewModel_Receives_Save_Message_From_ExerciseEditViewModel()
         {
-            var exerciseRecorder = new Mock<IExerciseRecorder>();
+            var exerciseRecorder = new Mock<IRecorder>();
             var exerciseService = new Mock<IExerciseService>();
             var dialogService = new Mock<IDialogViewService>();
 
@@ -46,7 +46,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         [Test]
         public void ExerciseCompositeViewModel_Receives_Cancel_Message_From_ExerciseEditViewModel()
         {
-            var exerciseRecorder = new Mock<IExerciseRecorder>();
+            var exerciseRecorder = new Mock<IRecorder>();
             var exerciseService = new Mock<IExerciseService>();
             var dialogService = new Mock<IDialogViewService>();
 
@@ -73,7 +73,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         [Test]
         public void ExerciseCompositeViewModel_Calls_Save_On_Service_When_Exercise_Saved_AsExisting()
         {
-            var exerciseRecorder = new Mock<IExerciseRecorder>();
+            var exerciseRecorder = new Mock<IRecorder>();
             var exerciseService = new Mock<IExerciseService>();
             var dialogService = new Mock<IDialogViewService>();
 
@@ -99,7 +99,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         [Test]
         public void ExerciseCompositeViewModel_Calls_Add_On_Service_When_Exercise_Saved_AsNew()
         {
-            var exerciseRecorder = new Mock<IExerciseRecorder>();
+            var exerciseRecorder = new Mock<IRecorder>();
             var exerciseService = new Mock<IExerciseService>();
             var dialogService = new Mock<IDialogViewService>();
 

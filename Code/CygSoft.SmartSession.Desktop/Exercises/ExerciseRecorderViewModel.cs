@@ -35,7 +35,7 @@ namespace CygSoft.SmartSession.Desktop.Exercises
 
         public string CurrentSpeedInfo { get; private set; }
 
-        protected IExerciseRecorder exerciseRecorder;
+        protected IRecorder exerciseRecorder;
 
         private IExercise exercise;
 
@@ -132,7 +132,7 @@ namespace CygSoft.SmartSession.Desktop.Exercises
             }
         }
 
-        public ExerciseRecorderViewModel(IExerciseService exerciseService, IDialogViewService dialogService, IExerciseRecorder exerciseRecorder)
+        public ExerciseRecorderViewModel(IExerciseService exerciseService, IDialogViewService dialogService, IRecorder exerciseRecorder)
         {
             this.exerciseService = exerciseService ?? throw new ArgumentNullException("Service must be provided.");
             this.dialogService = dialogService ?? throw new ArgumentNullException("Dialog service must be provided.");

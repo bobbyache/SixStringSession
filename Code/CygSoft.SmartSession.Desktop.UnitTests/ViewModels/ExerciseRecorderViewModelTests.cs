@@ -16,7 +16,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         {
             var exerciseService = new Mock<IExerciseService>();
             var dialogService = new Mock<IDialogViewService>();
-            var exerciseRecorder = new Mock<IExerciseRecorder>();
+            var exerciseRecorder = new Mock<IRecorder>();
 
             exerciseService.Setup(svc => svc.Get(It.IsAny<int>())).Returns(GetTestExercise(1));
 
@@ -31,7 +31,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         {
             var exerciseService = new Mock<IExerciseService>();
             var dialogService = new Mock<IDialogViewService>();
-            var exerciseRecorder = new ExerciseRecorder();
+            var exerciseRecorder = new Recorder();
 
             exerciseService.Setup(svc => svc.Get(It.IsAny<int>())).Returns(GetTestExercise(1));
 
@@ -54,7 +54,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         {
             var exerciseService = new Mock<IExerciseService>();
             var dialogService = new Mock<IDialogViewService>();
-            var exerciseRecorder = new Mock<IExerciseRecorder>();
+            var exerciseRecorder = new Mock<IRecorder>();
 
             exerciseService.Setup(svc => svc.Get(It.IsAny<int>())).Returns(GetTestExercise(1));
 
@@ -76,7 +76,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         {
             var exerciseService = new Mock<IExerciseService>();
             var dialogService = new Mock<IDialogViewService>();
-            var exerciseRecorder = new Mock<IExerciseRecorder>();
+            var exerciseRecorder = new Mock<IRecorder>();
             
             exerciseService.Setup(svc => svc.Get(It.IsAny<int>())).Returns(GetTestExercise(1));
 
@@ -97,7 +97,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         {
             var exerciseService = new Mock<IExerciseService>();
             var dialogService = new Mock<IDialogViewService>();
-            var exerciseRecorder = new Mock<IExerciseRecorder>();
+            var exerciseRecorder = new Mock<IRecorder>();
 
             exerciseService.Setup(svc => svc.Get(It.IsAny<int>())).Returns(GetTestExercise(1));
 
@@ -121,7 +121,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         {
             var exerciseService = new Mock<IExerciseService>();
             var dialogService = new Mock<IDialogViewService>();
-            var exerciseRecorder = new Mock<IExerciseRecorder>();
+            var exerciseRecorder = new Mock<IRecorder>();
 
             exerciseService.Setup(svc => svc.Get(It.IsAny<int>())).Returns(GetTestExercise(1));
 
@@ -145,7 +145,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         {
             var exerciseService = new Mock<IExerciseService>();
             var dialogService = new Mock<IDialogViewService>();
-            var exerciseRecorder = new ExerciseRecorder();
+            var exerciseRecorder = new Recorder();
 
             exerciseService.Setup(svc => svc.Get(It.IsAny<int>())).Returns(GetTestExercise(1));
 

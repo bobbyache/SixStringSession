@@ -6,7 +6,7 @@ using System.Timers;
 
 namespace CygSoft.SmartSession.Domain.Sessions
 {
-    public class ExerciseRecorder : IExerciseRecorder
+    public class Recorder : IRecorder, IDisposable
     {
         internal class RecordingSlice
         {
@@ -73,7 +73,7 @@ namespace CygSoft.SmartSession.Domain.Sessions
 
         public string DisplayTime { get => TimeFuncs.DisplayTimeFromSeconds(Seconds); }
 
-        public ExerciseRecorder()
+        public Recorder()
         {
             timer.Interval = 1000;
             recorderPauseTime = null;
@@ -179,5 +179,35 @@ namespace CygSoft.SmartSession.Domain.Sessions
                 tickActionFunc?.Invoke();
             }
         }
+
+        #region Implement IDisposable
+
+        private bool isDisposed = false;
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            // make sure we have not already been disposed!
+            if (!isDisposed)
+            {
+                if (disposing)
+                {
+                    timer.Dispose();
+                }
+            }
+            isDisposed = true;
+        }
+
+        ~Recorder()
+        {
+            Dispose(false);
+        }
+
+        #endregion
     }
 }
