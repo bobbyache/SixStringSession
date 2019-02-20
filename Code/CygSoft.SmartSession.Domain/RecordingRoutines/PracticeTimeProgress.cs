@@ -30,24 +30,40 @@ namespace CygSoft.SmartSession.Domain.RecordingRoutines
             return percentComplete > 100 ? 100 : percentComplete;
         }
 
-        public void AddMinutes(int minutes)
+        public IPracticeTimeProgress AddMinutes(int minutes)
         {
-            CurrentTime += minutes * 60;
+            var addedTime = CurrentTime + (minutes * 60);
+            var progress = new PracticeTimeProgress(addedTime, this.TargetTime, this.Weighting);
+
+            return progress;
         }
 
-        public void AddSeconds(int seconds)
+        public IPracticeTimeProgress AddSeconds(int seconds)
         {
-            CurrentTime += seconds;
+            var addedTime = CurrentTime + seconds;
+            var progress = new PracticeTimeProgress(addedTime, this.TargetTime, this.Weighting);
+
+            return progress;
         }
 
-        public void SubstractSeconds(int seconds)
+        public IPracticeTimeProgress SubstractSeconds(int seconds)
         {
-            CurrentTime -= seconds;
+            var time = CurrentTime - seconds;
+            if (time < 0) time = 0;
+
+            var progress = new PracticeTimeProgress(time, this.TargetTime, this.Weighting);
+
+            return progress;
         }
 
-        public void SubtractMinutes(int minutes)
+        public IPracticeTimeProgress SubtractMinutes(int minutes)
         {
-            CurrentTime -= minutes * 60;
+            var time = CurrentTime - (minutes * 60);
+            if (time < 0) time = 0;
+
+            var progress = new PracticeTimeProgress(time, this.TargetTime, this.Weighting);
+
+            return progress;
         }
     }
 }

@@ -43,7 +43,7 @@ namespace CygSoft.SmartSession.Domain.Sessions
 
         public event EventHandler RecordingStatusChanged;
 
-        public double Seconds
+        public double PreciseSeconds
         {
             get
             {
@@ -71,7 +71,9 @@ namespace CygSoft.SmartSession.Domain.Sessions
         public DateTime? StartTime { get; private set; }
         public DateTime? EndTime { get; private set; }
 
-        public string DisplayTime { get => TimeFuncs.DisplayTimeFromSeconds(Seconds); }
+        public string DisplayTime { get => TimeFuncs.DisplayTimeFromSeconds(PreciseSeconds); }
+
+        public int Seconds { get => (int)Math.Round(PreciseSeconds, 0); }
 
         public Recorder()
         {

@@ -16,7 +16,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         {
             IRecorder exerciseRecorder = new TestExcerciseRecorder(30);
             exerciseRecorder.AddMinutes(1);
-            Assert.AreEqual(60, exerciseRecorder.Seconds);
+            Assert.AreEqual(60, exerciseRecorder.PreciseSeconds);
         }
 
         [Test]
@@ -24,7 +24,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         {
             IRecorder exerciseRecorder = new TestExcerciseRecorder(60);
             exerciseRecorder.AddMinutes(2);
-            Assert.AreEqual(180, exerciseRecorder.Seconds);
+            Assert.AreEqual(180, exerciseRecorder.PreciseSeconds);
         }
 
         [Test]
@@ -32,7 +32,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         {
             IRecorder exerciseRecorder = new TestExcerciseRecorder(110);
             exerciseRecorder.AddMinutes(2);
-            Assert.AreEqual(180, exerciseRecorder.Seconds);
+            Assert.AreEqual(180, exerciseRecorder.PreciseSeconds);
         }
 
         [Test]
@@ -43,7 +43,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             exerciseRecorder.AddMinutes(2);
             exerciseRecorder.Pause();
 
-            Assert.That(exerciseRecorder.Seconds, Is.InRange(110, 112));
+            Assert.That(exerciseRecorder.PreciseSeconds, Is.InRange(110, 112));
         }
 
         [Test]
@@ -51,7 +51,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         {
             IRecorder exerciseRecorder = new TestExcerciseRecorder(30);
             exerciseRecorder.AddMinutes(0);
-            Assert.AreEqual(30, exerciseRecorder.Seconds);
+            Assert.AreEqual(30, exerciseRecorder.PreciseSeconds);
         }
 
         [Test]
@@ -59,7 +59,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         {
             IRecorder exerciseRecorder = new TestExcerciseRecorder(20);
             exerciseRecorder.SubtractMinutes(1);
-            Assert.AreEqual(0, exerciseRecorder.Seconds);
+            Assert.AreEqual(0, exerciseRecorder.PreciseSeconds);
         }
 
         [Test]
@@ -67,7 +67,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         {
             IRecorder exerciseRecorder = new TestExcerciseRecorder(140);
             exerciseRecorder.SubtractMinutes(1);
-            Assert.AreEqual(120, exerciseRecorder.Seconds);
+            Assert.AreEqual(120, exerciseRecorder.PreciseSeconds);
         }
 
         [Test]
@@ -75,7 +75,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         {
             IRecorder exerciseRecorder = new TestExcerciseRecorder(340);
             exerciseRecorder.SubtractMinutes(3);
-            Assert.AreEqual(180, exerciseRecorder.Seconds);
+            Assert.AreEqual(180, exerciseRecorder.PreciseSeconds);
         }
 
 
@@ -84,7 +84,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         {
             IRecorder exerciseRecorder = new TestExcerciseRecorder(340.3);
             exerciseRecorder.SubtractMinutes(3);
-            Assert.AreEqual(180, exerciseRecorder.Seconds);
+            Assert.AreEqual(180, exerciseRecorder.PreciseSeconds);
         }
 
         [Test]
@@ -92,7 +92,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         {
             IRecorder exerciseRecorder = new TestExcerciseRecorder(110.3);
             exerciseRecorder.AddMinutes(2);
-            Assert.AreEqual(180, exerciseRecorder.Seconds);
+            Assert.AreEqual(180, exerciseRecorder.PreciseSeconds);
         }
 
         [Test]
@@ -103,7 +103,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             exerciseRecorder.SubtractMinutes(2);
             exerciseRecorder.Pause();
 
-            Assert.That(exerciseRecorder.Seconds, Is.InRange(110, 112));
+            Assert.That(exerciseRecorder.PreciseSeconds, Is.InRange(110, 112));
         }
 
         [Test]

@@ -371,7 +371,7 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
 
         private void TickTock()
         {
-            Seconds = exerciseRecorder.Seconds;
+            Seconds = exerciseRecorder.PreciseSeconds;
             DisplayTime = exerciseRecorder.DisplayTime;
         }
 

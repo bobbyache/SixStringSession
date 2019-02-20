@@ -6,7 +6,8 @@ namespace CygSoft.SmartSession.Domain.Sessions
     {
         DateTime? EndTime { get; }
         bool Recording { get; }
-        double Seconds { get; }
+        double PreciseSeconds { get; }
+        int Seconds { get; }
         DateTime? StartTime { get; }
         Action TickActionCallBack { set; }
 

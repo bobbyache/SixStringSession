@@ -158,7 +158,7 @@ namespace CygSoft.SmartSession.Desktop.Exercises
 
         private bool CanExecuteSaveCommand()
         {
-            var recordingStateValid = exerciseRecorder.Seconds > 0 && !exerciseRecorder.Recording;
+            var recordingStateValid = exerciseRecorder.PreciseSeconds > 0 && !exerciseRecorder.Recording;
             var speedMetricsStateValid = MetronomeSpeed >= 0;
 
             return recordingStateValid && speedMetricsStateValid;
@@ -190,7 +190,7 @@ namespace CygSoft.SmartSession.Desktop.Exercises
 
         private void Elapsed()
         {
-            this.ActivityRecordedDisplayTime = DisplayTime(exerciseRecorder.Seconds);
+            this.ActivityRecordedDisplayTime = DisplayTime(exerciseRecorder.PreciseSeconds);
         }
 
         private string DisplayTime(double seconds)
@@ -235,7 +235,7 @@ namespace CygSoft.SmartSession.Desktop.Exercises
 
         private void SaveRecording()
         {
-            var exerciseActivity = exerciseService.CreateExerciseActivity(MetronomeSpeed, (int)exerciseRecorder.Seconds, ManualProgress, 
+            var exerciseActivity = exerciseService.CreateExerciseActivity(MetronomeSpeed, (int)exerciseRecorder.PreciseSeconds, ManualProgress, 
                 exerciseRecorder.StartTime.Value, exerciseRecorder.EndTime.Value);
             exercise.ExerciseActivity.Add(exerciseActivity);
 

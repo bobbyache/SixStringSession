@@ -44,7 +44,7 @@ namespace CygSoft.SmartSession.Domain.RecordingRoutines
 
         public bool Recording { get => recorder.Recording; }
 
-        public double RecordedSeconds { get => recorder.Seconds; }
+        public double RecordedSeconds { get => recorder.PreciseSeconds; }
 
         public Action TickActionCallBack { set => recorder.TickActionCallBack = value; }
 
@@ -54,11 +54,25 @@ namespace CygSoft.SmartSession.Domain.RecordingRoutines
 
         public int? CurrentSpeed { get => speedProgress.CurrentSpeed; }
 
-        public int CurrentTotalSeconds { get => practiceTimeProgress.CurrentTime; }
+        public int CurrentTotalSeconds //{ get =>  practiceTimeProgress.CurrentTime + recorder.Seconds; }
+        {
+            get
+            {
+                var timeProgress = practiceTimeProgress.AddSeconds(recorder.Seconds);
+                return timeProgress.CurrentTime;
+            }
+        }
 
         public double CurrentManualProgress { get => manualProgress.CalculateProgress(); }
 
-        public double CurrentTimeProgress { get => practiceTimeProgress.CalculateProgress(); }
+        public double CurrentTimeProgress
+        {
+            get
+            {
+                var timeProgress = practiceTimeProgress.AddSeconds(recorder.Seconds);
+                return timeProgress.CalculateProgress();
+            }
+        }
 
         public double CurrentSpeedProgress { get => speedProgress.CalculateProgress(); }
 

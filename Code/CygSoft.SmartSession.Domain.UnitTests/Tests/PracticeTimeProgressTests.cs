@@ -69,10 +69,10 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                 weighting: 100
             );
 
-            practiceTimeProgress.AddSeconds(150);
+            var newPracticeTimeProgress = practiceTimeProgress.AddSeconds(150);
 
-            Assert.AreEqual(450, practiceTimeProgress.CurrentTime);
-            Assert.That(practiceTimeProgress.CalculateProgress(), Is.EqualTo(75));
+            Assert.AreEqual(450, newPracticeTimeProgress.CurrentTime);
+            Assert.That(newPracticeTimeProgress.CalculateProgress(), Is.EqualTo(75));
         }
 
         [Test]
@@ -84,10 +84,10 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                 weighting: 100
             );
 
-            practiceTimeProgress.SubstractSeconds(150);
+            var newPracticeTimeProgress = practiceTimeProgress.SubstractSeconds(150);
 
-            Assert.AreEqual(150, practiceTimeProgress.CurrentTime);
-            Assert.That(practiceTimeProgress.CalculateProgress(), Is.EqualTo(25));
+            Assert.AreEqual(150, newPracticeTimeProgress.CurrentTime);
+            Assert.That(newPracticeTimeProgress.CalculateProgress(), Is.EqualTo(25));
         }
 
         [Test]
@@ -99,10 +99,10 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                 weighting: 100
             );
 
-            practiceTimeProgress.AddMinutes(5);
+            var newPracticeTimeProgress = practiceTimeProgress.AddMinutes(5);
 
-            Assert.AreEqual(600, practiceTimeProgress.CurrentTime);
-            Assert.That(practiceTimeProgress.CalculateProgress(), Is.EqualTo(100));
+            Assert.AreEqual(600, newPracticeTimeProgress.CurrentTime);
+            Assert.That(newPracticeTimeProgress.CalculateProgress(), Is.EqualTo(100));
         }
 
         [Test]
@@ -114,10 +114,10 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                 weighting: 100
             );
 
-            practiceTimeProgress.SubtractMinutes(1);
+            var newPracticeTimeProgress = practiceTimeProgress.SubtractMinutes(1);
 
-            Assert.AreEqual(240, practiceTimeProgress.CurrentTime);
-            Assert.That(practiceTimeProgress.CalculateProgress(), Is.EqualTo(40));
+            Assert.AreEqual(240, newPracticeTimeProgress.CurrentTime);
+            Assert.That(newPracticeTimeProgress.CalculateProgress(), Is.EqualTo(40));
         }
     }
 }
