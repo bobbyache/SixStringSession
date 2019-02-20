@@ -8,7 +8,7 @@ namespace CygSoft.SmartSession.Domain.RecordingRoutines
 {
     public interface IManualProgress
     {
-        double Weighting { get; }
+        int Weighting { get; }
         double CalculateProgress();
 
         void Increase(int value);

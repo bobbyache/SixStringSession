@@ -1,4 +1,5 @@
-﻿using CygSoft.SmartSession.Domain.Sessions;
+﻿using CygSoft.SmartSession.Domain.Common;
+using CygSoft.SmartSession.Domain.Sessions;
 using CygSoft.SmartSession.Infrastructure;
 using System;
 
@@ -6,11 +7,24 @@ namespace CygSoft.SmartSession.Domain.RecordingRoutines
 {
     public class RecordingExercise : IRecordingExercise, IDisposable
     {
-        private IRecorder recorder;
+        private class WeightedMetric : IWeightedEntity
+        {
+            private readonly double percentCompleted;
 
-        protected int speedProgressWeighting;
-        protected int practiceTimeProgressWeighting;
-        protected int manualProgressWeighting;
+            public WeightedMetric(double percentComplete, int weighting)
+            {
+                percentCompleted = percentComplete;
+                Weighting = weighting;
+            }
+            public int Weighting { get; private set; }
+
+            public double PercentCompleted()
+            {
+                return percentCompleted;
+            }
+        }
+
+        private IRecorder recorder;
 
         protected ISpeedProgress speedProgress;
         protected IPracticeTimeProgress practiceTimeProgress;
@@ -48,7 +62,18 @@ namespace CygSoft.SmartSession.Domain.RecordingRoutines
 
         public double CurrentSpeedProgress { get => speedProgress.CalculateProgress(); }
 
-        public double CurrentOverAllProgress => throw new NotImplementedException();
+        public double CurrentOverAllProgress
+        {
+            get
+            {
+                var calculator = new WeightedProgressCalculator();
+                calculator.Add(new WeightedMetric(manualProgress.CalculateProgress(), manualProgress.Weighting));
+                calculator.Add(new WeightedMetric(speedProgress.CalculateProgress(), speedProgress.Weighting));
+                calculator.Add(new WeightedMetric(practiceTimeProgress.CalculateProgress(), practiceTimeProgress.Weighting));
+
+                return calculator.CalculateTotalProgress();
+            }
+        }
 
         public string TotalSecondsDisplay { get => TimeFuncs.DisplayTimeFromSeconds(CurrentTotalSeconds); }
 

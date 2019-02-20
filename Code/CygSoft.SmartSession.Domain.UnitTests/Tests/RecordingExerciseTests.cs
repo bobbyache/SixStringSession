@@ -465,6 +465,29 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             }
         }
 
+        [Test]
+        public void WeightedProgressCalculator_CalculateTotalProgress_Test_1()
+        {
+            var recorder = new TestRecorder(300);
+
+            var speedProgress = new Mock<ISpeedProgress>();
+            speedProgress.Setup(obj => obj.CalculateProgress()).Returns(25);
+            speedProgress.Setup(obj => obj.Weighting).Returns(6000);
+
+            var practiceTimeProgress = new Mock<IPracticeTimeProgress>();
+            practiceTimeProgress.Setup(obj => obj.CalculateProgress()).Returns(100);
+            practiceTimeProgress.Setup(obj => obj.Weighting).Returns(6000);
+
+            var manualProgress = new Mock<IManualProgress>();
+            manualProgress.Setup(obj => obj.CalculateProgress()).Returns(60);
+            manualProgress.Setup(obj => obj.Weighting).Returns(12000);
+
+            using (var recordingExercise = new RecordingExercise(recorder, "Exercise Title", speedProgress.Object, practiceTimeProgress.Object, manualProgress.Object))
+            {
+                Assert.That(recordingExercise.CurrentOverAllProgress, Is.EqualTo(61.25));
+            }
+        }
+
         public class TestRecorder : Recorder
         {
             public TestRecorder(double initialSeconds) : base()
