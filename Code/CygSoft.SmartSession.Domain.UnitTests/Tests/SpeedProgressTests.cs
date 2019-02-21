@@ -106,6 +106,21 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         }
 
         [Test]
+        public void When_Ticks_OverTargetSpeed_Added_CalculateProgress_Works_As_Expected()
+        {
+            var speedProgress = new SpeedProgress(
+                initialSpeed: 100,
+                currentSpeed: 125,
+                targetSpeed: 200,
+                weighting: 100
+            );
+
+            var newSpeedProgress = speedProgress.AddTicks(100);
+
+            Assert.That(newSpeedProgress.CalculateProgress(), Is.EqualTo(100));
+        }
+
+        [Test]
         public void When_Ticks_Subtracted_CalculateProgress_Works_As_Expected()
         {
             var speedProgress = new SpeedProgress(
@@ -119,6 +134,21 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
 
             Assert.AreEqual(125, newSpeedProgress.CurrentSpeed);
             Assert.That(newSpeedProgress.CalculateProgress(), Is.EqualTo(25));
+        }
+
+        [Test]
+        public void When_Ticks_Subtracted_GoBelowZero_CalculateProgress_Works_As_Expected()
+        {
+            var speedProgress = new SpeedProgress(
+                initialSpeed: 100,
+                currentSpeed: 125,
+                targetSpeed: 200,
+                weighting: 100
+            );
+
+            var newSpeedProgress = speedProgress.SubtractTicks(150);
+
+            Assert.That(newSpeedProgress.CalculateProgress(), Is.EqualTo(0));
         }
     }
 }
