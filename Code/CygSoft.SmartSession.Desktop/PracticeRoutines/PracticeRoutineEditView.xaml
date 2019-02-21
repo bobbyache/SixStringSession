@@ -24,91 +24,141 @@
         </Style>
         <converters:StarWidthConverter x:Key="StarWidthConverter"/>
     </UserControl.Resources>
-    <DockPanel LastChildFill="True">
-        <StackPanel DockPanel.Dock="Top" Margin="0,0,0,5">
+    <Grid Name="gridMain">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="26" />
+            <RowDefinition Height="80" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="40" />
+        </Grid.RowDefinitions>
+
+        <ToolBar Grid.Row="0" Height="30" VerticalAlignment="Stretch" HorizontalAlignment="Left">
+            <Button MinWidth="30" Height="30" Content="Add Time Slot" Command="{Binding AddRoutineTimeSlotCommand}" />
+            <Button MinWidth="30" Height="30" Content="Delete Time Slot" Command="{Binding DeleteRoutineTimeSlotCommand}" />
+            <Button MinWidth="30" Height="30" Content="Add Exercise" Command="{Binding AddExerciseCommand}" />
+            <Button MinWidth="30" Height="30" Content="Delete Exercise" Command="{Binding DeleteExerciseCommand}" />
+        </ToolBar>
+
+        <StackPanel Grid.Row="1" DockPanel.Dock="Top" Margin="0,0,0,5">
             <TextBlock Text="Title:" Margin="5"></TextBlock>
             <TextBox Margin="5" Text="{Binding Title, ValidatesOnNotifyDataErrors=True}"></TextBox>
+            <TextBlock MinWidth="20" HorizontalAlignment="Center" Margin="5" Text="{Binding DisplayTime, Mode=OneWay}"></TextBlock>
         </StackPanel>
-        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right">
+
+
+        <Grid Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="5" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="200" />
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Column="0" Background="GhostWhite" BorderBrush="Gainsboro" BorderThickness="1" Padding="5" Margin="5">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock TextAlignment="Left" Margin="2" MinWidth="50" >Routine Time Slot</TextBlock>
+                    <TextBox   TextWrapping="Wrap"  AcceptsReturn="True" VerticalScrollBarVisibility="Visible" HorizontalAlignment="Stretch"  MinHeight="100" Text="{Binding Selct}" />
+                </StackPanel>
+            </Border>
+            
+            <ListView Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                  ItemsSource="{Binding Prac}" DockPanel.Dock="Bottom"
+                  SelectionMode="Extended"
+                  SelectedItem="{Binding Selecte}">
+                <ListBox.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Placeholder Menu Item"
+                    />
+                    </ContextMenu>
+                </ListBox.ContextMenu>
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Width="500" Header="Title" DisplayMemberBinding="{Binding Title}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <GridSplitter Grid.Column="2" Background="DarkGray"  ResizeDirection="Columns"  
+                  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                  ResizeBehavior="PreviousAndNext" />
+
+            <ListView Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                  ItemsSource="{Binding PracticeRoutineExercises}" DockPanel.Dock="Bottom"
+                  SelectionMode="Extended"
+                  SelectedItem="{Binding SelectedPracticeRoutineExercise}">
+                <ListBox.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Placeholder Menu Item"
+                    />
+                    </ContextMenu>
+                </ListBox.ContextMenu>
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Width="500" Header="Title" DisplayMemberBinding="{Binding Title}"/>
+                        <GridViewColumn Width="60" Header="Minutes" DisplayMemberBinding="{Binding Minutes}" />
+                        <GridViewColumn Width="100" Header="Difficulty">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Grid Width="80" Height="16">
+                                        <Rectangle Opacity=".1" Fill="{DynamicResource FiveStars}" />
+                                        <Rectangle Fill="{DynamicResource FiveStars}">
+                                            <Rectangle.Clip>
+                                                <RectangleGeometry Rect="{Binding DifficultyRating, Converter={StaticResource StarWidthConverter}}" />
+                                            </Rectangle.Clip>
+                                        </Rectangle>
+                                    </Grid>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Width="100" Header="Practicality">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Grid Width="80" Height="16">
+                                        <Rectangle Opacity=".1" Fill="{DynamicResource FiveStars}" />
+                                        <Rectangle Fill="{DynamicResource FiveStars}">
+                                            <Rectangle.Clip>
+                                                <RectangleGeometry Rect="{Binding PracticalityRating, Converter={StaticResource StarWidthConverter}}" />
+                                            </Rectangle.Clip>
+                                        </Rectangle>
+                                    </Grid>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <Border Grid.Column="4" Background="GhostWhite" BorderBrush="Gainsboro" BorderThickness="1" Padding="5" Margin="5">
+                <StackPanel>
+                    <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock TextAlignment="Right" Margin="2" MinWidth="50" >Minutes</TextBlock>
+                                <TextBox x:Name="MinutesTextBox" Margin="2" MinWidth="50" Text="{Binding SelectedPracticeRoutineExercise.Minutes}" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock TextAlignment="Right" Margin="2" MinWidth="50" >Difficulty</TextBlock>
+                                <Slider Margin="5" MinWidth="100" MaxWidth="200" Maximum="5" TickFrequency="1" 
+                                Value="{Binding SelectedPracticeRoutineExercise.DifficultyRating, ValidatesOnNotifyDataErrors=True}"
+                                TickPlacement="BottomRight" IsSnapToTickEnabled="True"></Slider>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock TextAlignment="Right" Margin="2" MinWidth="50" >Practicality</TextBlock>
+                                <Slider Margin="5" MinWidth="100" MaxWidth="200" Maximum="5" TickFrequency="1" 
+                                Value="{Binding SelectedPracticeRoutineExercise.PracticalityRating, ValidatesOnNotifyDataErrors=True}"
+                                TickPlacement="BottomRight" IsSnapToTickEnabled="True"></Slider>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </Grid>
+
+        <StackPanel Grid.Row="3" DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button Content="Save" Margin="5" MinWidth="50" MaxHeight="35" Command="{Binding SaveCommand}" />
             <Button Content="Cancel" Margin="5" MinWidth="50" MaxHeight="35" Command="{Binding CancelCommand}" />
         </StackPanel>
-        <Border DockPanel.Dock="Bottom"  Background="GhostWhite" BorderBrush="Gainsboro" BorderThickness="1" Padding="5" Margin="5">
-            <StackPanel>
-                <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
-                    <StackPanel Orientation="Vertical">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock TextAlignment="Right" Margin="2" MinWidth="50" >Minutes</TextBlock>
-                            <TextBox x:Name="MinutesTextBox" Margin="2" MinWidth="50" Text="{Binding SelectedPracticeRoutineExercise.Minutes}" />
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock TextAlignment="Right" Margin="2" MinWidth="50" >Difficulty</TextBlock>
-                            <Slider Margin="5" MinWidth="100" MaxWidth="200" Maximum="5" TickFrequency="1" 
-                                Value="{Binding SelectedPracticeRoutineExercise.DifficultyRating, ValidatesOnNotifyDataErrors=True}"
-                                TickPlacement="BottomRight" IsSnapToTickEnabled="True"></Slider>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock TextAlignment="Right" Margin="2" MinWidth="50" >Practicality</TextBlock>
-                            <Slider Margin="5" MinWidth="100" MaxWidth="200" Maximum="5" TickFrequency="1" 
-                                Value="{Binding SelectedPracticeRoutineExercise.PracticalityRating, ValidatesOnNotifyDataErrors=True}"
-                                TickPlacement="BottomRight" IsSnapToTickEnabled="True"></Slider>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock MinWidth="20" HorizontalAlignment="Center" Margin="15" Text="{Binding DisplayTime, Mode=OneWay}"></TextBlock>
-                        </StackPanel>
-                        
-                    </StackPanel>
-                </StackPanel>
-            </StackPanel>
-        </Border>
-        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button Content="Add" Margin="5" MinWidth="50" MaxHeight="35" Command="{Binding AddExerciseCommand}" />
-            <Button Content="Delete" Margin="5" MinWidth="50" MaxHeight="35" Command="{Binding DeleteExerciseCommand}" />
-        </StackPanel>
-        <ListView ItemsSource="{Binding PracticeRoutineExercises}" DockPanel.Dock="Bottom"  Grid.Row="1" 
-                  SelectionMode="Extended"
-                  SelectedItem="{Binding SelectedPracticeRoutineExercise}"
-                  >
-            <ListBox.ContextMenu>
-                <ContextMenu>
-                    <MenuItem Header="Placeholder Menu Item"
-                    />
-                </ContextMenu>
-            </ListBox.ContextMenu>
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Width="500" Header="Title" DisplayMemberBinding="{Binding Title}"/>
-                    <GridViewColumn Width="60" Header="Minutes" DisplayMemberBinding="{Binding Minutes}" />
-                    <GridViewColumn Width="100" Header="Difficulty">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <Grid Width="80" Height="16">
-                                    <Rectangle Opacity=".1" Fill="{DynamicResource FiveStars}" />
-                                    <Rectangle Fill="{DynamicResource FiveStars}">
-                                        <Rectangle.Clip>
-                                            <RectangleGeometry Rect="{Binding DifficultyRating, Converter={StaticResource StarWidthConverter}}" />
-                                        </Rectangle.Clip>
-                                    </Rectangle>
-                                </Grid>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Width="100" Header="Practicality">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <Grid Width="80" Height="16">
-                                    <Rectangle Opacity=".1" Fill="{DynamicResource FiveStars}" />
-                                    <Rectangle Fill="{DynamicResource FiveStars}">
-                                        <Rectangle.Clip>
-                                            <RectangleGeometry Rect="{Binding PracticalityRating, Converter={StaticResource StarWidthConverter}}" />
-                                        </Rectangle.Clip>
-                                    </Rectangle>
-                                </Grid>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                </GridView>
-            </ListView.View>
-        </ListView>
-    </DockPanel>
+    </Grid>
 </UserControl>

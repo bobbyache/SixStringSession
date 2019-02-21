@@ -45,6 +45,36 @@ CREATE TABLE IF NOT EXISTS `practiceroutine` (
   PRIMARY KEY (`Id`)
 );
 
+CREATE TABLE IF NOT EXISTS `timeslot` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `Title` varchar(255) NOT NULL,
+  `AssignedPracticeTime` int(11) NOT NULL,
+  `DateCreated` datetime NOT NULL,
+  `DateModified` datetime NULL,
+  PRIMARY KEY (`Id`)
+);
+
+CREATE TABLE IF NOT EXISTS `practiceroutinetimeslot` (
+  `PracticeRoutineId` int(11) NOT NULL,
+  `TimeSlotId` int(11) NOT NULL,
+  `DateCreated` datetime NOT NULL,
+  `DateModified` datetime NULL,
+  PRIMARY KEY (`PracticeRoutineId`, `TimeSlotId`),
+  CONSTRAINT `fk_exerciseroutine_timeslot` FOREIGN KEY (`TimeSlotId`) REFERENCES `timeslot` (`Id`)
+);
+
+CREATE TABLE IF NOT EXISTS `timeslotexercise` (
+  `TimeSlotId` int(11) NOT NULL,
+  `ExerciseId` int(11) NOT NULL,
+  `DifficultyRating` int(11) NOT NULL,
+  `PracticalityRating` int(11)  NOT NULL,
+  `DateCreated` datetime NOT NULL,
+  `DateModified` datetime NULL,
+  PRIMARY KEY (`TimeSlotId`, `ExerciseId`),
+  CONSTRAINT `fk_timeslotexercise_exercise` FOREIGN KEY (`ExerciseId`) REFERENCES `exercise` (`Id`),
+  CONSTRAINT `fk_timeslotexercise_timeslot` FOREIGN KEY (`TimeSlotId`) REFERENCES `timeslot` (`Id`)
+);
+
 CREATE TABLE IF NOT EXISTS `practiceroutineexercise` (
   `PracticeRoutineId` int(11) NOT NULL,
   `ExerciseId` int(11) NOT NULL,
