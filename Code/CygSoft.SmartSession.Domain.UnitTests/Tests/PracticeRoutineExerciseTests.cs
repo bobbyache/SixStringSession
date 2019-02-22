@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
+namespace CygSoft.SmartSession.Domain.UnitTests.Tests
 {
     [TestFixture]
     public class PracticeRoutineExerciseTests

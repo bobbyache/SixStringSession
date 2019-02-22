@@ -5,7 +5,7 @@ using System;
 
 namespace CygSoft.SmartSession.Domain.RecordingRoutines
 {
-    public class RecordingExercise : IRecordingExercise, IDisposable
+    public class ExerciseRecorder : IExerciseRecorder, IDisposable
     {
         private class WeightedMetric : IWeightedEntity
         {
@@ -30,7 +30,7 @@ namespace CygSoft.SmartSession.Domain.RecordingRoutines
         protected IPracticeTimeProgress practiceTimeProgress;
         protected IManualProgress manualProgress;
 
-        public RecordingExercise(IRecorder recorder, string title, 
+        public ExerciseRecorder(IRecorder recorder, string title, 
             ISpeedProgress speedProgress, IPracticeTimeProgress practiceTimeProgress, IManualProgress manualProgress)
         {
             Title = title;
@@ -179,7 +179,7 @@ namespace CygSoft.SmartSession.Domain.RecordingRoutines
             isDisposed = true;
         }
 
-        ~RecordingExercise()
+        ~ExerciseRecorder()
         {
             Dispose(false);
         }

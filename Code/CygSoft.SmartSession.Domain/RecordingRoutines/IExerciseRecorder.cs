@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CygSoft.SmartSession.Domain.RecordingRoutines
 {
-    public interface IRecordingExercise
+    public interface IExerciseRecorder
     {
         string Title { get; }
 

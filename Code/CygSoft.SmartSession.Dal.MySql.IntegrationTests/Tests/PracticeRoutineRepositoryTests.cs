@@ -21,7 +21,7 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
         public void PracticeRoutineRepository_Find_PracticeRoutine_With_Specific_Title_Gets_Applicable_Recs()
         {
             Funcs.RunScript("delete-all-records.sql", Settings.AppConnectionString);
-            Funcs.RunScript("test-data.sql", Settings.AppConnectionString);
+            Funcs.RunScript("test-data-practiceroutines.sql", Settings.AppConnectionString);
 
             using (var uow = new UnitOfWork(Settings.AppConnectionString))
             {

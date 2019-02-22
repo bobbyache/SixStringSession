@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace CygSoft.SmartSession.Domain.RecordingRoutines
 {
-  public class RecordingRoutine
+  public class RoutineRecorder
   {
-        IEnumerable<IRecordingExercise> recordingExercises;
+        IEnumerable<IExerciseRecorder> recordingExercises;
 
         public string Title { get; private set; }
         public int Id { get; private set; }
@@ -17,12 +17,12 @@ namespace CygSoft.SmartSession.Domain.RecordingRoutines
         public double RecordedSeconds { get => recordingExercises.Sum(ex => ex.RecordedSeconds); }
         public string RecordedSecondsDisplay { get => TimeFuncs.DisplayTimeFromSeconds(RecordedSeconds); }
 
-        public RecordingRoutine(string title, IEnumerable<IRecordingExercise> recordingExercises) 
+        public RoutineRecorder(string title, IEnumerable<IExerciseRecorder> recordingExercises) 
             : this(0, title, recordingExercises)
         {
         }
 
-        public RecordingRoutine(int id, string title, IEnumerable<IRecordingExercise> recordingExercises)
+        public RoutineRecorder(int id, string title, IEnumerable<IExerciseRecorder> recordingExercises)
         {
             Id = id;
             Title = title;
