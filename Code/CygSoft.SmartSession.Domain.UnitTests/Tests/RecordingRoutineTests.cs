@@ -44,9 +44,9 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                 ex3.Object
             };
 
-            PracticeRoutineRecorder recordingRoutine = new PracticeRoutineRecorder("Recording Routine", exercises);
-            Assert.That(recordingRoutine.RecordedSeconds, Is.EqualTo(900));
-            Assert.That(recordingRoutine.RecordedSecondsDisplay, Is.EqualTo("00:15:00"));
+            PracticeRoutineRecorder practiceRoutineRecorder = new PracticeRoutineRecorder("Recording Routine", exercises);
+            Assert.That(practiceRoutineRecorder.RecordedSeconds, Is.EqualTo(900));
+            Assert.That(practiceRoutineRecorder.RecordedSecondsDisplay, Is.EqualTo("00:15:00"));
         }
     }
 }

@@ -22,7 +22,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             var practiceTimeProgress = new Mock<IPracticeTimeProgress>();
             var manualProgress = new Mock<IManualProgress>();
 
-            using (var recordingExercise = new ExerciseRecorder(recorderMock, "Exercise Title", speedProgress.Object, practiceTimeProgress.Object, manualProgress.Object)) { /* some operation */ }
+            using (var exerciseRecorder = new ExerciseRecorder(recorderMock, "Exercise Title", speedProgress.Object, practiceTimeProgress.Object, manualProgress.Object)) { /* some operation */ }
 
             recorder.Verify(mock => mock.Dispose(), Times.Once());
         }
@@ -40,11 +40,11 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             recorder.Setup(mock => mock.PreciseSeconds).Returns(300);
             recorder.Setup(mock => mock.DisplayTime).Returns("00:05:00");
 
-            using (var recordingExercise = new ExerciseRecorder(recorderMock, "Exercise Title", speedProgress.Object, practiceTimeProgress.Object, manualProgress.Object))
+            using (var exerciseRecorder = new ExerciseRecorder(recorderMock, "Exercise Title", speedProgress.Object, practiceTimeProgress.Object, manualProgress.Object))
             {
-                Assert.That(recordingExercise.Recording, Is.EqualTo(recorderMock.Recording));
-                Assert.That(recordingExercise.RecordedSeconds, Is.EqualTo(recorderMock.PreciseSeconds));
-                Assert.That(recordingExercise.RecordedSecondsDisplay, Is.EqualTo(recorderMock.DisplayTime));
+                Assert.That(exerciseRecorder.Recording, Is.EqualTo(recorderMock.Recording));
+                Assert.That(exerciseRecorder.RecordedSeconds, Is.EqualTo(recorderMock.PreciseSeconds));
+                Assert.That(exerciseRecorder.RecordedSecondsDisplay, Is.EqualTo(recorderMock.DisplayTime));
             }
         }
 
@@ -56,17 +56,17 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             var practiceTimeProgress = new Mock<IPracticeTimeProgress>();
             var manualProgress = new Mock<IManualProgress>();
 
-            using (var recordingExercise = new ExerciseRecorder(recorder, "Exercise Title", speedProgress.Object, practiceTimeProgress.Object, manualProgress.Object))
+            using (var exerciseRecorder = new ExerciseRecorder(recorder, "Exercise Title", speedProgress.Object, practiceTimeProgress.Object, manualProgress.Object))
             {
                 recorder.Resume();
-                var isRecording = recordingExercise.Recording;
+                var isRecording = exerciseRecorder.Recording;
 
                 recorder.Pause();
-                var isPaused = !recordingExercise.Recording;
+                var isPaused = !exerciseRecorder.Recording;
 
                 recorder.Resume();
                 recorder.Reset();
-                var isReset = !recordingExercise.Recording;
+                var isReset = !exerciseRecorder.Recording;
 
                 Assert.IsTrue(isRecording);
                 Assert.IsTrue(isPaused);
@@ -82,10 +82,10 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             var practiceTimeProgress = new Mock<IPracticeTimeProgress>();
             var manualProgress = new Mock<IManualProgress>();
 
-            using (var recordingExercise = new ExerciseRecorder(recorder, "Exercise Title", speedProgress.Object, practiceTimeProgress.Object, manualProgress.Object))
+            using (var exerciseRecorder = new ExerciseRecorder(recorder, "Exercise Title", speedProgress.Object, practiceTimeProgress.Object, manualProgress.Object))
             {
-                recordingExercise.AddMinutes(1);
-                Assert.AreEqual(60, recordingExercise.RecordedSeconds);
+                exerciseRecorder.AddMinutes(1);
+                Assert.AreEqual(60, exerciseRecorder.RecordedSeconds);
             }
         }
 
@@ -97,10 +97,10 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             var practiceTimeProgress = new Mock<IPracticeTimeProgress>();
             var manualProgress = new Mock<IManualProgress>();
 
-            using (var recordingExercise = new ExerciseRecorder(recorder, "Exercise Title", speedProgress.Object, practiceTimeProgress.Object, manualProgress.Object))
+            using (var exerciseRecorder = new ExerciseRecorder(recorder, "Exercise Title", speedProgress.Object, practiceTimeProgress.Object, manualProgress.Object))
             {
-                recordingExercise.AddMinutes(2);
-                Assert.AreEqual(180, recordingExercise.RecordedSeconds);
+                exerciseRecorder.AddMinutes(2);
+                Assert.AreEqual(180, exerciseRecorder.RecordedSeconds);
             }
         }
 
@@ -112,10 +112,10 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             var practiceTimeProgress = new Mock<IPracticeTimeProgress>();
             var manualProgress = new Mock<IManualProgress>();
 
-            using (var recordingExercise = new ExerciseRecorder(recorder, "Exercise Title", speedProgress.Object, practiceTimeProgress.Object, manualProgress.Object))
+            using (var exerciseRecorder = new ExerciseRecorder(recorder, "Exercise Title", speedProgress.Object, practiceTimeProgress.Object, manualProgress.Object))
             {
-                recordingExercise.AddMinutes(2);
-                Assert.AreEqual(180, recordingExercise.RecordedSeconds);
+                exerciseRecorder.AddMinutes(2);
+                Assert.AreEqual(180, exerciseRecorder.RecordedSeconds);
             }
         }
 
@@ -127,13 +127,13 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             var practiceTimeProgress = new Mock<IPracticeTimeProgress>();
             var manualProgress = new Mock<IManualProgress>();
 
-            using (var recordingExercise = new ExerciseRecorder(recorder, "Exercise Title", speedProgress.Object, practiceTimeProgress.Object, manualProgress.Object))
+            using (var exerciseRecorder = new ExerciseRecorder(recorder, "Exercise Title", speedProgress.Object, practiceTimeProgress.Object, manualProgress.Object))
             {
-                recordingExercise.Resume();
-                recordingExercise.AddMinutes(2);
-                recordingExercise.Pause();
+                exerciseRecorder.Resume();
+                exerciseRecorder.AddMinutes(2);
+                exerciseRecorder.Pause();
 
-                Assert.That(recordingExercise.RecordedSeconds, Is.InRange(110, 112));
+                Assert.That(exerciseRecorder.RecordedSeconds, Is.InRange(110, 112));
             }
         }
 
@@ -145,10 +145,10 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             var practiceTimeProgress = new Mock<IPracticeTimeProgress>();
             var manualProgress = new Mock<IManualProgress>();
 
-            using (var recordingExercise = new ExerciseRecorder(recorder, "Exercise Title", speedProgress.Object, practiceTimeProgress.Object, manualProgress.Object))
+            using (var exerciseRecorder = new ExerciseRecorder(recorder, "Exercise Title", speedProgress.Object, practiceTimeProgress.Object, manualProgress.Object))
             {
-                recordingExercise.AddMinutes(0);
-                Assert.AreEqual(30, recordingExercise.RecordedSeconds);
+                exerciseRecorder.AddMinutes(0);
+                Assert.AreEqual(30, exerciseRecorder.RecordedSeconds);
             }
         }
 
@@ -160,10 +160,10 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             var practiceTimeProgress = new Mock<IPracticeTimeProgress>();
             var manualProgress = new Mock<IManualProgress>();
 
-            using (var recordingExercise = new ExerciseRecorder(recorder, "Exercise Title", speedProgress.Object, practiceTimeProgress.Object, manualProgress.Object))
+            using (var exerciseRecorder = new ExerciseRecorder(recorder, "Exercise Title", speedProgress.Object, practiceTimeProgress.Object, manualProgress.Object))
             {
-                recordingExercise.SubtractMinutes(1);
-                Assert.AreEqual(0, recordingExercise.RecordedSeconds);
+                exerciseRecorder.SubtractMinutes(1);
+                Assert.AreEqual(0, exerciseRecorder.RecordedSeconds);
             }
         }
 
@@ -175,10 +175,10 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             var practiceTimeProgress = new Mock<IPracticeTimeProgress>();
             var manualProgress = new Mock<IManualProgress>();
 
-            using (var recordingExercise = new ExerciseRecorder(recorder, "Exercise Title", speedProgress.Object, practiceTimeProgress.Object, manualProgress.Object))
+            using (var exerciseRecorder = new ExerciseRecorder(recorder, "Exercise Title", speedProgress.Object, practiceTimeProgress.Object, manualProgress.Object))
             {
-                recordingExercise.SubtractMinutes(1);
-                Assert.AreEqual(120, recordingExercise.RecordedSeconds);
+                exerciseRecorder.SubtractMinutes(1);
+                Assert.AreEqual(120, exerciseRecorder.RecordedSeconds);
             }
         }
 
@@ -190,10 +190,10 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             var practiceTimeProgress = new Mock<IPracticeTimeProgress>();
             var manualProgress = new Mock<IManualProgress>();
 
-            using (var recordingExercise = new ExerciseRecorder(recorder, "Exercise Title", speedProgress.Object, practiceTimeProgress.Object, manualProgress.Object))
+            using (var exerciseRecorder = new ExerciseRecorder(recorder, "Exercise Title", speedProgress.Object, practiceTimeProgress.Object, manualProgress.Object))
             {
-                recordingExercise.SubtractMinutes(3);
-                Assert.AreEqual(180, recordingExercise.RecordedSeconds);
+                exerciseRecorder.SubtractMinutes(3);
+                Assert.AreEqual(180, exerciseRecorder.RecordedSeconds);
             }
         }
 
@@ -205,10 +205,10 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             var practiceTimeProgress = new Mock<IPracticeTimeProgress>();
             var manualProgress = new Mock<IManualProgress>();
 
-            using (var recordingExercise = new ExerciseRecorder(recorder, "Exercise Title", speedProgress.Object, practiceTimeProgress.Object, manualProgress.Object))
+            using (var exerciseRecorder = new ExerciseRecorder(recorder, "Exercise Title", speedProgress.Object, practiceTimeProgress.Object, manualProgress.Object))
             {
-                recordingExercise.SubtractMinutes(3);
-                Assert.AreEqual(180, recordingExercise.RecordedSeconds);
+                exerciseRecorder.SubtractMinutes(3);
+                Assert.AreEqual(180, exerciseRecorder.RecordedSeconds);
             }
         }
 
@@ -220,10 +220,10 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             var practiceTimeProgress = new Mock<IPracticeTimeProgress>();
             var manualProgress = new Mock<IManualProgress>();
 
-            using (var recordingExercise = new ExerciseRecorder(recorder, "Exercise Title", speedProgress.Object, practiceTimeProgress.Object, manualProgress.Object))
+            using (var exerciseRecorder = new ExerciseRecorder(recorder, "Exercise Title", speedProgress.Object, practiceTimeProgress.Object, manualProgress.Object))
             {
-                recordingExercise.AddMinutes(2);
-                Assert.AreEqual(180, recordingExercise.RecordedSeconds);
+                exerciseRecorder.AddMinutes(2);
+                Assert.AreEqual(180, exerciseRecorder.RecordedSeconds);
             }
         }
 
@@ -235,13 +235,13 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             var practiceTimeProgress = new Mock<IPracticeTimeProgress>();
             var manualProgress = new Mock<IManualProgress>();
 
-            using (var recordingExercise = new ExerciseRecorder(recorder, "Exercise Title", speedProgress.Object, practiceTimeProgress.Object, manualProgress.Object))
+            using (var exerciseRecorder = new ExerciseRecorder(recorder, "Exercise Title", speedProgress.Object, practiceTimeProgress.Object, manualProgress.Object))
             {
-                recordingExercise.Resume();
-                recordingExercise.SubtractMinutes(2);
-                recordingExercise.Pause();
+                exerciseRecorder.Resume();
+                exerciseRecorder.SubtractMinutes(2);
+                exerciseRecorder.Pause();
 
-                Assert.That(recordingExercise.RecordedSeconds, Is.InRange(110, 112));
+                Assert.That(exerciseRecorder.RecordedSeconds, Is.InRange(110, 112));
             }
         }
 
@@ -255,10 +255,10 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             var practiceTimeProgress = new Mock<IPracticeTimeProgress>();
             var manualProgress = new Mock<IManualProgress>();
 
-            using (var recordingExercise = new ExerciseRecorder(recorder, "Exercise Title", speedProgress.Object, practiceTimeProgress.Object, manualProgress.Object))
+            using (var exerciseRecorder = new ExerciseRecorder(recorder, "Exercise Title", speedProgress.Object, practiceTimeProgress.Object, manualProgress.Object))
             {
-                recordingExercise.TickActionCallBack = action;
-                recordingExercise.SubtractMinutes(2);
+                exerciseRecorder.TickActionCallBack = action;
+                exerciseRecorder.SubtractMinutes(2);
 
                 Assert.IsTrue(fired);
             }
@@ -274,13 +274,13 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             var practiceTimeProgress = new Mock<IPracticeTimeProgress>();
             var manualProgress = new Mock<IManualProgress>();
 
-            using (var recordingExercise = new ExerciseRecorder(recorder, "Exercise Title", speedProgress.Object, practiceTimeProgress.Object, manualProgress.Object))
+            using (var exerciseRecorder = new ExerciseRecorder(recorder, "Exercise Title", speedProgress.Object, practiceTimeProgress.Object, manualProgress.Object))
             {
-                recordingExercise.TickActionCallBack = action;
+                exerciseRecorder.TickActionCallBack = action;
 
-                recordingExercise.Resume();
-                recordingExercise.SubtractMinutes(2);
-                recordingExercise.Pause();
+                exerciseRecorder.Resume();
+                exerciseRecorder.SubtractMinutes(2);
+                exerciseRecorder.Pause();
 
                 Assert.IsFalse(fired);
             }
@@ -296,10 +296,10 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             var practiceTimeProgress = new Mock<IPracticeTimeProgress>();
             var manualProgress = new Mock<IManualProgress>();
 
-            using (var recordingExercise = new ExerciseRecorder(recorder, "Exercise Title", speedProgress.Object, practiceTimeProgress.Object, manualProgress.Object))
+            using (var exerciseRecorder = new ExerciseRecorder(recorder, "Exercise Title", speedProgress.Object, practiceTimeProgress.Object, manualProgress.Object))
             {
-                recordingExercise.TickActionCallBack = action;
-                recordingExercise.AddMinutes(2);
+                exerciseRecorder.TickActionCallBack = action;
+                exerciseRecorder.AddMinutes(2);
 
                 Assert.IsTrue(fired);
             }
@@ -315,13 +315,13 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             var practiceTimeProgress = new Mock<IPracticeTimeProgress>();
             var manualProgress = new Mock<IManualProgress>();
 
-            using (var recordingExercise = new ExerciseRecorder(recorder, "Exercise Title", speedProgress.Object, practiceTimeProgress.Object, manualProgress.Object))
+            using (var exerciseRecorder = new ExerciseRecorder(recorder, "Exercise Title", speedProgress.Object, practiceTimeProgress.Object, manualProgress.Object))
             {
-                recordingExercise.TickActionCallBack = action;
+                exerciseRecorder.TickActionCallBack = action;
 
-                recordingExercise.Resume();
-                recordingExercise.AddMinutes(2);
-                recordingExercise.Pause();
+                exerciseRecorder.Resume();
+                exerciseRecorder.AddMinutes(2);
+                exerciseRecorder.Pause();
 
                 Assert.IsFalse(fired);
             }
@@ -336,11 +336,11 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             var practiceTimeProgress = new Mock<IPracticeTimeProgress>();
             var manualProgress = new Mock<IManualProgress>();
 
-            using (var recordingExercise = new ExerciseRecorder(recorder, "Exercise Title", speedProgress.Object, practiceTimeProgress.Object, manualProgress.Object))
+            using (var exerciseRecorder = new ExerciseRecorder(recorder, "Exercise Title", speedProgress.Object, practiceTimeProgress.Object, manualProgress.Object))
             {
-                recordingExercise.RecordingStatusChanged += (sender, args) => called = true;
+                exerciseRecorder.RecordingStatusChanged += (sender, args) => called = true;
 
-                recordingExercise.Resume();
+                exerciseRecorder.Resume();
 
                 Assert.IsTrue(called);
             }
@@ -355,11 +355,11 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             var practiceTimeProgress = new Mock<IPracticeTimeProgress>();
             var manualProgress = new Mock<IManualProgress>();
 
-            using (var recordingExercise = new ExerciseRecorder(recorder, "Exercise Title", speedProgress.Object, practiceTimeProgress.Object, manualProgress.Object))
+            using (var exerciseRecorder = new ExerciseRecorder(recorder, "Exercise Title", speedProgress.Object, practiceTimeProgress.Object, manualProgress.Object))
             {
-                recordingExercise.Resume();
-                recordingExercise.RecordingStatusChanged += (sender, args) => called = true;
-                recordingExercise.Pause();
+                exerciseRecorder.Resume();
+                exerciseRecorder.RecordingStatusChanged += (sender, args) => called = true;
+                exerciseRecorder.Pause();
 
                 Assert.IsTrue(called);
             }
@@ -374,12 +374,12 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             var practiceTimeProgress = new Mock<IPracticeTimeProgress>();
             var manualProgress = new Mock<IManualProgress>();
 
-            using (var recordingExercise = new ExerciseRecorder(recorder, "Exercise Title", speedProgress.Object, practiceTimeProgress.Object, manualProgress.Object))
+            using (var exerciseRecorder = new ExerciseRecorder(recorder, "Exercise Title", speedProgress.Object, practiceTimeProgress.Object, manualProgress.Object))
             {
-                recordingExercise.Resume();
-                recordingExercise.Pause();
-                recordingExercise.RecordingStatusChanged += (sender, args) => called = true;
-                recordingExercise.Reset();
+                exerciseRecorder.Resume();
+                exerciseRecorder.Pause();
+                exerciseRecorder.RecordingStatusChanged += (sender, args) => called = true;
+                exerciseRecorder.Reset();
 
                 Assert.IsTrue(called);
             }
@@ -396,13 +396,13 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             speedProgress.Setup(obj => obj.CurrentSpeed).Returns(60);
             speedProgress.Setup(obj => obj.CalculateProgress()).Returns(50);
 
-            using (var recordingExercise = new ExerciseRecorder(recorder.Object, "Exercise Title",
+            using (var exerciseRecorder = new ExerciseRecorder(recorder.Object, "Exercise Title",
                  speedProgress.Object, practiceTimeProgress.Object, manualProgress.Object
              ))
             {
-                Assert.That(recordingExercise.Title, Is.EqualTo("Exercise Title"));
-                Assert.That(recordingExercise.CurrentSpeed, Is.EqualTo(60));
-                Assert.That(recordingExercise.CurrentSpeedProgress, Is.EqualTo(50));
+                Assert.That(exerciseRecorder.Title, Is.EqualTo("Exercise Title"));
+                Assert.That(exerciseRecorder.CurrentSpeed, Is.EqualTo(60));
+                Assert.That(exerciseRecorder.CurrentSpeedProgress, Is.EqualTo(50));
             }
         }
 
@@ -415,13 +415,13 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
 
             var practiceTimeProgress = new PracticeTimeProgress(300, 600, 100);
 
-            using (var recordingExercise = new ExerciseRecorder(recorder, "Exercise Title",
+            using (var exerciseRecorder = new ExerciseRecorder(recorder, "Exercise Title",
                  speedProgress.Object, practiceTimeProgress, manualProgress.Object
              ))
             {
-                Assert.That(recordingExercise.Title, Is.EqualTo("Exercise Title"));
-                Assert.That(recordingExercise.CurrentTotalSeconds, Is.EqualTo(300));
-                Assert.That(recordingExercise.CurrentTimeProgress, Is.EqualTo(50));
+                Assert.That(exerciseRecorder.Title, Is.EqualTo("Exercise Title"));
+                Assert.That(exerciseRecorder.CurrentTotalSeconds, Is.EqualTo(300));
+                Assert.That(exerciseRecorder.CurrentTimeProgress, Is.EqualTo(50));
             }
         }
 
@@ -436,12 +436,12 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             var manualProgress = new Mock<IManualProgress>();
             manualProgress.Setup(obj => obj.CalculateProgress()).Returns(50);
 
-            using (var recordingExercise = new ExerciseRecorder(recorder.Object, "Exercise Title",
+            using (var exerciseRecorder = new ExerciseRecorder(recorder.Object, "Exercise Title",
                  speedProgress.Object, practiceTimeProgress.Object, manualProgress.Object
              ))
             {
-                Assert.That(recordingExercise.Title, Is.EqualTo("Exercise Title"));
-                Assert.That(recordingExercise.CurrentManualProgress, Is.EqualTo(50));
+                Assert.That(exerciseRecorder.Title, Is.EqualTo("Exercise Title"));
+                Assert.That(exerciseRecorder.CurrentManualProgress, Is.EqualTo(50));
             }
         }
 
@@ -454,10 +454,10 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
 
             var practiceTimeProgress = new PracticeTimeProgress(600, 1000, 100);
 
-            using (var recordingExercise = new ExerciseRecorder(recorder, "Exercise Title", speedProgress.Object, practiceTimeProgress, manualProgress.Object))
+            using (var exerciseRecorder = new ExerciseRecorder(recorder, "Exercise Title", speedProgress.Object, practiceTimeProgress, manualProgress.Object))
             {
-                Assert.That(recordingExercise.TotalSecondsDisplay, Is.EqualTo("00:15:00"));
-                Assert.That(recordingExercise.RecordedSecondsDisplay, Is.EqualTo("00:05:00"));
+                Assert.That(exerciseRecorder.TotalSecondsDisplay, Is.EqualTo("00:15:00"));
+                Assert.That(exerciseRecorder.RecordedSecondsDisplay, Is.EqualTo("00:05:00"));
             }
         }
 
@@ -478,9 +478,9 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             manualProgress.Setup(obj => obj.CalculateProgress()).Returns(60);
             manualProgress.Setup(obj => obj.Weighting).Returns(12000);
 
-            using (var recordingExercise = new ExerciseRecorder(recorder, "Exercise Title", speedProgress.Object, practiceTimeProgress.Object, manualProgress.Object))
+            using (var exerciseRecorder = new ExerciseRecorder(recorder, "Exercise Title", speedProgress.Object, practiceTimeProgress.Object, manualProgress.Object))
             {
-                Assert.That(recordingExercise.CurrentOverAllProgress, Is.EqualTo(61.25));
+                Assert.That(exerciseRecorder.CurrentOverAllProgress, Is.EqualTo(61.25));
             }
         }
 
@@ -493,10 +493,10 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             var recorder = new TestRecorder(300);
             var practiceTimeProgress = new PracticeTimeProgress(300, 900, 100);
 
-            using (var recordingExercise = new ExerciseRecorder(recorder, "Exercise Title", speedProgress.Object, practiceTimeProgress, manualProgress.Object))
+            using (var exerciseRecorder = new ExerciseRecorder(recorder, "Exercise Title", speedProgress.Object, practiceTimeProgress, manualProgress.Object))
             {
-                Assert.AreEqual(600, recordingExercise.CurrentTotalSeconds);
-                Assert.That(recordingExercise.CurrentTimeProgress, Is.InRange(66.6, 66.7));
+                Assert.AreEqual(600, exerciseRecorder.CurrentTotalSeconds);
+                Assert.That(exerciseRecorder.CurrentTimeProgress, Is.InRange(66.6, 66.7));
             }
         }
 
@@ -510,12 +510,12 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             var recorder = new TestRecorder(300);
             var practiceTimeProgress = new PracticeTimeProgress(300, 1200, 100);
 
-            using (var recordingExercise = new ExerciseRecorder(recorder, "Exercise Title", speedProgress.Object, practiceTimeProgress, manualProgress.Object))
+            using (var exerciseRecorder = new ExerciseRecorder(recorder, "Exercise Title", speedProgress.Object, practiceTimeProgress, manualProgress.Object))
             {
-                recordingExercise.AddSeconds(300);
+                exerciseRecorder.AddSeconds(300);
 
-                Assert.AreEqual(900, recordingExercise.CurrentTotalSeconds);
-                Assert.That(recordingExercise.CurrentTimeProgress, Is.EqualTo(75));
+                Assert.AreEqual(900, exerciseRecorder.CurrentTotalSeconds);
+                Assert.That(exerciseRecorder.CurrentTimeProgress, Is.EqualTo(75));
             }
         }
 
@@ -528,12 +528,12 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
 
             var speedProgress = new SpeedProgress(50, 100, 150, 100);
 
-            using (var recordingExercise = new ExerciseRecorder(recorder.Object, "Exercise Title", speedProgress, practiceTimeProgress.Object, manualProgress.Object))
+            using (var exerciseRecorder = new ExerciseRecorder(recorder.Object, "Exercise Title", speedProgress, practiceTimeProgress.Object, manualProgress.Object))
             {
-                recordingExercise.IncrementSpeed(25);
+                exerciseRecorder.IncrementSpeed(25);
 
-                Assert.AreEqual(125, recordingExercise.CurrentSpeed);
-                Assert.That(recordingExercise.CurrentSpeedProgress, Is.EqualTo(75));
+                Assert.AreEqual(125, exerciseRecorder.CurrentSpeed);
+                Assert.That(exerciseRecorder.CurrentSpeedProgress, Is.EqualTo(75));
             }
         }
 
@@ -546,12 +546,12 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
 
             var speedProgress = new SpeedProgress(50, 100, 150, 100);
 
-            using (var recordingExercise = new ExerciseRecorder(recorder.Object, "Exercise Title", speedProgress, practiceTimeProgress.Object, manualProgress.Object))
+            using (var exerciseRecorder = new ExerciseRecorder(recorder.Object, "Exercise Title", speedProgress, practiceTimeProgress.Object, manualProgress.Object))
             {
-                recordingExercise.DecrementSpeed(25);
+                exerciseRecorder.DecrementSpeed(25);
 
-                Assert.AreEqual(75, recordingExercise.CurrentSpeed);
-                Assert.That(recordingExercise.CurrentSpeedProgress, Is.EqualTo(25));
+                Assert.AreEqual(75, exerciseRecorder.CurrentSpeed);
+                Assert.That(exerciseRecorder.CurrentSpeedProgress, Is.EqualTo(25));
             }
         }
 
@@ -564,11 +564,11 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
 
             var manualProgress = new ManualProgress(100, 100);
 
-            using (var recordingExercise = new ExerciseRecorder(recorder.Object, "Exercise Title", speedProgress.Object, practiceTimeProgress.Object, manualProgress))
+            using (var exerciseRecorder = new ExerciseRecorder(recorder.Object, "Exercise Title", speedProgress.Object, practiceTimeProgress.Object, manualProgress))
             {
-                recordingExercise.IncrementManualProgress(25);
+                exerciseRecorder.IncrementManualProgress(25);
 
-                Assert.That(recordingExercise.CurrentManualProgress, Is.EqualTo(125));
+                Assert.That(exerciseRecorder.CurrentManualProgress, Is.EqualTo(125));
             }
         }
 
@@ -581,11 +581,11 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
 
             var manualProgress = new ManualProgress(100, 100);
 
-            using (var recordingExercise = new ExerciseRecorder(recorder.Object, "Exercise Title", speedProgress.Object, practiceTimeProgress.Object, manualProgress))
+            using (var exerciseRecorder = new ExerciseRecorder(recorder.Object, "Exercise Title", speedProgress.Object, practiceTimeProgress.Object, manualProgress))
             {
-                recordingExercise.DecrementManualProgress(25);
+                exerciseRecorder.DecrementManualProgress(25);
 
-                Assert.That(recordingExercise.CurrentManualProgress, Is.EqualTo(75));
+                Assert.That(exerciseRecorder.CurrentManualProgress, Is.EqualTo(75));
             }
         }
 
