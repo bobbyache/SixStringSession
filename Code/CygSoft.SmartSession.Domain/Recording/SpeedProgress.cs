@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CygSoft.SmartSession.Domain.RecordingRoutines
+namespace CygSoft.SmartSession.Domain.Recording
 {
     public class SpeedProgress : ISpeedProgress
     {

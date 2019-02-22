@@ -1,5 +1,5 @@
 ﻿using CygSoft.SmartSession.Domain.Common;
-using CygSoft.SmartSession.Domain.RecordingRoutines;
+using CygSoft.SmartSession.Domain.Recording;
 using System.Collections.Generic;
 
 namespace CygSoft.SmartSession.Domain.PracticeRoutines

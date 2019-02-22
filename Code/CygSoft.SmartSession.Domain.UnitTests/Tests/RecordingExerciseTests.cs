@@ -1,4 +1,4 @@
-﻿using CygSoft.SmartSession.Domain.RecordingRoutines;
+﻿using CygSoft.SmartSession.Domain.Recording;
 using CygSoft.SmartSession.Domain.Sessions;
 using Moq;
 using NUnit.Framework;
@@ -249,7 +249,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         public void TickActionCallBack_Called_After_Subtracting_Minutes()
         {
             bool fired = false;
-            Action action = () => fired = true;
+            void action() => fired = true;
             var recorder = new TestRecorder(110);
             var speedProgress = new Mock<ISpeedProgress>();
             var practiceTimeProgress = new Mock<IPracticeTimeProgress>();
@@ -268,7 +268,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         public void TickActionCallBack_NotCalled_WhenRecording_After_Subtracting_Minutes()
         {
             bool fired = false;
-            Action action = () => fired = true;
+            void action() => fired = true;
             var recorder = new TestRecorder(110);
             var speedProgress = new Mock<ISpeedProgress>();
             var practiceTimeProgress = new Mock<IPracticeTimeProgress>();
@@ -290,7 +290,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         public void TickActionCallBack_Called_After_Adding_Minutes()
         {
             bool fired = false;
-            Action action = () => fired = true;
+            void action() => fired = true;
             var recorder = new TestRecorder(110);
             var speedProgress = new Mock<ISpeedProgress>();
             var practiceTimeProgress = new Mock<IPracticeTimeProgress>();
@@ -309,7 +309,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         public void TickActionCallBack_NotCalled_WhenRecording_After_Adding_Minutes()
         {
             bool fired = false;
-            Action action = () => fired = true;
+            void action() => fired = true;
             var recorder = new TestRecorder(110);
             var speedProgress = new Mock<ISpeedProgress>();
             var practiceTimeProgress = new Mock<IPracticeTimeProgress>();

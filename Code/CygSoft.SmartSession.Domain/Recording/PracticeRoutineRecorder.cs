@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CygSoft.SmartSession.Domain.RecordingRoutines
+namespace CygSoft.SmartSession.Domain.Recording
 {
-  public class RoutineRecorder
+  public class PracticeRoutineRecorder
   {
         IEnumerable<IExerciseRecorder> recordingExercises;
 
@@ -17,12 +17,12 @@ namespace CygSoft.SmartSession.Domain.RecordingRoutines
         public double RecordedSeconds { get => recordingExercises.Sum(ex => ex.RecordedSeconds); }
         public string RecordedSecondsDisplay { get => TimeFuncs.DisplayTimeFromSeconds(RecordedSeconds); }
 
-        public RoutineRecorder(string title, IEnumerable<IExerciseRecorder> recordingExercises) 
+        public PracticeRoutineRecorder(string title, IEnumerable<IExerciseRecorder> recordingExercises) 
             : this(0, title, recordingExercises)
         {
         }
 
-        public RoutineRecorder(int id, string title, IEnumerable<IExerciseRecorder> recordingExercises)
+        public PracticeRoutineRecorder(int id, string title, IEnumerable<IExerciseRecorder> recordingExercises)
         {
             Id = id;
             Title = title;

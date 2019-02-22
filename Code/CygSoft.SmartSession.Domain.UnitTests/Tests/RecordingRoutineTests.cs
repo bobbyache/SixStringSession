@@ -1,4 +1,4 @@
-﻿using CygSoft.SmartSession.Domain.RecordingRoutines;
+﻿using CygSoft.SmartSession.Domain.Recording;
 using Moq;
 using NUnit.Framework;
 using System;
@@ -17,8 +17,8 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         {
             var exercises = new List<IExerciseRecorder> { };
 
-            var existingRoutine = new RoutineRecorder(2, "Existing Routine", exercises);
-            var newRoutine = new RoutineRecorder("New Routine", exercises);
+            var existingRoutine = new PracticeRoutineRecorder(2, "Existing Routine", exercises);
+            var newRoutine = new PracticeRoutineRecorder("New Routine", exercises);
 
             Assert.AreEqual(2, existingRoutine.Id);
             Assert.AreEqual("Existing Routine", existingRoutine.Title);
@@ -44,7 +44,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                 ex3.Object
             };
 
-            RoutineRecorder recordingRoutine = new RoutineRecorder("Recording Routine", exercises);
+            PracticeRoutineRecorder recordingRoutine = new PracticeRoutineRecorder("Recording Routine", exercises);
             Assert.That(recordingRoutine.RecordedSeconds, Is.EqualTo(900));
             Assert.That(recordingRoutine.RecordedSecondsDisplay, Is.EqualTo("00:15:00"));
         }

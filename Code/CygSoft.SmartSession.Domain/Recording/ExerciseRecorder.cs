@@ -3,7 +3,7 @@ using CygSoft.SmartSession.Domain.Sessions;
 using CygSoft.SmartSession.Infrastructure;
 using System;
 
-namespace CygSoft.SmartSession.Domain.RecordingRoutines
+namespace CygSoft.SmartSession.Domain.Recording
 {
     public class ExerciseRecorder : IExerciseRecorder, IDisposable
     {
