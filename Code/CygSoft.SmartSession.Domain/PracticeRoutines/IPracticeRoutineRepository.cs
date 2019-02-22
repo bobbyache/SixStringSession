@@ -6,6 +6,6 @@ namespace CygSoft.SmartSession.Domain.PracticeRoutines
 {
     public interface IPracticeRoutineRepository : IRepository<PracticeRoutine>
     {
-        //RecordingRoutine GetRecordableRoutine()
+        PracticeRoutineRecorder GetPracticeRoutineRecorder(int id);
     }
 }

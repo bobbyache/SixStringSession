@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using CygSoft.SmartSession.Domain.Recording;
+using System.Collections.Generic;
 
 namespace CygSoft.SmartSession.Domain.PracticeRoutines
 {
@@ -11,5 +12,6 @@ namespace CygSoft.SmartSession.Domain.PracticeRoutines
         void Remove(int id);
         void Add(PracticeRoutine practiceRoutine);
         void Update(PracticeRoutine practiceRoutine);
+        PracticeRoutineRecorder GetPracticeRoutineRecorder(int id);
     }
 }

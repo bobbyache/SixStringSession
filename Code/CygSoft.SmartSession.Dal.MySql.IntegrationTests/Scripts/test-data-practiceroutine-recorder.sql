@@ -1,83 +1,83 @@
 ﻿
 
 INSERT INTO Exercise (Title, TargetMetronomeSpeed, SpeedProgressWeighting, TargetPracticeTime, PracticeTimeProgressWeighting, ManualProgressWeighting, DateCreated, DateModified) 
-	VALUES ('Strumming Exercise 1', 80, 50, NULL, 50, 0, '2017-02-01 01:00:00', NULL);
+	VALUES ('Strumming Exercise 1', 80, 50, 600, 50, 0, '2017-02-01 01:00:00', NULL);
 	
 INSERT INTO Exercise (Title, TargetMetronomeSpeed, SpeedProgressWeighting, TargetPracticeTime, PracticeTimeProgressWeighting, ManualProgressWeighting, DateCreated, DateModified) 
-	VALUES ('Strumming Exercise 2', 80, 50, NULL, 50, 0, '2017-02-01 01:00:00', NULL);
+	VALUES ('Strumming Exercise 2', 80, 50, 600, 50, 0, '2017-02-01 01:00:00', NULL);
 	
 INSERT INTO Exercise (Title, TargetMetronomeSpeed, SpeedProgressWeighting, TargetPracticeTime, PracticeTimeProgressWeighting, ManualProgressWeighting, DateCreated, DateModified) 
-	VALUES ('Strumming Exercise 3', 80, 50, NULL, 50, 0, '2017-02-01 01:00:00', NULL);
+	VALUES ('Strumming Exercise 3', 80, 50, 600, 50, 0, '2017-02-01 01:00:00', NULL);
 	
 INSERT INTO Exercise (Title, TargetMetronomeSpeed, SpeedProgressWeighting, TargetPracticeTime, PracticeTimeProgressWeighting, ManualProgressWeighting, DateCreated, DateModified) 
-	VALUES ('Strumming Exercise 4', 80, 50, NULL, 50, 0, '2017-02-01 01:00:00', NULL);
-	
-	
-	
-INSERT INTO Exercise (Title, TargetMetronomeSpeed, SpeedProgressWeighting, TargetPracticeTime, PracticeTimeProgressWeighting, ManualProgressWeighting, DateCreated, DateModified) 
-	VALUES ('Lead Exercise 1', 80, 50, NULL, 50, 0, '2017-02-01 01:00:00', NULL);
-	
-INSERT INTO Exercise (Title, TargetMetronomeSpeed, SpeedProgressWeighting, TargetPracticeTime, PracticeTimeProgressWeighting, ManualProgressWeighting, DateCreated, DateModified) 
-	VALUES ('Lead Exercise 2', 80, 50, NULL, 50, 0, '2017-02-01 01:00:00', NULL);
-	
-INSERT INTO Exercise (Title, TargetMetronomeSpeed, SpeedProgressWeighting, TargetPracticeTime, PracticeTimeProgressWeighting, ManualProgressWeighting, DateCreated, DateModified) 
-	VALUES ('Lead Exercise 3', 80, 50, NULL, 50, 0, '2017-02-01 01:00:00', NULL);
-	
-INSERT INTO Exercise (Title, TargetMetronomeSpeed, SpeedProgressWeighting, TargetPracticeTime, PracticeTimeProgressWeighting, ManualProgressWeighting, DateCreated, DateModified) 
-	VALUES ('Lead Exercise 4', 80, 50, NULL, 50, 0, '2017-02-01 01:00:00', NULL);
-	
-	
-INSERT INTO Exercise (Title, TargetMetronomeSpeed, SpeedProgressWeighting, TargetPracticeTime, PracticeTimeProgressWeighting, ManualProgressWeighting, DateCreated, DateModified) 
-	VALUES ('Scales Exercise 1', 80, 50, NULL, 50, 0, '2017-02-01 01:00:00', NULL);
-	
-INSERT INTO Exercise (Title, TargetMetronomeSpeed, SpeedProgressWeighting, TargetPracticeTime, PracticeTimeProgressWeighting, ManualProgressWeighting, DateCreated, DateModified) 
-	VALUES ('Scales Exercise 2', 80, 50, NULL, 50, 0, '2017-02-01 01:00:00', NULL);
-	
-INSERT INTO Exercise (Title, TargetMetronomeSpeed, SpeedProgressWeighting, TargetPracticeTime, PracticeTimeProgressWeighting, ManualProgressWeighting, DateCreated, DateModified) 
-	VALUES ('Scales Exercise 3', 80, 50, NULL, 50, 0, '2017-02-01 01:00:00', NULL);
-	
-INSERT INTO Exercise (Title, TargetMetronomeSpeed, SpeedProgressWeighting, TargetPracticeTime, PracticeTimeProgressWeighting, ManualProgressWeighting, DateCreated, DateModified) 
-	VALUES ('Scales Exercise 4', 80, 50, NULL, 50, 0, '2017-02-01 01:00:00', NULL);
+	VALUES ('Strumming Exercise 4', 80, 50, 600, 50, 0, '2017-02-01 01:00:00', NULL);
 	
 	
 	
 INSERT INTO Exercise (Title, TargetMetronomeSpeed, SpeedProgressWeighting, TargetPracticeTime, PracticeTimeProgressWeighting, ManualProgressWeighting, DateCreated, DateModified) 
-	VALUES ('Theory Exercise 1', 80, 50, NULL, 50, 0, '2017-02-01 01:00:00', NULL);
+	VALUES ('Lead Exercise 1', 80, 50, 600, 50, 0, '2017-02-01 01:00:00', NULL);
 	
 INSERT INTO Exercise (Title, TargetMetronomeSpeed, SpeedProgressWeighting, TargetPracticeTime, PracticeTimeProgressWeighting, ManualProgressWeighting, DateCreated, DateModified) 
-	VALUES ('Theory Exercise 2', 80, 50, NULL, 50, 0, '2017-02-01 01:00:00', NULL);
+	VALUES ('Lead Exercise 2', 80, 50, 600, 50, 0, '2017-02-01 01:00:00', NULL);
 	
 INSERT INTO Exercise (Title, TargetMetronomeSpeed, SpeedProgressWeighting, TargetPracticeTime, PracticeTimeProgressWeighting, ManualProgressWeighting, DateCreated, DateModified) 
-	VALUES ('Theory Exercise 3', 80, 50, NULL, 50, 0, '2017-02-01 01:00:00', NULL);
+	VALUES ('Lead Exercise 3', 80, 50, 600, 50, 0, '2017-02-01 01:00:00', NULL);
 	
 INSERT INTO Exercise (Title, TargetMetronomeSpeed, SpeedProgressWeighting, TargetPracticeTime, PracticeTimeProgressWeighting, ManualProgressWeighting, DateCreated, DateModified) 
-	VALUES ('Theory Exercise 4', 80, 50, NULL, 50, 0, '2017-02-01 01:00:00', NULL);
-	
-	
-INSERT INTO Exercise (Title, TargetMetronomeSpeed, SpeedProgressWeighting, TargetPracticeTime, PracticeTimeProgressWeighting, ManualProgressWeighting, DateCreated, DateModified) 
-	VALUES ('Song Exercise 1', 80, 50, NULL, 50, 0, '2017-02-01 01:00:00', NULL);
-	
-INSERT INTO Exercise (Title, TargetMetronomeSpeed, SpeedProgressWeighting, TargetPracticeTime, PracticeTimeProgressWeighting, ManualProgressWeighting, DateCreated, DateModified) 
-	VALUES ('Song Exercise 2', 80, 50, NULL, 50, 0, '2017-02-01 01:00:00', NULL);
-	
-INSERT INTO Exercise (Title, TargetMetronomeSpeed, SpeedProgressWeighting, TargetPracticeTime, PracticeTimeProgressWeighting, ManualProgressWeighting, DateCreated, DateModified) 
-	VALUES ('Song Exercise 3', 80, 50, NULL, 50, 0, '2017-02-01 01:00:00', NULL);
-	
-INSERT INTO Exercise (Title, TargetMetronomeSpeed, SpeedProgressWeighting, TargetPracticeTime, PracticeTimeProgressWeighting, ManualProgressWeighting, DateCreated, DateModified) 
-	VALUES ('Song Exercise 4', 80, 50, NULL, 50, 0, '2017-02-01 01:00:00', NULL);
+	VALUES ('Lead Exercise 4', 80, 50, 600, 50, 0, '2017-02-01 01:00:00', NULL);
 	
 	
 INSERT INTO Exercise (Title, TargetMetronomeSpeed, SpeedProgressWeighting, TargetPracticeTime, PracticeTimeProgressWeighting, ManualProgressWeighting, DateCreated, DateModified) 
-	VALUES ('Ear Exercise 1', 80, 50, NULL, 50, 0, '2017-02-01 01:00:00', NULL);
+	VALUES ('Scales Exercise 1', 80, 50, 600, 50, 0, '2017-02-01 01:00:00', NULL);
 	
 INSERT INTO Exercise (Title, TargetMetronomeSpeed, SpeedProgressWeighting, TargetPracticeTime, PracticeTimeProgressWeighting, ManualProgressWeighting, DateCreated, DateModified) 
-	VALUES ('Ear Exercise 2', 80, 50, NULL, 50, 0, '2017-02-01 01:00:00', NULL);
+	VALUES ('Scales Exercise 2', 80, 50, 600, 50, 0, '2017-02-01 01:00:00', NULL);
 	
 INSERT INTO Exercise (Title, TargetMetronomeSpeed, SpeedProgressWeighting, TargetPracticeTime, PracticeTimeProgressWeighting, ManualProgressWeighting, DateCreated, DateModified) 
-	VALUES ('Ear Exercise 3', 80, 50, NULL, 50, 0, '2017-02-01 01:00:00', NULL);
+	VALUES ('Scales Exercise 3', 80, 50, 600, 50, 0, '2017-02-01 01:00:00', NULL);
 	
 INSERT INTO Exercise (Title, TargetMetronomeSpeed, SpeedProgressWeighting, TargetPracticeTime, PracticeTimeProgressWeighting, ManualProgressWeighting, DateCreated, DateModified) 
-	VALUES ('Ear Exercise 4', 80, 50, NULL, 50, 0, '2017-02-01 01:00:00', NULL);
+	VALUES ('Scales Exercise 4', 80, 50, 600, 50, 0, '2017-02-01 01:00:00', NULL);
+	
+	
+	
+INSERT INTO Exercise (Title, TargetMetronomeSpeed, SpeedProgressWeighting, TargetPracticeTime, PracticeTimeProgressWeighting, ManualProgressWeighting, DateCreated, DateModified) 
+	VALUES ('Theory Exercise 1', 80, 50, 600, 50, 0, '2017-02-01 01:00:00', NULL);
+	
+INSERT INTO Exercise (Title, TargetMetronomeSpeed, SpeedProgressWeighting, TargetPracticeTime, PracticeTimeProgressWeighting, ManualProgressWeighting, DateCreated, DateModified) 
+	VALUES ('Theory Exercise 2', 80, 50, 600, 50, 0, '2017-02-01 01:00:00', NULL);
+	
+INSERT INTO Exercise (Title, TargetMetronomeSpeed, SpeedProgressWeighting, TargetPracticeTime, PracticeTimeProgressWeighting, ManualProgressWeighting, DateCreated, DateModified) 
+	VALUES ('Theory Exercise 3', 80, 50, 600, 50, 0, '2017-02-01 01:00:00', NULL);
+	
+INSERT INTO Exercise (Title, TargetMetronomeSpeed, SpeedProgressWeighting, TargetPracticeTime, PracticeTimeProgressWeighting, ManualProgressWeighting, DateCreated, DateModified) 
+	VALUES ('Theory Exercise 4', 80, 50, 600, 50, 0, '2017-02-01 01:00:00', NULL);
+	
+	
+INSERT INTO Exercise (Title, TargetMetronomeSpeed, SpeedProgressWeighting, TargetPracticeTime, PracticeTimeProgressWeighting, ManualProgressWeighting, DateCreated, DateModified) 
+	VALUES ('Song Exercise 1', 80, 50, 600, 50, 0, '2017-02-01 01:00:00', NULL);
+	
+INSERT INTO Exercise (Title, TargetMetronomeSpeed, SpeedProgressWeighting, TargetPracticeTime, PracticeTimeProgressWeighting, ManualProgressWeighting, DateCreated, DateModified) 
+	VALUES ('Song Exercise 2', 80, 50, 600, 50, 0, '2017-02-01 01:00:00', NULL);
+	
+INSERT INTO Exercise (Title, TargetMetronomeSpeed, SpeedProgressWeighting, TargetPracticeTime, PracticeTimeProgressWeighting, ManualProgressWeighting, DateCreated, DateModified) 
+	VALUES ('Song Exercise 3', 80, 50, 600, 50, 0, '2017-02-01 01:00:00', NULL);
+	
+INSERT INTO Exercise (Title, TargetMetronomeSpeed, SpeedProgressWeighting, TargetPracticeTime, PracticeTimeProgressWeighting, ManualProgressWeighting, DateCreated, DateModified) 
+	VALUES ('Song Exercise 4', 80, 50, 600, 50, 0, '2017-02-01 01:00:00', NULL);
+	
+	
+INSERT INTO Exercise (Title, TargetMetronomeSpeed, SpeedProgressWeighting, TargetPracticeTime, PracticeTimeProgressWeighting, ManualProgressWeighting, DateCreated, DateModified) 
+	VALUES ('Ear Exercise 1', 80, 50, 600, 50, 0, '2017-02-01 01:00:00', NULL);
+	
+INSERT INTO Exercise (Title, TargetMetronomeSpeed, SpeedProgressWeighting, TargetPracticeTime, PracticeTimeProgressWeighting, ManualProgressWeighting, DateCreated, DateModified) 
+	VALUES ('Ear Exercise 2', 80, 50, 600, 50, 0, '2017-02-01 01:00:00', NULL);
+	
+INSERT INTO Exercise (Title, TargetMetronomeSpeed, SpeedProgressWeighting, TargetPracticeTime, PracticeTimeProgressWeighting, ManualProgressWeighting, DateCreated, DateModified) 
+	VALUES ('Ear Exercise 3', 80, 50, 600, 50, 0, '2017-02-01 01:00:00', NULL);
+	
+INSERT INTO Exercise (Title, TargetMetronomeSpeed, SpeedProgressWeighting, TargetPracticeTime, PracticeTimeProgressWeighting, ManualProgressWeighting, DateCreated, DateModified) 
+	VALUES ('Ear Exercise 4', 80, 50, 600, 50, 0, '2017-02-01 01:00:00', NULL);
 	
 INSERT INTO PracticeRoutine (Title, DateCreated)
 	VALUES ('Monday Routine', '2017-02-01 01:00:00');
@@ -414,4 +414,103 @@ VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Wednesday - Ear Training Practic
 
 INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, DifficultyRating, PracticalityRating, DateCreated, DateModified)
 VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Wednesday - Ear Training Practice'), (SELECT Id FROM Exercise WHERE Title = 'Ear Exercise 4'), 2, 2, '2017-02-01 01:20:00', NULL);
+
+
+-- One activity for every exercise.
+
+INSERT INTO ExerciseActivity (ExerciseId, Seconds, MetronomeSpeed, ManualProgress, DateCreated, DateModified)
+	VALUES ((SELECT Id FROM Exercise WHERE Title = 'Strumming Exercise 1'), 60, 35, 10, '2019-03-15', null);
+    
+INSERT INTO ExerciseActivity (ExerciseId, Seconds, MetronomeSpeed, ManualProgress, DateCreated, DateModified)
+	VALUES ((SELECT Id FROM Exercise WHERE Title = 'Strumming Exercise 2'), 60, 35, 10, '2019-03-15', null);
+    
+INSERT INTO ExerciseActivity (ExerciseId, Seconds, MetronomeSpeed, ManualProgress, DateCreated, DateModified)
+	VALUES ((SELECT Id FROM Exercise WHERE Title = 'Strumming Exercise 3'), 60, 35, 10, '2019-03-15', null);
+    
+INSERT INTO ExerciseActivity (ExerciseId, Seconds, MetronomeSpeed, ManualProgress, DateCreated, DateModified)
+	VALUES ((SELECT Id FROM Exercise WHERE Title = 'Strumming Exercise 4'), 60, 35, 10, '2019-03-15', null);
+    
+-- Two activities for every exercise.
+
+INSERT INTO ExerciseActivity (ExerciseId, Seconds, MetronomeSpeed, ManualProgress, DateCreated, DateModified)
+	VALUES ((SELECT Id FROM Exercise WHERE Title = 'Lead Exercise 1'), 60, 35, 10, '2019-03-15', null);
+    
+INSERT INTO ExerciseActivity (ExerciseId, Seconds, MetronomeSpeed, ManualProgress, DateCreated, DateModified)
+	VALUES ((SELECT Id FROM Exercise WHERE Title = 'Lead Exercise 2'), 60, 35, 10, '2019-03-15', null);
+    
+INSERT INTO ExerciseActivity (ExerciseId, Seconds, MetronomeSpeed, ManualProgress, DateCreated, DateModified)
+	VALUES ((SELECT Id FROM Exercise WHERE Title = 'Lead Exercise 3'), 60, 35, 10, '2019-03-15', null);
+    
+INSERT INTO ExerciseActivity (ExerciseId, Seconds, MetronomeSpeed, ManualProgress, DateCreated, DateModified)
+	VALUES ((SELECT Id FROM Exercise WHERE Title = 'Lead Exercise 4'), 60, 35, 10, '2019-03-15', null);
+    
+INSERT INTO ExerciseActivity (ExerciseId, Seconds, MetronomeSpeed, ManualProgress, DateCreated, DateModified)
+	VALUES ((SELECT Id FROM Exercise WHERE Title = 'Lead Exercise 1'), 60, 40, 20, '2019-03-16', null);
+    
+INSERT INTO ExerciseActivity (ExerciseId, Seconds, MetronomeSpeed, ManualProgress, DateCreated, DateModified)
+	VALUES ((SELECT Id FROM Exercise WHERE Title = 'Lead Exercise 2'), 60, 40, 20, '2019-03-16', null);
+    
+INSERT INTO ExerciseActivity (ExerciseId, Seconds, MetronomeSpeed, ManualProgress, DateCreated, DateModified)
+	VALUES ((SELECT Id FROM Exercise WHERE Title = 'Lead Exercise 3'), 60, 40, 20, '2019-03-16', null);
+    
+INSERT INTO ExerciseActivity (ExerciseId, Seconds, MetronomeSpeed, ManualProgress, DateCreated, DateModified)
+	VALUES ((SELECT Id FROM Exercise WHERE Title = 'Lead Exercise 4'), 60, 40, 20, '2019-03-16', null);
+        
+-- One activity for every exercise.
+
+INSERT INTO ExerciseActivity (ExerciseId, Seconds, MetronomeSpeed, ManualProgress, DateCreated, DateModified)
+	VALUES ((SELECT Id FROM Exercise WHERE Title = 'Scales Exercise 1'), 60, 35, 10, '2019-03-15', null);
+    
+INSERT INTO ExerciseActivity (ExerciseId, Seconds, MetronomeSpeed, ManualProgress, DateCreated, DateModified)
+	VALUES ((SELECT Id FROM Exercise WHERE Title = 'Scales Exercise 2'), 60, 35, 10, '2019-03-15', null);
+    
+INSERT INTO ExerciseActivity (ExerciseId, Seconds, MetronomeSpeed, ManualProgress, DateCreated, DateModified)
+	VALUES ((SELECT Id FROM Exercise WHERE Title = 'Scales Exercise 3'), 60, 35, 10, '2019-03-15', null);
+    
+INSERT INTO ExerciseActivity (ExerciseId, Seconds, MetronomeSpeed, ManualProgress, DateCreated, DateModified)
+	VALUES ((SELECT Id FROM Exercise WHERE Title = 'Scales Exercise 4'), 60, 35, 10, '2019-03-15', null);
+    
+-- One activity for every exercise.
+
+INSERT INTO ExerciseActivity (ExerciseId, Seconds, MetronomeSpeed, ManualProgress, DateCreated, DateModified)
+	VALUES ((SELECT Id FROM Exercise WHERE Title = 'Theory Exercise 1'), 60, 35, 10, '2019-03-15', null);
+    
+INSERT INTO ExerciseActivity (ExerciseId, Seconds, MetronomeSpeed, ManualProgress, DateCreated, DateModified)
+	VALUES ((SELECT Id FROM Exercise WHERE Title = 'Theory Exercise 2'), 60, 35, 10, '2019-03-15', null);
+    
+INSERT INTO ExerciseActivity (ExerciseId, Seconds, MetronomeSpeed, ManualProgress, DateCreated, DateModified)
+	VALUES ((SELECT Id FROM Exercise WHERE Title = 'Theory Exercise 3'), 60, 35, 10, '2019-03-15', null);
+    
+INSERT INTO ExerciseActivity (ExerciseId, Seconds, MetronomeSpeed, ManualProgress, DateCreated, DateModified)
+	VALUES ((SELECT Id FROM Exercise WHERE Title = 'Theory Exercise 4'), 60, 35, 10, '2019-03-15', null);
+    
+-- One activity for every exercise.
+
+INSERT INTO ExerciseActivity (ExerciseId, Seconds, MetronomeSpeed, ManualProgress, DateCreated, DateModified)
+	VALUES ((SELECT Id FROM Exercise WHERE Title = 'Song Exercise 1'), 60, 35, 10, '2019-03-15', null);
+    
+INSERT INTO ExerciseActivity (ExerciseId, Seconds, MetronomeSpeed, ManualProgress, DateCreated, DateModified)
+	VALUES ((SELECT Id FROM Exercise WHERE Title = 'Song Exercise 2'), 60, 35, 10, '2019-03-15', null);
+    
+INSERT INTO ExerciseActivity (ExerciseId, Seconds, MetronomeSpeed, ManualProgress, DateCreated, DateModified)
+	VALUES ((SELECT Id FROM Exercise WHERE Title = 'Song Exercise 3'), 60, 35, 10, '2019-03-15', null);
+    
+INSERT INTO ExerciseActivity (ExerciseId, Seconds, MetronomeSpeed, ManualProgress, DateCreated, DateModified)
+	VALUES ((SELECT Id FROM Exercise WHERE Title = 'Song Exercise 4'), 60, 35, 10, '2019-03-15', null);
+    
+-- One activity for every exercise.
+
+INSERT INTO ExerciseActivity (ExerciseId, Seconds, MetronomeSpeed, ManualProgress, DateCreated, DateModified)
+	VALUES ((SELECT Id FROM Exercise WHERE Title = 'Ear Exercise 1'), 60, 35, 10, '2019-03-15', null);
+    
+INSERT INTO ExerciseActivity (ExerciseId, Seconds, MetronomeSpeed, ManualProgress, DateCreated, DateModified)
+	VALUES ((SELECT Id FROM Exercise WHERE Title = 'Ear Exercise 2'), 60, 35, 10, '2019-03-15', null);
+    
+INSERT INTO ExerciseActivity (ExerciseId, Seconds, MetronomeSpeed, ManualProgress, DateCreated, DateModified)
+	VALUES ((SELECT Id FROM Exercise WHERE Title = 'Ear Exercise 3'), 60, 35, 10, '2019-03-15', null);
+    
+INSERT INTO ExerciseActivity (ExerciseId, Seconds, MetronomeSpeed, ManualProgress, DateCreated, DateModified)
+	VALUES ((SELECT Id FROM Exercise WHERE Title = 'Ear Exercise 4'), 60, 35, 10, '2019-03-15', null);
+    
+	
 

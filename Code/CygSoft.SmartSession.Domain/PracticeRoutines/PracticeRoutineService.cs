@@ -1,4 +1,5 @@
 ﻿using CygSoft.SmartSession.Domain.Exercises;
+using CygSoft.SmartSession.Domain.Recording;
 using System;
 using System.Collections.Generic;
 
@@ -75,6 +76,11 @@ namespace CygSoft.SmartSession.Domain.PracticeRoutines
             };
 
             return routineExercise;
+        }
+
+        public PracticeRoutineRecorder GetPracticeRoutineRecorder(int id)
+        {
+            return unitOfWork.PracticeRoutines.GetPracticeRoutineRecorder(id);
         }
     }
 }

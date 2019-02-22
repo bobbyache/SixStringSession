@@ -28,5 +28,9 @@ namespace CygSoft.SmartSession.Domain.Recording
             Title = title;
             this.exerciseRecorders = exerciseRecorders ?? throw new ArgumentNullException("Recording exercises are mandatory.");
         }
+
+        public int ItemCount { get => exerciseRecorders.Count(); }
+
+        public IExerciseRecorder[] ExerciseRecorders { get => exerciseRecorders.ToArray(); }
     }
 }

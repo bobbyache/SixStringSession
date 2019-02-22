@@ -30,10 +30,11 @@ namespace CygSoft.SmartSession.Domain.Recording
         protected IPracticeTimeProgress practiceTimeProgress;
         protected IManualProgress manualProgress;
 
-        public ExerciseRecorder(IRecorder recorder, string title, 
+        public ExerciseRecorder(IRecorder recorder, string title, string timeslotTitle,
             ISpeedProgress speedProgress, IPracticeTimeProgress practiceTimeProgress, IManualProgress manualProgress)
         {
             Title = title;
+            TimeslotTitle = timeslotTitle;
             this.recorder = recorder ?? throw new ArgumentNullException("Recorder must be specified.");
             this.speedProgress = speedProgress ?? throw new ArgumentNullException("Progress element must be specified.");
             this.practiceTimeProgress = practiceTimeProgress ?? throw new ArgumentNullException("Progress element must be specified.");
@@ -51,6 +52,7 @@ namespace CygSoft.SmartSession.Domain.Recording
         public string RecordedSecondsDisplay { get => recorder.DisplayTime; }
 
         public string Title { get; private set; }
+        public string TimeslotTitle { get; private set; }
 
         public int? CurrentSpeed { get => speedProgress.CurrentSpeed; }
 

@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using CygSoft.SmartSession.Dal.MySql.PracticeRoutines;
 using CygSoft.SmartSession.Domain.Common;
 using CygSoft.SmartSession.Domain.PracticeRoutines;
+using CygSoft.SmartSession.Domain.Recording;
+using CygSoft.SmartSession.Domain.Sessions;
 using Dapper;
 using KellermanSoftware.CompareNetObjects;
 
@@ -102,6 +105,39 @@ namespace CygSoft.SmartSession.Dal.MySql
 
             var persistedEntity = Get(entity.Id);
             entity.DateCreated = persistedEntity.DateCreated;
+        }
+
+        public PracticeRoutineRecorder GetPracticeRoutineRecorder(int id)
+        {
+            try
+            {
+                PracticeRoutine practiceRoutine = Get(id);
+
+                var exerciseRecorderRecords = Connection.Query<PracticeRoutineExerciseRecorderRecord>("sp_GetPracticeRoutineExerciseRecordersByRoutineId",
+                param: new
+                {
+                    _practiceRoutineId = id
+                }, commandType: CommandType.StoredProcedure);
+
+                List<ExerciseRecorder> exerciseRecorders = new List<ExerciseRecorder>();
+
+                foreach (var rec in exerciseRecorderRecords)
+                {
+                    var speedProgress = new SpeedProgress(rec.InitialRecordedSpeed, rec.LastRecordedSpeed, rec.TargetMetronomeSpeed, rec.SpeedProgressWeighting);
+                    var timeProgress = new PracticeTimeProgress(rec.TotalPracticeTime, rec.TargetPracticeTime, rec.PracticeTimeProgressWeighting);
+                    var manualProgress = new ManualProgress(rec.LastRecordedManualProgress, rec.ManualProgressWeighting);
+
+                    exerciseRecorders.Add(new ExerciseRecorder(new Recorder(), rec.ExerciseTitle, rec.TimeSlotTitle, speedProgress, timeProgress, manualProgress));
+                }
+
+                var practiceRoutineRecorder = new PracticeRoutineRecorder(practiceRoutine.Id, practiceRoutine.Title, exerciseRecorders);
+
+                return practiceRoutineRecorder;
+            }
+            catch (InvalidOperationException ex)
+            {
+                throw new DatabaseEntityNotFoundException($"Database entity does not exist for id: {id}", ex);
+            }
         }
 
         private void DeleteMissingRoutineExercises(PracticeRoutine entity)

@@ -2,6 +2,7 @@
 using CygSoft.SmartSession.Domain.Common;
 using CygSoft.SmartSession.Domain.Exercises;
 using CygSoft.SmartSession.Domain.PracticeRoutines;
+using CygSoft.SmartSession.Domain.Recording;
 using Moq;
 using NUnit.Framework;
 using System;
@@ -20,25 +21,44 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
         {
             Funcs.RunScript("delete-all-records.sql", Settings.AppConnectionString);
 
-            Mock<IFileService> fileService = new Mock<IFileService>();
-            UnitOfWork uow = new UnitOfWork(Settings.AppConnectionString);
-
-            ExerciseService exerciseService = new ExerciseService(uow, fileService.Object);
-            Exercise exercise = new Exercise
+            using (var uow = new UnitOfWork(Settings.AppConnectionString))
             {
-                Title = "Routine Exercise",
-                TargetPracticeTime = 5000,
-                TargetMetronomeSpeed = 120
-            };
-            exerciseService.Add(exercise);
+                var fileService = new Mock<IFileService>();
+                var exerciseService = new ExerciseService(uow, fileService.Object);
+                var exercise = new Exercise
+                {
+                    Title = "Routine Exercise",
+                    TargetPracticeTime = 5000,
+                    TargetMetronomeSpeed = 120
+                };
+                exerciseService.Add(exercise);
 
-            PracticeRoutineService service = new PracticeRoutineService(uow, exerciseService);
-            PracticeRoutineExercise routineExercise = service.CreatePracticeRoutineExerciseFor(exercise.Id);
+                var service = new PracticeRoutineService(uow, exerciseService);
+                var routineExercise = service.CreatePracticeRoutineExerciseFor(exercise.Id);
 
-            Assert.That(routineExercise.Title, Is.EqualTo(exercise.Title));
-            Assert.That(routineExercise.ExerciseId, Is.EqualTo(exercise.Id));
-            Assert.That(routineExercise.AssignedPracticeTime, Is.EqualTo(300));
+                Assert.That(routineExercise.Title, Is.EqualTo(exercise.Title));
+                Assert.That(routineExercise.ExerciseId, Is.EqualTo(exercise.Id));
+                Assert.That(routineExercise.AssignedPracticeTime, Is.EqualTo(300));
+            }
         }
+
+        //[Test]
+        //public void PracticeRoutineRecorder_Fetch_And_Create_Is_Constructed_Successfully()
+        //{
+        //    Funcs.RunScript("delete-all-records.sql", Settings.AppConnectionString);
+        //    Funcs.RunScript("test-data-practiceroutine-recorder.sql", Settings.AppConnectionString);
+
+        //    var fileService = new Mock<IFileService>();
+        //    var uow = new UnitOfWork(Settings.AppConnectionString);
+
+        //    var exerciseService = new ExerciseService(uow, fileService.Object);
+        //    var practiceRoutineService = new PracticeRoutineService(uow, exerciseService);
+        //    //var practiceRoutine = practiceRoutineService.
+
+        //    //PracticeRoutineRecorder practiceRoutineRecorder = practiceRoutineService.GetPracticeRoutineRecorder(practiceRoutineId);
+
+        //    //var practiceRoutineRecorder = PracticeRoutineService service = new PracticeRoutineService(uow, exerciseService);
+        //}
 
         private PracticeRoutine CreatePracticeRoutine()
         {

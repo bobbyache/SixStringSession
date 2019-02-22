@@ -1,6 +1,7 @@
 ﻿using CygSoft.SmartSession.Dal.MySql.IntegrationTests.Helpers;
 using CygSoft.SmartSession.Domain.Exercises;
 using CygSoft.SmartSession.Domain.PracticeRoutines;
+using CygSoft.SmartSession.Domain.Recording;
 using CygSoft.SmartSession.UnitTests.Infrastructure;
 using NUnit.Framework;
 using NUnit.Framework.Constraints;
@@ -30,6 +31,29 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
 
                 var PracticeRoutines = uow.PracticeRoutines.Find(crit);
                 Assert.That(PracticeRoutines.Where(ex => ex.Title == "Monday Routine").SingleOrDefault(), Is.Not.Null);
+            }
+        }
+
+        [Test]
+        public void PracticeRoutineRecorder_Fetch_And_Create_Is_Constructed_Successfully()
+        {
+            Funcs.RunScript("delete-all-records.sql", Settings.AppConnectionString);
+            Funcs.RunScript("test-data-practiceroutine-recorder.sql", Settings.AppConnectionString);
+
+            using (var uow = new UnitOfWork(Settings.AppConnectionString))
+            {
+                IPracticeRoutineSearchCriteria crit = new PracticeRoutineSearchCriteria();
+                crit.Title = "monday";
+
+                var practiceRoutine = uow.PracticeRoutines.Find(crit).SingleOrDefault();
+                PracticeRoutineRecorder practiceRoutineRecorder = uow.PracticeRoutines.GetPracticeRoutineRecorder(practiceRoutine.Id);
+
+                Assert.IsNotNull(practiceRoutineRecorder);
+                Assert.That(practiceRoutineRecorder.Title, Is.EqualTo("Monday Routine"));
+                Assert.That(practiceRoutineRecorder.ItemCount, Is.EqualTo(6));
+                Assert.That(practiceRoutineRecorder.ExerciseRecorders.Length, Is.EqualTo(6));
+
+                Assert.AreEqual(60, practiceRoutineRecorder.ExerciseRecorders[0].CurrentTotalSeconds);
             }
         }
 
