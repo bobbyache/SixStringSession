@@ -1,5 +1,4 @@
 ﻿using CygSoft.SmartSession.Domain.Common;
-using CygSoft.SmartSession.Domain.Sessions;
 using System.Collections.Generic;
 
 namespace CygSoft.SmartSession.Domain.Exercises

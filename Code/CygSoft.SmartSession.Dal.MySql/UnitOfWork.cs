@@ -1,8 +1,6 @@
 ﻿using CygSoft.SmartSession.Domain;
 using CygSoft.SmartSession.Domain.Exercises;
-using CygSoft.SmartSession.Domain.Goals;
 using CygSoft.SmartSession.Domain.PracticeRoutines;
-using CygSoft.SmartSession.Domain.Sessions;
 using MySql.Data.MySqlClient;
 using System;
 using System.Data;
@@ -11,37 +9,34 @@ namespace CygSoft.SmartSession.Dal.MySql
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private IDbConnection _connection;
-        private IDbTransaction _transaction;
+        private IDbConnection connection;
+        private IDbTransaction transaction;
 
         private bool _disposed;
 
         #region IUnitOfWork
 
-        private IGoalRepository goals;
-        public IGoalRepository Goals { get { return goals ?? (goals = new GoalRepository(_transaction)); } }
-
         private IExerciseRepository exercises;
-        public IExerciseRepository Exercises { get { return exercises ?? (exercises = new ExerciseRepository(_transaction)); } }
+        public IExerciseRepository Exercises { get { return exercises ?? (exercises = new ExerciseRepository(transaction)); } }
 
         private IPracticeRoutineRepository practiceRoutines;
-        public IPracticeRoutineRepository PracticeRoutines { get { return practiceRoutines ?? (practiceRoutines = new PracticeRoutineRepository(_transaction)); } }
+        public IPracticeRoutineRepository PracticeRoutines { get { return practiceRoutines ?? (practiceRoutines = new PracticeRoutineRepository(transaction)); } }
 
         public int Commit()
         {
             try
             {
-                _transaction.Commit();
+                transaction.Commit();
             }
             catch (Exception ex)
             {
-                _transaction.Rollback();
+                transaction.Rollback();
                 throw new DatabaseCommitException("Failed to commit to the database", ex);
             }
             finally
             {
-                _transaction.Dispose();
-                _transaction = _connection.BeginTransaction();
+                transaction.Dispose();
+                transaction = connection.BeginTransaction();
                 ResetRepositories();
             }
             return 0;
@@ -51,7 +46,7 @@ namespace CygSoft.SmartSession.Dal.MySql
         {
             try
             {
-                _transaction.Rollback();
+                transaction.Rollback();
             }
             catch (Exception ex)
             {
@@ -59,8 +54,8 @@ namespace CygSoft.SmartSession.Dal.MySql
             }
             finally
             {
-                _transaction.Dispose();
-                _transaction = _connection.BeginTransaction();
+                transaction.Dispose();
+                transaction = connection.BeginTransaction();
                 ResetRepositories();
             }
         }
@@ -82,15 +77,15 @@ namespace CygSoft.SmartSession.Dal.MySql
 
         public UnitOfWork(string connectionString)
         {
-            _connection = new MySqlConnection(connectionString);
-            _connection.Open();
-            _transaction = _connection.BeginTransaction();
+            connection = new MySqlConnection(connectionString);
+            connection.Open();
+            transaction = connection.BeginTransaction();
         }
 
         private void ResetRepositories()
         {
-            goals = null;
             exercises = null;
+            practiceRoutines = null;
         }
 
         public void Dispose()
@@ -105,15 +100,15 @@ namespace CygSoft.SmartSession.Dal.MySql
             {
                 if (disposing)
                 {
-                    if (_transaction != null)
+                    if (transaction != null)
                     {
-                        _transaction.Dispose();
-                        _transaction = null;
+                        transaction.Dispose();
+                        transaction = null;
                     }
-                    if (_connection != null)
+                    if (connection != null)
                     {
-                        _connection.Dispose();
-                        _connection = null;
+                        connection.Dispose();
+                        connection = null;
                     }
                 }
                 _disposed = true;

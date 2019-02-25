@@ -1,9 +1,7 @@
 ﻿using CygSoft.SmartSession.Domain.Common;
 using CygSoft.SmartSession.Domain.Keywords;
-using CygSoft.SmartSession.Domain.Sessions;
+using CygSoft.SmartSession.Domain.Recording;
 using CygSoft.SmartSession.Infrastructure;
-using CygSoft.SmartSession.Infrastructure.Enums;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;

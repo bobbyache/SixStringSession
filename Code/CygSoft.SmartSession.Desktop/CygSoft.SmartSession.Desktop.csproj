@@ -135,24 +135,6 @@
       <DependentUpon>ExerciseSearchCriteriaView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Exercises\ExerciseSearchCriteriaViewModel.cs" />
-    <Compile Include="Goals\GoalCompositeView.xaml.cs">
-      <DependentUpon>GoalCompositeView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Goals\GoalCompositeViewModel.cs" />
-    <Compile Include="Goals\GoalEditView.xaml.cs">
-      <DependentUpon>GoalEditView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Goals\GoalEditViewModel.cs" />
-    <Compile Include="Goals\GoalModel.cs" />
-    <Compile Include="Goals\GoalSearchCriteriaView.xaml.cs">
-      <DependentUpon>GoalSearchCriteriaView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Goals\GoalSearchCriteriaViewModel.cs" />
-    <Compile Include="Goals\GoalSearchResultModel.cs" />
-    <Compile Include="Goals\GoalSearchView.xaml.cs">
-      <DependentUpon>GoalSearchView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Goals\GoalSearchViewModel.cs" />
     <Compile Include="MainWindowViewModel.cs" />
     <Compile Include="PracticeRoutines\ExerciseInstanceEditView.xaml.cs">
       <DependentUpon>ExerciseInstanceEditView.xaml</DependentUpon>
@@ -197,17 +179,12 @@
     <Compile Include="Supports\Converters\TimeDisplayConverter.cs" />
     <Compile Include="Supports\DI\Bootstrapper.cs" />
     <Compile Include="Supports\DI\Installers.cs" />
-    <Compile Include="Goals\GoalListControl.xaml.cs">
-      <DependentUpon>GoalListControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Exercises\ExerciseSearchResultModel.cs" />
-    <Compile Include="Goals\GoalListItem.cs" />
     <Compile Include="Supports\EnumHelper.cs" />
     <Compile Include="Supports\MarkupExts\EnumToItemsSource.cs" />
     <Compile Include="Supports\Messages\Messages.cs" />
     <Compile Include="Supports\Services\DialogService.cs" />
     <Compile Include="Exercises\ExerciseSearchViewModel.cs" />
-    <Compile Include="Goals\GoalListViewModel.cs" />
     <Compile Include="Supports\Services\IDialogViewService.cs" />
     <Compile Include="Supports\Services\ViewModelLocator.cs" />
     <Compile Include="Exercises\ExerciseSearchView.xaml.cs">
@@ -246,26 +223,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Exercises\ExerciseSelectionView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Goals\GoalCompositeView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Goals\GoalEditView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Goals\GoalListControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Goals\GoalSearchCriteriaView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Goals\GoalSearchView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

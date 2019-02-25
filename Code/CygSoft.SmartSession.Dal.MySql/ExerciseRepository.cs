@@ -1,12 +1,11 @@
-﻿using System;
+﻿using CygSoft.SmartSession.Domain.Exercises;
+using CygSoft.SmartSession.Domain.Recording;
+using Dapper;
+using KellermanSoftware.CompareNetObjects;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using CygSoft.SmartSession.Domain.Common;
-using CygSoft.SmartSession.Domain.Exercises;
-using CygSoft.SmartSession.Domain.Sessions;
-using Dapper;
-using KellermanSoftware.CompareNetObjects;
 
 namespace CygSoft.SmartSession.Dal.MySql
 {

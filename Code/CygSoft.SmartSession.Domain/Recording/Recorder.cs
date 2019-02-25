@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Timers;
 
-namespace CygSoft.SmartSession.Domain.Sessions
+namespace CygSoft.SmartSession.Domain.Recording
 {
     public class Recorder : IRecorder, IDisposable
     {

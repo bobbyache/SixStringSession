@@ -1,5 +1,4 @@
 ﻿using CygSoft.SmartSession.Domain.Common;
-using CygSoft.SmartSession.Domain.Sessions;
 using CygSoft.SmartSession.Infrastructure;
 using System;
 

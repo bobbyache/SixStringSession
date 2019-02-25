@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CygSoft.SmartSession.Domain.Sessions
+namespace CygSoft.SmartSession.Domain.Recording
 {
     public class ExerciseActivity : Entity
     {

@@ -1,15 +1,10 @@
 ﻿using CygSoft.SmartSession.Desktop.Exercises;
 using CygSoft.SmartSession.Desktop.Supports.Services;
 using CygSoft.SmartSession.Domain.Exercises;
-using CygSoft.SmartSession.Domain.Sessions;
+using CygSoft.SmartSession.Domain.Recording;
 using CygSoft.SmartSession.Infrastructure.Enums;
 using Moq;
 using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
 {

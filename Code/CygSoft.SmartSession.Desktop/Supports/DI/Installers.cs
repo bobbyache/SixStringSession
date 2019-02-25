@@ -3,15 +3,13 @@ using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
 using CygSoft.SmartSession.Dal.MySql;
 using CygSoft.SmartSession.Desktop.Exercises;
-using CygSoft.SmartSession.Desktop.Goals;
 using CygSoft.SmartSession.Desktop.PracticeRoutines;
 using CygSoft.SmartSession.Desktop.Supports.Services;
 using CygSoft.SmartSession.Domain;
 using CygSoft.SmartSession.Domain.Common;
 using CygSoft.SmartSession.Domain.Exercises;
-using CygSoft.SmartSession.Domain.Goals;
 using CygSoft.SmartSession.Domain.PracticeRoutines;
-using CygSoft.SmartSession.Domain.Sessions;
+using CygSoft.SmartSession.Domain.Recording;
 
 namespace CygSoft.SmartSession.Desktop.Supports.DI
 {
@@ -49,13 +47,6 @@ namespace CygSoft.SmartSession.Desktop.Supports.DI
             container.Register(Component.For<PracticeRoutineCompositeViewModel>());
             container.Register(Component.For<PracticeRoutineRecordingListViewModel>());
             
-        container.Register(Component.For<IGoalService>().ImplementedBy(typeof(GoalService)));
-            container.Register(Component.For<GoalEditViewModel>());
-            container.Register(Component.For<GoalSearchViewModel>());
-            container.Register(Component.For<GoalCompositeViewModel>());
-            container.Register(Component.For<GoalSearchCriteriaViewModel>());
-            container.Register(Component.For<GoalListViewModel>());
-
             container.Register(Component.For<MainWindowViewModel>());
         }
     }

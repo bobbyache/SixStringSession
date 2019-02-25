@@ -1,7 +1,6 @@
 ﻿using CygSoft.SmartSession.Domain.Common;
-using CygSoft.SmartSession.Domain.Sessions;
+using CygSoft.SmartSession.Domain.Recording;
 using System;
-using System.Linq;
 using System.Collections.Generic;
 
 namespace CygSoft.SmartSession.Domain.Exercises

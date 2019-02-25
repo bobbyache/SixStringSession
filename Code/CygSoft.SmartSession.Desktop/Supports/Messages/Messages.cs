@@ -1,12 +1,6 @@
-﻿using CygSoft.SmartSession.Desktop.Goals;
-using CygSoft.SmartSession.Domain.Exercises;
+﻿using CygSoft.SmartSession.Domain.Exercises;
 using CygSoft.SmartSession.Domain.PracticeRoutines;
 using CygSoft.SmartSession.Infrastructure.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CygSoft.SmartSession.Desktop.Supports.Messages
 {
@@ -77,28 +71,8 @@ namespace CygSoft.SmartSession.Desktop.Supports.Messages
         }
     }
 
-    internal class EndEditingGoalMessage
-    {
-        public GoalModel GoalModel { get; }
-
-        public EndEditingGoalMessage(GoalModel goalModel)
-        {
-            GoalModel = goalModel;
-        }
-    }
-
     internal class FindGoalsMessage
     {
-    }
-
-    internal class StartEditingGoalMessage
-    {
-        public GoalSearchResultModel GoalSearchResult { get; }
-
-        public StartEditingGoalMessage(GoalSearchResultModel goalSearchResult)
-        {
-            GoalSearchResult = goalSearchResult;
-        }
     }
 
     internal class EndEditingPracticeRoutineMessage

@@ -1,12 +1,9 @@
 ﻿using CygSoft.SmartSession.Domain.Exercises;
-using CygSoft.SmartSession.Infrastructure.Enums;
+using CygSoft.SmartSession.Domain.Recording;
 using CygSoft.SmartSession.UnitTests.Infrastructure;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CygSoft.SmartSession.Domain.UnitTests.Tests
 {
@@ -73,9 +70,9 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                 ManualProgressWeighting = 0,
                 // -----------------------------------------------------
 
-                ExerciseActivity = new List<Sessions.ExerciseActivity>
+                ExerciseActivity = new List<ExerciseActivity>
                 {
-                    new Sessions.ExerciseActivity {
+                    new ExerciseActivity {
                         Id = 1,
                         DateCreated = DateTime.Parse("2018/01/02"),
                         DateModified = DateTime.Parse("2018/01/02"),
@@ -104,9 +101,9 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                 ManualProgressWeighting = 0,
                 // -----------------------------------------------------
 
-                ExerciseActivity = new List<Sessions.ExerciseActivity>
+                ExerciseActivity = new List<ExerciseActivity>
                 {
-                    new Sessions.ExerciseActivity {
+                    new ExerciseActivity {
                         Id = 1,
                         DateCreated = DateTime.Parse("2018/01/02"),
                         DateModified = DateTime.Parse("2018/01/02"),
@@ -135,9 +132,9 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                 ManualProgressWeighting = 0,
                 // -----------------------------------------------------
 
-                ExerciseActivity = new List<Sessions.ExerciseActivity>
+                ExerciseActivity = new List<ExerciseActivity>
                 {
-                    new Sessions.ExerciseActivity {
+                    new ExerciseActivity {
                         Id = 1,
                         DateCreated = DateTime.Parse("2018/01/02"),
                         DateModified = DateTime.Parse("2018/01/02"),
@@ -166,9 +163,9 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                 ManualProgressWeighting = 0,
                 // -----------------------------------------------------
 
-                ExerciseActivity = new List<Sessions.ExerciseActivity>
+                ExerciseActivity = new List<ExerciseActivity>
                 {
-                    new Sessions.ExerciseActivity {
+                    new ExerciseActivity {
                         Id = 1,
                         DateCreated = DateTime.Parse("2018/01/02"),
                         DateModified = DateTime.Parse("2018/01/02"),
@@ -197,9 +194,9 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                 ManualProgressWeighting = 0,
                 // -----------------------------------------------------
 
-                ExerciseActivity = new List<Sessions.ExerciseActivity>
+                ExerciseActivity = new List<ExerciseActivity>
                 {
-                    new Sessions.ExerciseActivity {
+                    new ExerciseActivity {
                         Id = 1,
                         DateCreated = DateTime.Parse("2018/01/02"),
                         DateModified = DateTime.Parse("2018/01/02"),
@@ -229,16 +226,16 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                 // -----------------------------------------------------
                 TargetMetronomeSpeed = 150,
 
-                ExerciseActivity = new List<Sessions.ExerciseActivity>
+                ExerciseActivity = new List<ExerciseActivity>
                 {
-                    new Sessions.ExerciseActivity {
+                    new ExerciseActivity {
                         Id = 1,
                         DateCreated = DateTime.Parse("2018/01/02"),
                         DateModified = DateTime.Parse("2018/01/02"),
                         MetronomeSpeed = 50,
                         ExerciseId = 1 },
 
-                    new Sessions.ExerciseActivity {
+                    new ExerciseActivity {
                         Id = 2,
                         DateCreated = DateTime.Parse("2018/01/03"),
                         DateModified = DateTime.Parse("2018/01/03"),
@@ -267,16 +264,16 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                 ManualProgressWeighting = 0,
                 // -----------------------------------------------------
 
-                ExerciseActivity = new List<Sessions.ExerciseActivity>
+                ExerciseActivity = new List<ExerciseActivity>
                 {
-                    new Sessions.ExerciseActivity {
+                    new ExerciseActivity {
                         Id = 1,
                         DateCreated = DateTime.Parse("2018/01/02"),
                         DateModified = DateTime.Parse("2018/01/02"),
                         MetronomeSpeed = 50,
                         ExerciseId = 1 },
 
-                    new Sessions.ExerciseActivity {
+                    new ExerciseActivity {
                         Id = 2,
                         DateCreated = DateTime.Parse("2018/01/03"),
                         DateModified = DateTime.Parse("2018/01/03"),
@@ -305,23 +302,23 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                 // -----------------------------------------------------
                 TargetMetronomeSpeed = 100,
 
-                ExerciseActivity = new List<Sessions.ExerciseActivity>
+                ExerciseActivity = new List<ExerciseActivity>
                 {
-                    new Sessions.ExerciseActivity {
+                    new ExerciseActivity {
                         Id = 1,
                         DateCreated = DateTime.Parse("2018/01/02"),
                         DateModified = DateTime.Parse("2018/01/02"),
                         MetronomeSpeed = 70,
                         ExerciseId = 1 },
 
-                    new Sessions.ExerciseActivity {
+                    new ExerciseActivity {
                         Id = 2,
                         DateCreated = DateTime.Parse("2018/01/03"),
                         DateModified = DateTime.Parse("2018/01/03"),
                         MetronomeSpeed = 75,
                         ExerciseId = 1 },
 
-                    new Sessions.ExerciseActivity {
+                    new ExerciseActivity {
                         Id = 3,
                         DateCreated = DateTime.Parse("2018/01/04"),
                         DateModified = DateTime.Parse("2018/01/04"),
@@ -350,9 +347,9 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                 // -----------------------------------------------------
                 TargetPracticeTime = (int)TimeSpan.FromHours(1).TotalSeconds,
 
-                ExerciseActivity = new List<Sessions.ExerciseActivity>
+                ExerciseActivity = new List<ExerciseActivity>
                 {
-                    new Sessions.ExerciseActivity {
+                    new ExerciseActivity {
                         Id = 1,
                         DateCreated = DateTime.Parse("2018/01/02"),
                         DateModified = DateTime.Parse("2018/01/02"),
@@ -360,7 +357,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                         Seconds = 600, // 10 minutes
                         ExerciseId = 1 },
 
-                    new Sessions.ExerciseActivity {
+                    new ExerciseActivity {
                         Id = 2,
                         DateCreated = DateTime.Parse("2018/01/03"),
                         DateModified = DateTime.Parse("2018/01/03"),
@@ -368,7 +365,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                         Seconds = 600, // 10 minutes
                         ExerciseId = 1 },
 
-                    new Sessions.ExerciseActivity {
+                    new ExerciseActivity {
                         Id = 3,
                         DateCreated = DateTime.Parse("2018/01/04"),
                         DateModified = DateTime.Parse("2018/01/04"),
@@ -442,9 +439,9 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                 ManualProgressWeighting = 0,
                 // -----------------------------------------------------
 
-                ExerciseActivity = new List<Sessions.ExerciseActivity>
+                ExerciseActivity = new List<ExerciseActivity>
                 {
-                        new Sessions.ExerciseActivity {
+                        new ExerciseActivity {
                         Id = 5,
                         DateCreated = DateTime.Parse("2018-02-03 10:56:41"),
                         DateModified = null,
@@ -452,7 +449,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                         Seconds = 8000,
                         ExerciseId = 57 },
 
-                    new Sessions.ExerciseActivity {
+                    new ExerciseActivity {
                         Id = 5,
                         DateCreated = DateTime.Parse("2018-02-04 10:56:41"),
                         DateModified = null,
@@ -460,7 +457,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                         Seconds = 8000,
                         ExerciseId = 57 },
 
-                    new Sessions.ExerciseActivity {
+                    new ExerciseActivity {
                         Id = 6,
                         DateCreated = DateTime.Parse("2018-02-05 10:56:41"),
                         DateModified = null,
@@ -523,9 +520,9 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                 ManualProgressWeighting = 0,
                 // -----------------------------------------------------
 
-                ExerciseActivity = new List<Sessions.ExerciseActivity>
+                ExerciseActivity = new List<ExerciseActivity>
                 {
-                        new Sessions.ExerciseActivity {
+                        new ExerciseActivity {
                         Id = 5,
                         DateCreated = DateTime.Parse("2018-02-03 10:56:41"),
                         DateModified = null,
@@ -533,7 +530,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                         Seconds = 8000,
                         ExerciseId = 57 },
 
-                    new Sessions.ExerciseActivity {
+                    new ExerciseActivity {
                         Id = 5,
                         DateCreated = DateTime.Parse("2018-02-04 10:56:41"),
                         DateModified = null,
@@ -541,7 +538,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                         Seconds = 8000,
                         ExerciseId = 57 },
 
-                    new Sessions.ExerciseActivity {
+                    new ExerciseActivity {
                         Id = 6,
                         DateCreated = DateTime.Parse("2018-02-05 10:56:41"),
                         DateModified = null,
@@ -572,9 +569,9 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                 ManualProgressWeighting = 0,
                 // -----------------------------------------------------
 
-                ExerciseActivity = new List<Sessions.ExerciseActivity>
+                ExerciseActivity = new List<ExerciseActivity>
                 {
-                        new Sessions.ExerciseActivity {
+                        new ExerciseActivity {
                         Id = 5,
                         DateCreated = DateTime.Parse("2018-02-03 10:56:41"),
                         DateModified = null,
@@ -582,7 +579,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                         Seconds = 1000,
                         ExerciseId = 57 },
 
-                    new Sessions.ExerciseActivity {
+                    new ExerciseActivity {
                         Id = 5,
                         DateCreated = DateTime.Parse("2018-02-04 10:56:41"),
                         DateModified = null,
@@ -590,7 +587,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                         Seconds = 2000,
                         ExerciseId = 57 },
 
-                    new Sessions.ExerciseActivity {
+                    new ExerciseActivity {
                         Id = 6,
                         DateCreated = DateTime.Parse("2018-02-05 10:56:41"),
                         DateModified = null,
@@ -622,9 +619,9 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                 ManualProgressWeighting = 0,
                 // -----------------------------------------------------
 
-                ExerciseActivity = new List<Sessions.ExerciseActivity>
+                ExerciseActivity = new List<ExerciseActivity>
                 {
-                        new Sessions.ExerciseActivity {
+                        new ExerciseActivity {
                         Id = 5,
                         DateCreated = DateTime.Parse("2018-02-03 10:56:41"),
                         DateModified = null,
@@ -632,7 +629,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                         Seconds = 1000,
                         ExerciseId = 57 },
 
-                    new Sessions.ExerciseActivity {
+                    new ExerciseActivity {
                         Id = 5,
                         DateCreated = DateTime.Parse("2018-02-04 10:56:41"),
                         DateModified = null,
@@ -640,7 +637,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                         Seconds = 1000,
                         ExerciseId = 57 },
 
-                    new Sessions.ExerciseActivity {
+                    new ExerciseActivity {
                         Id = 6,
                         DateCreated = DateTime.Parse("2018-02-05 10:56:41"),
                         DateModified = null,
@@ -671,9 +668,9 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                 ManualProgressWeighting = 0,
                 // -----------------------------------------------------
 
-                ExerciseActivity = new List<Sessions.ExerciseActivity>
+                ExerciseActivity = new List<ExerciseActivity>
                 {
-                        new Sessions.ExerciseActivity {
+                        new ExerciseActivity {
                         Id = 5,
                         DateCreated = DateTime.Parse("2018-02-03 10:56:41"),
                         DateModified = null,
@@ -681,7 +678,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                         Seconds = 50,       // 50%
                         ExerciseId = 57 },
 
-                    new Sessions.ExerciseActivity {
+                    new ExerciseActivity {
                         Id = 5,
                         DateCreated = DateTime.Parse("2018-02-04 10:56:41"),
                         DateModified = null,
@@ -689,7 +686,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                         Seconds = 50,       // 100%
                         ExerciseId = 57 },
 
-                    new Sessions.ExerciseActivity {
+                    new ExerciseActivity {
                         Id = 6,
                         DateCreated = DateTime.Parse("2018-02-05 10:56:41"),
                         DateModified = null,
@@ -724,9 +721,9 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                 ManualProgressWeighting = 50,
                 // -----------------------------------------------------
 
-                ExerciseActivity = new List<Sessions.ExerciseActivity>
+                ExerciseActivity = new List<ExerciseActivity>
                 {
-                        new Sessions.ExerciseActivity {
+                        new ExerciseActivity {
                         Id = 5,
                         DateCreated = DateTime.Parse("2018-02-03 10:56:41"),
                         DateModified = null,
@@ -735,7 +732,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                         ManualProgress = 20,
                         ExerciseId = 57 },
 
-                    new Sessions.ExerciseActivity {
+                    new ExerciseActivity {
                         Id = 5,
                         DateCreated = DateTime.Parse("2018-02-04 10:56:41"),
                         DateModified = null,
@@ -744,7 +741,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                         ManualProgress = 65,
                         ExerciseId = 57 },
 
-                    new Sessions.ExerciseActivity {
+                    new ExerciseActivity {
                         Id = 6,
                         DateCreated = DateTime.Parse("2018-02-05 10:56:41"),
                         DateModified = null,

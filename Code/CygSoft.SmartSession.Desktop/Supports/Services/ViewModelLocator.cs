@@ -1,6 +1,5 @@
 
 using CygSoft.SmartSession.Desktop.Exercises;
-using CygSoft.SmartSession.Desktop.Goals;
 using CygSoft.SmartSession.Desktop.PracticeRoutines;
 using CygSoft.SmartSession.Desktop.Supports.DI;
 
@@ -19,18 +18,10 @@ namespace CygSoft.SmartSession.Desktop.Supports.Services
         public ExerciseSearchCriteriaViewModel ExerciseSearchCriteriaViewModel { get => Bootstrapper.Container.Resolve<ExerciseSearchCriteriaViewModel>(); }
         public SingleExerciseRecorderViewModel ExerciseRecorderViewModel { get => Bootstrapper.Container.Resolve<SingleExerciseRecorderViewModel>(); }
                 
-
         public PracticeRoutineEditViewModel PracticeRoutineEditViewModel { get => Bootstrapper.Container.Resolve<PracticeRoutineEditViewModel>(); }
         public PracticeRoutineCompositeViewModel PracticeRoutineCompositeViewModel { get => Bootstrapper.Container.Resolve<PracticeRoutineCompositeViewModel>(); }
         public PracticeRoutineManagementViewModel PracticeRoutineManagementViewModel { get => Bootstrapper.Container.Resolve<PracticeRoutineManagementViewModel>(); }
         public PracticeRoutineRecordingListViewModel PracticeRoutineRecordingListViewModel { get => Bootstrapper.Container.Resolve<PracticeRoutineRecordingListViewModel>(); }
-
-
-        public GoalEditViewModel GoalEditViewModel { get => Bootstrapper.Container.Resolve<GoalEditViewModel>(); }
-        public GoalCompositeViewModel GoalCompositeViewModel { get => Bootstrapper.Container.Resolve<GoalCompositeViewModel>(); }
-        public GoalSearchViewModel GoalSearchViewModel { get => Bootstrapper.Container.Resolve<GoalSearchViewModel>(); }
-        public GoalSearchCriteriaViewModel GoalSearchCriteriaViewModel { get => Bootstrapper.Container.Resolve<GoalSearchCriteriaViewModel>(); }
-
 
         public MainWindowViewModel MainWindowViewModel { get => Bootstrapper.Container.Resolve<MainWindowViewModel>(); }
     }

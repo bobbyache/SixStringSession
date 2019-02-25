@@ -2,24 +2,19 @@
 using CygSoft.SmartSession.Desktop.Supports.Services;
 using CygSoft.SmartSession.Desktop.Supports.Validators;
 using CygSoft.SmartSession.Domain.Exercises;
-using CygSoft.SmartSession.Domain.Sessions;
-using GalaSoft.MvvmLight;
+using CygSoft.SmartSession.Domain.Recording;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CygSoft.SmartSession.Desktop.Exercises
 {
     public class SingleExerciseRecorderViewModel : ValidatableViewModel
     {
         private IExerciseService exerciseService;
-        private IDialogViewService dialogService;
+        private readonly IDialogViewService dialogService;
 
         public event EventHandler RecordingStatusChanged;
 

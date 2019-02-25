@@ -1,7 +1,6 @@
 ﻿using CygSoft.SmartSession.Domain.Keywords;
-using CygSoft.SmartSession.Domain.Sessions;
+using CygSoft.SmartSession.Domain.Recording;
 using CygSoft.SmartSession.Infrastructure;
-using System;
 using System.Collections.Generic;
 
 namespace CygSoft.SmartSession.Domain.Exercises

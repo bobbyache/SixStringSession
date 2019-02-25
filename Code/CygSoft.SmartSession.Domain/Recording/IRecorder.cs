@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CygSoft.SmartSession.Domain.Sessions
+namespace CygSoft.SmartSession.Domain.Recording
 {
     public interface IRecorder
     {

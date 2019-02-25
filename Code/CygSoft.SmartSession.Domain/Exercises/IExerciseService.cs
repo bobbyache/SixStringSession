@@ -1,4 +1,4 @@
-﻿using CygSoft.SmartSession.Domain.Sessions;
+﻿using CygSoft.SmartSession.Domain.Recording;
 using System;
 using System.Collections.Generic;
 

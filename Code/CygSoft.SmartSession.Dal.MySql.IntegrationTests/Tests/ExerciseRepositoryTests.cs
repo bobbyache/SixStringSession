@@ -1,11 +1,8 @@
 ﻿using CygSoft.SmartSession.Dal.MySql.IntegrationTests.Helpers;
 using CygSoft.SmartSession.Domain.Exercises;
-using CygSoft.SmartSession.Domain.PracticeRoutines;
-using CygSoft.SmartSession.Domain.Sessions;
-using CygSoft.SmartSession.Infrastructure.Enums;
 using CygSoft.SmartSession.UnitTests.Infrastructure;
+using CygSoft.SmartSession.Domain.Recording;
 using NUnit.Framework;
-using NUnit.Framework.Constraints;
 using System;
 using System.Linq;
 
