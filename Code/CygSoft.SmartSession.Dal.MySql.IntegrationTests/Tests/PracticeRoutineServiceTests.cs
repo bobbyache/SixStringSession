@@ -23,8 +23,7 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
 
             using (var uow = new UnitOfWork(Settings.AppConnectionString))
             {
-                var fileService = new Mock<IFileService>();
-                var exerciseService = new ExerciseService(uow, fileService.Object);
+                var exerciseService = new ExerciseService(uow);
                 var exercise = new Exercise
                 {
                     Title = "Routine Exercise",
@@ -41,24 +40,6 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
                 Assert.That(routineExercise.AssignedPracticeTime, Is.EqualTo(300));
             }
         }
-
-        //[Test]
-        //public void PracticeRoutineRecorder_Fetch_And_Create_Is_Constructed_Successfully()
-        //{
-        //    Funcs.RunScript("delete-all-records.sql", Settings.AppConnectionString);
-        //    Funcs.RunScript("test-data-practiceroutine-recorder.sql", Settings.AppConnectionString);
-
-        //    var fileService = new Mock<IFileService>();
-        //    var uow = new UnitOfWork(Settings.AppConnectionString);
-
-        //    var exerciseService = new ExerciseService(uow, fileService.Object);
-        //    var practiceRoutineService = new PracticeRoutineService(uow, exerciseService);
-        //    //var practiceRoutine = practiceRoutineService.
-
-        //    //PracticeRoutineRecorder practiceRoutineRecorder = practiceRoutineService.GetPracticeRoutineRecorder(practiceRoutineId);
-
-        //    //var practiceRoutineRecorder = PracticeRoutineService service = new PracticeRoutineService(uow, exerciseService);
-        //}
 
         private PracticeRoutine CreatePracticeRoutine()
         {

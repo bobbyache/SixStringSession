@@ -24,9 +24,6 @@ namespace CygSoft.SmartSession.Desktop.Supports.DI
         {
             container.Register(Component.For<IDialogViewService>().ImplementedBy(typeof(DialogService)));
 
-            container.Register(Component.For<IFileService>().ImplementedBy(typeof(FileService))
-                .DependsOn(Dependency.OnConfigValue("folderPath", Settings.FileAttachmentFolder)).LifestyleSingleton());
-
             container.Register(Component.For<IUnitOfWork>().ImplementedBy(typeof(UnitOfWork))
                 .DependsOn(Dependency.OnConfigValue("connectionString", Settings.ConnectionString)).LifestyleSingleton());
 

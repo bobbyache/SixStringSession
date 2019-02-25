@@ -12,111 +12,12 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         public void ExerciseService_CreateNew_Creates_Exercise_With_Proper_Initialisation_State()
         {
             var unitOfWork = new Mock<IUnitOfWork>();
-            var fileService = new Mock<IFileService>();
-            var exerciseService = new ExerciseService(unitOfWork.Object, fileService.Object);
+            var exerciseService = new ExerciseService(unitOfWork.Object);
 
             var exercise = exerciseService.Create();
 
             Assert.That(exercise, Is.Not.Null);
             Assert.IsTrue(exercise.Title.StartsWith("New Exercise Item - "));
         }
-
-        [Test]
-        public void ExerciseService_AddFiles_Calls_FileService_AddExerciseFiles()
-        {
-            var unitOfWork = new Mock<IUnitOfWork>();
-            unitOfWork.Setup(s => s.Exercises).Returns(new Mock<IExerciseRepository>().Object);
-
-            var exercise = new Exercise();
-            exercise.Id = 23;
-
-            var fileService = new Mock<IFileService>();
-            //fileService.Setup(s => s.FileExists(It.IsAny<string>())).Returns(false);
-
-            var exerciseService = new ExerciseService(unitOfWork.Object, fileService.Object);
-            exerciseService.AddFiles(23, new string[] { @"C:\somepath\exercise_file.gp" });
-
-            fileService.Verify(fService => fService.AddExerciseFiles(It.IsAny<int>(), It.IsAny<string[]>()), 
-                Times.Once, "IFileService.AddExerciseFiles was not called.");
-
-        }
-
-        [Test]
-        public void ExerciseService_DeleteFiles_Calls_FileService_DeleteExerciseFiles()
-        {
-            var unitOfWork = new Mock<IUnitOfWork>();
-            unitOfWork.Setup(s => s.Exercises).Returns(new Mock<IExerciseRepository>().Object);
-
-            var exercise = new Exercise();
-            exercise.Id = 23;
-
-            var fileService = new Mock<IFileService>();
-
-            var exerciseService = new ExerciseService(unitOfWork.Object, fileService.Object);
-            exerciseService.DeleteFiles(23, new string[] { @"C:\somepath\exercise_file.gp" });
-
-            fileService.Verify(fService => fService.DeleteExerciseFiles(It.IsAny<int>(), It.IsAny<string[]>()),
-                Times.Once, "IFileService.DeleteExerciseFiles was not called.");
-
-        }
-
-        [Test]
-        public void ExerciseService_DeleteFiles_Calls_FileService_DeleteExerciseFiles_All()
-        {
-            var unitOfWork = new Mock<IUnitOfWork>();
-            unitOfWork.Setup(s => s.Exercises).Returns(new Mock<IExerciseRepository>().Object);
-
-            var exercise = new Exercise();
-            exercise.Id = 23;
-
-            var fileService = new Mock<IFileService>();
-
-            var exerciseService = new ExerciseService(unitOfWork.Object, fileService.Object);
-            exerciseService.DeleteFiles(23);
-
-            fileService.Verify(fService => fService.DeleteExerciseFiles(It.IsAny<int>()),
-                Times.Once, "IFileService.DeleteExerciseFiles was not called.");
-
-        }
-
-
-        [Test]
-        public void ExerciseService_GetFiles_Calls_FileService_GetExerciseFiles()
-        {
-            var unitOfWork = new Mock<IUnitOfWork>();
-            unitOfWork.Setup(s => s.Exercises).Returns(new Mock<IExerciseRepository>().Object);
-
-            var exercise = new Exercise();
-            exercise.Id = 23;
-
-            var fileService = new Mock<IFileService>();
-
-            var exerciseService = new ExerciseService(unitOfWork.Object, fileService.Object);
-            exerciseService.GetFiles(23);
-
-            fileService.Verify(fService => fService.GetExerciseFiles(It.IsAny<int>()),
-                Times.Once, "IFileService.GetExerciseFiles was not called.");
-
-        }
-
-        [Test]
-        public void ExerciseService_OpenFile_Calls_FileService_OpenExerciseFile()
-        {
-            var unitOfWork = new Mock<IUnitOfWork>();
-            unitOfWork.Setup(s => s.Exercises).Returns(new Mock<IExerciseRepository>().Object);
-
-            var exercise = new Exercise();
-            exercise.Id = 23;
-
-            var fileService = new Mock<IFileService>();
-
-            var exerciseService = new ExerciseService(unitOfWork.Object, fileService.Object);
-            exerciseService.OpenFile(23, "TestFile.gp");
-
-            fileService.Verify(fService => fService.OpenExerciseFile(It.IsAny<int>(), It.IsAny<string>()),
-                Times.Once, "IFileService.OpenExerciseFile was not called.");
-
-        }
-
     }
 }
