@@ -29,62 +29,52 @@ INSERT INTO PracticeRoutine (Title, DateCreated)
 	VALUES ('Wednesday Routine', '2017-02-01 01:00:00');
 	
 
-INSERT INTO PracticeRoutineExercise (PracticeRoutineId, ExerciseId, AssignedPracticeTime, DifficultyRating, PracticalityRating, DateCreated, DateModified)
+INSERT INTO PracticeRoutineExercise (PracticeRoutineId, ExerciseId, AssignedPracticeTime, DateCreated, DateModified)
 	VALUES 
 		(
 			(SELECT Id FROM PracticeRoutine WHERE Title = 'Tuesday Routine'),
             (SELECT Id FROM Exercise WHERE Title = 'Yellow Exercise'),
             100,
-            3,
-            3,
             '2015-02-01 01:20:00',
             NULL
         );
 
-INSERT INTO PracticeRoutineExercise (PracticeRoutineId, ExerciseId, AssignedPracticeTime, DifficultyRating, PracticalityRating, DateCreated, DateModified)
+INSERT INTO PracticeRoutineExercise (PracticeRoutineId, ExerciseId, AssignedPracticeTime, DateCreated, DateModified)
 	VALUES 
 		(
 			(SELECT Id FROM PracticeRoutine WHERE Title = 'Tuesday Routine'),
             (SELECT Id FROM Exercise WHERE Title = 'Green Exercise'),
             120,
-            4,
-            4,
             '2015-02-01 01:20:00',
             NULL
         );
 
-INSERT INTO PracticeRoutineExercise (PracticeRoutineId, ExerciseId, AssignedPracticeTime, DifficultyRating, PracticalityRating, DateCreated, DateModified)
+INSERT INTO PracticeRoutineExercise (PracticeRoutineId, ExerciseId, AssignedPracticeTime, DateCreated, DateModified)
 	VALUES 
 		(
 			(SELECT Id FROM PracticeRoutine WHERE Title = 'Tuesday Routine'),
             (SELECT Id FROM Exercise WHERE Title = 'Orange Exercise'),
             120,
-            4,
-            4,
             '2015-02-01 01:20:00',
             NULL
         );
 
-INSERT INTO PracticeRoutineExercise (PracticeRoutineId, ExerciseId, AssignedPracticeTime, DifficultyRating, PracticalityRating, DateCreated, DateModified)
+INSERT INTO PracticeRoutineExercise (PracticeRoutineId, ExerciseId, AssignedPracticeTime, DateCreated, DateModified)
 	VALUES 
 		(
 			(SELECT Id FROM PracticeRoutine WHERE Title = 'Wednesday Routine'),
             (SELECT Id FROM Exercise WHERE Title = 'Orange Exercise'),
             120,
-            4,
-            4,
             '2015-02-01 01:20:00',
             NULL
         );
 
-INSERT INTO PracticeRoutineExercise (PracticeRoutineId, ExerciseId, AssignedPracticeTime, DifficultyRating, PracticalityRating, DateCreated, DateModified)
+INSERT INTO PracticeRoutineExercise (PracticeRoutineId, ExerciseId, AssignedPracticeTime, DateCreated, DateModified)
 	VALUES 
 		(
 			(SELECT Id FROM PracticeRoutine WHERE Title = 'Wednesday Routine'),
             (SELECT Id FROM Exercise WHERE Title = 'Blue Exercise'),
             120,
-            4,
-            4,
             '2015-02-01 01:20:00',
             NULL
         );

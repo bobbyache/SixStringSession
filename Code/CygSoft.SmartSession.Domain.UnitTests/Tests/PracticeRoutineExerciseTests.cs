@@ -72,8 +72,6 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             {
                 AssignedPracticeTime = 300,
                 Title = "Routine Exercise",
-                PracticalityRating = 1,
-                DifficultyRating = 1,
                 ExerciseId = 2,
                 PracticeRoutineId = 3
             };

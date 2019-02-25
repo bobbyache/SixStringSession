@@ -2,10 +2,6 @@
 using CygSoft.SmartSession.Domain.PracticeRoutines;
 using NUnit.Framework;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CygSoft.SmartSession.Domain.UnitTests.Tests
 {
@@ -22,15 +18,11 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             {
                 ExerciseId = exercise.Id,
                 AssignedPracticeTime = 5000,
-                DifficultyRating = 1,
-                PracticalityRating = 3
             });
 
             var routineExercise = newPracticeRoutine.PracticeRoutineExercises[0];
 
             Assert.AreEqual(5000, routineExercise.AssignedPracticeTime);
-            Assert.AreEqual(1, routineExercise.DifficultyRating);
-            Assert.AreEqual(3, routineExercise.PracticalityRating);
         }
 
         private Exercise GetMetronomeExercise()

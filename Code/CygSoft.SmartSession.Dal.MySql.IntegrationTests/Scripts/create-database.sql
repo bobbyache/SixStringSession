@@ -66,8 +66,6 @@ CREATE TABLE IF NOT EXISTS `practiceroutinetimeslot` (
 CREATE TABLE IF NOT EXISTS `timeslotexercise` (
   `TimeSlotId` int(11) NOT NULL,
   `ExerciseId` int(11) NOT NULL,
-  `DifficultyRating` int(11) NOT NULL,
-  `PracticalityRating` int(11)  NOT NULL,
   `DateCreated` datetime NOT NULL,
   `DateModified` datetime NULL,
   PRIMARY KEY (`TimeSlotId`, `ExerciseId`),
@@ -79,8 +77,6 @@ CREATE TABLE IF NOT EXISTS `practiceroutineexercise` (
   `PracticeRoutineId` int(11) NOT NULL,
   `ExerciseId` int(11) NOT NULL,
   `AssignedPracticeTime` int(11) NOT NULL,
-  `DifficultyRating` int(11) NOT NULL,
-  `PracticalityRating` int(11)  NOT NULL,
   `DateCreated` datetime NOT NULL,
   `DateModified` datetime NULL,
   PRIMARY KEY (`PracticeRoutineId`, `ExerciseId`),

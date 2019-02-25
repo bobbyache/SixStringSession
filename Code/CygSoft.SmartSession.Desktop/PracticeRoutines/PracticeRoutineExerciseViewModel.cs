@@ -42,34 +42,6 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
             }
         }
 
-        private int difficultyRating;
-        public int DifficultyRating
-        {
-            get
-            {
-                return difficultyRating;
-            }
-            set
-            {
-                practiceRoutineExercise.DifficultyRating = value;
-                Set(() => DifficultyRating, ref difficultyRating, value);
-            }
-        }
-
-        private int practicalityRating;
-        public int PracticalityRating
-        {
-            get
-            {
-                return practicalityRating;
-            }
-            set
-            {
-                practiceRoutineExercise.PracticalityRating = value;
-                Set(() => PracticalityRating, ref practicalityRating, value);
-            }
-        }
-
         public PracticeRoutineExerciseViewModel(PracticeRoutineExercise practiceRoutineExercise)
         {
             this.practiceRoutineExercise = practiceRoutineExercise;
