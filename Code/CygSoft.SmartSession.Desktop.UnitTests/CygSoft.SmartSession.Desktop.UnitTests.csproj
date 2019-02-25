@@ -94,10 +94,6 @@
     <Compile Include="ViewModels\RecordableExerciseViewModelTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CygSoft.SmartSession.Desktop.Controls\CygSoft.SmartSession.Desktop.Controls.csproj">
-      <Project>{9d209d15-9f7b-4942-85a0-27ec1e739cc6}</Project>
-      <Name>CygSoft.SmartSession.Desktop.Controls</Name>
-    </ProjectReference>
     <ProjectReference Include="..\CygSoft.SmartSession.Desktop\CygSoft.SmartSession.Desktop.csproj">
       <Project>{a76e9f48-ea83-43cf-b13b-cbafc62de5f7}</Project>
       <Name>CygSoft.SmartSession.Desktop</Name>
