@@ -1,4 +1,5 @@
-﻿using CygSoft.SmartSession.Domain.Exercises;
+﻿using CygSoft.SmartSession.Desktop.Supports.Messages;
+using CygSoft.SmartSession.Domain.Exercises;
 using CygSoft.SmartSession.Infrastructure.Enums;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
@@ -10,7 +11,7 @@ namespace CygSoft.SmartSession.Desktop.Exercises
     {
         private ExerciseManagementViewModel exerciseManagementViewModel;
         private ExerciseEditViewModel exerciseEditViewModel;
-        private ExerciseRecorderViewModel exerciseRecorderViewModel;
+        private SingleExerciseRecorderViewModel exerciseRecorderViewModel;
         private IExerciseService exerciseService;
 
         private ViewModelBase currentViewModel;
@@ -24,7 +25,7 @@ namespace CygSoft.SmartSession.Desktop.Exercises
 
         public ExerciseCompositeViewModel(IExerciseService exerciseService, ExerciseManagementViewModel exerciseManagementViewModel, 
             ExerciseEditViewModel exerciseEditViewModel,
-            ExerciseRecorderViewModel exerciseRecorderViewModel)
+            SingleExerciseRecorderViewModel exerciseRecorderViewModel)
         {
             this.exerciseService = exerciseService;
             this.exerciseManagementViewModel = exerciseManagementViewModel;

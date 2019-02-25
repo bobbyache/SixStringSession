@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using CygSoft.SmartSession.Desktop.Supports.Messages;
 using CygSoft.SmartSession.Desktop.Supports.Services;
 using CygSoft.SmartSession.Domain.Exercises;
 using CygSoft.SmartSession.Infrastructure.Enums;

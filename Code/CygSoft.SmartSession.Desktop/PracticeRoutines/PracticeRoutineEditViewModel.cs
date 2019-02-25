@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
 using CygSoft.SmartSession.Infrastructure;
+using CygSoft.SmartSession.Desktop.Supports.Messages;
 
 namespace CygSoft.SmartSession.Desktop.PracticeRoutines
 {

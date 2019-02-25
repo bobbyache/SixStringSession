@@ -1,3 +1,4 @@
+using CygSoft.SmartSession.Desktop.Supports.Messages;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;

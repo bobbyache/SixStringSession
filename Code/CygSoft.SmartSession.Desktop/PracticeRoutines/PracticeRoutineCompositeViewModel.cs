@@ -1,4 +1,5 @@
 ﻿using CygSoft.SmartSession.Desktop.Exercises;
+using CygSoft.SmartSession.Desktop.Supports.Messages;
 using CygSoft.SmartSession.Domain.PracticeRoutines;
 using CygSoft.SmartSession.Infrastructure.Enums;
 using GalaSoft.MvvmLight;

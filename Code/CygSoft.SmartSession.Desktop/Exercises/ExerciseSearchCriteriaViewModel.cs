@@ -1,4 +1,5 @@
-﻿using CygSoft.SmartSession.Desktop.Supports.Services;
+﻿using CygSoft.SmartSession.Desktop.Supports.Messages;
+using CygSoft.SmartSession.Desktop.Supports.Services;
 using CygSoft.SmartSession.Domain.Common;
 using CygSoft.SmartSession.Domain.Exercises;
 using GalaSoft.MvvmLight;

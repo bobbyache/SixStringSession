@@ -20,7 +20,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
 
             exerciseService.Setup(svc => svc.Get(It.IsAny<int>())).Returns(GetTestExercise(1));
 
-            ExerciseRecorderViewModel viewModel = new ExerciseRecorderViewModel(exerciseService.Object, dialogService.Object, exerciseRecorder.Object);
+            SingleExerciseRecorderViewModel viewModel = new SingleExerciseRecorderViewModel(exerciseService.Object, dialogService.Object, exerciseRecorder.Object);
             viewModel.InitializeRecorder(3);
 
             Assert.That(viewModel.StartRecordingCommand.CanExecute(null), Is.True);
@@ -35,7 +35,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
 
             exerciseService.Setup(svc => svc.Get(It.IsAny<int>())).Returns(GetTestExercise(1));
 
-            ExerciseRecorderViewModel viewModel = new ExerciseRecorderViewModel(exerciseService.Object, dialogService.Object, 
+            SingleExerciseRecorderViewModel viewModel = new SingleExerciseRecorderViewModel(exerciseService.Object, dialogService.Object, 
                 exerciseRecorder);
 
             viewModel.InitializeRecorder(3);
@@ -58,7 +58,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
 
             exerciseService.Setup(svc => svc.Get(It.IsAny<int>())).Returns(GetTestExercise(1));
 
-            ExerciseRecorderViewModel viewModel = new ExerciseRecorderViewModel(exerciseService.Object, dialogService.Object,
+            SingleExerciseRecorderViewModel viewModel = new SingleExerciseRecorderViewModel(exerciseService.Object, dialogService.Object,
                 exerciseRecorder.Object);
 
             viewModel.InitializeRecorder(3);
@@ -80,7 +80,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
             
             exerciseService.Setup(svc => svc.Get(It.IsAny<int>())).Returns(GetTestExercise(1));
 
-            ExerciseRecorderViewModel viewModel = new ExerciseRecorderViewModel(exerciseService.Object, dialogService.Object,
+            SingleExerciseRecorderViewModel viewModel = new SingleExerciseRecorderViewModel(exerciseService.Object, dialogService.Object,
                 exerciseRecorder.Object);
             viewModel.InitializeRecorder(3);
 
@@ -101,7 +101,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
 
             exerciseService.Setup(svc => svc.Get(It.IsAny<int>())).Returns(GetTestExercise(1));
 
-            ExerciseRecorderViewModel viewModel = new ExerciseRecorderViewModel(exerciseService.Object, dialogService.Object,
+            SingleExerciseRecorderViewModel viewModel = new SingleExerciseRecorderViewModel(exerciseService.Object, dialogService.Object,
                 exerciseRecorder.Object);
 
             viewModel.InitializeRecorder(3);
@@ -125,7 +125,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
 
             exerciseService.Setup(svc => svc.Get(It.IsAny<int>())).Returns(GetTestExercise(1));
 
-            ExerciseRecorderViewModel viewModel = new ExerciseRecorderViewModel(exerciseService.Object, dialogService.Object,
+            SingleExerciseRecorderViewModel viewModel = new SingleExerciseRecorderViewModel(exerciseService.Object, dialogService.Object,
                 exerciseRecorder.Object);
 
             viewModel.InitializeRecorder(3);
@@ -149,7 +149,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
 
             exerciseService.Setup(svc => svc.Get(It.IsAny<int>())).Returns(GetTestExercise(1));
 
-            ExerciseRecorderViewModel viewModel = new ExerciseRecorderViewModel(exerciseService.Object, dialogService.Object,
+            SingleExerciseRecorderViewModel viewModel = new SingleExerciseRecorderViewModel(exerciseService.Object, dialogService.Object,
                 exerciseRecorder);
 
             viewModel.InitializeRecorder(3);

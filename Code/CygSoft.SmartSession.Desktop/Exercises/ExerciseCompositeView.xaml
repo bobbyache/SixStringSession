@@ -16,7 +16,7 @@
         <DataTemplate DataType="{x:Type local:ExerciseEditViewModel}">
             <local:ExerciseEditView />
         </DataTemplate>
-        <DataTemplate DataType="{x:Type local:ExerciseRecorderViewModel}">
+        <DataTemplate DataType="{x:Type local:SingleExerciseRecorderViewModel}">
             <local:ExerciseRecorderView />
         </DataTemplate>
     </UserControl.Resources>

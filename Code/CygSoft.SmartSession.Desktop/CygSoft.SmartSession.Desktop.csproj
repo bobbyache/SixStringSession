@@ -111,28 +111,22 @@
     <Compile Include="BusyIndicatorView.xaml.cs">
       <DependentUpon>BusyIndicatorView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Exercises\CancelledExerciseRecordingMessage.cs" />
     <Compile Include="Exercises\ExerciseManagementView.xaml.cs">
       <DependentUpon>ExerciseManagementView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Exercises\ExerciseManagementViewModel.cs" />
-    <Compile Include="Exercises\ExerciseRecorderView.xaml.cs">
-      <DependentUpon>ExerciseRecorderView.xaml</DependentUpon>
+    <Compile Include="Exercises\SingleExerciseRecorderView.xaml.cs">
+      <DependentUpon>SingleExerciseRecorderView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Exercises\ExerciseRecorderViewModel.cs" />
-    <Compile Include="Exercises\ExerciseSelectionCancelledMessage.cs" />
+    <Compile Include="Exercises\SingleExerciseRecorderViewModel.cs" />
     <Compile Include="Exercises\ExerciseSelectionView.xaml.cs">
       <DependentUpon>ExerciseSelectionView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Exercises\ExerciseSelectionViewModel.cs" />
-    <Compile Include="Exercises\OpenExerciseRecorderMessage.cs" />
-    <Compile Include="Exercises\SavedExerciseRecordingMessage.cs" />
-    <Compile Include="Exercises\StartEditingExerciseMessage.cs" />
     <Compile Include="Exercises\ExerciseCompositeView.xaml.cs">
       <DependentUpon>ExerciseCompositeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Exercises\ExerciseCompositeViewModel.cs" />
-    <Compile Include="Exercises\EndEditingExerciseMessage.cs" />
     <Compile Include="Exercises\ExerciseEditView.xaml.cs">
       <DependentUpon>ExerciseEditView.xaml</DependentUpon>
     </Compile>
@@ -141,9 +135,6 @@
       <DependentUpon>ExerciseSearchCriteriaView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Exercises\ExerciseSearchCriteriaViewModel.cs" />
-    <Compile Include="Exercises\FindExercisesMessage.cs" />
-    <Compile Include="Goals\EndEditingGoalMessage.cs" />
-    <Compile Include="Goals\FindGoalsMessage.cs" />
     <Compile Include="Goals\GoalCompositeView.xaml.cs">
       <DependentUpon>GoalCompositeView.xaml</DependentUpon>
     </Compile>
@@ -162,10 +153,7 @@
       <DependentUpon>GoalSearchView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Goals\GoalSearchViewModel.cs" />
-    <Compile Include="Goals\StartEditingGoalMessage.cs" />
     <Compile Include="MainWindowViewModel.cs" />
-    <Compile Include="PracticeRoutines\EndEditingPracticeRoutineMessage.cs" />
-    <Compile Include="Exercises\ExerciseSelectedMessage.cs" />
     <Compile Include="PracticeRoutines\ExerciseInstanceEditView.xaml.cs">
       <DependentUpon>ExerciseInstanceEditView.xaml</DependentUpon>
     </Compile>
@@ -178,7 +166,6 @@
     <Compile Include="PracticeRoutines\ExerciseInstanceView.xaml.cs">
       <DependentUpon>ExerciseInstanceView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PracticeRoutines\ExitPracticeListMessage.cs" />
     <Compile Include="PracticeRoutines\PracticeRoutineCompositeView.xaml.cs">
       <DependentUpon>PracticeRoutineCompositeView.xaml</DependentUpon>
     </Compile>
@@ -198,9 +185,6 @@
     </Compile>
     <Compile Include="PracticeRoutines\PracticeRoutineManagementViewModel.cs" />
     <Compile Include="PracticeRoutines\RecordableExerciseViewModel.cs" />
-    <Compile Include="PracticeRoutines\StartSelectingPracticeRoutineExerciseMessage.cs" />
-    <Compile Include="PracticeRoutines\StartEditingPracticeRoutineMessage.cs" />
-    <Compile Include="PracticeRoutines\ViewPracticeListMessage.cs" />
     <Compile Include="Supports\Converters\BoolToValueConverter.cs" />
     <Compile Include="Supports\Converters\ComparisonOperatorConverter.cs" />
     <Compile Include="Supports\Converters\EnumToCollectionConverter.cs" />
@@ -220,6 +204,7 @@
     <Compile Include="Goals\GoalListItem.cs" />
     <Compile Include="Supports\EnumHelper.cs" />
     <Compile Include="Supports\MarkupExts\EnumToItemsSource.cs" />
+    <Compile Include="Supports\Messages\Messages.cs" />
     <Compile Include="Supports\Services\DialogService.cs" />
     <Compile Include="Exercises\ExerciseSearchViewModel.cs" />
     <Compile Include="Goals\GoalListViewModel.cs" />
@@ -252,7 +237,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Exercises\ExerciseRecorderView.xaml">
+    <Page Include="Exercises\SingleExerciseRecorderView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

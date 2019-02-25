@@ -1,4 +1,5 @@
-﻿using CygSoft.SmartSession.Desktop.Supports.Services;
+﻿using CygSoft.SmartSession.Desktop.Supports.Messages;
+using CygSoft.SmartSession.Desktop.Supports.Services;
 using CygSoft.SmartSession.Desktop.Supports.Validators;
 using CygSoft.SmartSession.Domain.Exercises;
 using CygSoft.SmartSession.Domain.Sessions;
@@ -15,7 +16,7 @@ using System.Threading.Tasks;
 
 namespace CygSoft.SmartSession.Desktop.Exercises
 {
-    public class ExerciseRecorderViewModel : ValidatableViewModel
+    public class SingleExerciseRecorderViewModel : ValidatableViewModel
     {
         private IExerciseService exerciseService;
         private IDialogViewService dialogService;
@@ -132,7 +133,7 @@ namespace CygSoft.SmartSession.Desktop.Exercises
             }
         }
 
-        public ExerciseRecorderViewModel(IExerciseService exerciseService, IDialogViewService dialogService, IRecorder exerciseRecorder)
+        public SingleExerciseRecorderViewModel(IExerciseService exerciseService, IDialogViewService dialogService, IRecorder exerciseRecorder)
         {
             this.exerciseService = exerciseService ?? throw new ArgumentNullException("Service must be provided.");
             this.dialogService = dialogService ?? throw new ArgumentNullException("Dialog service must be provided.");

@@ -9,36 +9,36 @@ using System.Threading.Tasks;
 namespace CygSoft.SmartSession.Domain.UnitTests.Tests
 {
     [TestFixture]
-    public class ExerciseRecorderTests
+    public class RecorderTests
     {
         [Test]
-        public void ExerciseRecorder_When_30_Sec_Add_Minute_Goes_To_Next_Exact_Minute()
+        public void Recorder_When_30_Sec_Add_Minute_Goes_To_Next_Exact_Minute()
         {
-            IRecorder exerciseRecorder = new TestExcerciseRecorder(30);
+            IRecorder exerciseRecorder = new TestExerciseRecorder(30);
             exerciseRecorder.AddMinutes(1);
             Assert.AreEqual(60, exerciseRecorder.PreciseSeconds);
         }
 
         [Test]
-        public void ExerciseRecorder_When_1_Min_Add_2_Minute_Goes_To_3_Minute()
+        public void Recorder_When_1_Min_Add_2_Minute_Goes_To_3_Minute()
         {
-            IRecorder exerciseRecorder = new TestExcerciseRecorder(60);
+            IRecorder exerciseRecorder = new TestExerciseRecorder(60);
             exerciseRecorder.AddMinutes(2);
             Assert.AreEqual(180, exerciseRecorder.PreciseSeconds);
         }
 
         [Test]
-        public void ExerciseRecorder_When_50_Sec_Add_2_Minute_Goes_To_Next_Exact_Minute()
+        public void Recorder_When_50_Sec_Add_2_Minute_Goes_To_Next_Exact_Minute()
         {
-            IRecorder exerciseRecorder = new TestExcerciseRecorder(110);
+            IRecorder exerciseRecorder = new TestExerciseRecorder(110);
             exerciseRecorder.AddMinutes(2);
             Assert.AreEqual(180, exerciseRecorder.PreciseSeconds);
         }
 
         [Test]
-        public void ExerciseRecorder_Attempt_Add_Minutes_When_Recording_Does_Nothing()
+        public void Recorder_Attempt_Add_Minutes_When_Recording_Does_Nothing()
         {
-            IRecorder exerciseRecorder = new TestExcerciseRecorder(110);
+            IRecorder exerciseRecorder = new TestExerciseRecorder(110);
             exerciseRecorder.Resume();
             exerciseRecorder.AddMinutes(2);
             exerciseRecorder.Pause();
@@ -47,58 +47,58 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         }
 
         [Test]
-        public void ExerciseRecorder_When_30_Sec_Add_0_Minute_Remains_Unchanged()
+        public void Recorder_When_30_Sec_Add_0_Minute_Remains_Unchanged()
         {
-            IRecorder exerciseRecorder = new TestExcerciseRecorder(30);
+            IRecorder exerciseRecorder = new TestExerciseRecorder(30);
             exerciseRecorder.AddMinutes(0);
             Assert.AreEqual(30, exerciseRecorder.PreciseSeconds);
         }
 
         [Test]
-        public void ExerciseRecorder_When_Is_20sec_Subtract_1_Minute_Is_0_Minutes()
+        public void Recorder_When_Is_20sec_Subtract_1_Minute_Is_0_Minutes()
         {
-            IRecorder exerciseRecorder = new TestExcerciseRecorder(20);
+            IRecorder exerciseRecorder = new TestExerciseRecorder(20);
             exerciseRecorder.SubtractMinutes(1);
             Assert.AreEqual(0, exerciseRecorder.PreciseSeconds);
         }
 
         [Test]
-        public void ExerciseRecorder_When_Is_2Min20sec_Subtract_1_Minute_Is_2_Minutes()
+        public void Recorder_When_Is_2Min20sec_Subtract_1_Minute_Is_2_Minutes()
         {
-            IRecorder exerciseRecorder = new TestExcerciseRecorder(140);
+            IRecorder exerciseRecorder = new TestExerciseRecorder(140);
             exerciseRecorder.SubtractMinutes(1);
             Assert.AreEqual(120, exerciseRecorder.PreciseSeconds);
         }
 
         [Test]
-        public void ExerciseRecorder_When_Is_5Min40sec_Subtract_3Min_Minute_Is_3_Minutes()
+        public void Recorder_When_Is_5Min40sec_Subtract_3Min_Minute_Is_3_Minutes()
         {
-            IRecorder exerciseRecorder = new TestExcerciseRecorder(340);
+            IRecorder exerciseRecorder = new TestExerciseRecorder(340);
             exerciseRecorder.SubtractMinutes(3);
             Assert.AreEqual(180, exerciseRecorder.PreciseSeconds);
         }
 
 
         [Test]
-        public void ExerciseRecorder_When_Subtracted_And_SecondsAreFraction_Removes_Fraction_InIncrement()
+        public void Recorder_When_Subtracted_And_SecondsAreFraction_Removes_Fraction_InIncrement()
         {
-            IRecorder exerciseRecorder = new TestExcerciseRecorder(340.3);
+            IRecorder exerciseRecorder = new TestExerciseRecorder(340.3);
             exerciseRecorder.SubtractMinutes(3);
             Assert.AreEqual(180, exerciseRecorder.PreciseSeconds);
         }
 
         [Test]
-        public void ExerciseRecorder_When_Added_And_SecondsAreFraction_Removes_Fraction_InIncrement()
+        public void Recorder_When_Added_And_SecondsAreFraction_Removes_Fraction_InIncrement()
         {
-            IRecorder exerciseRecorder = new TestExcerciseRecorder(110.3);
+            IRecorder exerciseRecorder = new TestExerciseRecorder(110.3);
             exerciseRecorder.AddMinutes(2);
             Assert.AreEqual(180, exerciseRecorder.PreciseSeconds);
         }
 
         [Test]
-        public void ExerciseRecorder_Attempt_Subtract_Minutes_When_Recording_Does_Nothing()
+        public void Recorder_Attempt_Subtract_Minutes_When_Recording_Does_Nothing()
         {
-            IRecorder exerciseRecorder = new TestExcerciseRecorder(110);
+            IRecorder exerciseRecorder = new TestExerciseRecorder(110);
             exerciseRecorder.Resume();
             exerciseRecorder.SubtractMinutes(2);
             exerciseRecorder.Pause();
@@ -107,11 +107,11 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         }
 
         [Test]
-        public void ExerciseRecorder_TickActionCallBack_Called_After_Subtracting_Minutes()
+        public void Recorder_TickActionCallBack_Called_After_Subtracting_Minutes()
         {
             bool fired = false;
             Action action = () => fired = true;
-            IRecorder exerciseRecorder = new TestExcerciseRecorder(110);
+            IRecorder exerciseRecorder = new TestExerciseRecorder(110);
             exerciseRecorder.TickActionCallBack = action;
 
             exerciseRecorder.SubtractMinutes(2);
@@ -120,11 +120,11 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         }
 
         [Test]
-        public void ExerciseRecorder_TickActionCallBack_NotCalled_WhenRecording_After_Subtracting_Minutes()
+        public void Recorder_TickActionCallBack_NotCalled_WhenRecording_After_Subtracting_Minutes()
         {
             bool fired = false;
             Action action = () => fired = true;
-            IRecorder exerciseRecorder = new TestExcerciseRecorder(110);
+            IRecorder exerciseRecorder = new TestExerciseRecorder(110);
             exerciseRecorder.TickActionCallBack = action;
 
             exerciseRecorder.Resume();
@@ -135,11 +135,11 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         }
 
         [Test]
-        public void ExerciseRecorder_TickActionCallBack_Called_After_Adding_Minutes()
+        public void Recorder_TickActionCallBack_Called_After_Adding_Minutes()
         {
             bool fired = false;
             Action action = () => fired = true;
-            IRecorder exerciseRecorder = new TestExcerciseRecorder(110);
+            IRecorder exerciseRecorder = new TestExerciseRecorder(110);
             exerciseRecorder.TickActionCallBack = action;
 
             exerciseRecorder.AddMinutes(2);
@@ -148,11 +148,11 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         }
 
         [Test]
-        public void ExerciseRecorder_TickActionCallBack_NotCalled_WhenRecording_After_Adding_Minutes()
+        public void Recorder_TickActionCallBack_NotCalled_WhenRecording_After_Adding_Minutes()
         {
             bool fired = false;
             Action action = () => fired = true;
-            IRecorder exerciseRecorder = new TestExcerciseRecorder(110);
+            IRecorder exerciseRecorder = new TestExerciseRecorder(110);
             exerciseRecorder.TickActionCallBack = action;
 
             exerciseRecorder.Resume();
@@ -162,9 +162,9 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             Assert.IsFalse(fired);
         }
 
-        public class TestExcerciseRecorder : Recorder
+        public class TestExerciseRecorder : Recorder
         {
-            public TestExcerciseRecorder(double initialSeconds) : base()
+            public TestExerciseRecorder(double initialSeconds) : base()
             {
                 base.recordedSeconds = initialSeconds;
             }
