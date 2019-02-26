@@ -1,0 +1,11 @@
+
+:: backup
+:: https://blog.winhost.com/using-mysqldump-to-backup-and-restore-your-mysql-databasetables/
+"C:\Program Files\MySQL\MySQL Server 8.0\bin\mysqldump.exe" -e -uUsername -pPassword -hlocalhost smartsession_tests > "C:\smartsession_tests.sql"
+
+:: restore
+:: https://blog.winhost.com/using-mysqldump-to-backup-and-restore-your-mysql-databasetables/
+"C:\Program Files\MySQL\MySQL Server 8.0\bin\mysql.exe" -uUsername -pPassword -hlocalhost smartsession_tests < "C:\smartsession_tests.sql"
+
+
+
