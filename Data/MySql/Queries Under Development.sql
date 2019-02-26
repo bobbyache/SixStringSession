@@ -20,7 +20,10 @@
 				INNER JOIN TimeSlotExercise TSE1 ON TSE1.ExerciseId = E1.Id
 			WHERE
 				TSE1.TimeSlotId = T.Id
-			ORDER BY RAND() LIMIT 1
+			-- https://www.alvinpoh.com/how-to-randomly-select-from-a-record-based-on-weight-php-mysql/
+            -- Random, but weighted.
+			ORDER BY LOG(RAND()) / TSE1.FrequencyWeighting DESC LIMIT 1
+            
 		) AS ExerciseId
 	FROM 
 		PracticeRoutine PR 
@@ -146,3 +149,27 @@
 	DROP TEMPORARY TABLE IF EXISTS RandomRoutineSlotExercises;
 	DROP TEMPORARY TABLE IF EXISTS LastMetronomeSpeeds;
 	DROP TEMPORARY TABLE IF EXISTS FirstMetronomeSpeeds;
+    
+    
+    
+/*
+	Change Weighting for a time slot exercise
+    ===============================================================================================================
+			-- -- UPDATE TimeSlotExercise SET FrequencyWeighting = 4 WHERE ExerciseId = 104 AND TimeSlotId = 19;
+			SELECT 
+				TSE1.*,
+				PR.Title, T.Title
+			FROM 
+				Exercise E1
+				INNER JOIN TimeSlotExercise TSE1 ON TSE1.ExerciseId = E1.Id
+                INNER JOIN TimeSlot T ON T.Id = TSE1.TimeSlotId
+                INNER JOIN PracticeRoutineTimeslot PRTS ON PRTS.TimeSlotId = T.Id
+                INNER JOIN PracticeRoutine PR ON PR.Id = PRTS.PracticeRoutineId
+			WHERE
+				TSE1.TimeSlotId = T.Id
+                AND T.Id = 19;
+*/
+                
+                
+			
+                

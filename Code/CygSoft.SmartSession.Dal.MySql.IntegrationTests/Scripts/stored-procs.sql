@@ -437,7 +437,9 @@ BEGIN
 				INNER JOIN TimeSlotExercise TSE1 ON TSE1.ExerciseId = E1.Id
 			WHERE
 				TSE1.TimeSlotId = T.Id
-			ORDER BY RAND() LIMIT 1
+			-- https://www.alvinpoh.com/how-to-randomly-select-from-a-record-based-on-weight-php-mysql/
+            -- Random, but weighted.
+			ORDER BY LOG(RAND()) / TSE1.FrequencyWeighting DESC LIMIT 1
 		) AS ExerciseId
 	FROM 
 		PracticeRoutine PR 
