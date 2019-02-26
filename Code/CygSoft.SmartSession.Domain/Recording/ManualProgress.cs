@@ -17,7 +17,7 @@ namespace CygSoft.SmartSession.Domain.Recording
         public int Weighting { get; }
         public int Value { get; private set; }
 
-        public double CalculateProgress()
+        public int CalculateProgress()
         {
             return Value;
         }
@@ -36,6 +36,13 @@ namespace CygSoft.SmartSession.Domain.Recording
         {
             var newValue = Value + value;
             var progress = new ManualProgress(newValue, this.Weighting);
+
+            return progress;
+        }
+
+        public IManualProgress NewManualProgress(int value)
+        {
+            var progress = new ManualProgress(value, this.Weighting);
 
             return progress;
         }

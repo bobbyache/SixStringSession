@@ -1,4 +1,5 @@
-﻿using CygSoft.SmartSession.Domain.Exercises;
+﻿using CygSoft.SmartSession.Dal.MySql.PracticeRoutines;
+using CygSoft.SmartSession.Domain.Exercises;
 using CygSoft.SmartSession.Domain.Recording;
 using Dapper;
 using KellermanSoftware.CompareNetObjects;
@@ -56,6 +57,28 @@ namespace CygSoft.SmartSession.Dal.MySql
             return results.ToList();
         }
 
+        public IExerciseRecorder GetExerciseRecorder(int id)
+        {
+            try
+            {
+                var exercise = Get(id);
+
+                var rec = Connection.QuerySingle<ExerciseRecorderRecord>("sp_GetExerciseRecorderByExerciseId",
+                    param: new { _exerciseId = id }, commandType: CommandType.StoredProcedure);
+
+                var speedProgress = new SpeedProgress(rec.InitialRecordedSpeed, rec.LastRecordedSpeed, rec.TargetMetronomeSpeed, rec.SpeedProgressWeighting);
+                var timeProgress = new PracticeTimeProgress(rec.TotalPracticeTime, rec.TargetPracticeTime, rec.PracticeTimeProgressWeighting);
+                var manualProgress = new ManualProgress(rec.LastRecordedManualProgress, rec.ManualProgressWeighting);
+                var exerciseRecorder = new ExerciseRecorder(new Recorder(), rec.ExerciseId, rec.ExerciseTitle, speedProgress, timeProgress, manualProgress);
+
+                return exerciseRecorder;
+            }
+            catch (InvalidOperationException ex)
+            {
+                throw new DatabaseEntityNotFoundException($"Database entity does not exist for id: {id}", ex);
+            }
+        }
+
         public IReadOnlyList<IExercise> GetPracticeRoutineExercises(int practiceRoutineId)
         {
             var exercises = Connection.Query<Exercise>("sp_GetPracticeRoutineExercises",
@@ -102,7 +125,6 @@ namespace CygSoft.SmartSession.Dal.MySql
             {
                 throw new DatabaseEntityNotFoundException($"Database entity does not exist for id: {id}", ex);
             }
-
         }
 
         public void Remove(IExercise entity)

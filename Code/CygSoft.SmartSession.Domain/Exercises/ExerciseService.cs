@@ -35,7 +35,7 @@ namespace CygSoft.SmartSession.Domain.Exercises
             return exercise;
         }
 
-        public ExerciseActivity CreateExerciseActivity(int speed, int seconds, int manualProgress, DateTime startTime, DateTime endTime)
+        public ExerciseActivity CreateExerciseActivity(int speed, int seconds, int manualProgress)
         {
             var exerciseActivity = new ExerciseActivity
             {
@@ -90,6 +90,11 @@ namespace CygSoft.SmartSession.Domain.Exercises
 
             unitOfWork.Exercises.Update(exercises);
             unitOfWork.Commit();
+        }
+
+        public IExerciseRecorder GetExerciseRecorder(int exerciseId)
+        {
+            return unitOfWork.Exercises.GetExerciseRecorder(exerciseId);
         }
     }
 }

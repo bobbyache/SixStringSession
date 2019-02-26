@@ -14,7 +14,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         [Test]
         public void ExerciseCompositeViewModel_Receives_Save_Message_From_ExerciseEditViewModel()
         {
-            var exerciseRecorder = new Mock<IRecorder>();
+            var exerciseRecorder = new Mock<IExerciseRecorder>();
             var exerciseService = new Mock<IExerciseService>();
             var dialogService = new Mock<IDialogViewService>();
 
@@ -24,7 +24,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
 
             var exerciseSearchCriteriaViewModel = new ExerciseSearchCriteriaViewModel(exerciseService.Object, dialogService.Object);
             var exerciseManagementViewModel = new ExerciseManagementViewModel(exerciseSearchCriteriaViewModel, exerciseService.Object, dialogService.Object);
-            var exerciseRecorderViewModel = new SingleExerciseRecorderViewModel(exerciseService.Object, dialogService.Object, exerciseRecorder.Object);
+            var exerciseRecorderViewModel = new SingleExerciseRecorderViewModel(exerciseService.Object, dialogService.Object);
 
             var exerciseEditViewModel = new ExerciseEditViewModel(dialogService.Object);
 
@@ -34,14 +34,14 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
             exerciseEditViewModel.SaveCommand.Execute(null);
 
             Assert.IsTrue(viewModel.EndEditinExerciseCalled);
-            
+
             Assert.That(viewModel.EndEditOperation, Is.EqualTo(EditorCloseOperation.Saved));
         }
 
         [Test]
         public void ExerciseCompositeViewModel_Receives_Cancel_Message_From_ExerciseEditViewModel()
         {
-            var exerciseRecorder = new Mock<IRecorder>();
+            var exerciseRecorder = new Mock<IExerciseRecorder>();
             var exerciseService = new Mock<IExerciseService>();
             var dialogService = new Mock<IDialogViewService>();
 
@@ -51,7 +51,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
 
             var exerciseSearchCriteriaViewModel = new ExerciseSearchCriteriaViewModel(exerciseService.Object, dialogService.Object);
             var exerciseManagementViewModel = new ExerciseManagementViewModel(exerciseSearchCriteriaViewModel, exerciseService.Object, dialogService.Object);
-            var exerciseRecorderViewModel = new SingleExerciseRecorderViewModel(exerciseService.Object, dialogService.Object, exerciseRecorder.Object);
+            var exerciseRecorderViewModel = new SingleExerciseRecorderViewModel(exerciseService.Object, dialogService.Object);
 
             var exerciseEditViewModel = new ExerciseEditViewModel(dialogService.Object);
 
@@ -68,7 +68,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         [Test]
         public void ExerciseCompositeViewModel_Calls_Save_On_Service_When_Exercise_Saved_AsExisting()
         {
-            var exerciseRecorder = new Mock<IRecorder>();
+            var exerciseRecorder = new Mock<IExerciseRecorder>();
             var exerciseService = new Mock<IExerciseService>();
             var dialogService = new Mock<IDialogViewService>();
 
@@ -78,7 +78,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
 
             var exerciseSearchCriteriaViewModel = new ExerciseSearchCriteriaViewModel(exerciseService.Object, dialogService.Object);
             var exerciseManagementViewModel = new ExerciseManagementViewModel(exerciseSearchCriteriaViewModel, exerciseService.Object, dialogService.Object);
-            var exerciseRecorderViewModel = new SingleExerciseRecorderViewModel(exerciseService.Object, dialogService.Object, exerciseRecorder.Object);
+            var exerciseRecorderViewModel = new SingleExerciseRecorderViewModel(exerciseService.Object, dialogService.Object);
 
             var exerciseEditViewModel = new ExerciseEditViewModel(dialogService.Object);
 
@@ -94,7 +94,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         [Test]
         public void ExerciseCompositeViewModel_Calls_Add_On_Service_When_Exercise_Saved_AsNew()
         {
-            var exerciseRecorder = new Mock<IRecorder>();
+            var exerciseRecorder = new Mock<IExerciseRecorder>();
             var exerciseService = new Mock<IExerciseService>();
             var dialogService = new Mock<IDialogViewService>();
 
@@ -104,7 +104,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
 
             var exerciseSearchCriteriaViewModel = new ExerciseSearchCriteriaViewModel(exerciseService.Object, dialogService.Object);
             var exerciseManagementViewModel = new ExerciseManagementViewModel(exerciseSearchCriteriaViewModel, exerciseService.Object, dialogService.Object);
-            var exerciseRecorderViewModel = new SingleExerciseRecorderViewModel(exerciseService.Object, dialogService.Object, exerciseRecorder.Object);
+            var exerciseRecorderViewModel = new SingleExerciseRecorderViewModel(exerciseService.Object, dialogService.Object);
 
             var exerciseEditViewModel = new ExerciseEditViewModel(dialogService.Object);
 

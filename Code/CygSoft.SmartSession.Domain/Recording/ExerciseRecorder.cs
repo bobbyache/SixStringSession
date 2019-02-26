@@ -1,4 +1,5 @@
 ﻿using CygSoft.SmartSession.Domain.Common;
+using CygSoft.SmartSession.Domain.Exercises;
 using CygSoft.SmartSession.Infrastructure;
 using System;
 
@@ -29,11 +30,11 @@ namespace CygSoft.SmartSession.Domain.Recording
         protected IPracticeTimeProgress practiceTimeProgress;
         protected IManualProgress manualProgress;
 
-        public ExerciseRecorder(IRecorder recorder, string title, string timeslotTitle,
+        public ExerciseRecorder(IRecorder recorder, int exerciseId, string title,
             ISpeedProgress speedProgress, IPracticeTimeProgress practiceTimeProgress, IManualProgress manualProgress)
         {
+            ExerciseId = exerciseId;
             Title = title;
-            TimeslotTitle = timeslotTitle;
             this.recorder = recorder ?? throw new ArgumentNullException("Recorder must be specified.");
             this.speedProgress = speedProgress ?? throw new ArgumentNullException("Progress element must be specified.");
             this.practiceTimeProgress = practiceTimeProgress ?? throw new ArgumentNullException("Progress element must be specified.");
@@ -50,10 +51,15 @@ namespace CygSoft.SmartSession.Domain.Recording
 
         public string RecordedSecondsDisplay { get => recorder.DisplayTime; }
 
+        public int ExerciseId { get; private set; }
         public string Title { get; private set; }
-        public string TimeslotTitle { get; private set; }
 
-        public int? CurrentSpeed { get => speedProgress.CurrentSpeed; }
+        public int CurrentSpeed
+        {
+            get => speedProgress.CurrentSpeed;
+            set => speedProgress = speedProgress.NewSpeedSpeedProgress(value);
+        }
+        public int TargetSpeed { get => speedProgress.TargetSpeed; }
 
         public int CurrentTotalSeconds
         {
@@ -64,7 +70,11 @@ namespace CygSoft.SmartSession.Domain.Recording
             }
         }
 
-        public double CurrentManualProgress { get => manualProgress.CalculateProgress(); }
+        public double CurrentManualProgress
+        {
+            get { return manualProgress.CalculateProgress(); }
+            set { manualProgress = manualProgress.NewManualProgress((int)value); }
+        }
 
         public double CurrentTimeProgress
         {
@@ -155,6 +165,14 @@ namespace CygSoft.SmartSession.Domain.Recording
             manualProgress = manualProgress.Decrease(value);
         }
 
+        public void SaveRecording(IExerciseService exerciseService)
+        {
+            var exerciseActivity = exerciseService.CreateExerciseActivity(CurrentSpeed, (int)RecordedSeconds, (int)CurrentManualProgress);
+            var exercise = exerciseService.Get(this.ExerciseId);
+
+            exercise.ExerciseActivity.Add(exerciseActivity);
+            exerciseService.Update(exercise);
+        }
 
         #region Implement IDisposable
 
@@ -179,6 +197,8 @@ namespace CygSoft.SmartSession.Domain.Recording
             }
             isDisposed = true;
         }
+
+
 
         ~ExerciseRecorder()
         {

@@ -21,13 +21,13 @@ namespace CygSoft.SmartSession.Domain.Recording
 
         public int Weighting { get; }
 
-        public double CalculateProgress()
+        public int CalculateProgress()
         {
             if (TargetTime == 0)
                 return 100;
 
             var percentComplete = ((double)CurrentTime / TargetTime) * 100d;
-            return percentComplete > 100 ? 100 : percentComplete;
+            return (int)Math.Round(percentComplete > 100 ? 100 : percentComplete, 0);
         }
 
         public IPracticeTimeProgress AddMinutes(int minutes)

@@ -55,7 +55,8 @@ namespace CygSoft.SmartSession.Desktop.Exercises
 
         private void RecordExercise(int exerciseId)
         {
-            exerciseRecorderViewModel.InitializeRecorder(exerciseId);
+            var exerciseRecorder = exerciseService.GetExerciseRecorder(exerciseId);
+            exerciseRecorderViewModel.InitializeRecorder(exerciseRecorder);
             NavigateTo("Record");
         }
 

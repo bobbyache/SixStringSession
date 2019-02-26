@@ -27,13 +27,9 @@ namespace CygSoft.SmartSession.Desktop.Exercises
 
         public string ExerciseTitle { get; private set; }
 
-        public string TotalRecordedDisplayTime { get; private set; }
-
         public string CurrentSpeedInfo { get; private set; }
 
-        protected IRecorder exerciseRecorder;
-
-        private IExercise exercise;
+        protected IExerciseRecorder exerciseRecorder;
 
         private bool startButtonVisible;
         public bool StartButtonVisible
@@ -61,21 +57,9 @@ namespace CygSoft.SmartSession.Desktop.Exercises
             }
         }
 
-        public double CurrentProgress
-        {
-            get
-            {
-                return exercise.GetPercentComplete();
-            }
-        }
+        public double CurrentProgress { get => exerciseRecorder.CurrentOverAllProgress; }
+        public string CurrentProgressText { get => $"{Math.Round(exerciseRecorder.CurrentOverAllProgress, 1)}% done."; }
 
-        public string CurrentProgressText
-        {
-            get
-            {
-                return $"{Math.Round(exercise.GetPercentComplete(), 1)}% done.";
-            }
-        }
 
         private bool pauseButtonVisible;
         public bool PauseButtonVisible
@@ -103,38 +87,40 @@ namespace CygSoft.SmartSession.Desktop.Exercises
             }
         }
 
-        private int metronomeSpeed;
+        public string TotalRecordedDisplayTime
+        {
+            get { return exerciseRecorder.TotalSecondsDisplay; }
+        }
+
         [Required]
         public int MetronomeSpeed
         {
-            get
-            {
-                return metronomeSpeed;
-            }
+            get { return exerciseRecorder.CurrentSpeed; }
             set
             {
-                Set(() => MetronomeSpeed, ref metronomeSpeed, value, true, true);
+                exerciseRecorder.CurrentSpeed = value;
+                RaisePropertyChanged(() => MetronomeSpeed);
             }
         }
 
-        private int manualProgress;
         [Range(0, 100, ErrorMessage = "Value must be between 0 and 100.")]
         public int ManualProgress
         {
-            get { return manualProgress; }
+            get { return (int)exerciseRecorder.CurrentManualProgress; }
             set
             {
-                Set(() => ManualProgress, ref manualProgress, value, true, true);
+                exerciseRecorder.CurrentManualProgress = value;
+                RaisePropertyChanged(() => ManualProgress);
+                RaisePropertyChanged(() => CurrentProgress);
+                RaisePropertyChanged(() => CurrentProgressText);
             }
         }
 
-        public SingleExerciseRecorderViewModel(IExerciseService exerciseService, IDialogViewService dialogService, IRecorder exerciseRecorder)
+        public SingleExerciseRecorderViewModel(IExerciseService exerciseService, IDialogViewService dialogService)
         {
+            
             this.exerciseService = exerciseService ?? throw new ArgumentNullException("Service must be provided.");
             this.dialogService = dialogService ?? throw new ArgumentNullException("Dialog service must be provided.");
-            this.exerciseRecorder = exerciseRecorder ?? throw new ArgumentNullException("Service must be provided.");
-
-            this.exerciseRecorder.TickActionCallBack = Elapsed;
 
             ErrorsChanged += Exercise_ErrorsChanged;
 
@@ -154,7 +140,7 @@ namespace CygSoft.SmartSession.Desktop.Exercises
 
         private bool CanExecuteSaveCommand()
         {
-            var recordingStateValid = exerciseRecorder.PreciseSeconds > 0 && !exerciseRecorder.Recording;
+            var recordingStateValid = exerciseRecorder.RecordedSeconds > 0 && !exerciseRecorder.Recording;
             var speedMetricsStateValid = MetronomeSpeed >= 0;
 
             return recordingStateValid && speedMetricsStateValid;
@@ -166,33 +152,34 @@ namespace CygSoft.SmartSession.Desktop.Exercises
             CancelRecordingCommand.RaiseCanExecuteChanged();
         }
 
-        public void InitializeRecorder(int exerciseId)
+        public void InitializeRecorder(IExerciseRecorder exerciseRecorder)
         {
+            if (this.exerciseRecorder != null)
+            {
+                this.exerciseRecorder.TickActionCallBack = null;
+                this.exerciseRecorder.RecordingStatusChanged -= ExerciseRecorder_RecordingStatusChanged;
+                this.exerciseRecorder.Dispose();
+            }
+
+            this.exerciseRecorder = exerciseRecorder;
+            this.exerciseRecorder.TickActionCallBack = Elapsed;
+            this.exerciseRecorder = exerciseRecorder ?? throw new ArgumentNullException("ExerciseRecorder must be provided.");
             this.exerciseRecorder.RecordingStatusChanged += ExerciseRecorder_RecordingStatusChanged;
 
-            exercise = exerciseService.Get(exerciseId);
             exerciseRecorder.Reset();
 
             PauseButtonVisible = false;
             StartButtonVisible = true;
 
-            this.MetronomeSpeed = 0;
-            this.ManualProgress = exercise.GetLastRecordedManualProgress();
-            this.ExerciseTitle = exercise.Title;
-            this.CurrentSpeedInfo = $"Current: {exercise.GetLastRecordedSpeed()} bpm - Target: {exercise.TargetMetronomeSpeed ?? 0} bpm";
-            this.ActivityRecordedDisplayTime = "00:00:00";
-            this.TotalRecordedDisplayTime = DisplayTime(exercise.GetSecondsPracticed());
+            this.ExerciseTitle = exerciseRecorder.Title;
+            this.CurrentSpeedInfo = $"Current: {exerciseRecorder.CurrentSpeed } bpm - Target: {exerciseRecorder.TargetSpeed} bpm";
+            this.ActivityRecordedDisplayTime = exerciseRecorder.RecordedSecondsDisplay;
         }
 
         private void Elapsed()
         {
-            this.ActivityRecordedDisplayTime = DisplayTime(exerciseRecorder.PreciseSeconds);
-        }
-
-        private string DisplayTime(double seconds)
-        {
-            TimeSpan t = TimeSpan.FromSeconds(seconds);
-            return t.ToString(@"hh\:mm\:ss");
+            this.ActivityRecordedDisplayTime = exerciseRecorder.RecordedSecondsDisplay;
+            RaisePropertyChanged(() => TotalRecordedDisplayTime);
         }
 
         internal void StartRecording()
@@ -231,15 +218,12 @@ namespace CygSoft.SmartSession.Desktop.Exercises
 
         private void SaveRecording()
         {
-            var exerciseActivity = exerciseService.CreateExerciseActivity(MetronomeSpeed, (int)exerciseRecorder.PreciseSeconds, ManualProgress, 
-                exerciseRecorder.StartTime.Value, exerciseRecorder.EndTime.Value);
-            exercise.ExerciseActivity.Add(exerciseActivity);
-
-            exerciseService.Update(exercise);
+            exerciseRecorder.CurrentSpeed = MetronomeSpeed;
+            exerciseRecorder.SaveRecording(exerciseService);
 
             exerciseRecorder.RecordingStatusChanged -= ExerciseRecorder_RecordingStatusChanged;
             exerciseRecorder.Reset();
-            Messenger.Default.Send(new SavedExerciseRecordingMessage(exercise.Id));
+            Messenger.Default.Send(new SavedExerciseRecordingMessage(exerciseRecorder.ExerciseId));
         }
     }
 }

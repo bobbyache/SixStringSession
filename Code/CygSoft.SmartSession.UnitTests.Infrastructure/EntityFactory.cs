@@ -104,5 +104,35 @@ namespace CygSoft.SmartSession.UnitTests.Infrastructure
             };
             return exerciseActivity;
         }
+
+        public static ExerciseRecorder CreateSpeedExerciseRecorder(int initialSpeed, int currentSpeed, int targetSpeed)
+        {
+            var recorder = new Recorder();
+            var speedProgress = new SpeedProgress(initialSpeed, currentSpeed, targetSpeed, 100);
+            var practiceTimeProgress = new PracticeTimeProgress(0, 0, 0);
+            var manualProgress = new ManualProgress(0, 0);
+
+            return new ExerciseRecorder(recorder, 1, "Speed Exercise", speedProgress, practiceTimeProgress, manualProgress);
+        }
+
+        public static ExerciseRecorder CreateTimeExerciseRecorder(int currentTime, int targetTime)
+        {
+            var recorder = new Recorder();
+            var speedProgress = new SpeedProgress(0, 0, 0, 0);
+            var practiceTimeProgress = new PracticeTimeProgress(currentTime, targetTime, 100);
+            var manualProgress = new ManualProgress(0, 0);
+
+            return new ExerciseRecorder(recorder, 1, "Time Exercise", speedProgress, practiceTimeProgress, manualProgress);
+        }
+
+        public static ExerciseRecorder CreateManualExerciseRecorder(int value)
+        {
+            var recorder = new Recorder();
+            var speedProgress = new SpeedProgress(0, 0, 0, 0);
+            var practiceTimeProgress = new PracticeTimeProgress(0, 0, 0);
+            var manualProgress = new ManualProgress(0, 100);
+
+            return new ExerciseRecorder(recorder, 1, "Time Exercise", speedProgress, practiceTimeProgress, manualProgress);
+        }
     }
 }

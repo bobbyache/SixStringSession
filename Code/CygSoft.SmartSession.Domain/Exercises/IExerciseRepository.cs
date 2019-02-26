@@ -1,4 +1,5 @@
 ﻿using CygSoft.SmartSession.Domain.Common;
+using CygSoft.SmartSession.Domain.Recording;
 using System.Collections.Generic;
 
 namespace CygSoft.SmartSession.Domain.Exercises
@@ -9,5 +10,7 @@ namespace CygSoft.SmartSession.Domain.Exercises
         IReadOnlyList<IExercise> GetPracticeRoutineExercises(int practiceRoutineId);
 
         void Update(IEnumerable<IExercise> exercises);
+
+        IExerciseRecorder GetExerciseRecorder(int id);
     }
 }

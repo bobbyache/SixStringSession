@@ -9,9 +9,11 @@ namespace CygSoft.SmartSession.Domain.Recording
     public interface IManualProgress
     {
         int Weighting { get; }
-        double CalculateProgress();
+        int CalculateProgress();
 
         IManualProgress Increase(int value);
         IManualProgress Decrease(int value);
+
+        IManualProgress NewManualProgress(int value);
     }
 }

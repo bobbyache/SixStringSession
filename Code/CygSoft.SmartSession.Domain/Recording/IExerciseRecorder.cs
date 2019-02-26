@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CygSoft.SmartSession.Domain.Exercises;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,12 +9,14 @@ namespace CygSoft.SmartSession.Domain.Recording
 {
     public interface IExerciseRecorder
     {
+        int ExerciseId { get; }
         string Title { get; }
 
-        int? CurrentSpeed { get; }
+        int CurrentSpeed { get; set; }
+        int TargetSpeed { get; }
         int CurrentTotalSeconds { get; }
 
-        double CurrentManualProgress { get; }
+        double CurrentManualProgress { get; set; }
         double CurrentTimeProgress { get; }
         double CurrentSpeedProgress { get; }
         double CurrentOverAllProgress { get; }
@@ -43,5 +46,7 @@ namespace CygSoft.SmartSession.Domain.Recording
         void SubtractMinutes(int minutes);
 
         void Dispose();
+
+        void SaveRecording(IExerciseService exerciseService);
     }
 }

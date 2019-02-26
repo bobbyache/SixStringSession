@@ -14,9 +14,11 @@ namespace CygSoft.SmartSession.Domain.Recording
         int TargetSpeed { get; }
 
         int Weighting { get; }
-        double CalculateProgress();
+        int CalculateProgress();
 
         ISpeedProgress AddTicks(int ticks);
         ISpeedProgress SubtractTicks(int ticks);
+
+        ISpeedProgress NewSpeedSpeedProgress(int value);
     }
 }

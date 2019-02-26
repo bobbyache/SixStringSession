@@ -489,6 +489,38 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
             }
         }
 
+        [Test]
+        public void ExerciseRepository_GetExerciseRecorder_Retrieves_ExerciseRecorder_Successfully()
+        {
+            Funcs.RunScript("delete-all-records.sql", Settings.AppConnectionString);
+            Funcs.RunScript("test-data-practiceroutine-recorder.sql", Settings.AppConnectionString);
+
+            using (var uow = new UnitOfWork(Settings.AppConnectionString))
+            {
+                IExerciseSearchCriteria crit = new ExerciseSearchCriteria
+                {
+                    Title = "Strumming Exercise 2"
+                };
+
+                var exercise = uow.Exercises.Find(crit).First();
+                var exerciseRecorder = uow.Exercises.GetExerciseRecorder(exercise.Id);
+
+                Assert.IsNotNull(exerciseRecorder);
+                Assert.That(exerciseRecorder.ExerciseId, Is.Not.Zero);
+                Assert.AreEqual(0, exerciseRecorder.RecordedSeconds);
+                Assert.IsFalse(exerciseRecorder.Recording);
+                Assert.AreEqual(10, exerciseRecorder.CurrentManualProgress);
+                Assert.AreEqual(10, exerciseRecorder.CurrentOverAllProgress);
+                Assert.AreEqual(35, exerciseRecorder.CurrentSpeed);
+                Assert.AreEqual(80, exerciseRecorder.TargetSpeed);
+                Assert.AreEqual(10, exerciseRecorder.CurrentTimeProgress);
+                Assert.AreEqual(60, exerciseRecorder.CurrentTotalSeconds);
+                Assert.AreEqual("Strumming Exercise 2", exerciseRecorder.Title);
+                Assert.AreEqual("00:01:00", exerciseRecorder.TotalSecondsDisplay);
+                Assert.AreEqual("00:00:00", exerciseRecorder.RecordedSecondsDisplay);
+            }
+        }
+
         private Exercise CreateMetronomeExercise()
         {
             Exercise exercise = new Exercise

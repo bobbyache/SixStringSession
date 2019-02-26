@@ -67,6 +67,7 @@
     <Compile Include="ExerciseRepository.cs" />
     <Compile Include="IConnectionManager.cs" />
     <Compile Include="PracticeRoutineRepository.cs" />
+    <Compile Include="PracticeRoutines\ExerciseRecorderRecord.cs" />
     <Compile Include="PracticeRoutines\PracticeRoutineExerciseRecorderRecord.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepositoryBase.cs" />

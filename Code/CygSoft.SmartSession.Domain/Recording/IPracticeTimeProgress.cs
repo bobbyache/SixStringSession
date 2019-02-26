@@ -12,7 +12,7 @@ namespace CygSoft.SmartSession.Domain.Recording
         int TargetTime { get; }
 
         int Weighting { get; }
-        double CalculateProgress();
+        int CalculateProgress();
 
         IPracticeTimeProgress AddSeconds(int seconds);
         IPracticeTimeProgress SubstractSeconds(int seconds);

@@ -1,8 +1,106 @@
 
     /* ************************************************************************************************
+	CALL sp_GetExerciseRecorderByExerciseId ((SELECT id FROM PracticeRoutine WHERE Title = 'Monday Routine'))
+    ************************************************************************************************ */
+	
+	SET @_exerciseId = (SELECT id FROM Exercise WHERE Title = 'Strumming Exercise 2');
+    
+	DROP TEMPORARY TABLE IF EXISTS LastMetronomeSpeeds;
+	DROP TEMPORARY TABLE IF EXISTS FirstMetronomeSpeeds;
+	
+	CREATE TEMPORARY TABLE LastMetronomeSpeeds
+	SELECT DISTINCT
+		E.Id AS ExerciseId, 
+		EA.MetronomeSpeed AS LastRecordedSpeed,
+		EA.ManualProgress AS LastRecordedManualProgress,
+        (
+			select 
+				sum(ea1.seconds) 
+			from
+				exerciseactivity ea1
+				inner join exercise e1 on e1.id = ea1.exerciseid
+			where
+				e1.id = e.id
+        ) TotalSeconds
+	FROM
+		ExerciseActivity EA
+		INNER JOIN Exercise E ON E.Id = EA.ExerciseId
+		INNER JOIN
+		(
+			SELECT
+				Ex.Id, 
+				MAX(EAx.Id) AS LastId
+			FROM
+				ExerciseActivity EAx
+				INNER JOIN Exercise Ex ON Ex.Id = EAx.ExerciseId
+			WHERE
+				Ex.Id = @_exerciseId 
+			GROUP BY
+				Ex.Id
+		) LS ON LS.Id = EA.ExerciseId AND LS.LastId = EA.Id
+	WHERE
+		E.Id = @_exerciseId 
+	GROUP BY
+		E.Id, 
+		EA.MetronomeSpeed, 
+		EA.ManualProgress
+	;
+
+	CREATE TEMPORARY TABLE FirstMetronomeSpeeds
+	SELECT DISTINCT
+		E.Id AS ExerciseId, 
+		EA.MetronomeSpeed AS InitialRecordedSpeed
+	FROM
+		ExerciseActivity EA
+		INNER JOIN Exercise E ON E.Id = EA.ExerciseId
+		INNER JOIN
+		(
+			SELECT
+				Ex.Id, 
+				MIN(EAx.Id) AS LastId
+			FROM
+				ExerciseActivity EAx
+				INNER JOIN Exercise Ex ON Ex.Id = EAx.ExerciseId
+			WHERE
+				Ex.Id = @_exerciseId
+			GROUP BY
+				Ex.Id
+		) LS ON LS.Id = EA.ExerciseId AND LS.LastId = EA.Id
+	WHERE
+		E.Id = @_exerciseId 
+	;
+    
+	SELECT 
+		E.Id AS ExerciseId,
+		E.Title AS ExerciseTitle,
+
+		E.ManualProgressWeighting,
+		E.SpeedProgressWeighting,
+		E.PracticeTimeProgressWeighting,
+			
+		IFNULL(FM.InitialRecordedSpeed, 0) AS InitialRecordedSpeed,
+		IFNULL(LM.LastRecordedSpeed, 0) AS LastRecordedSpeed,
+		IFNULL(LM.LastRecordedManualProgress, 0) AS LastRecordedManualProgress,
+		IFNULL(LM.TotalSeconds, 0) AS TotalPracticeTime,
+		E.TargetMetronomeSpeed AS TargetMetronomeSpeed,
+		E.TargetPracticeTime AS TargetPracticeTime
+		
+	FROM
+		Exercise E
+		LEFT JOIN LastMetronomeSpeeds LM ON LM.ExerciseId = E.Id
+		LEFT JOIN FirstMetronomespeeds FM ON FM.ExerciseId = E.Id
+	WHERE
+		E.Id = @_exerciseId
+	;
+
+	DROP TEMPORARY TABLE IF EXISTS LastMetronomeSpeeds;
+	DROP TEMPORARY TABLE IF EXISTS FirstMetronomeSpeeds;
+    
+
+    /* ************************************************************************************************
 	CALL sp_GetPracticeRoutineExerciseRecordersByRoutineId ((SELECT id FROM PracticeRoutine WHERE Title = 'Monday Routine'))
     ************************************************************************************************ */
-
+/*
 	SET @_practiceRoutineId = (SELECT id FROM PracticeRoutine WHERE Title = 'Monday Routine');
 		
 	DROP TEMPORARY TABLE IF EXISTS RandomRoutineSlotExercises;
@@ -150,7 +248,7 @@
 	DROP TEMPORARY TABLE IF EXISTS LastMetronomeSpeeds;
 	DROP TEMPORARY TABLE IF EXISTS FirstMetronomeSpeeds;
     
-    
+*/
     
 /*
 	Change Weighting for a time slot exercise

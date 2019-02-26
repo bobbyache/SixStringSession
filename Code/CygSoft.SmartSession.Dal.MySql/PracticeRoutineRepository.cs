@@ -125,7 +125,7 @@ namespace CygSoft.SmartSession.Dal.MySql
                     var timeProgress = new PracticeTimeProgress(rec.TotalPracticeTime, rec.TargetPracticeTime, rec.PracticeTimeProgressWeighting);
                     var manualProgress = new ManualProgress(rec.LastRecordedManualProgress, rec.ManualProgressWeighting);
 
-                    exerciseRecorders.Add(new ExerciseRecorder(new Recorder(), rec.ExerciseTitle, rec.TimeSlotTitle, speedProgress, timeProgress, manualProgress));
+                    exerciseRecorders.Add(new ExerciseRecorder(new Recorder(), rec.ExerciseId, $"{rec.TimeSlotTitle} : {rec.ExerciseTitle}", speedProgress, timeProgress, manualProgress));
                 }
 
                 var practiceRoutineRecorder = new PracticeRoutineRecorder(practiceRoutine.Id, practiceRoutine.Title, exerciseRecorders);

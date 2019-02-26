@@ -126,8 +126,9 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
             {
                 if (recordableExercise.Seconds > 0)
                 {
+                    //TODO: this should actually take place within the RoutineRecorder....
                     var exerciseActivity = exerciseService.CreateExerciseActivity(recordableExercise.MetronomeSpeed, 
-                        (int)recordableExercise.Seconds, recordableExercise.ManualProgress, DateTime.Now, DateTime.Now);
+                        (int)recordableExercise.Seconds, recordableExercise.ManualProgress);
                     recordableExercise.Exercise.ExerciseActivity.Add(exerciseActivity);
                 }
             }

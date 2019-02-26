@@ -23,7 +23,7 @@ namespace CygSoft.SmartSession.Domain.Recording
 
         public int Weighting { get; }
 
-        public double CalculateProgress()
+        public int CalculateProgress()
         {
             if (TargetSpeed == 0)
                 return 100;
@@ -35,13 +35,20 @@ namespace CygSoft.SmartSession.Domain.Recording
             var denominator = (double)(TargetSpeed - InitialSpeed);
 
             var percentComplete = (numerator / denominator) * 100d;
-            return percentComplete > 100 ? 100 : percentComplete;
+            return (int)Math.Round(percentComplete > 100 ? 100 : percentComplete, 0);
         }
 
         public ISpeedProgress AddTicks(int ticks)
         {
             var currentTicks = CurrentSpeed + ticks;
             var progress = new SpeedProgress(this.InitialSpeed, currentTicks, this.TargetSpeed, this.Weighting);
+
+            return progress;
+        }
+
+        public ISpeedProgress NewSpeedSpeedProgress(int value)
+        {
+            var progress = new SpeedProgress(this.InitialSpeed, value, this.TargetSpeed, this.Weighting);
 
             return progress;
         }
