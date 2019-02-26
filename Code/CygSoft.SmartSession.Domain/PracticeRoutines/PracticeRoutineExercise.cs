@@ -34,6 +34,6 @@ namespace CygSoft.SmartSession.Domain.PracticeRoutines
         }
 
         // 1 - 5
-        public int PracticalityRating { get; set; }
+        public int FrequencyWeighting { get; set; }
     }
 }

@@ -22,13 +22,13 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             {
                 ExerciseId = exercise.Id,
                 AssignedPracticeTime = 5000,
-                PracticalityRating = 3
+                FrequencyWeighting = 3
             });
 
             var routineExercise = newPracticeRoutine.PracticeRoutineExercises[0];
 
             Assert.AreEqual(5000, routineExercise.AssignedPracticeTime);
-            Assert.AreEqual(3, routineExercise.PracticalityRating);
+            Assert.AreEqual(3, routineExercise.FrequencyWeighting);
         }
 
         private Exercise GetMetronomeExercise()

@@ -37,17 +37,17 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
             }
         }
 
-        private int practicalityRating;
-        public int PracticalityRating
+        private int frequencyWeighting;
+        public int FrequencyWeighting
         {
             get
             {
-                return practicalityRating;
+                return frequencyWeighting;
             }
             set
             {
-                practiceRoutineExercise.PracticalityRating = value;
-                Set(() => PracticalityRating, ref practicalityRating, value);
+                practiceRoutineExercise.FrequencyWeighting = value;
+                Set(() => FrequencyWeighting, ref frequencyWeighting, value);
             }
         }
 

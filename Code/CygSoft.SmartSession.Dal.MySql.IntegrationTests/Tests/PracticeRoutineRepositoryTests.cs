@@ -204,7 +204,7 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
                 {
                     ExerciseId = createdExercise.Id,
                     AssignedPracticeTime = 5000,
-                    PracticalityRating = 3
+                    FrequencyWeighting = 3
                 });
 
                 uow.PracticeRoutines.Add(createdPracticeRoutine);
@@ -214,7 +214,7 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
                 var practiceRoutineExercise = practiceRoutine.PracticeRoutineExercises[0];
 
                 Assert.That(practiceRoutineExercise.ExerciseId, Is.GreaterThan(0));
-                Assert.That(practiceRoutineExercise.PracticalityRating, Is.EqualTo(3));
+                Assert.That(practiceRoutineExercise.FrequencyWeighting, Is.EqualTo(3));
                 Assert.That(practiceRoutineExercise.DateModified, Is.Null);
                 Assert.That(practiceRoutineExercise.DateCreated, Is.Not.Null);
                 Assert.That(practiceRoutineExercise.AssignedPracticeTime, Is.EqualTo(5000));
@@ -248,7 +248,7 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
                 {
                     ExerciseId = createdExercise.Id,
                     AssignedPracticeTime = 5000,
-                    PracticalityRating = 3
+                    FrequencyWeighting = 3
                 });
 
                 uow.PracticeRoutines.Update(existingPracticeRoutine);
@@ -257,7 +257,7 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
                 var practiceRoutineExercise = updatedPracticeRoutine.PracticeRoutineExercises[0];
 
                 Assert.That(practiceRoutineExercise.ExerciseId, Is.GreaterThan(0));
-                Assert.That(practiceRoutineExercise.PracticalityRating, Is.EqualTo(3));
+                Assert.That(practiceRoutineExercise.FrequencyWeighting, Is.EqualTo(3));
                 Assert.That(practiceRoutineExercise.DateModified, Is.Null);
                 Assert.That(practiceRoutineExercise.DateCreated, Is.Not.Null);
                 Assert.That(practiceRoutineExercise.AssignedPracticeTime, Is.EqualTo(5000));
@@ -291,7 +291,7 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
                 {
                     ExerciseId = createdExercise.Id,
                     AssignedPracticeTime = 5000,
-                    PracticalityRating = 3
+                    FrequencyWeighting = 3
                 });
 
                 uow.PracticeRoutines.Update(existingPracticeRoutine);
@@ -327,14 +327,14 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
                 {
                     ExerciseId = createdExercise1.Id,
                     AssignedPracticeTime = 5000,
-                    PracticalityRating = 2
+                    FrequencyWeighting = 2
                 });
 
                 createdPracticeRoutine.PracticeRoutineExercises.Add(new PracticeRoutineExercise
                 {
                     ExerciseId = createdExercise2.Id,
                     AssignedPracticeTime = 10000,
-                    PracticalityRating = 5
+                    FrequencyWeighting = 5
                 });
 
                 uow.PracticeRoutines.Add(createdPracticeRoutine);
@@ -344,7 +344,7 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
                 var practiceRoutineExercise1 = practiceRoutine.PracticeRoutineExercises[0];
                 var practiceRoutineExercise2 = practiceRoutine.PracticeRoutineExercises[1];
 
-                practiceRoutineExercise1.PracticalityRating = 3;
+                practiceRoutineExercise1.FrequencyWeighting = 3;
                 uow.PracticeRoutines.Update(practiceRoutine);
 
                 var practiceRoutineUnderTest = uow.PracticeRoutines.Get(practiceRoutine.Id);

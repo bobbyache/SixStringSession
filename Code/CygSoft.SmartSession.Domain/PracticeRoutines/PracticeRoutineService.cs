@@ -70,7 +70,7 @@ namespace CygSoft.SmartSession.Domain.PracticeRoutines
             {
                 ExerciseId = exerciseId,
                 Title = exercise.Title,
-                PracticalityRating = 0,
+                FrequencyWeighting = 0,
                 AssignedPracticeTime = 300
             };
 

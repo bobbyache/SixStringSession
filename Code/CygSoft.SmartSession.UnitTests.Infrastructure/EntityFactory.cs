@@ -17,14 +17,14 @@ namespace CygSoft.SmartSession.UnitTests.Infrastructure
         }
 
         public static PracticeRoutineExercise CreatePracticeRoutineExercise(Exercise exercise, 
-            int? assignedPracticeTime = null, int? practicalityRating = 1,
+            int? assignedPracticeTime = null, int? frequencyWeighting = 1,
                 int? difficultyRating = 1)
         {
             var routineExercise = new PracticeRoutineExercise
             {
                 AssignedPracticeTime = assignedPracticeTime ?? 5000,
                 Title = exercise.Title,
-                PracticalityRating = practicalityRating ?? 0,
+                FrequencyWeighting = frequencyWeighting ?? 0,
                 ExerciseId = exercise.Id
             };
             return routineExercise;
@@ -34,7 +34,7 @@ namespace CygSoft.SmartSession.UnitTests.Infrastructure
             int? targetSpeed = null,int? speedProgressWeighting = null,
             int? targetpracticeTime = null, int? practiceTimeProgressWeighting = null,
             int? manualProgressWeighting = null,
-            int? practicalityRating = null, int? difficultyRating = null,
+            int? frequencyWeighting = null, int? difficultyRating = null,
             List<ExerciseActivity> exerciseActivity = null,
             string dateCreated = null, string dateModified = null)
         {
@@ -58,7 +58,7 @@ namespace CygSoft.SmartSession.UnitTests.Infrastructure
             int? targetSpeed = null, int? speedProgressWeighting = null,
             int? targetpracticeTime = null, int? practiceTimeProgressWeighting = null,
             int? manualProgressWeighting = null,
-            int? practicalityRating = null, int? difficultyRating = null,
+            int? frequencyWeighting = null, int? difficultyRating = null,
             List<ExerciseActivity> exerciseActivity = null,
             string dateCreated = null, string dateModified = null)
         {

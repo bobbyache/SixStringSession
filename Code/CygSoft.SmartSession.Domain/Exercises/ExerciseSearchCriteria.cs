@@ -13,7 +13,7 @@ namespace CygSoft.SmartSession.Domain.Exercises
         public int? TargetMetronomeSpeed { get; set; }
         public ComparisonOperators TargetMetronomeSpeedOperator { get; set; }
         public ComparisonOperators TargetPracticeTimeOperator { get; set; }
-        public int? PracticalityRating { get; set; }
+        public int? FrequencyWeighting { get; set; }
         public string Title { get; set; }
         public string Keywords { get; set; }
 

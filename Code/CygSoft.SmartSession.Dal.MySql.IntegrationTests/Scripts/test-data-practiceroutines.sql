@@ -29,7 +29,7 @@ INSERT INTO PracticeRoutine (Title, DateCreated)
 	VALUES ('Wednesday Routine', '2017-02-01 01:00:00');
 	
 
-INSERT INTO PracticeRoutineExercise (PracticeRoutineId, ExerciseId, AssignedPracticeTime, PracticalityRating, DateCreated, DateModified)
+INSERT INTO PracticeRoutineExercise (PracticeRoutineId, ExerciseId, AssignedPracticeTime, FrequencyWeighting, DateCreated, DateModified)
 	VALUES 
 		(
 			(SELECT Id FROM PracticeRoutine WHERE Title = 'Tuesday Routine'),
@@ -40,7 +40,7 @@ INSERT INTO PracticeRoutineExercise (PracticeRoutineId, ExerciseId, AssignedPrac
             NULL
         );
 
-INSERT INTO PracticeRoutineExercise (PracticeRoutineId, ExerciseId, AssignedPracticeTime, PracticalityRating, DateCreated, DateModified)
+INSERT INTO PracticeRoutineExercise (PracticeRoutineId, ExerciseId, AssignedPracticeTime, FrequencyWeighting, DateCreated, DateModified)
 	VALUES 
 		(
 			(SELECT Id FROM PracticeRoutine WHERE Title = 'Tuesday Routine'),
@@ -51,7 +51,7 @@ INSERT INTO PracticeRoutineExercise (PracticeRoutineId, ExerciseId, AssignedPrac
             NULL
         );
 
-INSERT INTO PracticeRoutineExercise (PracticeRoutineId, ExerciseId, AssignedPracticeTime, PracticalityRating, DateCreated, DateModified)
+INSERT INTO PracticeRoutineExercise (PracticeRoutineId, ExerciseId, AssignedPracticeTime, FrequencyWeighting, DateCreated, DateModified)
 	VALUES 
 		(
 			(SELECT Id FROM PracticeRoutine WHERE Title = 'Tuesday Routine'),
@@ -62,7 +62,7 @@ INSERT INTO PracticeRoutineExercise (PracticeRoutineId, ExerciseId, AssignedPrac
             NULL
         );
 
-INSERT INTO PracticeRoutineExercise (PracticeRoutineId, ExerciseId, AssignedPracticeTime, PracticalityRating, DateCreated, DateModified)
+INSERT INTO PracticeRoutineExercise (PracticeRoutineId, ExerciseId, AssignedPracticeTime, FrequencyWeighting, DateCreated, DateModified)
 	VALUES 
 		(
 			(SELECT Id FROM PracticeRoutine WHERE Title = 'Wednesday Routine'),
@@ -73,7 +73,7 @@ INSERT INTO PracticeRoutineExercise (PracticeRoutineId, ExerciseId, AssignedPrac
             NULL
         );
 
-INSERT INTO PracticeRoutineExercise (PracticeRoutineId, ExerciseId, AssignedPracticeTime, PracticalityRating, DateCreated, DateModified)
+INSERT INTO PracticeRoutineExercise (PracticeRoutineId, ExerciseId, AssignedPracticeTime, FrequencyWeighting, DateCreated, DateModified)
 	VALUES 
 		(
 			(SELECT Id FROM PracticeRoutine WHERE Title = 'Wednesday Routine'),

@@ -199,7 +199,7 @@ namespace CygSoft.SmartSession.Dal.MySql
                     _practiceRoutineId = routineExercise.PracticeRoutineId,
                     _exerciseId = routineExercise.ExerciseId,
                     _assignedPracticeTime = routineExercise.AssignedPracticeTime,
-                    _practicalityRating = routineExercise.PracticalityRating
+                    _frequencyWeighting = routineExercise.FrequencyWeighting
                 },
                 commandType: CommandType.StoredProcedure
             );
@@ -239,7 +239,7 @@ namespace CygSoft.SmartSession.Dal.MySql
                         _practiceRoutineId = practiceRoutine.Id,
                         _exerciseId = routineExercise.ExerciseId,
                         _assignedPracticeTime = routineExercise.AssignedPracticeTime,
-                        _practicalityRating = routineExercise.PracticalityRating
+                        _frequencyWeighting = routineExercise.FrequencyWeighting
                     },
                     commandType: CommandType.StoredProcedure
                     );
