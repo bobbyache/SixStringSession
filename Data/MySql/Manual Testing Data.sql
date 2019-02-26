@@ -205,83 +205,81 @@ VALUES ((SELECT Id FROM PracticeRoutine WHERE Title = "Wednesday Routine"), (SEL
 
 
 
-INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, DifficultyRating, PracticalityRating, DateCreated, DateModified)
-VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Monday - Strumming Practice'), (SELECT Id FROM Exercise WHERE Title = 'Strumming Exercise 1'), 2, 2, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, PracticalityRating, DateCreated, DateModified)
+VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Monday - Strumming Practice'), (SELECT Id FROM Exercise WHERE Title = 'Strumming Exercise 1'), 2, '2017-02-01 01:20:00', NULL);
 	
-INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, DifficultyRating, PracticalityRating, DateCreated, DateModified)
-VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Monday - Strumming Practice'), (SELECT Id FROM Exercise WHERE Title = 'Strumming Exercise 2'), 2, 2, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, PracticalityRating, DateCreated, DateModified)
+VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Monday - Strumming Practice'), (SELECT Id FROM Exercise WHERE Title = 'Strumming Exercise 2'), 2, '2017-02-01 01:20:00', NULL);
 
-INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, DifficultyRating, PracticalityRating, DateCreated, DateModified)
-VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Monday - Strumming Practice'), (SELECT Id FROM Exercise WHERE Title = 'Strumming Exercise 3'), 2, 2, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, PracticalityRating, DateCreated, DateModified)
+VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Monday - Strumming Practice'), (SELECT Id FROM Exercise WHERE Title = 'Strumming Exercise 3'), 2, '2017-02-01 01:20:00', NULL);
 
-INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, DifficultyRating, PracticalityRating, DateCreated, DateModified)
-VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Monday - Strumming Practice'), (SELECT Id FROM Exercise WHERE Title = 'Strumming Exercise 4'), 2, 2, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, PracticalityRating, DateCreated, DateModified)
+VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Monday - Strumming Practice'), (SELECT Id FROM Exercise WHERE Title = 'Strumming Exercise 4'), 2, '2017-02-01 01:20:00', NULL);
 
-INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, DifficultyRating, PracticalityRating, DateCreated, DateModified)
-VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Monday - Lead Practice'), (SELECT Id FROM Exercise WHERE Title = 'Lead Exercise 1'), 2, 2, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, PracticalityRating, DateCreated, DateModified)
+VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Monday - Lead Practice'), (SELECT Id FROM Exercise WHERE Title = 'Lead Exercise 1'), 2, '2017-02-01 01:20:00', NULL);
 	
-INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, DifficultyRating, PracticalityRating, DateCreated, DateModified)
-VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Monday - Lead Practice'), (SELECT Id FROM Exercise WHERE Title = 'Lead Exercise 2'), 2, 2, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, PracticalityRating, DateCreated, DateModified)
+VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Monday - Lead Practice'), (SELECT Id FROM Exercise WHERE Title = 'Lead Exercise 2'), 2, '2017-02-01 01:20:00', NULL);
 
-INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, DifficultyRating, PracticalityRating, DateCreated, DateModified)
-VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Monday - Lead Practice'), (SELECT Id FROM Exercise WHERE Title = 'Lead Exercise 3'), 2, 2, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, PracticalityRating, DateCreated, DateModified)
+VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Monday - Lead Practice'), (SELECT Id FROM Exercise WHERE Title = 'Lead Exercise 3'), 2, '2017-02-01 01:20:00', NULL);
 
-INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, DifficultyRating, PracticalityRating, DateCreated, DateModified)
-VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Monday - Lead Practice'), (SELECT Id FROM Exercise WHERE Title = 'Lead Exercise 4'), 2, 2, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, PracticalityRating, DateCreated, DateModified)
+VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Monday - Lead Practice'), (SELECT Id FROM Exercise WHERE Title = 'Lead Exercise 4'), 2, '2017-02-01 01:20:00', NULL);
 
 
-INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, DifficultyRating, PracticalityRating, DateCreated, DateModified)
-VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Monday - Scales Practice'), (SELECT Id FROM Exercise WHERE Title = 'Scales Exercise 1'), 2, 2, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, PracticalityRating, DateCreated, DateModified)
+VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Monday - Scales Practice'), (SELECT Id FROM Exercise WHERE Title = 'Scales Exercise 1'), 2, '2017-02-01 01:20:00', NULL);
 	
-INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, DifficultyRating, PracticalityRating, DateCreated, DateModified)
-VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Monday - Scales Practice'), (SELECT Id FROM Exercise WHERE Title = 'Scales Exercise 2'), 2, 2, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, PracticalityRating, DateCreated, DateModified)
+VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Monday - Scales Practice'), (SELECT Id FROM Exercise WHERE Title = 'Scales Exercise 2'), 2, '2017-02-01 01:20:00', NULL);
 
-INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, DifficultyRating, PracticalityRating, DateCreated, DateModified)
-VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Monday - Scales Practice'), (SELECT Id FROM Exercise WHERE Title = 'Scales Exercise 3'), 2, 2, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, PracticalityRating, DateCreated, DateModified)
+VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Monday - Scales Practice'), (SELECT Id FROM Exercise WHERE Title = 'Scales Exercise 3'), 2, '2017-02-01 01:20:00', NULL);
 
-INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, DifficultyRating, PracticalityRating, DateCreated, DateModified)
-VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Monday - Scales Practice'), (SELECT Id FROM Exercise WHERE Title = 'Scales Exercise 4'), 2, 2, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, PracticalityRating, DateCreated, DateModified)
+VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Monday - Scales Practice'), (SELECT Id FROM Exercise WHERE Title = 'Scales Exercise 4'), 2, '2017-02-01 01:20:00', NULL);
 
 
-INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, DifficultyRating, PracticalityRating, DateCreated, DateModified)
-VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Monday - Theory Practice'), (SELECT Id FROM Exercise WHERE Title = 'Theory Exercise 1'), 2, 2, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, PracticalityRating, DateCreated, DateModified)
+VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Monday - Theory Practice'), (SELECT Id FROM Exercise WHERE Title = 'Theory Exercise 1'), 2, '2017-02-01 01:20:00', NULL);
 	
-INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, DifficultyRating, PracticalityRating, DateCreated, DateModified)
-VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Monday - Theory Practice'), (SELECT Id FROM Exercise WHERE Title = 'Theory Exercise 2'), 2, 2, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, PracticalityRating, DateCreated, DateModified)
+VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Monday - Theory Practice'), (SELECT Id FROM Exercise WHERE Title = 'Theory Exercise 2'), 2, '2017-02-01 01:20:00', NULL);
 
-INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, DifficultyRating, PracticalityRating, DateCreated, DateModified)
-VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Monday - Theory Practice'), (SELECT Id FROM Exercise WHERE Title = 'Theory Exercise 3'), 2, 2, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, PracticalityRating, DateCreated, DateModified)
+VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Monday - Theory Practice'), (SELECT Id FROM Exercise WHERE Title = 'Theory Exercise 3'), 2, '2017-02-01 01:20:00', NULL);
 
-INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, DifficultyRating, PracticalityRating, DateCreated, DateModified)
-VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Monday - Theory Practice'), (SELECT Id FROM Exercise WHERE Title = 'Theory Exercise 4'), 2, 2, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, PracticalityRating, DateCreated, DateModified)
+VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Monday - Theory Practice'), (SELECT Id FROM Exercise WHERE Title = 'Theory Exercise 4'), 2, '2017-02-01 01:20:00', NULL);
 
 
-INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, DifficultyRating, PracticalityRating, DateCreated, DateModified)
-VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Monday - Song Practice'), (SELECT Id FROM Exercise WHERE Title = 'Song Exercise 1'), 2, 2, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, PracticalityRating, DateCreated, DateModified)
+VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Monday - Song Practice'), (SELECT Id FROM Exercise WHERE Title = 'Song Exercise 1'), 2, '2017-02-01 01:20:00', NULL);
 	
-INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, DifficultyRating, PracticalityRating, DateCreated, DateModified)
-VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Monday - Song Practice'), (SELECT Id FROM Exercise WHERE Title = 'Song Exercise 2'), 2, 2, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, PracticalityRating, DateCreated, DateModified)
+VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Monday - Song Practice'), (SELECT Id FROM Exercise WHERE Title = 'Song Exercise 2'), 2, '2017-02-01 01:20:00', NULL);
 
-INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, DifficultyRating, PracticalityRating, DateCreated, DateModified)
-VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Monday - Song Practice'), (SELECT Id FROM Exercise WHERE Title = 'Song Exercise 3'), 2, 2, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, PracticalityRating, DateCreated, DateModified)
+VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Monday - Song Practice'), (SELECT Id FROM Exercise WHERE Title = 'Song Exercise 3'), 2, '2017-02-01 01:20:00', NULL);
 
-INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, DifficultyRating, PracticalityRating, DateCreated, DateModified)
-VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Monday - Song Practice'), (SELECT Id FROM Exercise WHERE Title = 'Song Exercise 4'), 2, 2, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, PracticalityRating, DateCreated, DateModified)
+VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Monday - Song Practice'), (SELECT Id FROM Exercise WHERE Title = 'Song Exercise 4'), 2, '2017-02-01 01:20:00', NULL);
 
 
-INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, DifficultyRating, PracticalityRating, DateCreated, DateModified)
-VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Monday - Ear Training Practice'), (SELECT Id FROM Exercise WHERE Title = 'Ear Exercise 1'), 2, 2, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, PracticalityRating, DateCreated, DateModified)
+VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Monday - Ear Training Practice'), (SELECT Id FROM Exercise WHERE Title = 'Ear Exercise 1'), 2, '2017-02-01 01:20:00', NULL);
 	
-INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, DifficultyRating, PracticalityRating, DateCreated, DateModified)
-VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Monday - Ear Training Practice'), (SELECT Id FROM Exercise WHERE Title = 'Ear Exercise 2'), 2, 2, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, PracticalityRating, DateCreated, DateModified)
+VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Monday - Ear Training Practice'), (SELECT Id FROM Exercise WHERE Title = 'Ear Exercise 2'), 2, '2017-02-01 01:20:00', NULL);
 
-INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, DifficultyRating, PracticalityRating, DateCreated, DateModified)
-VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Monday - Ear Training Practice'), (SELECT Id FROM Exercise WHERE Title = 'Ear Exercise 3'), 2, 2, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, PracticalityRating, DateCreated, DateModified)
+VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Monday - Ear Training Practice'), (SELECT Id FROM Exercise WHERE Title = 'Ear Exercise 3'), 2, '2017-02-01 01:20:00', NULL);
 
-INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, DifficultyRating, PracticalityRating, DateCreated, DateModified)
-VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Monday - Ear Training Practice'), (SELECT Id FROM Exercise WHERE Title = 'Ear Exercise 4'), 2, 2, '2017-02-01 01:20:00', NULL);
-
-
+INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, PracticalityRating, DateCreated, DateModified)
+VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Monday - Ear Training Practice'), (SELECT Id FROM Exercise WHERE Title = 'Ear Exercise 4'), 2, '2017-02-01 01:20:00', NULL);
 
 
 
@@ -289,166 +287,168 @@ VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Monday - Ear Training Practice')
 
 
 
-INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, DifficultyRating, PracticalityRating, DateCreated, DateModified)
-VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Tuesday - Strumming Practice'), (SELECT Id FROM Exercise WHERE Title = 'Strumming Exercise 1'), 2, 2, '2017-02-01 01:20:00', NULL);
+
+
+INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, PracticalityRating, DateCreated, DateModified)
+VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Tuesday - Strumming Practice'), (SELECT Id FROM Exercise WHERE Title = 'Strumming Exercise 1'), 2, '2017-02-01 01:20:00', NULL);
 	
-INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, DifficultyRating, PracticalityRating, DateCreated, DateModified)
-VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Tuesday - Strumming Practice'), (SELECT Id FROM Exercise WHERE Title = 'Strumming Exercise 2'), 2, 2, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, PracticalityRating, DateCreated, DateModified)
+VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Tuesday - Strumming Practice'), (SELECT Id FROM Exercise WHERE Title = 'Strumming Exercise 2'), 2, '2017-02-01 01:20:00', NULL);
 
-INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, DifficultyRating, PracticalityRating, DateCreated, DateModified)
-VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Tuesday - Strumming Practice'), (SELECT Id FROM Exercise WHERE Title = 'Strumming Exercise 3'), 2, 2, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, PracticalityRating, DateCreated, DateModified)
+VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Tuesday - Strumming Practice'), (SELECT Id FROM Exercise WHERE Title = 'Strumming Exercise 3'), 2, '2017-02-01 01:20:00', NULL);
 
-INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, DifficultyRating, PracticalityRating, DateCreated, DateModified)
-VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Tuesday - Strumming Practice'), (SELECT Id FROM Exercise WHERE Title = 'Strumming Exercise 4'), 2, 2, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, PracticalityRating, DateCreated, DateModified)
+VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Tuesday - Strumming Practice'), (SELECT Id FROM Exercise WHERE Title = 'Strumming Exercise 4'), 2, '2017-02-01 01:20:00', NULL);
 
-INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, DifficultyRating, PracticalityRating, DateCreated, DateModified)
-VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Tuesday - Lead Practice'), (SELECT Id FROM Exercise WHERE Title = 'Lead Exercise 1'), 2, 2, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, PracticalityRating, DateCreated, DateModified)
+VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Tuesday - Lead Practice'), (SELECT Id FROM Exercise WHERE Title = 'Lead Exercise 1'), 2, '2017-02-01 01:20:00', NULL);
 	
-INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, DifficultyRating, PracticalityRating, DateCreated, DateModified)
-VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Tuesday - Lead Practice'), (SELECT Id FROM Exercise WHERE Title = 'Lead Exercise 2'), 2, 2, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, PracticalityRating, DateCreated, DateModified)
+VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Tuesday - Lead Practice'), (SELECT Id FROM Exercise WHERE Title = 'Lead Exercise 2'), 2, '2017-02-01 01:20:00', NULL);
 
-INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, DifficultyRating, PracticalityRating, DateCreated, DateModified)
-VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Tuesday - Lead Practice'), (SELECT Id FROM Exercise WHERE Title = 'Lead Exercise 3'), 2, 2, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, PracticalityRating, DateCreated, DateModified)
+VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Tuesday - Lead Practice'), (SELECT Id FROM Exercise WHERE Title = 'Lead Exercise 3'), 2, '2017-02-01 01:20:00', NULL);
 
-INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, DifficultyRating, PracticalityRating, DateCreated, DateModified)
-VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Tuesday - Lead Practice'), (SELECT Id FROM Exercise WHERE Title = 'Lead Exercise 4'), 2, 2, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, PracticalityRating, DateCreated, DateModified)
+VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Tuesday - Lead Practice'), (SELECT Id FROM Exercise WHERE Title = 'Lead Exercise 4'), 2, '2017-02-01 01:20:00', NULL);
 
 
-INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, DifficultyRating, PracticalityRating, DateCreated, DateModified)
-VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Tuesday - Scales Practice'), (SELECT Id FROM Exercise WHERE Title = 'Scales Exercise 1'), 2, 2, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, PracticalityRating, DateCreated, DateModified)
+VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Tuesday - Scales Practice'), (SELECT Id FROM Exercise WHERE Title = 'Scales Exercise 1'), 2, '2017-02-01 01:20:00', NULL);
 	
-INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, DifficultyRating, PracticalityRating, DateCreated, DateModified)
-VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Tuesday - Scales Practice'), (SELECT Id FROM Exercise WHERE Title = 'Scales Exercise 2'), 2, 2, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, PracticalityRating, DateCreated, DateModified)
+VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Tuesday - Scales Practice'), (SELECT Id FROM Exercise WHERE Title = 'Scales Exercise 2'), 2, '2017-02-01 01:20:00', NULL);
 
-INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, DifficultyRating, PracticalityRating, DateCreated, DateModified)
-VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Tuesday - Scales Practice'), (SELECT Id FROM Exercise WHERE Title = 'Scales Exercise 3'), 2, 2, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, PracticalityRating, DateCreated, DateModified)
+VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Tuesday - Scales Practice'), (SELECT Id FROM Exercise WHERE Title = 'Scales Exercise 3'), 2, '2017-02-01 01:20:00', NULL);
 
-INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, DifficultyRating, PracticalityRating, DateCreated, DateModified)
-VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Tuesday - Scales Practice'), (SELECT Id FROM Exercise WHERE Title = 'Scales Exercise 4'), 2, 2, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, PracticalityRating, DateCreated, DateModified)
+VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Tuesday - Scales Practice'), (SELECT Id FROM Exercise WHERE Title = 'Scales Exercise 4'), 2, '2017-02-01 01:20:00', NULL);
 
 
-INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, DifficultyRating, PracticalityRating, DateCreated, DateModified)
-VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Tuesday - Theory Practice'), (SELECT Id FROM Exercise WHERE Title = 'Theory Exercise 1'), 2, 2, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, PracticalityRating, DateCreated, DateModified)
+VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Tuesday - Theory Practice'), (SELECT Id FROM Exercise WHERE Title = 'Theory Exercise 1'), 2, '2017-02-01 01:20:00', NULL);
 	
-INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, DifficultyRating, PracticalityRating, DateCreated, DateModified)
-VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Tuesday - Theory Practice'), (SELECT Id FROM Exercise WHERE Title = 'Theory Exercise 2'), 2, 2, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, PracticalityRating, DateCreated, DateModified)
+VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Tuesday - Theory Practice'), (SELECT Id FROM Exercise WHERE Title = 'Theory Exercise 2'), 2, '2017-02-01 01:20:00', NULL);
 
-INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, DifficultyRating, PracticalityRating, DateCreated, DateModified)
-VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Tuesday - Theory Practice'), (SELECT Id FROM Exercise WHERE Title = 'Theory Exercise 3'), 2, 2, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, PracticalityRating, DateCreated, DateModified)
+VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Tuesday - Theory Practice'), (SELECT Id FROM Exercise WHERE Title = 'Theory Exercise 3'), 2, '2017-02-01 01:20:00', NULL);
 
-INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, DifficultyRating, PracticalityRating, DateCreated, DateModified)
-VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Tuesday - Theory Practice'), (SELECT Id FROM Exercise WHERE Title = 'Theory Exercise 4'), 2, 2, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, PracticalityRating, DateCreated, DateModified)
+VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Tuesday - Theory Practice'), (SELECT Id FROM Exercise WHERE Title = 'Theory Exercise 4'), 2, '2017-02-01 01:20:00', NULL);
 
 
-INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, DifficultyRating, PracticalityRating, DateCreated, DateModified)
-VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Tuesday - Song Practice'), (SELECT Id FROM Exercise WHERE Title = 'Song Exercise 1'), 2, 2, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, PracticalityRating, DateCreated, DateModified)
+VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Tuesday - Song Practice'), (SELECT Id FROM Exercise WHERE Title = 'Song Exercise 1'), 2, '2017-02-01 01:20:00', NULL);
 	
-INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, DifficultyRating, PracticalityRating, DateCreated, DateModified)
-VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Tuesday - Song Practice'), (SELECT Id FROM Exercise WHERE Title = 'Song Exercise 2'), 2, 2, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, PracticalityRating, DateCreated, DateModified)
+VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Tuesday - Song Practice'), (SELECT Id FROM Exercise WHERE Title = 'Song Exercise 2'), 2, '2017-02-01 01:20:00', NULL);
 
-INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, DifficultyRating, PracticalityRating, DateCreated, DateModified)
-VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Tuesday - Song Practice'), (SELECT Id FROM Exercise WHERE Title = 'Song Exercise 3'), 2, 2, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, PracticalityRating, DateCreated, DateModified)
+VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Tuesday - Song Practice'), (SELECT Id FROM Exercise WHERE Title = 'Song Exercise 3'), 2, '2017-02-01 01:20:00', NULL);
 
-INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, DifficultyRating, PracticalityRating, DateCreated, DateModified)
-VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Tuesday - Song Practice'), (SELECT Id FROM Exercise WHERE Title = 'Song Exercise 4'), 2, 2, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, PracticalityRating, DateCreated, DateModified)
+VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Tuesday - Song Practice'), (SELECT Id FROM Exercise WHERE Title = 'Song Exercise 4'), 2, '2017-02-01 01:20:00', NULL);
 
 
-INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, DifficultyRating, PracticalityRating, DateCreated, DateModified)
-VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Tuesday - Ear Training Practice'), (SELECT Id FROM Exercise WHERE Title = 'Ear Exercise 1'), 2, 2, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, PracticalityRating, DateCreated, DateModified)
+VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Tuesday - Ear Training Practice'), (SELECT Id FROM Exercise WHERE Title = 'Ear Exercise 1'), 2, '2017-02-01 01:20:00', NULL);
 	
-INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, DifficultyRating, PracticalityRating, DateCreated, DateModified)
-VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Tuesday - Ear Training Practice'), (SELECT Id FROM Exercise WHERE Title = 'Ear Exercise 2'), 2, 2, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, PracticalityRating, DateCreated, DateModified)
+VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Tuesday - Ear Training Practice'), (SELECT Id FROM Exercise WHERE Title = 'Ear Exercise 2'), 2, '2017-02-01 01:20:00', NULL);
 
-INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, DifficultyRating, PracticalityRating, DateCreated, DateModified)
-VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Tuesday - Ear Training Practice'), (SELECT Id FROM Exercise WHERE Title = 'Ear Exercise 3'), 2, 2, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, PracticalityRating, DateCreated, DateModified)
+VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Tuesday - Ear Training Practice'), (SELECT Id FROM Exercise WHERE Title = 'Ear Exercise 3'), 2, '2017-02-01 01:20:00', NULL);
 
-INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, DifficultyRating, PracticalityRating, DateCreated, DateModified)
-VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Tuesday - Ear Training Practice'), (SELECT Id FROM Exercise WHERE Title = 'Ear Exercise 4'), 2, 2, '2017-02-01 01:20:00', NULL);
-
-
+INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, PracticalityRating, DateCreated, DateModified)
+VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Tuesday - Ear Training Practice'), (SELECT Id FROM Exercise WHERE Title = 'Ear Exercise 4'), 2, '2017-02-01 01:20:00', NULL);
 
 
 
 
-INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, DifficultyRating, PracticalityRating, DateCreated, DateModified)
-VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Wednesday - Strumming Practice'), (SELECT Id FROM Exercise WHERE Title = 'Strumming Exercise 1'), 2, 2, '2017-02-01 01:20:00', NULL);
+
+
+INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, PracticalityRating, DateCreated, DateModified)
+VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Wednesday - Strumming Practice'), (SELECT Id FROM Exercise WHERE Title = 'Strumming Exercise 1'), 2, '2017-02-01 01:20:00', NULL);
 	
-INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, DifficultyRating, PracticalityRating, DateCreated, DateModified)
-VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Wednesday - Strumming Practice'), (SELECT Id FROM Exercise WHERE Title = 'Strumming Exercise 2'), 2, 2, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, PracticalityRating, DateCreated, DateModified)
+VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Wednesday - Strumming Practice'), (SELECT Id FROM Exercise WHERE Title = 'Strumming Exercise 2'), 2, '2017-02-01 01:20:00', NULL);
 
-INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, DifficultyRating, PracticalityRating, DateCreated, DateModified)
-VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Wednesday - Strumming Practice'), (SELECT Id FROM Exercise WHERE Title = 'Strumming Exercise 3'), 2, 2, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, PracticalityRating, DateCreated, DateModified)
+VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Wednesday - Strumming Practice'), (SELECT Id FROM Exercise WHERE Title = 'Strumming Exercise 3'), 2, '2017-02-01 01:20:00', NULL);
 
-INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, DifficultyRating, PracticalityRating, DateCreated, DateModified)
-VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Wednesday - Strumming Practice'), (SELECT Id FROM Exercise WHERE Title = 'Strumming Exercise 4'), 2, 2, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, PracticalityRating, DateCreated, DateModified)
+VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Wednesday - Strumming Practice'), (SELECT Id FROM Exercise WHERE Title = 'Strumming Exercise 4'), 2, '2017-02-01 01:20:00', NULL);
 
-INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, DifficultyRating, PracticalityRating, DateCreated, DateModified)
-VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Wednesday - Lead Practice'), (SELECT Id FROM Exercise WHERE Title = 'Lead Exercise 1'), 2, 2, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, PracticalityRating, DateCreated, DateModified)
+VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Wednesday - Lead Practice'), (SELECT Id FROM Exercise WHERE Title = 'Lead Exercise 1'), 2, '2017-02-01 01:20:00', NULL);
 	
-INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, DifficultyRating, PracticalityRating, DateCreated, DateModified)
-VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Wednesday - Lead Practice'), (SELECT Id FROM Exercise WHERE Title = 'Lead Exercise 2'), 2, 2, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, PracticalityRating, DateCreated, DateModified)
+VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Wednesday - Lead Practice'), (SELECT Id FROM Exercise WHERE Title = 'Lead Exercise 2'), 2, '2017-02-01 01:20:00', NULL);
 
-INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, DifficultyRating, PracticalityRating, DateCreated, DateModified)
-VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Wednesday - Lead Practice'), (SELECT Id FROM Exercise WHERE Title = 'Lead Exercise 3'), 2, 2, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, PracticalityRating, DateCreated, DateModified)
+VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Wednesday - Lead Practice'), (SELECT Id FROM Exercise WHERE Title = 'Lead Exercise 3'), 2, '2017-02-01 01:20:00', NULL);
 
-INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, DifficultyRating, PracticalityRating, DateCreated, DateModified)
-VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Wednesday - Lead Practice'), (SELECT Id FROM Exercise WHERE Title = 'Lead Exercise 4'), 2, 2, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, PracticalityRating, DateCreated, DateModified)
+VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Wednesday - Lead Practice'), (SELECT Id FROM Exercise WHERE Title = 'Lead Exercise 4'), 2, '2017-02-01 01:20:00', NULL);
 
 
-INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, DifficultyRating, PracticalityRating, DateCreated, DateModified)
-VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Wednesday - Scales Practice'), (SELECT Id FROM Exercise WHERE Title = 'Scales Exercise 1'), 2, 2, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, PracticalityRating, DateCreated, DateModified)
+VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Wednesday - Scales Practice'), (SELECT Id FROM Exercise WHERE Title = 'Scales Exercise 1'), 2, '2017-02-01 01:20:00', NULL);
 	
-INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, DifficultyRating, PracticalityRating, DateCreated, DateModified)
-VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Wednesday - Scales Practice'), (SELECT Id FROM Exercise WHERE Title = 'Scales Exercise 2'), 2, 2, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, PracticalityRating, DateCreated, DateModified)
+VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Wednesday - Scales Practice'), (SELECT Id FROM Exercise WHERE Title = 'Scales Exercise 2'), 2, '2017-02-01 01:20:00', NULL);
 
-INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, DifficultyRating, PracticalityRating, DateCreated, DateModified)
-VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Wednesday - Scales Practice'), (SELECT Id FROM Exercise WHERE Title = 'Scales Exercise 3'), 2, 2, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, PracticalityRating, DateCreated, DateModified)
+VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Wednesday - Scales Practice'), (SELECT Id FROM Exercise WHERE Title = 'Scales Exercise 3'), 2, '2017-02-01 01:20:00', NULL);
 
-INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, DifficultyRating, PracticalityRating, DateCreated, DateModified)
-VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Wednesday - Scales Practice'), (SELECT Id FROM Exercise WHERE Title = 'Scales Exercise 4'), 2, 2, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, PracticalityRating, DateCreated, DateModified)
+VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Wednesday - Scales Practice'), (SELECT Id FROM Exercise WHERE Title = 'Scales Exercise 4'), 2, '2017-02-01 01:20:00', NULL);
 
 
-INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, DifficultyRating, PracticalityRating, DateCreated, DateModified)
-VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Wednesday - Theory Practice'), (SELECT Id FROM Exercise WHERE Title = 'Theory Exercise 1'), 2, 2, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, PracticalityRating, DateCreated, DateModified)
+VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Wednesday - Theory Practice'), (SELECT Id FROM Exercise WHERE Title = 'Theory Exercise 1'), 2, '2017-02-01 01:20:00', NULL);
 	
-INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, DifficultyRating, PracticalityRating, DateCreated, DateModified)
-VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Wednesday - Theory Practice'), (SELECT Id FROM Exercise WHERE Title = 'Theory Exercise 2'), 2, 2, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, PracticalityRating, DateCreated, DateModified)
+VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Wednesday - Theory Practice'), (SELECT Id FROM Exercise WHERE Title = 'Theory Exercise 2'), 2, '2017-02-01 01:20:00', NULL);
 
-INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, DifficultyRating, PracticalityRating, DateCreated, DateModified)
-VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Wednesday - Theory Practice'), (SELECT Id FROM Exercise WHERE Title = 'Theory Exercise 3'), 2, 2, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, PracticalityRating, DateCreated, DateModified)
+VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Wednesday - Theory Practice'), (SELECT Id FROM Exercise WHERE Title = 'Theory Exercise 3'), 2, '2017-02-01 01:20:00', NULL);
 
-INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, DifficultyRating, PracticalityRating, DateCreated, DateModified)
-VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Wednesday - Theory Practice'), (SELECT Id FROM Exercise WHERE Title = 'Theory Exercise 4'), 2, 2, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, PracticalityRating, DateCreated, DateModified)
+VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Wednesday - Theory Practice'), (SELECT Id FROM Exercise WHERE Title = 'Theory Exercise 4'), 2, '2017-02-01 01:20:00', NULL);
 
 
-INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, DifficultyRating, PracticalityRating, DateCreated, DateModified)
-VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Wednesday - Song Practice'), (SELECT Id FROM Exercise WHERE Title = 'Song Exercise 1'), 2, 2, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, PracticalityRating, DateCreated, DateModified)
+VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Wednesday - Song Practice'), (SELECT Id FROM Exercise WHERE Title = 'Song Exercise 1'), 2, '2017-02-01 01:20:00', NULL);
 	
-INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, DifficultyRating, PracticalityRating, DateCreated, DateModified)
-VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Wednesday - Song Practice'), (SELECT Id FROM Exercise WHERE Title = 'Song Exercise 2'), 2, 2, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, PracticalityRating, DateCreated, DateModified)
+VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Wednesday - Song Practice'), (SELECT Id FROM Exercise WHERE Title = 'Song Exercise 2'), 2, '2017-02-01 01:20:00', NULL);
 
-INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, DifficultyRating, PracticalityRating, DateCreated, DateModified)
-VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Wednesday - Song Practice'), (SELECT Id FROM Exercise WHERE Title = 'Song Exercise 3'), 2, 2, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, PracticalityRating, DateCreated, DateModified)
+VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Wednesday - Song Practice'), (SELECT Id FROM Exercise WHERE Title = 'Song Exercise 3'), 2, '2017-02-01 01:20:00', NULL);
 
-INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, DifficultyRating, PracticalityRating, DateCreated, DateModified)
-VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Wednesday - Song Practice'), (SELECT Id FROM Exercise WHERE Title = 'Song Exercise 4'), 2, 2, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, PracticalityRating, DateCreated, DateModified)
+VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Wednesday - Song Practice'), (SELECT Id FROM Exercise WHERE Title = 'Song Exercise 4'), 2, '2017-02-01 01:20:00', NULL);
 
 
-INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, DifficultyRating, PracticalityRating, DateCreated, DateModified)
-VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Wednesday - Ear Training Practice'), (SELECT Id FROM Exercise WHERE Title = 'Ear Exercise 1'), 2, 2, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, PracticalityRating, DateCreated, DateModified)
+VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Wednesday - Ear Training Practice'), (SELECT Id FROM Exercise WHERE Title = 'Ear Exercise 1'), 2, '2017-02-01 01:20:00', NULL);
 	
-INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, DifficultyRating, PracticalityRating, DateCreated, DateModified)
-VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Wednesday - Ear Training Practice'), (SELECT Id FROM Exercise WHERE Title = 'Ear Exercise 2'), 2, 2, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, PracticalityRating, DateCreated, DateModified)
+VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Wednesday - Ear Training Practice'), (SELECT Id FROM Exercise WHERE Title = 'Ear Exercise 2'), 2, '2017-02-01 01:20:00', NULL);
 
-INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, DifficultyRating, PracticalityRating, DateCreated, DateModified)
-VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Wednesday - Ear Training Practice'), (SELECT Id FROM Exercise WHERE Title = 'Ear Exercise 3'), 2, 2, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, PracticalityRating, DateCreated, DateModified)
+VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Wednesday - Ear Training Practice'), (SELECT Id FROM Exercise WHERE Title = 'Ear Exercise 3'), 2, '2017-02-01 01:20:00', NULL);
 
-INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, DifficultyRating, PracticalityRating, DateCreated, DateModified)
-VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Wednesday - Ear Training Practice'), (SELECT Id FROM Exercise WHERE Title = 'Ear Exercise 4'), 2, 2, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, PracticalityRating, DateCreated, DateModified)
+VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Wednesday - Ear Training Practice'), (SELECT Id FROM Exercise WHERE Title = 'Ear Exercise 4'), 2, '2017-02-01 01:20:00', NULL);
 
 
 
-INSERT INTO PracticeRoutineExercise (PracticeRoutineId, ExerciseId, AssignedPracticeTime, DifficultyRating, PracticalityRating, DateCreated, DateModified)
+INSERT INTO PracticeRoutineExercise (PracticeRoutineId, ExerciseId, AssignedPracticeTime, PracticalityRating, DateCreated, DateModified)
 	VALUES 
 		(
 			(SELECT Id FROM PracticeRoutine WHERE Title = 'Tuesday Routine'),
@@ -460,7 +460,7 @@ INSERT INTO PracticeRoutineExercise (PracticeRoutineId, ExerciseId, AssignedPrac
             NULL
         );
 
-INSERT INTO PracticeRoutineExercise (PracticeRoutineId, ExerciseId, AssignedPracticeTime, DifficultyRating, PracticalityRating, DateCreated, DateModified)
+INSERT INTO PracticeRoutineExercise (PracticeRoutineId, ExerciseId, AssignedPracticeTime, PracticalityRating, DateCreated, DateModified)
 	VALUES 
 		(
 			(SELECT Id FROM PracticeRoutine WHERE Title = 'Tuesday Routine'),
@@ -472,7 +472,7 @@ INSERT INTO PracticeRoutineExercise (PracticeRoutineId, ExerciseId, AssignedPrac
             NULL
         );
 
-INSERT INTO PracticeRoutineExercise (PracticeRoutineId, ExerciseId, AssignedPracticeTime, DifficultyRating, PracticalityRating, DateCreated, DateModified)
+INSERT INTO PracticeRoutineExercise (PracticeRoutineId, ExerciseId, AssignedPracticeTime, PracticalityRating, DateCreated, DateModified)
 	VALUES 
 		(
 			(SELECT Id FROM PracticeRoutine WHERE Title = 'Tuesday Routine'),
@@ -484,7 +484,7 @@ INSERT INTO PracticeRoutineExercise (PracticeRoutineId, ExerciseId, AssignedPrac
             NULL
         );
 
-INSERT INTO PracticeRoutineExercise (PracticeRoutineId, ExerciseId, AssignedPracticeTime, DifficultyRating, PracticalityRating, DateCreated, DateModified)
+INSERT INTO PracticeRoutineExercise (PracticeRoutineId, ExerciseId, AssignedPracticeTime, PracticalityRating, DateCreated, DateModified)
 	VALUES 
 		(
 			(SELECT Id FROM PracticeRoutine WHERE Title = 'Wednesday Routine'),
@@ -496,7 +496,7 @@ INSERT INTO PracticeRoutineExercise (PracticeRoutineId, ExerciseId, AssignedPrac
             NULL
         );
 
-INSERT INTO PracticeRoutineExercise (PracticeRoutineId, ExerciseId, AssignedPracticeTime, DifficultyRating, PracticalityRating, DateCreated, DateModified)
+INSERT INTO PracticeRoutineExercise (PracticeRoutineId, ExerciseId, AssignedPracticeTime, PracticalityRating, DateCreated, DateModified)
 	VALUES 
 		(
 			(SELECT Id FROM PracticeRoutine WHERE Title = 'Wednesday Routine'),

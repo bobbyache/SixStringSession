@@ -25,7 +25,6 @@ namespace CygSoft.SmartSession.UnitTests.Infrastructure
                 AssignedPracticeTime = assignedPracticeTime ?? 5000,
                 Title = exercise.Title,
                 PracticalityRating = practicalityRating ?? 0,
-                DifficultyRating = difficultyRating ?? 0,
                 ExerciseId = exercise.Id
             };
             return routineExercise;

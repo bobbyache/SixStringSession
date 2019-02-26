@@ -34,7 +34,6 @@ namespace CygSoft.SmartSession.Domain.PracticeRoutines
         }
 
         // 1 - 5
-        public int DifficultyRating { get; set; }
         public int PracticalityRating { get; set; }
     }
 }

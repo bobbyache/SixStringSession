@@ -204,7 +204,6 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
                 {
                     ExerciseId = createdExercise.Id,
                     AssignedPracticeTime = 5000,
-                    DifficultyRating = 2,
                     PracticalityRating = 3
                 });
 
@@ -215,7 +214,6 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
                 var practiceRoutineExercise = practiceRoutine.PracticeRoutineExercises[0];
 
                 Assert.That(practiceRoutineExercise.ExerciseId, Is.GreaterThan(0));
-                Assert.That(practiceRoutineExercise.DifficultyRating, Is.EqualTo(2));
                 Assert.That(practiceRoutineExercise.PracticalityRating, Is.EqualTo(3));
                 Assert.That(practiceRoutineExercise.DateModified, Is.Null);
                 Assert.That(practiceRoutineExercise.DateCreated, Is.Not.Null);
@@ -250,7 +248,6 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
                 {
                     ExerciseId = createdExercise.Id,
                     AssignedPracticeTime = 5000,
-                    DifficultyRating = 2,
                     PracticalityRating = 3
                 });
 
@@ -260,7 +257,6 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
                 var practiceRoutineExercise = updatedPracticeRoutine.PracticeRoutineExercises[0];
 
                 Assert.That(practiceRoutineExercise.ExerciseId, Is.GreaterThan(0));
-                Assert.That(practiceRoutineExercise.DifficultyRating, Is.EqualTo(2));
                 Assert.That(practiceRoutineExercise.PracticalityRating, Is.EqualTo(3));
                 Assert.That(practiceRoutineExercise.DateModified, Is.Null);
                 Assert.That(practiceRoutineExercise.DateCreated, Is.Not.Null);
@@ -295,7 +291,6 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
                 {
                     ExerciseId = createdExercise.Id,
                     AssignedPracticeTime = 5000,
-                    DifficultyRating = 2,
                     PracticalityRating = 3
                 });
 
@@ -332,7 +327,6 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
                 {
                     ExerciseId = createdExercise1.Id,
                     AssignedPracticeTime = 5000,
-                    DifficultyRating = 2,
                     PracticalityRating = 2
                 });
 
@@ -340,7 +334,6 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
                 {
                     ExerciseId = createdExercise2.Id,
                     AssignedPracticeTime = 10000,
-                    DifficultyRating = 5,
                     PracticalityRating = 5
                 });
 
@@ -351,14 +344,13 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
                 var practiceRoutineExercise1 = practiceRoutine.PracticeRoutineExercises[0];
                 var practiceRoutineExercise2 = practiceRoutine.PracticeRoutineExercises[1];
 
-                practiceRoutineExercise1.DifficultyRating = 1;
+                practiceRoutineExercise1.PracticalityRating = 3;
                 uow.PracticeRoutines.Update(practiceRoutine);
 
                 var practiceRoutineUnderTest = uow.PracticeRoutines.Get(practiceRoutine.Id);
                 var practiceRoutineExerciseUnderTest1 = practiceRoutine.PracticeRoutineExercises.Where(pr => pr.ExerciseId == practiceRoutineExercise1.ExerciseId).Single();
                 var practiceRoutineExerciseUnderTest2 = practiceRoutine.PracticeRoutineExercises.Where(pr => pr.ExerciseId == practiceRoutineExercise2.ExerciseId).Single();
 
-                Assert.That(practiceRoutineExerciseUnderTest1.DifficultyRating, Is.EqualTo(1));
                 Assert.That(practiceRoutineExerciseUnderTest1.DateModified, Is.Not.Null);
                 Assert.That(practiceRoutineExerciseUnderTest2.DateModified, Is.Null);
             }

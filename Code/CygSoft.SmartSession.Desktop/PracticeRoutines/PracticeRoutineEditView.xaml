@@ -99,20 +99,6 @@
                     <GridView>
                         <GridViewColumn Width="500" Header="Title" DisplayMemberBinding="{Binding Title}"/>
                         <GridViewColumn Width="60" Header="Minutes" DisplayMemberBinding="{Binding Minutes}" />
-                        <GridViewColumn Width="100" Header="Difficulty">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Grid Width="80" Height="16">
-                                        <Rectangle Opacity=".1" Fill="{DynamicResource FiveStars}" />
-                                        <Rectangle Fill="{DynamicResource FiveStars}">
-                                            <Rectangle.Clip>
-                                                <RectangleGeometry Rect="{Binding DifficultyRating, Converter={StaticResource StarWidthConverter}}" />
-                                            </Rectangle.Clip>
-                                        </Rectangle>
-                                    </Grid>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
                         <GridViewColumn Width="100" Header="Practicality">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
@@ -137,12 +123,6 @@
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock TextAlignment="Right" Margin="2" MinWidth="50" >Minutes</TextBlock>
                                 <TextBox x:Name="MinutesTextBox" Margin="2" MinWidth="50" Text="{Binding SelectedPracticeRoutineExercise.Minutes}" />
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock TextAlignment="Right" Margin="2" MinWidth="50" >Difficulty</TextBlock>
-                                <Slider Margin="5" MinWidth="100" MaxWidth="200" Maximum="5" TickFrequency="1" 
-                                Value="{Binding SelectedPracticeRoutineExercise.DifficultyRating, ValidatesOnNotifyDataErrors=True}"
-                                TickPlacement="BottomRight" IsSnapToTickEnabled="True"></Slider>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock TextAlignment="Right" Margin="2" MinWidth="50" >Practicality</TextBlock>

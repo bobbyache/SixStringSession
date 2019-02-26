@@ -325,7 +325,6 @@ CREATE PROCEDURE `sp_InsertPracticeRoutineExercise`
 	in _practiceRoutineId int(11),
     in _exerciseId int(11),
     in _assignedPracticeTime int(11),
-    in _difficultyRating int(11),
     in _practicalityRating int(11)
 )
 BEGIN
@@ -334,7 +333,6 @@ BEGIN
 		PracticeRoutineId,
 		ExerciseId,
 		AssignedPracticeTime,
-		DifficultyRating,
 		PracticalityRating,
 		DateCreated
 	) 
@@ -343,7 +341,6 @@ BEGIN
 		_practiceRoutineId,
 		_exerciseId,
 		_assignedPracticeTime,
-		_difficultyRating,
 		_practicalityRating,
 		NOW()
 	);
@@ -355,13 +352,11 @@ CREATE PROCEDURE `sp_UpdatePracticeRoutineExercise`(
 	in _practiceRoutineId int(11),
     in _exerciseId int(11),
     in _assignedPracticeTime int(11),
-    in _difficultyRating int(11),
     in _practicalityRating int(11)
 	)
 BEGIN
 	UPDATE PracticeRoutineExercise SET 
 		AssignedPracticeTime = _assignedPracticeTime,
-		DifficultyRating = _difficultyRating,
 		PracticalityRating = _practicalityRating,
 		DateModified = NOW()
 	WHERE PracticeRoutineId = _practiceRoutineId AND ExerciseId = _exerciseId;
@@ -377,7 +372,6 @@ BEGIN
 		PRE.PracticeRoutineId,
 		PRE.ExerciseId,
 		PRE.AssignedPracticeTime,
-		PRE.DifficultyRating,
 		PRE.PracticalityRating,
 		PRE.DateCreated,
 		PRE.DateModified
@@ -400,7 +394,6 @@ BEGIN
 		PRE.PracticeRoutineId,
 		PRE.ExerciseId,
 		PRE.AssignedPracticeTime,
-		PRE.DifficultyRating,
 		PRE.PracticalityRating,
 		PRE.DateCreated,
 		PRE.DateModified
