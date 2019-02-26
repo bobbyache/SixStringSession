@@ -494,7 +494,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
 
             using (var exerciseRecorder = new ExerciseRecorder(recorder, 1, "Exercise Title", speedProgress.Object, practiceTimeProgress.Object, manualProgress.Object))
             {
-                Assert.That(exerciseRecorder.CurrentOverAllProgress, Is.EqualTo(61.25));
+                Assert.That(exerciseRecorder.CurrentOverAllProgress, Is.EqualTo(61));
             }
         }
 

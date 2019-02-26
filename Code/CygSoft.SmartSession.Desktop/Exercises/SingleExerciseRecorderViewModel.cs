@@ -58,7 +58,7 @@ namespace CygSoft.SmartSession.Desktop.Exercises
         }
 
         public double CurrentProgress { get => exerciseRecorder.CurrentOverAllProgress; }
-        public string CurrentProgressText { get => $"{Math.Round(exerciseRecorder.CurrentOverAllProgress, 1)}% done."; }
+        public string CurrentProgressText { get => $"{exerciseRecorder.CurrentOverAllProgress}% done."; }
 
 
         private bool pauseButtonVisible;

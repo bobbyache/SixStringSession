@@ -16,10 +16,10 @@ namespace CygSoft.SmartSession.Domain.Recording
         int TargetSpeed { get; }
         int CurrentTotalSeconds { get; }
 
-        double CurrentManualProgress { get; set; }
-        double CurrentTimeProgress { get; }
-        double CurrentSpeedProgress { get; }
-        double CurrentOverAllProgress { get; }
+        int CurrentManualProgress { get; set; }
+        int CurrentTimeProgress { get; }
+        int CurrentSpeedProgress { get; }
+        int CurrentOverAllProgress { get; }
 
         bool Recording { get; }
         double RecordedSeconds { get; }

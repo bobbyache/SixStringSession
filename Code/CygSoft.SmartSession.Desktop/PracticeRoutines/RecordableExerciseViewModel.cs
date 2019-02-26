@@ -9,8 +9,7 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
 {
     public class RecordableExerciseViewModel : ViewModelBase
     {
-        public IExercise Exercise { get; set; }
-        private IRecorder exerciseRecorder;
+        private IExerciseRecorder exerciseRecorder;
 
         private string displayTime;
         public string DisplayTime
@@ -38,17 +37,18 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
             }
         }
 
-        private int manualProgress;
         public int ManualProgress
         {
             get
             {
-                return manualProgress;
+                return exerciseRecorder.CurrentManualProgress;
             }
             set
             {
-                Set(() => ManualProgress, ref manualProgress, value);
-                RaisePropertyChanged("ManualProgressInformationText");
+                exerciseRecorder.CurrentManualProgress = value;
+                RaisePropertyChanged(() => ManualProgress);
+                RaisePropertyChanged(() => ManualProgressInformationText);
+
             }
         }
 
@@ -97,17 +97,17 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
             }
         }
 
-        private int metronomeSpeed;
         public int MetronomeSpeed
         {
             get
             {
-                return metronomeSpeed;
+                return exerciseRecorder.CurrentSpeed;
             }
             set
             {
-                Set(() => MetronomeSpeed, ref metronomeSpeed, value);
-                RaisePropertyChanged("MetronomeSpeedInformationText");
+                exerciseRecorder.CurrentSpeed = value;
+                RaisePropertyChanged(() => MetronomeSpeed);
+                RaisePropertyChanged(() => MetronomeSpeedInformationText);
             }
         }
 
@@ -150,18 +150,9 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
             }
         }
 
-        private string title;
-        public string Title
-        {
-            get
-            {
-                return title;
-            }
-            set
-            {
-                Set(() => Title, ref title, value);
-            }
-        }
+
+        public string Title => exerciseRecorder.Title;
+
 
         private int overallProgress;
         public int OverallProgress
@@ -234,26 +225,24 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
 
         public RelayCommand DecrementMinutesPracticedCommand { get; private set; }
 
-        public RecordableExerciseViewModel(IExercise exercise)
+        public RecordableExerciseViewModel(IExerciseRecorder exerciseRecorder)
         {
-            this.Exercise = exercise;
-            exerciseRecorder = new Recorder();
+            this.exerciseRecorder = exerciseRecorder;
             exerciseRecorder.TickActionCallBack = TickTock;
             exerciseRecorder.RecordingStatusChanged += ExerciseRecorder_RecordingStatusChanged;
 
-            OverallProgress = (int)Math.Round(exercise.GetPercentComplete(), 0);
-            SpeedProgress = (int)Math.Round(exercise.GetSpeedProgress(), 0);
-            PracticeTimeProgress = (int)Math.Round(exercise.GetPracticeTimeProgress(), 0);
+            OverallProgress = exerciseRecorder.CurrentOverAllProgress;
+            SpeedProgress = exerciseRecorder.CurrentSpeedProgress;
+            PracticeTimeProgress = exerciseRecorder.CurrentTimeProgress;
 
-            TotalPracticeTime = TimeFuncs.DisplayTimeFromSeconds(exercise.GetSecondsPracticed());
+            TotalPracticeTime = exerciseRecorder.TotalSecondsDisplay;
 
-            Title = exercise.Title;
             Recording = exerciseRecorder.Recording;
             Status = exerciseRecorder.Recording ? "RECORDING..." : "";
-            DisplayTime = exerciseRecorder.DisplayTime;
-            InitialManualProgress = exercise.GetLastRecordedManualProgress();
+            DisplayTime = exerciseRecorder.RecordedSecondsDisplay;
+            InitialManualProgress = exerciseRecorder.CurrentManualProgress;
             ManualProgress = InitialManualProgress;
-            InitialMetronomeSpeed = exercise.GetLastRecordedSpeed();
+            InitialMetronomeSpeed = exerciseRecorder.CurrentSpeed;
             MetronomeSpeed = InitialMetronomeSpeed;
 
             IncrementManualProgressCommand = new RelayCommand(() => IncrementManualProgress(), () => true);
@@ -279,6 +268,8 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
             {
                 MetronomeSpeed -= 10;
             }
+            else
+                MetronomeSpeed = 0;
         }
 
         private void IncrementMetronomeSpeedByTen()
@@ -366,8 +357,8 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
 
         private void TickTock()
         {
-            Seconds = exerciseRecorder.PreciseSeconds;
-            DisplayTime = exerciseRecorder.DisplayTime;
+            Seconds = exerciseRecorder.RecordedSeconds;
+            DisplayTime = exerciseRecorder.RecordedSecondsDisplay;
         }
 
         public void Start()
@@ -389,6 +380,11 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
         private void Reset()
         {
             exerciseRecorder.Reset();
+        }
+
+        public void SaveRecording(IExerciseService exerciseService)
+        {
+            exerciseRecorder.SaveRecording(exerciseService);
         }
     }
 }

@@ -113,10 +113,12 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
         public void InitializeSession(int practiceRoutineId)
         {
             RecordableExercises.Clear();
-            var exercises = exerciseService.GetPracticeRoutineExercises(practiceRoutineId);
-            foreach (var exercise in exercises)
+
+            var routineRecorder = practiceRoutineService.GetPracticeRoutineRecorder(practiceRoutineId);
+
+            foreach (var exerciseRecorder in routineRecorder.ExerciseRecorders)
             {
-                RecordableExercises.Add(new RecordableExerciseViewModel(exercise));
+                RecordableExercises.Add(new RecordableExerciseViewModel(exerciseRecorder));
             }
         }
 
@@ -126,15 +128,9 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
             {
                 if (recordableExercise.Seconds > 0)
                 {
-                    //TODO: this should actually take place within the RoutineRecorder....
-                    var exerciseActivity = exerciseService.CreateExerciseActivity(recordableExercise.MetronomeSpeed, 
-                        (int)recordableExercise.Seconds, recordableExercise.ManualProgress);
-                    recordableExercise.Exercise.ExerciseActivity.Add(exerciseActivity);
+                    recordableExercise.SaveRecording(exerciseService);
                 }
             }
-
-            var exercises = RecordableExercises.Select(r => r.Exercise);
-            exerciseService.Update(exercises.OfType<Exercise>());
 
             Messenger.Default.Send(new ExitPracticeListMessage());
         }

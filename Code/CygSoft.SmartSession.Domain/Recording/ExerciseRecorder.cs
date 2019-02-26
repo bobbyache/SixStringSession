@@ -70,13 +70,13 @@ namespace CygSoft.SmartSession.Domain.Recording
             }
         }
 
-        public double CurrentManualProgress
+        public int CurrentManualProgress
         {
             get { return manualProgress.CalculateProgress(); }
             set { manualProgress = manualProgress.NewManualProgress((int)value); }
         }
 
-        public double CurrentTimeProgress
+        public int CurrentTimeProgress
         {
             get
             {
@@ -85,9 +85,9 @@ namespace CygSoft.SmartSession.Domain.Recording
             }
         }
 
-        public double CurrentSpeedProgress { get => speedProgress.CalculateProgress(); }
+        public int CurrentSpeedProgress { get => speedProgress.CalculateProgress(); }
 
-        public double CurrentOverAllProgress
+        public int CurrentOverAllProgress
         {
             get
             {
@@ -96,7 +96,7 @@ namespace CygSoft.SmartSession.Domain.Recording
                 calculator.Add(new WeightedMetric(speedProgress.CalculateProgress(), speedProgress.Weighting));
                 calculator.Add(new WeightedMetric(practiceTimeProgress.CalculateProgress(), practiceTimeProgress.Weighting));
 
-                return calculator.CalculateTotalProgress();
+                return (int)Math.Round(calculator.CalculateTotalProgress());
             }
         }
 
