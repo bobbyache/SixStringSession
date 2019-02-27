@@ -94,7 +94,9 @@ namespace CygSoft.SmartSession.Domain.Recording
                 var calculator = new WeightedProgressCalculator();
                 calculator.Add(new WeightedMetric(manualProgress.CalculateProgress(), manualProgress.Weighting));
                 calculator.Add(new WeightedMetric(speedProgress.CalculateProgress(), speedProgress.Weighting));
-                calculator.Add(new WeightedMetric(practiceTimeProgress.CalculateProgress(), practiceTimeProgress.Weighting));
+
+                var timeProgress = practiceTimeProgress.AddSeconds(recorder.Seconds);
+                calculator.Add(new WeightedMetric(timeProgress.CalculateProgress(), timeProgress.Weighting));
 
                 return (int)Math.Round(calculator.CalculateTotalProgress());
             }

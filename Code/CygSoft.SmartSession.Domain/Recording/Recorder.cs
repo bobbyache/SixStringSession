@@ -168,15 +168,26 @@ namespace CygSoft.SmartSession.Domain.Recording
             if (!Recording)
             {
                 int currentSeconds = (int)Math.Round(recordedSeconds, 0);
-
                 int remainingSeconds = currentSeconds % 60;
-                int fullMinutes = minutes - 1;
-                double resultantSeconds = currentSeconds -= (fullMinutes * 60) + remainingSeconds;
 
-                if (resultantSeconds <= 0)
+                if (currentSeconds == 0)
+                {
                     recordedSeconds = 0;
+                }
+                else if (remainingSeconds == 0) // exactly on the minute (in seconds)
+                {
+                    recordedSeconds = currentSeconds -= (minutes * 60);
+                }
                 else
-                    recordedSeconds = resultantSeconds;
+                {
+                    int fullMinutes = minutes - 1;
+                    double resultantSeconds = currentSeconds -= (fullMinutes * 60) + remainingSeconds;
+
+                    if (resultantSeconds <= 0)
+                        recordedSeconds = 0;
+                    else
+                        recordedSeconds = resultantSeconds;
+                }
 
                 tickActionFunc?.Invoke();
             }

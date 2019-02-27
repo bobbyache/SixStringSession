@@ -74,16 +74,16 @@ namespace CygSoft.SmartSession.Desktop.Exercises
             }
         }
 
-        private string activityRecordedDisplayTime;
-        public string ActivityRecordedDisplayTime
+        private string recordingTimeDisplay;
+        public string RecordingTimeDisplay
         {
             get
             {
-                return activityRecordedDisplayTime;
+                return recordingTimeDisplay;
             }
             set
             {
-                Set(() => ActivityRecordedDisplayTime, ref activityRecordedDisplayTime, value);
+                Set(() => RecordingTimeDisplay, ref recordingTimeDisplay, value);
             }
         }
 
@@ -173,12 +173,12 @@ namespace CygSoft.SmartSession.Desktop.Exercises
 
             this.ExerciseTitle = exerciseRecorder.Title;
             this.CurrentSpeedInfo = $"Current: {exerciseRecorder.CurrentSpeed } bpm - Target: {exerciseRecorder.TargetSpeed} bpm";
-            this.ActivityRecordedDisplayTime = exerciseRecorder.RecordedSecondsDisplay;
+            this.RecordingTimeDisplay = exerciseRecorder.RecordedSecondsDisplay;
         }
 
         private void Elapsed()
         {
-            this.ActivityRecordedDisplayTime = exerciseRecorder.RecordedSecondsDisplay;
+            this.RecordingTimeDisplay = exerciseRecorder.RecordedSecondsDisplay;
             RaisePropertyChanged(() => TotalRecordedDisplayTime);
         }
 

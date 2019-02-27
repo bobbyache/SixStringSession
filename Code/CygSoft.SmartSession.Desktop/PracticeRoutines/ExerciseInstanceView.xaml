@@ -38,7 +38,7 @@
                         <ColumnDefinition Width="80" />
                     </Grid.ColumnDefinitions>
                     <Rectangle Margin="5" Height="16" Width="16" Grid.Column="0" Fill="BlueViolet" />
-                    <ProgressBar Margin="5" Height="10" Width="60" Grid.Column="2" Value="{Binding OverallProgress}" />
+                    <ProgressBar Margin="5" Height="10" Width="60" Grid.Column="2" Value="{Binding OverallProgress, Mode=OneWay}" />
                 </Grid>
                 <TextBlock Style="{StaticResource TimerText}" Text="{Binding TotalPracticeTime}" />
                 <TextBlock Padding="8" Style="{StaticResource DescriptionText}" Text="{Binding Title}" />

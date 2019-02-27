@@ -13,6 +13,7 @@ namespace CygSoft.SmartSession.Domain.Recording
             InitialSpeed = initialSpeed;
             CurrentSpeed = currentSpeed;
             TargetSpeed = targetSpeed;
+            Weighting = weighting;
         }
 
         public int InitialSpeed { get; }

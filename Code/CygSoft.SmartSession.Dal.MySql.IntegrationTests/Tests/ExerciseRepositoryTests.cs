@@ -5,6 +5,7 @@ using CygSoft.SmartSession.Domain.Recording;
 using NUnit.Framework;
 using System;
 using System.Linq;
+using CygSoft.SmartSession.Infrastructure;
 
 namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
 {
@@ -510,14 +511,14 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
                 Assert.AreEqual(0, exerciseRecorder.RecordedSeconds);
                 Assert.IsFalse(exerciseRecorder.Recording);
                 Assert.AreEqual(10, exerciseRecorder.CurrentManualProgress);
-                Assert.AreEqual(10, exerciseRecorder.CurrentOverAllProgress);
+                Assert.AreEqual(5, exerciseRecorder.CurrentOverAllProgress);
                 Assert.AreEqual(35, exerciseRecorder.CurrentSpeed);
                 Assert.AreEqual(80, exerciseRecorder.TargetSpeed);
                 Assert.AreEqual(10, exerciseRecorder.CurrentTimeProgress);
                 Assert.AreEqual(60, exerciseRecorder.CurrentTotalSeconds);
                 Assert.AreEqual("Strumming Exercise 2", exerciseRecorder.Title);
                 Assert.AreEqual("00:01:00", exerciseRecorder.TotalSecondsDisplay);
-                Assert.AreEqual("00:00:00", exerciseRecorder.RecordedSecondsDisplay);
+                Assert.AreEqual(TimeFuncs.ZeroTimeDisplay, exerciseRecorder.RecordedSecondsDisplay);
             }
         }
 

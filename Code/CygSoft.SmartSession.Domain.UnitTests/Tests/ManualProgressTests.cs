@@ -12,6 +12,18 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
     public class ManualProgressTests
     {
         [Test]
+        public void Ensure_That_All_Properties_Set_When_Initialized()
+        {
+            var manualProgress = new ManualProgress(
+                value: 50,
+                weighting: 100
+            );
+
+            Assert.That(manualProgress.Weighting, Is.EqualTo(100));
+            Assert.That(manualProgress.Value, Is.EqualTo(50));
+        }
+
+        [Test]
         public void Half_Way_Between_Current_And_Target_Times_Means_Fifty_Percent_Progress()
         {
             var manualProgress = new ManualProgress(

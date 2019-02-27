@@ -12,6 +12,23 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
     public class SpeedProgressTests
     {
         [Test]
+        public void Ensure_That_All_Properties_Set_When_Initialized()
+        {
+            var speedProgress = new SpeedProgress(
+                initialSpeed: 10,
+                currentSpeed: 60,
+                targetSpeed: 110,
+                weighting: 100
+            );
+
+            Assert.That(speedProgress.Weighting, Is.EqualTo(100));
+
+            Assert.That(speedProgress.InitialSpeed, Is.EqualTo(10));
+            Assert.That(speedProgress.CurrentSpeed, Is.EqualTo(60));
+            Assert.That(speedProgress.TargetSpeed, Is.EqualTo(110));
+        }
+
+        [Test]
         public void Half_Way_Between_Initial_And_Target_Speeds_Means_Fifty_Percent_Progress()
         {
             var speedProgress = new SpeedProgress(

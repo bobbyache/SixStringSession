@@ -51,7 +51,7 @@
                 </ctrls:BusyIndicatorView>
                 <TextBlock HorizontalAlignment="Center" FontSize="16" Text="{Binding ExerciseTitle, Mode=OneWay}"></TextBlock>
                 <StackPanel Width="180">
-                    <TextBlock FontFamily="Calibri" Text="{Binding ActivityRecordedDisplayTime, Mode=OneWay}"  FontSize="48" HorizontalAlignment="Center" VerticalAlignment="Center" ></TextBlock>
+                    <TextBlock FontFamily="Calibri" Text="{Binding RecordingTimeDisplay, Mode=OneWay}"  FontSize="48" HorizontalAlignment="Center" VerticalAlignment="Center" ></TextBlock>
                     <TextBlock FontFamily="Calibri" Text="{Binding TotalRecordedDisplayTime, Mode=OneWay}" HorizontalAlignment="Right" VerticalAlignment="Center" ></TextBlock>
                 </StackPanel>
 

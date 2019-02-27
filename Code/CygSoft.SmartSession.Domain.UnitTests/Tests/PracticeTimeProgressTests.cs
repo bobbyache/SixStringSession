@@ -12,6 +12,20 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
     public class PracticeTimeProgressTests
     {
         [Test]
+        public void Ensure_That_All_Properties_Set_When_Initialized()
+        {
+            var practiceTimeProgress = new PracticeTimeProgress(
+                currentTime: 300,
+                targetTime: 600,
+                weighting: 100
+            );
+
+            Assert.That(practiceTimeProgress.Weighting, Is.EqualTo(100));
+            Assert.That(practiceTimeProgress.CurrentTime, Is.EqualTo(300));
+            Assert.That(practiceTimeProgress.TargetTime, Is.EqualTo(600));
+        }
+
+        [Test]
         public void Half_Way_Between_Current_And_Target_Times_Means_Fifty_Percent_Progress()
         {
             var practiceTimeProgress = new PracticeTimeProgress(

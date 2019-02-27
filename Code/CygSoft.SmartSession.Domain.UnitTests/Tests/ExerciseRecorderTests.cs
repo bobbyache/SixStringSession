@@ -7,7 +7,7 @@ using NUnit.Framework;
 namespace CygSoft.SmartSession.Domain.UnitTests.Tests
 {
     [TestFixture]
-    public class RecordingExerciseTests
+    public class ExerciseRecorderTests
     {
         [Test]
         public void Disposing_Calls_Dispose_On_Recorder()
@@ -484,15 +484,13 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             speedProgress.Setup(obj => obj.CalculateProgress()).Returns(25);
             speedProgress.Setup(obj => obj.Weighting).Returns(6000);
 
-            var practiceTimeProgress = new Mock<IPracticeTimeProgress>();
-            practiceTimeProgress.Setup(obj => obj.CalculateProgress()).Returns(100);
-            practiceTimeProgress.Setup(obj => obj.Weighting).Returns(6000);
+            var practiceTimeProgress = new PracticeTimeProgress(300, 300, 6000);
 
             var manualProgress = new Mock<IManualProgress>();
             manualProgress.Setup(obj => obj.CalculateProgress()).Returns(60);
             manualProgress.Setup(obj => obj.Weighting).Returns(12000);
 
-            using (var exerciseRecorder = new ExerciseRecorder(recorder, 1, "Exercise Title", speedProgress.Object, practiceTimeProgress.Object, manualProgress.Object))
+            using (var exerciseRecorder = new ExerciseRecorder(recorder, 1, "Exercise Title", speedProgress.Object, practiceTimeProgress, manualProgress.Object))
             {
                 Assert.That(exerciseRecorder.CurrentOverAllProgress, Is.EqualTo(61));
             }
@@ -513,7 +511,6 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                 Assert.That(exerciseRecorder.CurrentTimeProgress, Is.EqualTo(67));
             }
         }
-
 
         [Test]
         public void When_Time_Recorded_And_Time_Added_CurrentTotalSeconds_Reflects_TimeRecorded_And_Previous_PracticeTime()
@@ -600,6 +597,44 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
                 exerciseRecorder.DecrementManualProgress(25);
 
                 Assert.That(exerciseRecorder.CurrentManualProgress, Is.EqualTo(75));
+            }
+        }
+
+        [Test]
+        public void Adding_Seconds_Changes_Current_Overall_Progress_When_Applicably_Weighted()
+        {
+            var recorder = new Recorder();
+            var manualProgress = new ManualProgress(0, 50);
+            var speedProgress = new SpeedProgress(0, 0, 120, 50);
+            var practiceTimeProgress = new PracticeTimeProgress(200, 600, 50);
+
+            using (var exerciseRecorder = new ExerciseRecorder(recorder, 1, "Exercise Title", speedProgress, practiceTimeProgress, manualProgress))
+            {
+                var progressBefore = exerciseRecorder.CurrentOverAllProgress;
+                exerciseRecorder.AddSeconds(400);
+                var progressAfter = exerciseRecorder.CurrentOverAllProgress;
+
+                Assert.That(progressBefore, Is.LessThan(progressAfter));
+                Assert.That(progressAfter, Is.EqualTo(33));
+            }
+        }
+
+        [Test]
+        public void Adding_Speed_Changes_Current_OverallProgress_When_Applicably_Weighted()
+        {
+            var recorder = new Recorder();
+            var manualProgress = new ManualProgress(0, 50);
+            var speedProgress = new SpeedProgress(0, 0, 120, 50);
+            var practiceTimeProgress = new PracticeTimeProgress(0, 600, 50);
+
+            using (var exerciseRecorder = new ExerciseRecorder(recorder, 1, "Exercise Title", speedProgress, practiceTimeProgress, manualProgress))
+            {
+                var progressBefore = exerciseRecorder.CurrentOverAllProgress;
+                exerciseRecorder.IncrementSpeed(120);
+                var progressAfter = exerciseRecorder.CurrentOverAllProgress;
+
+                Assert.That(progressBefore, Is.LessThan(progressAfter));
+                Assert.That(progressAfter, Is.EqualTo(33));
             }
         }
 

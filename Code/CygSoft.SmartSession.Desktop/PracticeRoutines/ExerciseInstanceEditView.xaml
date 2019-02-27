@@ -17,11 +17,11 @@
             <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
                 <TextBlock Margin="20" HorizontalAlignment="Center">Metronome Speed</TextBlock>
                 <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-                    <Button Margin="2" MinWidth="30" Command="{Binding DecrementMetronomeSpeedByTenCommand}">&lt;&lt;</Button>
-                    <Button Margin="2" MinWidth="30" Command="{Binding DecrementMetronomeSpeedCommand}">&lt;</Button>
+                    <Button Margin="2" MinWidth="30" Command="{Binding LargeSpeedDecrementCommand}">&lt;&lt;</Button>
+                    <Button Margin="2" MinWidth="30" Command="{Binding SmallSpeedDecrementCommand}">&lt;</Button>
                     <TextBlock HorizontalAlignment="Center" TextAlignment="Center" MinWidth="50" Text="{Binding MetronomeSpeedInformationText}" />
-                    <Button Margin="2" MinWidth="30" Command="{Binding IncrementMetronomeSpeedCommand}">&gt;</Button>
-                    <Button Margin="2" MinWidth="30" Command="{Binding IncrementMetronomeSpeedByTenCommand}">&gt;&gt;</Button>
+                    <Button Margin="2" MinWidth="30" Command="{Binding SmallSpeedIncrementCommand}">&gt;</Button>
+                    <Button Margin="2" MinWidth="30" Command="{Binding LargeSpeedIncrementCommand}">&gt;&gt;</Button>
                 </StackPanel>
             </StackPanel>
         </Border>
@@ -31,7 +31,7 @@
                 <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
                     <Button Margin="2" MinWidth="30" Command="{Binding DecrementMinutesPracticedCommand}">&lt;&lt;</Button>
                     <Button Margin="2" MinWidth="30" Command="{Binding DecrementSecondsPracticedCommand}">&lt;</Button>
-                    <TextBlock HorizontalAlignment="Center" TextAlignment="Center" MinWidth="50" Text="{Binding DisplayTime}" />
+                    <TextBlock HorizontalAlignment="Center" TextAlignment="Center" MinWidth="50" Text="{Binding RecordingTimeDisplay}" />
                     <Button Margin="2" MinWidth="30" Command="{Binding IncrementSecondsPracticedCommand}">&gt;</Button>
                     <Button Margin="2" MinWidth="30" Command="{Binding IncrementMinutesPracticedCommand}">&gt;&gt;</Button>
                 </StackPanel>
@@ -82,13 +82,13 @@
         <Border CornerRadius="10" Padding="5" Margin="10" BorderBrush="Black" BorderThickness="2">
             <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
                 <TextBlock HorizontalAlignment="Center">Overall Practice Time</TextBlock>
-                <TextBlock HorizontalAlignment="Center" Text="{Binding TotalPracticeTime}" />
+                <TextBlock HorizontalAlignment="Center" Text="{Binding TotalRecordedDisplayTime}" />
                 <TextBlock HorizontalAlignment="Center">Overall Progress</TextBlock>
-                <ProgressBar MinHeight="10" MinWidth="200" HorizontalAlignment="Center" Value="{Binding OverallProgress}" />
+                <ProgressBar MinHeight="10" MinWidth="200" HorizontalAlignment="Center" Value="{Binding OverallProgress, Mode=OneWay}" />
                 <TextBlock HorizontalAlignment="Center">Speed Progress</TextBlock>
-                <ProgressBar MinHeight="10" MinWidth="200" HorizontalAlignment="Center" Value="{Binding SpeedProgress}" />
+                <ProgressBar MinHeight="10" MinWidth="200" HorizontalAlignment="Center" Value="{Binding SpeedProgress, Mode=OneWay}" />
                 <TextBlock HorizontalAlignment="Center">Time Progress</TextBlock>
-                <ProgressBar MinHeight="10" MinWidth="200" HorizontalAlignment="Center" Value="{Binding PracticeTimeProgress}" />
+                <ProgressBar MinHeight="10" MinWidth="200" HorizontalAlignment="Center" Value="{Binding PracticeTimeProgress, Mode=OneWay}" />
             </StackPanel>
         </Border>
     </StackPanel>

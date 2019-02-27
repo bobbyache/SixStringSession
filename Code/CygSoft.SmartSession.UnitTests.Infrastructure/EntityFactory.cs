@@ -130,7 +130,7 @@ namespace CygSoft.SmartSession.UnitTests.Infrastructure
             var recorder = new Recorder();
             var speedProgress = new SpeedProgress(0, 0, 0, 0);
             var practiceTimeProgress = new PracticeTimeProgress(0, 0, 0);
-            var manualProgress = new ManualProgress(0, 100);
+            var manualProgress = new ManualProgress(value, 100);
 
             return new ExerciseRecorder(recorder, 1, "Time Exercise", speedProgress, practiceTimeProgress, manualProgress);
         }

@@ -70,7 +70,7 @@
     <Compile Include="Tests\ManualProgressTests.cs" />
     <Compile Include="Tests\PracticeRoutineExerciseTests.cs" />
     <Compile Include="Tests\PracticeTimeProgressTests.cs" />
-    <Compile Include="Tests\RecordingExerciseTests.cs" />
+    <Compile Include="Tests\ExerciseRecorderTests.cs" />
     <Compile Include="Tests\RecordingRoutineTests.cs" />
     <Compile Include="Tests\RecordingSliceTests.cs" />
     <Compile Include="Tests\RecorderTests.cs" />

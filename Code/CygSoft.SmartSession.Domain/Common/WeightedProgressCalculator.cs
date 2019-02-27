@@ -21,7 +21,9 @@ namespace CygSoft.SmartSession.Domain.Common
             var countOfWeightings = weightedEntities.Count;
             var sumOfWeightings = weightedEntities.Sum(w => w.Weighting);
 
-            return weightedEntities.Select(w => CalculateWeightedValue(w, countOfWeightings, sumOfWeightings)).Sum();
+            var result = weightedEntities.Select(w => CalculateWeightedValue(w, countOfWeightings, sumOfWeightings)).Sum();
+
+            return result;
         }
 
         private double CalculateWeightedValue(IWeightedEntity item, int countOfItems, int sumOfItemWeightings)

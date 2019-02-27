@@ -67,6 +67,22 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         }
 
         [Test]
+        public void Recorder_When_Is_Exactly_5_Minutes_Subtract_1_Minute_Is_4_Minutes()
+        {
+            IRecorder exerciseRecorder = new TestExerciseRecorder(300);
+            exerciseRecorder.SubtractMinutes(1);
+            Assert.AreEqual(240, exerciseRecorder.PreciseSeconds);
+        }
+
+        [Test]
+        public void Recorder_When_Is_Exactly_0_Minutes_Subtract_1_Minute_Is_0_Minutes()
+        {
+            IRecorder exerciseRecorder = new TestExerciseRecorder(0);
+            exerciseRecorder.SubtractMinutes(1);
+            Assert.AreEqual(0, exerciseRecorder.PreciseSeconds);
+        }
+
+        [Test]
         public void Recorder_When_Is_5Min40sec_Subtract_3Min_Minute_Is_3_Minutes()
         {
             IRecorder exerciseRecorder = new TestExerciseRecorder(340);

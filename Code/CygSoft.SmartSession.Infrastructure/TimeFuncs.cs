@@ -8,6 +8,7 @@ namespace CygSoft.SmartSession.Infrastructure
 {
     public static class TimeFuncs
     {
+        public static string ZeroTimeDisplay = "00:00:00";
         public static string DisplayTimeFromSeconds(double seconds)
         {
             TimeSpan t = TimeSpan.FromSeconds(seconds);
@@ -19,7 +20,7 @@ namespace CygSoft.SmartSession.Infrastructure
             if (seconds.HasValue)
                 return DisplayTimeFromSeconds(seconds.Value);
             else
-                return "00:00:00";
+                return ZeroTimeDisplay;
         }
     }
 }
