@@ -10,8 +10,8 @@ namespace CygSoft.SmartSession.Domain.PracticeRoutines
     {
         public int Id { get; }
         public int TimeSlotId { get; }
-        public string Title { get; }
-        public int FrequencyWeighting { get; }
+        public string Title { get; set; }
+        public int FrequencyWeighting { get; set; }
 
         public TimeSlotExercise(int id, string title, int frequencyWeighting)
         {

@@ -182,7 +182,7 @@ namespace CygSoft.SmartSession.Dal.MySql.Repositories
             {
                 if (timeSlot.Id <= 0)
                 {
-                    timeSlot.Id = Connection.ExecuteScalar<int>(sql: "sp_InsertTimeSlots",
+                    timeSlot.Id = Connection.ExecuteScalar<int>(sql: "sp_InsertTimeSlot",
                     param: new
                     {
                         _title = timeSlot.Title,

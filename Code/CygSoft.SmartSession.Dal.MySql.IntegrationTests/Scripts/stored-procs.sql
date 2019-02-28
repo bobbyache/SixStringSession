@@ -734,8 +734,8 @@ BEGIN
 END;
 
 
-DROP PROCEDURE IF EXISTS `sp_InsertTimeSlots`;
-CREATE PROCEDURE `sp_InsertTimeSlots`
+DROP PROCEDURE IF EXISTS `sp_InsertTimeSlot`;
+CREATE PROCEDURE `sp_InsertTimeSlot`
 (
 	in _title varchar(255),
 	in _practiceRoutineId int(11),
