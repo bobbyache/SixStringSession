@@ -42,7 +42,7 @@ namespace CygSoft.SmartSession.Domain.PracticeRoutines
             unitOfWork.Commit();
         }
 
-        public IEnumerable<PracticeRoutine> Find(PracticeRoutineSearchCriteria searchCriteria)
+        public IEnumerable<PracticeRoutineHeader> Find(PracticeRoutineSearchCriteria searchCriteria)
         {
             return unitOfWork.PracticeRoutines.Find(searchCriteria);
         }

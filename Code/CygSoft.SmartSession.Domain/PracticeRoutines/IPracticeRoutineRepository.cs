@@ -7,5 +7,6 @@ namespace CygSoft.SmartSession.Domain.PracticeRoutines
     public interface IPracticeRoutineRepository : IRepository<PracticeRoutine>
     {
         PracticeRoutineRecorder GetPracticeRoutineRecorder(int id);
+        IReadOnlyList<PracticeRoutineHeader> Find(IPracticeRoutineSearchCriteria criteria);
     }
 }

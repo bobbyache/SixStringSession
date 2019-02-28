@@ -57,6 +57,8 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
             }
         }
 
+        
+
         [Test]
         public void PracticeRoutineRepository_Creates_A_New_PracticeRoutine_Successfully()
         {

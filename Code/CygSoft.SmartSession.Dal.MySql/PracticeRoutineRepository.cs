@@ -1,4 +1,5 @@
 ﻿using CygSoft.SmartSession.Dal.MySql.PracticeRoutines;
+using CygSoft.SmartSession.Domain.Common;
 using CygSoft.SmartSession.Domain.PracticeRoutines;
 using CygSoft.SmartSession.Domain.Recording;
 using Dapper;
@@ -35,9 +36,9 @@ namespace CygSoft.SmartSession.Dal.MySql
             throw new System.NotImplementedException();
         }
 
-        public IReadOnlyList<PracticeRoutine> Find(object criteria)
+        public IReadOnlyList<PracticeRoutineHeader> Find(IPracticeRoutineSearchCriteria criteria)
         {
-            IPracticeRoutineSearchCriteria crit = (IPracticeRoutineSearchCriteria)criteria;
+            var crit = criteria;
 
             var records = Connection.Query<PracticeRoutineRecord>("sp_FindPracticeRoutines",
                 param: new
@@ -49,13 +50,11 @@ namespace CygSoft.SmartSession.Dal.MySql
                     _toDateModified = crit.ToDateModified
                 }, commandType: CommandType.StoredProcedure);
 
-            List<PracticeRoutine> practiceRoutines = new List<PracticeRoutine>();
+            List<PracticeRoutineHeader> headers = new List<PracticeRoutineHeader>();
             foreach (var record in records)
-            {
-                practiceRoutines.Add(new PracticeRoutine(record.Id, record.Title, new List<PracticeRoutineTimeSlot>()));
-            }
+                headers.Add(new PracticeRoutineHeader(record.Id, record.Title, record.DateCreated, record.DateModified));
 
-            return practiceRoutines;
+            return headers;
         }
 
         public PracticeRoutine Get(int id)
@@ -255,6 +254,12 @@ namespace CygSoft.SmartSession.Dal.MySql
                     );
                 }
             }
+        }
+
+        // TODO: Remove Find from the IRepository interface. It should return header objects and not the repository objects. Then remove all of these methods and replace them with specialized ones.
+        public IReadOnlyList<PracticeRoutine> Find(object criteria)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -8,6 +8,31 @@ namespace CygSoft.SmartSession.UnitTests.Infrastructure
 {
     public class EntityFactory
     {
+        public static List<PracticeRoutineTimeSlot> CreateSingleTimeSlotList()
+        {
+            IEnumerable<Exercise> exercises = new List<Exercise> { GetExercise() };
+            var timeSlots = new List<PracticeRoutineTimeSlot> { new PracticeRoutineTimeSlot("New TimeSlot Title", 120, exercises) };
+
+            return timeSlots;
+        }
+
+        public static List<Exercise> CreateSingleExerciseList()
+        {
+            return new List<Exercise> { GetExercise() };
+        }
+
+        public static PracticeRoutineTimeSlot CreateSingleTimeSlot(string title = "New TimeSlot Title")
+        {
+            IEnumerable<Exercise> exercises = new List<Exercise> { GetExercise() };
+            return new PracticeRoutineTimeSlot(title, 120, exercises);
+        }
+
+        public static PracticeRoutineTimeSlot GetSingleTimeSlot(string title = "Existing TimeSlot Title")
+        {
+            IEnumerable<Exercise> exercises = new List<Exercise> { GetExercise() };
+            return new PracticeRoutineTimeSlot(1, title, 120, exercises);
+        }
+
         public static PracticeRoutine CreateEmptyPracticeRoutine(string title = "New Empty Practice Routine")
         {
             return new PracticeRoutine(title, new List<PracticeRoutineTimeSlot>());
@@ -50,6 +75,27 @@ namespace CygSoft.SmartSession.UnitTests.Infrastructure
                 Title = title,
                 DateCreated = !string.IsNullOrEmpty(dateCreated) ? DateTime.Parse(dateCreated) : DateTime.Parse("2018-03-01 12:15:00"),
                 DateModified = !string.IsNullOrEmpty(dateModified) ? DateTime.Parse(dateModified) : DateTime.Parse("2018-03-01 12:15:00"),
+                SpeedProgressWeighting = speedProgressWeighting ?? 0,
+                TargetMetronomeSpeed = targetSpeed ?? 0,
+                PracticeTimeProgressWeighting = practiceTimeProgressWeighting ?? 0,
+                ManualProgressWeighting = manualProgressWeighting ?? 0,
+                TargetPracticeTime = targetpracticeTime,
+                ExerciseActivity = exerciseActivity ?? new List<ExerciseActivity>()
+            };
+            return exercise;
+        }
+
+        public static Exercise GetExercise(int id = 1, string title = "Existing Exercise",
+            int? targetSpeed = null, int? speedProgressWeighting = null,
+            int? targetpracticeTime = null, int? practiceTimeProgressWeighting = null,
+            int? manualProgressWeighting = null,
+            int? frequencyWeighting = null, int? difficultyRating = null,
+            List<ExerciseActivity> exerciseActivity = null,
+            string dateCreated = null, string dateModified = null)
+        {
+            var exercise = new Exercise
+            {
+                Title = title,
                 SpeedProgressWeighting = speedProgressWeighting ?? 0,
                 TargetMetronomeSpeed = targetSpeed ?? 0,
                 PracticeTimeProgressWeighting = practiceTimeProgressWeighting ?? 0,

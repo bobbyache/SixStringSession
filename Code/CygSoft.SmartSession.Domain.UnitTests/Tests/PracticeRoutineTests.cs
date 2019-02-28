@@ -14,23 +14,15 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
     [TestFixture]
     public class PracticeRoutineTests
     {
+        //TODO: Create Test - Don't allow a TimeSlot to take an exercise without an Id (must be existing).
         [Test]
         public void PracticeRoutine_New_Instantiate_Successfully_Injects_State()
         {
-            IEnumerable<Exercise> exercises = new List<Exercise>
-            {
-                new Exercise()
-            };
-
-            var timeSlots = new List<PracticeRoutineTimeSlot>
-            {
-                new PracticeRoutineTimeSlot(exercises)
-            };
-
+            var timeSlots = EntityFactory.CreateSingleTimeSlotList();
             var practiceRoutine = new PracticeRoutine("Test Title", timeSlots);
 
             Assert.AreEqual(1, timeSlots[0].Exercises.Count());
-            Assert.AreEqual(1, practiceRoutine.TimeSlots.Count());
+            Assert.AreEqual(1, practiceRoutine.TimeSlotCount);
             Assert.AreEqual("Test Title", practiceRoutine.Title);
             Assert.That(practiceRoutine.Id, Is.Zero);
         }
@@ -38,29 +30,14 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         [Test]
         public void PracticeRoutine_Existing_Instantiate_Successfully_Injects_State()
         {
-            IEnumerable<Exercise> exercises = new List<Exercise>
-            {
-                new Exercise()
-            };
-
-            var timeSlots = new List<PracticeRoutineTimeSlot>
-            {
-                new PracticeRoutineTimeSlot(exercises)
-            };
+            var timeSlots = EntityFactory.CreateSingleTimeSlotList();
 
             var practiceRoutine = new PracticeRoutine(1, "Test Title", timeSlots);
 
             Assert.AreEqual(1, timeSlots[0].Exercises.Count());
-            Assert.AreEqual(1, practiceRoutine.TimeSlots.Count());
+            Assert.AreEqual(1, practiceRoutine.TimeSlotCount);
             Assert.AreEqual("Test Title", practiceRoutine.Title);
             Assert.That(practiceRoutine.Id, Is.Not.Zero);
-        }
-
-        [Test]
-        public void PracticeRoutineTimeSlot_Constructor_Should_Not_Take_Null_ExerciseList()
-        {
-            ActualValueDelegate<object> nullConstructor = () => new PracticeRoutineTimeSlot(null);
-            Assert.That(nullConstructor, Throws.TypeOf<ArgumentNullException>());
         }
 
         [Test]
@@ -94,6 +71,56 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
 
             Assert.AreEqual(5000, routineExercise.AssignedPracticeTime);
             Assert.AreEqual(3, routineExercise.FrequencyWeighting);
+        }
+
+        [Test]
+        public void PracticeRoutine_Removes_A_TimeSlot_Successfully()
+        {
+            var newPracticeRoutine = EntityFactory.CreateEmptyPracticeRoutine();
+
+            var timeSlot = EntityFactory.CreateSingleTimeSlot();
+            newPracticeRoutine.AddTimeSlot(timeSlot);
+
+            newPracticeRoutine.RemoveTimeSlot(timeSlot);
+
+            Assert.AreEqual(0, newPracticeRoutine.TimeSlotCount);
+        }
+
+        [Test]
+        public void PracticeRoutine_Adds_A_TimeSlot_Successfully()
+        {
+            var newPracticeRoutine = EntityFactory.CreateEmptyPracticeRoutine();
+
+            var timeSlot = EntityFactory.CreateSingleTimeSlot();
+            newPracticeRoutine.AddTimeSlot(timeSlot);
+
+            Assert.AreEqual(1, newPracticeRoutine.TimeSlotCount);
+        }
+
+        [Test]
+        public void PracticeRoutine_Attempt_To_Add_Duplicate_TimeSlot_()
+        {
+            var newPracticeRoutine = EntityFactory.CreateEmptyPracticeRoutine();
+
+            var timeSlot = EntityFactory.CreateSingleTimeSlot();
+            newPracticeRoutine.AddTimeSlot(timeSlot);
+            var duplicate = EntityFactory.CreateSingleTimeSlot();
+
+            TestDelegate testDelegate = () => newPracticeRoutine.AddTimeSlot(duplicate);
+            Assert.That(testDelegate, Throws.TypeOf<ArgumentException>());
+        }
+
+        [Test]
+        public void PracticeRoutine_DoNot_Allow_Adding_Existing_Database_TimeSlot()
+        {
+            var newPracticeRoutine = EntityFactory.GetEmptyPracticeRoutine();
+            var newTimeSlot = EntityFactory.CreateSingleTimeSlot("New Time Slot");
+            var existingTimeSlot = EntityFactory.GetSingleTimeSlot("Database (Existing) Time Slot");
+
+            newPracticeRoutine.AddTimeSlot(newTimeSlot);
+
+            TestDelegate testDelegate = () => newPracticeRoutine.AddTimeSlot(existingTimeSlot);
+            Assert.That(testDelegate, Throws.TypeOf<ArgumentException>());
         }
 
         private Exercise GetMetronomeExercise()

@@ -21,13 +21,20 @@ namespace CygSoft.SmartSession.Domain.PracticeRoutines
         [Required]
         [Column(TypeName = "nvarchar(150)")]
         public string Title { get; set; }
+        public int TimeSlotCount { get { return TimeSlots.Count;  } }
 
-        public IEnumerable<PracticeRoutineTimeSlot> TimeSlots { get; private set; }
+        public List<PracticeRoutineTimeSlot> TimeSlots { get; } = new List<PracticeRoutineTimeSlot>();
 
         public PracticeRoutine(string title, IEnumerable<PracticeRoutineTimeSlot> timeSlots)
         {
             Title = title;
-            TimeSlots = timeSlots ?? throw new ArgumentNullException("Time slots must be specified.");
+
+            if (timeSlots == null)
+                throw new ArgumentNullException("Time slots must be specified.");
+
+            //TODO: Create Test - Ensure no timeslots get created with duplicate names.
+            foreach (var timeSlot in timeSlots)
+                TimeSlots.Add(timeSlot);
         }
 
         public PracticeRoutine(int id, string title, List<PracticeRoutineTimeSlot> timeSlots)
@@ -36,15 +43,22 @@ namespace CygSoft.SmartSession.Domain.PracticeRoutines
             Id = id;
             TimeSlots = timeSlots ?? throw new ArgumentNullException("Time slots must be specified.");
         }
-    }
 
-    public class PracticeRoutineTimeSlot : Entity
-    {
-        public PracticeRoutineTimeSlot(IEnumerable<Exercise> exercises)
+        public void AddTimeSlot(PracticeRoutineTimeSlot timeSlot)
         {
-            Exercises = exercises ?? throw new ArgumentNullException("Exercises must be specified.");
+            if (timeSlot.Id > 0)
+                throw new ArgumentException("Only newly created time slots can be added to a practice routine. PracticeRoutineTimeSlot has an Id greater than 0.");
+
+            var exists = TimeSlots.Where(tslot => tslot.Title == timeSlot.Title).Any();
+            if (exists)
+                throw new ArgumentException("Cannot add a duplicate time slot to a routine.");
+
+            TimeSlots.Add(timeSlot);
         }
 
-        public IEnumerable<Exercise> Exercises { get; private set; }
+        public void RemoveTimeSlot(PracticeRoutineTimeSlot timeSlot)
+        {
+            TimeSlots.Remove(timeSlot);
+        }
     }
 }

@@ -26,6 +26,6 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             Assert.IsTrue(practiceRoutine.Title.StartsWith("New Practice Routine - "));
         }
 
-        // You can't do anything else here unless you inject the repositories into UnitOfWork.
+        // TODO: You can't do anything else here unless you inject the repositories into UnitOfWork.
     }
 }

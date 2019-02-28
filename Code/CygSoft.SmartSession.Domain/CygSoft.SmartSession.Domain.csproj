@@ -70,11 +70,13 @@
     <Compile Include="PracticeRoutines\IPracticeRoutineService.cs" />
     <Compile Include="PracticeRoutines\PracticeRoutine.cs" />
     <Compile Include="PracticeRoutines\PracticeRoutineExercise.cs" />
+    <Compile Include="PracticeRoutines\PracticeRoutineHeader.cs" />
     <Compile Include="PracticeRoutines\PracticeRoutineSearchCriteria.cs" />
     <Compile Include="IUnitOfWork.cs" />
     <Compile Include="Keywords\ExerciseKeyword.cs" />
     <Compile Include="Keywords\Keyword.cs" />
     <Compile Include="PracticeRoutines\PracticeRoutineService.cs" />
+    <Compile Include="PracticeRoutines\PracticeRoutineTimeSlot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Recording\IManualProgress.cs" />
     <Compile Include="Recording\IPracticeTimeProgress.cs" />

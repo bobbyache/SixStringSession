@@ -87,6 +87,7 @@
     <Compile Include="ViewModels\ExerciseEditViewModelTests.cs" />
     <Compile Include="OneTimeSetup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\PracticeRoutineEditViewModelTests2.cs" />
     <Compile Include="ViewModels\SingleExerciseRecorderViewModelTests.cs" />
     <Compile Include="ValidationAttributeTests.cs" />
     <Compile Include="ViewModels\ExerciseSearchViewModelTests.cs" />

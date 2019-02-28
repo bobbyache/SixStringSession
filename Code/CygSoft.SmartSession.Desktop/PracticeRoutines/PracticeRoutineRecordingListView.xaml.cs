@@ -28,8 +28,6 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
             InitializeComponent();
         }
 
-        //TODO: Create a Numeric-Only textbox control (see ExerciseEditView e.Handled = !ValidatorFuncs.TextIsMetronomeSpeed(e.Text);
-
         private void TextBox_PreviewMouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             e.Handled = true;
@@ -42,6 +40,8 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
 
         private void ListViewItem_PreviewKeyDown(object sender, KeyEventArgs e)
         {
+            // TODO: Look int0 this keyboard input for starting and stopping recordings...
+
             // ==================================================================================================================
             // THE COMMENTED CODE BELOW IS WORKING, YOU JUST HAVEN'T FOUND A WAY TO FOCUS ON THE TEXTBOX WITHIN IT FROM CODE !!!
             // ==================================================================================================================

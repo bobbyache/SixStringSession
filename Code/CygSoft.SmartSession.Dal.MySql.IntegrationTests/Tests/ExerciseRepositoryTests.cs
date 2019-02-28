@@ -32,27 +32,6 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
             }
         }
 
-        //TODO: Test for checking for an exercise below or above a specific calculation percent should be implemented.
-        //[Test]
-        //public void ExerciseRepository_Find_Exercise_With_Specific_CalcPercentType_Gets_Applicable_Recs()
-        //{
-        //    Funcs.RunScript("delete-all-records.sql", Settings.AppConnectionString);
-        //    Funcs.RunScript("test-data-exercises.sql", Settings.AppConnectionString);
-
-        //    //using (var uow = new UnitOfWork(Settings.AppConnectionString))
-        //    //{
-        //    //    IExerciseSearchCriteria crit = new ExerciseSearchCriteria();
-        //    //    crit.PercentageCompleteCalculationType = Metronome
-
-        //    //    var exercises = uow.Exercises.Find(crit);
-        //    //    Assert.That(exercises.Where(ex => ex.Title == "Orange Exercise").SingleOrDefault(), Is.Not.Null);
-        //    //    Assert.That(exercises.Where(ex => ex.Title == "Green Exercise 1").SingleOrDefault(), Is.Not.Null);
-        //    //    Assert.That(exercises.Where(ex => ex.Title == "Green Exercise 2").SingleOrDefault(), Is.Not.Null);
-        //    //}
-
-        //    throw new NotImplementedException();
-        //}
-
         [Test]
         public void ExerciseRepository_Find_Exercise_With_DateModified_Before_ToDateModified()
         {

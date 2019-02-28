@@ -69,6 +69,7 @@
     </Compile>
     <Compile Include="Tests\ManualProgressTests.cs" />
     <Compile Include="Tests\PracticeRoutineExerciseTests.cs" />
+    <Compile Include="Tests\PracticeRoutineTimeSlotTests.cs" />
     <Compile Include="Tests\PracticeTimeProgressTests.cs" />
     <Compile Include="Tests\ExerciseRecorderTests.cs" />
     <Compile Include="Tests\RecordingRoutineTests.cs" />
