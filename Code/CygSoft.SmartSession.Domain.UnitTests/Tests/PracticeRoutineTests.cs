@@ -1,6 +1,8 @@
 ﻿using CygSoft.SmartSession.Domain.Exercises;
 using CygSoft.SmartSession.Domain.PracticeRoutines;
+using CygSoft.SmartSession.UnitTests.Infrastructure;
 using NUnit.Framework;
+using NUnit.Framework.Constraints;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,10 +15,73 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
     public class PracticeRoutineTests
     {
         [Test]
+        public void PracticeRoutine_New_Instantiate_Successfully_Injects_State()
+        {
+            IEnumerable<Exercise> exercises = new List<Exercise>
+            {
+                new Exercise()
+            };
+
+            var timeSlots = new List<PracticeRoutineTimeSlot>
+            {
+                new PracticeRoutineTimeSlot(exercises)
+            };
+
+            var practiceRoutine = new PracticeRoutine("Test Title", timeSlots);
+
+            Assert.AreEqual(1, timeSlots[0].Exercises.Count());
+            Assert.AreEqual(1, practiceRoutine.TimeSlots.Count());
+            Assert.AreEqual("Test Title", practiceRoutine.Title);
+            Assert.That(practiceRoutine.Id, Is.Zero);
+        }
+
+        [Test]
+        public void PracticeRoutine_Existing_Instantiate_Successfully_Injects_State()
+        {
+            IEnumerable<Exercise> exercises = new List<Exercise>
+            {
+                new Exercise()
+            };
+
+            var timeSlots = new List<PracticeRoutineTimeSlot>
+            {
+                new PracticeRoutineTimeSlot(exercises)
+            };
+
+            var practiceRoutine = new PracticeRoutine(1, "Test Title", timeSlots);
+
+            Assert.AreEqual(1, timeSlots[0].Exercises.Count());
+            Assert.AreEqual(1, practiceRoutine.TimeSlots.Count());
+            Assert.AreEqual("Test Title", practiceRoutine.Title);
+            Assert.That(practiceRoutine.Id, Is.Not.Zero);
+        }
+
+        [Test]
+        public void PracticeRoutineTimeSlot_Constructor_Should_Not_Take_Null_ExerciseList()
+        {
+            ActualValueDelegate<object> nullConstructor = () => new PracticeRoutineTimeSlot(null);
+            Assert.That(nullConstructor, Throws.TypeOf<ArgumentNullException>());
+        }
+
+        [Test]
+        public void PracticeRoutine_New_Constructor_Should_Not_Take_Null_ExerciseList()
+        {
+            ActualValueDelegate<object> nullConstructor = () => new PracticeRoutine("Title", null);
+            Assert.That(nullConstructor, Throws.TypeOf<ArgumentNullException>());
+        }
+
+        [Test]
+        public void PracticeRoutine_Existing_Constructor_Should_Not_Take_Null_ExerciseList()
+        {
+            ActualValueDelegate<object> nullConstructor = () => new PracticeRoutine(1, "Title", null);
+            Assert.That(nullConstructor, Throws.TypeOf<ArgumentNullException>());
+        }
+
+        [Test]
         public void PracticeRoutine_Successfully_Adds_Exercise()
         {
             var exercise = GetMetronomeExercise();
-            var newPracticeRoutine = CreatePracticeRoutine();
+            var newPracticeRoutine = EntityFactory.CreateEmptyPracticeRoutine();
 
             newPracticeRoutine.PracticeRoutineExercises.Add(new PracticeRoutineExercise
             {
@@ -44,15 +109,6 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             };
 
             return exercise;
-        }
-
-
-        private PracticeRoutine CreatePracticeRoutine()
-        {
-            return new PracticeRoutine()
-            {
-                Title = "New Practice Routine"
-            };
         }
     }
 }

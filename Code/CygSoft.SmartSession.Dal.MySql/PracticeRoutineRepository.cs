@@ -39,7 +39,7 @@ namespace CygSoft.SmartSession.Dal.MySql
         {
             IPracticeRoutineSearchCriteria crit = (IPracticeRoutineSearchCriteria)criteria;
 
-            var results = Connection.Query<PracticeRoutine>("sp_FindPracticeRoutines",
+            var records = Connection.Query<PracticeRoutineRecord>("sp_FindPracticeRoutines",
                 param: new
                 {
                     _title = crit.Title,
@@ -49,14 +49,20 @@ namespace CygSoft.SmartSession.Dal.MySql
                     _toDateModified = crit.ToDateModified
                 }, commandType: CommandType.StoredProcedure);
 
-            return results.ToList();
+            List<PracticeRoutine> practiceRoutines = new List<PracticeRoutine>();
+            foreach (var record in records)
+            {
+                practiceRoutines.Add(new PracticeRoutine(record.Id, record.Title, new List<PracticeRoutineTimeSlot>()));
+            }
+
+            return practiceRoutines;
         }
 
         public PracticeRoutine Get(int id)
         {
             try
             {
-                var result = Connection.QuerySingle<PracticeRoutine>("sp_GetPracticeRoutineById",
+                var record = Connection.QuerySingle<PracticeRoutineRecord>("sp_GetPracticeRoutineById",
                     param: new { _id = id }, commandType: CommandType.StoredProcedure);
 
                 var routineExercises = Connection.Query<PracticeRoutineExercise>("sp_GetPracticeRoutineExercisesByPracticeRoutine",
@@ -65,9 +71,13 @@ namespace CygSoft.SmartSession.Dal.MySql
                     _practiceRoutineId = id
                 }, commandType: CommandType.StoredProcedure);
 
-                result.PracticeRoutineExercises = routineExercises.ToList();
+                var practiceRoutine = new PracticeRoutine(record.Id, record.Title, new List<PracticeRoutineTimeSlot>());
 
-                return result;
+                practiceRoutine.PracticeRoutineExercises = routineExercises.ToList();
+                practiceRoutine.DateCreated = record.DateCreated;
+                practiceRoutine.DateModified = record.DateModified;
+
+                return practiceRoutine;
             }
             catch (InvalidOperationException ex)
             {

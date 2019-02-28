@@ -2,6 +2,7 @@
 using CygSoft.SmartSession.Desktop.Supports.Services;
 using CygSoft.SmartSession.Domain.PracticeRoutines;
 using CygSoft.SmartSession.Infrastructure.Enums;
+using CygSoft.SmartSession.UnitTests.Infrastructure;
 using Moq;
 using NUnit.Framework;
 using System;
@@ -20,7 +21,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         {
             var dialogService = new Mock<IDialogViewService>();
 
-            var practiceRoutine = new PracticeRoutine();
+            var practiceRoutine = EntityFactory.CreateEmptyPracticeRoutine("New Practice Routine");
             practiceRoutine.Title = "My Test PracticeRoutine";
 
             var viewModel = new PracticeRoutineEditViewModel(dialogService.Object);
@@ -33,7 +34,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         {
             var dialogService = new Mock<IDialogViewService>();
 
-            var practiceRoutine = GetExistingTestPracticeRoutine();
+            var practiceRoutine = EntityFactory.GetEmptyPracticeRoutine();
 
             var viewModel = new PracticeRoutineEditViewModel(dialogService.Object);
             viewModel.StartEdit(practiceRoutine);
@@ -47,21 +48,21 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         public void PracticeRoutineViewModel_Assign_All_Fields_To_View_Ok()
         {
             var dialogService = new Mock<IDialogViewService>();
-            var practiceRoutine = GetExistingTestPracticeRoutine();
+            var practiceRoutine = EntityFactory.GetEmptyPracticeRoutine();
             var viewModel = new PracticeRoutineEditViewModel(dialogService.Object);
 
             viewModel.StartEdit(practiceRoutine);
 
             Assert.AreEqual(EntityLifeCycleState.AsExistingEntity, viewModel.LifeCycleState);
-            Assert.AreEqual(2, viewModel.Id);
-            Assert.AreEqual("Title", viewModel.Title);;
+            Assert.AreEqual(1, viewModel.Id);
+            Assert.AreEqual("Existing Empty Practice Routine", viewModel.Title);;
         }
 
         [Test]
         public void PracticeRoutineViewModel_Commits_All_Fields_Back_To_Domain_Object()
         {
             var dialogService = new Mock<IDialogViewService>();
-            var practiceRoutine = GetExistingTestPracticeRoutine();
+            var practiceRoutine = EntityFactory.GetEmptyPracticeRoutine();
             var viewModel = new PracticeRoutineEditViewModel(dialogService.Object);
 
             viewModel.StartEdit(practiceRoutine);
@@ -70,19 +71,8 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
 
             viewModel.Commit();
 
-            Assert.AreEqual(2, practiceRoutine.Id);
+            Assert.AreEqual(1, practiceRoutine.Id);
             Assert.AreEqual("Changed Title", practiceRoutine.Title);
-        }
-
-        private PracticeRoutine GetExistingTestPracticeRoutine()
-        {
-            var practiceRoutine = new Domain.PracticeRoutines.PracticeRoutine();
-            practiceRoutine.DateCreated = DateTime.Parse("2018/07/03");
-            practiceRoutine.DateModified = DateTime.Parse("2018/07/03");
-            practiceRoutine.Id = 2;
-            practiceRoutine.Title = "Title";
-
-            return practiceRoutine;
         }
     }
 }

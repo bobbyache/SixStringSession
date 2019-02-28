@@ -115,8 +115,8 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
                 uow.Exercises.Add(exercise3);
                 uow.Commit();
 
-                var practiceRoutine1 = EntityFactory.CreatePracticeRoutine("Yellow Routine");
-                var practiceRoutine2 = EntityFactory.CreatePracticeRoutine("Not Important Routine");
+                var practiceRoutine1 = EntityFactory.CreateEmptyPracticeRoutine("Yellow Routine");
+                var practiceRoutine2 = EntityFactory.CreateEmptyPracticeRoutine("Not Important Routine");
 
                 practiceRoutine1.PracticeRoutineExercises.Add(EntityFactory.CreatePracticeRoutineExercise(exercise1));
                 practiceRoutine1.PracticeRoutineExercises.Add(EntityFactory.CreatePracticeRoutineExercise(exercise2));

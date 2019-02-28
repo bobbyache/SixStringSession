@@ -8,12 +8,18 @@ namespace CygSoft.SmartSession.UnitTests.Infrastructure
 {
     public class EntityFactory
     {
-        public static PracticeRoutine CreatePracticeRoutine(string title)
+        public static PracticeRoutine CreateEmptyPracticeRoutine(string title = "New Empty Practice Routine")
         {
-            return new PracticeRoutine()
-            {
-                Title = title
-            };
+            return new PracticeRoutine(title, new List<PracticeRoutineTimeSlot>());
+        }
+
+        public static PracticeRoutine GetEmptyPracticeRoutine(int id = 1, string title = "Existing Empty Practice Routine")
+        {
+            var practiceRoutine = new PracticeRoutine(id, title, new List<PracticeRoutineTimeSlot>());
+            practiceRoutine.DateCreated = DateTime.Parse("2018/07/03");
+            practiceRoutine.DateModified = null;
+
+            return practiceRoutine;
         }
 
         public static PracticeRoutineExercise CreatePracticeRoutineExercise(Exercise exercise, 

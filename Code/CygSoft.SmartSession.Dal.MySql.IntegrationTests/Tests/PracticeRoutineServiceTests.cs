@@ -41,14 +41,6 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
             }
         }
 
-        private PracticeRoutine CreatePracticeRoutine()
-        {
-            return new PracticeRoutine()
-            {
-                Title = "New Practice Routine"
-            };
-        }
-
         private Exercise CreateExercise()
         {
             Exercise exercise = new Exercise

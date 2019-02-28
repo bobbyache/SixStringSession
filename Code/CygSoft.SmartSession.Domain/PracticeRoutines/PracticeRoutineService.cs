@@ -18,10 +18,8 @@ namespace CygSoft.SmartSession.Domain.PracticeRoutines
 
         public PracticeRoutine Create()
         {
-            var practiceRoutine = new PracticeRoutine()
-            {
-                Title = $"New Practice Routine - {DateTime.Now}"
-            };
+            var practiceRoutine = new PracticeRoutine($"New Practice Routine - {DateTime.Now}", 
+                new List<PracticeRoutineTimeSlot>());
             return practiceRoutine;
         }
 

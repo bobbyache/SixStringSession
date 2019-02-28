@@ -129,34 +129,34 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
                 "Pause() should not have been called because the recorder is is already paused.");
         }
 
-        [Test]
-        public void SingleExerciseRecorderViewModel_Play_Pause_Cancel_Then_Initialize_StartButton_Enabled()
-        {
-            using (var exerciseRecorder = EntityFactory.CreateManualExerciseRecorder(0))
-            {
-                var exerciseService = new Mock<IExerciseService>();
-                var dialogService = new Mock<IDialogViewService>();
+        //[Test]
+        //public void SingleExerciseRecorderViewModel_Play_Pause_Cancel_Then_Initialize_StartButton_Enabled()
+        //{
+        //    using (var exerciseRecorder = EntityFactory.CreateManualExerciseRecorder(0))
+        //    {
+        //        var exerciseService = new Mock<IExerciseService>();
+        //        var dialogService = new Mock<IDialogViewService>();
 
-                var viewModel = new SingleExerciseRecorderViewModel(exerciseService.Object, dialogService.Object);
+        //        var viewModel = new SingleExerciseRecorderViewModel(exerciseService.Object, dialogService.Object);
 
-                viewModel.InitializeRecorder(exerciseRecorder);
-                viewModel.StartRecordingCommand.Execute(null);
-                viewModel.PauseRecordingCommand.Execute(null);
+        //        viewModel.InitializeRecorder(exerciseRecorder);
+        //        viewModel.StartRecordingCommand.Execute(null);
+        //        viewModel.PauseRecordingCommand.Execute(null);
 
-                // Now cancel out...
-                viewModel.CancelRecordingCommand.Execute(null);
+        //        // Now cancel out...
+        //        viewModel.CancelRecordingCommand.Execute(null);
 
-                var recordingChangedEventFired = false;
+        //        var recordingChangedEventFired = false;
 
-                viewModel.RecordingStatusChanged += (s, e) => recordingChangedEventFired = true;
+        //        viewModel.RecordingStatusChanged += (s, e) => recordingChangedEventFired = true;
 
-                // Come in again and ensure that exercise.Recording is false.
-                viewModel.InitializeRecorder(exerciseRecorder);
+        //        // Come in again and ensure that exercise.Recording is false.
+        //        viewModel.InitializeRecorder(exerciseRecorder);
 
-                Assert.That(recordingChangedEventFired, Is.True,
-                    "RecordingStatusChanged did not fire as it was supposed to.");
-            }
-         }
+        //        Assert.That(recordingChangedEventFired, Is.True,
+        //            "RecordingStatusChanged did not fire as it was supposed to.");
+        //    }
+        // }
 
         [Test]
         public void SingleExerciseRecorderViewModel_SaveRecording_Invokes_ExerciseRecorder_SaveRecording()
