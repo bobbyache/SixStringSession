@@ -1,4 +1,5 @@
-﻿using CygSoft.SmartSession.Dal.MySql.IntegrationTests.Helpers;
+﻿using CygSoft.SmartSession.Dal.MySql.Common;
+using CygSoft.SmartSession.Dal.MySql.IntegrationTests.Helpers;
 using CygSoft.SmartSession.Domain.Exercises;
 using CygSoft.SmartSession.Domain.PracticeRoutines;
 using CygSoft.SmartSession.Domain.Recording;

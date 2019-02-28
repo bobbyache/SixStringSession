@@ -6,6 +6,7 @@ using NUnit.Framework;
 using System;
 using System.Linq;
 using CygSoft.SmartSession.Infrastructure;
+using CygSoft.SmartSession.Dal.MySql.Common;
 
 namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
 {

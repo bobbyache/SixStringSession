@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 
-namespace CygSoft.SmartSession.Dal.MySql
+namespace CygSoft.SmartSession.Dal.MySql.Common
 {
     public class ConnectionManager : IConnectionManager
     {

@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CygSoft.SmartSession.Dal.MySql
+namespace CygSoft.SmartSession.Dal.MySql.Common
 {
     [Serializable]
     public class DatabaseEntityNotFoundException : Exception, ISerializable

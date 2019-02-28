@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CygSoft.SmartSession.Dal.MySql
+namespace CygSoft.SmartSession.Dal.MySql.Common
 {
     public interface IConnectionManager
     {

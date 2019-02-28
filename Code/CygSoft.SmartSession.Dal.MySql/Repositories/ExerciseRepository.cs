@@ -1,4 +1,6 @@
-﻿using CygSoft.SmartSession.Dal.MySql.PracticeRoutines;
+﻿using CygSoft.SmartSession.Dal.MySql.Common;
+using CygSoft.SmartSession.Dal.MySql.PracticeRoutines;
+using CygSoft.SmartSession.Dal.MySql.PracticeRoutines.Records;
 using CygSoft.SmartSession.Domain.Exercises;
 using CygSoft.SmartSession.Domain.Recording;
 using Dapper;
@@ -8,7 +10,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 
-namespace CygSoft.SmartSession.Dal.MySql
+namespace CygSoft.SmartSession.Dal.MySql.Repositories
 {
     internal class ExerciseRepository : RepositoryBase, IExerciseRepository
     {

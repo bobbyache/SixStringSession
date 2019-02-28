@@ -1,4 +1,6 @@
-﻿using CygSoft.SmartSession.Domain;
+﻿using CygSoft.SmartSession.Dal.MySql.Common;
+using CygSoft.SmartSession.Dal.MySql.Repositories;
+using CygSoft.SmartSession.Domain;
 using CygSoft.SmartSession.Domain.Exercises;
 using CygSoft.SmartSession.Domain.PracticeRoutines;
 using MySql.Data.MySqlClient;
