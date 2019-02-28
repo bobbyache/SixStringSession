@@ -702,3 +702,80 @@ BEGIN
 	WHERE
 		PracticeRoutineId = _id;
 END;
+
+
+
+
+DROP PROCEDURE IF EXISTS `sp_InsertTimeSlotExercise`;
+CREATE PROCEDURE `sp_InsertTimeSlotExercise`
+(
+	in _exerciseId int(11),
+	in _timeSlotId int(11),
+	in _frequencyWeighting int(11)
+)
+BEGIN
+	INSERT INTO TimeSlotExercise
+    (
+		ExerciseId,
+		TimeSlotId,
+		FrequencyWeighting,
+		DateCreated,
+		DateModified
+	) 
+	VALUES 
+    (
+		_exerciseId,
+		_timeSlotId,
+		_frequencyWeighting,
+		NOW(),
+		NULL
+	);
+	SELECT LAST_INSERT_ID();
+END;
+
+
+DROP PROCEDURE IF EXISTS `sp_InsertTimeSlots`;
+CREATE PROCEDURE `sp_InsertTimeSlots`
+(
+	in _title varchar(255),
+	in _practiceRoutineId int(11),
+	in _assignedPracticeTime int(11)
+)
+BEGIN
+
+	DECLARE timeSlotId INT DEFAULT 0;
+
+	INSERT INTO TimeSlot 
+	(
+		Title, 
+		AssignedPracticeTime, 
+		DateCreated, 
+		DateModified
+	) VALUES 
+	(
+		_title, 
+		_assignedPracticeTime, 
+		NOW(), 
+		NULL
+	);
+	
+	SELECT LAST_INSERT_ID() INTO timeSlotId;
+	
+	INSERT INTO PracticeRoutineTimeslot 
+	(
+		PracticeRoutineId, 
+		TimeSlotId, 
+		DateCreated, 
+		DateModified
+	)
+	VALUES 
+	(
+		_practiceRoutineId, 
+		timeSlotId, 
+		NOW(), 
+		NULL
+	);
+	
+	SELECT timeSlotId;
+	
+END;

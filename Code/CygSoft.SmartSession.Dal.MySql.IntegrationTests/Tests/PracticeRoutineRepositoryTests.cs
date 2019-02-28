@@ -20,6 +20,58 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
     public class PracticeRoutineRepositoryTests
     {
         [Test]
+        public void PracticeRoutineRepository_Insert_New_PracticeRoutine_Inserts_New_TimeSlotExercises()
+        {
+            Funcs.RunScript("delete-all-records.sql", Settings.AppConnectionString);
+
+            using (var uow = new UnitOfWork(Settings.AppConnectionString))
+            {
+                var exercise1 = EntityFactory.CreateExercise("Exercise 1");
+                var exercise2 = EntityFactory.CreateExercise("Exercise 2");
+                var exercise3 = EntityFactory.CreateExercise("Exercise 3");
+
+                uow.Exercises.Add(exercise1);
+                uow.Exercises.Add(exercise2);
+                uow.Exercises.Add(exercise3);
+
+                uow.Commit();
+
+                TimeSlotExercise timeSlotExercise1 = new TimeSlotExercise(exercise1.Id, exercise1.Title, 3);
+                TimeSlotExercise timeSlotExercise2 = new TimeSlotExercise(exercise2.Id, exercise2.Title, 3);
+                TimeSlotExercise timeSlotExercise3 = new TimeSlotExercise(exercise3.Id, exercise3.Title, 3);
+
+                List<TimeSlotExercise> timeSlotExercises1 = new List<TimeSlotExercise>
+                {
+                    timeSlotExercise1,
+                    timeSlotExercise2
+                };
+
+                List<TimeSlotExercise> timeSlotExercises2 = new List<TimeSlotExercise>
+                {
+                    timeSlotExercise3
+                };
+
+                List<PracticeRoutineTimeSlot> timeSlots = new List<PracticeRoutineTimeSlot>
+                {
+                    new PracticeRoutineTimeSlot("Time Slot 1", 5, timeSlotExercises1),
+                    new PracticeRoutineTimeSlot("Time Slot 2", 5, timeSlotExercises2),
+                };
+
+                PracticeRoutine practiceRoutine = new PracticeRoutine("Created PracticeRoutine", timeSlots);
+                uow.PracticeRoutines.Add(practiceRoutine);
+                uow.Commit();
+
+                PracticeRoutine insertedPracticeRoutine = uow.PracticeRoutines.Get(practiceRoutine.Id);
+
+                Assert.AreEqual(1, insertedPracticeRoutine.TimeSlots.Where(t => t.Title == "Time Slot 1").Count());
+                Assert.AreEqual(1, insertedPracticeRoutine.TimeSlots.Where(t => t.Title == "Time Slot 2").Count());
+
+                Assert.AreEqual(2, insertedPracticeRoutine.TimeSlots.Where(t => t.Title == "Time Slot 1").First().Exercises.Count());
+                Assert.AreEqual(1, insertedPracticeRoutine.TimeSlots.Where(t => t.Title == "Time Slot 2").First().Exercises.Count());
+            }
+        }
+
+        [Test]
         public void PracticeRoutineRepository_Find_PracticeRoutine_With_Specific_Title_Gets_Applicable_Recs()
         {
             Funcs.RunScript("delete-all-records.sql", Settings.AppConnectionString);

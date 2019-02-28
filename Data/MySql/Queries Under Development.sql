@@ -1,8 +1,9 @@
 SELECT * FROM smartsession_tests.exercise;
 SELECT * FROM smartsession_tests.timeslot;
+select * from smartsession_tests.timeslotexercise;
 SELECT * FROM smartsession_tests.practiceroutine;
 
-CALL sp_GetPracticeRoutineExerciseRecordersByRoutineId ((SELECT id FROM PracticeRoutine WHERE Title = 'Monday Routine'))
+CALL sp_GetPracticeRoutineExerciseRecordersByRoutineId ((SELECT id FROM PracticeRoutine WHERE Title = 'Monday Routine'));
 
     /* ************************************************************************************************
 	Insert a TimeSlot

@@ -28,6 +28,8 @@ namespace CygSoft.SmartSession.Dal.MySql.Repositories
                 commandType: CommandType.StoredProcedure
                 );
 
+            InsertNewTimeSlots(entity);
+            InsertNewTimeSlotExercises(entity);
             InsertNewRoutineExercises(entity);
 
             var persistedEntity = Get(entity.Id);
@@ -137,12 +139,61 @@ namespace CygSoft.SmartSession.Dal.MySql.Repositories
                 commandType: CommandType.StoredProcedure
                 );
 
+            // ------------------------------------------------------------
+            // TODO: You will want to remove this code once you've got the time slot stuff working...
+            // ------------------------------------------------------------
             InsertNewRoutineExercises(entity);
             DeleteMissingRoutineExercises(entity);
             UpdateChangedPracticeRoutineExercises(entity);
+            // ------------------------------------------------------------
+
+
 
             var persistedEntity = Get(entity.Id);
             entity.DateCreated = persistedEntity.DateCreated;
+        }
+
+
+        private void InsertNewTimeSlotExercises(PracticeRoutine practiceRoutine)
+        {
+            foreach (var timeSlot in practiceRoutine.TimeSlots)
+            {
+                foreach (var exercise in timeSlot.Exercises)
+                {
+                    if (exercise.TimeSlotId <= 0)
+                    {
+                        Connection.ExecuteScalar<int>(sql: "sp_InsertTimeSlotExercise",
+                        param: new
+                        {
+                            _exerciseId = exercise.Id,
+                            _timeSlotId = timeSlot.Id,
+                            _frequencyWeighting = exercise.FrequencyWeighting
+                        },
+                        commandType: CommandType.StoredProcedure
+                        );
+                    }
+                }
+            }
+        }
+
+        private void InsertNewTimeSlots(PracticeRoutine practiceRoutine)
+        {
+            foreach (var timeSlot in practiceRoutine.TimeSlots)
+            {
+                if (timeSlot.Id <= 0)
+                {
+                    timeSlot.Id = Connection.ExecuteScalar<int>(sql: "sp_InsertTimeSlots",
+                    param: new
+                    {
+                        _title = timeSlot.Title,
+                        _practiceRoutineId = practiceRoutine.Id,
+                        _timeSlotId = timeSlot.Id,
+                        _assignedPracticeTime = timeSlot.AssignedSeconds
+                    },
+                    commandType: CommandType.StoredProcedure
+                    );
+                }
+            }
         }
 
         public PracticeRoutineRecorder GetPracticeRoutineRecorder(int id)
