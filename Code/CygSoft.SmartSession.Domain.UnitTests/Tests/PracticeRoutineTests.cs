@@ -14,7 +14,6 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
     [TestFixture]
     public class PracticeRoutineTests
     {
-        //TODO: Create Test - Don't allow a TimeSlot to take an exercise without an Id (must be existing).
         [Test]
         public void PracticeRoutine_New_Instantiate_Successfully_Injects_State()
         {

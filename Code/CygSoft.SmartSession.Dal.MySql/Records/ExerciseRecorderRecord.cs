@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace CygSoft.SmartSession.Dal.MySql.PracticeRoutines.Records
 {
-    // TODO: Rename the PracticeRoutines folder and namespace in Dal.MySql to Records.
     public class ExerciseRecorderRecord
     {
         public int ExerciseId { get; set; }

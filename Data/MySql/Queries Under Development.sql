@@ -1,9 +1,91 @@
+SELECT * FROM smartsession_tests.exercise;
+SELECT * FROM smartsession_tests.timeslot;
+SELECT * FROM smartsession_tests.practiceroutine;
+
+CALL sp_GetPracticeRoutineExerciseRecordersByRoutineId ((SELECT id FROM PracticeRoutine WHERE Title = 'Monday Routine'))
+
+    /* ************************************************************************************************
+	Insert a TimeSlot
+    ************************************************************************************************ */
+INSERT INTO TimeSlot 
+(
+	Title, 
+    AssignedPracticeTime, 
+    DateCreated, 
+    DateModified
+) VALUES 
+(
+	"Monday - Strumming Practice", 
+    5, 
+    '2017-02-01 01:20:00', 
+    NULL
+);
+
+INSERT INTO PracticeRoutineTimeslot 
+(
+	PracticeRoutineId, 
+    TimeSlotId, 
+    DateCreated, 
+    DateModified
+)
+VALUES 
+(
+	(SELECT Id FROM PracticeRoutine WHERE Title = "Tuesday Routine"), 
+    (SELECT Id FROM TimeSlot WHERE Title = "Tuesday - Strumming Practice"), 
+    '2017-02-01 01:20:00', 
+    NULL
+);
+
+
+
+
+
+
+SELECT 
+	T.Id,
+    T.Title,
+    T.AssignedPracticeTime
+FROM 
+	PracticeRoutine PR 
+	INNER JOIN PracticeRoutineTimeSlot PRT ON PRT.PracticeRoutineId = PR.Id
+	INNER JOIN TimeSlot T ON T.Id = PRT.TimeSlotId
+WHERE
+	PracticeRoutineId = (SELECT Id FROM PracticeRoutine WHERE Title = 'Wednesday Routine');
+    
+
+call sp_GetTimeSlotsByPracticeRoutineId((SELECT Id FROM PracticeRoutine WHERE Title = 'Wednesday Routine'));
+call sp_GetTimeSlotsByPracticeRoutineId(1);
+
+SELECT * 
+	FROM 
+		PracticeRoutine PR 
+		INNER JOIN PracticeRoutineTimeSlot PRT ON PRT.PracticeRoutineId = PR.Id
+		INNER JOIN TimeSlot T ON T.Id = PRT.TimeSlotId
+		INNER JOIN TimeSlotExercise TSE ON TSE.TimeSlotId = T.Id
+		INNER JOIN Exercise E ON E.Id = TSE.ExerciseId
+	WHERE
+		PR.Id = 1 ;
+
+
+-- Get a time slot exercise.
+SELECT
+	E.Id,
+    E.Title
+FROM 
+		TimeSlot T
+		INNER JOIN TimeSlotExercise TSE ON TSE.TimeSlotId = T.Id
+		INNER JOIN Exercise E ON E.Id = TSE.ExerciseId
+WHERE
+	T.Id = (SELECT Id FROM TimeSlot WHERE Title = 'Monday - Strumming Practice')
+;
+CALL sp_GetTimeSlotExerciseByTimeSlotIds('1,2,3');
+
 
     /* ************************************************************************************************
 	CALL sp_GetExerciseRecorderByExerciseId ((SELECT id FROM PracticeRoutine WHERE Title = 'Monday Routine'))
     ************************************************************************************************ */
 	
-	SET @_exerciseId = (SELECT id FROM Exercise WHERE Title = 'Strumming Exercise 2');
+	SET @_exerciseId = 2; -- (SELECT id FROM Exercise WHERE Title = 'Strumming Exercise 2');
     
 	DROP TEMPORARY TABLE IF EXISTS LastMetronomeSpeeds;
 	DROP TEMPORARY TABLE IF EXISTS FirstMetronomeSpeeds;

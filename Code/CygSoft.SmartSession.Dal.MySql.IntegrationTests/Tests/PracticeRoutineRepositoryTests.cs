@@ -30,8 +30,29 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
                 IPracticeRoutineSearchCriteria crit = new PracticeRoutineSearchCriteria();
                 crit.Title = "monday";
 
-                var PracticeRoutines = uow.PracticeRoutines.Find(crit);
-                Assert.That(PracticeRoutines.Where(ex => ex.Title == "Monday Routine").SingleOrDefault(), Is.Not.Null);
+                var practiceRoutines = uow.PracticeRoutines.Find(crit);
+                Assert.That(practiceRoutines.Where(ex => ex.Title == "Monday Routine").SingleOrDefault(), Is.Not.Null);
+                Assert.IsInstanceOf<PracticeRoutineHeader>(practiceRoutines.First());
+            }
+        }
+
+        [Test]
+        public void PracticeRoutineRepository_Get_PracticeRoutine_Fetches_TimeSlots()
+        {
+            Funcs.RunScript("delete-all-records.sql", Settings.AppConnectionString);
+            Funcs.RunScript("test-data-practiceroutine-recorder.sql", Settings.AppConnectionString);
+
+            using (var uow = new UnitOfWork(Settings.AppConnectionString))
+            {
+                IPracticeRoutineSearchCriteria crit = new PracticeRoutineSearchCriteria();
+                crit.Title = "monday";
+
+                var practiceRoutineHeader = uow.PracticeRoutines.Find(crit).First();
+                var practiceRoutine = uow.PracticeRoutines.Get(practiceRoutineHeader.Id);
+
+                Assert.IsTrue(practiceRoutine.TimeSlots.Count > 0);
+                Assert.AreEqual(6, practiceRoutine.TimeSlots.Count);
+                Assert.AreEqual(4, practiceRoutine.TimeSlots[0].Exercises.Count());
             }
         }
 

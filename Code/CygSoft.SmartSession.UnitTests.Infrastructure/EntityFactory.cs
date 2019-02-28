@@ -8,9 +8,21 @@ namespace CygSoft.SmartSession.UnitTests.Infrastructure
 {
     public class EntityFactory
     {
+        public static TimeSlotExercise GetTimeSlotExercise(int id = 1, string title = "Existing Exercise",
+            int frequencyRating = 50)
+        {
+            var exercise = new TimeSlotExercise(id, title, frequencyRating);
+            return exercise;
+        }
+
+        public static List<TimeSlotExercise> CreateSingleTimeSlotExerciseList()
+        {
+            return new List<TimeSlotExercise> { GetTimeSlotExercise() };
+        }
+
         public static List<PracticeRoutineTimeSlot> CreateSingleTimeSlotList()
         {
-            IEnumerable<Exercise> exercises = new List<Exercise> { GetExercise() };
+            IEnumerable<TimeSlotExercise> exercises = new List<TimeSlotExercise> { GetTimeSlotExercise() };
             var timeSlots = new List<PracticeRoutineTimeSlot> { new PracticeRoutineTimeSlot("New TimeSlot Title", 120, exercises) };
 
             return timeSlots;
@@ -23,13 +35,13 @@ namespace CygSoft.SmartSession.UnitTests.Infrastructure
 
         public static PracticeRoutineTimeSlot CreateSingleTimeSlot(string title = "New TimeSlot Title")
         {
-            IEnumerable<Exercise> exercises = new List<Exercise> { GetExercise() };
+            IEnumerable<TimeSlotExercise> exercises = new List<TimeSlotExercise> { GetTimeSlotExercise() };
             return new PracticeRoutineTimeSlot(title, 120, exercises);
         }
 
         public static PracticeRoutineTimeSlot GetSingleTimeSlot(string title = "Existing TimeSlot Title")
         {
-            IEnumerable<Exercise> exercises = new List<Exercise> { GetExercise() };
+            IEnumerable<TimeSlotExercise> exercises = new List<TimeSlotExercise> { GetTimeSlotExercise() };
             return new PracticeRoutineTimeSlot(1, title, 120, exercises);
         }
 

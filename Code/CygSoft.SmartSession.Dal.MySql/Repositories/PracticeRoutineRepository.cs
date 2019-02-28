@@ -1,6 +1,7 @@
 ﻿using CygSoft.SmartSession.Dal.MySql.Common;
 using CygSoft.SmartSession.Dal.MySql.PracticeRoutines;
 using CygSoft.SmartSession.Dal.MySql.PracticeRoutines.Records;
+using CygSoft.SmartSession.Dal.MySql.Records;
 using CygSoft.SmartSession.Domain.Common;
 using CygSoft.SmartSession.Domain.PracticeRoutines;
 using CygSoft.SmartSession.Domain.Recording;
@@ -63,8 +64,21 @@ namespace CygSoft.SmartSession.Dal.MySql.Repositories
         {
             try
             {
-                var record = Connection.QuerySingle<PracticeRoutineRecord>("sp_GetPracticeRoutineById",
+                var practiceRoutineRecord = Connection.QuerySingle<PracticeRoutineRecord>("sp_GetPracticeRoutineById",
                     param: new { _id = id }, commandType: CommandType.StoredProcedure);
+
+
+                var timeSlotRecords = Connection.Query<TimeSlotRecord>("sp_GetTimeSlotsByPracticeRoutineId",
+                 param: new
+                 {
+                     _id = id
+                 }, commandType: CommandType.StoredProcedure);
+
+                var timeSlotExerciseRecords = Connection.Query<TimeSlotExerciseRecord>("sp_GetTimeSlotExerciseByTimeSlotIds",
+                param: new
+                {
+                    _ids = string.Join(",", timeSlotRecords.Select(tslot => tslot.Id).ToArray())
+                }, commandType: CommandType.StoredProcedure);
 
                 var routineExercises = Connection.Query<PracticeRoutineExercise>("sp_GetPracticeRoutineExercisesByPracticeRoutine",
                 param: new
@@ -72,11 +86,26 @@ namespace CygSoft.SmartSession.Dal.MySql.Repositories
                     _practiceRoutineId = id
                 }, commandType: CommandType.StoredProcedure);
 
-                var practiceRoutine = new PracticeRoutine(record.Id, record.Title, new List<PracticeRoutineTimeSlot>());
+
+                var timeSlots = new List<PracticeRoutineTimeSlot>();
+
+                foreach (var timeSlotRecord in timeSlotRecords)
+                {
+                    var timeSlotExerciseRecs = timeSlotExerciseRecords
+                        .Where(recs => recs.TimeSlotId == timeSlotRecord.Id)
+                        .Select(rec => new TimeSlotExercise(rec.Id, rec.Title, rec.FrequencyWeighting));
+
+                    var timeSlot = new PracticeRoutineTimeSlot(timeSlotRecord.Id, timeSlotRecord.Title, timeSlotRecord.AssignedPracticeTime,
+                        timeSlotExerciseRecs);
+
+                    timeSlots.Add(timeSlot);
+                }
+
+                var practiceRoutine = new PracticeRoutine(practiceRoutineRecord.Id, practiceRoutineRecord.Title, timeSlots);
 
                 practiceRoutine.PracticeRoutineExercises = routineExercises.ToList();
-                practiceRoutine.DateCreated = record.DateCreated;
-                practiceRoutine.DateModified = record.DateModified;
+                practiceRoutine.DateCreated = practiceRoutineRecord.DateCreated;
+                practiceRoutine.DateModified = practiceRoutineRecord.DateModified;
 
                 return practiceRoutine;
             }

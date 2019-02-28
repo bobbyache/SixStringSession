@@ -64,6 +64,8 @@
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Common\ConnectionManager.cs" />
+    <Compile Include="Records\TimeSlotExerciseRecord.cs" />
+    <Compile Include="Records\TimeSlotRecord.cs" />
     <Compile Include="Repositories\ExerciseRepository.cs" />
     <Compile Include="Common\IConnectionManager.cs" />
     <Compile Include="Repositories\PracticeRoutineRepository.cs" />

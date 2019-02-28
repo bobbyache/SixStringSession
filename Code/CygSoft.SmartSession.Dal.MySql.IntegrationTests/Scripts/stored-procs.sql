@@ -669,3 +669,36 @@ BEGIN
 
 END;
 COMMIT;
+
+-- CALL sp_GetTimeSlotExerciseByTimeSlotIds('1,2,3');
+DROP PROCEDURE IF EXISTS `sp_GetTimeSlotExerciseByTimeSlotIds`;
+CREATE PROCEDURE `sp_GetTimeSlotExerciseByTimeSlotIds`(IN _ids TEXT)
+BEGIN
+	SELECT
+		E.Id,
+		T.Id AS TimeSlotId,
+		E.Title,
+		TSE.FrequencyWeighting
+	FROM 
+			TimeSlot T
+			INNER JOIN TimeSlotExercise TSE ON TSE.TimeSlotId = T.Id
+			INNER JOIN Exercise E ON E.Id = TSE.ExerciseId
+	WHERE
+		FIND_IN_SET(T.Id, _ids) > 0
+	;
+END;
+
+DROP PROCEDURE IF EXISTS `sp_GetTimeSlotsByPracticeRoutineId`;
+CREATE PROCEDURE `sp_GetTimeSlotsByPracticeRoutineId`(IN _id int)
+BEGIN
+	SELECT 
+		T.Id,
+		T.Title,
+		T.AssignedPracticeTime
+	FROM 
+		PracticeRoutine PR 
+		INNER JOIN PracticeRoutineTimeSlot PRT ON PRT.PracticeRoutineId = PR.Id
+		INNER JOIN TimeSlot T ON T.Id = PRT.TimeSlotId
+	WHERE
+		PracticeRoutineId = _id;
+END;

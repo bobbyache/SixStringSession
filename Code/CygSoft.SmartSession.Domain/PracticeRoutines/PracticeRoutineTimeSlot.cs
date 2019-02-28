@@ -10,11 +10,11 @@ namespace CygSoft.SmartSession.Domain.PracticeRoutines
 {
     public class PracticeRoutineTimeSlot : Entity
     {
-        public IEnumerable<Exercise> Exercises { get; private set; }
+        public IEnumerable<TimeSlotExercise> Exercises { get; private set; }
         public string Title { get; private set; }
         public int AssignedSeconds { get; private set; }
 
-        public PracticeRoutineTimeSlot(int id, string title, int assignedSeconds, IEnumerable<Exercise> exercises)
+        public PracticeRoutineTimeSlot(int id, string title, int assignedSeconds, IEnumerable<TimeSlotExercise> exercises)
         {
             Id = id;
             Title = title;
@@ -22,7 +22,7 @@ namespace CygSoft.SmartSession.Domain.PracticeRoutines
             Exercises = exercises ?? throw new ArgumentNullException("Exercises must be specified.");
         }
 
-        public PracticeRoutineTimeSlot(string title, int assignedSeconds, IEnumerable<Exercise> exercises)
+        public PracticeRoutineTimeSlot(string title, int assignedSeconds, IEnumerable<TimeSlotExercise> exercises)
         {
             Title = title;
             AssignedSeconds = assignedSeconds;
