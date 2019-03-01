@@ -5,6 +5,7 @@ using CygSoft.SmartSession.Dal.MySql.Records;
 using CygSoft.SmartSession.Domain.Common;
 using CygSoft.SmartSession.Domain.PracticeRoutines;
 using CygSoft.SmartSession.Domain.Recording;
+using CygSoft.SmartSession.Infrastructure;
 using Dapper;
 using KellermanSoftware.CompareNetObjects;
 using System;
@@ -62,6 +63,23 @@ namespace CygSoft.SmartSession.Dal.MySql.Repositories
             return headers;
         }
 
+
+        public IEnumerable<TimeSlotExerciseRecord> GetTimeSlotExercisesByTimeSlotIds(string commaDelimitedIds)
+        {
+            var timeSlotExerciseRecords = Connection.Query<TimeSlotExerciseRecord>("sp_GetTimeSlotExerciseByTimeSlotIds",
+            param: new
+            {
+                _ids = commaDelimitedIds
+            }, commandType: CommandType.StoredProcedure);
+
+            return timeSlotExerciseRecords;
+        }
+
+        private string GetCommaDelimitedIds(IEnumerable<IIdentityItem> items)
+        {
+            return string.Join(",", items.Select(item => item.Id).ToArray());
+        }
+
         public PracticeRoutine Get(int id)
         {
             try
@@ -76,11 +94,7 @@ namespace CygSoft.SmartSession.Dal.MySql.Repositories
                      _id = id
                  }, commandType: CommandType.StoredProcedure);
 
-                var timeSlotExerciseRecords = Connection.Query<TimeSlotExerciseRecord>("sp_GetTimeSlotExerciseByTimeSlotIds",
-                param: new
-                {
-                    _ids = string.Join(",", timeSlotRecords.Select(tslot => tslot.Id).ToArray())
-                }, commandType: CommandType.StoredProcedure);
+                var timeSlotExerciseRecords = GetTimeSlotExercisesByTimeSlotIds(GetCommaDelimitedIds(timeSlotRecords));
 
                 var routineExercises = Connection.Query<PracticeRoutineExercise>("sp_GetPracticeRoutineExercisesByPracticeRoutine",
                 param: new
@@ -95,7 +109,7 @@ namespace CygSoft.SmartSession.Dal.MySql.Repositories
                 {
                     var timeSlotExerciseRecs = timeSlotExerciseRecords
                         .Where(recs => recs.TimeSlotId == timeSlotRecord.Id)
-                        .Select(rec => new TimeSlotExercise(rec.Id, rec.Title, rec.FrequencyWeighting));
+                        .Select(rec => new TimeSlotExercise(rec.Id, rec.TimeSlotId, rec.Title, rec.FrequencyWeighting) { TimeSlotId = rec.TimeSlotId } ).ToList();
 
                     var timeSlot = new PracticeRoutineTimeSlot(timeSlotRecord.Id, timeSlotRecord.Title, timeSlotRecord.AssignedPracticeTime,
                         timeSlotExerciseRecs);
@@ -147,12 +161,117 @@ namespace CygSoft.SmartSession.Dal.MySql.Repositories
             UpdateChangedPracticeRoutineExercises(entity);
             // ------------------------------------------------------------
 
-
+            InsertNewTimeSlots(entity);
+            InsertNewTimeSlotExercises(entity);
+            UpdateExistingTimeSlots(entity);
+            UpdateExistingTimeSlotExercises(entity);
 
             var persistedEntity = Get(entity.Id);
             entity.DateCreated = persistedEntity.DateCreated;
         }
 
+
+        private void UpdateExistingTimeSlots(PracticeRoutine entity)
+        {
+            var existingTimeSlots = Get(entity.Id).TimeSlots;
+
+            foreach (var timeSlot in entity.TimeSlots)
+            {
+                if (timeSlot.Id > 0)
+                {
+                    var persistedCounterPart = existingTimeSlots.Where(p => p.Id == timeSlot.Id).SingleOrDefault();
+                    if (persistedCounterPart != null)
+                    {
+                        CompareLogic compareLogic = new CompareLogic();
+                        ComparisonResult result = compareLogic.Compare(persistedCounterPart, timeSlot);
+                        if (!result.AreEqual)
+                        {
+                            UpdateTimeSlot(timeSlot);
+                        }
+                    }
+                }
+            }
+        }
+        public void UpdateTimeSlot(PracticeRoutineTimeSlot timeSlot)
+        {
+            Connection.ExecuteScalar<int>(sql: "sp_UpdateTimeSlot",
+                param: new
+                {
+                    _id = timeSlot.Id,
+                    _title = timeSlot.Title,
+                    _assignedPracticeTime = timeSlot.AssignedSeconds
+                },
+                commandType: CommandType.StoredProcedure
+            );
+        }
+
+        //--------------------------------------------------------------------------------------------------------
+        // Currently not being used but may be useful for the future.
+        //--------------------------------------------------------------------------------------------------------
+        //public TimeSlotExerciseRecord GetTimeSlotExercise(int timeSlotId, int exerciseId)
+        //{
+        //    try
+        //    {
+        //        var rec = Connection.QuerySingle<TimeSlotExerciseRecord>("sp_GetTimeSlotExerciseById",
+        //            param: new
+        //            {
+        //                _timeSlotId = timeSlotId,
+        //                _exerciseId = exerciseId,
+        //            }, commandType: CommandType.StoredProcedure);
+
+
+        //        return rec;
+        //    }
+        //    catch (InvalidOperationException ex)
+        //    {
+        //        throw new DatabaseEntityNotFoundException($"Database entity does not exist for id: {id}", ex);
+        //    }
+        //}
+
+        private void UpdateExistingTimeSlotExercises(PracticeRoutine entity)
+        {
+            var timeSlotExerciseRecords = GetTimeSlotExercisesByTimeSlotIds(GetCommaDelimitedIds(entity.TimeSlots));
+
+            foreach (var timeSlot in entity.TimeSlots)
+            {
+                foreach (var exercise in timeSlot.Exercises)
+                {
+                    if (exercise.Id > 0 && exercise.TimeSlotId > 0)
+                    {
+                        var persistedCounterPart = timeSlotExerciseRecords.Where(p => p.Id == exercise.Id && p.TimeSlotId == timeSlot.Id).SingleOrDefault();
+                        if (persistedCounterPart != null)
+                        {
+                            var equal = (
+                                persistedCounterPart.Title == exercise.Title &&
+                                persistedCounterPart.FrequencyWeighting == exercise.FrequencyWeighting
+                                );
+
+                            // TODO: Find a better way to compare whether the values of an object are equal (when the object is of different types).
+                            if (!equal) UpdateTimeSlotExercise(exercise);
+                            //CompareLogic compareLogic = new CompareLogic();
+                            //ComparisonResult result = compareLogic.Compare(persistedCounterPart, exercise);
+                            //if (!result.AreEqual)
+                            //{
+                            //    UpdateTimeSlotExercise(exercise);
+                            //}
+                        }
+                    }
+                }
+            }
+        }
+
+        public void UpdateTimeSlotExercise(TimeSlotExercise exercise)
+        {
+            Connection.ExecuteScalar<int>(sql: "sp_UpdateTimeSlotExercise",
+                param: new
+                {
+                    _exerciseId = exercise.Id,
+                    _timeSlotId = exercise.TimeSlotId,
+                    _frequencyWeighting = exercise.FrequencyWeighting
+                },
+                commandType: CommandType.StoredProcedure
+            );
+        }
 
         private void InsertNewTimeSlotExercises(PracticeRoutine practiceRoutine)
         {
@@ -160,8 +279,10 @@ namespace CygSoft.SmartSession.Dal.MySql.Repositories
             {
                 foreach (var exercise in timeSlot.Exercises)
                 {
-                    if (exercise.TimeSlotId <= 0)
+                    if (exercise.TimeSlotId == 0 && exercise.Id > 0)
                     {
+                        exercise.TimeSlotId = timeSlot.Id;
+
                         Connection.ExecuteScalar<int>(sql: "sp_InsertTimeSlotExercise",
                         param: new
                         {

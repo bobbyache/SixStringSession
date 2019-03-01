@@ -22,7 +22,7 @@ namespace CygSoft.SmartSession.UnitTests.Infrastructure
 
         public static List<PracticeRoutineTimeSlot> CreateSingleTimeSlotList()
         {
-            IEnumerable<TimeSlotExercise> exercises = new List<TimeSlotExercise> { GetTimeSlotExercise() };
+            List<TimeSlotExercise> exercises = new List<TimeSlotExercise> { GetTimeSlotExercise() };
             var timeSlots = new List<PracticeRoutineTimeSlot> { new PracticeRoutineTimeSlot("New TimeSlot Title", 120, exercises) };
 
             return timeSlots;
@@ -35,13 +35,13 @@ namespace CygSoft.SmartSession.UnitTests.Infrastructure
 
         public static PracticeRoutineTimeSlot CreateSingleTimeSlot(string title = "New TimeSlot Title")
         {
-            IEnumerable<TimeSlotExercise> exercises = new List<TimeSlotExercise> { GetTimeSlotExercise() };
+            List<TimeSlotExercise> exercises = new List<TimeSlotExercise> { GetTimeSlotExercise() };
             return new PracticeRoutineTimeSlot(title, 120, exercises);
         }
 
         public static PracticeRoutineTimeSlot GetSingleTimeSlot(string title = "Existing TimeSlot Title")
         {
-            IEnumerable<TimeSlotExercise> exercises = new List<TimeSlotExercise> { GetTimeSlotExercise() };
+            List<TimeSlotExercise> exercises = new List<TimeSlotExercise> { GetTimeSlotExercise() };
             return new PracticeRoutineTimeSlot(1, title, 120, exercises);
         }
 

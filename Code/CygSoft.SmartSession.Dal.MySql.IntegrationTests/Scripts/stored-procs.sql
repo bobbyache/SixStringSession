@@ -688,6 +688,30 @@ BEGIN
 	;
 END;
 
+
+
+/* --------------------------------------------------------------------------------------
+Currently not being used.
+-------------------------------------------------------------------------------------- */
+DROP PROCEDURE IF EXISTS `sp_GetTimeSlotExerciseById`;
+CREATE PROCEDURE `sp_GetTimeSlotExerciseById`(IN _timeSlotId int, IN _exerciseId int)
+BEGIN
+	SELECT
+		E.Id,
+		T.Id AS TimeSlotId,
+		E.Title,
+		TSE.FrequencyWeighting
+	FROM 
+			TimeSlot T
+			INNER JOIN TimeSlotExercise TSE ON TSE.TimeSlotId = T.Id
+			INNER JOIN Exercise E ON E.Id = TSE.ExerciseId
+	WHERE
+		T.Id = _timeSlotId AND E.Id = _exerciseId 
+	;
+END;
+/* ------------------------------------------------------------------------------------ */
+
+
 DROP PROCEDURE IF EXISTS `sp_GetTimeSlotsByPracticeRoutineId`;
 CREATE PROCEDURE `sp_GetTimeSlotsByPracticeRoutineId`(IN _id int)
 BEGIN
@@ -779,3 +803,36 @@ BEGIN
 	SELECT timeSlotId;
 	
 END;
+
+
+DROP PROCEDURE IF EXISTS `sp_UpdateTimeSlot`;
+CREATE PROCEDURE `sp_UpdateTimeSlot`(
+	in _id int, 
+	in _title varchar(255), 
+	in _assignedPracticeTime int
+	)
+BEGIN
+	UPDATE TimeSlot
+    SET 
+		Title = _title,
+		AssignedPracticeTime = _assignedPracticeTime,
+		DateModified = NOW()
+	WHERE 
+		Id = _id;
+END;
+
+DROP PROCEDURE IF EXISTS `sp_UpdateTimeSlotExercise`;
+CREATE PROCEDURE `sp_UpdateTimeSlotExercise`(
+	in _exerciseId int, 
+    in _timeSlotId int, 
+	in _frequencyWeighting int
+	)
+BEGIN
+	UPDATE TimeSlotExercise 
+    SET 
+		FrequencyWeighting = _frequencyWeighting,
+		DateModified = NOW()
+	WHERE 
+		TimeSlotId = _timeSlotId AND ExerciseId = _exerciseId;
+END;
+
