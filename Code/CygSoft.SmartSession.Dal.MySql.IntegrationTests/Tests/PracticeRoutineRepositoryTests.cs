@@ -72,6 +72,96 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
         }
 
         [Test]
+        public void PracticeRoutineRepository_Existing_PracticeRoutine_Deletes_Children_Successfully()
+        {
+            Funcs.RunScript("delete-all-records.sql", Settings.AppConnectionString);
+
+            using (var uow = new UnitOfWork(Settings.AppConnectionString))
+            {
+                var exercise1 = EntityFactory.CreateExercise("Exercise 1");
+                var exercise2 = EntityFactory.CreateExercise("Exercise 2");
+                var exercise3 = EntityFactory.CreateExercise("Exercise 3");
+                var exercise4 = EntityFactory.CreateExercise("Exercise 4");
+
+                uow.Exercises.Add(exercise1);
+                uow.Exercises.Add(exercise2);
+                uow.Exercises.Add(exercise3);
+                uow.Exercises.Add(exercise4);
+
+                uow.Commit();
+
+                TimeSlotExercise timeSlotExercise1 = new TimeSlotExercise(exercise1.Id, exercise1.Title, 3);
+                TimeSlotExercise timeSlotExercise2 = new TimeSlotExercise(exercise2.Id, exercise2.Title, 3);
+                TimeSlotExercise timeSlotExercise3 = new TimeSlotExercise(exercise3.Id, exercise3.Title, 3);
+                TimeSlotExercise timeSlotExercise4 = new TimeSlotExercise(exercise4.Id, exercise4.Title, 3);
+
+                List<TimeSlotExercise> timeSlotExercises1 = new List<TimeSlotExercise>
+                {
+                    timeSlotExercise1,
+                    timeSlotExercise2
+                };
+
+                List<TimeSlotExercise> timeSlotExercises2 = new List<TimeSlotExercise>
+                {
+                    timeSlotExercise3
+                };
+
+                List<TimeSlotExercise> timeSlotExercises3 = new List<TimeSlotExercise>
+                {
+                    timeSlotExercise4
+                };
+
+                List<PracticeRoutineTimeSlot> timeSlots = new List<PracticeRoutineTimeSlot>
+                {
+                    new PracticeRoutineTimeSlot("Time Slot 1", 300, timeSlotExercises1),
+                    new PracticeRoutineTimeSlot("Time Slot 2", 300, timeSlotExercises2),
+                    new PracticeRoutineTimeSlot("Time Slot 3", 300, timeSlotExercises3)
+                };
+
+                PracticeRoutine practiceRoutine = new PracticeRoutine("Created PracticeRoutine", timeSlots);
+                uow.PracticeRoutines.Add(practiceRoutine);
+                uow.Commit();
+
+                PracticeRoutine existingPracticeRoutine = uow.PracticeRoutines.Get(practiceRoutine.Id);
+
+                // --------------------- delete some ----------------------------------------------------
+
+                existingPracticeRoutine.TimeSlots.Remove(existingPracticeRoutine.TimeSlots.Where(ts => ts.Title == "Time Slot 3").Single());
+
+                var removeExercise = existingPracticeRoutine
+                    .TimeSlots.Where(ts => ts.Title == "Time Slot 1").Single()
+                    .Exercises.Where(ex => ex.Title == "Exercise 1").Single();
+
+                existingPracticeRoutine
+                    .TimeSlots.Where(ts => ts.Title == "Time Slot 1").Single()
+                    .Exercises.Remove(removeExercise);
+
+                // --------------------- delete some ----------------------------------------------------
+
+                uow.PracticeRoutines.Update(existingPracticeRoutine);
+                uow.Commit();
+
+                var modifiedPracticeRoutine = uow.PracticeRoutines.Get(practiceRoutine.Id);
+
+                var timeSlotCount = modifiedPracticeRoutine.TimeSlots.Count();  // should be one less after deletion of timeslot.
+
+                var removedExercise = modifiedPracticeRoutine
+                    .TimeSlots.Where(ts => ts.Title == "Time Slot 1").Single()
+                    .Exercises.Where(ex => ex.Title == "Exercise 1").SingleOrDefault();
+
+                var exerciseCount = modifiedPracticeRoutine
+                    .TimeSlots.Where(ts => ts.Title == "Time Slot 1").Single()
+                    .Exercises.Count; // should be one less after deletion of exercise.
+
+                Assert.AreEqual(2, timeSlotCount);
+                Assert.AreEqual(2, exerciseCount);
+                Assert.IsNull(removeExercise);
+
+            }
+        }
+
+
+        [Test]
         public void PracticeRoutineRepository_Insert_New_PracticeRoutine_Then_Update_Inserts_New_TimeSlotExercises()
         {
             Funcs.RunScript("delete-all-records.sql", Settings.AppConnectionString);
