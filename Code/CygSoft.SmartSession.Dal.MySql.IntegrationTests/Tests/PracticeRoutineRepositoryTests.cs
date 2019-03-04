@@ -128,13 +128,13 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
 
                 existingPracticeRoutine.TimeSlots.Remove(existingPracticeRoutine.TimeSlots.Where(ts => ts.Title == "Time Slot 3").Single());
 
-                //var removeExercise = existingPracticeRoutine
-                //    .TimeSlots.Where(ts => ts.Title == "Time Slot 1").Single()
-                //    .Exercises.Where(ex => ex.Title == "Exercise 1").Single();
+                var removeExercise = existingPracticeRoutine
+                    .TimeSlots.Where(ts => ts.Title == "Time Slot 1").Single()
+                    .Exercises.Where(ex => ex.Title == "Exercise 1").Single();
 
-                //existingPracticeRoutine
-                //    .TimeSlots.Where(ts => ts.Title == "Time Slot 1").Single()
-                //    .Exercises.Remove(removeExercise);
+                existingPracticeRoutine
+                    .TimeSlots.Where(ts => ts.Title == "Time Slot 1").Single()
+                    .Exercises.Remove(removeExercise);
 
                 // --------------------- delete some ----------------------------------------------------
 
@@ -145,18 +145,27 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
 
                 var timeSlotCount = modifiedPracticeRoutine.TimeSlots.Count();  // should be one less after deletion of timeslot.
 
-                //var removedExercise = modifiedPracticeRoutine
-                //    .TimeSlots.Where(ts => ts.Title == "Time Slot 1").Single()
-                //    .Exercises.Where(ex => ex.Title == "Exercise 1").SingleOrDefault();
+                var removedExercise = modifiedPracticeRoutine
+                    .TimeSlots.Where(ts => ts.Title == "Time Slot 1").Single()
+                    .Exercises.Where(ex => ex.Title == "Exercise 1").SingleOrDefault();
 
-                //var exerciseCount = modifiedPracticeRoutine
-                //    .TimeSlots.Where(ts => ts.Title == "Time Slot 1").Single()
-                //    .Exercises.Count; // should be one less after deletion of exercise.
+                var timeSlot1ExerciseCount = modifiedPracticeRoutine
+                    .TimeSlots.Where(ts => ts.Title == "Time Slot 1").Single()
+                    .Exercises.Count; // should be one less after deletion of exercise.
 
-                Assert.AreEqual(2, timeSlotCount);
-                //Assert.AreEqual(2, exerciseCount);
-                //Assert.IsNull(removeExercise);
+                var timeSlot1RemainingExercise = modifiedPracticeRoutine
+                    .TimeSlots.Where(ts => ts.Title == "Time Slot 1").Single()
+                    .Exercises.Single(); // should be one less after deletion of exercise.
 
+                var timeSlot2Exercise = modifiedPracticeRoutine
+                    .TimeSlots.Where(ts => ts.Title == "Time Slot 2").Single()
+                    .Exercises.Single(); // should be one less after deletion of exercise.
+
+                Assert.AreEqual(2, timeSlotCount, "There should only be two time slots left (Time Slot 3 and its children have been deleted");
+
+                Assert.AreEqual(1, timeSlot1ExerciseCount);
+                Assert.That(timeSlot1RemainingExercise.Title, Is.EqualTo("Exercise 2"), "The last remaining exercise in Time Slot 1 should be Exercise 2");
+                Assert.That(timeSlot2Exercise.Title, Is.EqualTo("Exercise 3"), "The exercise in Time Slot 2 should be Exercise 3");
             }
         }
 

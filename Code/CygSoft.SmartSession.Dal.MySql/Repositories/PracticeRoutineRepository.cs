@@ -80,6 +80,11 @@ namespace CygSoft.SmartSession.Dal.MySql.Repositories
             return string.Join(",", items.Select(item => item.Id).ToArray());
         }
 
+        private string GetCommaDelimitedIds(IEnumerable<int> itemIds)
+        {
+            return string.Join(",", itemIds.ToArray());
+        }
+
         public PracticeRoutine Get(int id)
         {
             try
@@ -166,6 +171,7 @@ namespace CygSoft.SmartSession.Dal.MySql.Repositories
             UpdateExistingTimeSlots(entity);
             UpdateExistingTimeSlotExercises(entity);
 
+            DeleteMissingTimeSlotExercises(entity);
             DeleteMissingTimeSlots(entity);
 
             var persistedEntity = Get(entity.Id);
@@ -213,34 +219,21 @@ namespace CygSoft.SmartSession.Dal.MySql.Repositories
 
         private void DeleteMissingTimeSlotExercises(PracticeRoutine entity)
         {
-            //var timeSlotExerciseRecords = GetTimeSlotExercisesByTimeSlotIds(GetCommaDelimitedIds(entity.TimeSlots));
+            foreach (var timeSlot in entity.TimeSlots)
+            {
+                var results = Connection.Query<TimeSlotExerciseRecord>("sp_GetTimeSlotExerciseByTimeSlotId",
+                 param: new
+                 {
+                     _id = timeSlot.Id
+                 }, commandType: CommandType.StoredProcedure);
 
-            //foreach (var timeSlot in entity.TimeSlots)
-            //{
-            //    var results = timeSlot.Exercises;
+                var missingIds = results
+                        .Select(a => a.Id)
+                        .Except(timeSlot.Exercises.Select(a => a.Id));
 
-            //    var missingIds = results
-            //            .Select(a => a.Id)
-            //            .Except(entity.TimeSlots.Select(a => a.Id));
-
-            //    //foreach (var exercise in timeSlot.Exercises)
-            //    //{
-            //    //    if (exercise.Id > 0 && exercise.TimeSlotId > 0)
-            //    //    {
-            //    //        var persistedCounterPart = timeSlotExerciseRecords.Where(p => p.Id == exercise.Id && p.TimeSlotId == timeSlot.Id).SingleOrDefault();
-            //    //        if (persistedCounterPart != null)
-            //    //        {
-            //    //            var equal = (
-            //    //                persistedCounterPart.Title == exercise.Title &&
-            //    //                persistedCounterPart.FrequencyWeighting == exercise.FrequencyWeighting
-            //    //                );
-
-            //    //            // TODO: Find a better way to compare whether the values of an object are equal (when the object is of different types).
-            //    //            if (!equal) UpdateTimeSlotExercise(exercise);
-            //    //        }
-            //    //    }
-            //    //}
-            //}
+                Connection.Execute("sp_DeleteTimeSlotExercisesByIds",
+                    param: new { _timeSlotId = timeSlot.Id, _exerciseIds = GetCommaDelimitedIds(missingIds) }, commandType: CommandType.StoredProcedure);
+            }
         }
 
 

@@ -688,6 +688,22 @@ BEGIN
 	;
 END;
 
+DROP PROCEDURE IF EXISTS `sp_GetTimeSlotExerciseByTimeSlotId`;
+CREATE PROCEDURE `sp_GetTimeSlotExerciseByTimeSlotId`(IN _id INT)
+BEGIN
+	SELECT
+		E.Id,
+		T.Id AS TimeSlotId,
+		E.Title,
+		TSE.FrequencyWeighting
+	FROM 
+			TimeSlot T
+			INNER JOIN TimeSlotExercise TSE ON TSE.TimeSlotId = T.Id
+			INNER JOIN Exercise E ON E.Id = TSE.ExerciseId
+	WHERE
+		T.Id = _id
+	;
+END;
 
 
 /* --------------------------------------------------------------------------------------
@@ -846,4 +862,14 @@ BEGIN
 		WHERE TimeSlotId = _id;
 	DELETE FROM TimeSlot 
 		WHERE Id = _id;
+END;
+
+DROP PROCEDURE IF EXISTS `sp_DeleteTimeSlotExercisesByIds`;
+CREATE PROCEDURE `sp_DeleteTimeSlotExercisesByIds`(IN _timeSlotId INT, IN _exerciseIds TEXT)
+BEGIN
+	DELETE FROM TimeSlotExercise 
+		WHERE 
+			TimeSlotId = _timeSlotId AND 
+			FIND_IN_SET(ExerciseId, _exerciseIds) > 0;
+	
 END;
