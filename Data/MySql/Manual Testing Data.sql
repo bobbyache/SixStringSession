@@ -3,7 +3,6 @@ USE `smartsession_tests`;
 DELETE FROM TimeSlotExercise WHERE ExerciseId > -1;
 DELETE FROM PracticeRoutineTimeslot WHERE PracticeRoutineId > -1;
 DELETE FROM TimeSlot WHERE Id > -1;
-DELETE FROM PracticeRoutineExercise WHERE ExerciseId > -1;
 DELETE FROM PracticeRoutine WHERE Id > -1;
 DELETE FROM PracticeRoutine WHERE Id > -1;
 DELETE FROM ExerciseActivity WHERE Id > -1;
@@ -445,66 +444,6 @@ VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Wednesday - Ear Training Practic
 
 INSERT INTO TimeSlotExercise (TimeSlotId, ExerciseId, FrequencyWeighting, DateCreated, DateModified)
 VALUES ((SELECT Id FROM TimeSlot WHERE Title = 'Wednesday - Ear Training Practice'), (SELECT Id FROM Exercise WHERE Title = 'Ear Exercise 4'), 2, '2017-02-01 01:20:00', NULL);
-
-
-
-INSERT INTO PracticeRoutineExercise (PracticeRoutineId, ExerciseId, AssignedPracticeTime, FrequencyWeighting, DateCreated, DateModified)
-	VALUES 
-		(
-			(SELECT Id FROM PracticeRoutine WHERE Title = 'Tuesday Routine'),
-            (SELECT Id FROM Exercise WHERE Title = 'Yellow Exercise'),
-            100,
-            3,
-            '2015-02-01 01:20:00',
-            NULL
-        );
-
-INSERT INTO PracticeRoutineExercise (PracticeRoutineId, ExerciseId, AssignedPracticeTime, FrequencyWeighting, DateCreated, DateModified)
-	VALUES 
-		(
-			(SELECT Id FROM PracticeRoutine WHERE Title = 'Tuesday Routine'),
-            (SELECT Id FROM Exercise WHERE Title = 'Green Exercise'),
-            120,
-            4,
-            '2015-02-01 01:20:00',
-            NULL
-        );
-
-INSERT INTO PracticeRoutineExercise (PracticeRoutineId, ExerciseId, AssignedPracticeTime, FrequencyWeighting, DateCreated, DateModified)
-	VALUES 
-		(
-			(SELECT Id FROM PracticeRoutine WHERE Title = 'Tuesday Routine'),
-            (SELECT Id FROM Exercise WHERE Title = 'Orange Exercise'),
-            120,
-            4,
-            '2015-02-01 01:20:00',
-            NULL
-        );
-
-INSERT INTO PracticeRoutineExercise (PracticeRoutineId, ExerciseId, AssignedPracticeTime, FrequencyWeighting, DateCreated, DateModified)
-	VALUES 
-		(
-			(SELECT Id FROM PracticeRoutine WHERE Title = 'Wednesday Routine'),
-            (SELECT Id FROM Exercise WHERE Title = 'Orange Exercise'),
-            120,
-            4,
-            '2015-02-01 01:20:00',
-            NULL
-        );
-
-INSERT INTO PracticeRoutineExercise (PracticeRoutineId, ExerciseId, AssignedPracticeTime, FrequencyWeighting, DateCreated, DateModified)
-	VALUES 
-		(
-			(SELECT Id FROM PracticeRoutine WHERE Title = 'Wednesday Routine'),
-            (SELECT Id FROM Exercise WHERE Title = 'Blue Exercise'),
-            120,
-            4,
-            '2015-02-01 01:20:00',
-            NULL
-        );
-		
-		
-
 
 -- One activity for every exercise.
 

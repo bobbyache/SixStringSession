@@ -74,48 +74,6 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
         }
 
         [Test]
-        public void ExerciseRepository_Get_Exercises_By_PracticeRoutine()
-        {
-            Funcs.RunScript("delete-all-records.sql", Settings.AppConnectionString);
-            Funcs.RunScript("test-data-exercises.sql", Settings.AppConnectionString);
-
-            using (var uow = new UnitOfWork(Settings.AppConnectionString))
-            {
-                var exercise1 = EntityFactory.CreateExercise(title: "Yellow Exercise", targetSpeed: 120, targetpracticeTime: 300);
-                var exercise2 = EntityFactory.CreateExercise(title: "Green Exercise", targetSpeed: 120, targetpracticeTime: 300);
-                var exercise3 = EntityFactory.CreateExercise(title: "Blue Exercise", targetSpeed: 120, targetpracticeTime: 300);
-
-                exercise1.ExerciseActivity.Add(EntityFactory.CreateExerciseActivity());
-                exercise1.ExerciseActivity.Add(EntityFactory.CreateExerciseActivity());
-                exercise2.ExerciseActivity.Add(EntityFactory.CreateExerciseActivity());
-                exercise2.ExerciseActivity.Add(EntityFactory.CreateExerciseActivity());
-
-                uow.Exercises.Add(exercise1);
-                uow.Exercises.Add(exercise2);
-                uow.Exercises.Add(exercise3);
-                uow.Commit();
-
-                var practiceRoutine1 = EntityFactory.CreateEmptyPracticeRoutine("Yellow Routine");
-                var practiceRoutine2 = EntityFactory.CreateEmptyPracticeRoutine("Not Important Routine");
-
-                practiceRoutine1.PracticeRoutineExercises.Add(EntityFactory.CreatePracticeRoutineExercise(exercise1));
-                practiceRoutine1.PracticeRoutineExercises.Add(EntityFactory.CreatePracticeRoutineExercise(exercise2));
-                practiceRoutine2.PracticeRoutineExercises.Add(EntityFactory.CreatePracticeRoutineExercise(exercise3));
-
-                uow.PracticeRoutines.Add(practiceRoutine1);
-                uow.PracticeRoutines.Add(practiceRoutine2);
-
-                uow.Commit();
-
-                var exercises = uow.Exercises.GetPracticeRoutineExercises(practiceRoutine1.Id);
-
-                Assert.That(exercises.Count, Is.EqualTo(2));
-                Assert.That(exercises[0].ExerciseActivity.Count, Is.EqualTo(2));
-                Assert.That(exercises[1].ExerciseActivity.Count, Is.EqualTo(2));
-            }
-        }
-
-        [Test]
         public void ExerciseRepository_Find_Exercise_With_DateModified_On_Or_After_ToDateModified()
         {
             Funcs.RunScript("delete-all-records.sql", Settings.AppConnectionString);

@@ -34,7 +34,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             PracticeRoutineTimeSlot timeSlot = new PracticeRoutineTimeSlot("Title", 120, EntityFactory.CreateSingleTimeSlotExerciseList());
             Assert.AreEqual("Title", timeSlot.Title);
             Assert.AreEqual(120, timeSlot.AssignedSeconds);
-            Assert.AreEqual(1, timeSlot.Exercises.Count());
+            Assert.AreEqual(1, timeSlot.Count());
             Assert.AreEqual(0, timeSlot.Id);
             Assert.IsNull(timeSlot.DateCreated);
             Assert.IsNull(timeSlot.DateModified);
@@ -46,7 +46,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             PracticeRoutineTimeSlot timeSlot = new PracticeRoutineTimeSlot(1, "Title", 120, EntityFactory.CreateSingleTimeSlotExerciseList());
             Assert.AreEqual("Title", timeSlot.Title);
             Assert.AreEqual(120, timeSlot.AssignedSeconds);
-            Assert.AreEqual(1, timeSlot.Exercises.Count());
+            Assert.AreEqual(1, timeSlot.Count());
             Assert.AreEqual(1, timeSlot.Id);
             Assert.IsNull(timeSlot.DateCreated);
             Assert.IsNull(timeSlot.DateModified);

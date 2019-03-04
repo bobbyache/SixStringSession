@@ -20,8 +20,8 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             var timeSlots = EntityFactory.CreateSingleTimeSlotList();
             var practiceRoutine = new PracticeRoutine("Test Title", timeSlots);
 
-            Assert.AreEqual(1, timeSlots[0].Exercises.Count());
-            Assert.AreEqual(1, practiceRoutine.TimeSlotCount);
+            Assert.AreEqual(1, practiceRoutine[0].Count);
+            Assert.AreEqual(1, practiceRoutine.Count);
             Assert.AreEqual("Test Title", practiceRoutine.Title);
             Assert.That(practiceRoutine.Id, Is.Zero);
         }
@@ -33,8 +33,8 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
 
             var practiceRoutine = new PracticeRoutine(1, "Test Title", timeSlots);
 
-            Assert.AreEqual(1, timeSlots[0].Exercises.Count());
-            Assert.AreEqual(1, practiceRoutine.TimeSlotCount);
+            Assert.AreEqual(1, practiceRoutine[0].Count);
+            Assert.AreEqual(1, practiceRoutine.Count);
             Assert.AreEqual("Test Title", practiceRoutine.Title);
             Assert.That(practiceRoutine.Id, Is.Not.Zero);
         }
@@ -54,35 +54,16 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         }
 
         [Test]
-        public void PracticeRoutine_Successfully_Adds_Exercise()
-        {
-            var exercise = GetMetronomeExercise();
-            var newPracticeRoutine = EntityFactory.CreateEmptyPracticeRoutine();
-
-            newPracticeRoutine.PracticeRoutineExercises.Add(new PracticeRoutineExercise
-            {
-                ExerciseId = exercise.Id,
-                AssignedPracticeTime = 5000,
-                FrequencyWeighting = 3
-            });
-
-            var routineExercise = newPracticeRoutine.PracticeRoutineExercises[0];
-
-            Assert.AreEqual(5000, routineExercise.AssignedPracticeTime);
-            Assert.AreEqual(3, routineExercise.FrequencyWeighting);
-        }
-
-        [Test]
         public void PracticeRoutine_Removes_A_TimeSlot_Successfully()
         {
             var newPracticeRoutine = EntityFactory.CreateEmptyPracticeRoutine();
 
             var timeSlot = EntityFactory.CreateSingleTimeSlot();
-            newPracticeRoutine.AddTimeSlot(timeSlot);
+            newPracticeRoutine.Add(timeSlot);
 
-            newPracticeRoutine.RemoveTimeSlot(timeSlot);
+            newPracticeRoutine.Remove(timeSlot);
 
-            Assert.AreEqual(0, newPracticeRoutine.TimeSlotCount);
+            Assert.AreEqual(0, newPracticeRoutine.Count);
         }
 
         [Test]
@@ -91,9 +72,11 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             var newPracticeRoutine = EntityFactory.CreateEmptyPracticeRoutine();
 
             var timeSlot = EntityFactory.CreateSingleTimeSlot();
-            newPracticeRoutine.AddTimeSlot(timeSlot);
 
-            Assert.AreEqual(1, newPracticeRoutine.TimeSlotCount);
+            newPracticeRoutine.Add(timeSlot);
+
+            Assert.AreEqual(1, newPracticeRoutine.Count);
+            Assert.AreEqual(1, newPracticeRoutine.Count);
         }
 
         [Test]
@@ -102,10 +85,10 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             var newPracticeRoutine = EntityFactory.CreateEmptyPracticeRoutine();
 
             var timeSlot = EntityFactory.CreateSingleTimeSlot();
-            newPracticeRoutine.AddTimeSlot(timeSlot);
+            newPracticeRoutine.Add(timeSlot);
             var duplicate = EntityFactory.CreateSingleTimeSlot();
 
-            TestDelegate testDelegate = () => newPracticeRoutine.AddTimeSlot(duplicate);
+            TestDelegate testDelegate = () => newPracticeRoutine.Add(duplicate);
             Assert.That(testDelegate, Throws.TypeOf<ArgumentException>());
         }
 
@@ -116,9 +99,9 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             var newTimeSlot = EntityFactory.CreateSingleTimeSlot("New Time Slot");
             var existingTimeSlot = EntityFactory.GetSingleTimeSlot("Database (Existing) Time Slot");
 
-            newPracticeRoutine.AddTimeSlot(newTimeSlot);
+            newPracticeRoutine.Add(newTimeSlot);
 
-            TestDelegate testDelegate = () => newPracticeRoutine.AddTimeSlot(existingTimeSlot);
+            TestDelegate testDelegate = () => newPracticeRoutine.Add(existingTimeSlot);
             Assert.That(testDelegate, Throws.TypeOf<ArgumentException>());
         }
 

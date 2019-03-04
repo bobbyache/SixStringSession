@@ -63,11 +63,11 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
 
                 PracticeRoutine insertedPracticeRoutine = uow.PracticeRoutines.Get(practiceRoutine.Id);
 
-                Assert.AreEqual(1, insertedPracticeRoutine.TimeSlots.Where(t => t.Title == "Time Slot 1").Count());
-                Assert.AreEqual(1, insertedPracticeRoutine.TimeSlots.Where(t => t.Title == "Time Slot 2").Count());
+                Assert.AreEqual(1, insertedPracticeRoutine.Where(t => t.Title == "Time Slot 1").Count());
+                Assert.AreEqual(1, insertedPracticeRoutine.Where(t => t.Title == "Time Slot 2").Count());
 
-                Assert.AreEqual(2, insertedPracticeRoutine.TimeSlots.Where(t => t.Title == "Time Slot 1").First().Exercises.Count());
-                Assert.AreEqual(1, insertedPracticeRoutine.TimeSlots.Where(t => t.Title == "Time Slot 2").First().Exercises.Count());
+                Assert.AreEqual(2, insertedPracticeRoutine.Where(t => t.Title == "Time Slot 1").First().Count());
+                Assert.AreEqual(1, insertedPracticeRoutine.Where(t => t.Title == "Time Slot 2").First().Count());
             }
         }
 
@@ -126,15 +126,15 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
 
                 // --------------------- delete some ----------------------------------------------------
 
-                existingPracticeRoutine.TimeSlots.Remove(existingPracticeRoutine.TimeSlots.Where(ts => ts.Title == "Time Slot 3").Single());
+                existingPracticeRoutine.Remove(existingPracticeRoutine.Where(ts => ts.Title == "Time Slot 3").Single());
 
                 var removeExercise = existingPracticeRoutine
-                    .TimeSlots.Where(ts => ts.Title == "Time Slot 1").Single()
-                    .Exercises.Where(ex => ex.Title == "Exercise 1").Single();
+                    .Where(ts => ts.Title == "Time Slot 1").Single()
+                    .Where(ex => ex.Title == "Exercise 1").Single();
 
                 existingPracticeRoutine
-                    .TimeSlots.Where(ts => ts.Title == "Time Slot 1").Single()
-                    .Exercises.Remove(removeExercise);
+                    .Where(ts => ts.Title == "Time Slot 1").Single()
+                    .Remove(removeExercise);
 
                 // --------------------- delete some ----------------------------------------------------
 
@@ -143,23 +143,23 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
 
                 var modifiedPracticeRoutine = uow.PracticeRoutines.Get(practiceRoutine.Id);
 
-                var timeSlotCount = modifiedPracticeRoutine.TimeSlots.Count();  // should be one less after deletion of timeslot.
+                var timeSlotCount = modifiedPracticeRoutine.Count();  // should be one less after deletion of timeslot.
 
                 var removedExercise = modifiedPracticeRoutine
-                    .TimeSlots.Where(ts => ts.Title == "Time Slot 1").Single()
-                    .Exercises.Where(ex => ex.Title == "Exercise 1").SingleOrDefault();
+                    .Where(ts => ts.Title == "Time Slot 1").Single()
+                    .Where(ex => ex.Title == "Exercise 1").SingleOrDefault();
 
                 var timeSlot1ExerciseCount = modifiedPracticeRoutine
-                    .TimeSlots.Where(ts => ts.Title == "Time Slot 1").Single()
-                    .Exercises.Count; // should be one less after deletion of exercise.
+                    .Where(ts => ts.Title == "Time Slot 1").Single()
+                    .Count; // should be one less after deletion of exercise.
 
                 var timeSlot1RemainingExercise = modifiedPracticeRoutine
-                    .TimeSlots.Where(ts => ts.Title == "Time Slot 1").Single()
-                    .Exercises.Single(); // should be one less after deletion of exercise.
+                    .Where(ts => ts.Title == "Time Slot 1").Single()
+                    .Single(); // should be one less after deletion of exercise.
 
                 var timeSlot2Exercise = modifiedPracticeRoutine
-                    .TimeSlots.Where(ts => ts.Title == "Time Slot 2").Single()
-                    .Exercises.Single(); // should be one less after deletion of exercise.
+                    .Where(ts => ts.Title == "Time Slot 2").Single()
+                    .Single(); // should be one less after deletion of exercise.
 
                 Assert.AreEqual(2, timeSlotCount, "There should only be two time slots left (Time Slot 3 and its children have been deleted");
 
@@ -207,18 +207,18 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
                 };
 
                 PracticeRoutine existingPracticeRoutine = uow.PracticeRoutines.Get(practiceRoutine.Id);
-                existingPracticeRoutine.AddTimeSlot(new PracticeRoutineTimeSlot("Time Slot 1", 5, timeSlotExercises1));
-                existingPracticeRoutine.AddTimeSlot(new PracticeRoutineTimeSlot("Time Slot 2", 5, timeSlotExercises2));
+                existingPracticeRoutine.Add(new PracticeRoutineTimeSlot("Time Slot 1", 5, timeSlotExercises1));
+                existingPracticeRoutine.Add(new PracticeRoutineTimeSlot("Time Slot 2", 5, timeSlotExercises2));
                 uow.PracticeRoutines.Update(existingPracticeRoutine);
                 uow.Commit();
 
                 var updatedPracticeRoutine = uow.PracticeRoutines.Get(existingPracticeRoutine.Id);
 
-                Assert.AreEqual(1, updatedPracticeRoutine.TimeSlots.Where(t => t.Title == "Time Slot 1").Count());
-                Assert.AreEqual(1, updatedPracticeRoutine.TimeSlots.Where(t => t.Title == "Time Slot 2").Count());
+                Assert.AreEqual(1, updatedPracticeRoutine.Where(t => t.Title == "Time Slot 1").Count());
+                Assert.AreEqual(1, updatedPracticeRoutine.Where(t => t.Title == "Time Slot 2").Count());
 
-                Assert.AreEqual(2, updatedPracticeRoutine.TimeSlots.Where(t => t.Title == "Time Slot 1").First().Exercises.Count());
-                Assert.AreEqual(1, updatedPracticeRoutine.TimeSlots.Where(t => t.Title == "Time Slot 2").First().Exercises.Count());
+                Assert.AreEqual(2, updatedPracticeRoutine.Where(t => t.Title == "Time Slot 1").First().Count());
+                Assert.AreEqual(1, updatedPracticeRoutine.Where(t => t.Title == "Time Slot 2").First().Count());
             }
         }
 
@@ -258,11 +258,11 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
                 PracticeRoutine insertedPracticeRoutine = uow.PracticeRoutines.Get(practiceRoutine.Id);
 
                 var modifiedTimeSlot = insertedPracticeRoutine
-                    .TimeSlots.Where(tslot => tslot.Title == "Time Slot 1").Single();
+                    .Where(tslot => tslot.Title == "Time Slot 1").Single();
 
                 var modifiedExercise = insertedPracticeRoutine
-                    .TimeSlots.Where(tslot => tslot.Title == "Time Slot 1").Single()
-                    .Exercises.Where(ex => ex.Title == "Exercise 1").ToList()
+                    .Where(tslot => tslot.Title == "Time Slot 1").Single()
+                    .Where(ex => ex.Title == "Exercise 1").ToList()
                     .First();
 
                 modifiedTimeSlot.Title = "Modified Time Slot 1";
@@ -276,21 +276,21 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
                 var modifiedPracticeRoutine = uow.PracticeRoutines.Get(practiceRoutine.Id);
 
                 var changedTimeSlot = modifiedPracticeRoutine
-                    .TimeSlots.Where(tslot => tslot.Title == "Modified Time Slot 1").Single();
+                    .Where(tslot => tslot.Title == "Modified Time Slot 1").Single();
 
                 var exerciseCount = modifiedPracticeRoutine
-                    .TimeSlots.Where(tslot => tslot.Title == "Modified Time Slot 1").Single()
-                    .Exercises.Count();
+                    .Where(tslot => tslot.Title == "Modified Time Slot 1").Single()
+                    .Count();
 
                 var changedExercise = modifiedPracticeRoutine
-                    .TimeSlots.Where(tslot => tslot.Title == "Modified Time Slot 1").Single()
-                    .Exercises.Where(ex => ex.Title == "Exercise 1")
+                    .Where(tslot => tslot.Title == "Modified Time Slot 1").Single()
+                    .Where(ex => ex.Title == "Exercise 1")
                     .SingleOrDefault();
 
 
                 var unchangedExercise = modifiedPracticeRoutine
-                    .TimeSlots.Where(tslot => tslot.Title == "Modified Time Slot 1").Single()
-                    .Exercises.Where(ex => ex.Title == "Exercise 2")
+                    .Where(tslot => tslot.Title == "Modified Time Slot 1").Single()
+                    .Where(ex => ex.Title == "Exercise 2")
                     .SingleOrDefault();
 
                 Assert.That(changedTimeSlot.AssignedSeconds, Is.EqualTo(600));
@@ -334,9 +334,9 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
                 var practiceRoutineHeader = uow.PracticeRoutines.Find(crit).First();
                 var practiceRoutine = uow.PracticeRoutines.Get(practiceRoutineHeader.Id);
 
-                Assert.IsTrue(practiceRoutine.TimeSlots.Count > 0);
-                Assert.AreEqual(6, practiceRoutine.TimeSlots.Count);
-                Assert.AreEqual(4, practiceRoutine.TimeSlots[0].Exercises.Count());
+                Assert.IsTrue(practiceRoutine.Count > 0);
+                Assert.AreEqual(6, practiceRoutine.Count);
+                Assert.AreEqual(4, practiceRoutine[0].Count());
             }
         }
 
@@ -492,175 +492,6 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
 
                 ActualValueDelegate<PracticeRoutine> testDelegate = () => uow.PracticeRoutines.Get(newEx.Id);
                 Assert.That(testDelegate, Throws.TypeOf<DatabaseEntityNotFoundException>());
-            }
-        }
-
-        [Test]
-        public void PracticeRoutineRepository_Creates_A_New_PracticeRoutineExercise_With_A_New_PracticeRoutine_Successfully()
-        {
-            Funcs.RunScript("delete-all-records.sql", Settings.AppConnectionString);
-
-            using (var uow = new UnitOfWork(Settings.AppConnectionString))
-            {
-                var createdExercise = CreateExercise();
-                uow.Exercises.Add(createdExercise);
-                uow.Commit();
-
-                var createdPracticeRoutine = EntityFactory.CreateEmptyPracticeRoutine("New Practice Routine");
-
-                createdPracticeRoutine.PracticeRoutineExercises.Add(new PracticeRoutineExercise
-                {
-                    ExerciseId = createdExercise.Id,
-                    AssignedPracticeTime = 5000,
-                    FrequencyWeighting = 3
-                });
-
-                uow.PracticeRoutines.Add(createdPracticeRoutine);
-                uow.Commit();
-
-                var practiceRoutine = uow.PracticeRoutines.Get(createdPracticeRoutine.Id);
-                var practiceRoutineExercise = practiceRoutine.PracticeRoutineExercises[0];
-
-                Assert.That(practiceRoutineExercise.ExerciseId, Is.GreaterThan(0));
-                Assert.That(practiceRoutineExercise.FrequencyWeighting, Is.EqualTo(3));
-                Assert.That(practiceRoutineExercise.DateModified, Is.Null);
-                Assert.That(practiceRoutineExercise.DateCreated, Is.Not.Null);
-                Assert.That(practiceRoutineExercise.AssignedPracticeTime, Is.EqualTo(5000));
-
-                Assert.That(createdPracticeRoutine.Id, Is.GreaterThan(0));
-                Assert.That(createdPracticeRoutine.DateCreated, Is.Not.Null);
-                Assert.That(createdPracticeRoutine.DateModified, Is.Null);
-
-                Assert.That(createdPracticeRoutine.Id, Is.EqualTo(practiceRoutineExercise.PracticeRoutineId));
-            }
-        }
-
-        [Test]
-        public void PracticeRoutineRepository_Inserts_A_New_PracticeRoutineExercise_With_An_Existing_PracticeRoutine_Successfully()
-        {
-            Funcs.RunScript("delete-all-records.sql", Settings.AppConnectionString);
-
-            using (var uow = new UnitOfWork(Settings.AppConnectionString))
-            {
-                var createdExercise = CreateExercise();
-                uow.Exercises.Add(createdExercise);
-                uow.Commit();
-
-                var createdPracticeRoutine = EntityFactory.CreateEmptyPracticeRoutine("New Practice Routine");
-                uow.PracticeRoutines.Add(createdPracticeRoutine);
-                uow.Commit();
-
-                var existingPracticeRoutine = uow.PracticeRoutines.Get(createdPracticeRoutine.Id);
-
-                existingPracticeRoutine.PracticeRoutineExercises.Add(new PracticeRoutineExercise
-                {
-                    ExerciseId = createdExercise.Id,
-                    AssignedPracticeTime = 5000,
-                    FrequencyWeighting = 3
-                });
-
-                uow.PracticeRoutines.Update(existingPracticeRoutine);
-
-                var updatedPracticeRoutine = uow.PracticeRoutines.Get(existingPracticeRoutine.Id);
-                var practiceRoutineExercise = updatedPracticeRoutine.PracticeRoutineExercises[0];
-
-                Assert.That(practiceRoutineExercise.ExerciseId, Is.GreaterThan(0));
-                Assert.That(practiceRoutineExercise.FrequencyWeighting, Is.EqualTo(3));
-                Assert.That(practiceRoutineExercise.DateModified, Is.Null);
-                Assert.That(practiceRoutineExercise.DateCreated, Is.Not.Null);
-                Assert.That(practiceRoutineExercise.AssignedPracticeTime, Is.EqualTo(5000));
-
-                Assert.That(updatedPracticeRoutine.Id, Is.GreaterThan(0));
-                Assert.That(updatedPracticeRoutine.DateCreated, Is.Not.Null);
-                Assert.That(updatedPracticeRoutine.DateModified, Is.Not.Null);
-
-                Assert.That(updatedPracticeRoutine.Id, Is.EqualTo(practiceRoutineExercise.PracticeRoutineId));
-            }
-        }
-
-        [Test]
-        public void PracticeRoutineRepository_Deletes_Missing_PracticeRoutineExercise()
-        {
-            Funcs.RunScript("delete-all-records.sql", Settings.AppConnectionString);
-
-            using (var uow = new UnitOfWork(Settings.AppConnectionString))
-            {
-                var createdExercise = CreateExercise();
-                uow.Exercises.Add(createdExercise);
-                uow.Commit();
-
-                var createdPracticeRoutine = EntityFactory.CreateEmptyPracticeRoutine("New Practice Routine");
-                uow.PracticeRoutines.Add(createdPracticeRoutine);
-                uow.Commit();
-
-                var existingPracticeRoutine = uow.PracticeRoutines.Get(createdPracticeRoutine.Id);
-
-                existingPracticeRoutine.PracticeRoutineExercises.Add(new PracticeRoutineExercise
-                {
-                    ExerciseId = createdExercise.Id,
-                    AssignedPracticeTime = 5000,
-                    FrequencyWeighting = 3
-                });
-
-                uow.PracticeRoutines.Update(existingPracticeRoutine);
-
-                var updatedPracticeRoutine = uow.PracticeRoutines.Get(existingPracticeRoutine.Id);
-                updatedPracticeRoutine.PracticeRoutineExercises.Remove(updatedPracticeRoutine.PracticeRoutineExercises[0]);
-
-                var routineExerciseCountAfterDeletion = updatedPracticeRoutine.PracticeRoutineExercises.Count;
-
-                uow.PracticeRoutines.Update(updatedPracticeRoutine);
-                var finallyUpdatedPracticeRoutine = uow.PracticeRoutines.Get(updatedPracticeRoutine.Id);
-
-                Assert.That(routineExerciseCountAfterDeletion, Is.EqualTo(0));
-                Assert.That(finallyUpdatedPracticeRoutine.PracticeRoutineExercises.Count, Is.EqualTo(0));
-            }
-        }
-
-        [Test]
-        public void PracticeRoutineRepository_Updates_An_Existing_PracticeRoutineExercise_Only_If_Changed()
-        {
-            Funcs.RunScript("delete-all-records.sql", Settings.AppConnectionString);
-
-            using (var uow = new UnitOfWork(Settings.AppConnectionString))
-            {
-                var createdExercise1 = CreateExercise();
-                var createdExercise2 = CreateExercise();
-                uow.Exercises.Add(createdExercise1);
-                uow.Exercises.Add(createdExercise2);
-                uow.Commit();
-
-                var createdPracticeRoutine = EntityFactory.CreateEmptyPracticeRoutine("New Practice Routine");
-                createdPracticeRoutine.PracticeRoutineExercises.Add(new PracticeRoutineExercise
-                {
-                    ExerciseId = createdExercise1.Id,
-                    AssignedPracticeTime = 5000,
-                    FrequencyWeighting = 2
-                });
-
-                createdPracticeRoutine.PracticeRoutineExercises.Add(new PracticeRoutineExercise
-                {
-                    ExerciseId = createdExercise2.Id,
-                    AssignedPracticeTime = 10000,
-                    FrequencyWeighting = 5
-                });
-
-                uow.PracticeRoutines.Add(createdPracticeRoutine);
-                uow.Commit();
-
-                var practiceRoutine = uow.PracticeRoutines.Get(createdPracticeRoutine.Id);
-                var practiceRoutineExercise1 = practiceRoutine.PracticeRoutineExercises[0];
-                var practiceRoutineExercise2 = practiceRoutine.PracticeRoutineExercises[1];
-
-                practiceRoutineExercise1.FrequencyWeighting = 3;
-                uow.PracticeRoutines.Update(practiceRoutine);
-
-                var practiceRoutineUnderTest = uow.PracticeRoutines.Get(practiceRoutine.Id);
-                var practiceRoutineExerciseUnderTest1 = practiceRoutine.PracticeRoutineExercises.Where(pr => pr.ExerciseId == practiceRoutineExercise1.ExerciseId).Single();
-                var practiceRoutineExerciseUnderTest2 = practiceRoutine.PracticeRoutineExercises.Where(pr => pr.ExerciseId == practiceRoutineExercise2.ExerciseId).Single();
-
-                Assert.That(practiceRoutineExerciseUnderTest1.DateModified, Is.Not.Null);
-                Assert.That(practiceRoutineExerciseUnderTest2.DateModified, Is.Null);
             }
         }
 

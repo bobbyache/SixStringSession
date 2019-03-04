@@ -31,7 +31,6 @@ namespace CygSoft.SmartSession.Dal.MySql.Repositories
 
             InsertNewTimeSlots(entity);
             InsertNewTimeSlotExercises(entity);
-            InsertNewRoutineExercises(entity);
 
             var persistedEntity = Get(entity.Id);
             entity.DateCreated = persistedEntity.DateCreated;
@@ -101,13 +100,6 @@ namespace CygSoft.SmartSession.Dal.MySql.Repositories
 
                 var timeSlotExerciseRecords = GetTimeSlotExercisesByTimeSlotIds(GetCommaDelimitedIds(timeSlotRecords));
 
-                var routineExercises = Connection.Query<PracticeRoutineExercise>("sp_GetPracticeRoutineExercisesByPracticeRoutine",
-                param: new
-                {
-                    _practiceRoutineId = id
-                }, commandType: CommandType.StoredProcedure);
-
-
                 var timeSlots = new List<PracticeRoutineTimeSlot>();
 
                 foreach (var timeSlotRecord in timeSlotRecords)
@@ -124,7 +116,6 @@ namespace CygSoft.SmartSession.Dal.MySql.Repositories
 
                 var practiceRoutine = new PracticeRoutine(practiceRoutineRecord.Id, practiceRoutineRecord.Title, timeSlots);
 
-                practiceRoutine.PracticeRoutineExercises = routineExercises.ToList();
                 practiceRoutine.DateCreated = practiceRoutineRecord.DateCreated;
                 practiceRoutine.DateModified = practiceRoutineRecord.DateModified;
 
@@ -158,14 +149,6 @@ namespace CygSoft.SmartSession.Dal.MySql.Repositories
                 commandType: CommandType.StoredProcedure
                 );
 
-            // ------------------------------------------------------------
-            // TODO: You will want to remove this code once you've got the time slot stuff working...
-            // ------------------------------------------------------------
-            InsertNewRoutineExercises(entity);
-            DeleteMissingRoutineExercises(entity);
-            UpdateChangedPracticeRoutineExercises(entity);
-            // ------------------------------------------------------------
-
             InsertNewTimeSlots(entity);
             InsertNewTimeSlotExercises(entity);
             UpdateExistingTimeSlots(entity);
@@ -181,13 +164,13 @@ namespace CygSoft.SmartSession.Dal.MySql.Repositories
 
         private void UpdateExistingTimeSlots(PracticeRoutine entity)
         {
-            var existingTimeSlots = Get(entity.Id).TimeSlots;
+            var dbPracticeRoutine = Get(entity.Id);
 
-            foreach (var timeSlot in entity.TimeSlots)
+            foreach (var timeSlot in entity)
             {
                 if (timeSlot.Id > 0)
                 {
-                    var persistedCounterPart = existingTimeSlots.Where(p => p.Id == timeSlot.Id).SingleOrDefault();
+                    var persistedCounterPart = dbPracticeRoutine.Where(p => p.Id == timeSlot.Id).SingleOrDefault();
                     if (persistedCounterPart != null)
                     {
                         CompareLogic compareLogic = new CompareLogic();
@@ -203,11 +186,11 @@ namespace CygSoft.SmartSession.Dal.MySql.Repositories
 
         private void DeleteMissingTimeSlots(PracticeRoutine entity)
         {
-            var results = Get(entity.Id).TimeSlots;
+            var results = Get(entity.Id);
 
             var missingIds = results
                     .Select(a => a.Id)
-                    .Except(entity.TimeSlots.Select(a => a.Id));
+                    .Except(entity.Select(a => a.Id));
 
             foreach (var id in missingIds)
             {
@@ -219,7 +202,7 @@ namespace CygSoft.SmartSession.Dal.MySql.Repositories
 
         private void DeleteMissingTimeSlotExercises(PracticeRoutine entity)
         {
-            foreach (var timeSlot in entity.TimeSlots)
+            foreach (var timeSlot in entity)
             {
                 var results = Connection.Query<TimeSlotExerciseRecord>("sp_GetTimeSlotExerciseByTimeSlotId",
                  param: new
@@ -229,7 +212,7 @@ namespace CygSoft.SmartSession.Dal.MySql.Repositories
 
                 var missingIds = results
                         .Select(a => a.Id)
-                        .Except(timeSlot.Exercises.Select(a => a.Id));
+                        .Except(timeSlot.Select(a => a.Id));
 
                 Connection.Execute("sp_DeleteTimeSlotExercisesByIds",
                     param: new { _timeSlotId = timeSlot.Id, _exerciseIds = GetCommaDelimitedIds(missingIds) }, commandType: CommandType.StoredProcedure);
@@ -252,11 +235,11 @@ namespace CygSoft.SmartSession.Dal.MySql.Repositories
 
         private void UpdateExistingTimeSlotExercises(PracticeRoutine entity)
         {
-            var timeSlotExerciseRecords = GetTimeSlotExercisesByTimeSlotIds(GetCommaDelimitedIds(entity.TimeSlots));
+            var timeSlotExerciseRecords = GetTimeSlotExercisesByTimeSlotIds(GetCommaDelimitedIds(entity));
 
-            foreach (var timeSlot in entity.TimeSlots)
+            foreach (var timeSlot in entity)
             {
-                foreach (var exercise in timeSlot.Exercises)
+                foreach (var exercise in timeSlot)
                 {
                     if (exercise.Id > 0 && exercise.TimeSlotId > 0)
                     {
@@ -291,9 +274,9 @@ namespace CygSoft.SmartSession.Dal.MySql.Repositories
 
         private void InsertNewTimeSlotExercises(PracticeRoutine practiceRoutine)
         {
-            foreach (var timeSlot in practiceRoutine.TimeSlots)
+            foreach (var timeSlot in practiceRoutine)
             {
-                foreach (var exercise in timeSlot.Exercises)
+                foreach (var exercise in timeSlot)
                 {
                     if (exercise.TimeSlotId == 0 && exercise.Id > 0)
                     {
@@ -315,7 +298,7 @@ namespace CygSoft.SmartSession.Dal.MySql.Repositories
 
         private void InsertNewTimeSlots(PracticeRoutine practiceRoutine)
         {
-            foreach (var timeSlot in practiceRoutine.TimeSlots)
+            foreach (var timeSlot in practiceRoutine)
             {
                 if (timeSlot.Id <= 0)
                 {
@@ -366,25 +349,6 @@ namespace CygSoft.SmartSession.Dal.MySql.Repositories
             }
         }
 
-        private void DeleteMissingRoutineExercises(PracticeRoutine entity)
-        {
-            var results = GetPracticeRoutineExercises(entity);
-
-            var missingIds = results
-                    .Select(a => a.ExerciseId)
-                    .Except(entity.PracticeRoutineExercises.Select(a => a.ExerciseId));
-
-            foreach (var id in missingIds)
-            {
-                Connection.Execute("sp_DeletePracticeRoutineExercise",
-                    param: new
-                    {
-                        _practiceRoutineId = entity.Id,
-                        _exerciseId = id
-                    }, commandType: CommandType.StoredProcedure);
-            }
-        }
-
         private IEnumerable<PracticeRoutineExercise> GetPracticeRoutineExercises(PracticeRoutine entity)
         {
             var routineExercises = Connection.Query<PracticeRoutineExercise>("sp_GetPracticeRoutineExercisesByPracticeRoutine",
@@ -394,85 +358,6 @@ namespace CygSoft.SmartSession.Dal.MySql.Repositories
             }, commandType: CommandType.StoredProcedure);
 
             return routineExercises;
-        }
-
-
-        private void UpdateChangedPracticeRoutineExercises(PracticeRoutine entity)
-        {
-            var persistedRoutineExercises = GetPracticeRoutineExercises(entity);
-
-            foreach (PracticeRoutineExercise routineExercise in entity.PracticeRoutineExercises)
-            {
-                if (routineExercise.PracticeRoutineId > 0 && routineExercise.ExerciseId > 0)
-                {
-                    var persistedCounterPart = persistedRoutineExercises.Where(p => p.ExerciseId == routineExercise.ExerciseId).SingleOrDefault();
-                    if (persistedCounterPart != null)
-                    {
-                        CompareLogic compareLogic = new CompareLogic();
-                        ComparisonResult result = compareLogic.Compare(persistedCounterPart, routineExercise);
-                        if (!result.AreEqual)
-                        {
-                            UpdateRoutineExercise(routineExercise);
-                        }
-                    }
-                }
-            }
-        }
-
-        public void UpdateRoutineExercise(PracticeRoutineExercise routineExercise)
-        {
-            Connection.ExecuteScalar<int>(sql: "sp_UpdatePracticeRoutineExercise",
-                param: new
-                {
-                    _practiceRoutineId = routineExercise.PracticeRoutineId,
-                    _exerciseId = routineExercise.ExerciseId,
-                    _assignedPracticeTime = routineExercise.AssignedPracticeTime,
-                    _frequencyWeighting = routineExercise.FrequencyWeighting
-                },
-                commandType: CommandType.StoredProcedure
-            );
-
-            var updatedRoutineExercise = GetPracticeRoutineExerciseById(routineExercise.PracticeRoutineId, routineExercise.ExerciseId);
-            routineExercise.DateModified = updatedRoutineExercise.DateModified;
-        }
-
-        private PracticeRoutineExercise GetPracticeRoutineExerciseById(int practiceRoutineId, int exerciseId)
-        {
-            try
-            {
-                var result = Connection.QuerySingle<PracticeRoutineExercise>("sp_GetPracticeRoutineExerciseById",
-                    param: new
-                    {
-                        _practiceRoutineId = practiceRoutineId,
-                        _exerciseId = exerciseId,
-                    }, commandType: CommandType.StoredProcedure);
-
-                return result;
-            }
-            catch (InvalidOperationException ex)
-            {
-                throw new DatabaseEntityNotFoundException($"Database entity does not exist for PracticeRoutineId: {practiceRoutineId} and ExerciseId: {exerciseId}", ex);
-            }
-        }
-
-        private void InsertNewRoutineExercises(PracticeRoutine practiceRoutine)
-        {
-            foreach (PracticeRoutineExercise routineExercise in practiceRoutine.PracticeRoutineExercises)
-            {
-                if (routineExercise.PracticeRoutineId <= 0)
-                {
-                    Connection.ExecuteScalar<int>(sql: "sp_InsertPracticeRoutineExercise",
-                    param: new
-                    {
-                        _practiceRoutineId = practiceRoutine.Id,
-                        _exerciseId = routineExercise.ExerciseId,
-                        _assignedPracticeTime = routineExercise.AssignedPracticeTime,
-                        _frequencyWeighting = routineExercise.FrequencyWeighting
-                    },
-                    commandType: CommandType.StoredProcedure
-                    );
-                }
-            }
         }
 
         // TODO: Remove Find from the IRepository interface. It should return header objects and not the repository objects. Then remove all of these methods and replace them with specialized ones.
