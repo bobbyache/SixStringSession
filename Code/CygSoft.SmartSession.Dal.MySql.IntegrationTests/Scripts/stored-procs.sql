@@ -836,3 +836,14 @@ BEGIN
 		TimeSlotId = _timeSlotId AND ExerciseId = _exerciseId;
 END;
 
+-- call sp_DeleteTimeSlot(1);
+DROP PROCEDURE IF EXISTS `sp_DeleteTimeSlot`;
+CREATE PROCEDURE `sp_DeleteTimeSlot`(in _id int)
+BEGIN
+	DELETE FROM PracticeRoutineTimeSlot 
+		WHERE TimeSlotId = _id;
+	DELETE FROM TimeSlotExercise 
+		WHERE TimeSlotId = _id;
+	DELETE FROM TimeSlot 
+		WHERE Id = _id;
+END;

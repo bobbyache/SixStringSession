@@ -166,6 +166,8 @@ namespace CygSoft.SmartSession.Dal.MySql.Repositories
             UpdateExistingTimeSlots(entity);
             UpdateExistingTimeSlotExercises(entity);
 
+            DeleteMissingTimeSlots(entity);
+
             var persistedEntity = Get(entity.Id);
             entity.DateCreated = persistedEntity.DateCreated;
         }
@@ -192,6 +194,56 @@ namespace CygSoft.SmartSession.Dal.MySql.Repositories
                 }
             }
         }
+
+        private void DeleteMissingTimeSlots(PracticeRoutine entity)
+        {
+            var results = Get(entity.Id).TimeSlots;
+
+            var missingIds = results
+                    .Select(a => a.Id)
+                    .Except(entity.TimeSlots.Select(a => a.Id));
+
+            foreach (var id in missingIds)
+            {
+                Connection.Execute("sp_DeleteTimeSlot",
+                    param: new { _id = id }, commandType: CommandType.StoredProcedure);
+            }
+        }
+
+
+        private void DeleteMissingTimeSlotExercises(PracticeRoutine entity)
+        {
+            //var timeSlotExerciseRecords = GetTimeSlotExercisesByTimeSlotIds(GetCommaDelimitedIds(entity.TimeSlots));
+
+            //foreach (var timeSlot in entity.TimeSlots)
+            //{
+            //    var results = timeSlot.Exercises;
+
+            //    var missingIds = results
+            //            .Select(a => a.Id)
+            //            .Except(entity.TimeSlots.Select(a => a.Id));
+
+            //    //foreach (var exercise in timeSlot.Exercises)
+            //    //{
+            //    //    if (exercise.Id > 0 && exercise.TimeSlotId > 0)
+            //    //    {
+            //    //        var persistedCounterPart = timeSlotExerciseRecords.Where(p => p.Id == exercise.Id && p.TimeSlotId == timeSlot.Id).SingleOrDefault();
+            //    //        if (persistedCounterPart != null)
+            //    //        {
+            //    //            var equal = (
+            //    //                persistedCounterPart.Title == exercise.Title &&
+            //    //                persistedCounterPart.FrequencyWeighting == exercise.FrequencyWeighting
+            //    //                );
+
+            //    //            // TODO: Find a better way to compare whether the values of an object are equal (when the object is of different types).
+            //    //            if (!equal) UpdateTimeSlotExercise(exercise);
+            //    //        }
+            //    //    }
+            //    //}
+            //}
+        }
+
+
         public void UpdateTimeSlot(PracticeRoutineTimeSlot timeSlot)
         {
             Connection.ExecuteScalar<int>(sql: "sp_UpdateTimeSlot",
@@ -204,29 +256,6 @@ namespace CygSoft.SmartSession.Dal.MySql.Repositories
                 commandType: CommandType.StoredProcedure
             );
         }
-
-        //--------------------------------------------------------------------------------------------------------
-        // Currently not being used but may be useful for the future.
-        //--------------------------------------------------------------------------------------------------------
-        //public TimeSlotExerciseRecord GetTimeSlotExercise(int timeSlotId, int exerciseId)
-        //{
-        //    try
-        //    {
-        //        var rec = Connection.QuerySingle<TimeSlotExerciseRecord>("sp_GetTimeSlotExerciseById",
-        //            param: new
-        //            {
-        //                _timeSlotId = timeSlotId,
-        //                _exerciseId = exerciseId,
-        //            }, commandType: CommandType.StoredProcedure);
-
-
-        //        return rec;
-        //    }
-        //    catch (InvalidOperationException ex)
-        //    {
-        //        throw new DatabaseEntityNotFoundException($"Database entity does not exist for id: {id}", ex);
-        //    }
-        //}
 
         private void UpdateExistingTimeSlotExercises(PracticeRoutine entity)
         {
@@ -248,12 +277,6 @@ namespace CygSoft.SmartSession.Dal.MySql.Repositories
 
                             // TODO: Find a better way to compare whether the values of an object are equal (when the object is of different types).
                             if (!equal) UpdateTimeSlotExercise(exercise);
-                            //CompareLogic compareLogic = new CompareLogic();
-                            //ComparisonResult result = compareLogic.Compare(persistedCounterPart, exercise);
-                            //if (!result.AreEqual)
-                            //{
-                            //    UpdateTimeSlotExercise(exercise);
-                            //}
                         }
                     }
                 }
