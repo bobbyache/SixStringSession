@@ -72,17 +72,17 @@ namespace CygSoft.SmartSession.Desktop.TreeList.Tree
 				PropertyChanged(this, new PropertyChangedEventArgs(name));
 		}
 
-		#endregion
+        #endregion
 
-		#region Properties
+        #region Properties
 
-		private TreeListView _tree;
-		internal TreeListView Tree
-		{
-			get { return _tree; }
-		}
+        private TreeListView _tree;
+        internal TreeListView Tree
+        {
+            get { return _tree; }
+        }
 
-		private INotifyCollectionChanged _childrenSource;
+        private INotifyCollectionChanged _childrenSource;
 		internal INotifyCollectionChanged ChildrenSource
 		{
 			get { return _childrenSource; }
