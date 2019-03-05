@@ -24,6 +24,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CygSoft.SmartSession.Dal.My
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CygSoft.SmartSession.UnitTests.Infrastructure", "CygSoft.SmartSession.UnitTests.Infrastructure\CygSoft.SmartSession.UnitTests.Infrastructure.csproj", "{71865433-9232-4299-A827-257664BBB16E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CygSoft.SmartSession.Desktop.TreeList", "CygSoft.SmartSession.Desktop.TreeList\CygSoft.SmartSession.Desktop.TreeList.csproj", "{D17CD489-1B14-47EB-8C22-C189D078AEC9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CygSoft.SmartSession.Desktop.TreeList.Demo", "CygSoft.SmartSession.Desktop.TreeList.Demo\CygSoft.SmartSession.Desktop.TreeList.Demo.csproj", "{224CA513-4213-4FD2-AE66-2227F91DCE6B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CygSoft.SmartSession.Desktop.TreeList.UnitTests", "CygSoft.SmartSession.Desktop.TreeList.UnitTests\CygSoft.SmartSession.Desktop.TreeList.UnitTests.csproj", "{6958EFD4-48AF-4DDA-A780-C55E7269F54C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -62,6 +68,18 @@ Global
 		{71865433-9232-4299-A827-257664BBB16E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{71865433-9232-4299-A827-257664BBB16E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{71865433-9232-4299-A827-257664BBB16E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D17CD489-1B14-47EB-8C22-C189D078AEC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D17CD489-1B14-47EB-8C22-C189D078AEC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D17CD489-1B14-47EB-8C22-C189D078AEC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D17CD489-1B14-47EB-8C22-C189D078AEC9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{224CA513-4213-4FD2-AE66-2227F91DCE6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{224CA513-4213-4FD2-AE66-2227F91DCE6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{224CA513-4213-4FD2-AE66-2227F91DCE6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{224CA513-4213-4FD2-AE66-2227F91DCE6B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6958EFD4-48AF-4DDA-A780-C55E7269F54C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6958EFD4-48AF-4DDA-A780-C55E7269F54C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6958EFD4-48AF-4DDA-A780-C55E7269F54C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6958EFD4-48AF-4DDA-A780-C55E7269F54C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

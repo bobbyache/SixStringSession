@@ -1,0 +1,9 @@
+﻿<Application x:Class="CygSoft.SmartSession.Desktop.TreeList.Demo.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:CygSoft.SmartSession.Desktop.TreeList.Demo"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+         
+    </Application.Resources>
+</Application>
