@@ -56,6 +56,12 @@ http://mitesh487.blogspot.com/2011/11/wpf-toolkit-datagrid-feature.html
 Make Tooltip of WPF slider stay on screen while dragging
 https://stackoverflow.com/questions/26270740/make-tooltip-of-wpf-slider-stay-on-screen-while-dragging
 
+WPF TreeListView Control (Andrey Gliznetsov, 23 Aug 2012)
+https://www.codeproject.com/Articles/30721/WPF-TreeListView-Control
+
+Simplifying the WPF TreeView by Using the ViewModel Pattern
+https://www.codeproject.com/Articles/26288/Simplifying-the-WPF-TreeView-by-Using-the-ViewMode
+
 ===========================================================================
 Credits to...
 ===========================================================================
