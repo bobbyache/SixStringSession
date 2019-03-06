@@ -9,7 +9,8 @@ using System.Threading.Tasks;
 
 namespace CygSoft.SmartSession.Desktop.TreeList.UnitTests
 {
-    public class NodeTest
+    [TestFixture]
+    public class TreeNodeTests
     {
 
         //TODO: Should changing the IsSelected property of the earthworm not modify the SelectedNode?
