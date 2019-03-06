@@ -167,7 +167,10 @@
       <DependentUpon>PracticeRoutineManagementView.xaml</DependentUpon>
     </Compile>
     <Compile Include="PracticeRoutines\PracticeRoutineManagementViewModel.cs" />
+    <Compile Include="PracticeRoutines\PracticeRoutineTree\PracticeRoutineTreeViewModel.cs" />
     <Compile Include="PracticeRoutines\RecordableExerciseViewModel.cs" />
+    <Compile Include="PracticeRoutines\PracticeRoutineTree\TimeSlotExerciseViewModel.cs" />
+    <Compile Include="PracticeRoutines\PracticeRoutineTree\TimeSlotViewModel.cs" />
     <Compile Include="Supports\Converters\BoolToValueConverter.cs" />
     <Compile Include="Supports\Converters\ComparisonOperatorConverter.cs" />
     <Compile Include="Supports\Converters\EnumToCollectionConverter.cs" />
