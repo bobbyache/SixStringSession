@@ -17,10 +17,11 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines.PracticeRoutineTree
 
         public PracticeRoutineTreeViewModel(PracticeRoutine practiceRoutine)
         {
-            this.practiceRoutine = practiceRoutine;
+            this.practiceRoutine = practiceRoutine ?? throw new ArgumentNullException("PracticeRoutine must be provided.");
+
             foreach (var timeSlot in practiceRoutine)
             {
-                TimeSlotViewModel timeSlotViewModel = new TimeSlotViewModel();
+                TimeSlotViewModel timeSlotViewModel = new TimeSlotViewModel(timeSlot);
                 TimeSlots.Add(timeSlotViewModel);
             }
 
@@ -47,8 +48,8 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines.PracticeRoutineTree
 
         private void Add()
         {
-            //PracticeRoutineTimeSlot timeSlot = new PracticeRoutineTimeSlot("New Time Slot", 300, new List<TimeSlotExercise>());
-            TimeSlots.Add(new TimeSlotViewModel());
+            PracticeRoutineTimeSlot timeSlot = new PracticeRoutineTimeSlot("New Time Slot", 300, new List<TimeSlotExercise>());
+            TimeSlots.Add(new TimeSlotViewModel(timeSlot));
         }
 
         private void RemoveSelection()

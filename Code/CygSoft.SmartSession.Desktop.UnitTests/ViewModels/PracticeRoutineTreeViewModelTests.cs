@@ -14,6 +14,13 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
     public class PracticeRoutineTreeViewModelTests
     {
         [Test]
+        public void PracticeRoutineTreeViewModel_Initialized_With_No_TimeSlot_Throws_Exception()
+        {
+            TestDelegate proc = () => new PracticeRoutineTreeViewModel(null);
+            Assert.That(proc, Throws.TypeOf<ArgumentNullException>());
+        }
+
+        [Test]
         public void PracticeRoutineTreeViewModel_Title_Is_Populated_When_Initialized()
         {
             PracticeRoutineTreeViewModel treeViewModel = new PracticeRoutineTreeViewModel(GetBasicPracticeRoutine());
