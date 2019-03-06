@@ -25,5 +25,17 @@ namespace CygSoft.SmartSession.Desktop.TreeList.Demo
             InitializeComponent();
             _tree.Model = new PracticeRoutineModel();
         }
+
+        private void _tree_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (e.AddedItems[0] is Tree.TreeNode)
+            {
+                var treeNode = e.AddedItems[0] as Tree.TreeNode;
+                if (treeNode.Tag is TimeSlot)
+                    MessageBox.Show((treeNode.Tag as TimeSlot).Title);
+                if (treeNode.Tag is Exercise)
+                    MessageBox.Show((treeNode.Tag as Exercise).Title); ;
+            }
+        }
     }
 }

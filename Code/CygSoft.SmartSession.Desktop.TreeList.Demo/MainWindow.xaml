@@ -10,7 +10,7 @@
     <TabControl>
         <TabItem Header="Practice Routine">
             <Grid>
-                <tree:TreeListView Name="_tree">
+                <tree:TreeListView Name="_tree" SelectionChanged="_tree_SelectionChanged" >
                     <tree:TreeListView.View>
                         <GridView>
                             <GridView.Columns>
