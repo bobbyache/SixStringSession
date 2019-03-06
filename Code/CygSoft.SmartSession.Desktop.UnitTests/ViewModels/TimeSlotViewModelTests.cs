@@ -96,6 +96,71 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
             Assert.IsTrue(fired);
         }
 
+        [Test]
+        public void TimeSlotViewModel_Add_TimeSlotViewModel_Raises_ItemChanged()
+        {
+            var listChanged = false;
+            TimeSlotViewModel viewModel = new TimeSlotViewModel(GetBasicTimeSlot());
+
+            viewModel.Exercises.ListChanged += (s, e) => listChanged = true;
+
+            viewModel.AddCommand.Execute(null);
+
+            Assert.IsTrue(listChanged);
+        }
+
+        [Test]
+        public void TimeSlotViewModel_Remove_TimeSlot_Actually_Removes_TimeSlot()
+        {
+            TimeSlotViewModel viewModel = new TimeSlotViewModel(GetBasicTimeSlot());
+            TimeSlotExerciseViewModel first = viewModel.Exercises[0];
+
+            viewModel.SelectedExercise = first;
+
+            var beforeCount = viewModel.Exercises.Count;
+            viewModel.RemoveSelectionCommand.Execute(null);
+            var afterCount = viewModel.Exercises.Count;
+
+            Assert.AreEqual(beforeCount - 1, afterCount);
+        }
+
+        [Test]
+        public void TimeSlotViewModel_Remove_TimeSlotViewModel_Raises_ItemChanged()
+        {
+            var listChanged = false;
+            TimeSlotViewModel viewModel = new TimeSlotViewModel(GetBasicTimeSlot());
+            TimeSlotExerciseViewModel first = viewModel.Exercises[0];
+            viewModel.Exercises.ListChanged += (s, e) => listChanged = true;
+
+            viewModel.SelectedExercise = first;
+
+            viewModel.RemoveSelectionCommand.Execute(null);
+
+            Assert.IsTrue(listChanged);
+        }
+
+        [Test]
+        public void TimeSlotViewModel_Edit_TimeSlotViewModel_Raises_ItemChanged()
+        {
+            var listChanged = false;
+            TimeSlotViewModel viewModel = new TimeSlotViewModel(GetBasicTimeSlot());
+            TimeSlotExerciseViewModel anyExercise = viewModel.Exercises[0];
+
+            viewModel.Exercises.ListChanged += (s, e) => listChanged = true;
+
+            anyExercise.FrequencyWeighting = 1;
+
+            Assert.IsTrue(listChanged);
+        }
+
+        [Test]
+        public void TimeSlotViewModel_TimeSlots_Are_Populated_When_Initialized()
+        {
+            TimeSlotViewModel viewModel = new TimeSlotViewModel(GetBasicTimeSlot());
+            Assert.AreEqual(3, viewModel.Exercises.Count);
+            Assert.That(viewModel.Exercises[0], Is.TypeOf<TimeSlotExerciseViewModel>());
+        }
+
         private PracticeRoutineTimeSlot GetBasicTimeSlot()
         {
             List<TimeSlotExercise> timeSlotExercises = new List<TimeSlotExercise>

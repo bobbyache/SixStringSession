@@ -117,6 +117,37 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
             Assert.That(viewModel.TimeSlots[0], Is.TypeOf<TimeSlotViewModel>());
         }
 
+        [Test]
+        public void PracticeRoutineTreeViewModel_When_TimeSlot_AssignedSeconds_Changes_Raises_PropertyChanged_TotalTimeDisplay()
+        {
+            var fired = false;
+            PracticeRoutineTreeViewModel viewModel = new PracticeRoutineTreeViewModel(GetBasicPracticeRoutine());
+            var firstTimeSlot = viewModel.TimeSlots[0];
+
+            viewModel.PropertyChanged += (s, e) =>
+            {
+                if (e.PropertyName == "TotalTimeDisplay")
+                    fired = true;
+            };
+
+            firstTimeSlot.AssignedSeconds = 600;
+
+            Assert.IsTrue(fired);
+        }
+
+        [Test]
+        public void PracticeRoutineTreeViewModel_When_TimeSlot_AssignedSeconds_Changes_Reflected_In_TotalTimeDisplay()
+        {
+            PracticeRoutineTreeViewModel viewModel = new PracticeRoutineTreeViewModel(GetBasicPracticeRoutine());
+            var totalTimeBefore = viewModel.TotalTimeDisplay;
+            var firstTimeSlot = viewModel.TimeSlots[0];
+            firstTimeSlot.AssignedSeconds = 600;
+            var totalTimeAfter = viewModel.TotalTimeDisplay;
+
+            Assert.AreEqual("00:05:00", totalTimeBefore);
+            Assert.AreEqual("00:10:00", totalTimeAfter);
+        }
+
         private PracticeRoutine GetBasicPracticeRoutine()
         {
             List<TimeSlotExercise> timeSlotExercises = new List<TimeSlotExercise>
@@ -128,7 +159,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
 
             List<PracticeRoutineTimeSlot> timeSlots = new List<PracticeRoutineTimeSlot>
             {
-                new PracticeRoutineTimeSlot(1, "Time Slot 1", 10, timeSlotExercises)
+                new PracticeRoutineTimeSlot(1, "Time Slot 1", 300, timeSlotExercises)
             };
 
             return new PracticeRoutine(1, "Practice Routine", timeSlots);

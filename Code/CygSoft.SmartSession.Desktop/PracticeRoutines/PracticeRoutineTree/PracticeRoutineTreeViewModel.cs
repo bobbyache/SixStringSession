@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CygSoft.SmartSession.Domain.PracticeRoutines;
+using CygSoft.SmartSession.Infrastructure;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 
@@ -27,6 +28,8 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines.PracticeRoutineTree
 
             AddCommand = new RelayCommand(() => Add(), () => true);
             RemoveSelectionCommand = new RelayCommand(() => RemoveSelection(), () => true);
+
+            TimeSlots.ListChanged += (s, e) => RaisePropertyChanged(() => TotalTimeDisplay);
         }
 
         public string Title
@@ -45,6 +48,13 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines.PracticeRoutineTree
         public RelayCommand RemoveSelectionCommand { get; private set; }
 
         public TimeSlotViewModel SelectedTimeSlot { get; set; }
+        public string TotalTimeDisplay
+        {
+            get
+            {
+                return TimeFuncs.DisplayTimeFromSeconds(TimeSlots.Sum(ts => ts.AssignedSeconds));
+            }
+        }
 
         private void Add()
         {
