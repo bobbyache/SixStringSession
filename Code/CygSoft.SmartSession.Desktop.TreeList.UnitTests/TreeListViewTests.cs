@@ -12,28 +12,33 @@ namespace CygSoft.SmartSession.Desktop.TreeList.UnitTests
     [TestFixture]
     public class TreeListViewTests
     {
-        [Test]
-        [Apartment(ApartmentState.STA)]
-        public void Test()
-        {
-            var treeListView = new TreeListView();
-            var animals = AnimalTree.GetTree(treeListView);
+        //[Test]
+        //[Apartment(ApartmentState.STA)]
+        //public void Test()
+        //{
+        //    var treeListView = new TreeListView();
+        //    TreeListItem item = new TreeListItem();
+        //    item.Node = new TreeNode(treeListView, null);
+        //    item.IsSelected = true;
 
-            var earthworm =
-            animals
-                .Children[0/*Invertebrates*/]
-                    .Children[1/*Without Legs*/]
-                        .Children[1/*Worm-like*/]
-                            .Children[0/*Earthworm*/];
+        //    Assert.IsTrue(item.Node.IsSelected);
+        //}
 
-            treeListView.SelectedItem = earthworm;
+        ////[Test]
+        ////[Apartment(ApartmentState.STA)]
+        ////public void Test()
+        ////{
+        ////    var treeListView = new TreeListView();
+        ////    var animals = AnimalTree.GetTree(treeListView);
 
-            Assert.AreEqual(treeListView.SelectedItem, earthworm);
-        }
+        ////    var earthworm =
+        ////    animals
+        ////        .Children[0/*Invertebrates*/]
+        ////            .Children[1/*Without Legs*/]
+        ////                .Children[1/*Worm-like*/]
+        ////                    .Children[0/*Earthworm*/];
 
-        private class TestTreeListView : TreeListView
-        {
-            
-        }
+        ////    Assert.AreEqual(treeListView.SelectedItem, earthworm);
+        ////}
     }
 }
