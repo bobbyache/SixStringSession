@@ -23,16 +23,16 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         [Test]
         public void PracticeRoutineTreeViewModel_Title_Is_Populated_When_Initialized()
         {
-            PracticeRoutineTreeViewModel treeViewModel = new PracticeRoutineTreeViewModel(GetBasicPracticeRoutine());
-            Assert.AreEqual("Practice Routine", treeViewModel.Title);
+            PracticeRoutineTreeViewModel viewModel = new PracticeRoutineTreeViewModel(GetBasicPracticeRoutine());
+            Assert.AreEqual("Practice Routine", viewModel.Title);
         }
 
         [Test]
         public void PracticeRoutineTreeViewModel_Title_Set_Populates_PracticeRoutine()
         {
             var practiceRoutine = GetBasicPracticeRoutine();
-            PracticeRoutineTreeViewModel treeViewModel = new PracticeRoutineTreeViewModel(practiceRoutine);
-            treeViewModel.Title = "Modified Practice Routine";
+            PracticeRoutineTreeViewModel viewModel = new PracticeRoutineTreeViewModel(practiceRoutine);
+            viewModel.Title = "Modified Practice Routine";
             Assert.AreEqual("Modified Practice Routine", practiceRoutine.Title);
         }
 
@@ -41,13 +41,13 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         {
             var fired = false;
             var practiceRoutine = GetBasicPracticeRoutine();
-            PracticeRoutineTreeViewModel treeViewModel = new PracticeRoutineTreeViewModel(practiceRoutine);
-            treeViewModel.PropertyChanged += (s, e) =>
+            PracticeRoutineTreeViewModel viewModel = new PracticeRoutineTreeViewModel(practiceRoutine);
+            viewModel.PropertyChanged += (s, e) =>
             {
                 if (e.PropertyName == "Title")
                     fired = true;
             };
-            treeViewModel.Title = "Modified Practice Routine";
+            viewModel.Title = "Modified Practice Routine";
 
             Assert.IsTrue(fired);
         }
@@ -56,11 +56,11 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         public void PracticeRoutineTreeViewModel_Add_TimeSlotViewModel_Raises_ItemChanged()
         {
             var listChanged = false;
-            PracticeRoutineTreeViewModel treeViewModel = new PracticeRoutineTreeViewModel(GetBasicPracticeRoutine());
+            PracticeRoutineTreeViewModel viewModel = new PracticeRoutineTreeViewModel(GetBasicPracticeRoutine());
 
-            treeViewModel.TimeSlots.ListChanged += (s, e) => listChanged = true;
+            viewModel.TimeSlots.ListChanged += (s, e) => listChanged = true;
 
-            treeViewModel.AddCommand.Execute(null);
+            viewModel.AddCommand.Execute(null);
 
             Assert.IsTrue(listChanged);
         }
@@ -68,14 +68,14 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         [Test]
         public void PracticeRoutineTreeViewModel_Remove_TimeSlot_Actually_Removes_TimeSlot()
         {
-            PracticeRoutineTreeViewModel treeViewModel = new PracticeRoutineTreeViewModel(GetBasicPracticeRoutine());
-            TimeSlotViewModel firstTimeSlot = treeViewModel.TimeSlots[0];
+            PracticeRoutineTreeViewModel viewModel = new PracticeRoutineTreeViewModel(GetBasicPracticeRoutine());
+            TimeSlotViewModel firstTimeSlot = viewModel.TimeSlots[0];
 
-            treeViewModel.SelectedTimeSlot = firstTimeSlot;
+            viewModel.SelectedTimeSlot = firstTimeSlot;
 
-            var beforeCount = treeViewModel.TimeSlots.Count;
-            treeViewModel.RemoveSelectionCommand.Execute(null);
-            var afterCount = treeViewModel.TimeSlots.Count;
+            var beforeCount = viewModel.TimeSlots.Count;
+            viewModel.RemoveSelectionCommand.Execute(null);
+            var afterCount = viewModel.TimeSlots.Count;
 
             Assert.AreEqual(beforeCount - 1, afterCount);
         }
@@ -84,13 +84,13 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         public void PracticeRoutineTreeViewModel_Remove_TimeSlotViewModel_Raises_ItemChanged()
         {
             var listChanged = false;
-            PracticeRoutineTreeViewModel treeViewModel = new PracticeRoutineTreeViewModel(GetBasicPracticeRoutine());
-            TimeSlotViewModel firstTimeSlot = treeViewModel.TimeSlots[0];
-            treeViewModel.TimeSlots.ListChanged += (s, e) => listChanged = true;
+            PracticeRoutineTreeViewModel viewModel = new PracticeRoutineTreeViewModel(GetBasicPracticeRoutine());
+            TimeSlotViewModel firstTimeSlot = viewModel.TimeSlots[0];
+            viewModel.TimeSlots.ListChanged += (s, e) => listChanged = true;
 
-            treeViewModel.SelectedTimeSlot = firstTimeSlot;
+            viewModel.SelectedTimeSlot = firstTimeSlot;
 
-            treeViewModel.RemoveSelectionCommand.Execute(null);
+            viewModel.RemoveSelectionCommand.Execute(null);
 
             Assert.IsTrue(listChanged);
         }
@@ -99,10 +99,10 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         public void PracticeRoutineTreeViewModel_Edit_TimeSlotViewModel_Raises_ItemChanged()
         {
             var listChanged = false;
-            PracticeRoutineTreeViewModel treeViewModel = new PracticeRoutineTreeViewModel(GetBasicPracticeRoutine());
-            TimeSlotViewModel anyTimeSlot = treeViewModel.TimeSlots[0];
+            PracticeRoutineTreeViewModel viewModel = new PracticeRoutineTreeViewModel(GetBasicPracticeRoutine());
+            TimeSlotViewModel anyTimeSlot = viewModel.TimeSlots[0];
 
-            treeViewModel.TimeSlots.ListChanged += (s, e) => listChanged = true;
+            viewModel.TimeSlots.ListChanged += (s, e) => listChanged = true;
 
             anyTimeSlot.Title = "Some Arbitrary New Title";
 
@@ -112,9 +112,9 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         [Test]
         public void PracticeRoutineTreeViewModel_TimeSlots_Are_Populated_When_Initialized()
         {
-            PracticeRoutineTreeViewModel treeViewModel = new PracticeRoutineTreeViewModel(GetBasicPracticeRoutine());
-            Assert.AreEqual(1, treeViewModel.TimeSlots.Count);
-            Assert.That(treeViewModel.TimeSlots[0], Is.TypeOf<TimeSlotViewModel>());
+            PracticeRoutineTreeViewModel viewModel = new PracticeRoutineTreeViewModel(GetBasicPracticeRoutine());
+            Assert.AreEqual(1, viewModel.TimeSlots.Count);
+            Assert.That(viewModel.TimeSlots[0], Is.TypeOf<TimeSlotViewModel>());
         }
 
         private PracticeRoutine GetBasicPracticeRoutine()
