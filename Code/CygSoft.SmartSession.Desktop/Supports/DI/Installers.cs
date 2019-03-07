@@ -18,6 +18,33 @@ namespace CygSoft.SmartSession.Desktop.Supports.DI
     // https://docs.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-7
     // https://stackoverflow.com/questions/27507396/how-to-constructor-inject-a-string-that-is-only-known-at-runtime-windsor-castl
 
+
+    /*
+    --------------------------------------------------------------------------------------------------------------------------------
+    TODO: (Requires own branch) Create a factory for the creation of all your new objects.
+    ****************************************
+    Create an Object Factory through
+    Castle Windsor...
+    ****************************************
+
+    Specific Documentation: Typed Factory Facility - interface-based factories
+    https://github.com/castleproject/Windsor/blob/master/docs/typed-factory-facility-interface-based.md
+
+        originally sourced:
+            https://stackoverflow.com/questions/11726663/passing-part-of-constructor-parameters-to-castle-windsor-container/11734671
+
+    You should prefer Typed Factory instead of using container like service locator. Just define factory interface:
+
+    public interface IFooFactory {
+        IFoo Create(int somenumber);
+    }
+
+    container.Register(Component.For<IFooFactory>().AsFactory());
+
+    var foo = fooFactory.Create(desiredArgumentValue);
+    --------------------------------------------------------------------------------------------------------------------------------
+    */
+
     public class Installers : IWindsorInstaller
     {
         public void Install(IWindsorContainer container, IConfigurationStore store)
