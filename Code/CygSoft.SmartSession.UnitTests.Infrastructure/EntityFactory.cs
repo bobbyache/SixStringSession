@@ -8,6 +8,23 @@ namespace CygSoft.SmartSession.UnitTests.Infrastructure
 {
     public class EntityFactory
     {
+        public static PracticeRoutine GetBasicPracticeRoutine()
+        {
+            List<TimeSlotExercise> timeSlotExercises = new List<TimeSlotExercise>
+            {
+                new TimeSlotExercise(1, 1, "Exercise 1", 3),
+                new TimeSlotExercise(2, 1, "Exercise 2", 3),
+                new TimeSlotExercise(3, 1, "Exercise 3", 3)
+            };
+
+            List<PracticeRoutineTimeSlot> timeSlots = new List<PracticeRoutineTimeSlot>
+            {
+                new PracticeRoutineTimeSlot(1, "Time Slot 1", 300, timeSlotExercises)
+            };
+
+            return new PracticeRoutine(1, "Practice Routine", timeSlots);
+        }
+
         public static TimeSlotExercise GetTimeSlotExercise(int id = 1, string title = "Existing Exercise",
             int frequencyRating = 50)
         {

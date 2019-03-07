@@ -161,6 +161,13 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
             Assert.That(viewModel.Exercises[0], Is.TypeOf<TimeSlotExerciseViewModel>());
         }
 
+        [Test]
+        public void TimeSlotExerciseViewModel_Derives_From_NodeViewModel()
+        {
+            TimeSlotViewModel viewModel = new TimeSlotViewModel(GetBasicTimeSlot());
+            Assert.That(viewModel, Is.AssignableTo(typeof(TreeViewItemViewModel)));
+        }
+
         private PracticeRoutineTimeSlot GetBasicTimeSlot()
         {
             List<TimeSlotExercise> timeSlotExercises = new List<TimeSlotExercise>

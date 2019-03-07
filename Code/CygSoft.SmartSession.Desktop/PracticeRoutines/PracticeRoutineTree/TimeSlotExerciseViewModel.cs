@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CygSoft.SmartSession.Desktop.PracticeRoutines.PracticeRoutineTree
 {
-    public class TimeSlotExerciseViewModel : ViewModelBase
+    public class TimeSlotExerciseViewModel : TreeViewItemViewModel
     {
         private TimeSlotExercise timeSlotExercise;
 

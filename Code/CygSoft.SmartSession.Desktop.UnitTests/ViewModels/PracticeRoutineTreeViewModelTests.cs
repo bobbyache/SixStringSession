@@ -1,6 +1,7 @@
 ﻿using CygSoft.SmartSession.Desktop.PracticeRoutines;
 using CygSoft.SmartSession.Desktop.PracticeRoutines.PracticeRoutineTree;
 using CygSoft.SmartSession.Domain.PracticeRoutines;
+using CygSoft.SmartSession.UnitTests.Infrastructure;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -23,14 +24,14 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         [Test]
         public void PracticeRoutineTreeViewModel_Title_Is_Populated_When_Initialized()
         {
-            PracticeRoutineTreeViewModel viewModel = new PracticeRoutineTreeViewModel(GetBasicPracticeRoutine());
+            PracticeRoutineTreeViewModel viewModel = new PracticeRoutineTreeViewModel(EntityFactory.GetBasicPracticeRoutine());
             Assert.AreEqual("Practice Routine", viewModel.Title);
         }
 
         [Test]
         public void PracticeRoutineTreeViewModel_Title_Set_Populates_PracticeRoutine()
         {
-            var practiceRoutine = GetBasicPracticeRoutine();
+            var practiceRoutine = EntityFactory.GetBasicPracticeRoutine();
             PracticeRoutineTreeViewModel viewModel = new PracticeRoutineTreeViewModel(practiceRoutine);
             viewModel.Title = "Modified Practice Routine";
             Assert.AreEqual("Modified Practice Routine", practiceRoutine.Title);
@@ -40,7 +41,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         public void PracticeRoutineTreeViewModel_Title_Set_Fires_PropertyChanged()
         {
             var fired = false;
-            var practiceRoutine = GetBasicPracticeRoutine();
+            var practiceRoutine = EntityFactory.GetBasicPracticeRoutine();
             PracticeRoutineTreeViewModel viewModel = new PracticeRoutineTreeViewModel(practiceRoutine);
             viewModel.PropertyChanged += (s, e) =>
             {
@@ -56,7 +57,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         public void PracticeRoutineTreeViewModel_Add_TimeSlotViewModel_Raises_ItemChanged()
         {
             var listChanged = false;
-            PracticeRoutineTreeViewModel viewModel = new PracticeRoutineTreeViewModel(GetBasicPracticeRoutine());
+            PracticeRoutineTreeViewModel viewModel = new PracticeRoutineTreeViewModel(EntityFactory.GetBasicPracticeRoutine());
 
             viewModel.TimeSlots.ListChanged += (s, e) => listChanged = true;
 
@@ -68,7 +69,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         [Test]
         public void PracticeRoutineTreeViewModel_Remove_TimeSlot_Actually_Removes_TimeSlot()
         {
-            PracticeRoutineTreeViewModel viewModel = new PracticeRoutineTreeViewModel(GetBasicPracticeRoutine());
+            PracticeRoutineTreeViewModel viewModel = new PracticeRoutineTreeViewModel(EntityFactory.GetBasicPracticeRoutine());
             TimeSlotViewModel firstTimeSlot = viewModel.TimeSlots[0];
 
             viewModel.SelectedTimeSlot = firstTimeSlot;
@@ -84,7 +85,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         public void PracticeRoutineTreeViewModel_Remove_TimeSlotViewModel_Raises_ItemChanged()
         {
             var listChanged = false;
-            PracticeRoutineTreeViewModel viewModel = new PracticeRoutineTreeViewModel(GetBasicPracticeRoutine());
+            PracticeRoutineTreeViewModel viewModel = new PracticeRoutineTreeViewModel(EntityFactory.GetBasicPracticeRoutine());
             TimeSlotViewModel firstTimeSlot = viewModel.TimeSlots[0];
             viewModel.TimeSlots.ListChanged += (s, e) => listChanged = true;
 
@@ -99,7 +100,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         public void PracticeRoutineTreeViewModel_Edit_TimeSlotViewModel_Raises_ItemChanged()
         {
             var listChanged = false;
-            PracticeRoutineTreeViewModel viewModel = new PracticeRoutineTreeViewModel(GetBasicPracticeRoutine());
+            PracticeRoutineTreeViewModel viewModel = new PracticeRoutineTreeViewModel(EntityFactory.GetBasicPracticeRoutine());
             TimeSlotViewModel anyTimeSlot = viewModel.TimeSlots[0];
 
             viewModel.TimeSlots.ListChanged += (s, e) => listChanged = true;
@@ -112,7 +113,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         [Test]
         public void PracticeRoutineTreeViewModel_TimeSlots_Are_Populated_When_Initialized()
         {
-            PracticeRoutineTreeViewModel viewModel = new PracticeRoutineTreeViewModel(GetBasicPracticeRoutine());
+            PracticeRoutineTreeViewModel viewModel = new PracticeRoutineTreeViewModel(EntityFactory.GetBasicPracticeRoutine());
             Assert.AreEqual(1, viewModel.TimeSlots.Count);
             Assert.That(viewModel.TimeSlots[0], Is.TypeOf<TimeSlotViewModel>());
         }
@@ -121,7 +122,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         public void PracticeRoutineTreeViewModel_When_TimeSlot_AssignedSeconds_Changes_Raises_PropertyChanged_TotalTimeDisplay()
         {
             var fired = false;
-            PracticeRoutineTreeViewModel viewModel = new PracticeRoutineTreeViewModel(GetBasicPracticeRoutine());
+            PracticeRoutineTreeViewModel viewModel = new PracticeRoutineTreeViewModel(EntityFactory.GetBasicPracticeRoutine());
             var firstTimeSlot = viewModel.TimeSlots[0];
 
             viewModel.PropertyChanged += (s, e) =>
@@ -138,7 +139,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         [Test]
         public void PracticeRoutineTreeViewModel_When_TimeSlot_AssignedSeconds_Changes_Reflected_In_TotalTimeDisplay()
         {
-            PracticeRoutineTreeViewModel viewModel = new PracticeRoutineTreeViewModel(GetBasicPracticeRoutine());
+            PracticeRoutineTreeViewModel viewModel = new PracticeRoutineTreeViewModel(EntityFactory.GetBasicPracticeRoutine());
             var totalTimeBefore = viewModel.TotalTimeDisplay;
             var firstTimeSlot = viewModel.TimeSlots[0];
             firstTimeSlot.AssignedSeconds = 600;
@@ -146,23 +147,6 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
 
             Assert.AreEqual("00:05:00", totalTimeBefore);
             Assert.AreEqual("00:10:00", totalTimeAfter);
-        }
-
-        private PracticeRoutine GetBasicPracticeRoutine()
-        {
-            List<TimeSlotExercise> timeSlotExercises = new List<TimeSlotExercise>
-            {
-                new TimeSlotExercise(1, 1, "Exercise 1", 3),
-                new TimeSlotExercise(2, 1, "Exercise 2", 3),
-                new TimeSlotExercise(3, 1, "Exercise 3", 3)
-            };
-
-            List<PracticeRoutineTimeSlot> timeSlots = new List<PracticeRoutineTimeSlot>
-            {
-                new PracticeRoutineTimeSlot(1, "Time Slot 1", 300, timeSlotExercises)
-            };
-
-            return new PracticeRoutine(1, "Practice Routine", timeSlots);
         }
     }
 }

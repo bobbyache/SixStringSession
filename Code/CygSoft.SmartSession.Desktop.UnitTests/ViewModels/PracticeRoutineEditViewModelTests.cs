@@ -55,7 +55,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
 
             Assert.AreEqual(EntityLifeCycleState.AsExistingEntity, viewModel.LifeCycleState);
             Assert.AreEqual(1, viewModel.Id);
-            Assert.AreEqual("Existing Empty Practice Routine", viewModel.Title);;
+            Assert.AreEqual("Existing Empty Practice Routine", viewModel.Title);
         }
 
         [Test]
@@ -73,6 +73,40 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
 
             Assert.AreEqual(1, practiceRoutine.Id);
             Assert.AreEqual("Changed Title", practiceRoutine.Title);
+        }
+
+
+        [Test]
+        public void PracticeRoutineViewModel_StartEdit_Raises_PracticeRoutineTree_PropertyRaised_Event()
+        {
+            var fired = false;
+            var dialogService = new Mock<IDialogViewService>();
+            var practiceRoutine = EntityFactory.GetEmptyPracticeRoutine();
+            var viewModel = new PracticeRoutineEditViewModel(dialogService.Object);
+
+            viewModel.PropertyChanged += (s, e) =>
+            {
+                if (e.PropertyName == "PracticeRoutineTree")
+                    fired = true;
+            };
+
+            viewModel.StartEdit(practiceRoutine);
+
+            Assert.IsTrue(fired);
+        }
+
+        [Test]
+        public void PracticeRoutineViewModel_StartEdit__Populates_PracticeRoutineTree()
+        {
+            var dialogService = new Mock<IDialogViewService>();
+            var practiceRoutine = EntityFactory.GetBasicPracticeRoutine();
+            var viewModel = new PracticeRoutineEditViewModel(dialogService.Object);
+
+            viewModel.StartEdit(practiceRoutine);
+
+            Assert.AreEqual("Practice Routine", viewModel.PracticeRoutineTree.Title);
+            Assert.AreEqual(1, viewModel.PracticeRoutineTree.TimeSlots.Count);
+            Assert.AreEqual(3, viewModel.PracticeRoutineTree.TimeSlots[0].Exercises.Count);
         }
     }
 }

@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace CygSoft.SmartSession.Desktop.PracticeRoutines.PracticeRoutineTree
 {
-    public class TimeSlotViewModel : ViewModelBase
+    public class TimeSlotViewModel : TreeViewItemViewModel
     {
         public TimeSlotViewModel(PracticeRoutineTimeSlot timeSlot)
         {

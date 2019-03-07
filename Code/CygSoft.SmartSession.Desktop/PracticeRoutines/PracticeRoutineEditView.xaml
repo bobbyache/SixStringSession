@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CygSoft.SmartSession.Desktop.PracticeRoutines"
+             xmlns:tree="clr-namespace:CygSoft.SmartSession.Desktop.PracticeRoutines.PracticeRoutineTree"
              xmlns:converters="clr-namespace:CygSoft.SmartSession.Desktop.Supports.Converters"
              xmlns:validators="clr-namespace:CygSoft.SmartSession.Desktop.Supports.Validators"
              mc:Ignorable="d" 
@@ -15,6 +16,7 @@
         <Style TargetType="{x:Type GridViewColumnHeader}">
             <Setter Property="HorizontalContentAlignment" Value="Left" />
         </Style>
+        <!--
         <Style TargetType="TextBox">
             <Style.Triggers>
                 <Trigger Property="Validation.HasError" Value="True" >
@@ -22,6 +24,7 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+        -->
         <converters:StarWidthConverter x:Key="StarWidthConverter"/>
     </UserControl.Resources>
     <Grid Name="gridMain">
@@ -46,95 +49,35 @@
         </StackPanel>
 
 
-        <Grid Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-            <Grid.RowDefinitions>
-                <RowDefinition />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="200" />
-                <ColumnDefinition Width="200" />
-                <ColumnDefinition Width="5" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="200" />
-            </Grid.ColumnDefinitions>
+        <TreeView Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                  ItemsSource="{Binding PracticeRoutineTree.TimeSlots}">
 
-            <Border Grid.Column="0" Background="GhostWhite" BorderBrush="Gainsboro" BorderThickness="1" Padding="5" Margin="5">
-                <StackPanel Orientation="Vertical">
-                    <TextBlock TextAlignment="Left" Margin="2" MinWidth="50" >Routine Time Slot</TextBlock>
-                    <TextBox   TextWrapping="Wrap"  AcceptsReturn="True" VerticalScrollBarVisibility="Visible" HorizontalAlignment="Stretch"  MinHeight="100" Text="{Binding Selct}" />
-                </StackPanel>
-            </Border>
-            
-            <ListView Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-                  ItemsSource="{Binding Prac}" DockPanel.Dock="Bottom"
-                  SelectionMode="Extended"
-                  SelectedItem="{Binding Selecte}">
-                <ListBox.ContextMenu>
-                    <ContextMenu>
-                        <MenuItem Header="Placeholder Menu Item"
-                    />
-                    </ContextMenu>
-                </ListBox.ContextMenu>
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Width="500" Header="Title" DisplayMemberBinding="{Binding Title}"/>
-                    </GridView>
-                </ListView.View>
-            </ListView>
-            <GridSplitter Grid.Column="2" Background="DarkGray"  ResizeDirection="Columns"  
-                  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
-                  ResizeBehavior="PreviousAndNext" />
+            <TreeView.ItemContainerStyle>
+                <Style TargetType="{x:Type TreeViewItem}">
+                    <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}" />
+                    <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay}" />
+                    <Setter Property="FontWeight" Value="Normal" />
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="FontWeight" Value="Bold" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </TreeView.ItemContainerStyle>
 
-            <ListView Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-                  ItemsSource="{Binding PracticeRoutineExercises}" DockPanel.Dock="Bottom"
-                  SelectionMode="Extended"
-                  SelectedItem="{Binding SelectedPracticeRoutineExercise}">
-                <ListBox.ContextMenu>
-                    <ContextMenu>
-                        <MenuItem Header="Placeholder Menu Item"
-                    />
-                    </ContextMenu>
-                </ListBox.ContextMenu>
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Width="500" Header="Title" DisplayMemberBinding="{Binding Title}"/>
-                        <GridViewColumn Width="60" Header="Minutes" DisplayMemberBinding="{Binding Minutes}" />
-                        <GridViewColumn Width="100" Header="Frequency">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Grid Width="80" Height="16">
-                                        <Rectangle Opacity=".1" Fill="{DynamicResource FiveStars}" />
-                                        <Rectangle Fill="{DynamicResource FiveStars}">
-                                            <Rectangle.Clip>
-                                                <RectangleGeometry Rect="{Binding FrequencyWeighting, Converter={StaticResource StarWidthConverter}}" />
-                                            </Rectangle.Clip>
-                                        </Rectangle>
-                                    </Grid>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                    </GridView>
-                </ListView.View>
-            </ListView>
-            <Border Grid.Column="4" Background="GhostWhite" BorderBrush="Gainsboro" BorderThickness="1" Padding="5" Margin="5">
-                <StackPanel>
-                    <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
-                        <StackPanel Orientation="Vertical">
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock TextAlignment="Right" Margin="2" MinWidth="50" >Minutes</TextBlock>
-                                <TextBox x:Name="MinutesTextBox" Margin="2" MinWidth="50" Text="{Binding SelectedPracticeRoutineExercise.Minutes}" />
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock TextAlignment="Right" Margin="2" MinWidth="50" >Frequency</TextBlock>
-                                <Slider Margin="5" MinWidth="100" MaxWidth="200" Maximum="5" TickFrequency="1" 
-                                Value="{Binding SelectedPracticeRoutineExercise.FrequencyWeighting, ValidatesOnNotifyDataErrors=True}"
-                                TickPlacement="BottomRight" IsSnapToTickEnabled="True"></Slider>
-                            </StackPanel>
-                        </StackPanel>
-                    </StackPanel>
-                </StackPanel>
-            </Border>
-        </Grid>
+
+            <TreeView.Resources>
+                <HierarchicalDataTemplate  DataType="{x:Type tree:TimeSlotViewModel}" ItemsSource="{Binding Exercises}" >
+                    <tree:TimeSlotTreeViewItemView />
+                </HierarchicalDataTemplate>
+
+                <DataTemplate DataType="{x:Type tree:TimeSlotExerciseViewModel}">
+                    <tree:TimeSlotExerciseTreeViewItemView />
+                </DataTemplate>
+
+            </TreeView.Resources>
+
+        </TreeView>
 
         <StackPanel Grid.Row="3" DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button Content="Save" Margin="5" MinWidth="50" MaxHeight="35" Command="{Binding SaveCommand}" />

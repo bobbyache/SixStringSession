@@ -42,5 +42,13 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
 
             Assert.IsTrue(fired);
         }
+
+        [Test]
+        public void TimeSlotExerciseViewModel_Derives_From_NodeViewModel()
+        {
+            TimeSlotExercise timeSlotExercise = new TimeSlotExercise(1, 1, "Exercise", 3);
+            TimeSlotExerciseViewModel viewModel = new TimeSlotExerciseViewModel(timeSlotExercise);
+            Assert.That(viewModel, Is.AssignableTo(typeof(TreeViewItemViewModel)));
+        }
     }
 }
