@@ -30,7 +30,7 @@
     <Grid Name="gridMain">
         <Grid.RowDefinitions>
             <RowDefinition Height="26" />
-            <RowDefinition Height="80" />
+            <RowDefinition Height="90" />
             <RowDefinition Height="*" />
             <RowDefinition Height="40" />
         </Grid.RowDefinitions>
@@ -45,7 +45,7 @@
         <StackPanel Grid.Row="1" DockPanel.Dock="Top" Margin="0,0,0,5">
             <TextBlock Text="Title:" Margin="5"></TextBlock>
             <TextBox Margin="5" Text="{Binding Title, ValidatesOnNotifyDataErrors=True}"></TextBox>
-            <TextBlock MinWidth="20" HorizontalAlignment="Center" Margin="5" Text="{Binding DisplayTime, Mode=OneWay}"></TextBlock>
+            <TextBlock FontSize="18" MinWidth="20" HorizontalAlignment="Center" Margin="5" Text="{Binding TotalTimeDisplay}"></TextBlock>
         </StackPanel>
 
 

@@ -23,6 +23,7 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines.PracticeRoutineTree
             foreach (var timeSlot in practiceRoutine)
             {
                 TimeSlotViewModel timeSlotViewModel = new TimeSlotViewModel(timeSlot);
+                //timeSlotViewModel.PropertyChanged += (s, e) => RaisePropertyChanged(() => TotalTimeDisplay);
                 TimeSlots.Add(timeSlotViewModel);
             }
 

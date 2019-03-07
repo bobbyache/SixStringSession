@@ -108,5 +108,45 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
             Assert.AreEqual(1, viewModel.PracticeRoutineTree.TimeSlots.Count);
             Assert.AreEqual(3, viewModel.PracticeRoutineTree.TimeSlots[0].Exercises.Count);
         }
+
+        [Test]
+        public void PracticeRoutineEditViewModel_When_TimeSlot_AssignedSeconds_Changes_Reflected_In_TotalTimeDisplay()
+        {
+            var dialogService = new Mock<IDialogViewService>();
+            var practiceRoutine = EntityFactory.GetBasicPracticeRoutine();
+            var viewModel = new PracticeRoutineEditViewModel(dialogService.Object);
+
+            viewModel.StartEdit(practiceRoutine);
+
+            var totalTimeBefore = viewModel.TotalTimeDisplay;
+            var firstTimeSlot = viewModel.PracticeRoutineTree.TimeSlots[0].AssignedSeconds = 600;
+            var totalTimeAfter = viewModel.TotalTimeDisplay;
+
+            Assert.AreEqual("00:05:00", totalTimeBefore);
+            Assert.AreEqual("00:10:00", totalTimeAfter);
+        }
+
+        [Test]
+        public void PracticeRoutineEditViewModel_Change_AssignedSeconds_Raises_PracticeRoutineTree_PropertyRaised_Event()
+        {
+            var fired = false;
+
+            var dialogService = new Mock<IDialogViewService>();
+            var practiceRoutine = EntityFactory.GetBasicPracticeRoutine();
+            var viewModel = new PracticeRoutineEditViewModel(dialogService.Object);
+
+            viewModel.StartEdit(practiceRoutine);
+
+            viewModel.PropertyChanged += (s, e) =>
+            {
+                if (e.PropertyName == "TotalTimeDisplay")
+                    fired = true;
+            };
+
+            
+            viewModel.PracticeRoutineTree.TimeSlots[0].AssignedSeconds = 600;
+
+            Assert.IsTrue(fired);
+        }
     }
 }

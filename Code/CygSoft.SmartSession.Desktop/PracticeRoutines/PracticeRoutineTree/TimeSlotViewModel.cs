@@ -18,6 +18,8 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines.PracticeRoutineTree
             this.timeSlot = timeSlot ?? throw new ArgumentNullException("Time Slot must be provided.");
             AddCommand = new RelayCommand(() => Add(), () => true);
             RemoveSelectionCommand = new RelayCommand(() => RemoveSelection(), () => true);
+            IncrementMinutesCommand = new RelayCommand(() => IncrementMinutesPracticed(), () => true);
+            DecrementMinutesCommand = new RelayCommand(() => DecrementMinutesPracticed(), () => true);
 
             foreach (var exercise in timeSlot)
             {
@@ -41,6 +43,9 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines.PracticeRoutineTree
         }
 
         public BindingList<TimeSlotExerciseViewModel> Exercises { get; } = new BindingList<TimeSlotExerciseViewModel>();
+
+        public RelayCommand IncrementMinutesCommand { get; private set; }
+        public RelayCommand DecrementMinutesCommand { get; private set; }
 
         public string DisplayTime => TimeFuncs.DisplayTimeFromSeconds(AssignedSeconds);
 
@@ -72,6 +77,16 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines.PracticeRoutineTree
         private void RemoveSelection()
         {
             Exercises.Remove(SelectedExercise);
+        }
+
+        private void DecrementMinutesPracticed()
+        {
+            AssignedSeconds -= 60;
+        }
+
+        private void IncrementMinutesPracticed()
+        {
+            AssignedSeconds += 60;
         }
     }
 }

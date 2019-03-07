@@ -1,21 +1,13 @@
-﻿using AutoMapper;
+﻿using CygSoft.SmartSession.Desktop.PracticeRoutines.PracticeRoutineTree;
 using CygSoft.SmartSession.Desktop.Supports.Services;
 using CygSoft.SmartSession.Desktop.Supports.Validators;
 using CygSoft.SmartSession.Domain.PracticeRoutines;
+using CygSoft.SmartSession.Infrastructure;
 using CygSoft.SmartSession.Infrastructure.Enums;
-using GalaSoft.MvvmLight.Command;
-using GalaSoft.MvvmLight.Messaging;
 using System;
-using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.ComponentModel;
-using System.Collections.ObjectModel;
-using CygSoft.SmartSession.Infrastructure;
-using CygSoft.SmartSession.Desktop.Supports.Messages;
-using CygSoft.SmartSession.Desktop.PracticeRoutines.PracticeRoutineTree;
 
 namespace CygSoft.SmartSession.Desktop.PracticeRoutines
 {
@@ -46,11 +38,32 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
             }
         }
 
+        public string TotalTimeDisplay
+        {
+            get
+            {
+                return TimeFuncs.DisplayTimeFromSeconds(practiceRoutine.Sum(ts => ts.AssignedSeconds));
+            }
+        }
+
         private PracticeRoutineTreeViewModel practiceRoutineTree;
         public PracticeRoutineTreeViewModel PracticeRoutineTree
         {
             get { return practiceRoutineTree; }
-            set { Set(() => PracticeRoutineTree, ref practiceRoutineTree, value, false, false); }
+            set
+            {
+                if (practiceRoutineTree != null)
+                    practiceRoutineTree.PropertyChanged -= TreeModelViewChanged;
+
+                Set(() => PracticeRoutineTree, ref practiceRoutineTree, value, false, false);
+
+                practiceRoutineTree.PropertyChanged += TreeModelViewChanged;
+            }
+        }
+
+        private void TreeModelViewChanged(object sender, PropertyChangedEventArgs e)
+        {
+            RaisePropertyChanged(() => TotalTimeDisplay);
         }
 
         public PracticeRoutineEditViewModel(IDialogViewService dialogService)

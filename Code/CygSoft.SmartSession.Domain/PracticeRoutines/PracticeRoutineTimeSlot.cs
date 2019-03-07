@@ -9,7 +9,19 @@ namespace CygSoft.SmartSession.Domain.PracticeRoutines
     {
         private List<TimeSlotExercise> exercises;
         public string Title { get; set; }
-        public int AssignedSeconds { get; set; }
+
+        private int assignedSeconds;
+        public int AssignedSeconds
+        {
+            get { return assignedSeconds; }
+            set
+            {
+                if (value >= 0)
+                    assignedSeconds = value;
+                else
+                    assignedSeconds = 0;
+            }
+        }
 
         public int Count => exercises.Count;
 

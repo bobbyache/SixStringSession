@@ -119,26 +119,26 @@ INSERT INTO PracticeRoutine (Title, DateCreated)
 INSERT INTO PracticeRoutine (Title, DateCreated)
 	VALUES ('Wednesday Routine', '2017-02-01 01:00:00');
 
-INSERT INTO TimeSlot (Title, AssignedPracticeTime, DateCreated, DateModified) VALUES ("Monday - Strumming Practice", 5, '2017-02-01 01:20:00', NULL);
-INSERT INTO TimeSlot (Title, AssignedPracticeTime, DateCreated, DateModified) VALUES ("Monday - Lead Practice", 5, '2017-02-01 01:20:00', NULL);
-INSERT INTO TimeSlot (Title, AssignedPracticeTime, DateCreated, DateModified) VALUES ("Monday - Scales Practice", 5, '2017-02-01 01:20:00', NULL);
-INSERT INTO TimeSlot (Title, AssignedPracticeTime, DateCreated, DateModified) VALUES ("Monday - Theory Practice", 5, '2017-02-01 01:20:00', NULL);
-INSERT INTO TimeSlot (Title, AssignedPracticeTime, DateCreated, DateModified) VALUES ("Monday - Song Practice", 5, '2017-02-01 01:20:00', NULL);
-INSERT INTO TimeSlot (Title, AssignedPracticeTime, DateCreated, DateModified) VALUES ("Monday - Ear Training Practice", 5, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlot (Title, AssignedPracticeTime, DateCreated, DateModified) VALUES ("Monday - Strumming Practice", 300, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlot (Title, AssignedPracticeTime, DateCreated, DateModified) VALUES ("Monday - Lead Practice", 300, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlot (Title, AssignedPracticeTime, DateCreated, DateModified) VALUES ("Monday - Scales Practice", 300, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlot (Title, AssignedPracticeTime, DateCreated, DateModified) VALUES ("Monday - Theory Practice", 300, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlot (Title, AssignedPracticeTime, DateCreated, DateModified) VALUES ("Monday - Song Practice", 300, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlot (Title, AssignedPracticeTime, DateCreated, DateModified) VALUES ("Monday - Ear Training Practice", 300, '2017-02-01 01:20:00', NULL);
 
-INSERT INTO TimeSlot (Title, AssignedPracticeTime, DateCreated, DateModified) VALUES ("Tuesday - Strumming Practice", 5, '2017-02-01 01:20:00', NULL);
-INSERT INTO TimeSlot (Title, AssignedPracticeTime, DateCreated, DateModified) VALUES ("Tuesday - Lead Practice", 5, '2017-02-01 01:20:00', NULL);
-INSERT INTO TimeSlot (Title, AssignedPracticeTime, DateCreated, DateModified) VALUES ("Tuesday - Scales Practice", 5, '2017-02-01 01:20:00', NULL);
-INSERT INTO TimeSlot (Title, AssignedPracticeTime, DateCreated, DateModified) VALUES ("Tuesday - Theory Practice", 5, '2017-02-01 01:20:00', NULL);
-INSERT INTO TimeSlot (Title, AssignedPracticeTime, DateCreated, DateModified) VALUES ("Tuesday - Song Practice", 5, '2017-02-01 01:20:00', NULL);
-INSERT INTO TimeSlot (Title, AssignedPracticeTime, DateCreated, DateModified) VALUES ("Tuesday - Ear Training Practice", 5, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlot (Title, AssignedPracticeTime, DateCreated, DateModified) VALUES ("Tuesday - Strumming Practice", 300, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlot (Title, AssignedPracticeTime, DateCreated, DateModified) VALUES ("Tuesday - Lead Practice", 300, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlot (Title, AssignedPracticeTime, DateCreated, DateModified) VALUES ("Tuesday - Scales Practice", 300, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlot (Title, AssignedPracticeTime, DateCreated, DateModified) VALUES ("Tuesday - Theory Practice", 300, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlot (Title, AssignedPracticeTime, DateCreated, DateModified) VALUES ("Tuesday - Song Practice", 300, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlot (Title, AssignedPracticeTime, DateCreated, DateModified) VALUES ("Tuesday - Ear Training Practice", 300, '2017-02-01 01:20:00', NULL);
 
-INSERT INTO TimeSlot (Title, AssignedPracticeTime, DateCreated, DateModified) VALUES ("Wednesday - Strumming Practice", 5, '2017-02-01 01:20:00', NULL);
-INSERT INTO TimeSlot (Title, AssignedPracticeTime, DateCreated, DateModified) VALUES ("Wednesday - Lead Practice", 5, '2017-02-01 01:20:00', NULL);
-INSERT INTO TimeSlot (Title, AssignedPracticeTime, DateCreated, DateModified) VALUES ("Wednesday - Scales Practice", 5, '2017-02-01 01:20:00', NULL);
-INSERT INTO TimeSlot (Title, AssignedPracticeTime, DateCreated, DateModified) VALUES ("Wednesday - Theory Practice", 5, '2017-02-01 01:20:00', NULL);
-INSERT INTO TimeSlot (Title, AssignedPracticeTime, DateCreated, DateModified) VALUES ("Wednesday - Song Practice", 5, '2017-02-01 01:20:00', NULL);
-INSERT INTO TimeSlot (Title, AssignedPracticeTime, DateCreated, DateModified) VALUES ("Wednesday - Ear Training Practice", 5, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlot (Title, AssignedPracticeTime, DateCreated, DateModified) VALUES ("Wednesday - Strumming Practice", 300, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlot (Title, AssignedPracticeTime, DateCreated, DateModified) VALUES ("Wednesday - Lead Practice", 300, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlot (Title, AssignedPracticeTime, DateCreated, DateModified) VALUES ("Wednesday - Scales Practice", 300, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlot (Title, AssignedPracticeTime, DateCreated, DateModified) VALUES ("Wednesday - Theory Practice", 300, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlot (Title, AssignedPracticeTime, DateCreated, DateModified) VALUES ("Wednesday - Song Practice", 300, '2017-02-01 01:20:00', NULL);
+INSERT INTO TimeSlot (Title, AssignedPracticeTime, DateCreated, DateModified) VALUES ("Wednesday - Ear Training Practice", 300, '2017-02-01 01:20:00', NULL);
 
 
 

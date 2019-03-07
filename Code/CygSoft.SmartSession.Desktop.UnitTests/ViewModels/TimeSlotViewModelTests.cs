@@ -162,10 +162,50 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         }
 
         [Test]
-        public void TimeSlotExerciseViewModel_Derives_From_NodeViewModel()
+        public void TimeSlotViewModel_Derives_From_NodeViewModel()
         {
             TimeSlotViewModel viewModel = new TimeSlotViewModel(GetBasicTimeSlot());
             Assert.That(viewModel, Is.AssignableTo(typeof(TreeViewItemViewModel)));
+        }
+
+        [Test]
+        public void TimeSlotViewModel_IncrementMinutes_Reflects_On_Domain()
+        {
+            var timeSlot = GetBasicTimeSlot();
+            TimeSlotViewModel viewModel = new TimeSlotViewModel(timeSlot);
+
+            var timeBefore = timeSlot.AssignedSeconds;
+            viewModel.IncrementMinutesCommand.Execute(null);
+            var timeAfter = timeSlot.AssignedSeconds;
+
+            Assert.AreEqual(timeAfter, timeBefore + 60);
+        }
+
+        [Test]
+        public void TimeSlotViewModel_DecrementtMinutes_Reflects_On_Domain()
+        {
+            var timeSlot = GetBasicTimeSlot();
+            TimeSlotViewModel viewModel = new TimeSlotViewModel(timeSlot);
+
+            var timeBefore = timeSlot.AssignedSeconds;
+            viewModel.DecrementMinutesCommand.Execute(null);
+            var timeAfter = timeSlot.AssignedSeconds;
+
+            Assert.AreEqual(timeAfter, timeBefore - 60);
+        }
+
+        [Test]
+        public void TimeSlotViewModel_DecrementtMinutes_Is_Less_Than_Zero_Is_Zero()
+        {
+            var timeSlot = GetBasicTimeSlot();
+            timeSlot.AssignedSeconds = 60;
+
+            TimeSlotViewModel viewModel = new TimeSlotViewModel(timeSlot);
+
+            viewModel.DecrementMinutesCommand.Execute(null);
+            viewModel.DecrementMinutesCommand.Execute(null);
+
+            Assert.AreEqual(0, timeSlot.AssignedSeconds);
         }
 
         private PracticeRoutineTimeSlot GetBasicTimeSlot()
