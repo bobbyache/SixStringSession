@@ -28,6 +28,7 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines.PracticeRoutineTree
         }
 
         private PracticeRoutineTimeSlot timeSlot;
+        public PracticeRoutineTimeSlot TimeSlot => timeSlot;
 
         public string Title
         {

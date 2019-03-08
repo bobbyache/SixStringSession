@@ -36,8 +36,8 @@
         </Grid.RowDefinitions>
 
         <ToolBar Grid.Row="0" Height="30" VerticalAlignment="Stretch" HorizontalAlignment="Left">
-            <Button MinWidth="30" Height="30" Content="Add Time Slot" Command="{Binding AddRoutineTimeSlotCommand}" />
-            <Button MinWidth="30" Height="30" Content="Delete Time Slot" Command="{Binding DeleteRoutineTimeSlotCommand}" />
+            <Button MinWidth="30" Height="30" Content="Add Time Slot" Command="{Binding AddTimeSlotCommand}" />
+            <Button MinWidth="30" Height="30" Content="Delete Time Slot" Command="{Binding DeleteTimeSlotCommand}" />
             <Button MinWidth="30" Height="30" Content="Add Exercise" Command="{Binding AddExerciseCommand}" />
             <Button MinWidth="30" Height="30" Content="Delete Exercise" Command="{Binding DeleteExerciseCommand}" />
         </ToolBar>
@@ -48,7 +48,8 @@
             <TextBlock FontSize="18" MinWidth="20" HorizontalAlignment="Center" Margin="5" Text="{Binding TotalTimeDisplay}"></TextBlock>
         </StackPanel>
 
-
+        <!-- Attached Property to make Treeview SelectedItem work with MVVM !!! -->
+        <!-- https://stackoverflow.com/questions/1000040/data-binding-to-selecteditem-in-a-wpf-treeview -->
         <TreeView Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
                   ItemsSource="{Binding TimeSlots}">
 

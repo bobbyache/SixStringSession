@@ -80,19 +80,6 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         }
 
         [Test]
-        public void PracticeRoutine_Attempt_To_Add_Duplicate_TimeSlot_()
-        {
-            var newPracticeRoutine = EntityFactory.CreateEmptyPracticeRoutine();
-
-            var timeSlot = EntityFactory.CreateSingleTimeSlot();
-            newPracticeRoutine.Add(timeSlot);
-            var duplicate = EntityFactory.CreateSingleTimeSlot();
-
-            TestDelegate testDelegate = () => newPracticeRoutine.Add(duplicate);
-            Assert.That(testDelegate, Throws.TypeOf<ArgumentException>());
-        }
-
-        [Test]
         public void PracticeRoutine_DoNot_Allow_Adding_Existing_Database_TimeSlot()
         {
             var newPracticeRoutine = EntityFactory.GetEmptyPracticeRoutine();

@@ -65,9 +65,9 @@ namespace CygSoft.SmartSession.Domain.PracticeRoutines
             if (item.Id > 0)
                 throw new ArgumentException("Only newly created time slots can be added to a practice routine. PracticeRoutineTimeSlot has an Id greater than 0.");
 
-            var exists = timeSlots.Where(tslot => tslot.Title == item.Title).Any();
-            if (exists)
-                throw new ArgumentException("Cannot add a duplicate time slot to a routine.");
+            //var exists = timeSlots.Where(tslot => tslot.Title == item.Title).Any();
+            //if (exists)
+            //    throw new ArgumentException("Cannot add a duplicate time slot to a routine.");
 
             timeSlots.Add(item);
         }

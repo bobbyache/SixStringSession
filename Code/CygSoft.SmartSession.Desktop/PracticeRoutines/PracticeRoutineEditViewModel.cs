@@ -31,11 +31,11 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
 
         public int Id { get { return practiceRoutine.Id; } }
 
-        public RelayCommand AddCommand { get; private set; }
-        public RelayCommand RemoveSelectionCommand { get; private set; }
-
         public RelayCommand SaveCommand { get; private set; }
         public RelayCommand CancelCommand { get; private set; }
+
+        public RelayCommand AddTimeSlotCommand { get; private set; }
+        public RelayCommand DeleteTimeSlotCommand { get; private set; }
 
         public BindingList<TimeSlotViewModel> TimeSlots { get; } = new BindingList<TimeSlotViewModel>();
 
@@ -51,7 +51,20 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
             }
         }
 
-        public TimeSlotViewModel SelectedTimeSlot { get; set; }
+        private TimeSlotViewModel selectedTimeSlot;
+        public TimeSlotViewModel SelectedTimeSlot
+        {
+            get
+            {
+                return selectedTimeSlot;
+            }
+            set
+            {
+                Set(() => SelectedTimeSlot, ref selectedTimeSlot, value);
+            }
+        }
+
+
 
         public string TotalTimeDisplay
         {
@@ -70,10 +83,11 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
         {
             this.dialogService = dialogService ?? throw new ArgumentNullException("Dialog service must be provided.");
 
-            AddCommand = new RelayCommand(() => Add(), () => true);
-            RemoveSelectionCommand = new RelayCommand(() => RemoveSelection(), () => true);
             SaveCommand = new RelayCommand(() => Save(), () => !this.HasErrors);
             CancelCommand = new RelayCommand(() => Cancel(), () => true);
+            AddTimeSlotCommand = new RelayCommand(() => AddTimeSlot(), () => true);
+            DeleteTimeSlotCommand = new RelayCommand(() => DeleteTimeSlot(), () => true);
+
         }
 
         public void StartEdit(PracticeRoutine practiceRoutine)
@@ -96,14 +110,16 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
             TimeSlots.ListChanged += (s, e) => RaisePropertyChanged(() => TotalTimeDisplay);
         }
 
-        private void Add()
+        private void AddTimeSlot()
         {
             PracticeRoutineTimeSlot timeSlot = new PracticeRoutineTimeSlot("New Time Slot", 300, new List<TimeSlotExercise>());
+            practiceRoutine.Add(timeSlot);
             TimeSlots.Add(new TimeSlotViewModel(timeSlot));
         }
 
-        private void RemoveSelection()
+        private void DeleteTimeSlot()
         {
+            practiceRoutine.Remove(SelectedTimeSlot.TimeSlot);
             TimeSlots.Remove(SelectedTimeSlot);
         }
 

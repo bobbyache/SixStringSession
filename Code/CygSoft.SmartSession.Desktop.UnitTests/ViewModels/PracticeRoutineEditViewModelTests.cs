@@ -18,6 +18,29 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
     public class PracticeRoutineEditViewModelTests
     {
         [Test]
+        public void Make_TreeviewItem_Work_in_MVVM_With_SelectedItem()
+        {
+            /* See: https://stackoverflow.com/questions/1000040/data-binding-to-selecteditem-in-a-wpf-treeview
+             * Use an attached property to get this to work...
+             * */
+            Assert.Fail();
+        }
+
+        [Test]
+        public void PracticeRoutineEditViewModel_AddTimeSlot()
+        {
+            // unit tests required...
+            Assert.Fail();
+        }
+
+        [Test]
+        public void PracticeRoutineEditViewModel_DeleteTimeSlot()
+        {
+            // unit tests required...
+            Assert.Fail();
+        }
+
+        [Test]
         public void PracticeRoutineEditViewModel_Initialized_With_No_TimeSlot_Throws_Exception()
         {
             var dialogService = new Mock<IDialogViewService>();
@@ -82,7 +105,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
 
             viewModel.TimeSlots.ListChanged += (s, e) => listChanged = true;
 
-            viewModel.AddCommand.Execute(null);
+            viewModel.AddTimeSlotCommand.Execute(null);
 
             Assert.IsTrue(listChanged);
         }
@@ -101,7 +124,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
             viewModel.SelectedTimeSlot = firstTimeSlot;
 
             var beforeCount = viewModel.TimeSlots.Count;
-            viewModel.RemoveSelectionCommand.Execute(null);
+            viewModel.DeleteTimeSlotCommand.Execute(null);
             var afterCount = viewModel.TimeSlots.Count;
 
             Assert.AreEqual(beforeCount - 1, afterCount);
@@ -123,7 +146,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
 
             viewModel.SelectedTimeSlot = firstTimeSlot;
 
-            viewModel.RemoveSelectionCommand.Execute(null);
+            viewModel.DeleteTimeSlotCommand.Execute(null);
 
             Assert.IsTrue(listChanged);
         }
