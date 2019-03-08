@@ -174,7 +174,6 @@
       <DependentUpon>TimeSlotTreeViewItemView.xaml</DependentUpon>
     </Compile>
     <Compile Include="PracticeRoutines\PracticeRoutineTree\TreeViewItemViewModel.cs" />
-    <Compile Include="PracticeRoutines\PracticeRoutineTree\PracticeRoutineTreeViewModel.cs" />
     <Compile Include="PracticeRoutines\RecordableExerciseViewModel.cs" />
     <Compile Include="PracticeRoutines\PracticeRoutineTree\TimeSlotExerciseViewModel.cs" />
     <Compile Include="PracticeRoutines\PracticeRoutineTree\TimeSlotViewModel.cs" />

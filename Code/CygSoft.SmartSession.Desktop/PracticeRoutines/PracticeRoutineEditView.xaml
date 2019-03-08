@@ -50,7 +50,7 @@
 
 
         <TreeView Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-                  ItemsSource="{Binding PracticeRoutineTree.TimeSlots}">
+                  ItemsSource="{Binding TimeSlots}">
 
             <TreeView.ItemContainerStyle>
                 <Style TargetType="{x:Type TreeViewItem}">
