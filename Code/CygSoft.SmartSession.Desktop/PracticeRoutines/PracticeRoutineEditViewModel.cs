@@ -1,10 +1,13 @@
-﻿using CygSoft.SmartSession.Desktop.PracticeRoutines.PracticeRoutineTree;
+﻿using AutoMapper;
+using CygSoft.SmartSession.Desktop.PracticeRoutines.PracticeRoutineTree;
+using CygSoft.SmartSession.Desktop.Supports.Messages;
 using CygSoft.SmartSession.Desktop.Supports.Services;
 using CygSoft.SmartSession.Desktop.Supports.Validators;
 using CygSoft.SmartSession.Domain.PracticeRoutines;
 using CygSoft.SmartSession.Infrastructure;
 using CygSoft.SmartSession.Infrastructure.Enums;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -30,6 +33,9 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
 
         public RelayCommand AddCommand { get; private set; }
         public RelayCommand RemoveSelectionCommand { get; private set; }
+
+        public RelayCommand SaveCommand { get; private set; }
+        public RelayCommand CancelCommand { get; private set; }
 
         public BindingList<TimeSlotViewModel> TimeSlots { get; } = new BindingList<TimeSlotViewModel>();
 
@@ -66,8 +72,8 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
 
             AddCommand = new RelayCommand(() => Add(), () => true);
             RemoveSelectionCommand = new RelayCommand(() => RemoveSelection(), () => true);
-
-            
+            SaveCommand = new RelayCommand(() => Save(), () => !this.HasErrors);
+            CancelCommand = new RelayCommand(() => Cancel(), () => true);
         }
 
         public void StartEdit(PracticeRoutine practiceRoutine)
@@ -99,6 +105,48 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
         private void RemoveSelection()
         {
             TimeSlots.Remove(SelectedTimeSlot);
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        private void Save()
+        {
+            this.Commit();
+            Messenger.Default.Send(new EndEditingPracticeRoutineMessage(practiceRoutine, EditorCloseOperation.Saved,
+                LifeCycleState));
+        }
+
+        private void Cancel()
+        {
+            this.Revert();
+            Messenger.Default.Send(new EndEditingPracticeRoutineMessage(practiceRoutine, EditorCloseOperation.Canceled,
+                LifeCycleState));
+        }
+
+        public override void Commit()
+        {
+            Mapper.Map(this, practiceRoutine);
+            base.Commit();
+        }
+
+        public override void Revert()
+        {
+            Mapper.Map(practiceRoutine, this);
+            base.Revert();
         }
     }
 }

@@ -43,9 +43,7 @@ VALUES
 
 
 SELECT 
-	T.Id,
-    T.Title,
-    T.AssignedPracticeTime
+	T.*
 FROM 
 	PracticeRoutine PR 
 	INNER JOIN PracticeRoutineTimeSlot PRT ON PRT.PracticeRoutineId = PR.Id
@@ -53,6 +51,17 @@ FROM
 WHERE
 	PracticeRoutineId = (SELECT Id FROM PracticeRoutine WHERE Title = 'Wednesday Routine');
     
+
+SELECT TSE.* 
+	FROM 
+		PracticeRoutine PR 
+		INNER JOIN PracticeRoutineTimeSlot PRT ON PRT.PracticeRoutineId = PR.Id
+		INNER JOIN TimeSlot T ON T.Id = PRT.TimeSlotId
+		INNER JOIN TimeSlotExercise TSE ON TSE.TimeSlotId = T.Id
+		INNER JOIN Exercise E ON E.Id = TSE.ExerciseId
+	WHERE
+		PR.Id = (SELECT Id FROM PracticeRoutine WHERE Title = 'Wednesday Routine') ;
+
 
 call sp_GetTimeSlotsByPracticeRoutineId((SELECT Id FROM PracticeRoutine WHERE Title = 'Wednesday Routine'));
 call sp_GetTimeSlotsByPracticeRoutineId(1);
