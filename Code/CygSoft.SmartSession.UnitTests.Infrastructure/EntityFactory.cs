@@ -76,20 +76,6 @@ namespace CygSoft.SmartSession.UnitTests.Infrastructure
             return practiceRoutine;
         }
 
-        public static PracticeRoutineExercise CreatePracticeRoutineExercise(Exercise exercise, 
-            int? assignedPracticeTime = null, int? frequencyWeighting = 1,
-                int? difficultyRating = 1)
-        {
-            var routineExercise = new PracticeRoutineExercise
-            {
-                AssignedPracticeTime = assignedPracticeTime ?? 5000,
-                Title = exercise.Title,
-                FrequencyWeighting = frequencyWeighting ?? 0,
-                ExerciseId = exercise.Id
-            };
-            return routineExercise;
-        }
-
         public static Exercise GetExerciseWithNoActivity(int id, string title,
             int? targetSpeed = null,int? speedProgressWeighting = null,
             int? targetpracticeTime = null, int? practiceTimeProgressWeighting = null,

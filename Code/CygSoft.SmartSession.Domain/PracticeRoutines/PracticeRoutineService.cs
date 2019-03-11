@@ -61,21 +61,6 @@ namespace CygSoft.SmartSession.Domain.PracticeRoutines
             unitOfWork.Commit();
         }
 
-        //TODO: Get rid of this! And its class.
-        public PracticeRoutineExercise CreatePracticeRoutineExerciseFor(int exerciseId)
-        {
-            var exercise = exerciseService.Get(exerciseId);
-            var routineExercise = new PracticeRoutineExercise
-            {
-                ExerciseId = exerciseId,
-                Title = exercise.Title,
-                FrequencyWeighting = 0,
-                AssignedPracticeTime = 300
-            };
-
-            return routineExercise;
-        }
-
         public TimeSlotExercise CreateTimeSlotExercise(int exerciseId)
         {
             var exercise = exerciseService.Get(exerciseId);

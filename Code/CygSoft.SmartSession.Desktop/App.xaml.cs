@@ -34,7 +34,6 @@ namespace CygSoft.SmartSession.Desktop
                 cfg.CreateMap<PracticeRoutineSearchResultModel, PracticeRoutineHeader>();
 
                 cfg.CreateMap<PracticeRoutineSearchResultModel, PracticeRoutineSearchResultModel>();
-                cfg.CreateMap<PracticeRoutineExerciseViewModel, PracticeRoutineExercise>();
             });
         }
     }

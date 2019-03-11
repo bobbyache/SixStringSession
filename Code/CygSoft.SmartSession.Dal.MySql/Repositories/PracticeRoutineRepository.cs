@@ -349,17 +349,6 @@ namespace CygSoft.SmartSession.Dal.MySql.Repositories
             }
         }
 
-        private IEnumerable<PracticeRoutineExercise> GetPracticeRoutineExercises(PracticeRoutine entity)
-        {
-            var routineExercises = Connection.Query<PracticeRoutineExercise>("sp_GetPracticeRoutineExercisesByPracticeRoutine",
-            param: new
-            {
-                _practiceRoutineId = entity.Id
-            }, commandType: CommandType.StoredProcedure);
-
-            return routineExercises;
-        }
-
         // TODO: Remove Find from the IRepository interface. It should return header objects and not the repository objects. Then remove all of these methods and replace them with specialized ones.
         public IReadOnlyList<PracticeRoutine> Find(object criteria)
         {

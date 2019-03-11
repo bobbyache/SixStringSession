@@ -156,7 +156,6 @@
       <DependentUpon>PracticeRoutineEditView.xaml</DependentUpon>
     </Compile>
     <Compile Include="PracticeRoutines\PracticeRoutineEditViewModel.cs" />
-    <Compile Include="PracticeRoutines\PracticeRoutineExerciseViewModel.cs" />
     <Compile Include="PracticeRoutines\PracticeRoutineRecordingListView.xaml.cs">
       <DependentUpon>PracticeRoutineRecordingListView.xaml</DependentUpon>
     </Compile>

@@ -86,7 +86,6 @@
     <Compile Include="Helpers\SetupTearDown.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tests\PracticeRoutineRepositoryTests.cs" />
-    <Compile Include="Tests\PracticeRoutineServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CygSoft.SmartSession.Dal.MySql\CygSoft.SmartSession.Dal.MySql.csproj">
