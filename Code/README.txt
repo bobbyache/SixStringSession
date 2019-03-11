@@ -62,6 +62,8 @@ https://www.codeproject.com/Articles/30721/WPF-TreeListView-Control
 Simplifying the WPF TreeView by Using the ViewModel Pattern
 https://www.codeproject.com/Articles/26288/Simplifying-the-WPF-TreeView-by-Using-the-ViewMode
 
+SelectedItem - Two Way Binding - Use an attached property to get this to work...
+https://stackoverflow.com/questions/1000040/data-binding-to-selecteditem-in-a-wpf-treeview
 ===========================================================================
 Credits to...
 ===========================================================================
