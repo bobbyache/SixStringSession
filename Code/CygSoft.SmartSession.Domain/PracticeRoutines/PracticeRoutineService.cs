@@ -61,6 +61,7 @@ namespace CygSoft.SmartSession.Domain.PracticeRoutines
             unitOfWork.Commit();
         }
 
+        //TODO: Get rid of this! And its class.
         public PracticeRoutineExercise CreatePracticeRoutineExerciseFor(int exerciseId)
         {
             var exercise = exerciseService.Get(exerciseId);
@@ -73,6 +74,13 @@ namespace CygSoft.SmartSession.Domain.PracticeRoutines
             };
 
             return routineExercise;
+        }
+
+        public TimeSlotExercise CreateTimeSlotExercise(int exerciseId)
+        {
+            var exercise = exerciseService.Get(exerciseId);
+            TimeSlotExercise timeSlotExercise = new TimeSlotExercise(exerciseId, exercise.Title, 3);
+            return timeSlotExercise;
         }
 
         public PracticeRoutineRecorder GetPracticeRoutineRecorder(int id)

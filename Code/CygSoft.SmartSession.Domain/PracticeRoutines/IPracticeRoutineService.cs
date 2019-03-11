@@ -7,6 +7,7 @@ namespace CygSoft.SmartSession.Domain.PracticeRoutines
     {
         PracticeRoutine Create();
         PracticeRoutineExercise CreatePracticeRoutineExerciseFor(int exerciseId);
+        TimeSlotExercise CreateTimeSlotExercise(int exerciseId);
         PracticeRoutine Get(int id);
         IEnumerable<PracticeRoutineHeader> Find(PracticeRoutineSearchCriteria searchCriteria);
         void Remove(int id);

@@ -7,6 +7,8 @@
              xmlns:tree="clr-namespace:CygSoft.SmartSession.Desktop.PracticeRoutines.PracticeRoutineTree"
              xmlns:converters="clr-namespace:CygSoft.SmartSession.Desktop.Supports.Converters"
              xmlns:validators="clr-namespace:CygSoft.SmartSession.Desktop.Supports.Validators"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:command="http://www.galasoft.ch/mvvmlight"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.DataContext>
@@ -36,10 +38,9 @@
         </Grid.RowDefinitions>
 
         <ToolBar Grid.Row="0" Height="30" VerticalAlignment="Stretch" HorizontalAlignment="Left">
-            <Button MinWidth="30" Height="30" Content="Add Time Slot" Command="{Binding AddTimeSlotCommand}" />
-            <Button MinWidth="30" Height="30" Content="Delete Time Slot" Command="{Binding DeleteTimeSlotCommand}" />
+            <Button MinWidth="30" Height="30" Content="Add Timeslot" Command="{Binding AddTimeSlotCommand}" />
             <Button MinWidth="30" Height="30" Content="Add Exercise" Command="{Binding AddExerciseCommand}" />
-            <Button MinWidth="30" Height="30" Content="Delete Exercise" Command="{Binding DeleteExerciseCommand}" />
+            <Button MinWidth="30" Height="30" Content="Delete" Command="{Binding DeleteCommand}" />
         </ToolBar>
 
         <StackPanel Grid.Row="1" DockPanel.Dock="Top" Margin="0,0,0,5">
@@ -50,8 +51,14 @@
 
         <!-- Attached Property to make Treeview SelectedItem work with MVVM !!! -->
         <!-- https://stackoverflow.com/questions/1000040/data-binding-to-selecteditem-in-a-wpf-treeview -->
-        <TreeView Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+        <TreeView Name="treeView" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
                   ItemsSource="{Binding TimeSlots}">
+
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="SelectedItemChanged">
+                    <command:EventToCommand Command="{Binding SelectedItemChangedCommand}" CommandParameter="{Binding ElementName=treeView,Path=SelectedValue}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
 
             <TreeView.ItemContainerStyle>
                 <Style TargetType="{x:Type TreeViewItem}">

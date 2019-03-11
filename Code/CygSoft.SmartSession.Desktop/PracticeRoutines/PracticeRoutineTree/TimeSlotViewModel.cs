@@ -1,13 +1,8 @@
 ﻿using CygSoft.SmartSession.Domain.PracticeRoutines;
 using CygSoft.SmartSession.Infrastructure;
-using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CygSoft.SmartSession.Desktop.PracticeRoutines.PracticeRoutineTree
 {
@@ -23,7 +18,7 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines.PracticeRoutineTree
 
             foreach (var exercise in timeSlot)
             {
-                Exercises.Add(new TimeSlotExerciseViewModel(exercise));
+                Exercises.Add(new TimeSlotExerciseViewModel(exercise, this));
             }
         }
 
@@ -72,12 +67,17 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines.PracticeRoutineTree
         private void Add()
         {
             TimeSlotExercise exercise = new TimeSlotExercise(1, timeSlot.Id, "New Exercise", 3);
-            Exercises.Add(new TimeSlotExerciseViewModel(exercise));
+            Exercises.Add(new TimeSlotExerciseViewModel(exercise, this));
         }
 
         private void RemoveSelection()
         {
             Exercises.Remove(SelectedExercise);
+        }
+
+        public void Remove(TimeSlotExerciseViewModel timeSlotExerciseViewModel)
+        {
+            Exercises.Remove(timeSlotExerciseViewModel);
         }
 
         private void DecrementMinutesPracticed()

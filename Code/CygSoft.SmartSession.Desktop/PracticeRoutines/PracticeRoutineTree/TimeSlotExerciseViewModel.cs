@@ -10,11 +10,13 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines.PracticeRoutineTree
 {
     public class TimeSlotExerciseViewModel : TreeViewItemViewModel
     {
+        private TimeSlotViewModel timeSlotViewModel;
         private TimeSlotExercise timeSlotExercise;
 
-        public TimeSlotExerciseViewModel(TimeSlotExercise timeSlotExercise)
+        public TimeSlotExerciseViewModel(TimeSlotExercise timeSlotExercise, TimeSlotViewModel timeSlotViewModel)
         {
             this.timeSlotExercise = timeSlotExercise ?? throw new ArgumentNullException("Time Slot Exercise must be provided.");
+            this.timeSlotViewModel = timeSlotViewModel ?? throw new ArgumentNullException("Time Slot View Model must be provided.");
         }
 
         public string Title => timeSlotExercise.Title;
@@ -31,5 +33,8 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines.PracticeRoutineTree
                 RaisePropertyChanged(() => FrequencyWeighting);
             }
         }
+
+        public TimeSlotViewModel TimeSlotViewModel => timeSlotViewModel;
+        public TimeSlotExercise TimeSlotExercise => timeSlotExercise;
     }
 }

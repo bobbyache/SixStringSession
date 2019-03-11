@@ -6,6 +6,7 @@ using CygSoft.SmartSession.Desktop.Supports.Validators;
 using CygSoft.SmartSession.Domain.PracticeRoutines;
 using CygSoft.SmartSession.Infrastructure;
 using CygSoft.SmartSession.Infrastructure.Enums;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using System;
@@ -35,9 +36,12 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
         public RelayCommand CancelCommand { get; private set; }
 
         public RelayCommand AddTimeSlotCommand { get; private set; }
-        public RelayCommand DeleteTimeSlotCommand { get; private set; }
+        public RelayCommand AddExerciseCommand { get; private set; }
+        public RelayCommand DeleteCommand { get; private set; }
 
         public BindingList<TimeSlotViewModel> TimeSlots { get; } = new BindingList<TimeSlotViewModel>();
+
+        public RelayCommand<ViewModelBase> SelectedItemChangedCommand { get; private set; }
 
         [Required]
         public string Title
@@ -51,20 +55,18 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
             }
         }
 
-        private TimeSlotViewModel selectedTimeSlot;
-        public TimeSlotViewModel SelectedTimeSlot
+        private ViewModelBase selectedItem;
+        public ViewModelBase SelectedItem
         {
             get
             {
-                return selectedTimeSlot;
+                return selectedItem;
             }
             set
             {
-                Set(() => SelectedTimeSlot, ref selectedTimeSlot, value);
+                Set(() => SelectedItem, ref selectedItem, value);
             }
         }
-
-
 
         public string TotalTimeDisplay
         {
@@ -86,8 +88,10 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
             SaveCommand = new RelayCommand(() => Save(), () => !this.HasErrors);
             CancelCommand = new RelayCommand(() => Cancel(), () => true);
             AddTimeSlotCommand = new RelayCommand(() => AddTimeSlot(), () => true);
-            DeleteTimeSlotCommand = new RelayCommand(() => DeleteTimeSlot(), () => true);
+            AddExerciseCommand = new RelayCommand(() => AddExercise(), () => true);
+            DeleteCommand = new RelayCommand(() => Delete(), () => true);
 
+            SelectedItemChangedCommand = new RelayCommand<ViewModelBase>(c => SelectedItem = c);
         }
 
         public void StartEdit(PracticeRoutine practiceRoutine)
@@ -117,27 +121,45 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
             TimeSlots.Add(new TimeSlotViewModel(timeSlot));
         }
 
-        private void DeleteTimeSlot()
+        private void AddExercise()
         {
-            practiceRoutine.Remove(SelectedTimeSlot.TimeSlot);
-            TimeSlots.Remove(SelectedTimeSlot);
+            Messenger.Default.Send(new StartSelectingPracticeRoutineExerciseMessage());
+        }
+        public void AddTimeSlotExercise(TimeSlotExercise timeSlotExercise)
+        {
+            if (SelectedItem is TimeSlotViewModel)
+            {
+                var timeSlotViewModel = SelectedItem as TimeSlotViewModel;
+                TimeSlotExerciseViewModel timeSlotExerciseViewModel = new TimeSlotExerciseViewModel(timeSlotExercise, timeSlotViewModel);
+                timeSlotViewModel.TimeSlot.Add(timeSlotExercise);
+                timeSlotViewModel.Exercises.Add(timeSlotExerciseViewModel);
+            }
+            else
+            {
+                TimeSlotExerciseViewModel selectedExerciseViewModel = SelectedItem as TimeSlotExerciseViewModel;
+                var timeSlotViewModel = selectedExerciseViewModel.TimeSlotViewModel;
+                TimeSlotExerciseViewModel timeSlotExerciseViewModel = new TimeSlotExerciseViewModel(timeSlotExercise, timeSlotViewModel);
+                timeSlotViewModel.TimeSlot.Add(timeSlotExercise);
+                timeSlotViewModel.Exercises.Add(timeSlotExerciseViewModel);
+            }
         }
 
+        private void Delete()
+        {
+            if (SelectedItem is TimeSlotViewModel)
+            {
+                practiceRoutine.Remove((SelectedItem as TimeSlotViewModel).TimeSlot);
+                TimeSlots.Remove(SelectedItem as TimeSlotViewModel);
+            }
+            else
+            {
+                var exerciseViewModel = SelectedItem as TimeSlotExerciseViewModel;
+                var timeSlotViewModel = exerciseViewModel.TimeSlotViewModel;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                timeSlotViewModel.TimeSlot.Remove(exerciseViewModel.TimeSlotExercise);
+                timeSlotViewModel.Remove(exerciseViewModel);
+            }
+        }
 
         private void Save()
         {

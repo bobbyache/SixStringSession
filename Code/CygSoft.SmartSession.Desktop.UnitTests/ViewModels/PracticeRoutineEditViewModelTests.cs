@@ -18,32 +18,6 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
     public class PracticeRoutineEditViewModelTests
     {
         [Test]
-        public void Make_TreeviewItem_Work_in_MVVM_With_SelectedItem()
-        {
-            /* See: https://stackoverflow.com/questions/1000040/data-binding-to-selecteditem-in-a-wpf-treeview
-             * Use an attached property to get this to work...
-             * */
-
-
-
-            Assert.Fail();
-        }
-
-        [Test]
-        public void PracticeRoutineEditViewModel_AddTimeSlot()
-        {
-            // unit tests required...
-            Assert.Fail();
-        }
-
-        [Test]
-        public void PracticeRoutineEditViewModel_DeleteTimeSlot()
-        {
-            // unit tests required...
-            Assert.Fail();
-        }
-
-        [Test]
         public void PracticeRoutineEditViewModel_Initialized_With_No_TimeSlot_Throws_Exception()
         {
             var dialogService = new Mock<IDialogViewService>();
@@ -114,7 +88,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         }
 
         [Test]
-        public void PracticeRoutineEditViewModel_Remove_TimeSlot_Actually_Removes_TimeSlot()
+        public void PracticeRoutineEditViewModel_Remove_TimeSlot_Removes_TimeSlot()
         {
             var dialogService = new Mock<IDialogViewService>();
             var practiceRoutine = EntityFactory.GetBasicPracticeRoutine();
@@ -124,10 +98,10 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
 
             TimeSlotViewModel firstTimeSlot = viewModel.TimeSlots[0];
 
-            viewModel.SelectedTimeSlot = firstTimeSlot;
+            viewModel.SelectedItem = firstTimeSlot;
 
             var beforeCount = viewModel.TimeSlots.Count;
-            viewModel.DeleteTimeSlotCommand.Execute(null);
+            viewModel.DeleteCommand.Execute(null);
             var afterCount = viewModel.TimeSlots.Count;
 
             Assert.AreEqual(beforeCount - 1, afterCount);
@@ -147,9 +121,9 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
             TimeSlotViewModel firstTimeSlot = viewModel.TimeSlots[0];
             viewModel.TimeSlots.ListChanged += (s, e) => listChanged = true;
 
-            viewModel.SelectedTimeSlot = firstTimeSlot;
+            viewModel.SelectedItem = firstTimeSlot;
 
-            viewModel.DeleteTimeSlotCommand.Execute(null);
+            viewModel.DeleteCommand.Execute(null);
 
             Assert.IsTrue(listChanged);
         }
