@@ -149,13 +149,6 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         }
 
         [Test]
-        public void TimeSlotViewModel_Derives_From_NodeViewModel()
-        {
-            TimeSlotViewModel viewModel = new TimeSlotViewModel(GetBasicTimeSlot());
-            Assert.That(viewModel, Is.AssignableTo(typeof(TreeViewItemViewModel)));
-        }
-
-        [Test]
         public void TimeSlotViewModel_IncrementMinutes_Reflects_On_Domain()
         {
             var timeSlot = GetBasicTimeSlot();

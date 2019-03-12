@@ -1,9 +1,10 @@
 ﻿using CygSoft.SmartSession.Domain.PracticeRoutines;
+using GalaSoft.MvvmLight;
 using System;
 
 namespace CygSoft.SmartSession.Desktop.PracticeRoutines.PracticeRoutineTree
 {
-    public class TimeSlotExerciseViewModel : TreeViewItemViewModel
+    public class TimeSlotExerciseViewModel : ViewModelBase
     {
         private TimeSlotViewModel timeSlotViewModel;
         private TimeSlotExercise timeSlotExercise;

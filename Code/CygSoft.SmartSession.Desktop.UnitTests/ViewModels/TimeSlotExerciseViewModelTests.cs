@@ -54,17 +54,6 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         }
 
         [Test]
-        public void TimeSlotExerciseViewModel_Derives_From_NodeViewModel()
-        {
-            PracticeRoutineTimeSlot timeSlot = EntityFactory.GetSingleTimeSlot();
-            TimeSlotViewModel timeSlotViewModel = new TimeSlotViewModel(timeSlot);
-            TimeSlotExercise timeSlotExercise = EntityFactory.GetTimeSlotExercise();
-
-            TimeSlotExerciseViewModel viewModel = new TimeSlotExerciseViewModel(timeSlotExercise, timeSlotViewModel);
-            Assert.That(viewModel, Is.AssignableTo(typeof(TreeViewItemViewModel)));
-        }
-
-        [Test]
         public void TimeSlotExerciseViewModel_Exposes_Parent_TimeSlotViewModel()
         {
             PracticeRoutineTimeSlot timeSlot = EntityFactory.GetSingleTimeSlot();
