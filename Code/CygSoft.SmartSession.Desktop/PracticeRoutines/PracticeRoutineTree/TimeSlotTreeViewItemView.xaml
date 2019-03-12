@@ -12,7 +12,7 @@
                 <ColumnDefinition Width="150" />
             </Grid.ColumnDefinitions>
             <TextBox Width="450" Grid.Column="0" Margin="5" HorizontalAlignment="Left" Text="{Binding Title}" />
-            <StackPanel Height="25" Grid.Column="1" HorizontalAlignment="Center" Orientation="Horizontal">
+            <StackPanel Height="30" Grid.Column="1" HorizontalAlignment="Center" Orientation="Horizontal">
                 <Button Margin="2" MinWidth="30" Command="{Binding DecrementMinutesCommand}">&lt;&lt;</Button>
                 <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" MinWidth="50" Text="{Binding DisplayTime}" />
                 <Button Margin="2" MinWidth="30" Command="{Binding IncrementMinutesCommand}">&gt;&gt;</Button>

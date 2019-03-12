@@ -16,7 +16,7 @@
 							TickPlacement="BottomRight" IsSnapToTickEnabled="True">
 
             </Slider>
-            <TextBlock Grid.Column="1" TextAlignment="Left" Margin="2" MinWidth="50" Text="{Binding Title}" />
+            <TextBlock Grid.Column="1" VerticalAlignment="Center" TextAlignment="Left" Margin="4,4,10,4" MinWidth="50" Text="{Binding Title}" />
         </Grid>
     </Border>
 </UserControl>
