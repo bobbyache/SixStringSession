@@ -10,7 +10,12 @@
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:command="http://www.galasoft.ch/mvvmlight"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800"
+             >
+    <UserControl.Background>
+        <ImageBrush ImageSource="../Images/guitar_back.jpg" Stretch="None" AlignmentX="Right" AlignmentY="Bottom" />
+    </UserControl.Background>
+    
     <UserControl.DataContext>
         <Binding Source="{StaticResource ViewModelLocator}" Path="PracticeRoutineEditViewModel" />
     </UserControl.DataContext>
@@ -27,6 +32,37 @@
             </Style.Triggers>
         </Style>
         -->
+        <Style x:Key="routineTree" TargetType="TreeView">
+            <Setter Property="OverridesDefaultStyle"
+          Value="True" />
+            <Setter Property="SnapsToDevicePixels"
+          Value="True" />
+            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility"
+          Value="Auto" />
+            <Setter Property="ScrollViewer.VerticalScrollBarVisibility"
+          Value="Auto" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TreeView">
+                        <Border Name="Border"
+                            CornerRadius="1"
+                            BorderThickness="1">
+                            <Border.BorderBrush>
+                                <SolidColorBrush Color="Transparent" />
+                            </Border.BorderBrush>
+                            <Border.Background>
+                                <SolidColorBrush Color="Transparent" />
+                            </Border.Background>
+                            <ScrollViewer Focusable="False"
+                                    CanContentScroll="False"
+                                    Padding="4">
+                                <ItemsPresenter />
+                            </ScrollViewer>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
         <converters:StarWidthConverter x:Key="StarWidthConverter"/>
     </UserControl.Resources>
     <Grid Name="gridMain">
@@ -50,7 +86,7 @@
         </StackPanel>
 
         <TreeView Name="treeView" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-                  ItemsSource="{Binding TimeSlots}">
+                  ItemsSource="{Binding TimeSlots}" Style="{StaticResource routineTree}" >
 
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="SelectedItemChanged">

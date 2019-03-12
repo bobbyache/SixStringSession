@@ -5,16 +5,18 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="55" d:DesignWidth="800">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="100" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
-        <Slider  Grid.Column="0" Margin="5" MaxWidth="100" Maximum="5" HorizontalAlignment="Stretch" TickFrequency="1" 
+    <Border CornerRadius="10" Padding="5" Margin="5" BorderBrush="DarkRed" BorderThickness="3" Background="White">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Slider  Grid.Column="0" Margin="5" MaxWidth="100" Maximum="5" HorizontalAlignment="Stretch" TickFrequency="1" 
 							Value="{Binding FrequencyWeighting, ValidatesOnNotifyDataErrors=True}"
 							TickPlacement="BottomRight" IsSnapToTickEnabled="True">
 
-        </Slider>
-        <TextBlock Grid.Column="1" TextAlignment="Left" Margin="2" MinWidth="50" Text="{Binding Title}" />
-    </Grid>
+            </Slider>
+            <TextBlock Grid.Column="1" TextAlignment="Left" Margin="2" MinWidth="50" Text="{Binding Title}" />
+        </Grid>
+    </Border>
 </UserControl>
