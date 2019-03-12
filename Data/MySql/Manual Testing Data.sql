@@ -1,14 +1,15 @@
 USE `smartsession_tests`;
 
-DELETE FROM TimeSlotExercise WHERE ExerciseId > -1;
-DELETE FROM PracticeRoutineTimeslot WHERE PracticeRoutineId > -1;
-DELETE FROM TimeSlot WHERE Id > -1;
-DELETE FROM PracticeRoutine WHERE Id > -1;
-DELETE FROM PracticeRoutine WHERE Id > -1;
-DELETE FROM ExerciseActivity WHERE Id > -1;
-DELETE FROM Exercise WHERE Id > -1;
+SET SQL_SAFE_UPDATES=0;
 
+DELETE FROM TimeSlotExercise WHERE ExerciseId;
+DELETE FROM PracticeRoutineTimeslot WHERE PracticeRoutineId;
+DELETE FROM TimeSlot WHERE Id;
+DELETE FROM PracticeRoutine WHERE Id;
+DELETE FROM ExerciseActivity WHERE Id;
+DELETE FROM Exercise WHERE Id;
 
+SET SQL_SAFE_UPDATES=1;
 
 INSERT INTO Exercise (Title, TargetMetronomeSpeed, SpeedProgressWeighting, TargetPracticeTime, PracticeTimeProgressWeighting, ManualProgressWeighting, DateCreated, DateModified) 
 	VALUES ('Yellow Exercise', 80, 50, NULL, 50, 0, '2015-02-01 01:00:00', NULL);

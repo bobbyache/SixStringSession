@@ -48,12 +48,21 @@ namespace CygSoft.SmartSession.Domain.Exercises
 
         public void Remove(int id)
         {
-            if (id <= 0)
-                throw new ArgumentException("The Id is invalid and must be greater than 0.");
+            try
+            {
+                if (id <= 0)
+                    throw new ArgumentException("The Id is invalid and must be greater than 0.");
 
-            var exercise = unitOfWork.Exercises.Get(id);
-            unitOfWork.Exercises.Remove(exercise);
-            unitOfWork.Commit();
+                var exercise = unitOfWork.Exercises.Get(id);
+                unitOfWork.Exercises.Remove(exercise);
+                unitOfWork.Commit();
+            }
+            catch (Exception exception)
+            {
+                //TODO: AOP Logging of Errors! log error...
+                Console.WriteLine(exception.Message);
+                throw;
+            }
         }
 
         public IEnumerable<IExercise> Find(ExerciseSearchCriteria searchCriteria)

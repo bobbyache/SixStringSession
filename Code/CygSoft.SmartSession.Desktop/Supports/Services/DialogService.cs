@@ -42,6 +42,19 @@ namespace CygSoft.SmartSession.Desktop.Supports.Services
             return false;
         }
 
+        public bool WarningYesNoPrompt(string caption, string message)
+        {
+            MessageBoxResult result = MessageBox.Show(message, caption, MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if (result == MessageBoxResult.Yes)
+                return true;
+            return false;
+        }
+
+        public void ExclamationMessage(string caption, string message)
+        {
+            MessageBoxResult result = MessageBox.Show(message, caption, MessageBoxButton.OK, MessageBoxImage.Exclamation);
+        }
+
         //public void ShowError(Exception Error, string Title)
         //{
         //    MessageBox.Show(Error.ToString(), Title, MessageBoxButton.OK, MessageBoxImage.Error);

@@ -71,8 +71,11 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
 
         private void DeletePracticeRoutine()
         {
-            practiceRoutineService.Remove(SelectedPracticeRoutine.Id);
-            PracticeRoutineList.Remove(SelectedPracticeRoutine);
+            if (dialogService.WarningYesNoPrompt("Deletion Warning", "Deleting a practice routine will delete all its linked exercise timeslots. Are you sure you'd like to continue?"))
+            {
+                practiceRoutineService.Remove(SelectedPracticeRoutine.Id);
+                PracticeRoutineList.Remove(SelectedPracticeRoutine);
+            }
         }
 
         private void AddPracticeRoutine()

@@ -299,7 +299,14 @@ END;
 DROP PROCEDURE IF EXISTS `sp_DeletePracticeRoutine`;
 CREATE PROCEDURE `sp_DeletePracticeRoutine`(in _id int)
 BEGIN
+	SET SQL_SAFE_UPDATES=0;
+	
+	DELETE FROM TimeSlotExercise WHERE TimeSlotId IN (SELECT TimeSlotId FROM PracticeRoutineTimeSlot WHERE PracticeRoutineId = _id);
+	DELETE FROM PracticeRoutineTimeSlot WHERE PracticeRoutineId = _id;
+	DELETE FROM TimeSlot WHERE Id IN (SELECT TimeSlotId FROM PracticeRoutineTimeSlot WHERE PracticeRoutineId = _id);
 	DELETE FROM PracticeRoutine WHERE Id = _id;
+	
+	SET SQL_SAFE_UPDATES=1;
 END;
 
 DROP PROCEDURE IF EXISTS `sp_UpdatePracticeRoutine`;

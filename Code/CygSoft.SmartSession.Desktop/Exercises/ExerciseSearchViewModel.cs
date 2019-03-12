@@ -100,8 +100,16 @@ namespace CygSoft.SmartSession.Desktop.Exercises
 
         private void DeleteExercise()
         {
-            exerciseService.Remove(SelectedExercise.Id);
-            ExerciseList.Remove(SelectedExercise);
+            try
+            {
+                exerciseService.Remove(SelectedExercise.Id);
+                ExerciseList.Remove(SelectedExercise);
+            }
+            catch
+            {
+                dialogService.ExclamationMessage("Deletion Error", 
+                    "Cannot delete an exercise that has already been added to routine or/and has been practiced. Archive instead.");
+            }
         }
 
         private void AddExercise()

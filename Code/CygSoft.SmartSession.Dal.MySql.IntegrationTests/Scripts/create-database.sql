@@ -60,7 +60,8 @@ CREATE TABLE IF NOT EXISTS `practiceroutinetimeslot` (
   `DateCreated` datetime NOT NULL,
   `DateModified` datetime NULL,
   PRIMARY KEY (`PracticeRoutineId`, `TimeSlotId`),
-  CONSTRAINT `fk_exerciseroutine_timeslot` FOREIGN KEY (`TimeSlotId`) REFERENCES `timeslot` (`Id`)
+  CONSTRAINT `fk_practiceroutinetimeslot_timeslot` FOREIGN KEY (`TimeSlotId`) REFERENCES `timeslot` (`Id`),
+  CONSTRAINT `fk_practiceroutinetimeslot_practiceroutine` FOREIGN KEY (`PracticeRoutineId`) REFERENCES `practiceroutine` (`Id`)
 );
 
 CREATE TABLE IF NOT EXISTS `timeslotexercise` (
