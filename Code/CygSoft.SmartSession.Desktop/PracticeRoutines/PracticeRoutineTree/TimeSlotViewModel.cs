@@ -10,30 +10,25 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines.PracticeRoutineTree
     {
         public TimeSlotViewModel(PracticeRoutineTimeSlot timeSlot)
         {
-            this.timeSlot = timeSlot ?? throw new ArgumentNullException("Time Slot must be provided.");
-            AddCommand = new RelayCommand(() => Add(), () => true);
-            RemoveSelectionCommand = new RelayCommand(() => RemoveSelection(), () => true);
+            this.TimeSlot = timeSlot ?? throw new ArgumentNullException("Time Slot must be provided.");
             IncrementMinutesCommand = new RelayCommand(() => IncrementMinutesPracticed(), () => true);
             DecrementMinutesCommand = new RelayCommand(() => DecrementMinutesPracticed(), () => true);
 
             foreach (var exercise in timeSlot)
-            {
                 Exercises.Add(new TimeSlotExerciseViewModel(exercise, this));
-            }
         }
 
-        private PracticeRoutineTimeSlot timeSlot;
-        public PracticeRoutineTimeSlot TimeSlot => timeSlot;
+        public PracticeRoutineTimeSlot TimeSlot { get; }
 
         public string Title
         {
             get
             {
-                return timeSlot.Title;
+                return TimeSlot.Title;
             }
             set
             {
-                timeSlot.Title = value;
+                TimeSlot.Title = value;
                 RaisePropertyChanged(() => Title);
             }
         }
@@ -49,26 +44,17 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines.PracticeRoutineTree
         {
             get
             {
-                return timeSlot.AssignedSeconds;
+                return TimeSlot.AssignedSeconds;
             }
             set
             {
-                timeSlot.AssignedSeconds = value;
+                TimeSlot.AssignedSeconds = value;
                 RaisePropertyChanged(() => AssignedSeconds);
                 RaisePropertyChanged(() => DisplayTime);
             }
         }
 
         public TimeSlotExerciseViewModel SelectedExercise { get; set; }
-
-        public RelayCommand RemoveSelectionCommand { get; private set; }
-        public RelayCommand AddCommand { get; private set; }
-
-        private void Add()
-        {
-            TimeSlotExercise exercise = new TimeSlotExercise(1, timeSlot.Id, "New Exercise", 3);
-            Exercises.Add(new TimeSlotExerciseViewModel(exercise, this));
-        }
 
         private void RemoveSelection()
         {

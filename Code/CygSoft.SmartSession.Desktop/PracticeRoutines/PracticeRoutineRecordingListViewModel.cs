@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using CygSoft.SmartSession.Desktop.Supports.Messages;
+﻿using CygSoft.SmartSession.Desktop.Supports.Messages;
 using CygSoft.SmartSession.Desktop.Supports.Services;
 using CygSoft.SmartSession.Domain.Exercises;
 using CygSoft.SmartSession.Domain.PracticeRoutines;
@@ -8,16 +7,11 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CygSoft.SmartSession.Desktop.PracticeRoutines
 {
-
     public class PracticeRoutineRecordingListViewModel : ViewModelBase
     {
         private IPracticeRoutineService practiceRoutineService;
@@ -53,19 +47,6 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
             }
         }
 
-        //private bool recording;
-        //public bool Recording
-        //{
-        //    get
-        //    {
-        //        return recording;
-        //    }
-        //    set
-        //    {
-        //        Set(() => Recording, ref recording, value);
-        //    }
-        //}
-
         private double totalSecondsPracticed;
         public double TotalSecondsPracticed
         {
@@ -86,28 +67,15 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
             this.exerciseService = exerciseService ?? throw new ArgumentNullException("Exercise Service must be provided.");
             this.dialogService = dialogService ?? throw new ArgumentNullException("Dialog service must be provided.");
 
-            //CancelCommand = new RelayCommand(() => Cancel(), () => CanCancel());
-            //SaveCommand = new RelayCommand(() => Save(), () => CanSave());
             CancelCommand = new RelayCommand(() => Cancel(), () => true);
             SaveCommand = new RelayCommand(() => Save(), () => true);
             StartExercisingCommand = new RelayCommand(StartExercising, () => true);
         }
 
-        //private bool CanCancel()
-        //{
-        //    return (!this.Recording);
-        //}
-
-        //private bool CanSave()
-        //{
-        //    return (!this.Recording && this.TotalSecondsPracticed > 0);
-        //}
-
         private void RecordableExercises_ListChanged(object sender, ListChangedEventArgs e)
         {
             TotalSecondsPracticed = (int)RecordableExercises.Sum(r => r.Seconds);
             DisplayTime = TimeFuncs.DisplayTimeFromSeconds(TotalSecondsPracticed);
-            //Recording = RecordableExercises.Any(ex => ex.Recording == true);
         }
 
         public void InitializeSession(int practiceRoutineId)

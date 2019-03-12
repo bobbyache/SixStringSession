@@ -65,6 +65,8 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
             set
             {
                 Set(() => SelectedItem, ref selectedItem, value);
+                AddExerciseCommand.RaiseCanExecuteChanged();
+                DeleteCommand.RaiseCanExecuteChanged();
             }
         }
 
@@ -88,11 +90,14 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
             SaveCommand = new RelayCommand(() => Save(), () => !this.HasErrors);
             CancelCommand = new RelayCommand(() => Cancel(), () => true);
             AddTimeSlotCommand = new RelayCommand(() => AddTimeSlot(), () => true);
-            AddExerciseCommand = new RelayCommand(() => AddExercise(), () => true);
-            DeleteCommand = new RelayCommand(() => Delete(), () => true);
+            AddExerciseCommand = new RelayCommand(() => AddExercise(), () => CanAddExercise());
+            DeleteCommand = new RelayCommand(() => Delete(), () => CanDeleteExercise());
 
             SelectedItemChangedCommand = new RelayCommand<ViewModelBase>(c => SelectedItem = c);
         }
+
+        private bool CanAddExercise() => SelectedItem != null;
+        private bool CanDeleteExercise() => SelectedItem != null;
 
         public void StartEdit(PracticeRoutine practiceRoutine)
         {

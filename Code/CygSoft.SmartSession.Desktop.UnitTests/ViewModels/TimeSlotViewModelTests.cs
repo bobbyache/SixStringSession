@@ -97,19 +97,6 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         }
 
         [Test]
-        public void TimeSlotViewModel_Add_TimeSlotViewModel_Raises_ItemChanged()
-        {
-            var listChanged = false;
-            TimeSlotViewModel viewModel = new TimeSlotViewModel(GetBasicTimeSlot());
-
-            viewModel.Exercises.ListChanged += (s, e) => listChanged = true;
-
-            viewModel.AddCommand.Execute(null);
-
-            Assert.IsTrue(listChanged);
-        }
-
-        [Test]
         public void TimeSlotViewModel_Remove_TimeSlot_Actually_Removes_TimeSlot()
         {
             TimeSlotViewModel viewModel = new TimeSlotViewModel(GetBasicTimeSlot());
@@ -118,7 +105,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
             viewModel.SelectedExercise = first;
 
             var beforeCount = viewModel.Exercises.Count;
-            viewModel.RemoveSelectionCommand.Execute(null);
+            viewModel.Exercises.Remove(first);
             var afterCount = viewModel.Exercises.Count;
 
             Assert.AreEqual(beforeCount - 1, afterCount);
@@ -134,7 +121,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
 
             viewModel.SelectedExercise = first;
 
-            viewModel.RemoveSelectionCommand.Execute(null);
+            viewModel.Exercises.Remove(first);
 
             Assert.IsTrue(listChanged);
         }

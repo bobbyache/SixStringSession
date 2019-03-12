@@ -49,8 +49,6 @@
             <TextBlock FontSize="18" MinWidth="20" HorizontalAlignment="Center" Margin="5" Text="{Binding TotalTimeDisplay}"></TextBlock>
         </StackPanel>
 
-        <!-- Attached Property to make Treeview SelectedItem work with MVVM !!! -->
-        <!-- https://stackoverflow.com/questions/1000040/data-binding-to-selecteditem-in-a-wpf-treeview -->
         <TreeView Name="treeView" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
                   ItemsSource="{Binding TimeSlots}">
 
@@ -73,7 +71,6 @@
                 </Style>
             </TreeView.ItemContainerStyle>
 
-
             <TreeView.Resources>
                 <HierarchicalDataTemplate  DataType="{x:Type tree:TimeSlotViewModel}" ItemsSource="{Binding Exercises}" >
                     <tree:TimeSlotTreeViewItemView />
@@ -82,7 +79,6 @@
                 <DataTemplate DataType="{x:Type tree:TimeSlotExerciseViewModel}">
                     <tree:TimeSlotExerciseTreeViewItemView />
                 </DataTemplate>
-
             </TreeView.Resources>
 
         </TreeView>

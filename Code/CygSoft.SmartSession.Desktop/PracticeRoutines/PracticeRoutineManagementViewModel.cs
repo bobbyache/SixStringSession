@@ -6,33 +6,12 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CygSoft.SmartSession.Desktop.PracticeRoutines
 {
     public class PracticeRoutineManagementViewModel : ViewModelBase
     {
-
-        #region Alternative Constructors
-        //public PracticeRoutineSearchViewModel(IPracticeRoutineService practiceRoutineService, IDialogViewService dialogService, INavigationService navigationService)
-        //{
-        //    this.practiceRoutineService = practiceRoutineService;
-        //    this.dialogService = dialogService;
-        //    this.navigationService = navigationService;
-        //}
-
-        // for blend:
-        //public PracticeRoutineSearchViewModel() : this(new PracticeRoutineService(), new DialogService(), new NavigationService())
-        //{
-        //    ...
-        //}
-
-        #endregion
-
         private IPracticeRoutineService practiceRoutineService;
         private IDialogViewService dialogService;
 
@@ -100,6 +79,5 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
         {
             Messenger.Default.Send(new StartEditingPracticeRoutineMessage(practiceRoutineService.Create()));
         }
-
     }
 }
