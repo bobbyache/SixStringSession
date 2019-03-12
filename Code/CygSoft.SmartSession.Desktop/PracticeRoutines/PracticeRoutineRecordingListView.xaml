@@ -7,7 +7,9 @@
              xmlns:local1="http://www.galasoft.ch/mvvmlight"
              xmlns:practiceroutines="clr-namespace:CygSoft.SmartSession.Desktop.PracticeRoutines"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800"
+             Style="{StaticResource PageUserControl}"
+             >
     <UserControl.DataContext>
         <Binding Source="{StaticResource ViewModelLocator}" Path="PracticeRoutineRecordingListViewModel" />
     </UserControl.DataContext>

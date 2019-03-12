@@ -5,7 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CygSoft.SmartSession.Desktop.PracticeRoutines"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800"
+             Style="{StaticResource PageUserControl}"
+             >
     <UserControl.DataContext>
         <Binding Source="{StaticResource ViewModelLocator}" Path="PracticeRoutineManagementViewModel" />
     </UserControl.DataContext>
@@ -18,30 +20,26 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="30" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="30" />
         </Grid.RowDefinitions>
-        <ToolBar Grid.Row="0">
-            <Button MinWidth="30" Height="30" Content="Add" Command="{Binding AddPracticeRoutineCommand}" />
-            <Button MinWidth="30" Height="30" Content="Edit" Command="{Binding EditPracticeRoutineCommand}" />
-            <!--Click="Edit_Click" ></Button>-->
-            <Button MinWidth="30" Height="30" Content="Delete"  Command="{Binding DeletePracticeRoutineCommand}"></Button>
+        <ToolBar Grid.Row="0" Style="{StaticResource MainToolBarStyle}" >
+            <Button Style="{StaticResource MainToolBarButtonStyle}"  Content="Add" Command="{Binding AddPracticeRoutineCommand}" />
+            <Button Style="{StaticResource MainToolBarButtonStyle}"  Content="Edit" Command="{Binding EditPracticeRoutineCommand}" />
+            <Button Style="{StaticResource MainToolBarButtonStyle}" Content="Delete"  Command="{Binding DeletePracticeRoutineCommand}"></Button>
             <Separator></Separator>
-            <Button MinWidth="30" Height="30" Content="Practice" Command="{Binding PracticeCommand}" />
+            <Button Style="{StaticResource MainToolBarButtonStyle}" Content="Practice" Command="{Binding PracticeCommand}" />
         </ToolBar>
-        <ListView Grid.Row="1"  ItemsSource="{Binding PracticeRoutineList}" 
-                  SelectionMode="Extended"
-                  SelectedItem="{Binding SelectedPracticeRoutine}"
-                  >
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Width="600" Header="Title" DisplayMemberBinding="{Binding Title}"/>
-                </GridView>
-            </ListView.View>
-        </ListView>
-        <StatusBar Grid.Row="2">
-            <StatusBarItem>
-                <TextBlock Text="" />
-            </StatusBarItem>
-        </StatusBar>
+        <ListBox Grid.Row="1" ItemsSource="{Binding PracticeRoutineList}" SelectionMode="Extended" 
+                 SelectedItem="{Binding SelectedPracticeRoutine}"  Style="{StaticResource MainListing}"
+                 DisplayMemberPath="Title">
+            <ListBox.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Add" Command="{Binding AddPracticeRoutineCommand}" />
+                    <MenuItem Header="Edit" Command="{Binding EditPracticeRoutineCommand}" />
+                    <MenuItem Header="Delete" Command="{Binding DeletePracticeRoutineCommand}" />
+                    <Separator />
+                    <MenuItem Header="Practice" Command="{Binding PracticeCommand}" />
+                </ContextMenu>
+            </ListBox.ContextMenu>
+        </ListBox>
     </Grid>
 </UserControl>

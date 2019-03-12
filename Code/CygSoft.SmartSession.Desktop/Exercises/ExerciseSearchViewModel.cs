@@ -17,11 +17,9 @@ namespace CygSoft.SmartSession.Desktop.Exercises
         private IExerciseService exerciseService;
         private IDialogViewService dialogService;
 
-        public ExerciseSearchViewModel(ExerciseSearchCriteriaViewModel exerciseSearchCriteriaViewModel, IExerciseService exerciseService, 
+        public ExerciseSearchViewModel(IExerciseService exerciseService, 
             IDialogViewService dialogService)
         {
-            this.exerciseSearchCriteriaViewModel = exerciseSearchCriteriaViewModel ?? 
-                throw new ArgumentNullException("Search Criteria Model must be provided.");
             this.exerciseService = exerciseService ?? throw new ArgumentNullException("Service must be provided.");
             this.dialogService = dialogService ?? throw new ArgumentNullException("Dialog service must be provided.");
 
@@ -29,8 +27,7 @@ namespace CygSoft.SmartSession.Desktop.Exercises
             DeleteExerciseCommand = new RelayCommand(DeleteExercise, () => SelectedExercise != null);
             EditExerciseCommand = new RelayCommand(EditExercise, () => SelectedExercise != null);
             SelectExerciseCommand = new RelayCommand(SelectExercise, () => SelectedExercise != null);
-
-            Messenger.Default.Register<FindExercisesMessage>(this, Find);
+            FindCommand = new RelayCommand(Find, true);
         }
 
         protected virtual void SelectExercise() { }
@@ -40,6 +37,8 @@ namespace CygSoft.SmartSession.Desktop.Exercises
         public RelayCommand EditExerciseCommand { get; private set; }
 
         public RelayCommand SelectExerciseCommand { get; private set; }
+
+        public RelayCommand FindCommand { get; private set; }
 
         private ExerciseSearchResultModel selectedExercise;
         public ExerciseSearchResultModel SelectedExercise
@@ -54,11 +53,17 @@ namespace CygSoft.SmartSession.Desktop.Exercises
             }
         }
 
-        private ExerciseSearchCriteriaViewModel exerciseSearchCriteriaViewModel;
-        public ExerciseSearchCriteriaViewModel ExerciseSearchCriteriaViewModel
+        private string findText;
+        public string FindText
         {
-            get { return exerciseSearchCriteriaViewModel; }
-            set { Set(() => ExerciseSearchCriteriaViewModel, ref exerciseSearchCriteriaViewModel, value); }
+            get
+            {
+                return findText;
+            }
+            set
+            {
+                Set(() => FindText, ref findText, value);
+            }
         }
 
         private bool isItemsControlOpen;
@@ -74,19 +79,18 @@ namespace CygSoft.SmartSession.Desktop.Exercises
             }
         }
 
-
         public ObservableCollection<int> DifficultyList { get; private set; } = new ObservableCollection<int> { 1, 2, 3, 4, 5 };
         public ObservableCollection<int> PracticalityList { get; private set; } = new ObservableCollection<int> { 1, 2, 3, 4, 5 };
         public ObservableCollection<ExerciseSearchResultModel> ExerciseList { get; private set; } = new ObservableCollection<ExerciseSearchResultModel>();
 
-
-        private void Find(FindExercisesMessage obj)
+        private void Find()
         {
             ExerciseList.Clear();
 
-            var searchCriteria = Mapper.Map<ExerciseSearchCriteriaViewModel, ExerciseSearchCriteria>(ExerciseSearchCriteriaViewModel);
+            var exerciseSearchCriteria = new ExerciseSearchCriteria();
+            exerciseSearchCriteria.Title = FindText;
 
-            foreach (var exercise in exerciseService.Find(searchCriteria))
+            foreach (var exercise in exerciseService.Find(exerciseSearchCriteria))
             {
                 ExerciseList.Add(Mapper.Map<ExerciseSearchResultModel>(exercise));
             }

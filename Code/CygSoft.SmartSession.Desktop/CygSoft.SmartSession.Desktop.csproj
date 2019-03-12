@@ -140,10 +140,6 @@
       <DependentUpon>ExerciseEditView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Exercises\ExerciseEditViewModel.cs" />
-    <Compile Include="Exercises\ExerciseSearchCriteriaView.xaml.cs">
-      <DependentUpon>ExerciseSearchCriteriaView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Exercises\ExerciseSearchCriteriaViewModel.cs" />
     <Compile Include="MainWindowViewModel.cs" />
     <Compile Include="PracticeRoutines\ExerciseInstanceEditView.xaml.cs">
       <DependentUpon>ExerciseInstanceEditView.xaml</DependentUpon>
@@ -233,10 +229,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Exercises\ExerciseSearchCriteriaView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Exercises\ExerciseSelectionView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -290,6 +282,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PracticeRoutines\PracticeRoutineTree\TimeSlotTreeViewItemView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Supports\Resources\CommonControlStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

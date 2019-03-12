@@ -6,71 +6,41 @@
              xmlns:local="clr-namespace:CygSoft.SmartSession.Desktop.Exercises"
              xmlns:converters="clr-namespace:CygSoft.SmartSession.Desktop.Supports.Converters"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800"
+             Style="{StaticResource PageUserControl}"
+             >
     <UserControl.Resources>
         <converters:MathConverter x:Key="MathConverter"/>
         <converters:ProgressForegroundConverter x:Key="ProgressForegroundConverter"/>
         <converters:OnScheduleConverter x:Key="OnScheduleConverter"/>
         <converters:StarWidthConverter x:Key="StarWidthConverter"/>
         <converters:TimeDisplayConverter x:Key="TimeDisplayConverter"/>
-        <Style TargetType="{x:Type GridViewColumnHeader}">
-            <Setter Property="HorizontalContentAlignment" Value="Left" />
-        </Style>
     </UserControl.Resources>
     <Grid Margin="0,0,0,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="30" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="30" />
         </Grid.RowDefinitions>
-        <ToolBar Grid.Row="0">
-            <Button MinWidth="30" Height="30" Content="Add" Command="{Binding AddExerciseCommand}" />
-            <Button MinWidth="30" Height="30" Content="Edit" Command="{Binding EditExerciseCommand}" />
-            <!--Click="Edit_Click" ></Button>-->
-            <Button MinWidth="30" Height="30" Content="Delete"  Command="{Binding DeleteExerciseCommand}"></Button>
+        <ToolBar Grid.Row="0" Style="{StaticResource MainToolBarStyle}">
+            <Button Style="{StaticResource MainToolBarButtonStyle}" Content="Add" Command="{Binding AddExerciseCommand}" />
+            <Button Style="{StaticResource MainToolBarButtonStyle}" Content="Edit" Command="{Binding EditExerciseCommand}" />
+            <Button Style="{StaticResource MainToolBarButtonStyle}" Content="Delete"  Command="{Binding DeleteExerciseCommand}" ></Button>
             <Separator></Separator>
-            <ToggleButton
-                      IsChecked="{Binding IsItemsControlOpen, Mode=TwoWay}" 
-                      HorizontalAlignment="Left" >
-                <ToggleButton.Content>
-                    <StackPanel>
-                        <TextBlock>                      
-                            <Run Text="Find" />                       
-                            <Run Text="q" FontFamily="Wingdings 3" />
-                        </TextBlock>
-                        <Popup IsOpen="{Binding IsItemsControlOpen, Mode=TwoWay}" StaysOpen="False"
-                                   Placement="Bottom" PopupAnimation="Slide"
-                                   HorizontalOffset="-5" VerticalOffset="3">
-
-                            <Border BorderBrush="SlateBlue" BorderThickness="1"  CornerRadius="2" >
-                                <local:ExerciseSearchCriteriaView Background="White"  Width="410" />
-                            </Border>
-                        </Popup>
-                    </StackPanel>
-                </ToggleButton.Content>
-            </ToggleButton>
+            <TextBox MinWidth="200" Text="{Binding FindText}"></TextBox>
+            <Button Style="{StaticResource MainToolBarButtonStyle}" Content="Find"  Command="{Binding FindCommand}" ></Button>
         </ToolBar>
-        <ListView Grid.Row="1"  ItemsSource="{Binding ExerciseList}" 
-                  SelectionMode="Extended"
-                  SelectedItem="{Binding SelectedExercise}"
-                  >
+        <ListBox Grid.Row="1" ItemsSource="{Binding ExerciseList}" SelectionMode="Extended" 
+                 SelectedItem="{Binding SelectedExercise}" Style="{StaticResource MainListing}"
+                 DisplayMemberPath="Title">
             <ListBox.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Header="Practice this Exercise" 
-                      Command="{Binding RecordExerciseCommand}" 
-                    />
+                    <MenuItem Header="Add" Command="{Binding AddExerciseCommand}" />
+                    <MenuItem Header="Edit" Command="{Binding EditExerciseCommand}" />
+                    <MenuItem Header="Delete" Command="{Binding DeleteExerciseCommand}" />
+                    <Separator />
+                    <MenuItem Header="Practice this Exercise" Command="{Binding RecordExerciseCommand}" />
                 </ContextMenu>
             </ListBox.ContextMenu>
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Width="600" Header="Title" DisplayMemberBinding="{Binding Title}"/>
-                </GridView>
-            </ListView.View>
-        </ListView>
-        <StatusBar Grid.Row="2">
-            <StatusBarItem>
-                <TextBlock Text="" />
-            </StatusBarItem>
-        </StatusBar>
+        </ListBox>
     </Grid>
 </UserControl>

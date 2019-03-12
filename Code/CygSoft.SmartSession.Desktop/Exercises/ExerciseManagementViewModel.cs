@@ -13,8 +13,8 @@ namespace CygSoft.SmartSession.Desktop.Exercises
 {
     public class ExerciseManagementViewModel : ExerciseSearchViewModel
     {
-        public ExerciseManagementViewModel(ExerciseSearchCriteriaViewModel exerciseSearchCriteriaViewModel, IExerciseService exerciseService,
-            IDialogViewService dialogService) : base(exerciseSearchCriteriaViewModel, exerciseService, dialogService)
+        public ExerciseManagementViewModel(IExerciseService exerciseService,
+            IDialogViewService dialogService) : base(exerciseService, dialogService)
         {
             RecordExerciseCommand = new RelayCommand(RecordExercise, () => SelectedExercise != null);
         }

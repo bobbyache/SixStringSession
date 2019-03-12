@@ -37,10 +37,6 @@ namespace CygSoft.SmartSession.Desktop.Supports.Messages
     {
     }
 
-    internal class FindExercisesMessage
-    {
-    }
-
     internal class OpenExerciseRecorderMessage
     {
         public int ExerciseId { get; }

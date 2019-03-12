@@ -11,82 +11,43 @@
              xmlns:command="http://www.galasoft.ch/mvvmlight"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
+             Style="{StaticResource PageUserControl}"
              >
-    <UserControl.Background>
-        <ImageBrush ImageSource="../Images/guitar_back.jpg" Stretch="None" AlignmentX="Right" AlignmentY="Bottom" />
-    </UserControl.Background>
-    
     <UserControl.DataContext>
         <Binding Source="{StaticResource ViewModelLocator}" Path="PracticeRoutineEditViewModel" />
     </UserControl.DataContext>
     <UserControl.Resources>
+
+        <Style TargetType="{x:Type UserControl}">
+            <Setter Property="Background" Value="Black" />
+        </Style>
         <Style TargetType="{x:Type GridViewColumnHeader}">
             <Setter Property="HorizontalContentAlignment" Value="Left" />
-        </Style>
-        <!--
-        <Style TargetType="TextBox">
-            <Style.Triggers>
-                <Trigger Property="Validation.HasError" Value="True" >
-                    <Setter Property="ToolTip" Value="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors).CurrentItem.ErrorContent}" />
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-        -->
-        <Style x:Key="routineTree" TargetType="TreeView">
-            <Setter Property="OverridesDefaultStyle"
-          Value="True" />
-            <Setter Property="SnapsToDevicePixels"
-          Value="True" />
-            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility"
-          Value="Auto" />
-            <Setter Property="ScrollViewer.VerticalScrollBarVisibility"
-          Value="Auto" />
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="TreeView">
-                        <Border Name="Border"
-                            CornerRadius="1"
-                            BorderThickness="1">
-                            <Border.BorderBrush>
-                                <SolidColorBrush Color="Transparent" />
-                            </Border.BorderBrush>
-                            <Border.Background>
-                                <SolidColorBrush Color="Transparent" />
-                            </Border.Background>
-                            <ScrollViewer Focusable="False"
-                                    CanContentScroll="False"
-                                    Padding="4">
-                                <ItemsPresenter />
-                            </ScrollViewer>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
         </Style>
         <converters:StarWidthConverter x:Key="StarWidthConverter"/>
     </UserControl.Resources>
     <Grid Name="gridMain">
         <Grid.RowDefinitions>
-            <RowDefinition Height="26" />
-            <RowDefinition Height="90" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="110" />
             <RowDefinition Height="*" />
             <RowDefinition Height="40" />
         </Grid.RowDefinitions>
 
-        <ToolBar Grid.Row="0" Height="30" VerticalAlignment="Stretch" HorizontalAlignment="Left">
-            <Button MinWidth="30" Height="30" Content="Add Timeslot" Command="{Binding AddTimeSlotCommand}" />
-            <Button MinWidth="30" Height="30" Content="Add Exercise" Command="{Binding AddExerciseCommand}" />
-            <Button MinWidth="30" Height="30" Content="Delete" Command="{Binding DeleteCommand}" />
-        </ToolBar>
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <Button Content="Add Timeslot" Command="{Binding AddTimeSlotCommand}" />
+            <Button Content="Add Exercise" Command="{Binding AddExerciseCommand}" />
+            <Button Content="Delete" Command="{Binding DeleteCommand}" />
+        </StackPanel>
 
         <StackPanel Grid.Row="1" DockPanel.Dock="Top" Margin="0,0,0,5">
             <TextBlock Text="Title:" Margin="5"></TextBlock>
             <TextBox Margin="5" Text="{Binding Title, ValidatesOnNotifyDataErrors=True}"></TextBox>
-            <TextBlock FontSize="18" MinWidth="20" HorizontalAlignment="Center" Margin="5" Text="{Binding TotalTimeDisplay}"></TextBlock>
+            <TextBlock FontSize="18" Foreground="White" MinWidth="20" HorizontalAlignment="Center" Margin="5" Text="{Binding TotalTimeDisplay}"></TextBlock>
         </StackPanel>
 
         <TreeView Name="treeView" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-                  ItemsSource="{Binding TimeSlots}" Style="{StaticResource routineTree}" >
+                  ItemsSource="{Binding TimeSlots}" Style="{StaticResource MainListing}" >
 
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="SelectedItemChanged">

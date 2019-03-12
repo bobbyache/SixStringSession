@@ -16,8 +16,8 @@ namespace CygSoft.SmartSession.Desktop.Exercises
         public RelayCommand OkCommand { get; private set; }
         public RelayCommand CancelCommand { get; private set; }
 
-        public ExerciseSelectionViewModel(ExerciseSearchCriteriaViewModel exerciseSearchCriteriaViewModel, IExerciseService exerciseService,
-            IDialogViewService dialogService) : base(exerciseSearchCriteriaViewModel, exerciseService, dialogService)
+        public ExerciseSelectionViewModel(IExerciseService exerciseService,
+            IDialogViewService dialogService) : base(exerciseService, dialogService)
         {
             OkCommand = new RelayCommand(() => Save(), () => true);
             CancelCommand = new RelayCommand(() => Cancel(), () => true);

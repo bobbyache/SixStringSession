@@ -8,7 +8,9 @@
              xmlns:validators="clr-namespace:CygSoft.SmartSession.Desktop.Supports.Validators"
              xmlns:enums="clr-namespace:CygSoft.SmartSession.Infrastructure.Enums;assembly=CygSoft.SmartSession.Infrastructure"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800"
+             Style="{StaticResource PageUserControl}"
+             >
     <UserControl.DataContext>
         <Binding Source="{StaticResource ViewModelLocator}" Path="ExerciseEditViewModel" />
     </UserControl.DataContext>
