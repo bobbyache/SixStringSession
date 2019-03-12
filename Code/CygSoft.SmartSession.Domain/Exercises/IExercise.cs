@@ -1,5 +1,4 @@
-﻿using CygSoft.SmartSession.Domain.Keywords;
-using CygSoft.SmartSession.Domain.Recording;
+﻿using CygSoft.SmartSession.Domain.Recording;
 using CygSoft.SmartSession.Infrastructure;
 using System.Collections.Generic;
 
@@ -22,7 +21,6 @@ namespace CygSoft.SmartSession.Domain.Exercises
         double GetPercentComplete();
         double GetSecondsPracticed();
 
-        List<ExerciseKeyword> ExerciseKeywords { get; set; }
         List<ExerciseActivity> ExerciseActivity { get; set; }
     }
 }

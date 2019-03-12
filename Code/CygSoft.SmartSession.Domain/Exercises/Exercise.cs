@@ -1,5 +1,4 @@
 ﻿using CygSoft.SmartSession.Domain.Common;
-using CygSoft.SmartSession.Domain.Keywords;
 using CygSoft.SmartSession.Domain.Recording;
 using CygSoft.SmartSession.Infrastructure;
 using System.Collections.Generic;
@@ -38,7 +37,7 @@ namespace CygSoft.SmartSession.Domain.Exercises
         public int PracticeTimeProgressWeighting { get; set; } = 50; // half way...
         public int ManualProgressWeighting { get; set; } = 0; // default to no weighting.
 
-        public List<ExerciseKeyword> ExerciseKeywords { get; set; }
+        //public List<ExerciseKeyword> ExerciseKeywords { get; set; }
 
         public List<ExerciseActivity> ExerciseActivity { get; set; } = new List<ExerciseActivity>();
 
