@@ -63,6 +63,7 @@ SELECT TSE.*
 		PR.Id = (SELECT Id FROM PracticeRoutine WHERE Title = 'Wednesday Routine') ;
 
 
+-- call sp_DeletePracticeRoutine((SELECT Id FROM PracticeRoutine WHERE Title = 'Wednesday Routine'));
 call sp_GetTimeSlotsByPracticeRoutineId((SELECT Id FROM PracticeRoutine WHERE Title = 'Wednesday Routine'));
 call sp_GetTimeSlotsByPracticeRoutineId(1);
 

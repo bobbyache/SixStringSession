@@ -10,35 +10,11 @@
     <UserControl.DataContext>
         <Binding Source="{StaticResource ViewModelLocator}" Path="ExerciseSearchCriteriaViewModel" />
     </UserControl.DataContext>
-    <UserControl.Resources>
-        <converters:ComparisonOperatorConverter x:Key="ComparisonOperatorConverter"/>
-        <converters:RatingValuesConverter x:Key="RatingValuesConverter" />
-    </UserControl.Resources>
     <DockPanel>
         <StackPanel DockPanel.Dock="Top" Margin="5,5,5,5">
             <StackPanel  Orientation="Horizontal" >
-                <TextBlock MinWidth="115" Text="Keywords" Margin="2" />
-                <TextBox Margin="2" Width="270" Text="{Binding Keywords}"/>
-            </StackPanel>
-            <StackPanel  Orientation="Horizontal" >
                 <TextBlock MinWidth="115" Text="Title like..." Margin="2" />
                 <TextBox Margin="2" Width="270" Text="{Binding Title}"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock MinWidth="115" Margin="2" Text="Target Speed" />
-                <ComboBox Margin="2" MinWidth="50" ItemsSource="{Binding ComparisonOperators, Mode=OneWay}"  
-                          SelectedItem="{Binding TargetMetronomeSpeedOperator, Converter={StaticResource ComparisonOperatorConverter}}" />
-                <TextBox Margin="2" MinWidth="50" x:Name="TargetMetronomeSpeedTextBox"
-                         Text="{Binding TargetMetronomeSpeed, Converter={StaticResource RatingValuesConverter}}"
-                         />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock MinWidth="115" Margin="2" Text="Target Practice Time" />
-                <ComboBox Margin="2" MinWidth="50" ItemsSource="{Binding ComparisonOperators, Mode=OneWay}"  
-                          SelectedItem="{Binding TargetPracticeTimeOperator, Converter={StaticResource ComparisonOperatorConverter}}" />
-                <TextBox Margin="2" MinWidth="50" x:Name="TargetPracticeTimeTextBox"
-                         Text="{Binding TargetPracticeTime, Converter={StaticResource RatingValuesConverter}}"
-                         />
             </StackPanel>
             <StackPanel  Orientation="Horizontal" >
                 <TextBlock MinWidth="115" Text="Date Created" Margin="2" />

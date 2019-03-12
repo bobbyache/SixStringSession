@@ -10,7 +10,5 @@ namespace CygSoft.SmartSession.Domain.Exercises
         DateTime? FromDateModified { get; set; }
         DateTime? ToDateModified { get; set; }
         string Title { get; set; }
-
-        string Keywords { get; set; }
     }
 }

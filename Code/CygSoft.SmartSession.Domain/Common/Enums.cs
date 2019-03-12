@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace CygSoft.SmartSession.Domain.Common
 {
-    public enum ComparisonOperators
-    {
-        Undefined,
-        LessThan,
-        LessThanOrEqualTo,
-        GreaterThan,
-        GreaterThanOrEqualTo
-    }
+    //public enum ComparisonOperators
+    //{
+    //    Undefined,
+    //    LessThan,
+    //    LessThanOrEqualTo,
+    //    GreaterThan,
+    //    GreaterThanOrEqualTo
+    //}
 }

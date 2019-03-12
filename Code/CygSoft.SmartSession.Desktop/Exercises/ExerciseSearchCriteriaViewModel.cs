@@ -31,26 +31,10 @@ namespace CygSoft.SmartSession.Desktop.Exercises
         private void Reset()
         {
             Title = null;
-            TargetMetronomeSpeed = null;
-            TargetPracticeTime = null;
-            TargetMetronomeSpeedOperator = Domain.Common.ComparisonOperators.Undefined;
-            TargetPracticeTimeOperator = Domain.Common.ComparisonOperators.Undefined;
             ToDateCreated = null;
             FromDateCreated = null;
             FromDateModified = null;
             ToDateModified = null;
-        }
-
-        public string[] ComparisonOperators
-        {
-            get => new string[]
-            {
-                "",
-                "<",
-                ">",
-                ">=",
-                "<="
-            };
         }
 
         private DateTime? dateCreatedBefore;
@@ -108,52 +92,6 @@ namespace CygSoft.SmartSession.Desktop.Exercises
             }
         }
 
-        private int? targetMetronomeSpeed;
-        public int? TargetMetronomeSpeed
-        {
-            get { return targetMetronomeSpeed; }
-            set
-            {
-                Set(() => TargetMetronomeSpeed, ref targetMetronomeSpeed, value);
-            }
-        }
-
-        private ComparisonOperators targetMetronomeSpeedOperator;
-        public ComparisonOperators TargetMetronomeSpeedOperator
-        {
-            get
-            {
-                return targetMetronomeSpeedOperator;
-            }
-            set
-            {
-                Set(() => TargetMetronomeSpeedOperator, ref targetMetronomeSpeedOperator, value);
-            }
-        }
-
-        private int? targetPracticeTime;
-        public int? TargetPracticeTime
-        {
-            get { return targetPracticeTime; }
-            set
-            {
-                Set(() => TargetPracticeTime, ref targetPracticeTime, value);
-            }
-        }
-
-        private ComparisonOperators targetPracticeTimeOperator;
-        public ComparisonOperators TargetPracticeTimeOperator
-        {
-            get
-            {
-                return targetPracticeTimeOperator;
-            }
-            set
-            {
-                Set(() => TargetPracticeTimeOperator, ref targetPracticeTimeOperator, value);
-            }
-        }
-
         private string title;
         public string Title
         {
@@ -164,19 +102,6 @@ namespace CygSoft.SmartSession.Desktop.Exercises
             set
             {
                 Set(() => Title, ref title, value);
-            }
-        }
-
-        private string keywords;
-        public string Keywords
-        {
-            get
-            {
-                return keywords;
-            }
-            set
-            {
-                Set(() => Keywords, ref keywords, value);
             }
         }
 

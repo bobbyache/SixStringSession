@@ -82,7 +82,6 @@
     <Compile Include="..\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Converters\ComparisonOperatorConverterTests.cs" />
     <Compile Include="ViewModels\ExerciseCompositeViewModelTests.cs" />
     <Compile Include="ViewModels\ExerciseEditViewModelTests.cs" />
     <Compile Include="OneTimeSetup.cs" />
