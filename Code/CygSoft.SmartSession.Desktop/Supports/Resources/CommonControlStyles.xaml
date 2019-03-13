@@ -1,9 +1,16 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:CygSoft.SmartSession.Desktop.Supports.Resources">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     
     <ImageBrush x:Key="PageUserControlBackground" ImageSource="../../Images/guitar_back.jpg" Stretch="Uniform"  AlignmentX="Right" AlignmentY="Bottom" />
-    
+
+    <Style x:Key="PagePanel" TargetType="{x:Type Border}">
+        <Setter Property="CornerRadius" Value="10" />
+        <Setter Property="Padding" Value="20" />
+        <Setter Property="Margin" Value="10" />
+        <Setter Property="BorderBrush" Value="White" />
+        <Setter Property="BorderThickness" Value="2" />
+        <Setter Property="Background" Value="DarkSlateGray" />
+    </Style>
     <Style x:Key="PageUserControl" TargetType="{x:Type UserControl}">
         <Setter Property="Background" Value="{StaticResource PageUserControlBackground}" />
     </Style>

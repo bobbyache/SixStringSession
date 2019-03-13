@@ -119,6 +119,7 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
                 {
                     if (item.Recording) item.Pause();
                 }
+                
                 SelectedRecordableExercise.Start();
             }
         }

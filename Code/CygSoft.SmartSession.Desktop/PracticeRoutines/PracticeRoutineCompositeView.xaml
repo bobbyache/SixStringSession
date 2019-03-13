@@ -25,6 +25,9 @@
         </DataTemplate>
     </UserControl.Resources>
     <Grid>
-        <ContentControl Grid.Row="1"  Content="{Binding CurrentViewModel}" />
+        <Grid.RowDefinitions>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <ContentControl Grid.Row="0" Content="{Binding CurrentViewModel}" />
     </Grid>
 </UserControl>

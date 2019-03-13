@@ -27,13 +27,13 @@
     </UserControl.Resources>
     <ScrollViewer>
         <DockPanel LastChildFill="False">
-            <Border DockPanel.Dock="Top" Background="GhostWhite" BorderBrush="Gainsboro" BorderThickness="1" Padding="5" Margin="5">
+            <Border DockPanel.Dock="Top" Style="{StaticResource PagePanel}">
                 <StackPanel>
                     <TextBlock Text="Title:" Margin="5"></TextBlock>
                     <TextBox Margin="5" Text="{Binding Title, ValidatesOnNotifyDataErrors=True}"></TextBox>
                 </StackPanel>
             </Border>
-            <Border DockPanel.Dock="Top" Background="GhostWhite" BorderBrush="Gainsboro" BorderThickness="1" Padding="5" Margin="5">
+            <Border DockPanel.Dock="Top" Style="{StaticResource PagePanel}">
                 <StackPanel Orientation="Vertical">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="Target Speed:" Margin="5" MinWidth="80" ></TextBlock>

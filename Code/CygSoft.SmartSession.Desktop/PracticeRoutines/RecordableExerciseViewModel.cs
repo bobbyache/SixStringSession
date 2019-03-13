@@ -213,6 +213,7 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
             DecrementSecondsPracticedCommand = new RelayCommand(() => DecrementSecondsPracticed(), () => true);
             DecrementMinutesPracticedCommand = new RelayCommand(() => DecrementMinutesPracticed(), () => true);
 
+            RaisePropertyChanged(() => Recording);
         }
 
         private void DecrementMetronomeSpeedByTen()

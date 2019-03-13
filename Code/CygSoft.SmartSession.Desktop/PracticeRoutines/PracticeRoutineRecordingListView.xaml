@@ -3,8 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-             xmlns:local1="http://www.galasoft.ch/mvvmlight"
              xmlns:practiceroutines="clr-namespace:CygSoft.SmartSession.Desktop.PracticeRoutines"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
@@ -13,30 +11,30 @@
     <UserControl.DataContext>
         <Binding Source="{StaticResource ViewModelLocator}" Path="PracticeRoutineRecordingListViewModel" />
     </UserControl.DataContext>
-    <UserControl.Resources>
-        <Style TargetType="{x:Type GridViewColumnHeader}">
-            <Setter Property="HorizontalContentAlignment" Value="Left" />
-        </Style>
-    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="30" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="30" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding DisplayTime}"></TextBlock>
-        <DockPanel Grid.Row="1" HorizontalAlignment="Stretch" LastChildFill="True">
-            <practiceroutines:ExerciseInstanceListView DockPanel.Dock="Left" MinWidth="400" />
-            <DockPanel DockPanel.Dock="Right" LastChildFill="True">
-                <practiceroutines:ExerciseInstanceSummaryView DockPanel.Dock="Top" HorizontalAlignment="Stretch" />
-                <ScrollViewer DockPanel.Dock="Bottom">
-                    <practiceroutines:ExerciseInstanceEditView HorizontalAlignment="Center" />
-                </ScrollViewer>
-            </DockPanel>
-        </DockPanel>
+        <TextBlock Grid.Row="0" Margin="10" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Text="{Binding DisplayTime}"></TextBlock>
+
+        
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="5" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <practiceroutines:ExerciseInstanceListView Grid.Column="0"/>
+            <GridSplitter Grid.Column ="1" HorizontalAlignment="Center" ResizeBehavior="PreviousAndNext" Background="DarkGray" Width="5" ResizeDirection="Columns" VerticalAlignment="Stretch"/>
+            <practiceroutines:ExerciseInstanceEditView Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+        </Grid>
+        
         <StackPanel Grid.Row="2" DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button Content="Cancel Session" Margin="5" MinWidth="50" MaxHeight="35" Command="{Binding CancelCommand}" />
             <Button Content="Save Session" Margin="5" MinWidth="50" MaxHeight="35" Command="{Binding SaveCommand}" />
         </StackPanel>
+        
     </Grid>
 </UserControl>

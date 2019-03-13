@@ -64,8 +64,12 @@
                         <Trigger Property="IsSelected" Value="True">
                             <Setter Property="FontWeight" Value="Bold" />
                         </Trigger>
+                        <Trigger Property="IsFocused" Value="true">
+                            <Setter Property="Foreground" Value="Black" />
+                        </Trigger>
                     </Style.Triggers>
                 </Style>
+
             </TreeView.ItemContainerStyle>
 
             <TreeView.Resources>

@@ -13,7 +13,7 @@
         <Binding Source="{StaticResource ViewModelLocator}" Path="ExerciseRecorderViewModel" />
     </UserControl.DataContext>
     <DockPanel>
-        <Border DockPanel.Dock="Bottom" Background="GhostWhite" BorderBrush="Gainsboro" BorderThickness="1" Padding="5" Margin="5">
+        <Border DockPanel.Dock="Bottom" Style="{StaticResource PagePanel}">
             <StackPanel Orientation="Vertical">
                 <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
                     <Button Padding="5" Margin="5" Command="{Binding CancelRecordingCommand}">Cancel</Button>
@@ -22,7 +22,7 @@
             </StackPanel>
         </Border>
 
-        <Border DockPanel.Dock="Bottom"  Background="GhostWhite" BorderBrush="Gainsboro" BorderThickness="1" Padding="5" Margin="5">
+        <Border DockPanel.Dock="Bottom" Style="{StaticResource PagePanel}">
             <StackPanel>
                 <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
                     <StackPanel Orientation="Vertical">
@@ -37,13 +37,13 @@
                              TickPlacement="BottomRight" IsSnapToTickEnabled="True"></Slider>
             </StackPanel>
         </Border>
-        <Border DockPanel.Dock="Bottom"  Background="GhostWhite" BorderBrush="Gainsboro" BorderThickness="1" Padding="5" Margin="5">
+        <Border DockPanel.Dock="Bottom" Style="{StaticResource PagePanel}">
             <StackPanel Orientation="Vertical">
                 <Button Padding="5" Margin="5" Command="{Binding StartRecordingCommand}" Visibility="{Binding StartButtonVisible, Converter={StaticResource BooleanToVisibilityConverter}}">Start</Button>
                 <Button Padding="5" Margin="5" Command="{Binding PauseRecordingCommand}" Visibility="{Binding PauseButtonVisible, Converter={StaticResource BooleanToVisibilityConverter}}">Pause</Button>
             </StackPanel>
         </Border>
-        <Border DockPanel.Dock="Bottom" Background="GhostWhite" BorderBrush="Gainsboro" BorderThickness="1" Padding="5" Margin="5">
+        <Border DockPanel.Dock="Bottom" Style="{StaticResource PagePanel}">
             <StackPanel VerticalAlignment="Center" Orientation="Vertical">
                 <ctrls:BusyIndicatorView Width="60" Height="60" Visibility="{Binding BusyIndicatorVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                     
