@@ -167,15 +167,15 @@
       <DependentUpon>PracticeRoutineManagementView.xaml</DependentUpon>
     </Compile>
     <Compile Include="PracticeRoutines\PracticeRoutineManagementViewModel.cs" />
-    <Compile Include="PracticeRoutines\PracticeRoutineTree\TimeSlotExerciseTreeViewItemView.xaml.cs">
+    <Compile Include="PracticeRoutines\TimeSlotExerciseTreeViewItemView.xaml.cs">
       <DependentUpon>TimeSlotExerciseTreeViewItemView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PracticeRoutines\PracticeRoutineTree\TimeSlotTreeViewItemView.xaml.cs">
+    <Compile Include="PracticeRoutines\TimeSlotTreeViewItemView.xaml.cs">
       <DependentUpon>TimeSlotTreeViewItemView.xaml</DependentUpon>
     </Compile>
     <Compile Include="PracticeRoutines\RecordableExerciseViewModel.cs" />
-    <Compile Include="PracticeRoutines\PracticeRoutineTree\TimeSlotExerciseViewModel.cs" />
-    <Compile Include="PracticeRoutines\PracticeRoutineTree\TimeSlotViewModel.cs" />
+    <Compile Include="PracticeRoutines\TimeSlotExerciseViewModel.cs" />
+    <Compile Include="PracticeRoutines\TimeSlotViewModel.cs" />
     <Compile Include="Supports\Converters\BoolToValueConverter.cs" />
     <Compile Include="Supports\Converters\EnumToCollectionConverter.cs" />
     <Compile Include="Supports\Converters\MathConverter.cs" />
@@ -270,11 +270,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="PracticeRoutines\PracticeRoutineTree\TimeSlotExerciseTreeViewItemView.xaml">
+    <Page Include="PracticeRoutines\TimeSlotExerciseTreeViewItemView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="PracticeRoutines\PracticeRoutineTree\TimeSlotTreeViewItemView.xaml">
+    <Page Include="PracticeRoutines\TimeSlotTreeViewItemView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,16 +1,10 @@
 ﻿using CygSoft.SmartSession.Desktop.PracticeRoutines;
-using CygSoft.SmartSession.Desktop.PracticeRoutines.PracticeRoutineTree;
 using CygSoft.SmartSession.Desktop.Supports.Services;
-using CygSoft.SmartSession.Domain.PracticeRoutines;
 using CygSoft.SmartSession.Infrastructure.Enums;
 using CygSoft.SmartSession.UnitTests.Infrastructure;
 using Moq;
 using NUnit.Framework;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
 {

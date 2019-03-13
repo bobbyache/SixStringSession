@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using CygSoft.SmartSession.Desktop.PracticeRoutines.PracticeRoutineTree;
+using CygSoft.SmartSession.Desktop.PracticeRoutines;
 using CygSoft.SmartSession.Desktop.Supports.Messages;
 using CygSoft.SmartSession.Desktop.Supports.Services;
 using CygSoft.SmartSession.Desktop.Supports.Validators;

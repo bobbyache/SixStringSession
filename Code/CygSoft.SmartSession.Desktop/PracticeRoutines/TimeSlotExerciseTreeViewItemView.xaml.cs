@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace CygSoft.SmartSession.Desktop.PracticeRoutines.PracticeRoutineTree
+namespace CygSoft.SmartSession.Desktop.PracticeRoutines
 {
     /// <summary>
     /// Interaction logic for TimeSlotExerciseTreeViewItemView.xaml
