@@ -120,10 +120,6 @@
     <Compile Include="BusyIndicatorView.xaml.cs">
       <DependentUpon>BusyIndicatorView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Exercises\ExerciseManagementView.xaml.cs">
-      <DependentUpon>ExerciseManagementView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Exercises\ExerciseManagementViewModel.cs" />
     <Compile Include="Exercises\SingleExerciseRecorderView.xaml.cs">
       <DependentUpon>SingleExerciseRecorderView.xaml</DependentUpon>
     </Compile>
@@ -215,10 +211,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Exercises\ExerciseEditView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Exercises\ExerciseManagementView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

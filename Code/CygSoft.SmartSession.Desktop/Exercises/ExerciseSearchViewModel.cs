@@ -12,7 +12,7 @@ using System.Collections.ObjectModel;
 
 namespace CygSoft.SmartSession.Desktop.Exercises
 {
-    public abstract class ExerciseSearchViewModel : ViewModelBase
+    public class ExerciseSearchViewModel : ViewModelBase
     {
         private IExerciseService exerciseService;
         private IDialogViewService dialogService;

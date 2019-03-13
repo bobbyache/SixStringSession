@@ -22,12 +22,12 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
             exerciseService.Setup(srv => srv.Get(It.IsAny<int>()))
                 .Returns(exercise);
 
-            var exerciseManagementViewModel = new ExerciseManagementViewModel(exerciseService.Object, dialogService.Object);
+            var exerciseSearchViewModel = new ExerciseSearchViewModel(exerciseService.Object, dialogService.Object);
             var exerciseRecorderViewModel = new SingleExerciseRecorderViewModel(exerciseService.Object, dialogService.Object);
 
             var exerciseEditViewModel = new ExerciseEditViewModel(dialogService.Object);
 
-            var viewModel = new MockExerciseCompositeViewModel(exerciseService.Object, exerciseManagementViewModel, exerciseEditViewModel, exerciseRecorderViewModel);
+            var viewModel = new MockExerciseCompositeViewModel(exerciseService.Object, exerciseSearchViewModel, exerciseEditViewModel, exerciseRecorderViewModel);
 
             exerciseEditViewModel.StartEdit(exercise);
             exerciseEditViewModel.SaveCommand.Execute(null);
@@ -48,12 +48,12 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
             exerciseService.Setup(srv => srv.Get(It.IsAny<int>()))
                 .Returns(exercise);
 
-            var exerciseManagementViewModel = new ExerciseManagementViewModel(exerciseService.Object, dialogService.Object);
+            var exerciseSearchViewModel = new ExerciseSearchViewModel(exerciseService.Object, dialogService.Object);
             var exerciseRecorderViewModel = new SingleExerciseRecorderViewModel(exerciseService.Object, dialogService.Object);
 
             var exerciseEditViewModel = new ExerciseEditViewModel(dialogService.Object);
 
-            var viewModel = new MockExerciseCompositeViewModel(exerciseService.Object, exerciseManagementViewModel, exerciseEditViewModel, exerciseRecorderViewModel);
+            var viewModel = new MockExerciseCompositeViewModel(exerciseService.Object, exerciseSearchViewModel, exerciseEditViewModel, exerciseRecorderViewModel);
 
             exerciseEditViewModel.StartEdit(exercise);
             exerciseEditViewModel.CancelCommand.Execute(null);
@@ -74,12 +74,12 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
             exerciseService.Setup(srv => srv.Get(It.IsAny<int>()))
                 .Returns(exercise);
 
-            var exerciseManagementViewModel = new ExerciseManagementViewModel(exerciseService.Object, dialogService.Object);
+            var exerciseSearchViewModel = new ExerciseSearchViewModel(exerciseService.Object, dialogService.Object);
             var exerciseRecorderViewModel = new SingleExerciseRecorderViewModel(exerciseService.Object, dialogService.Object);
 
             var exerciseEditViewModel = new ExerciseEditViewModel(dialogService.Object);
 
-            var viewModel = new ExerciseCompositeViewModel(exerciseService.Object, exerciseManagementViewModel, exerciseEditViewModel, exerciseRecorderViewModel);
+            var viewModel = new ExerciseCompositeViewModel(exerciseService.Object, exerciseSearchViewModel, exerciseEditViewModel, exerciseRecorderViewModel);
 
             exerciseEditViewModel.StartEdit(exercise);
             exerciseEditViewModel.SaveCommand.Execute(null);
@@ -99,12 +99,12 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
             exerciseService.Setup(srv => srv.Get(It.IsAny<int>()))
                 .Returns(exercise);
 
-            var exerciseManagementViewModel = new ExerciseManagementViewModel(exerciseService.Object, dialogService.Object);
+            var exerciseSearchViewModel = new ExerciseSearchViewModel(exerciseService.Object, dialogService.Object);
             var exerciseRecorderViewModel = new SingleExerciseRecorderViewModel(exerciseService.Object, dialogService.Object);
 
             var exerciseEditViewModel = new ExerciseEditViewModel(dialogService.Object);
 
-            var viewModel = new ExerciseCompositeViewModel(exerciseService.Object, exerciseManagementViewModel, exerciseEditViewModel, exerciseRecorderViewModel);
+            var viewModel = new ExerciseCompositeViewModel(exerciseService.Object, exerciseSearchViewModel, exerciseEditViewModel, exerciseRecorderViewModel);
 
             exerciseEditViewModel.StartEdit(exercise);
             exerciseEditViewModel.SaveCommand.Execute(null);
@@ -124,9 +124,9 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         public EditorCloseOperation? EndEditOperation;
         public EntityLifeCycleState EndEditLifeCycleState;
 
-        public MockExerciseCompositeViewModel(IExerciseService exerciseService, ExerciseManagementViewModel exerciseManagementViewModel,
+        public MockExerciseCompositeViewModel(IExerciseService exerciseService, ExerciseSearchViewModel exerciseSearchViewModel,
             ExerciseEditViewModel exerciseEditViewModel,
-            SingleExerciseRecorderViewModel exerciseRecorderViewModel) : base(exerciseService, exerciseManagementViewModel, exerciseEditViewModel, exerciseRecorderViewModel)
+            SingleExerciseRecorderViewModel exerciseRecorderViewModel) : base(exerciseService, exerciseSearchViewModel, exerciseEditViewModel, exerciseRecorderViewModel)
         {
 
         }

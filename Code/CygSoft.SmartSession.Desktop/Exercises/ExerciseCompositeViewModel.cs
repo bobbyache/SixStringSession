@@ -9,7 +9,7 @@ namespace CygSoft.SmartSession.Desktop.Exercises
 {
     public class ExerciseCompositeViewModel : ViewModelBase
     {
-        private ExerciseManagementViewModel exerciseManagementViewModel;
+        private ExerciseSearchViewModel exerciseSearchViewModel;
         private ExerciseEditViewModel exerciseEditViewModel;
         private SingleExerciseRecorderViewModel exerciseRecorderViewModel;
         private IExerciseService exerciseService;
@@ -23,12 +23,12 @@ namespace CygSoft.SmartSession.Desktop.Exercises
 
         public RelayCommand<string> NavigationCommand { get; private set; }
 
-        public ExerciseCompositeViewModel(IExerciseService exerciseService, ExerciseManagementViewModel exerciseManagementViewModel, 
+        public ExerciseCompositeViewModel(IExerciseService exerciseService, ExerciseSearchViewModel exerciseManagementViewModel, 
             ExerciseEditViewModel exerciseEditViewModel,
             SingleExerciseRecorderViewModel exerciseRecorderViewModel)
         {
             this.exerciseService = exerciseService;
-            this.exerciseManagementViewModel = exerciseManagementViewModel;
+            this.exerciseSearchViewModel = exerciseManagementViewModel;
             this.exerciseEditViewModel = exerciseEditViewModel;
             this.exerciseRecorderViewModel = exerciseRecorderViewModel;
 
@@ -86,7 +86,7 @@ namespace CygSoft.SmartSession.Desktop.Exercises
             switch (destination)
             {
                 case "Search":
-                    CurrentViewModel = exerciseManagementViewModel;
+                    CurrentViewModel = exerciseSearchViewModel;
                     break;
                 case "Edit":
                     CurrentViewModel = exerciseEditViewModel;
@@ -95,7 +95,7 @@ namespace CygSoft.SmartSession.Desktop.Exercises
                     CurrentViewModel = exerciseRecorderViewModel;
                     break;
                 default:
-                    CurrentViewModel = exerciseManagementViewModel;
+                    CurrentViewModel = exerciseSearchViewModel;
                     break;
             }
         }

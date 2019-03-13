@@ -13,7 +13,7 @@ namespace CygSoft.SmartSession.Desktop.Supports.Services
     {
         public ExerciseEditViewModel ExerciseEditViewModel { get => Bootstrapper.Container.Resolve<ExerciseEditViewModel>(); }
         public ExerciseCompositeViewModel ExerciseCompositeViewModel { get => Bootstrapper.Container.Resolve<ExerciseCompositeViewModel>(); }
-        public ExerciseManagementViewModel ExerciseManagementViewModel { get => Bootstrapper.Container.Resolve<ExerciseManagementViewModel>(); }
+        public ExerciseSearchViewModel ExerciseSearchViewModel { get => Bootstrapper.Container.Resolve<ExerciseSearchViewModel>(); }
         public ExerciseSelectionViewModel ExerciseSelectionViewModel { get => Bootstrapper.Container.Resolve<ExerciseSelectionViewModel>(); }
         public SingleExerciseRecorderViewModel ExerciseRecorderViewModel { get => Bootstrapper.Container.Resolve<SingleExerciseRecorderViewModel>(); }
                 

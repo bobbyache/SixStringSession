@@ -59,7 +59,7 @@ namespace CygSoft.SmartSession.Desktop.Supports.DI
             container.Register(Component.For<IRecorder>().ImplementedBy(typeof(Recorder)));
             
             container.Register(Component.For<ExerciseEditViewModel>());
-            container.Register(Component.For<ExerciseManagementViewModel>());
+            container.Register(Component.For<ExerciseSearchViewModel>());
             container.Register(Component.For<ExerciseSelectionViewModel>());
             container.Register(Component.For<ExerciseCompositeViewModel>());
             container.Register(Component.For<SingleExerciseRecorderViewModel>());
