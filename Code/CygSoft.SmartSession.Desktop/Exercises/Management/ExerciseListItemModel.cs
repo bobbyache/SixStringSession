@@ -1,8 +1,8 @@
 ﻿using GalaSoft.MvvmLight;
 
-namespace CygSoft.SmartSession.Desktop.Exercises
+namespace CygSoft.SmartSession.Desktop.Exercises.Management
 {
-    public class ExerciseSearchResultModel : ObservableObject
+    public class ExerciseListItemModel : ObservableObject
     {
         private bool isDirty;
         public bool IsDirty

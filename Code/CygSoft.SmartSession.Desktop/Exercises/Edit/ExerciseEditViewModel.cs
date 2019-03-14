@@ -11,7 +11,7 @@ using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace CygSoft.SmartSession.Desktop.Exercises
+namespace CygSoft.SmartSession.Desktop.Exercises.Edit
 {
     public class ExerciseEditViewModel : ValidatableViewModel
     {

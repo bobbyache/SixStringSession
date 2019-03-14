@@ -1,4 +1,5 @@
 ﻿using CygSoft.SmartSession.Desktop.Exercises;
+using CygSoft.SmartSession.Desktop.Exercises.Recorder;
 using CygSoft.SmartSession.Desktop.Supports.Services;
 using CygSoft.SmartSession.Domain.Exercises;
 using CygSoft.SmartSession.Domain.Recording;

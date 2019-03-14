@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using CygSoft.SmartSession.Desktop.Exercises;
+using CygSoft.SmartSession.Desktop.Exercises.Edit;
 using CygSoft.SmartSession.Desktop.PracticeRoutines;
 using CygSoft.SmartSession.Domain.Exercises;
 using CygSoft.SmartSession.Domain.PracticeRoutines;

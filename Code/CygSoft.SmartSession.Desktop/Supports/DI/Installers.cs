@@ -3,6 +3,10 @@ using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
 using CygSoft.SmartSession.Dal.MySql;
 using CygSoft.SmartSession.Desktop.Exercises;
+using CygSoft.SmartSession.Desktop.Exercises.Edit;
+using CygSoft.SmartSession.Desktop.Exercises.Management;
+using CygSoft.SmartSession.Desktop.Exercises.Recorder;
+using CygSoft.SmartSession.Desktop.Exercises.Selection;
 using CygSoft.SmartSession.Desktop.PracticeRoutines;
 using CygSoft.SmartSession.Desktop.Supports.Services;
 using CygSoft.SmartSession.Domain;
@@ -59,7 +63,7 @@ namespace CygSoft.SmartSession.Desktop.Supports.DI
             container.Register(Component.For<IRecorder>().ImplementedBy(typeof(Recorder)));
             
             container.Register(Component.For<ExerciseEditViewModel>());
-            container.Register(Component.For<ExerciseSearchViewModel>());
+            container.Register(Component.For<ExerciseManagementViewModel>());
             container.Register(Component.For<ExerciseSelectionViewModel>());
             container.Register(Component.For<ExerciseCompositeViewModel>());
             container.Register(Component.For<SingleExerciseRecorderViewModel>());

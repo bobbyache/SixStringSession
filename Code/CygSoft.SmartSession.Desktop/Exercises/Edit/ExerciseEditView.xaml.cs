@@ -5,7 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace CygSoft.SmartSession.Desktop.Exercises
+namespace CygSoft.SmartSession.Desktop.Exercises.Edit
 {
     /// <summary>
     /// Interaction logic for ExerciseEditView.xaml

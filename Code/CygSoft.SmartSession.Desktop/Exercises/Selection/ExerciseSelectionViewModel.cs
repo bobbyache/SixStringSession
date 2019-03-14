@@ -1,4 +1,5 @@
-﻿using CygSoft.SmartSession.Desktop.Supports.Messages;
+﻿using CygSoft.SmartSession.Desktop.Exercises.Management;
+using CygSoft.SmartSession.Desktop.Supports.Messages;
 using CygSoft.SmartSession.Desktop.Supports.Services;
 using CygSoft.SmartSession.Domain.Exercises;
 using GalaSoft.MvvmLight.Command;
@@ -9,9 +10,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CygSoft.SmartSession.Desktop.Exercises
+namespace CygSoft.SmartSession.Desktop.Exercises.Selection
 {
-    public class ExerciseSelectionViewModel : ExerciseSearchViewModel
+    public class ExerciseSelectionViewModel : ExerciseManagementViewModel
     {
         public RelayCommand OkCommand { get; private set; }
         public RelayCommand CancelCommand { get; private set; }

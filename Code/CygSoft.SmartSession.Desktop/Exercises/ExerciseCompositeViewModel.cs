@@ -1,4 +1,7 @@
-﻿using CygSoft.SmartSession.Desktop.Supports.Messages;
+﻿using CygSoft.SmartSession.Desktop.Exercises.Edit;
+using CygSoft.SmartSession.Desktop.Exercises.Management;
+using CygSoft.SmartSession.Desktop.Exercises.Recorder;
+using CygSoft.SmartSession.Desktop.Supports.Messages;
 using CygSoft.SmartSession.Domain.Exercises;
 using CygSoft.SmartSession.Infrastructure.Enums;
 using GalaSoft.MvvmLight;
@@ -9,7 +12,7 @@ namespace CygSoft.SmartSession.Desktop.Exercises
 {
     public class ExerciseCompositeViewModel : ViewModelBase
     {
-        private ExerciseSearchViewModel exerciseSearchViewModel;
+        private ExerciseManagementViewModel exerciseSearchViewModel;
         private ExerciseEditViewModel exerciseEditViewModel;
         private SingleExerciseRecorderViewModel exerciseRecorderViewModel;
         private IExerciseService exerciseService;
@@ -23,7 +26,7 @@ namespace CygSoft.SmartSession.Desktop.Exercises
 
         public RelayCommand<string> NavigationCommand { get; private set; }
 
-        public ExerciseCompositeViewModel(IExerciseService exerciseService, ExerciseSearchViewModel exerciseManagementViewModel, 
+        public ExerciseCompositeViewModel(IExerciseService exerciseService, ExerciseManagementViewModel exerciseManagementViewModel, 
             ExerciseEditViewModel exerciseEditViewModel,
             SingleExerciseRecorderViewModel exerciseRecorderViewModel)
         {

@@ -10,14 +10,14 @@ using GalaSoft.MvvmLight.Views;
 using System;
 using System.Collections.ObjectModel;
 
-namespace CygSoft.SmartSession.Desktop.Exercises
+namespace CygSoft.SmartSession.Desktop.Exercises.Management
 {
-    public class ExerciseSearchViewModel : ViewModelBase
+    public class ExerciseManagementViewModel : ViewModelBase
     {
         private IExerciseService exerciseService;
         private IDialogViewService dialogService;
 
-        public ExerciseSearchViewModel(IExerciseService exerciseService, 
+        public ExerciseManagementViewModel(IExerciseService exerciseService, 
             IDialogViewService dialogService)
         {
             this.exerciseService = exerciseService ?? throw new ArgumentNullException("Service must be provided.");
@@ -40,8 +40,8 @@ namespace CygSoft.SmartSession.Desktop.Exercises
 
         public RelayCommand FindCommand { get; private set; }
 
-        private ExerciseSearchResultModel selectedExercise;
-        public ExerciseSearchResultModel SelectedExercise
+        private ExerciseListItemModel selectedExercise;
+        public ExerciseListItemModel SelectedExercise
         {
             get { return selectedExercise; }
             set
@@ -81,7 +81,7 @@ namespace CygSoft.SmartSession.Desktop.Exercises
 
         public ObservableCollection<int> DifficultyList { get; private set; } = new ObservableCollection<int> { 1, 2, 3, 4, 5 };
         public ObservableCollection<int> PracticalityList { get; private set; } = new ObservableCollection<int> { 1, 2, 3, 4, 5 };
-        public ObservableCollection<ExerciseSearchResultModel> ExerciseList { get; private set; } = new ObservableCollection<ExerciseSearchResultModel>();
+        public ObservableCollection<ExerciseListItemModel> ExerciseList { get; private set; } = new ObservableCollection<ExerciseListItemModel>();
 
         private void Find()
         {
@@ -92,7 +92,7 @@ namespace CygSoft.SmartSession.Desktop.Exercises
 
             foreach (var exercise in exerciseService.Find(exerciseSearchCriteria))
             {
-                ExerciseList.Add(Mapper.Map<ExerciseSearchResultModel>(exercise));
+                ExerciseList.Add(Mapper.Map<ExerciseListItemModel>(exercise));
             }
         }
 

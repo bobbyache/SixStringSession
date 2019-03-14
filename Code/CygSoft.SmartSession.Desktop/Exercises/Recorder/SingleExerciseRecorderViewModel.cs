@@ -9,7 +9,7 @@ using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace CygSoft.SmartSession.Desktop.Exercises
+namespace CygSoft.SmartSession.Desktop.Exercises.Recorder
 {
     public class SingleExerciseRecorderViewModel : ValidatableViewModel
     {

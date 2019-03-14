@@ -120,22 +120,22 @@
     <Compile Include="BusyIndicatorView.xaml.cs">
       <DependentUpon>BusyIndicatorView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Exercises\SingleExerciseRecorderView.xaml.cs">
+    <Compile Include="Exercises\Recorder\SingleExerciseRecorderView.xaml.cs">
       <DependentUpon>SingleExerciseRecorderView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Exercises\SingleExerciseRecorderViewModel.cs" />
-    <Compile Include="Exercises\ExerciseSelectionView.xaml.cs">
+    <Compile Include="Exercises\Recorder\SingleExerciseRecorderViewModel.cs" />
+    <Compile Include="Exercises\Selection\ExerciseSelectionView.xaml.cs">
       <DependentUpon>ExerciseSelectionView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Exercises\ExerciseSelectionViewModel.cs" />
+    <Compile Include="Exercises\Selection\ExerciseSelectionViewModel.cs" />
     <Compile Include="Exercises\ExerciseCompositeView.xaml.cs">
       <DependentUpon>ExerciseCompositeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Exercises\ExerciseCompositeViewModel.cs" />
-    <Compile Include="Exercises\ExerciseEditView.xaml.cs">
+    <Compile Include="Exercises\Edit\ExerciseEditView.xaml.cs">
       <DependentUpon>ExerciseEditView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Exercises\ExerciseEditViewModel.cs" />
+    <Compile Include="Exercises\Edit\ExerciseEditViewModel.cs" />
     <Compile Include="MainWindowViewModel.cs" />
     <Compile Include="PracticeRoutines\ExerciseInstanceEditView.xaml.cs">
       <DependentUpon>ExerciseInstanceEditView.xaml</DependentUpon>
@@ -183,16 +183,16 @@
     <Compile Include="Supports\Converters\TimeDisplayConverter.cs" />
     <Compile Include="Supports\DI\Bootstrapper.cs" />
     <Compile Include="Supports\DI\Installers.cs" />
-    <Compile Include="Exercises\ExerciseSearchResultModel.cs" />
+    <Compile Include="Exercises\Management\ExerciseListItemModel.cs" />
     <Compile Include="Supports\EnumHelper.cs" />
     <Compile Include="Supports\MarkupExts\EnumToItemsSource.cs" />
     <Compile Include="Supports\Messages\Messages.cs" />
     <Compile Include="Supports\Services\DialogService.cs" />
-    <Compile Include="Exercises\ExerciseSearchViewModel.cs" />
+    <Compile Include="Exercises\Management\ExerciseManagementViewModel.cs" />
     <Compile Include="Supports\Services\IDialogViewService.cs" />
     <Compile Include="Supports\Services\ViewModelLocator.cs" />
-    <Compile Include="Exercises\ExerciseSearchView.xaml.cs">
-      <DependentUpon>ExerciseSearchView.xaml</DependentUpon>
+    <Compile Include="Exercises\Management\ExerciseManagementView.xaml.cs">
+      <DependentUpon>ExerciseManagementView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Supports\Settings.cs" />
     <Compile Include="Supports\Validators\RequiredFileNameValidator.cs" />
@@ -210,15 +210,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Exercises\ExerciseEditView.xaml">
+    <Page Include="Exercises\Edit\ExerciseEditView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Exercises\SingleExerciseRecorderView.xaml">
+    <Page Include="Exercises\Recorder\SingleExerciseRecorderView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Exercises\ExerciseSelectionView.xaml">
+    <Page Include="Exercises\Selection\ExerciseSelectionView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -278,7 +278,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Exercises\ExerciseSearchView.xaml">
+    <Page Include="Exercises\Management\ExerciseManagementView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

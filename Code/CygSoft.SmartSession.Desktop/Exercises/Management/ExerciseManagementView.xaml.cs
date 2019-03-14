@@ -2,14 +2,11 @@
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace CygSoft.SmartSession.Desktop.Exercises
+namespace CygSoft.SmartSession.Desktop.Exercises.Management
 {
-    /// <summary>
-    /// Interaction logic for ExerciseSearchView.xaml
-    /// </summary>
-    public partial class ExerciseSearchView : UserControl
+    public partial class ExerciseManagementView : UserControl
     {
-        public ExerciseSearchView()
+        public ExerciseManagementView()
         {
             InitializeComponent();
             this.MouseDown += MainWindow_MouseDown;

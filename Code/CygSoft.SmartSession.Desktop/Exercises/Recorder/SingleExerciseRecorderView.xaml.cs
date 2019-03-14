@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace CygSoft.SmartSession.Desktop.Exercises
+namespace CygSoft.SmartSession.Desktop.Exercises.Recorder
 {
     /// <summary>
-    /// Interaction logic for ExerciseSelectionView.xaml
+    /// Interaction logic for ExerciseRecorderView.xaml
     /// </summary>
-    public partial class ExerciseSelectionView : UserControl
+    public partial class ExerciseRecorderView : UserControl
     {
-        public ExerciseSelectionView()
+        public ExerciseRecorderView()
         {
             InitializeComponent();
         }
