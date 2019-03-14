@@ -17,7 +17,6 @@
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
     </UserControl.Resources>
     <Grid>
-        
         <ListBox Name="listBox" ItemsSource="{Binding RecordableExercises}" SelectedItem="{Binding SelectedRecordableExercise}"
                  ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <!-- this is the only way you get the elipses and text trimming -->
@@ -47,7 +46,12 @@
                     </Border>
                 </DataTemplate>
             </ListBox.ItemTemplate>
+            <ListBox.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Start" Command="{Binding StartCommand}" />
+                    <MenuItem Header="Stop" Command="{Binding StopCommand}" />
+                </ContextMenu>
+            </ListBox.ContextMenu>
         </ListBox>
-        
     </Grid>
 </UserControl>

@@ -86,12 +86,11 @@
     <Compile Include="ViewModels\ExerciseEditViewModelTests.cs" />
     <Compile Include="OneTimeSetup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\PracticeRoutineEditViewModelTests2.cs" />
     <Compile Include="ViewModels\SingleExerciseRecorderViewModelTests.cs" />
     <Compile Include="ValidationAttributeTests.cs" />
     <Compile Include="ViewModels\ExerciseSearchViewModelTests.cs" />
     <Compile Include="ViewModels\PracticeRoutineEditViewModelTests.cs" />
-    <Compile Include="ViewModels\RecordableExerciseViewModelTests.cs" />
+    <Compile Include="ViewModels\RecorderViewModelTests.cs" />
     <Compile Include="ViewModels\TimeSlotExerciseViewModelTests.cs" />
     <Compile Include="ViewModels\TimeSlotViewModelTests.cs" />
   </ItemGroup>
