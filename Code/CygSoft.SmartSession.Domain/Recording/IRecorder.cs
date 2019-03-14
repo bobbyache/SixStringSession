@@ -14,6 +14,7 @@ namespace CygSoft.SmartSession.Domain.Recording
         string DisplayTime { get; }
 
         event EventHandler RecordingStatusChanged;
+        event EventHandler Tick;
 
         void Reset();
         void Pause();

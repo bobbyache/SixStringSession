@@ -82,7 +82,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         [Test]
         public void RecorderViewModel_DecrementSpeed_Small_Reflects_On_Model()
         {
-            var exerciseRecorder = EntityFactory.CreateSpeedExerciseRecorder(60, 100, 160);
+            var exerciseRecorder = EntityFactory.CreateSpeedProgressExerciseRecorder(60, 100, 160);
 
             var viewModel = new RecorderViewModel(exerciseRecorder);
             viewModel.SmallSpeedDecrementCommand.Execute(null);
@@ -95,7 +95,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         {
             var changed = false;
 
-            var exerciseRecorder = EntityFactory.CreateSpeedExerciseRecorder(60, 100, 160);
+            var exerciseRecorder = EntityFactory.CreateSpeedProgressExerciseRecorder(60, 100, 160);
             var viewModel = new RecorderViewModel(exerciseRecorder);
 
             viewModel.PropertyChanged += (s, e) =>
@@ -114,7 +114,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         {
             var changed = false;
 
-            var exerciseRecorder = EntityFactory.CreateSpeedExerciseRecorder(60, 100, 160);
+            var exerciseRecorder = EntityFactory.CreateSpeedProgressExerciseRecorder(60, 100, 160);
             var viewModel = new RecorderViewModel(exerciseRecorder);
 
             viewModel.PropertyChanged += (s, e) =>
@@ -133,7 +133,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         {
             var changed = false;
 
-            var exerciseRecorder = EntityFactory.CreateSpeedExerciseRecorder(60, 100, 160);
+            var exerciseRecorder = EntityFactory.CreateSpeedProgressExerciseRecorder(60, 100, 160);
             var viewModel = new RecorderViewModel(exerciseRecorder);
 
             viewModel.PropertyChanged += (s, e) =>
@@ -152,7 +152,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         {
             var changed = false;
 
-            var exerciseRecorder = EntityFactory.CreateSpeedExerciseRecorder(60, 100, 160);
+            var exerciseRecorder = EntityFactory.CreateSpeedProgressExerciseRecorder(60, 100, 160);
             var viewModel = new RecorderViewModel(exerciseRecorder);
 
             viewModel.PropertyChanged += (s, e) =>
@@ -171,7 +171,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         {
             var changed = false;
 
-            var exerciseRecorder = EntityFactory.CreateSpeedExerciseRecorder(60, 100, 160);
+            var exerciseRecorder = EntityFactory.CreateSpeedProgressExerciseRecorder(60, 100, 160);
             var viewModel = new RecorderViewModel(exerciseRecorder);
 
             viewModel.PropertyChanged += (s, e) =>
@@ -190,7 +190,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         {
             var changed = false;
 
-            var exerciseRecorder = EntityFactory.CreateSpeedExerciseRecorder(60, 100, 160);
+            var exerciseRecorder = EntityFactory.CreateSpeedProgressExerciseRecorder(60, 100, 160);
             var viewModel = new RecorderViewModel(exerciseRecorder);
 
             viewModel.PropertyChanged += (s, e) =>
@@ -209,7 +209,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         {
             var changed = false;
 
-            var exerciseRecorder = EntityFactory.CreateSpeedExerciseRecorder(60, 100, 160);
+            var exerciseRecorder = EntityFactory.CreateSpeedProgressExerciseRecorder(60, 100, 160);
             var viewModel = new RecorderViewModel(exerciseRecorder);
 
             viewModel.PropertyChanged += (s, e) =>
@@ -228,7 +228,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         {
             var changed = false;
 
-            var exerciseRecorder = EntityFactory.CreateSpeedExerciseRecorder(60, 100, 160);
+            var exerciseRecorder = EntityFactory.CreateSpeedProgressExerciseRecorder(60, 100, 160);
             var viewModel = new RecorderViewModel(exerciseRecorder);
 
             viewModel.PropertyChanged += (s, e) =>
@@ -242,17 +242,12 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
             Assert.IsTrue(changed);
         }
 
-
-
-
-
-
         [Test]
         public void RecorderViewModel_IncrementTime_Small_Raises_PropertyChanged_For_OverallProgress()
         {
             var changed = false;
 
-            var exerciseRecorder = EntityFactory.CreateSpeedExerciseRecorder(60, 100, 160);
+            var exerciseRecorder = EntityFactory.CreateSpeedProgressExerciseRecorder(60, 100, 160);
             var viewModel = new RecorderViewModel(exerciseRecorder);
 
             viewModel.PropertyChanged += (s, e) =>
@@ -272,7 +267,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         {
             var changed = false;
 
-            var exerciseRecorder = EntityFactory.CreateSpeedExerciseRecorder(60, 100, 160);
+            var exerciseRecorder = EntityFactory.CreateSpeedProgressExerciseRecorder(60, 100, 160);
             var viewModel = new RecorderViewModel(exerciseRecorder);
 
             viewModel.PropertyChanged += (s, e) =>
@@ -290,7 +285,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         {
             var changed = false;
 
-            var exerciseRecorder = EntityFactory.CreateSpeedExerciseRecorder(60, 100, 160);
+            var exerciseRecorder = EntityFactory.CreateSpeedProgressExerciseRecorder(60, 100, 160);
             var viewModel = new RecorderViewModel(exerciseRecorder);
 
             viewModel.PropertyChanged += (s, e) =>
@@ -309,7 +304,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         {
             var changed = false;
 
-            var exerciseRecorder = EntityFactory.CreateSpeedExerciseRecorder(60, 100, 160);
+            var exerciseRecorder = EntityFactory.CreateSpeedProgressExerciseRecorder(60, 100, 160);
             var viewModel = new RecorderViewModel(exerciseRecorder);
 
             viewModel.PropertyChanged += (s, e) =>
@@ -329,7 +324,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         {
             var changed = false;
 
-            var exerciseRecorder = EntityFactory.CreateSpeedExerciseRecorder(60, 100, 160);
+            var exerciseRecorder = EntityFactory.CreateSpeedProgressExerciseRecorder(60, 100, 160);
             var viewModel = new RecorderViewModel(exerciseRecorder);
 
             viewModel.PropertyChanged += (s, e) =>
@@ -349,7 +344,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         {
             var changed = false;
 
-            var exerciseRecorder = EntityFactory.CreateSpeedExerciseRecorder(60, 100, 160);
+            var exerciseRecorder = EntityFactory.CreateSpeedProgressExerciseRecorder(60, 100, 160);
             var viewModel = new RecorderViewModel(exerciseRecorder);
 
             viewModel.PropertyChanged += (s, e) =>
@@ -368,7 +363,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         {
             var changed = false;
 
-            var exerciseRecorder = EntityFactory.CreateSpeedExerciseRecorder(60, 100, 160);
+            var exerciseRecorder = EntityFactory.CreateSpeedProgressExerciseRecorder(60, 100, 160);
             var viewModel = new RecorderViewModel(exerciseRecorder);
 
             viewModel.PropertyChanged += (s, e) =>
@@ -388,7 +383,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         {
             var changed = false;
 
-            var exerciseRecorder = EntityFactory.CreateSpeedExerciseRecorder(60, 100, 160);
+            var exerciseRecorder = EntityFactory.CreateSpeedProgressExerciseRecorder(60, 100, 160);
             var viewModel = new RecorderViewModel(exerciseRecorder);
 
             viewModel.PropertyChanged += (s, e) =>
@@ -405,7 +400,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         [Test]
         public void RecorderViewModel_IncrementSpeed_Small_Reflects_On_Model()
         {
-            var exerciseRecorder = EntityFactory.CreateSpeedExerciseRecorder(60, 100, 160);
+            var exerciseRecorder = EntityFactory.CreateSpeedProgressExerciseRecorder(60, 100, 160);
 
             var viewModel = new RecorderViewModel(exerciseRecorder);
             viewModel.SmallSpeedIncrementCommand.Execute(null);
@@ -416,7 +411,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         [Test]
         public void RecorderViewModel_DecrementSpeed_Large_Reflects_On_Model()
         {
-            var exerciseRecorder = EntityFactory.CreateSpeedExerciseRecorder(60, 100, 160);
+            var exerciseRecorder = EntityFactory.CreateSpeedProgressExerciseRecorder(60, 100, 160);
 
             var viewModel = new RecorderViewModel(exerciseRecorder);
             viewModel.LargeSpeedDecrementCommand.Execute(null);
@@ -427,7 +422,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         [Test]
         public void RecorderViewModel_DecrementSpeed_Large_Below_Zero_Is_Zero()
         {
-            var exerciseRecorder = EntityFactory.CreateSpeedExerciseRecorder(5, 7, 160);
+            var exerciseRecorder = EntityFactory.CreateSpeedProgressExerciseRecorder(5, 7, 160);
 
             var viewModel = new RecorderViewModel(exerciseRecorder);
             viewModel.LargeSpeedDecrementCommand.Execute(null);
@@ -439,7 +434,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         [Test]
         public void RecorderViewModel_DecrementSpeed_Small_Below_Zero_Is_Zero()
         {
-            var exerciseRecorder = EntityFactory.CreateSpeedExerciseRecorder(0, 0, 160);
+            var exerciseRecorder = EntityFactory.CreateSpeedProgressExerciseRecorder(0, 0, 160);
 
             var viewModel = new RecorderViewModel(exerciseRecorder);
             viewModel.SmallSpeedDecrementCommand.Execute(null);
@@ -451,7 +446,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         [Test]
         public void RecorderViewModel_IncrementSpeed_Large_Reflects_On_Model()
         {
-            var exerciseRecorder = EntityFactory.CreateSpeedExerciseRecorder(60, 100, 160);
+            var exerciseRecorder = EntityFactory.CreateSpeedProgressExerciseRecorder(60, 100, 160);
 
             var viewModel = new RecorderViewModel(exerciseRecorder);
             viewModel.LargeSpeedIncrementCommand.Execute(null);
@@ -462,7 +457,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         [Test]
         public void RecorderViewModel_IncrementMinutes_Reflects_On_Model()
         {
-            var exerciseRecorder = EntityFactory.CreateTimeExerciseRecorder(300, 600);
+            var exerciseRecorder = EntityFactory.CreateTimeProgressExerciseRecorder(300, 600);
 
             var viewModel = new RecorderViewModel(exerciseRecorder);
             viewModel.IncrementMinutesPracticedCommand.Execute(null);
@@ -474,7 +469,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         [Test]
         public void RecorderViewModel_Initialized_With_Reflects_On_Model()
         {
-            var exerciseRecorder = EntityFactory.CreateTimeExerciseRecorder(300, 1200);
+            var exerciseRecorder = EntityFactory.CreateTimeProgressExerciseRecorder(300, 1200);
             exerciseRecorder.AddMinutes(10);
 
             var viewModel = new RecorderViewModel(exerciseRecorder);
@@ -486,7 +481,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         [Test]
         public void RecorderViewModel_Decrement_RecordedTime_By_Minutes_Reflects_On_Model()
         {
-            var exerciseRecorder = EntityFactory.CreateTimeExerciseRecorder(300, 1200);
+            var exerciseRecorder = EntityFactory.CreateTimeProgressExerciseRecorder(300, 1200);
             exerciseRecorder.AddMinutes(10);
 
             var viewModel = new RecorderViewModel(exerciseRecorder);
@@ -499,7 +494,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         [Test]
         public void RecorderViewModel_Increment_RecordedTime_By_Minutes_Reflects_On_Model()
         {
-            var exerciseRecorder = EntityFactory.CreateTimeExerciseRecorder(300, 1200);
+            var exerciseRecorder = EntityFactory.CreateTimeProgressExerciseRecorder(300, 1200);
             exerciseRecorder.AddMinutes(1);
 
             var viewModel = new RecorderViewModel(exerciseRecorder);
@@ -512,7 +507,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         [Test]
         public void RecorderViewModel_Decrement_RecordedTime_By_Seconds_Reflects_On_Model()
         {
-            var exerciseRecorder = EntityFactory.CreateTimeExerciseRecorder(10, 1200);
+            var exerciseRecorder = EntityFactory.CreateTimeProgressExerciseRecorder(10, 1200);
             exerciseRecorder.AddSeconds(10); // 20
 
             var viewModel = new RecorderViewModel(exerciseRecorder);
@@ -525,7 +520,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         [Test]
         public void RecorderViewModel_Increment_RecordedTime_By_Seconds_Reflects_On_Model()
         {
-            var exerciseRecorder = EntityFactory.CreateTimeExerciseRecorder(10, 1200);
+            var exerciseRecorder = EntityFactory.CreateTimeProgressExerciseRecorder(10, 1200);
             exerciseRecorder.AddSeconds(10); // 20
 
             var viewModel = new RecorderViewModel(exerciseRecorder);
@@ -538,7 +533,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         [Test]
         public void RecorderViewModel_ManualProgress_Increment_Small_Reflects_On_Model()
         {
-            var exerciseRecorder = EntityFactory.CreateManualExerciseRecorder(40);
+            var exerciseRecorder = EntityFactory.CreateManualProgressExerciseRecorder(40);
             exerciseRecorder.IncrementManualProgress(10);
 
             var viewModel = new RecorderViewModel(exerciseRecorder);
@@ -550,7 +545,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         [Test]
         public void RecorderViewModel_ManualProgress_Decrement_Small_Reflects_On_Model()
         {
-            var exerciseRecorder = EntityFactory.CreateManualExerciseRecorder(40);
+            var exerciseRecorder = EntityFactory.CreateManualProgressExerciseRecorder(40);
             exerciseRecorder.IncrementManualProgress(10);
 
             var viewModel = new RecorderViewModel(exerciseRecorder);
@@ -562,7 +557,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         [Test]
         public void RecorderViewModel_ManualProgress_Set_Reflects_On_Model()
         {
-            var exerciseRecorder = EntityFactory.CreateManualExerciseRecorder(40);
+            var exerciseRecorder = EntityFactory.CreateManualProgressExerciseRecorder(40);
             exerciseRecorder.IncrementManualProgress(10);
 
             var viewModel = new RecorderViewModel(exerciseRecorder);
@@ -575,7 +570,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         [Test]
         public void RecorderViewModel_OverallPracticeTime_Reflects_Model_Dynamically()
         {
-            var exerciseRecorder = EntityFactory.CreateTimeExerciseRecorder(300, 1200);
+            var exerciseRecorder = EntityFactory.CreateTimeProgressExerciseRecorder(300, 1200);
             var viewModel = new RecorderViewModel(exerciseRecorder);
 
             exerciseRecorder.AddSeconds(300);
@@ -586,7 +581,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         [Test]
         public void RecorderViewModel_SpeedProgress_Reflects_Model_Dynamically()
         {
-            var exerciseRecorder = EntityFactory.CreateSpeedExerciseRecorder(30, 30, 90);
+            var exerciseRecorder = EntityFactory.CreateSpeedProgressExerciseRecorder(30, 30, 90);
             var viewModel = new RecorderViewModel(exerciseRecorder);
 
             exerciseRecorder.IncrementSpeed(30);
@@ -597,7 +592,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         [Test]
         public void RecorderViewModel_OverallProgress_Reflects_Model_Dynamically()
         {
-            var exerciseRecorder = EntityFactory.CreateSpeedExerciseRecorder(30, 30, 90);
+            var exerciseRecorder = EntityFactory.CreateSpeedProgressExerciseRecorder(30, 30, 90);
             var viewModel = new RecorderViewModel(exerciseRecorder);
 
             exerciseRecorder.IncrementSpeed(30);

@@ -41,7 +41,9 @@ namespace CygSoft.SmartSession.Domain.Recording
             this.manualProgress = manualProgress ?? throw new ArgumentNullException("Progress element must be specified.");
 
             this.recorder.RecordingStatusChanged += Recorder_RecordingStatusChanged;
+            this.recorder.Tick += TickEventFired;
         }
+
 
         public bool Recording { get => recorder.Recording; }
 
@@ -105,10 +107,16 @@ namespace CygSoft.SmartSession.Domain.Recording
         public string TotalSecondsDisplay { get => TimeFuncs.DisplayTimeFromSeconds(CurrentTotalSeconds); }
 
         public event EventHandler RecordingStatusChanged;
+        public event EventHandler Tick;
 
         private void Recorder_RecordingStatusChanged(object sender, EventArgs e)
         {
             RecordingStatusChanged?.Invoke(this, new EventArgs());
+        }
+
+        protected virtual void TickEventFired(object sender, EventArgs e)
+        {
+            Tick?.Invoke(this, new EventArgs());
         }
 
 
@@ -194,13 +202,12 @@ namespace CygSoft.SmartSession.Domain.Recording
                 if (disposing)
                 {
                     recorder.RecordingStatusChanged -= Recorder_RecordingStatusChanged;
+                    recorder.Tick -= TickEventFired;
                     recorder.Dispose();
                 }
             }
             isDisposed = true;
         }
-
-
 
         ~ExerciseRecorder()
         {

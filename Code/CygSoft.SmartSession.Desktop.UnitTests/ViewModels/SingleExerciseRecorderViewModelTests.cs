@@ -16,7 +16,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         [Test]
         public void SingleExerciseRecorderViewModel_InitializeRecorder_Enables_CanExecute_StartRecording()
         {
-            using (var exerciseRecorder = EntityFactory.CreateSpeedExerciseRecorder(10, 30, 50))
+            using (var exerciseRecorder = EntityFactory.CreateSpeedProgressExerciseRecorder(10, 30, 50))
             {
                 var exerciseService = new Mock<IExerciseService>();
                 var dialogService = new Mock<IDialogViewService>();
@@ -33,7 +33,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         [Test]
         public void SingleExerciseRecorderViewModel_Pause_Correctly_Sets_Recording_State()
         {
-            using (var exerciseRecorder = EntityFactory.CreateSpeedExerciseRecorder(50, 80, 100))
+            using (var exerciseRecorder = EntityFactory.CreateSpeedProgressExerciseRecorder(50, 80, 100))
             {
                 var exerciseService = new Mock<IExerciseService>();
                 var dialogService = new Mock<IDialogViewService>();
@@ -181,7 +181,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         [Test]
         public void SingleExerciseRecorderViewModel_Change_Speed_AssignsTo_Recorder()
         {
-            var exerciseRecorder = EntityFactory.CreateManualExerciseRecorder(0);
+            var exerciseRecorder = EntityFactory.CreateManualProgressExerciseRecorder(0);
             var exerciseService = new Mock<IExerciseService>();
             var dialogService = new Mock<IDialogViewService>();
 
@@ -198,7 +198,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
             var changed = false;
             var propertyName = "";
 
-            var exerciseRecorder = EntityFactory.CreateManualExerciseRecorder(0);
+            var exerciseRecorder = EntityFactory.CreateManualProgressExerciseRecorder(0);
             var exerciseService = new Mock<IExerciseService>();
             var dialogService = new Mock<IDialogViewService>();
 
@@ -219,7 +219,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         [Test]
         public void SingleExerciseRecorderViewModel_Change_ManualProgress_AssignsTo_Recorder()
         {
-            var exerciseRecorder = EntityFactory.CreateManualExerciseRecorder(0);
+            var exerciseRecorder = EntityFactory.CreateManualProgressExerciseRecorder(0);
             var exerciseService = new Mock<IExerciseService>();
             var dialogService = new Mock<IDialogViewService>();
 
@@ -236,7 +236,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
             var changed = false;
             var propertyName = "";
 
-            var exerciseRecorder = EntityFactory.CreateManualExerciseRecorder(0);
+            var exerciseRecorder = EntityFactory.CreateManualProgressExerciseRecorder(0);
             var exerciseService = new Mock<IExerciseService>();
             var dialogService = new Mock<IDialogViewService>();
 

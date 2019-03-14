@@ -80,6 +80,7 @@
     <Compile Include="Tests\PracticeRoutineServiceTests.cs" />
     <Compile Include="Tests\PracticeRoutineTests.cs" />
     <Compile Include="Tests\SpeedProgressTests.cs" />
+    <Compile Include="Tests\TimeSlotExerciseRecorderTests.cs" />
     <Compile Include="Tests\WeightedProgressCalculatorTests.cs" />
   </ItemGroup>
   <ItemGroup>

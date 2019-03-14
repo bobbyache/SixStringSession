@@ -172,7 +172,16 @@ namespace CygSoft.SmartSession.UnitTests.Infrastructure
             return exerciseActivity;
         }
 
-        public static ExerciseRecorder CreateSpeedExerciseRecorder(int initialSpeed, int currentSpeed, int targetSpeed)
+        public static TimeSlotExerciseRecorder CreateTimeSlotExerciseRecorder(int assignedTime)
+        {
+            var recorder = new Recorder();
+            var manualProgress = new ManualProgress(0, 50);
+            var speedProgress = new SpeedProgress(0, 0, 120, 50);
+            var practiceTimeProgress = new PracticeTimeProgress(0, 600, 50);
+            return new TimeSlotExerciseRecorder(recorder, 1, "Exercise Title", speedProgress, practiceTimeProgress, manualProgress, assignedTime);
+        }
+
+        public static ExerciseRecorder CreateSpeedProgressExerciseRecorder(int initialSpeed, int currentSpeed, int targetSpeed)
         {
             var recorder = new Recorder();
             var speedProgress = new SpeedProgress(initialSpeed, currentSpeed, targetSpeed, 100);
@@ -182,7 +191,7 @@ namespace CygSoft.SmartSession.UnitTests.Infrastructure
             return new ExerciseRecorder(recorder, 1, "Speed Exercise", speedProgress, practiceTimeProgress, manualProgress);
         }
 
-        public static ExerciseRecorder CreateTimeExerciseRecorder(int currentTime, int targetTime)
+        public static ExerciseRecorder CreateTimeProgressExerciseRecorder(int currentTime, int targetTime)
         {
             var recorder = new Recorder();
             var speedProgress = new SpeedProgress(0, 0, 0, 0);
@@ -192,7 +201,7 @@ namespace CygSoft.SmartSession.UnitTests.Infrastructure
             return new ExerciseRecorder(recorder, 1, "Time Exercise", speedProgress, practiceTimeProgress, manualProgress);
         }
 
-        public static ExerciseRecorder CreateManualExerciseRecorder(int value)
+        public static ExerciseRecorder CreateManualProgressExerciseRecorder(int value)
         {
             var recorder = new Recorder();
             var speedProgress = new SpeedProgress(0, 0, 0, 0);

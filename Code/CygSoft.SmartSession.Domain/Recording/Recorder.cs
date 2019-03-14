@@ -42,6 +42,7 @@ namespace CygSoft.SmartSession.Domain.Recording
         public Action TickActionCallBack { set { tickActionFunc = value; } }
 
         public event EventHandler RecordingStatusChanged;
+        public event EventHandler Tick;
 
         public double PreciseSeconds
         {
@@ -98,6 +99,7 @@ namespace CygSoft.SmartSession.Domain.Recording
         private void Timer_Elapsed(object sender, ElapsedEventArgs e)
         {
             tickActionFunc?.Invoke();
+            Tick?.Invoke(this, new EventArgs());
         }
 
         public virtual void Pause()

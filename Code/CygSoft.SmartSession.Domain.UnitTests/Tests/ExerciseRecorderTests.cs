@@ -53,7 +53,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             exerciseService.Setup(service => service.Get(It.IsAny<int>()))
                 .Returns(EntityFactory.CreateExercise("Fake Exercise"));
 
-            var exerciseRecorder = EntityFactory.CreateSpeedExerciseRecorder(10, 30, 80);
+            var exerciseRecorder = EntityFactory.CreateSpeedProgressExerciseRecorder(10, 30, 80);
 
             exerciseRecorder.AddMinutes(1);
             exerciseRecorder.SaveRecording(exerciseService.Object);
