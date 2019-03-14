@@ -9,7 +9,7 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines.Recorder
 {
     public class RecorderViewModel : ViewModelBase
     {
-        private IExerciseRecorder exerciseRecorder;
+        protected IExerciseRecorder exerciseRecorder;
 
         public string RecordingTimeDisplay
         {
@@ -314,7 +314,7 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines.Recorder
             ManualProgress -= 1;
         }
 
-        private void RaiseProgressPropertyChangedEvents()
+        protected virtual void RaiseProgressPropertyChangedEvents()
         {
             RaisePropertyChanged(() => SpeedProgress);
             RaisePropertyChanged(() => OverallProgress);

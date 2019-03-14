@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace CygSoft.SmartSession.Domain.Recording
 {
-    public class TimeSlotExerciseRecorder : ExerciseRecorder
+    public class TimeSlotExerciseRecorder : ExerciseRecorder, ITimeSlotExerciseRecorder
     {
         public TimeSlotExerciseRecorder(IRecorder recorder, int exerciseId, string title,
             ISpeedProgress speedProgress, IPracticeTimeProgress practiceTimeProgress, IManualProgress manualProgress, int assignedTime)
             : base(recorder, exerciseId, title, speedProgress, practiceTimeProgress, manualProgress)
         {
-            AssignedTime = assignedTime;
+            AssignedSeconds = assignedTime;
         }
 
         protected override void TickEventFired(object sender, EventArgs e)
@@ -20,15 +20,15 @@ namespace CygSoft.SmartSession.Domain.Recording
             base.TickEventFired(sender, e);
         }
 
-        public double AssignedTime { get; private set; }
-        public double RemainingTime
+        public double AssignedSeconds { get; private set; }
+        public double RemainingSeconds
         {
             get
             {
-                var result = AssignedTime - RecordedSeconds;
+                var result = AssignedSeconds - RecordedSeconds;
                 if (result < 0)
                     return 0;
-                return AssignedTime - RecordedSeconds;
+                return AssignedSeconds - RecordedSeconds;
             }
         }
     }

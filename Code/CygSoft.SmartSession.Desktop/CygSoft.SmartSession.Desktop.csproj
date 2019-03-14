@@ -169,6 +169,7 @@
     <Compile Include="PracticeRoutines\Recorder\RecorderViewModel.cs" />
     <Compile Include="PracticeRoutines\Edit\TimeSlotExerciseViewModel.cs" />
     <Compile Include="PracticeRoutines\Edit\TimeSlotViewModel.cs" />
+    <Compile Include="PracticeRoutines\Recorder\TimeSlotRecorderViewModel.cs" />
     <Compile Include="Supports\Converters\BoolToValueConverter.cs" />
     <Compile Include="Supports\Converters\EnumToCollectionConverter.cs" />
     <Compile Include="Supports\Converters\MathConverter.cs" />

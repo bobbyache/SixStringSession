@@ -210,5 +210,36 @@ namespace CygSoft.SmartSession.UnitTests.Infrastructure
 
             return new ExerciseRecorder(recorder, 1, "Time Exercise", speedProgress, practiceTimeProgress, manualProgress);
         }
+
+
+        public static TimeSlotExerciseRecorder CreateSpeedProgressTimeSlotExerciseRecorder(int initialSpeed, int currentSpeed, int targetSpeed, int assignedTime)
+        {
+            var recorder = new Recorder();
+            var speedProgress = new SpeedProgress(initialSpeed, currentSpeed, targetSpeed, 100);
+            var practiceTimeProgress = new PracticeTimeProgress(0, 0, 0);
+            var manualProgress = new ManualProgress(0, 0);
+
+            return new TimeSlotExerciseRecorder(recorder, 1, "Speed Exercise", speedProgress, practiceTimeProgress, manualProgress, assignedTime);
+        }
+
+        public static TimeSlotExerciseRecorder CreateTimeProgressTimeSlotExerciseRecorder(int currentTime, int targetTime, int assignedTime)
+        {
+            var recorder = new Recorder();
+            var speedProgress = new SpeedProgress(0, 0, 0, 0);
+            var practiceTimeProgress = new PracticeTimeProgress(currentTime, targetTime, 100);
+            var manualProgress = new ManualProgress(0, 0);
+
+            return new TimeSlotExerciseRecorder(recorder, 1, "Time Exercise", speedProgress, practiceTimeProgress, manualProgress, assignedTime);
+        }
+
+        public static TimeSlotExerciseRecorder CreateManualProgressTimeSlotExerciseRecorder(int value, int assignedTime)
+        {
+            var recorder = new Recorder();
+            var speedProgress = new SpeedProgress(0, 0, 0, 0);
+            var practiceTimeProgress = new PracticeTimeProgress(0, 0, 0);
+            var manualProgress = new ManualProgress(value, 100);
+
+            return new TimeSlotExerciseRecorder(recorder, 1, "Time Exercise", speedProgress, practiceTimeProgress, manualProgress, assignedTime);
+        }
     }
 }

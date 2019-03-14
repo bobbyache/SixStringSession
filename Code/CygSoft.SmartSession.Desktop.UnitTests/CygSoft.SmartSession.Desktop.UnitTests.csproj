@@ -92,6 +92,7 @@
     <Compile Include="ViewModels\PracticeRoutineEditViewModelTests.cs" />
     <Compile Include="ViewModels\RecorderViewModelTests.cs" />
     <Compile Include="ViewModels\TimeSlotExerciseViewModelTests.cs" />
+    <Compile Include="ViewModels\TimeSlotRecorderViewModelTests.cs" />
     <Compile Include="ViewModels\TimeSlotViewModelTests.cs" />
   </ItemGroup>
   <ItemGroup>

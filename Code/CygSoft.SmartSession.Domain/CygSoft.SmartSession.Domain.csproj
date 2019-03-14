@@ -80,6 +80,7 @@
     <Compile Include="Recording\IPracticeTimeProgress.cs" />
     <Compile Include="Recording\IExerciseRecorder.cs" />
     <Compile Include="Recording\ISpeedProgress.cs" />
+    <Compile Include="Recording\ITimeSlotExerciseRecorder.cs" />
     <Compile Include="Recording\ManualProgress.cs" />
     <Compile Include="Recording\PracticeTimeProgress.cs" />
     <Compile Include="Recording\ExerciseRecorder.cs" />
