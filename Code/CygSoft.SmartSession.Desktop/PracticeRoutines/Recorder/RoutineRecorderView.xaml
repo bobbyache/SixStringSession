@@ -26,7 +26,7 @@
                 <ColumnDefinition Width="5" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <recorder:ExerciseInstanceListView Grid.Column="0"/>
+            <recorder:RoutineExerciseListView Grid.Column="0"/>
             <GridSplitter Grid.Column ="1" HorizontalAlignment="Center" ResizeBehavior="PreviousAndNext" Background="DarkGray" Width="5" ResizeDirection="Columns" VerticalAlignment="Stretch"/>
             <recorder:RecorderView Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
         </Grid>

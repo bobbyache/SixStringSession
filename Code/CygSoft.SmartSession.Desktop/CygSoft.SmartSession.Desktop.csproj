@@ -140,11 +140,8 @@
     <Compile Include="PracticeRoutines\Recorder\RecorderView.xaml.cs">
       <DependentUpon>RecorderView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PracticeRoutines\Recorder\ExerciseInstanceListView.xaml.cs">
-      <DependentUpon>ExerciseInstanceListView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="PracticeRoutines\Recorder\ExerciseInstanceSummaryView.xaml.cs">
-      <DependentUpon>ExerciseInstanceSummaryView.xaml</DependentUpon>
+    <Compile Include="PracticeRoutines\Recorder\RoutineExerciseListView.xaml.cs">
+      <DependentUpon>RoutineExerciseListView.xaml</DependentUpon>
     </Compile>
     <Compile Include="PracticeRoutines\PracticeRoutineCompositeView.xaml.cs">
       <DependentUpon>PracticeRoutineCompositeView.xaml</DependentUpon>
@@ -238,11 +235,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="PracticeRoutines\Recorder\ExerciseInstanceListView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="PracticeRoutines\Recorder\ExerciseInstanceSummaryView.xaml">
+    <Page Include="PracticeRoutines\Recorder\RoutineExerciseListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
