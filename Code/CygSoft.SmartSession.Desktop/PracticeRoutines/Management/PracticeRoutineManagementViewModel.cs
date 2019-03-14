@@ -8,7 +8,7 @@ using GalaSoft.MvvmLight.Messaging;
 using System;
 using System.Collections.ObjectModel;
 
-namespace CygSoft.SmartSession.Desktop.PracticeRoutines
+namespace CygSoft.SmartSession.Desktop.PracticeRoutines.Management
 {
     public class PracticeRoutineManagementViewModel : ViewModelBase
     {

@@ -10,7 +10,7 @@ using System;
 using System.ComponentModel;
 using System.Linq;
 
-namespace CygSoft.SmartSession.Desktop.PracticeRoutines
+namespace CygSoft.SmartSession.Desktop.PracticeRoutines.Recorder
 {
     public class PracticeRoutineRecordingListViewModel : ViewModelBase
     {

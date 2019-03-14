@@ -1,5 +1,4 @@
-﻿using CygSoft.SmartSession.Desktop.Supports.Validators;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace CygSoft.SmartSession.Desktop.PracticeRoutines
+namespace CygSoft.SmartSession.Desktop.PracticeRoutines.Management
 {
     /// <summary>
-    /// Interaction logic for PracticeRoutineEditView.xaml
+    /// Interaction logic for PracticeRoutineManagementView.xaml
     /// </summary>
-    public partial class PracticeRoutineEditView : UserControl
+    public partial class PracticeRoutineManagementView : UserControl
     {
-        public PracticeRoutineEditView()
+        public PracticeRoutineManagementView()
         {
             InitializeComponent();
         }

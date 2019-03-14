@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace CygSoft.SmartSession.Desktop.PracticeRoutines
+namespace CygSoft.SmartSession.Desktop.PracticeRoutines.Recorder
 {
     /// <summary>
-    /// Interaction logic for TimeSlotTreeViewItemView.xaml
+    /// Interaction logic for ExerciseInstanceEditView.xaml
     /// </summary>
-    public partial class TimeSlotTreeViewItemView : UserControl
+    public partial class ExerciseInstanceEditView : UserControl
     {
-        public TimeSlotTreeViewItemView()
+        public ExerciseInstanceEditView()
         {
             InitializeComponent();
         }

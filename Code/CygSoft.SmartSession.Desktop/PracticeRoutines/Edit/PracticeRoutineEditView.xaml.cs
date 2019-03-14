@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CygSoft.SmartSession.Desktop.Supports.Validators;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,14 +14,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace CygSoft.SmartSession.Desktop.PracticeRoutines
+namespace CygSoft.SmartSession.Desktop.PracticeRoutines.Edit
 {
     /// <summary>
-    /// Interaction logic for TimeSlotExerciseTreeViewItemView.xaml
+    /// Interaction logic for PracticeRoutineEditView.xaml
     /// </summary>
-    public partial class TimeSlotExerciseTreeViewItemView : UserControl
+    public partial class PracticeRoutineEditView : UserControl
     {
-        public TimeSlotExerciseTreeViewItemView()
+        public PracticeRoutineEditView()
         {
             InitializeComponent();
         }

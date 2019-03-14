@@ -2,7 +2,7 @@
 using GalaSoft.MvvmLight;
 using System;
 
-namespace CygSoft.SmartSession.Desktop.PracticeRoutines
+namespace CygSoft.SmartSession.Desktop.PracticeRoutines.Edit
 {
     public class TimeSlotExerciseViewModel : ViewModelBase
     {

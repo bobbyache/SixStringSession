@@ -1,10 +1,9 @@
-﻿<UserControl x:Class="CygSoft.SmartSession.Desktop.PracticeRoutines.PracticeRoutineEditView"
+﻿<UserControl x:Class="CygSoft.SmartSession.Desktop.PracticeRoutines.Edit.PracticeRoutineEditView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:CygSoft.SmartSession.Desktop.PracticeRoutines"
-             xmlns:tree="clr-namespace:CygSoft.SmartSession.Desktop.PracticeRoutines"
+             xmlns:edit="clr-namespace:CygSoft.SmartSession.Desktop.PracticeRoutines.Edit"
              xmlns:converters="clr-namespace:CygSoft.SmartSession.Desktop.Supports.Converters"
              xmlns:validators="clr-namespace:CygSoft.SmartSession.Desktop.Supports.Validators"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
@@ -73,12 +72,12 @@
             </TreeView.ItemContainerStyle>
 
             <TreeView.Resources>
-                <HierarchicalDataTemplate  DataType="{x:Type tree:TimeSlotViewModel}" ItemsSource="{Binding Exercises}" >
-                    <tree:TimeSlotTreeViewItemView />
+                <HierarchicalDataTemplate  DataType="{x:Type edit:TimeSlotViewModel}" ItemsSource="{Binding Exercises}" >
+                    <edit:TimeSlotTreeViewItemView />
                 </HierarchicalDataTemplate>
 
-                <DataTemplate DataType="{x:Type tree:TimeSlotExerciseViewModel}">
-                    <tree:TimeSlotExerciseTreeViewItemView />
+                <DataTemplate DataType="{x:Type edit:TimeSlotExerciseViewModel}">
+                    <edit:TimeSlotExerciseTreeViewItemView />
                 </DataTemplate>
             </TreeView.Resources>
 

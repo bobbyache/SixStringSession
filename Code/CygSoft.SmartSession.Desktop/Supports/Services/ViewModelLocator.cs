@@ -5,6 +5,9 @@ using CygSoft.SmartSession.Desktop.Exercises.Management;
 using CygSoft.SmartSession.Desktop.Exercises.Recorder;
 using CygSoft.SmartSession.Desktop.Exercises.Selection;
 using CygSoft.SmartSession.Desktop.PracticeRoutines;
+using CygSoft.SmartSession.Desktop.PracticeRoutines.Edit;
+using CygSoft.SmartSession.Desktop.PracticeRoutines.Management;
+using CygSoft.SmartSession.Desktop.PracticeRoutines.Recorder;
 using CygSoft.SmartSession.Desktop.Supports.DI;
 
 namespace CygSoft.SmartSession.Desktop.Supports.Services

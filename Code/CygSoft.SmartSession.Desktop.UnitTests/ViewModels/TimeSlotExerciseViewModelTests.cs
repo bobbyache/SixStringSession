@@ -1,4 +1,5 @@
 ﻿using CygSoft.SmartSession.Desktop.PracticeRoutines;
+using CygSoft.SmartSession.Desktop.PracticeRoutines.Edit;
 using CygSoft.SmartSession.Domain.PracticeRoutines;
 using CygSoft.SmartSession.UnitTests.Infrastructure;
 using NUnit.Framework;

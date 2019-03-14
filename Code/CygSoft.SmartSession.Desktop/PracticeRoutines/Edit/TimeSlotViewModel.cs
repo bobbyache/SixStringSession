@@ -5,7 +5,7 @@ using GalaSoft.MvvmLight.Command;
 using System;
 using System.ComponentModel;
 
-namespace CygSoft.SmartSession.Desktop.PracticeRoutines
+namespace CygSoft.SmartSession.Desktop.PracticeRoutines.Edit
 {
     public class TimeSlotViewModel : ViewModelBase
     {
