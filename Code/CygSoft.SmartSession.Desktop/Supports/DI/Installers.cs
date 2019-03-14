@@ -1,4 +1,5 @@
-﻿using Castle.MicroKernel.Registration;
+﻿using Castle.Facilities.TypedFactory;
+using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
 using CygSoft.SmartSession.Dal.MySql;
@@ -11,6 +12,7 @@ using CygSoft.SmartSession.Desktop.PracticeRoutines;
 using CygSoft.SmartSession.Desktop.PracticeRoutines.Edit;
 using CygSoft.SmartSession.Desktop.PracticeRoutines.Management;
 using CygSoft.SmartSession.Desktop.PracticeRoutines.Recorder;
+using CygSoft.SmartSession.Desktop.Supports.Factories;
 using CygSoft.SmartSession.Desktop.Supports.Services;
 using CygSoft.SmartSession.Domain;
 using CygSoft.SmartSession.Domain.Common;
@@ -64,9 +66,27 @@ namespace CygSoft.SmartSession.Desktop.Supports.DI
             container.Register(Component.For<IUnitOfWork>().ImplementedBy(typeof(UnitOfWork))
                 .DependsOn(Dependency.OnConfigValue("connectionString", Settings.ConnectionString)).LifestyleSingleton());
 
+
+            container.AddFacility<TypedFactoryFacility>();
+
+            container.Register(
+                Component.For<IComponentFactory>().AsFactory(),
+                Component.For<IRecorder>().ImplementedBy<Recorder>().LifeStyle.Transient,
+                Component.For<ISpeedProgress>().ImplementedBy<SpeedProgress>().LifeStyle.Transient,
+                Component.For<IManualProgress>().ImplementedBy<ManualProgress>().LifeStyle.Transient,
+                Component.For<IPracticeTimeProgress>().ImplementedBy<PracticeTimeProgress>().LifeStyle.Transient,
+                Component.For<IExerciseRecorder>().ImplementedBy<ExerciseRecorder>().LifeStyle.Transient,
+                Component.For<RecorderViewModel>().LifeStyle.Transient
+                );
+
+            container.Register(
+                Component.For<IViewModelFactory>().ImplementedBy<ViewModelFactory>()
+                );
+
+
             container.Register(Component.For<IExerciseService>().ImplementedBy(typeof(ExerciseService)));
 
-            container.Register(Component.For<IRecorder>().ImplementedBy(typeof(Recorder)));
+            //container.Register(Component.For<IRecorder>().ImplementedBy(typeof(Recorder)));
 
             //container.Register(Component.For<IExerciseRecorder>().ImplementedBy(typeof(ExerciseRecorder)));
             //container.Register(Component.For<RecorderViewModel>());

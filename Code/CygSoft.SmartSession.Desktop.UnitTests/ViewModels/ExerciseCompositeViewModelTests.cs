@@ -2,6 +2,8 @@
 using CygSoft.SmartSession.Desktop.Exercises.Edit;
 using CygSoft.SmartSession.Desktop.Exercises.Management;
 using CygSoft.SmartSession.Desktop.Exercises.Recorder;
+using CygSoft.SmartSession.Desktop.Supports.DI;
+using CygSoft.SmartSession.Desktop.Supports.Factories;
 using CygSoft.SmartSession.Desktop.Supports.Services;
 using CygSoft.SmartSession.Domain.Exercises;
 using CygSoft.SmartSession.Domain.Recording;
@@ -17,61 +19,62 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         [Test]
         public void ExerciseCompositeViewModel_Receives_Save_Message_From_ExerciseEditViewModel()
         {
-            //var exerciseRecorder = new Mock<IExerciseRecorder>();
-            //var exerciseService = new Mock<IExerciseService>();
-            //var dialogService = new Mock<IDialogViewService>();
+            ViewModelLocator compositeRoot = new ViewModelLocator();
+            var viewModelFactory = compositeRoot.ViewModelFactory;
 
-            //var exercise = new Exercise { Id = 0, Title = "New Exercise" };
-            //exerciseService.Setup(srv => srv.Get(It.IsAny<int>()))
-            //    .Returns(exercise);
+            var exerciseService = new Mock<IExerciseService>();
+            var dialogService = new Mock<IDialogViewService>();
 
-            //var exerciseSearchViewModel = new ExerciseManagementViewModel(exerciseService.Object, dialogService.Object);
-            //var recorderViewModel = new RecorderViewModel(exerciseRecorder.Object);
+            var exercise = new Exercise { Id = 0, Title = "New Exercise" };
+            exerciseService.Setup(srv => srv.Get(It.IsAny<int>()))
+                .Returns(exercise);
 
-            //var exerciseEditViewModel = new ExerciseEditViewModel(dialogService.Object);
+            var exerciseManagementViewModel = new ExerciseManagementViewModel(exerciseService.Object, dialogService.Object);
+            var exerciseEditViewModel = new ExerciseEditViewModel(dialogService.Object);
 
-            //var viewModel = new MockExerciseCompositeViewModel(exerciseService.Object, exerciseSearchViewModel, exerciseEditViewModel, recorderViewModel);
+            var viewModel = new MockExerciseCompositeViewModel(viewModelFactory, exerciseService.Object, exerciseManagementViewModel, exerciseEditViewModel);
 
-            //exerciseEditViewModel.StartEdit(exercise);
-            //exerciseEditViewModel.SaveCommand.Execute(null);
+            exerciseEditViewModel.StartEdit(exercise);
+            exerciseEditViewModel.SaveCommand.Execute(null);
 
-            //Assert.IsTrue(viewModel.EndEditinExerciseCalled);
+            Assert.IsTrue(viewModel.EndEditinExerciseCalled);
 
-            //Assert.That(viewModel.EndEditOperation, Is.EqualTo(EditorCloseOperation.Saved));
-            Assert.Fail("Need to put recorderViewModel back!!!!!!!!");
+            Assert.That(viewModel.EndEditOperation, Is.EqualTo(EditorCloseOperation.Saved));
         }
 
         [Test]
         public void ExerciseCompositeViewModel_Receives_Cancel_Message_From_ExerciseEditViewModel()
         {
-            //var exerciseRecorder = new Mock<IExerciseRecorder>();
-            //var exerciseService = new Mock<IExerciseService>();
-            //var dialogService = new Mock<IDialogViewService>();
+            ViewModelLocator compositeRoot = new ViewModelLocator();
+            var viewModelFactory = compositeRoot.ViewModelFactory;
 
-            //var exercise = new Exercise { Id = 2, Title = "Existing Exercise" };
-            //exerciseService.Setup(srv => srv.Get(It.IsAny<int>()))
-            //    .Returns(exercise);
+            var exerciseService = new Mock<IExerciseService>();
+            var dialogService = new Mock<IDialogViewService>();
 
-            //var exerciseSearchViewModel = new ExerciseManagementViewModel(exerciseService.Object, dialogService.Object);
-            //var recorderViewModel = new RecorderViewModel(exerciseRecorder.Object);
+            var exercise = new Exercise { Id = 2, Title = "Existing Exercise" };
+            exerciseService.Setup(srv => srv.Get(It.IsAny<int>()))
+                .Returns(exercise);
 
-            //var exerciseEditViewModel = new ExerciseEditViewModel(dialogService.Object);
+            var exerciseManagementViewModel = new ExerciseManagementViewModel(exerciseService.Object, dialogService.Object);
 
-            //var viewModel = new MockExerciseCompositeViewModel(exerciseService.Object, exerciseSearchViewModel, exerciseEditViewModel, recorderViewModel);
+            var exerciseEditViewModel = new ExerciseEditViewModel(dialogService.Object);
 
-            //exerciseEditViewModel.StartEdit(exercise);
-            //exerciseEditViewModel.CancelCommand.Execute(null);
+            var viewModel = new MockExerciseCompositeViewModel(viewModelFactory, exerciseService.Object, exerciseManagementViewModel, exerciseEditViewModel);
 
-            //Assert.IsTrue(viewModel.EndEditinExerciseCalled);
-            //Assert.That(viewModel.EndEditOperation, Is.EqualTo(EditorCloseOperation.Canceled));
-            Assert.Fail("Need to put recorderViewModel back!!!!!!!!");
+            exerciseEditViewModel.StartEdit(exercise);
+            exerciseEditViewModel.CancelCommand.Execute(null);
+
+            Assert.IsTrue(viewModel.EndEditinExerciseCalled);
+            Assert.That(viewModel.EndEditOperation, Is.EqualTo(EditorCloseOperation.Canceled));
         }
 
 
         [Test]
         public void ExerciseCompositeViewModel_Calls_Save_On_Service_When_Exercise_Saved_AsExisting()
         {
-            var exerciseRecorder = new Mock<IExerciseRecorder>();
+            ViewModelLocator compositeRoot = new ViewModelLocator();
+            var viewModelFactory = compositeRoot.ViewModelFactory;
+
             var exerciseService = new Mock<IExerciseService>();
             var dialogService = new Mock<IDialogViewService>();
 
@@ -80,15 +83,9 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
                 .Returns(exercise);
 
             var exerciseSearchViewModel = new ExerciseManagementViewModel(exerciseService.Object, dialogService.Object);
-            var recorderViewModel = new RecorderViewModel(exerciseRecorder.Object);
-
             var exerciseEditViewModel = new ExerciseEditViewModel(dialogService.Object);
 
-            var viewModel = new ExerciseCompositeViewModel(exerciseService.Object, exerciseSearchViewModel, exerciseEditViewModel
-                //, 
-                //recorderViewModel
-                );
-            Assert.Fail("Need to put recorderViewModel back!!!!!!!!");
+            var viewModel = new ExerciseCompositeViewModel(viewModelFactory, exerciseService.Object, exerciseSearchViewModel, exerciseEditViewModel);
 
             exerciseEditViewModel.StartEdit(exercise);
             exerciseEditViewModel.SaveCommand.Execute(null);
@@ -101,53 +98,46 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         [Test]
         public void ExerciseCompositeViewModel_Calls_Add_On_Service_When_Exercise_Saved_AsNew()
         {
-            //var exerciseRecorder = new Mock<IExerciseRecorder>();
-            //var exerciseService = new Mock<IExerciseService>();
-            //var dialogService = new Mock<IDialogViewService>();
+            ViewModelLocator compositeRoot = new ViewModelLocator();
+            var viewModelFactory = compositeRoot.ViewModelFactory;
 
-            //var exercise = new Exercise { Id = 0, Title = "New Exercise" };
-            //exerciseService.Setup(srv => srv.Get(It.IsAny<int>()))
-            //    .Returns(exercise);
+            var exerciseService = new Mock<IExerciseService>();
+            var dialogService = new Mock<IDialogViewService>();
 
-            //var exerciseSearchViewModel = new ExerciseManagementViewModel(exerciseService.Object, dialogService.Object);
-            //var recorderViewModel = new RecorderViewModel(exerciseRecorder.Object);
+            var exercise = new Exercise { Id = 0, Title = "New Exercise" };
+            exerciseService.Setup(srv => srv.Get(It.IsAny<int>()))
+                .Returns(exercise);
 
-            //var exerciseEditViewModel = new ExerciseEditViewModel(dialogService.Object);
+            var exerciseManagementViewModel = new ExerciseManagementViewModel(exerciseService.Object, dialogService.Object);
+            var exerciseEditViewModel = new ExerciseEditViewModel(dialogService.Object);
 
-            //var viewModel = new ExerciseCompositeViewModel(exerciseService.Object, exerciseSearchViewModel, exerciseEditViewModel, recorderViewModel);
+            var viewModel = new ExerciseCompositeViewModel(viewModelFactory, exerciseService.Object, exerciseManagementViewModel, exerciseEditViewModel);
 
-            //exerciseEditViewModel.StartEdit(exercise);
-            //exerciseEditViewModel.SaveCommand.Execute(null);
+            exerciseEditViewModel.StartEdit(exercise);
+            exerciseEditViewModel.SaveCommand.Execute(null);
 
-            //exerciseService.Verify(svc => svc.Add(It.IsAny<Exercise>()),
-            //    Times.Once, "IExerciseService.Add was not called.");
-            Assert.Fail("Need to put recorderViewModel back!!!!!!!!");
-
+            exerciseService.Verify(svc => svc.Add(It.IsAny<Exercise>()),
+                Times.Once, "IExerciseService.Add was not called.");
         }
     }
 
-    
+    public class MockExerciseCompositeViewModel : ExerciseCompositeViewModel
+    {
+        public bool EndEditinExerciseCalled = false;
+        public EditorCloseOperation? EndEditOperation;
+        public EntityLifeCycleState EndEditLifeCycleState;
 
+        public MockExerciseCompositeViewModel(IViewModelFactory viewModelFactory, IExerciseService exerciseService, ExerciseManagementViewModel exerciseSearchViewModel,
+            ExerciseEditViewModel exerciseEditViewModel) : base(viewModelFactory, exerciseService, exerciseSearchViewModel, exerciseEditViewModel)
+        {
 
+        }
 
-    //public class MockExerciseCompositeViewModel : ExerciseCompositeViewModel
-    //{
-    //    public bool EndEditinExerciseCalled = false;
-    //    public EditorCloseOperation? EndEditOperation;
-    //    public EntityLifeCycleState EndEditLifeCycleState;
-
-    //    public MockExerciseCompositeViewModel(IExerciseService exerciseService, ExerciseManagementViewModel exerciseSearchViewModel,
-    //        ExerciseEditViewModel exerciseEditViewModel,
-    //        RecorderViewModel exerciseRecorderViewModel) : base(exerciseService, exerciseSearchViewModel, exerciseEditViewModel, exerciseRecorderViewModel)
-    //    {
-
-    //    }
-
-    //    protected override void EndEditingExercise(IExercise exercise, EditorCloseOperation operation, EntityLifeCycleState entityLifeCycleState)
-    //    {
-    //        EndEditinExerciseCalled = true;
-    //        EndEditOperation = operation;
-    //        EndEditLifeCycleState = entityLifeCycleState;
-    //    }
-    //}
+        protected override void EndEditingExercise(IExercise exercise, EditorCloseOperation operation, EntityLifeCycleState entityLifeCycleState)
+        {
+            EndEditinExerciseCalled = true;
+            EndEditOperation = operation;
+            EndEditLifeCycleState = entityLifeCycleState;
+        }
+    }
 }

@@ -19,7 +19,15 @@ namespace CygSoft.SmartSession.Desktop.Supports
             }
         }
 
-        public static string ConnectionString { get => ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString; }
+        public static string ConnectionString
+        {
+            get
+            {
+                if (ConfigurationManager.ConnectionStrings["ConnectionString"] != null)
+                    return ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+                return "";
+            }
+        }
 
         private static string fileAttachmentFolder;
         public static string FileAttachmentFolder

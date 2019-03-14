@@ -183,9 +183,12 @@
     <Compile Include="Supports\Converters\StarWidthConverter.cs" />
     <Compile Include="Supports\Converters\TimeDisplayConverter.cs" />
     <Compile Include="Supports\DI\Bootstrapper.cs" />
+    <Compile Include="Supports\DI\IComponentFactory.cs" />
     <Compile Include="Supports\DI\Installers.cs" />
     <Compile Include="Exercises\Management\ExerciseListItemModel.cs" />
+    <Compile Include="Supports\Factories\IViewModelFactory.cs" />
     <Compile Include="Supports\EnumHelper.cs" />
+    <Compile Include="Supports\Factories\ViewModelFactory.cs" />
     <Compile Include="Supports\MarkupExts\EnumToItemsSource.cs" />
     <Compile Include="Supports\Messages\Messages.cs" />
     <Compile Include="Supports\Services\DialogService.cs" />

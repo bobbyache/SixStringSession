@@ -3,6 +3,7 @@ using CygSoft.SmartSession.Desktop.Exercises.Selection;
 using CygSoft.SmartSession.Desktop.PracticeRoutines.Edit;
 using CygSoft.SmartSession.Desktop.PracticeRoutines.Management;
 using CygSoft.SmartSession.Desktop.PracticeRoutines.Recorder;
+using CygSoft.SmartSession.Desktop.Supports.DI;
 using CygSoft.SmartSession.Desktop.Supports.Messages;
 using CygSoft.SmartSession.Domain.PracticeRoutines;
 using CygSoft.SmartSession.Infrastructure.Enums;
@@ -34,7 +35,8 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
 
         public RelayCommand<string> NavigationCommand { get; private set; }
 
-        public PracticeRoutineCompositeViewModel(IPracticeRoutineService practiceRoutineService, 
+        public PracticeRoutineCompositeViewModel(
+            IPracticeRoutineService practiceRoutineService, 
             PracticeRoutineManagementViewModel practiceRoutineManagementViewModel,
             RoutineRecorderViewModel practiceRoutineRecordingListViewModel,
             PracticeRoutineEditViewModel practiceRoutineEditViewModel, ExerciseSelectionViewModel exerciseSelectionViewModel)

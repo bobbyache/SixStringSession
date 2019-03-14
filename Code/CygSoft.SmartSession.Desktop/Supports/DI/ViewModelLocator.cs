@@ -9,6 +9,7 @@ using CygSoft.SmartSession.Desktop.PracticeRoutines.Edit;
 using CygSoft.SmartSession.Desktop.PracticeRoutines.Management;
 using CygSoft.SmartSession.Desktop.PracticeRoutines.Recorder;
 using CygSoft.SmartSession.Desktop.Supports.DI;
+using CygSoft.SmartSession.Desktop.Supports.Factories;
 
 namespace CygSoft.SmartSession.Desktop.Supports.DI
 {
@@ -31,5 +32,8 @@ namespace CygSoft.SmartSession.Desktop.Supports.DI
         public RoutineRecorderViewModel PracticeRoutineRecordingListViewModel { get => Bootstrapper.Container.Resolve<RoutineRecorderViewModel>(); }
 
         public MainWindowViewModel MainWindowViewModel { get => Bootstrapper.Container.Resolve<MainWindowViewModel>(); }
+
+        public IComponentFactory ComponentFactory { get => Bootstrapper.Container.Resolve<IComponentFactory>(); }
+        public IViewModelFactory ViewModelFactory { get => Bootstrapper.Container.Resolve<IViewModelFactory>(); }
     }
 }
