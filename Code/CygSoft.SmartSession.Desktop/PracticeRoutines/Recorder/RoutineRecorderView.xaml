@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="CygSoft.SmartSession.Desktop.PracticeRoutines.Recorder.PracticeRoutineRecordingListView"
+﻿<UserControl x:Class="CygSoft.SmartSession.Desktop.PracticeRoutines.Recorder.RoutineRecorderView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -28,7 +28,7 @@
             </Grid.ColumnDefinitions>
             <recorder:ExerciseInstanceListView Grid.Column="0"/>
             <GridSplitter Grid.Column ="1" HorizontalAlignment="Center" ResizeBehavior="PreviousAndNext" Background="DarkGray" Width="5" ResizeDirection="Columns" VerticalAlignment="Stretch"/>
-            <recorder:ExerciseInstanceEditView Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+            <recorder:RecorderView Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
         </Grid>
         
         <StackPanel Grid.Row="2" DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right">

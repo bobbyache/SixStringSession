@@ -21,7 +21,7 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
     {
         private PracticeRoutineManagementViewModel practiceRoutineManagementViewModel;
         private PracticeRoutineEditViewModel practiceRoutineEditViewModel;
-        private PracticeRoutineRecordingListViewModel practiceRoutineRecordingListViewModel;
+        private RoutineRecorderViewModel practiceRoutineRecordingListViewModel;
         private ExerciseSelectionViewModel exerciseSelectionViewModel;
         private IPracticeRoutineService practiceRoutineService;
 
@@ -36,7 +36,7 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
 
         public PracticeRoutineCompositeViewModel(IPracticeRoutineService practiceRoutineService, 
             PracticeRoutineManagementViewModel practiceRoutineManagementViewModel,
-            PracticeRoutineRecordingListViewModel practiceRoutineRecordingListViewModel,
+            RoutineRecorderViewModel practiceRoutineRecordingListViewModel,
             PracticeRoutineEditViewModel practiceRoutineEditViewModel, ExerciseSelectionViewModel exerciseSelectionViewModel)
         {
             this.practiceRoutineService = practiceRoutineService;

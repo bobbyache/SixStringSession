@@ -12,7 +12,7 @@ using System.Linq;
 
 namespace CygSoft.SmartSession.Desktop.PracticeRoutines.Recorder
 {
-    public class PracticeRoutineRecordingListViewModel : ViewModelBase
+    public class RoutineRecorderViewModel : ViewModelBase
     {
         private IPracticeRoutineService practiceRoutineService;
         private IExerciseService exerciseService;
@@ -22,10 +22,10 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines.Recorder
         public RelayCommand SaveCommand { get; private set; }
         public RelayCommand StartExercisingCommand { get; private set; }
 
-        public BindingList<RecordableExerciseViewModel> RecordableExercises { get; set; } = new BindingList<RecordableExerciseViewModel>();
+        public BindingList<RecorderViewModel> RecordableExercises { get; set; } = new BindingList<RecorderViewModel>();
 
-        private RecordableExerciseViewModel selectedRecordableExercise;
-        public RecordableExerciseViewModel SelectedRecordableExercise
+        private RecorderViewModel selectedRecordableExercise;
+        public RecorderViewModel SelectedRecordableExercise
         {
             get { return selectedRecordableExercise; }
             set
@@ -60,7 +60,7 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines.Recorder
             }
         }
 
-        public PracticeRoutineRecordingListViewModel(IPracticeRoutineService practiceRoutineService,  IExerciseService exerciseService, IDialogViewService dialogService)
+        public RoutineRecorderViewModel(IPracticeRoutineService practiceRoutineService,  IExerciseService exerciseService, IDialogViewService dialogService)
         {
             RecordableExercises.ListChanged += RecordableExercises_ListChanged;
             this.practiceRoutineService = practiceRoutineService ?? throw new ArgumentNullException("Practice Routine Service must be provided.");
@@ -86,7 +86,7 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines.Recorder
 
             foreach (var exerciseRecorder in routineRecorder.ExerciseRecorders)
             {
-                RecordableExercises.Add(new RecordableExerciseViewModel(exerciseRecorder));
+                RecordableExercises.Add(new RecorderViewModel(exerciseRecorder));
             }
         }
 

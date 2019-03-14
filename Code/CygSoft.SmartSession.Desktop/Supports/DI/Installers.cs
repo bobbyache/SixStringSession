@@ -75,7 +75,7 @@ namespace CygSoft.SmartSession.Desktop.Supports.DI
             container.Register(Component.For<PracticeRoutineEditViewModel>());
             container.Register(Component.For<PracticeRoutineManagementViewModel>());
             container.Register(Component.For<PracticeRoutineCompositeViewModel>());
-            container.Register(Component.For<PracticeRoutineRecordingListViewModel>());
+            container.Register(Component.For<RoutineRecorderViewModel>());
             
             container.Register(Component.For<MainWindowViewModel>());
         }

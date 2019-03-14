@@ -137,8 +137,8 @@
     </Compile>
     <Compile Include="Exercises\Edit\ExerciseEditViewModel.cs" />
     <Compile Include="MainWindowViewModel.cs" />
-    <Compile Include="PracticeRoutines\Recorder\ExerciseInstanceEditView.xaml.cs">
-      <DependentUpon>ExerciseInstanceEditView.xaml</DependentUpon>
+    <Compile Include="PracticeRoutines\Recorder\RecorderView.xaml.cs">
+      <DependentUpon>RecorderView.xaml</DependentUpon>
     </Compile>
     <Compile Include="PracticeRoutines\Recorder\ExerciseInstanceListView.xaml.cs">
       <DependentUpon>ExerciseInstanceListView.xaml</DependentUpon>
@@ -154,11 +154,11 @@
       <DependentUpon>PracticeRoutineEditView.xaml</DependentUpon>
     </Compile>
     <Compile Include="PracticeRoutines\Edit\PracticeRoutineEditViewModel.cs" />
-    <Compile Include="PracticeRoutines\Recorder\PracticeRoutineRecordingListView.xaml.cs">
-      <DependentUpon>PracticeRoutineRecordingListView.xaml</DependentUpon>
+    <Compile Include="PracticeRoutines\Recorder\RoutineRecorderView.xaml.cs">
+      <DependentUpon>RoutineRecorderView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PracticeRoutines\Recorder\PracticeRoutineRecordingListViewModel.cs" />
-    <Compile Include="PracticeRoutines\Management\PracticeRoutineSearchResultModel.cs" />
+    <Compile Include="PracticeRoutines\Recorder\RoutineRecorderViewModel.cs" />
+    <Compile Include="PracticeRoutines\Management\PracticeRoutineListItemModel.cs" />
     <Compile Include="PracticeRoutines\Management\PracticeRoutineManagementView.xaml.cs">
       <DependentUpon>PracticeRoutineManagementView.xaml</DependentUpon>
     </Compile>
@@ -169,7 +169,7 @@
     <Compile Include="PracticeRoutines\Edit\TimeSlotTreeViewItemView.xaml.cs">
       <DependentUpon>TimeSlotTreeViewItemView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PracticeRoutines\Recorder\RecordableExerciseViewModel.cs" />
+    <Compile Include="PracticeRoutines\Recorder\RecorderViewModel.cs" />
     <Compile Include="PracticeRoutines\Edit\TimeSlotExerciseViewModel.cs" />
     <Compile Include="PracticeRoutines\Edit\TimeSlotViewModel.cs" />
     <Compile Include="Supports\Converters\BoolToValueConverter.cs" />
@@ -234,7 +234,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="PracticeRoutines\Recorder\ExerciseInstanceEditView.xaml">
+    <Page Include="PracticeRoutines\Recorder\RecorderView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -258,7 +258,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="PracticeRoutines\Recorder\PracticeRoutineRecordingListView.xaml">
+    <Page Include="PracticeRoutines\Recorder\RoutineRecorderView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

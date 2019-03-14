@@ -25,7 +25,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
                 new PracticeTimeProgress(300, 600, 10),
                 new ManualProgress(0, 100));
 
-            var viewModel = new RecordableExerciseViewModel(exerciseRecorder);
+            var viewModel = new RecorderViewModel(exerciseRecorder);
 
             Assert.AreEqual(TimeFuncs.ZeroTimeDisplay, viewModel.RecordingTimeDisplay);
             Assert.AreEqual(false, viewModel.Recording);
@@ -42,7 +42,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
                 new PracticeTimeProgress(300, 600, 10),
                 new ManualProgress(0, 100));
 
-            var viewModel = new RecordableExerciseViewModel(exerciseRecorder);
+            var viewModel = new RecorderViewModel(exerciseRecorder);
 
             Assert.That(viewModel.Status, Is.EqualTo(""));
         }
@@ -55,7 +55,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
                 new PracticeTimeProgress(300, 600, 10),
                 new ManualProgress(0, 100));
 
-            var viewModel = new RecordableExerciseViewModel(exerciseRecorder);
+            var viewModel = new RecorderViewModel(exerciseRecorder);
 
             exerciseRecorder.Resume();
             var recording = exerciseRecorder.Recording && viewModel.Recording;
@@ -80,7 +80,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
                 new PracticeTimeProgress(300, 600, 10),
                 new ManualProgress(0, 100));
 
-            var viewModel = new RecordableExerciseViewModel(exerciseRecorder);
+            var viewModel = new RecorderViewModel(exerciseRecorder);
 
             exerciseRecorder.Resume();
 
@@ -92,7 +92,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         {
             var exerciseRecorder = EntityFactory.CreateSpeedExerciseRecorder(60, 100, 160);
 
-            var viewModel = new RecordableExerciseViewModel(exerciseRecorder);
+            var viewModel = new RecorderViewModel(exerciseRecorder);
             viewModel.SmallSpeedDecrementCommand.Execute(null);
 
             Assert.AreEqual(99, exerciseRecorder.CurrentSpeed);
@@ -104,7 +104,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
             var changed = false;
 
             var exerciseRecorder = EntityFactory.CreateSpeedExerciseRecorder(60, 100, 160);
-            var viewModel = new RecordableExerciseViewModel(exerciseRecorder);
+            var viewModel = new RecorderViewModel(exerciseRecorder);
 
             viewModel.PropertyChanged += (s, e) =>
             {
@@ -123,7 +123,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
             var changed = false;
 
             var exerciseRecorder = EntityFactory.CreateSpeedExerciseRecorder(60, 100, 160);
-            var viewModel = new RecordableExerciseViewModel(exerciseRecorder);
+            var viewModel = new RecorderViewModel(exerciseRecorder);
 
             viewModel.PropertyChanged += (s, e) =>
             {
@@ -142,7 +142,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
             var changed = false;
 
             var exerciseRecorder = EntityFactory.CreateSpeedExerciseRecorder(60, 100, 160);
-            var viewModel = new RecordableExerciseViewModel(exerciseRecorder);
+            var viewModel = new RecorderViewModel(exerciseRecorder);
 
             viewModel.PropertyChanged += (s, e) =>
             {
@@ -161,7 +161,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
             var changed = false;
 
             var exerciseRecorder = EntityFactory.CreateSpeedExerciseRecorder(60, 100, 160);
-            var viewModel = new RecordableExerciseViewModel(exerciseRecorder);
+            var viewModel = new RecorderViewModel(exerciseRecorder);
 
             viewModel.PropertyChanged += (s, e) =>
             {
@@ -180,7 +180,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
             var changed = false;
 
             var exerciseRecorder = EntityFactory.CreateSpeedExerciseRecorder(60, 100, 160);
-            var viewModel = new RecordableExerciseViewModel(exerciseRecorder);
+            var viewModel = new RecorderViewModel(exerciseRecorder);
 
             viewModel.PropertyChanged += (s, e) =>
             {
@@ -199,7 +199,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
             var changed = false;
 
             var exerciseRecorder = EntityFactory.CreateSpeedExerciseRecorder(60, 100, 160);
-            var viewModel = new RecordableExerciseViewModel(exerciseRecorder);
+            var viewModel = new RecorderViewModel(exerciseRecorder);
 
             viewModel.PropertyChanged += (s, e) =>
             {
@@ -218,7 +218,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
             var changed = false;
 
             var exerciseRecorder = EntityFactory.CreateSpeedExerciseRecorder(60, 100, 160);
-            var viewModel = new RecordableExerciseViewModel(exerciseRecorder);
+            var viewModel = new RecorderViewModel(exerciseRecorder);
 
             viewModel.PropertyChanged += (s, e) =>
             {
@@ -237,7 +237,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
             var changed = false;
 
             var exerciseRecorder = EntityFactory.CreateSpeedExerciseRecorder(60, 100, 160);
-            var viewModel = new RecordableExerciseViewModel(exerciseRecorder);
+            var viewModel = new RecorderViewModel(exerciseRecorder);
 
             viewModel.PropertyChanged += (s, e) =>
             {
@@ -261,7 +261,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
             var changed = false;
 
             var exerciseRecorder = EntityFactory.CreateSpeedExerciseRecorder(60, 100, 160);
-            var viewModel = new RecordableExerciseViewModel(exerciseRecorder);
+            var viewModel = new RecorderViewModel(exerciseRecorder);
 
             viewModel.PropertyChanged += (s, e) =>
             {
@@ -281,7 +281,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
             var changed = false;
 
             var exerciseRecorder = EntityFactory.CreateSpeedExerciseRecorder(60, 100, 160);
-            var viewModel = new RecordableExerciseViewModel(exerciseRecorder);
+            var viewModel = new RecorderViewModel(exerciseRecorder);
 
             viewModel.PropertyChanged += (s, e) =>
             {
@@ -299,7 +299,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
             var changed = false;
 
             var exerciseRecorder = EntityFactory.CreateSpeedExerciseRecorder(60, 100, 160);
-            var viewModel = new RecordableExerciseViewModel(exerciseRecorder);
+            var viewModel = new RecorderViewModel(exerciseRecorder);
 
             viewModel.PropertyChanged += (s, e) =>
             {
@@ -318,7 +318,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
             var changed = false;
 
             var exerciseRecorder = EntityFactory.CreateSpeedExerciseRecorder(60, 100, 160);
-            var viewModel = new RecordableExerciseViewModel(exerciseRecorder);
+            var viewModel = new RecorderViewModel(exerciseRecorder);
 
             viewModel.PropertyChanged += (s, e) =>
             {
@@ -338,7 +338,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
             var changed = false;
 
             var exerciseRecorder = EntityFactory.CreateSpeedExerciseRecorder(60, 100, 160);
-            var viewModel = new RecordableExerciseViewModel(exerciseRecorder);
+            var viewModel = new RecorderViewModel(exerciseRecorder);
 
             viewModel.PropertyChanged += (s, e) =>
             {
@@ -358,7 +358,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
             var changed = false;
 
             var exerciseRecorder = EntityFactory.CreateSpeedExerciseRecorder(60, 100, 160);
-            var viewModel = new RecordableExerciseViewModel(exerciseRecorder);
+            var viewModel = new RecorderViewModel(exerciseRecorder);
 
             viewModel.PropertyChanged += (s, e) =>
             {
@@ -377,7 +377,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
             var changed = false;
 
             var exerciseRecorder = EntityFactory.CreateSpeedExerciseRecorder(60, 100, 160);
-            var viewModel = new RecordableExerciseViewModel(exerciseRecorder);
+            var viewModel = new RecorderViewModel(exerciseRecorder);
 
             viewModel.PropertyChanged += (s, e) =>
             {
@@ -397,7 +397,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
             var changed = false;
 
             var exerciseRecorder = EntityFactory.CreateSpeedExerciseRecorder(60, 100, 160);
-            var viewModel = new RecordableExerciseViewModel(exerciseRecorder);
+            var viewModel = new RecorderViewModel(exerciseRecorder);
 
             viewModel.PropertyChanged += (s, e) =>
             {
@@ -415,7 +415,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         {
             var exerciseRecorder = EntityFactory.CreateSpeedExerciseRecorder(60, 100, 160);
 
-            var viewModel = new RecordableExerciseViewModel(exerciseRecorder);
+            var viewModel = new RecorderViewModel(exerciseRecorder);
             viewModel.SmallSpeedIncrementCommand.Execute(null);
 
             Assert.AreEqual(101, exerciseRecorder.CurrentSpeed);
@@ -426,7 +426,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         {
             var exerciseRecorder = EntityFactory.CreateSpeedExerciseRecorder(60, 100, 160);
 
-            var viewModel = new RecordableExerciseViewModel(exerciseRecorder);
+            var viewModel = new RecorderViewModel(exerciseRecorder);
             viewModel.LargeSpeedDecrementCommand.Execute(null);
 
             Assert.AreEqual(90, exerciseRecorder.CurrentSpeed);
@@ -437,7 +437,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         {
             var exerciseRecorder = EntityFactory.CreateSpeedExerciseRecorder(5, 7, 160);
 
-            var viewModel = new RecordableExerciseViewModel(exerciseRecorder);
+            var viewModel = new RecorderViewModel(exerciseRecorder);
             viewModel.LargeSpeedDecrementCommand.Execute(null);
 
             Assert.AreEqual(0, exerciseRecorder.CurrentSpeed);
@@ -449,7 +449,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         {
             var exerciseRecorder = EntityFactory.CreateSpeedExerciseRecorder(0, 0, 160);
 
-            var viewModel = new RecordableExerciseViewModel(exerciseRecorder);
+            var viewModel = new RecorderViewModel(exerciseRecorder);
             viewModel.SmallSpeedDecrementCommand.Execute(null);
 
             Assert.AreEqual(0, exerciseRecorder.CurrentSpeed);
@@ -461,7 +461,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         {
             var exerciseRecorder = EntityFactory.CreateSpeedExerciseRecorder(60, 100, 160);
 
-            var viewModel = new RecordableExerciseViewModel(exerciseRecorder);
+            var viewModel = new RecorderViewModel(exerciseRecorder);
             viewModel.LargeSpeedIncrementCommand.Execute(null);
 
             Assert.AreEqual(110, exerciseRecorder.CurrentSpeed);
@@ -472,7 +472,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         {
             var exerciseRecorder = EntityFactory.CreateTimeExerciseRecorder(300, 600);
 
-            var viewModel = new RecordableExerciseViewModel(exerciseRecorder);
+            var viewModel = new RecorderViewModel(exerciseRecorder);
             viewModel.IncrementMinutesPracticedCommand.Execute(null);
 
             Assert.AreEqual(60, exerciseRecorder.RecordedSeconds);
@@ -485,7 +485,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
             var exerciseRecorder = EntityFactory.CreateTimeExerciseRecorder(300, 1200);
             exerciseRecorder.AddMinutes(10);
 
-            var viewModel = new RecordableExerciseViewModel(exerciseRecorder);
+            var viewModel = new RecorderViewModel(exerciseRecorder);
 
             Assert.AreEqual(600, exerciseRecorder.RecordedSeconds);
             Assert.AreEqual(900, exerciseRecorder.CurrentTotalSeconds);
@@ -497,7 +497,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
             var exerciseRecorder = EntityFactory.CreateTimeExerciseRecorder(300, 1200);
             exerciseRecorder.AddMinutes(10);
 
-            var viewModel = new RecordableExerciseViewModel(exerciseRecorder);
+            var viewModel = new RecorderViewModel(exerciseRecorder);
             viewModel.DecrementMinutesPracticedCommand.Execute(null);
             
             Assert.AreEqual(540, exerciseRecorder.RecordedSeconds);
@@ -510,7 +510,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
             var exerciseRecorder = EntityFactory.CreateTimeExerciseRecorder(300, 1200);
             exerciseRecorder.AddMinutes(1);
 
-            var viewModel = new RecordableExerciseViewModel(exerciseRecorder);
+            var viewModel = new RecorderViewModel(exerciseRecorder);
             viewModel.IncrementMinutesPracticedCommand.Execute(null);
 
             Assert.AreEqual(120, exerciseRecorder.RecordedSeconds);
@@ -523,7 +523,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
             var exerciseRecorder = EntityFactory.CreateTimeExerciseRecorder(10, 1200);
             exerciseRecorder.AddSeconds(10); // 20
 
-            var viewModel = new RecordableExerciseViewModel(exerciseRecorder);
+            var viewModel = new RecorderViewModel(exerciseRecorder);
             viewModel.DecrementSecondsPracticedCommand.Execute(null);
 
             Assert.AreEqual(9, exerciseRecorder.RecordedSeconds);
@@ -536,7 +536,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
             var exerciseRecorder = EntityFactory.CreateTimeExerciseRecorder(10, 1200);
             exerciseRecorder.AddSeconds(10); // 20
 
-            var viewModel = new RecordableExerciseViewModel(exerciseRecorder);
+            var viewModel = new RecorderViewModel(exerciseRecorder);
             viewModel.IncrementSecondsPracticedCommand.Execute(null);
 
             Assert.AreEqual(11, exerciseRecorder.RecordedSeconds);
@@ -549,7 +549,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
             var exerciseRecorder = EntityFactory.CreateManualExerciseRecorder(40);
             exerciseRecorder.IncrementManualProgress(10);
 
-            var viewModel = new RecordableExerciseViewModel(exerciseRecorder);
+            var viewModel = new RecorderViewModel(exerciseRecorder);
             viewModel.IncrementManualProgressCommand.Execute(null);
 
             Assert.AreEqual(51, exerciseRecorder.CurrentManualProgress);
@@ -561,7 +561,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
             var exerciseRecorder = EntityFactory.CreateManualExerciseRecorder(40);
             exerciseRecorder.IncrementManualProgress(10);
 
-            var viewModel = new RecordableExerciseViewModel(exerciseRecorder);
+            var viewModel = new RecorderViewModel(exerciseRecorder);
             viewModel.DecrementManualProgressCommand.Execute(null);
 
             Assert.AreEqual(49, exerciseRecorder.CurrentManualProgress);
@@ -573,7 +573,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
             var exerciseRecorder = EntityFactory.CreateManualExerciseRecorder(40);
             exerciseRecorder.IncrementManualProgress(10);
 
-            var viewModel = new RecordableExerciseViewModel(exerciseRecorder);
+            var viewModel = new RecorderViewModel(exerciseRecorder);
             viewModel.ManualProgress = 10;
 
             Assert.AreEqual(10, exerciseRecorder.CurrentManualProgress);
@@ -584,7 +584,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         public void RecordableExerciseViewModel_OverallPracticeTime_Reflects_Model_Dynamically()
         {
             var exerciseRecorder = EntityFactory.CreateTimeExerciseRecorder(300, 1200);
-            var viewModel = new RecordableExerciseViewModel(exerciseRecorder);
+            var viewModel = new RecorderViewModel(exerciseRecorder);
 
             exerciseRecorder.AddSeconds(300);
 
@@ -595,7 +595,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         public void RecordableExerciseViewModel_SpeedProgress_Reflects_Model_Dynamically()
         {
             var exerciseRecorder = EntityFactory.CreateSpeedExerciseRecorder(30, 30, 90);
-            var viewModel = new RecordableExerciseViewModel(exerciseRecorder);
+            var viewModel = new RecorderViewModel(exerciseRecorder);
 
             exerciseRecorder.IncrementSpeed(30);
 
@@ -606,7 +606,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         public void RecordableExerciseViewModel_OverallProgress_Reflects_Model_Dynamically()
         {
             var exerciseRecorder = EntityFactory.CreateSpeedExerciseRecorder(30, 30, 90);
-            var viewModel = new RecordableExerciseViewModel(exerciseRecorder);
+            var viewModel = new RecorderViewModel(exerciseRecorder);
 
             exerciseRecorder.IncrementSpeed(30);
 

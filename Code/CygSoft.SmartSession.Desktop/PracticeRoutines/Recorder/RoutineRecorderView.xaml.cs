@@ -21,9 +21,9 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines.Recorder
     /// <summary>
     /// Interaction logic for PracticeRoutineRecordingListView.xaml
     /// </summary>
-    public partial class PracticeRoutineRecordingListView : UserControl
+    public partial class RoutineRecorderView : UserControl
     {
-        public PracticeRoutineRecordingListView()
+        public RoutineRecorderView()
         {
             InitializeComponent();
         }

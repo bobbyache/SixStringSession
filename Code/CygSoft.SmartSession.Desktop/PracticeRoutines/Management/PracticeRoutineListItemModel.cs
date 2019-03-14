@@ -2,7 +2,7 @@
 
 namespace CygSoft.SmartSession.Desktop.PracticeRoutines.Management
 {
-    public class PracticeRoutineSearchResultModel : ObservableObject
+    public class PracticeRoutineListItemModel : ObservableObject
     {
         private bool isDirty;
         public bool IsDirty

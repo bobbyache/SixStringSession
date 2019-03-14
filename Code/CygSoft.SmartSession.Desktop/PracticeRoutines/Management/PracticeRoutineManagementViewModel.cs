@@ -31,8 +31,8 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines.Management
         public RelayCommand EditPracticeRoutineCommand { get; private set; }
         public RelayCommand PracticeCommand { get; private set; }
 
-        private PracticeRoutineSearchResultModel selectedPracticeRoutine;
-        public PracticeRoutineSearchResultModel SelectedPracticeRoutine
+        private PracticeRoutineListItemModel selectedPracticeRoutine;
+        public PracticeRoutineListItemModel SelectedPracticeRoutine
         {
             get { return selectedPracticeRoutine; }
             set
@@ -45,7 +45,7 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines.Management
             }
         }
 
-        public ObservableCollection<PracticeRoutineSearchResultModel> PracticeRoutineList { get; private set; } = new ObservableCollection<PracticeRoutineSearchResultModel>();
+        public ObservableCollection<PracticeRoutineListItemModel> PracticeRoutineList { get; private set; } = new ObservableCollection<PracticeRoutineListItemModel>();
 
         private void Practice()
         {
@@ -59,7 +59,7 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines.Management
 
             foreach (var practiceRoutine in practiceRoutineService.Find(new PracticeRoutineSearchCriteria()))
             {
-                PracticeRoutineList.Add(Mapper.Map<PracticeRoutineSearchResultModel>(practiceRoutine));
+                PracticeRoutineList.Add(Mapper.Map<PracticeRoutineListItemModel>(practiceRoutine));
             }
         }
 
