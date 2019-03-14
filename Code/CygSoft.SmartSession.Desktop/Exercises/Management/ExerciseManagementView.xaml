@@ -37,6 +37,8 @@
                     <MenuItem Header="Add" Command="{Binding AddExerciseCommand}" />
                     <MenuItem Header="Edit" Command="{Binding EditExerciseCommand}" />
                     <MenuItem Header="Delete" Command="{Binding DeleteExerciseCommand}" />
+                    <Separator />
+                    <MenuItem Header="Practice" Command="{Binding PracticeExerciseCommand}" />
                 </ContextMenu>
             </ListBox.ContextMenu>
         </ListBox>

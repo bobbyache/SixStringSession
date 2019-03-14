@@ -1,4 +1,5 @@
-﻿using CygSoft.SmartSession.Domain.Recording;
+﻿using CygSoft.SmartSession.Desktop.Exercises.Recorder;
+using CygSoft.SmartSession.Domain.Recording;
 using CygSoft.SmartSession.Infrastructure;
 
 namespace CygSoft.SmartSession.Desktop.PracticeRoutines.Recorder

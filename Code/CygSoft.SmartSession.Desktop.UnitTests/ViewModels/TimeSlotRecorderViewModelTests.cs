@@ -12,6 +12,32 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
     [TestFixture]
     public class TimeSlotRecorderViewModelTests
     {
+        //[Test]
+        //public void TimeSlotRecorderViewModel_Recording_Reflects_Model_Recording()
+        //{
+        //    var exerciseRecorder = new TimeSlotExerciseRecorder(new Recorder(), 1, "Exercise Title",
+        //        new SpeedProgress(85, 85, 120, 10),
+        //        new PracticeTimeProgress(300, 600, 10),
+        //        new ManualProgress(0, 100), 600);
+
+        //    var viewModel = new TimeSlotRecorderViewModel(exerciseRecorder);
+
+        //    exerciseRecorder.Resume();
+        //    viewModel.
+        //    var recording = exerciseRecorder.Recording && viewModel.Recording;
+
+        //    exerciseRecorder.Pause();
+        //    var paused = !exerciseRecorder.Recording && !viewModel.Recording;
+
+        //    exerciseRecorder.Resume();
+        //    exerciseRecorder.Reset();
+        //    var reset = !exerciseRecorder.Recording && !viewModel.Recording;
+
+        //    Assert.IsTrue(recording);
+        //    Assert.IsTrue(paused);
+        //    Assert.IsTrue(reset);
+        //}
+
         [Test]
         public void TimeSlotRecorderViewModel_AddSeconds_Raises_PropertyChanged_For_RemainingTimeDisplay()
         {
@@ -26,7 +52,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
                 new ManualProgress(0, 100), assignedTime);
 
             var viewModel = new TimeSlotRecorderViewModel(exerciseRecorder);
-
+            
             viewModel.PropertyChanged += (s, e) =>
             {
                 if (e.PropertyName == "RemainingTimeDisplay")

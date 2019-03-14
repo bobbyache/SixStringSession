@@ -1,4 +1,5 @@
-﻿using CygSoft.SmartSession.Desktop.Exercises.Edit;
+﻿using System;
+using CygSoft.SmartSession.Desktop.Exercises.Edit;
 using CygSoft.SmartSession.Desktop.Exercises.Management;
 using CygSoft.SmartSession.Desktop.Exercises.Recorder;
 using CygSoft.SmartSession.Desktop.Supports.Messages;
@@ -14,7 +15,7 @@ namespace CygSoft.SmartSession.Desktop.Exercises
     {
         private ExerciseManagementViewModel exerciseSearchViewModel;
         private ExerciseEditViewModel exerciseEditViewModel;
-        private SingleExerciseRecorderViewModel exerciseRecorderViewModel;
+        //private RecorderViewModel recorderViewModel;
         private IExerciseService exerciseService;
 
         private ViewModelBase currentViewModel;
@@ -27,24 +28,39 @@ namespace CygSoft.SmartSession.Desktop.Exercises
         public RelayCommand<string> NavigationCommand { get; private set; }
 
         public ExerciseCompositeViewModel(IExerciseService exerciseService, ExerciseManagementViewModel exerciseManagementViewModel, 
-            ExerciseEditViewModel exerciseEditViewModel,
-            SingleExerciseRecorderViewModel exerciseRecorderViewModel)
+            ExerciseEditViewModel exerciseEditViewModel //,
+            //RecorderViewModel recorderViewModel
+            )
         {
             this.exerciseService = exerciseService;
             this.exerciseSearchViewModel = exerciseManagementViewModel;
             this.exerciseEditViewModel = exerciseEditViewModel;
-            this.exerciseRecorderViewModel = exerciseRecorderViewModel;
+            //this.recorderViewModel = recorderViewModel;
 
             Messenger.Default.Register<StartEditingExerciseMessage>(this, (m) => StartEditingExercise(m.Exercise));
             Messenger.Default.Register<EndEditingExerciseMessage>(this, (m) => EndEditingExercise(m.Exercise, m.Operation, m.LifeCycleState));
-            Messenger.Default.Register<OpenExerciseRecorderMessage>(this, (m) => RecordExercise(m.ExerciseId));
+            //Messenger.Default.Register<OpenExerciseRecorderMessage>(this, (m) => RecordExercise(m.ExerciseId));
 
             Messenger.Default.Register<CancelledExerciseRecordingMessage>(this, (m) => RecordingCancelled());
             Messenger.Default.Register<SavedExerciseRecordingMessage>(this, (m) => RecordingSaved());
+            Messenger.Default.Register<StartPracticingExerciseMessage>(this, (m) => StartPracticingExercise(m.ExerciseId));
 
             NavigationCommand = new RelayCommand<string>(NavigateTo);
             NavigateTo("Search");
         }
+
+        private void StartPracticingExercise(int exerciseId)
+        {
+            throw new NotImplementedException();
+        }
+
+        //private void RecordExercise(int exerciseId)
+        //{
+        //    var exerciseRecorder = exerciseService.GetExerciseRecorder(exerciseId);
+        //    //new RecorderViewModel()
+        //    //recorderViewModel.InitializeRecorder(exerciseRecorder);
+        //    NavigateTo("Record");
+        //}
 
         private void RecordingCancelled()
         {
@@ -54,13 +70,6 @@ namespace CygSoft.SmartSession.Desktop.Exercises
         private void RecordingSaved()
         {
             NavigateTo("Search");
-        }
-
-        private void RecordExercise(int exerciseId)
-        {
-            var exerciseRecorder = exerciseService.GetExerciseRecorder(exerciseId);
-            exerciseRecorderViewModel.InitializeRecorder(exerciseRecorder);
-            NavigateTo("Record");
         }
 
         protected virtual void EndEditingExercise(IExercise exercise, EditorCloseOperation operation, 
@@ -94,8 +103,8 @@ namespace CygSoft.SmartSession.Desktop.Exercises
                 case "Edit":
                     CurrentViewModel = exerciseEditViewModel;
                     break;
-                case "Record":
-                    CurrentViewModel = exerciseRecorderViewModel;
+                //case "Record":
+                //    CurrentViewModel = recorderViewModel;
                     break;
                 default:
                     CurrentViewModel = exerciseSearchViewModel;

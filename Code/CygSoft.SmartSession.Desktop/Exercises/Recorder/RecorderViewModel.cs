@@ -5,7 +5,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using System;
 
-namespace CygSoft.SmartSession.Desktop.PracticeRoutines.Recorder
+namespace CygSoft.SmartSession.Desktop.Exercises.Recorder
 {
     public class RecorderViewModel : ViewModelBase
     {
@@ -183,6 +183,8 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines.Recorder
 
         public RelayCommand DecrementMinutesPracticedCommand { get; private set; }
 
+        public RelayCommand PlayPauseCommand { get; private set; }
+
         public RecorderViewModel(IExerciseRecorder exerciseRecorder)
         {
             this.exerciseRecorder = exerciseRecorder;
@@ -213,7 +215,17 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines.Recorder
             DecrementSecondsPracticedCommand = new RelayCommand(() => DecrementSecondsPracticed(), () => true);
             DecrementMinutesPracticedCommand = new RelayCommand(() => DecrementMinutesPracticed(), () => true);
 
+            PlayPauseCommand = new RelayCommand(() => PlayPause(), () => true);
+
             RaisePropertyChanged(() => Recording);
+        }
+
+        private void PlayPause()
+        {
+            if (exerciseRecorder.Recording)
+                exerciseRecorder.Pause();
+            else
+                exerciseRecorder.Resume();
         }
 
         private void DecrementMetronomeSpeedByTen()

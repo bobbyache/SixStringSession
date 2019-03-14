@@ -28,6 +28,7 @@ namespace CygSoft.SmartSession.Desktop.Exercises.Management
             EditExerciseCommand = new RelayCommand(EditExercise, () => SelectedExercise != null);
             SelectExerciseCommand = new RelayCommand(SelectExercise, () => SelectedExercise != null);
             FindCommand = new RelayCommand(Find, true);
+            PracticeExerciseCommand = new RelayCommand(() => PracticeExercise(), () => true);
         }
 
         protected virtual void SelectExercise() { }
@@ -37,6 +38,8 @@ namespace CygSoft.SmartSession.Desktop.Exercises.Management
         public RelayCommand EditExerciseCommand { get; private set; }
 
         public RelayCommand SelectExerciseCommand { get; private set; }
+
+        public RelayCommand PracticeExerciseCommand { get; private set; }
 
         public RelayCommand FindCommand { get; private set; }
 
@@ -82,6 +85,11 @@ namespace CygSoft.SmartSession.Desktop.Exercises.Management
         public ObservableCollection<int> DifficultyList { get; private set; } = new ObservableCollection<int> { 1, 2, 3, 4, 5 };
         public ObservableCollection<int> PracticalityList { get; private set; } = new ObservableCollection<int> { 1, 2, 3, 4, 5 };
         public ObservableCollection<ExerciseListItemModel> ExerciseList { get; private set; } = new ObservableCollection<ExerciseListItemModel>();
+
+        private void PracticeExercise()
+        {
+            Messenger.Default.Send(new StartPracticingExerciseMessage(SelectedExercise.Id));
+        }
 
         private void Find()
         {

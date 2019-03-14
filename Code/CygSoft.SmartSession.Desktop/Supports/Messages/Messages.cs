@@ -23,6 +23,16 @@ namespace CygSoft.SmartSession.Desktop.Supports.Messages
         }
     }
 
+    internal class StartPracticingExerciseMessage
+    {
+        public int ExerciseId { get; }
+
+        public StartPracticingExerciseMessage(int exerciseId)
+        {
+            ExerciseId = exerciseId;
+        }
+    }
+
     internal class ExerciseSelectedMessage
     {
         public int ExerciseId { get; }
@@ -37,15 +47,15 @@ namespace CygSoft.SmartSession.Desktop.Supports.Messages
     {
     }
 
-    internal class OpenExerciseRecorderMessage
-    {
-        public int ExerciseId { get; }
+    //internal class OpenExerciseRecorderMessage
+    //{
+    //    public int ExerciseId { get; }
 
-        public OpenExerciseRecorderMessage(int exerciseId)
-        {
-            ExerciseId = exerciseId;
-        }
-    }
+    //    public OpenExerciseRecorderMessage(int exerciseId)
+    //    {
+    //        ExerciseId = exerciseId;
+    //    }
+    //}
 
     internal class SavedExerciseRecordingMessage
     {
