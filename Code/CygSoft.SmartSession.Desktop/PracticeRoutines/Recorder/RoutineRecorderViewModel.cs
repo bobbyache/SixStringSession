@@ -22,10 +22,10 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines.Recorder
         public RelayCommand SaveCommand { get; private set; }
         public RelayCommand StartExercisingCommand { get; private set; }
 
-        public BindingList<RecorderViewModel> RecordableExercises { get; set; } = new BindingList<RecorderViewModel>();
+        public BindingList<TimeSlotRecorderViewModel> RecordableExercises { get; set; } = new BindingList<TimeSlotRecorderViewModel>();
 
-        private RecorderViewModel selectedRecordableExercise;
-        public RecorderViewModel SelectedRecordableExercise
+        private TimeSlotRecorderViewModel selectedRecordableExercise;
+        public TimeSlotRecorderViewModel SelectedRecordableExercise
         {
             get { return selectedRecordableExercise; }
             set
@@ -86,7 +86,7 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines.Recorder
 
             foreach (var exerciseRecorder in routineRecorder.ExerciseRecorders)
             {
-                RecordableExercises.Add(new RecorderViewModel(exerciseRecorder));
+                RecordableExercises.Add(new TimeSlotRecorderViewModel(exerciseRecorder));
             }
         }
 

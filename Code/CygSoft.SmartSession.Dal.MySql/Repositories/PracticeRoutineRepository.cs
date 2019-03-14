@@ -328,15 +328,15 @@ namespace CygSoft.SmartSession.Dal.MySql.Repositories
                     _practiceRoutineId = id
                 }, commandType: CommandType.StoredProcedure);
 
-                List<ExerciseRecorder> exerciseRecorders = new List<ExerciseRecorder>();
+                List<TimeSlotExerciseRecorder> exerciseRecorders = new List<TimeSlotExerciseRecorder>();
 
                 foreach (var rec in exerciseRecorderRecords)
                 {
                     var speedProgress = new SpeedProgress(rec.InitialRecordedSpeed, rec.LastRecordedSpeed, rec.TargetMetronomeSpeed, rec.SpeedProgressWeighting);
                     var timeProgress = new PracticeTimeProgress(rec.TotalPracticeTime, rec.TargetPracticeTime, rec.PracticeTimeProgressWeighting);
                     var manualProgress = new ManualProgress(rec.LastRecordedManualProgress, rec.ManualProgressWeighting);
-
-                    exerciseRecorders.Add(new ExerciseRecorder(new Recorder(), rec.ExerciseId, $"{rec.TimeSlotTitle} : {rec.ExerciseTitle}", speedProgress, timeProgress, manualProgress));
+                    
+                    exerciseRecorders.Add(new TimeSlotExerciseRecorder(new Recorder(), rec.ExerciseId, $"{rec.TimeSlotTitle} : {rec.ExerciseTitle}", speedProgress, timeProgress, manualProgress, rec.AssignedPracticeTime));
                 }
 
                 var practiceRoutineRecorder = new PracticeRoutineRecorder(practiceRoutine.Id, practiceRoutine.Title, exerciseRecorders);

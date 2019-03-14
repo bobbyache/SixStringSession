@@ -9,7 +9,7 @@ namespace CygSoft.SmartSession.Domain.Recording
 {
   public class PracticeRoutineRecorder
   {
-        IEnumerable<IExerciseRecorder> exerciseRecorders;
+        IEnumerable<ITimeSlotExerciseRecorder> exerciseRecorders;
 
         public string Title { get; private set; }
         public int Id { get; private set; }
@@ -17,12 +17,12 @@ namespace CygSoft.SmartSession.Domain.Recording
         public double RecordedSeconds { get => exerciseRecorders.Sum(ex => ex.RecordedSeconds); }
         public string RecordedSecondsDisplay { get => TimeFuncs.DisplayTimeFromSeconds(RecordedSeconds); }
 
-        public PracticeRoutineRecorder(string title, IEnumerable<IExerciseRecorder> exerciseRecorders) 
+        public PracticeRoutineRecorder(string title, IEnumerable<ITimeSlotExerciseRecorder> exerciseRecorders) 
             : this(0, title, exerciseRecorders)
         {
         }
 
-        public PracticeRoutineRecorder(int id, string title, IEnumerable<IExerciseRecorder> exerciseRecorders)
+        public PracticeRoutineRecorder(int id, string title, IEnumerable<ITimeSlotExerciseRecorder> exerciseRecorders)
         {
             Id = id;
             Title = title;
@@ -31,6 +31,6 @@ namespace CygSoft.SmartSession.Domain.Recording
 
         public int ItemCount { get => exerciseRecorders.Count(); }
 
-        public IExerciseRecorder[] ExerciseRecorders { get => exerciseRecorders.ToArray(); }
+        public ITimeSlotExerciseRecorder[] ExerciseRecorders { get => exerciseRecorders.ToArray(); }
     }
 }

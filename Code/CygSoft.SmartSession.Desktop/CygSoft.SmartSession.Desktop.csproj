@@ -140,6 +140,7 @@
     <Compile Include="PracticeRoutines\Recorder\RecorderView.xaml.cs">
       <DependentUpon>RecorderView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PracticeRoutines\Recorder\RecorderViewModel.cs" />
     <Compile Include="PracticeRoutines\Recorder\RoutineExerciseListView.xaml.cs">
       <DependentUpon>RoutineExerciseListView.xaml</DependentUpon>
     </Compile>
@@ -166,9 +167,11 @@
     <Compile Include="PracticeRoutines\Edit\TimeSlotTreeViewItemView.xaml.cs">
       <DependentUpon>TimeSlotTreeViewItemView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PracticeRoutines\Recorder\RecorderViewModel.cs" />
     <Compile Include="PracticeRoutines\Edit\TimeSlotExerciseViewModel.cs" />
     <Compile Include="PracticeRoutines\Edit\TimeSlotViewModel.cs" />
+    <Compile Include="PracticeRoutines\Recorder\TimeSlotRecorderView.xaml.cs">
+      <DependentUpon>TimeSlotRecorderView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PracticeRoutines\Recorder\TimeSlotRecorderViewModel.cs" />
     <Compile Include="Supports\Converters\BoolToValueConverter.cs" />
     <Compile Include="Supports\Converters\EnumToCollectionConverter.cs" />
@@ -234,7 +237,7 @@
     </Compile>
     <Page Include="PracticeRoutines\Recorder\RecorderView.xaml">
       <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
     <Page Include="PracticeRoutines\Recorder\RoutineExerciseListView.xaml">
       <SubType>Designer</SubType>
@@ -261,6 +264,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PracticeRoutines\Edit\TimeSlotTreeViewItemView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PracticeRoutines\Recorder\TimeSlotRecorderView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

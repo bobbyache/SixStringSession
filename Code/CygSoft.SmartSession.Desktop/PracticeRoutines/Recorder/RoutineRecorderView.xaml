@@ -28,7 +28,7 @@
             </Grid.ColumnDefinitions>
             <recorder:RoutineExerciseListView Grid.Column="0"/>
             <GridSplitter Grid.Column ="1" HorizontalAlignment="Center" ResizeBehavior="PreviousAndNext" Background="DarkGray" Width="5" ResizeDirection="Columns" VerticalAlignment="Stretch"/>
-            <recorder:RecorderView Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+            <recorder:TimeSlotRecorderView Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
         </Grid>
         
         <StackPanel Grid.Row="2" DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right">
