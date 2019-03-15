@@ -48,5 +48,9 @@ namespace CygSoft.SmartSession.Domain.Recording
         void Dispose();
 
         void SaveRecording(IExerciseService exerciseService);
+
+        bool ProgressBySpeed { get; }
+        bool ProgressByTime { get; }
+        bool ProgressByManualInput { get; }
     }
 }

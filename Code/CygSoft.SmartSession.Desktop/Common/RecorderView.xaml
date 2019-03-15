@@ -44,7 +44,7 @@
                 </StackPanel>
             </Border>
 
-            <Border Style="{StaticResource PagePanel}">
+            <Border Style="{StaticResource PagePanel}" Visibility="{Binding ProgressBySpeed, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
                     <TextBlock Margin="10" HorizontalAlignment="Center">Metronome Speed</TextBlock>
                     <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
@@ -71,7 +71,7 @@
                 </StackPanel>
             </Border>
 
-            <Border Style="{StaticResource PagePanel}">
+            <Border Style="{StaticResource PagePanel}" Visibility="{Binding ProgressByManualInput, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <StackPanel Orientation="Vertical">
                     <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
                         <TextBlock Margin="10" HorizontalAlignment="Center">Manual Progress</TextBlock>

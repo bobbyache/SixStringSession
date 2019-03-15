@@ -106,6 +106,11 @@ namespace CygSoft.SmartSession.Domain.Recording
 
         public string TotalSecondsDisplay { get => TimeFuncs.DisplayTimeFromSeconds(CurrentTotalSeconds); }
 
+        public bool ProgressBySpeed => speedProgress.Weighting > 0;
+        public bool ProgressByTime => practiceTimeProgress.Weighting > 0;
+        public bool ProgressByManualInput => manualProgress.Weighting > 0;
+
+
         public event EventHandler RecordingStatusChanged;
         public event EventHandler Tick;
 

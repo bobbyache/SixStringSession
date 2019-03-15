@@ -168,6 +168,10 @@ namespace CygSoft.SmartSession.Desktop.Exercises.Recorder
             get { return exerciseRecorder.TotalSecondsDisplay; }
         }
 
+        public bool ProgressBySpeed { get => exerciseRecorder.ProgressBySpeed; }
+        public bool ProgressByTime { get => exerciseRecorder.ProgressByTime; }
+        public bool ProgressByManualInput { get => exerciseRecorder.ProgressByManualInput; }
+
         public RelayCommand IncrementManualProgressCommand { get; private set; }
         public RelayCommand DecrementManualProgressCommand { get; private set; }
 
@@ -228,6 +232,9 @@ namespace CygSoft.SmartSession.Desktop.Exercises.Recorder
             SaveCommand = new RelayCommand(() => SaveRecording(), CanExecuteSaveCommand);
 
             RaisePropertyChanged(() => Recording);
+            RaisePropertyChanged(() => ProgressByManualInput);
+            RaisePropertyChanged(() => ProgressBySpeed);
+            RaisePropertyChanged(() => ProgressByTime);
         }
 
         private bool CanExecuteSaveCommand()
