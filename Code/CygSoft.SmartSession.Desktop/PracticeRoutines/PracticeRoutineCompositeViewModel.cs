@@ -75,9 +75,6 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines
             var timeSlotExercise = practiceRoutineService.CreateTimeSlotExercise(exerciseId);
             practiceRoutineEditViewModel.AddTimeSlotExercise(timeSlotExercise);
 
-            //TODO: What do do about this? Is it actually still necessary?
-            //var routineExercise = practiceRoutineService.CreatePracticeRoutineExerciseFor(exerciseId);
-            //practiceRoutineEditViewModel.AddPracticeRoutineExercise(routineExercise);
             NavigateTo("Edit");
         }
 

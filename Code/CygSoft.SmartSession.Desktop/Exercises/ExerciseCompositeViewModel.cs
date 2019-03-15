@@ -77,6 +77,7 @@ namespace CygSoft.SmartSession.Desktop.Exercises
                 else
                     exerciseService.Add(exercise);
             }
+            CurrentViewModel = exerciseSearchViewModel;
         }
 
         private void StartEditingExercise(IExercise exercise)

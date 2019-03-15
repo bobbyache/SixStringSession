@@ -28,7 +28,7 @@ namespace CygSoft.SmartSession.Desktop.Supports.DI
         public PracticeRoutineEditViewModel PracticeRoutineEditViewModel { get => Bootstrapper.Container.Resolve<PracticeRoutineEditViewModel>(); }
         public PracticeRoutineCompositeViewModel PracticeRoutineCompositeViewModel { get => Bootstrapper.Container.Resolve<PracticeRoutineCompositeViewModel>(); }
         public PracticeRoutineManagementViewModel PracticeRoutineManagementViewModel { get => Bootstrapper.Container.Resolve<PracticeRoutineManagementViewModel>(); }
-        public RoutineRecorderViewModel PracticeRoutineRecordingListViewModel { get => Bootstrapper.Container.Resolve<RoutineRecorderViewModel>(); }
+        public RoutineRecorderViewModel RoutineRecorderViewModel { get => Bootstrapper.Container.Resolve<RoutineRecorderViewModel>(); }
 
         public MainWindowViewModel MainWindowViewModel { get => Bootstrapper.Container.Resolve<MainWindowViewModel>(); }
 

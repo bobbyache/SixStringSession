@@ -9,6 +9,8 @@ using GalaSoft.MvvmLight.Messaging;
 using System;
 using System.ComponentModel;
 using System.Linq;
+using System.Windows;
+using System.Windows.Threading;
 
 namespace CygSoft.SmartSession.Desktop.PracticeRoutines.Recorder
 {
@@ -24,6 +26,8 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines.Recorder
 
         public BindingList<TimeSlotRecorderViewModel> RecordableExercises { get; set; } = new BindingList<TimeSlotRecorderViewModel>();
 
+        public bool HasSelection { get => SelectedRecordableExercise != null; }
+
         private TimeSlotRecorderViewModel selectedRecordableExercise;
         public TimeSlotRecorderViewModel SelectedRecordableExercise
         {
@@ -31,6 +35,7 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines.Recorder
             set
             {
                 Set(() => SelectedRecordableExercise, ref selectedRecordableExercise, value);
+                RaisePropertyChanged(() => HasSelection);
             }
         }
 
@@ -46,6 +51,16 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines.Recorder
                 Set(() => DisplayTime, ref displayTime, value);
             }
         }
+
+        public bool Recording
+        {
+            get
+            {
+                if (RecordableExercises != null)
+                    return RecordableExercises.Where(re => re.Recording == true).Any();
+                return false;
+            }
+       }
 
         private double totalSecondsPracticed;
         public double TotalSecondsPracticed
@@ -68,26 +83,37 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines.Recorder
             this.dialogService = dialogService ?? throw new ArgumentNullException("Dialog service must be provided.");
 
             CancelCommand = new RelayCommand(() => Cancel(), () => true);
-            SaveCommand = new RelayCommand(() => Save(), () => true);
+            SaveCommand = new RelayCommand(() => Save(), () => CanExecuteSaveCommand());
             StartExercisingCommand = new RelayCommand(StartExercising, () => true);
+        }
+
+        private bool CanExecuteSaveCommand()
+        {
+            return TotalSecondsPracticed > 0 && !Recording;
         }
 
         private void RecordableExercises_ListChanged(object sender, ListChangedEventArgs e)
         {
             TotalSecondsPracticed = (int)RecordableExercises.Sum(r => r.Seconds);
             DisplayTime = TimeFuncs.DisplayTimeFromSeconds(TotalSecondsPracticed);
+            RaisePropertyChanged(() => Recording);
+
+            if (SaveCommand != null)
+                Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() => SaveCommand.RaiseCanExecuteChanged()));
         }
 
         public void InitializeSession(int practiceRoutineId)
         {
             RecordableExercises.Clear();
+            RaisePropertyChanged(() => HasSelection);
 
             var routineRecorder = practiceRoutineService.GetPracticeRoutineRecorder(practiceRoutineId);
 
             foreach (var exerciseRecorder in routineRecorder.ExerciseRecorders)
             {
-                RecordableExercises.Add(new TimeSlotRecorderViewModel(exerciseRecorder));
+                RecordableExercises.Add(new TimeSlotRecorderViewModel(exerciseService, exerciseRecorder));
             }
+            
         }
 
         private void Save()

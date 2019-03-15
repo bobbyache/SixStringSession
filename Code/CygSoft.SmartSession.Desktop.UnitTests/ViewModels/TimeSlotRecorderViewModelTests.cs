@@ -1,4 +1,5 @@
 ﻿using CygSoft.SmartSession.Desktop.PracticeRoutines.Recorder;
+using CygSoft.SmartSession.Domain.Exercises;
 using CygSoft.SmartSession.Domain.Recording;
 using CygSoft.SmartSession.Infrastructure;
 using CygSoft.SmartSession.UnitTests.Infrastructure;
@@ -51,8 +52,9 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
                 new PracticeTimeProgress(300, 600, 10),
                 new ManualProgress(0, 100), assignedTime);
 
-            var viewModel = new TimeSlotRecorderViewModel(exerciseRecorder);
-            
+            var exerciseService = new Mock<IExerciseService>();
+            var viewModel = new TimeSlotRecorderViewModel(exerciseService.Object, exerciseRecorder);
+
             viewModel.PropertyChanged += (s, e) =>
             {
                 if (e.PropertyName == "RemainingTimeDisplay")
@@ -77,7 +79,8 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
                 new PracticeTimeProgress(300, 600, 10),
                 new ManualProgress(0, 100), assignedTime);
 
-            var viewModel = new TimeSlotRecorderViewModel(exerciseRecorder);
+            var exerciseService = new Mock<IExerciseService>();
+            var viewModel = new TimeSlotRecorderViewModel(exerciseService.Object, exerciseRecorder);
 
             viewModel.PropertyChanged += (s, e) =>
             {
@@ -103,7 +106,8 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
                 new PracticeTimeProgress(300, 600, 10),
                 new ManualProgress(0, 100), assignedTime);
 
-            var viewModel = new TimeSlotRecorderViewModel(exerciseRecorder);
+            var exerciseService = new Mock<IExerciseService>();
+            var viewModel = new TimeSlotRecorderViewModel(exerciseService.Object, exerciseRecorder);
 
             viewModel.PropertyChanged += (s, e) =>
             {
@@ -129,7 +133,8 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
                 new PracticeTimeProgress(300, 600, 10),
                 new ManualProgress(0, 100), assignedTime);
 
-            var viewModel = new TimeSlotRecorderViewModel(exerciseRecorder);
+            var exerciseService = new Mock<IExerciseService>();
+            var viewModel = new TimeSlotRecorderViewModel(exerciseService.Object, exerciseRecorder);
 
             viewModel.PropertyChanged += (s, e) =>
             {
@@ -153,7 +158,8 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
                 new PracticeTimeProgress(300, 600, 10),
                 new ManualProgress(0, 100), assignedTime);
 
-            var viewModel = new TimeSlotRecorderViewModel(exerciseRecorder);
+            var exerciseService = new Mock<IExerciseService>();
+            var viewModel = new TimeSlotRecorderViewModel(exerciseService.Object, exerciseRecorder);
 
             exerciseRecorder.AddSeconds(480);
 
@@ -174,7 +180,8 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
                 new PracticeTimeProgress(300, 600, 10),
                 new ManualProgress(0, 100), assignedTime);
 
-            var viewModel = new TimeSlotRecorderViewModel(exerciseRecorder);
+            var exerciseService = new Mock<IExerciseService>();
+            var viewModel = new TimeSlotRecorderViewModel(exerciseService.Object, exerciseRecorder);
 
             Assert.AreEqual(600, viewModel.AssignedSeconds);
             Assert.AreEqual(300, viewModel.RemainingSeconds);
@@ -198,7 +205,8 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
                 new PracticeTimeProgress(300, 600, 10),
                 new ManualProgress(0, 100), 600);
 
-            var viewModel = new TimeSlotRecorderViewModel(exerciseRecorder);
+            var exerciseService = new Mock<IExerciseService>();
+            var viewModel = new TimeSlotRecorderViewModel(exerciseService.Object, exerciseRecorder);
 
             Assert.AreEqual(TimeFuncs.ZeroTimeDisplay, viewModel.RecordingTimeDisplay);
             Assert.AreEqual(false, viewModel.Recording);
@@ -215,7 +223,8 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
                 new PracticeTimeProgress(300, 600, 10),
                 new ManualProgress(0, 100), 600);
 
-            var viewModel = new TimeSlotRecorderViewModel(exerciseRecorder);
+            var exerciseService = new Mock<IExerciseService>();
+            var viewModel = new TimeSlotRecorderViewModel(exerciseService.Object, exerciseRecorder);
 
             Assert.That(viewModel.Status, Is.EqualTo(""));
         }
@@ -228,7 +237,8 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
                 new PracticeTimeProgress(300, 600, 10),
                 new ManualProgress(0, 100), 600);
 
-            var viewModel = new TimeSlotRecorderViewModel(exerciseRecorder);
+            var exerciseService = new Mock<IExerciseService>();
+            var viewModel = new TimeSlotRecorderViewModel(exerciseService.Object, exerciseRecorder);
 
             exerciseRecorder.Resume();
             var recording = exerciseRecorder.Recording && viewModel.Recording;
@@ -253,7 +263,8 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
                 new PracticeTimeProgress(300, 600, 10),
                 new ManualProgress(0, 100), 600);
 
-            var viewModel = new TimeSlotRecorderViewModel(exerciseRecorder);
+            var exerciseService = new Mock<IExerciseService>();
+            var viewModel = new TimeSlotRecorderViewModel(exerciseService.Object, exerciseRecorder);
 
             exerciseRecorder.Resume();
 
@@ -265,7 +276,8 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         {
             var exerciseRecorder = EntityFactory.CreateSpeedProgressTimeSlotExerciseRecorder(60, 100, 160, 600);
 
-            var viewModel = new TimeSlotRecorderViewModel(exerciseRecorder);
+            var exerciseService = new Mock<IExerciseService>();
+            var viewModel = new TimeSlotRecorderViewModel(exerciseService.Object, exerciseRecorder);
             viewModel.SmallSpeedDecrementCommand.Execute(null);
 
             Assert.AreEqual(99, exerciseRecorder.CurrentSpeed);
@@ -277,7 +289,8 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
             var changed = false;
 
             var exerciseRecorder = EntityFactory.CreateSpeedProgressTimeSlotExerciseRecorder(60, 100, 160, 600);
-            var viewModel = new TimeSlotRecorderViewModel(exerciseRecorder);
+            var exerciseService = new Mock<IExerciseService>();
+            var viewModel = new TimeSlotRecorderViewModel(exerciseService.Object, exerciseRecorder);
 
             viewModel.PropertyChanged += (s, e) =>
             {
@@ -296,7 +309,8 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
             var changed = false;
 
             var exerciseRecorder = EntityFactory.CreateSpeedProgressTimeSlotExerciseRecorder(60, 100, 160, 600);
-            var viewModel = new TimeSlotRecorderViewModel(exerciseRecorder);
+            var exerciseService = new Mock<IExerciseService>();
+            var viewModel = new TimeSlotRecorderViewModel(exerciseService.Object, exerciseRecorder);
 
             viewModel.PropertyChanged += (s, e) =>
             {
@@ -315,7 +329,8 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
             var changed = false;
 
             var exerciseRecorder = EntityFactory.CreateSpeedProgressTimeSlotExerciseRecorder(60, 100, 160, 600);
-            var viewModel = new TimeSlotRecorderViewModel(exerciseRecorder);
+            var exerciseService = new Mock<IExerciseService>();
+            var viewModel = new TimeSlotRecorderViewModel(exerciseService.Object, exerciseRecorder);
 
             viewModel.PropertyChanged += (s, e) =>
             {
@@ -334,7 +349,8 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
             var changed = false;
 
             var exerciseRecorder = EntityFactory.CreateSpeedProgressTimeSlotExerciseRecorder(60, 100, 160, 600);
-            var viewModel = new TimeSlotRecorderViewModel(exerciseRecorder);
+            var exerciseService = new Mock<IExerciseService>();
+            var viewModel = new TimeSlotRecorderViewModel(exerciseService.Object, exerciseRecorder);
 
             viewModel.PropertyChanged += (s, e) =>
             {
@@ -353,7 +369,8 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
             var changed = false;
 
             var exerciseRecorder = EntityFactory.CreateSpeedProgressTimeSlotExerciseRecorder(60, 100, 160, 600);
-            var viewModel = new TimeSlotRecorderViewModel(exerciseRecorder);
+            var exerciseService = new Mock<IExerciseService>();
+            var viewModel = new TimeSlotRecorderViewModel(exerciseService.Object, exerciseRecorder);
 
             viewModel.PropertyChanged += (s, e) =>
             {
@@ -372,7 +389,8 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
             var changed = false;
 
             var exerciseRecorder = EntityFactory.CreateSpeedProgressTimeSlotExerciseRecorder(60, 100, 160, 600);
-            var viewModel = new TimeSlotRecorderViewModel(exerciseRecorder);
+            var exerciseService = new Mock<IExerciseService>();
+            var viewModel = new TimeSlotRecorderViewModel(exerciseService.Object, exerciseRecorder);
 
             viewModel.PropertyChanged += (s, e) =>
             {
@@ -391,7 +409,8 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
             var changed = false;
 
             var exerciseRecorder = EntityFactory.CreateSpeedProgressTimeSlotExerciseRecorder(60, 100, 160, 600);
-            var viewModel = new TimeSlotRecorderViewModel(exerciseRecorder);
+            var exerciseService = new Mock<IExerciseService>();
+            var viewModel = new TimeSlotRecorderViewModel(exerciseService.Object, exerciseRecorder);
 
             viewModel.PropertyChanged += (s, e) =>
             {
@@ -410,7 +429,8 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
             var changed = false;
 
             var exerciseRecorder = EntityFactory.CreateSpeedProgressTimeSlotExerciseRecorder(60, 100, 160, 600);
-            var viewModel = new TimeSlotRecorderViewModel(exerciseRecorder);
+            var exerciseService = new Mock<IExerciseService>();
+            var viewModel = new TimeSlotRecorderViewModel(exerciseService.Object, exerciseRecorder); 
 
             viewModel.PropertyChanged += (s, e) =>
             {
@@ -429,7 +449,8 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
             var changed = false;
 
             var exerciseRecorder = EntityFactory.CreateSpeedProgressTimeSlotExerciseRecorder(60, 100, 160, 600);
-            var viewModel = new TimeSlotRecorderViewModel(exerciseRecorder);
+            var exerciseService = new Mock<IExerciseService>();
+            var viewModel = new TimeSlotRecorderViewModel(exerciseService.Object, exerciseRecorder);
 
             viewModel.PropertyChanged += (s, e) =>
             {
@@ -449,7 +470,8 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
             var changed = false;
 
             var exerciseRecorder = EntityFactory.CreateSpeedProgressTimeSlotExerciseRecorder(60, 100, 160, 600);
-            var viewModel = new TimeSlotRecorderViewModel(exerciseRecorder);
+            var exerciseService = new Mock<IExerciseService>();
+            var viewModel = new TimeSlotRecorderViewModel(exerciseService.Object, exerciseRecorder);
 
             viewModel.PropertyChanged += (s, e) =>
             {
@@ -467,7 +489,8 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
             var changed = false;
 
             var exerciseRecorder = EntityFactory.CreateSpeedProgressTimeSlotExerciseRecorder(60, 100, 160, 600);
-            var viewModel = new TimeSlotRecorderViewModel(exerciseRecorder);
+            var exerciseService = new Mock<IExerciseService>();
+            var viewModel = new TimeSlotRecorderViewModel(exerciseService.Object, exerciseRecorder);
 
             viewModel.PropertyChanged += (s, e) =>
             {
@@ -486,7 +509,8 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
             var changed = false;
 
             var exerciseRecorder = EntityFactory.CreateSpeedProgressTimeSlotExerciseRecorder(60, 100, 160, 600);
-            var viewModel = new TimeSlotRecorderViewModel(exerciseRecorder);
+            var exerciseService = new Mock<IExerciseService>();
+            var viewModel = new TimeSlotRecorderViewModel(exerciseService.Object, exerciseRecorder);
 
             viewModel.PropertyChanged += (s, e) =>
             {
@@ -506,7 +530,8 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
             var changed = false;
 
             var exerciseRecorder = EntityFactory.CreateSpeedProgressTimeSlotExerciseRecorder(60, 100, 160, 600);
-            var viewModel = new TimeSlotRecorderViewModel(exerciseRecorder);
+            var exerciseService = new Mock<IExerciseService>();
+            var viewModel = new TimeSlotRecorderViewModel(exerciseService.Object, exerciseRecorder);
 
             viewModel.PropertyChanged += (s, e) =>
             {
@@ -526,7 +551,8 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
             var changed = false;
 
             var exerciseRecorder = EntityFactory.CreateSpeedProgressTimeSlotExerciseRecorder(60, 100, 160, 600);
-            var viewModel = new TimeSlotRecorderViewModel(exerciseRecorder);
+            var exerciseService = new Mock<IExerciseService>();
+            var viewModel = new TimeSlotRecorderViewModel(exerciseService.Object, exerciseRecorder);
 
             viewModel.PropertyChanged += (s, e) =>
             {
@@ -545,7 +571,8 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
             var changed = false;
 
             var exerciseRecorder = EntityFactory.CreateSpeedProgressTimeSlotExerciseRecorder(60, 100, 160, 600);
-            var viewModel = new TimeSlotRecorderViewModel(exerciseRecorder);
+            var exerciseService = new Mock<IExerciseService>();
+            var viewModel = new TimeSlotRecorderViewModel(exerciseService.Object, exerciseRecorder);
 
             viewModel.PropertyChanged += (s, e) =>
             {
@@ -565,7 +592,8 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
             var changed = false;
 
             var exerciseRecorder = EntityFactory.CreateSpeedProgressTimeSlotExerciseRecorder(60, 100, 160, 600);
-            var viewModel = new TimeSlotRecorderViewModel(exerciseRecorder);
+            var exerciseService = new Mock<IExerciseService>();
+            var viewModel = new TimeSlotRecorderViewModel(exerciseService.Object, exerciseRecorder);
 
             viewModel.PropertyChanged += (s, e) =>
             {
@@ -583,7 +611,8 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         {
             var exerciseRecorder = EntityFactory.CreateSpeedProgressTimeSlotExerciseRecorder(60, 100, 160, 600);
 
-            var viewModel = new TimeSlotRecorderViewModel(exerciseRecorder);
+            var exerciseService = new Mock<IExerciseService>();
+            var viewModel = new TimeSlotRecorderViewModel(exerciseService.Object, exerciseRecorder);
             viewModel.SmallSpeedIncrementCommand.Execute(null);
 
             Assert.AreEqual(101, exerciseRecorder.CurrentSpeed);
@@ -594,7 +623,8 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         {
             var exerciseRecorder = EntityFactory.CreateSpeedProgressTimeSlotExerciseRecorder(60, 100, 160, 600);
 
-            var viewModel = new TimeSlotRecorderViewModel(exerciseRecorder);
+            var exerciseService = new Mock<IExerciseService>();
+            var viewModel = new TimeSlotRecorderViewModel(exerciseService.Object, exerciseRecorder);
             viewModel.LargeSpeedDecrementCommand.Execute(null);
 
             Assert.AreEqual(90, exerciseRecorder.CurrentSpeed);
@@ -605,7 +635,8 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         {
             var exerciseRecorder = EntityFactory.CreateSpeedProgressTimeSlotExerciseRecorder(5, 7, 160, 600);
 
-            var viewModel = new TimeSlotRecorderViewModel(exerciseRecorder);
+            var exerciseService = new Mock<IExerciseService>();
+            var viewModel = new TimeSlotRecorderViewModel(exerciseService.Object, exerciseRecorder);
             viewModel.LargeSpeedDecrementCommand.Execute(null);
 
             Assert.AreEqual(0, exerciseRecorder.CurrentSpeed);
@@ -617,7 +648,8 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         {
             var exerciseRecorder = EntityFactory.CreateSpeedProgressTimeSlotExerciseRecorder(0, 0, 160, 600);
 
-            var viewModel = new TimeSlotRecorderViewModel(exerciseRecorder);
+            var exerciseService = new Mock<IExerciseService>();
+            var viewModel = new TimeSlotRecorderViewModel(exerciseService.Object, exerciseRecorder);
             viewModel.SmallSpeedDecrementCommand.Execute(null);
 
             Assert.AreEqual(0, exerciseRecorder.CurrentSpeed);
@@ -629,7 +661,8 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         {
             var exerciseRecorder = EntityFactory.CreateSpeedProgressTimeSlotExerciseRecorder(60, 100, 160, 600);
 
-            var viewModel = new TimeSlotRecorderViewModel(exerciseRecorder);
+            var exerciseService = new Mock<IExerciseService>();
+            var viewModel = new TimeSlotRecorderViewModel(exerciseService.Object, exerciseRecorder);
             viewModel.LargeSpeedIncrementCommand.Execute(null);
 
             Assert.AreEqual(110, exerciseRecorder.CurrentSpeed);
@@ -640,7 +673,8 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         {
             var exerciseRecorder = EntityFactory.CreateTimeProgressTimeSlotExerciseRecorder(300, 600, 600);
 
-            var viewModel = new TimeSlotRecorderViewModel(exerciseRecorder);
+            var exerciseService = new Mock<IExerciseService>();
+            var viewModel = new TimeSlotRecorderViewModel(exerciseService.Object, exerciseRecorder);
             viewModel.IncrementMinutesPracticedCommand.Execute(null);
 
             Assert.AreEqual(60, exerciseRecorder.RecordedSeconds);
@@ -653,7 +687,8 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
             var exerciseRecorder = EntityFactory.CreateTimeProgressTimeSlotExerciseRecorder(300, 1200, 600);
             exerciseRecorder.AddMinutes(10);
 
-            var viewModel = new TimeSlotRecorderViewModel(exerciseRecorder);
+            var exerciseService = new Mock<IExerciseService>();
+            var viewModel = new TimeSlotRecorderViewModel(exerciseService.Object, exerciseRecorder);
 
             Assert.AreEqual(600, exerciseRecorder.RecordedSeconds);
             Assert.AreEqual(900, exerciseRecorder.CurrentTotalSeconds);
@@ -665,7 +700,8 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
             var exerciseRecorder = EntityFactory.CreateTimeProgressTimeSlotExerciseRecorder(300, 1200, 600);
             exerciseRecorder.AddMinutes(10);
 
-            var viewModel = new TimeSlotRecorderViewModel(exerciseRecorder);
+            var exerciseService = new Mock<IExerciseService>();
+            var viewModel = new TimeSlotRecorderViewModel(exerciseService.Object, exerciseRecorder);
             viewModel.DecrementMinutesPracticedCommand.Execute(null);
 
             Assert.AreEqual(540, exerciseRecorder.RecordedSeconds);
@@ -678,7 +714,8 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
             var exerciseRecorder = EntityFactory.CreateTimeProgressTimeSlotExerciseRecorder(300, 1200, 600);
             exerciseRecorder.AddMinutes(1);
 
-            var viewModel = new TimeSlotRecorderViewModel(exerciseRecorder);
+            var exerciseService = new Mock<IExerciseService>();
+            var viewModel = new TimeSlotRecorderViewModel(exerciseService.Object, exerciseRecorder);
             viewModel.IncrementMinutesPracticedCommand.Execute(null);
 
             Assert.AreEqual(120, exerciseRecorder.RecordedSeconds);
@@ -691,7 +728,8 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
             var exerciseRecorder = EntityFactory.CreateTimeProgressTimeSlotExerciseRecorder(10, 1200, 600);
             exerciseRecorder.AddSeconds(10); // 20
 
-            var viewModel = new TimeSlotRecorderViewModel(exerciseRecorder);
+            var exerciseService = new Mock<IExerciseService>();
+            var viewModel = new TimeSlotRecorderViewModel(exerciseService.Object, exerciseRecorder);
             viewModel.DecrementSecondsPracticedCommand.Execute(null);
 
             Assert.AreEqual(9, exerciseRecorder.RecordedSeconds);
@@ -704,7 +742,8 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
             var exerciseRecorder = EntityFactory.CreateTimeProgressTimeSlotExerciseRecorder(10, 1200, 600);
             exerciseRecorder.AddSeconds(10); // 20
 
-            var viewModel = new TimeSlotRecorderViewModel(exerciseRecorder);
+            var exerciseService = new Mock<IExerciseService>();
+            var viewModel = new TimeSlotRecorderViewModel(exerciseService.Object, exerciseRecorder);
             viewModel.IncrementSecondsPracticedCommand.Execute(null);
 
             Assert.AreEqual(11, exerciseRecorder.RecordedSeconds);
@@ -717,7 +756,8 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
             var exerciseRecorder = EntityFactory.CreateManualProgressTimeSlotExerciseRecorder(40, 600);
             exerciseRecorder.IncrementManualProgress(10);
 
-            var viewModel = new TimeSlotRecorderViewModel(exerciseRecorder);
+            var exerciseService = new Mock<IExerciseService>();
+            var viewModel = new TimeSlotRecorderViewModel(exerciseService.Object, exerciseRecorder);
             viewModel.IncrementManualProgressCommand.Execute(null);
 
             Assert.AreEqual(51, exerciseRecorder.CurrentManualProgress);
@@ -729,7 +769,8 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
             var exerciseRecorder = EntityFactory.CreateManualProgressTimeSlotExerciseRecorder(40, 600);
             exerciseRecorder.IncrementManualProgress(10);
 
-            var viewModel = new TimeSlotRecorderViewModel(exerciseRecorder);
+            var exerciseService = new Mock<IExerciseService>();
+            var viewModel = new TimeSlotRecorderViewModel(exerciseService.Object, exerciseRecorder);
             viewModel.DecrementManualProgressCommand.Execute(null);
 
             Assert.AreEqual(49, exerciseRecorder.CurrentManualProgress);
@@ -741,7 +782,8 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
             var exerciseRecorder = EntityFactory.CreateManualProgressTimeSlotExerciseRecorder(40, 600);
             exerciseRecorder.IncrementManualProgress(10);
 
-            var viewModel = new TimeSlotRecorderViewModel(exerciseRecorder);
+            var exerciseService = new Mock<IExerciseService>();
+            var viewModel = new TimeSlotRecorderViewModel(exerciseService.Object, exerciseRecorder);
             viewModel.ManualProgress = 10;
 
             Assert.AreEqual(10, exerciseRecorder.CurrentManualProgress);
@@ -752,7 +794,8 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         public void TimeSlotRecorderViewModel_OverallPracticeTime_Reflects_Model_Dynamically()
         {
             var exerciseRecorder = EntityFactory.CreateTimeProgressTimeSlotExerciseRecorder(300, 1200, 600);
-            var viewModel = new TimeSlotRecorderViewModel(exerciseRecorder);
+            var exerciseService = new Mock<IExerciseService>();
+            var viewModel = new TimeSlotRecorderViewModel(exerciseService.Object, exerciseRecorder);
 
             exerciseRecorder.AddSeconds(300);
 
@@ -763,7 +806,8 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         public void TimeSlotRecorderViewModel_SpeedProgress_Reflects_Model_Dynamically()
         {
             var exerciseRecorder = EntityFactory.CreateSpeedProgressTimeSlotExerciseRecorder(30, 30, 90, 600);
-            var viewModel = new TimeSlotRecorderViewModel(exerciseRecorder);
+            var exerciseService = new Mock<IExerciseService>();
+            var viewModel = new TimeSlotRecorderViewModel(exerciseService.Object, exerciseRecorder);
 
             exerciseRecorder.IncrementSpeed(30);
 
@@ -774,7 +818,8 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         public void TimeSlotRecorderViewModel_OverallProgress_Reflects_Model_Dynamically()
         {
             var exerciseRecorder = EntityFactory.CreateSpeedProgressTimeSlotExerciseRecorder(30, 30, 90, 600);
-            var viewModel = new TimeSlotRecorderViewModel(exerciseRecorder);
+            var exerciseService = new Mock<IExerciseService>();
+            var viewModel = new TimeSlotRecorderViewModel(exerciseService.Object, exerciseRecorder);
 
             exerciseRecorder.IncrementSpeed(30);
 

@@ -153,16 +153,23 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines.Edit
         {
             if (SelectedItem is TimeSlotViewModel)
             {
-                practiceRoutine.Remove((SelectedItem as TimeSlotViewModel).TimeSlot);
-                TimeSlots.Remove(SelectedItem as TimeSlotViewModel);
+                if (dialogService.YesNoPrompt("Delete Timeslot", "Sure you want to delete this time slot and all of its contents?"))
+                {
+                    practiceRoutine.Remove((SelectedItem as TimeSlotViewModel).TimeSlot);
+                    TimeSlots.Remove(SelectedItem as TimeSlotViewModel);
+                }
+
             }
             else
             {
-                var exerciseViewModel = SelectedItem as TimeSlotExerciseViewModel;
-                var timeSlotViewModel = exerciseViewModel.TimeSlotViewModel;
+                if (dialogService.YesNoPrompt("Remove Exercise", "Sure you want to remove this exercise from the timeslot?"))
+                {
+                    var exerciseViewModel = SelectedItem as TimeSlotExerciseViewModel;
+                    var timeSlotViewModel = exerciseViewModel.TimeSlotViewModel;
 
-                timeSlotViewModel.TimeSlot.Remove(exerciseViewModel.TimeSlotExercise);
-                timeSlotViewModel.Remove(exerciseViewModel);
+                    timeSlotViewModel.TimeSlot.Remove(exerciseViewModel.TimeSlotExercise);
+                    timeSlotViewModel.Remove(exerciseViewModel);
+                }
             }
         }
 

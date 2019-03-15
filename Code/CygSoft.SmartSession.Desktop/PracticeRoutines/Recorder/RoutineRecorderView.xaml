@@ -9,17 +9,20 @@
              Style="{StaticResource PageUserControl}"
              >
     <UserControl.DataContext>
-        <Binding Source="{StaticResource ViewModelLocator}" Path="PracticeRoutineRecordingListViewModel" />
+        <Binding Source="{StaticResource ViewModelLocator}" Path="RoutineRecorderViewModel" />
     </UserControl.DataContext>
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
+        
         <TextBlock Grid.Row="0" Margin="10" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Text="{Binding DisplayTime}"></TextBlock>
 
-        
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="200" />
@@ -28,13 +31,19 @@
             </Grid.ColumnDefinitions>
             <recorder:RoutineExerciseListView Grid.Column="0"/>
             <GridSplitter Grid.Column ="1" HorizontalAlignment="Center" ResizeBehavior="PreviousAndNext" Background="DarkGray" Width="5" ResizeDirection="Columns" VerticalAlignment="Stretch"/>
-            <recorder:TimeSlotRecorderView Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+            <Grid Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <recorder:TimeSlotRecorderView Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Visibility="{Binding HasSelection, Converter={StaticResource BooleanToVisibilityConverter}}"  />
+
+                <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button Content="Cancel" Margin="5" MinWidth="50" MaxHeight="35" Command="{Binding CancelCommand}" />
+                    <Button Content="Save" Margin="5" MinWidth="50" MaxHeight="35" Command="{Binding SaveCommand}" />
+                </StackPanel>
+            </Grid>
+
         </Grid>
-        
-        <StackPanel Grid.Row="2" DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button Content="Cancel Session" Margin="5" MinWidth="50" MaxHeight="35" Command="{Binding CancelCommand}" />
-            <Button Content="Save Session" Margin="5" MinWidth="50" MaxHeight="35" Command="{Binding SaveCommand}" />
-        </StackPanel>
-        
     </Grid>
 </UserControl>

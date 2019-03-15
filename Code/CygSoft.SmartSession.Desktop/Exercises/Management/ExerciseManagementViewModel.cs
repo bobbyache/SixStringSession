@@ -82,8 +82,6 @@ namespace CygSoft.SmartSession.Desktop.Exercises.Management
             }
         }
 
-        public ObservableCollection<int> DifficultyList { get; private set; } = new ObservableCollection<int> { 1, 2, 3, 4, 5 };
-        public ObservableCollection<int> PracticalityList { get; private set; } = new ObservableCollection<int> { 1, 2, 3, 4, 5 };
         public ObservableCollection<ExerciseListItemModel> ExerciseList { get; private set; } = new ObservableCollection<ExerciseListItemModel>();
 
         private void PracticeExercise()
@@ -114,8 +112,11 @@ namespace CygSoft.SmartSession.Desktop.Exercises.Management
         {
             try
             {
-                exerciseService.Remove(SelectedExercise.Id);
-                ExerciseList.Remove(SelectedExercise);
+                if (dialogService.YesNoPrompt("Delete Exercise","Sure you'd like to delete this exercise?"))
+                {
+                    exerciseService.Remove(SelectedExercise.Id);
+                    ExerciseList.Remove(SelectedExercise);
+                }
             }
             catch
             {

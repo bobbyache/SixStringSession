@@ -124,6 +124,7 @@
       <DependentUpon>RecorderView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Exercises\Recorder\ExerciseRecorderViewModel.cs" />
+    <Compile Include="Exercises\Recorder\SingleExerciseRecorderViewModel.cs" />
     <Compile Include="Exercises\Selection\ExerciseSelectionView.xaml.cs">
       <DependentUpon>ExerciseSelectionView.xaml</DependentUpon>
     </Compile>

@@ -1,14 +1,18 @@
-﻿using CygSoft.SmartSession.Domain.Exercises;
+﻿using CygSoft.SmartSession.Desktop.Supports.Messages;
+using CygSoft.SmartSession.Domain.Exercises;
 using CygSoft.SmartSession.Domain.Recording;
-using CygSoft.SmartSession.Infrastructure;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
 using System;
+using System.Windows;
+using System.Windows.Threading;
 
 namespace CygSoft.SmartSession.Desktop.Exercises.Recorder
 {
     public class ExerciseRecorderViewModel : ViewModelBase
     {
+        private IExerciseService exerciseService;
         protected IExerciseRecorder exerciseRecorder;
 
         public string RecordingTimeDisplay
@@ -184,10 +188,14 @@ namespace CygSoft.SmartSession.Desktop.Exercises.Recorder
         public RelayCommand DecrementMinutesPracticedCommand { get; private set; }
 
         public RelayCommand PlayPauseCommand { get; private set; }
+        public RelayCommand CancelCommand { get; private set; }
+        public RelayCommand SaveCommand { get; private set; }
 
-        public ExerciseRecorderViewModel(IExerciseRecorder exerciseRecorder)
+        public ExerciseRecorderViewModel(IExerciseService exerciseService, IExerciseRecorder exerciseRecorder)
         {
-            this.exerciseRecorder = exerciseRecorder;
+            this.exerciseService = exerciseService ?? throw new ArgumentNullException("Exercise service must be provided.");
+        
+            this.exerciseRecorder = exerciseRecorder ?? throw new ArgumentNullException("Exercise Recorder must be provided.");
             exerciseRecorder.TickActionCallBack = TickTock;
             exerciseRecorder.RecordingStatusChanged += ExerciseRecorder_RecordingStatusChanged;
 
@@ -216,8 +224,18 @@ namespace CygSoft.SmartSession.Desktop.Exercises.Recorder
             DecrementMinutesPracticedCommand = new RelayCommand(() => DecrementMinutesPracticed(), () => true);
 
             PlayPauseCommand = new RelayCommand(() => PlayPause(), () => true);
+            CancelCommand = new RelayCommand(() => CancelRecording(), () => !this.exerciseRecorder.Recording);
+            SaveCommand = new RelayCommand(() => SaveRecording(), CanExecuteSaveCommand);
 
             RaisePropertyChanged(() => Recording);
+        }
+
+        private bool CanExecuteSaveCommand()
+        {
+            var recordingStateValid = exerciseRecorder.RecordedSeconds > 0 && !exerciseRecorder.Recording;
+            var speedMetricsStateValid = MetronomeSpeed >= 0;
+
+            return recordingStateValid && speedMetricsStateValid;
         }
 
         private void PlayPause()
@@ -226,6 +244,8 @@ namespace CygSoft.SmartSession.Desktop.Exercises.Recorder
                 exerciseRecorder.Pause();
             else
                 exerciseRecorder.Resume();
+
+            RaiseProgressPropertyChangedEvents();
         }
 
         private void DecrementMetronomeSpeedByTen()
@@ -338,6 +358,9 @@ namespace CygSoft.SmartSession.Desktop.Exercises.Recorder
             RaisePropertyChanged(() => MetronomeSpeedInformationText);
             RaisePropertyChanged(() => ManualProgress);
             RaisePropertyChanged(() => ManualProgressInformationText);
+
+            if (SaveCommand != null)
+                Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() => SaveCommand.RaiseCanExecuteChanged()));
         }
 
         private void ExerciseRecorder_RecordingStatusChanged(object sender, EventArgs e)
@@ -376,6 +399,24 @@ namespace CygSoft.SmartSession.Desktop.Exercises.Recorder
         public void SaveRecording(IExerciseService exerciseService)
         {
             exerciseRecorder.SaveRecording(exerciseService);
+        }
+
+        private void CancelRecording()
+        {
+            exerciseRecorder.RecordingStatusChanged -= ExerciseRecorder_RecordingStatusChanged;
+            exerciseRecorder.Reset();
+
+            Messenger.Default.Send(new CancelledExerciseRecordingMessage());
+        }
+
+        private void SaveRecording()
+        {
+            exerciseRecorder.CurrentSpeed = MetronomeSpeed;
+            exerciseRecorder.SaveRecording(exerciseService);
+
+            exerciseRecorder.RecordingStatusChanged -= ExerciseRecorder_RecordingStatusChanged;
+            exerciseRecorder.Reset();
+            Messenger.Default.Send(new SavedExerciseRecordingMessage(exerciseRecorder.ExerciseId));
         }
     }
 }

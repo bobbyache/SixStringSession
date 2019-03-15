@@ -1,4 +1,5 @@
 ﻿using CygSoft.SmartSession.Desktop.Exercises.Recorder;
+using CygSoft.SmartSession.Domain.Exercises;
 using CygSoft.SmartSession.Domain.Recording;
 using CygSoft.SmartSession.Infrastructure;
 using System;
@@ -19,7 +20,7 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines.Recorder
         protected ITimeSlotExerciseRecorder TimeSlotExerciseRecorder { get => base.exerciseRecorder as ITimeSlotExerciseRecorder; }
 
 
-        public TimeSlotRecorderViewModel(ITimeSlotExerciseRecorder timeSlotExerciseRecorder) : base(timeSlotExerciseRecorder)
+        public TimeSlotRecorderViewModel(IExerciseService exerciseService, ITimeSlotExerciseRecorder timeSlotExerciseRecorder) : base(exerciseService, timeSlotExerciseRecorder)
         {
         }
 
