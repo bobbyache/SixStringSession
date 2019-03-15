@@ -175,9 +175,16 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines.Edit
 
         private void Save()
         {
-            this.Commit();
-            Messenger.Default.Send(new EndEditingPracticeRoutineMessage(practiceRoutine, EditorCloseOperation.Saved,
-                LifeCycleState));
+            try
+            {
+                this.Commit();
+                Messenger.Default.Send(new EndEditingPracticeRoutineMessage(practiceRoutine, EditorCloseOperation.Saved,
+                    LifeCycleState));
+            }
+            catch
+            {
+                dialogService.ExclamationMessage("Error", "Cannot update. You cannot add a duplicate exercise to a time slot.");
+            }
         }
 
         private void Cancel()

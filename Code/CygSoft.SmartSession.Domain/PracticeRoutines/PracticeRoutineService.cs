@@ -57,8 +57,16 @@ namespace CygSoft.SmartSession.Domain.PracticeRoutines
             if (practiceRoutine.Id <= 0)
                 throw new ArgumentException("An existing practiceRoutine must have an id");
 
-            unitOfWork.PracticeRoutines.Update(practiceRoutine);
-            unitOfWork.Commit();
+            try
+            {
+                unitOfWork.PracticeRoutines.Update(practiceRoutine);
+                unitOfWork.Commit();
+            }
+            catch (Exception ex)
+            {
+                unitOfWork.Rollback();
+                throw;
+            }
         }
 
         public TimeSlotExercise CreateTimeSlotExercise(int exerciseId)
