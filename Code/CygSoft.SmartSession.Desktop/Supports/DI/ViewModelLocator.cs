@@ -24,7 +24,6 @@ namespace CygSoft.SmartSession.Desktop.Supports.DI
         public ExerciseCompositeViewModel ExerciseCompositeViewModel { get => Bootstrapper.Container.Resolve<ExerciseCompositeViewModel>(); }
         public ExerciseManagementViewModel ExerciseSearchViewModel { get => Bootstrapper.Container.Resolve<ExerciseManagementViewModel>(); }
         public ExerciseSelectionViewModel ExerciseSelectionViewModel { get => Bootstrapper.Container.Resolve<ExerciseSelectionViewModel>(); }
-        public SingleExerciseRecorderViewModel ExerciseRecorderViewModel { get => Bootstrapper.Container.Resolve<SingleExerciseRecorderViewModel>(); }
 
         public PracticeRoutineEditViewModel PracticeRoutineEditViewModel { get => Bootstrapper.Container.Resolve<PracticeRoutineEditViewModel>(); }
         public PracticeRoutineCompositeViewModel PracticeRoutineCompositeViewModel { get => Bootstrapper.Container.Resolve<PracticeRoutineCompositeViewModel>(); }

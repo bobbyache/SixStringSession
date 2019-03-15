@@ -7,7 +7,7 @@ using System;
 
 namespace CygSoft.SmartSession.Desktop.Exercises.Recorder
 {
-    public class RecorderViewModel : ViewModelBase
+    public class ExerciseRecorderViewModel : ViewModelBase
     {
         protected IExerciseRecorder exerciseRecorder;
 
@@ -185,7 +185,7 @@ namespace CygSoft.SmartSession.Desktop.Exercises.Recorder
 
         public RelayCommand PlayPauseCommand { get; private set; }
 
-        public RecorderViewModel(IExerciseRecorder exerciseRecorder)
+        public ExerciseRecorderViewModel(IExerciseRecorder exerciseRecorder)
         {
             this.exerciseRecorder = exerciseRecorder;
             exerciseRecorder.TickActionCallBack = TickTock;

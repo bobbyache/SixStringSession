@@ -5,7 +5,7 @@ using System;
 
 namespace CygSoft.SmartSession.Desktop.PracticeRoutines.Recorder
 {
-    public class TimeSlotRecorderViewModel : RecorderViewModel
+    public class TimeSlotRecorderViewModel : ExerciseRecorderViewModel
     {
         public bool PracticeTimeCompleted { get => (int)TimeSlotExerciseRecorder.RemainingSeconds == 0;  }
         public int AssignedSeconds { get => (int)TimeSlotExerciseRecorder.AssignedSeconds; }

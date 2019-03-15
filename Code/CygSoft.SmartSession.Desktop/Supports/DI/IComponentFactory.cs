@@ -10,7 +10,7 @@ namespace CygSoft.SmartSession.Desktop.Supports.DI
 {
     public interface IComponentFactory
     {
-        RecorderViewModel CreateRecorderViewModel(IExerciseRecorder exerciseRecorder);
+        ExerciseRecorderViewModel CreateRecorderViewModel(IExerciseRecorder exerciseRecorder);
 
         //RecorderViewModel CreateRecorderViewModel(IRecorder recorder, int exerciseId, string title,
         //    ISpeedProgress speedProgress, IPracticeTimeProgress practiceTimeProgress, IManualProgress manualProgress);
@@ -24,7 +24,7 @@ namespace CygSoft.SmartSession.Desktop.Supports.DI
         //void Release(ISpeedProgress manuaProgress);
         //void Release(IPracticeTimeProgress manuaProgress);
         //void Release(IRecorder recorder);
-        void Release(RecorderViewModel recorderViewModel);
+        void Release(ExerciseRecorderViewModel recorderViewModel);
 
     }
 }

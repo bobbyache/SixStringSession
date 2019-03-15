@@ -18,9 +18,9 @@ namespace CygSoft.SmartSession.Desktop.Exercises.Recorder
     /// <summary>
     /// Interaction logic for ExerciseInstanceEditView.xaml
     /// </summary>
-    public partial class RecorderView : UserControl
+    public partial class ExerciseRecorderView : UserControl
     {
-        public RecorderView()
+        public ExerciseRecorderView()
         {
             InitializeComponent();
         }

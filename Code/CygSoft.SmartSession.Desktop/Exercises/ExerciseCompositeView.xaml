@@ -19,11 +19,8 @@
         <DataTemplate DataType="{x:Type edit:ExerciseEditViewModel}">
             <edit:ExerciseEditView />
         </DataTemplate>
-        <DataTemplate DataType="{x:Type recorder:SingleExerciseRecorderViewModel}">
+        <DataTemplate DataType="{x:Type recorder:ExerciseRecorderViewModel}">
             <recorder:ExerciseRecorderView />
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type recorder:RecorderViewModel}">
-            <recorder:RecorderView />
         </DataTemplate>
     </UserControl.Resources>
     <Grid>

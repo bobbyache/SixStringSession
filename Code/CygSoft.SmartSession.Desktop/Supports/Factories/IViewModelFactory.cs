@@ -10,6 +10,6 @@ namespace CygSoft.SmartSession.Desktop.Supports.Factories
 {
     public interface IViewModelFactory
     {
-        RecorderViewModel CreateRecorderViewModel(IExerciseRecorder exerciseRecorder);
+        ExerciseRecorderViewModel CreateRecorderViewModel(IExerciseRecorder exerciseRecorder);
     }
 }

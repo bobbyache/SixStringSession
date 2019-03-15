@@ -76,7 +76,7 @@ namespace CygSoft.SmartSession.Desktop.Supports.DI
                 Component.For<IManualProgress>().ImplementedBy<ManualProgress>().LifeStyle.Transient,
                 Component.For<IPracticeTimeProgress>().ImplementedBy<PracticeTimeProgress>().LifeStyle.Transient,
                 Component.For<IExerciseRecorder>().ImplementedBy<ExerciseRecorder>().LifeStyle.Transient,
-                Component.For<RecorderViewModel>().LifeStyle.Transient
+                Component.For<ExerciseRecorderViewModel>().LifeStyle.Transient
                 );
 
             container.Register(
@@ -94,7 +94,6 @@ namespace CygSoft.SmartSession.Desktop.Supports.DI
             container.Register(Component.For<ExerciseManagementViewModel>());
             container.Register(Component.For<ExerciseSelectionViewModel>());
             container.Register(Component.For<ExerciseCompositeViewModel>());
-            container.Register(Component.For<SingleExerciseRecorderViewModel>());
 
             container.Register(Component.For<IPracticeRoutineService>().ImplementedBy(typeof(PracticeRoutineService)));
             container.Register(Component.For<PracticeRoutineEditViewModel>());

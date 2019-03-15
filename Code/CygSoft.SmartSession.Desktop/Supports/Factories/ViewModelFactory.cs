@@ -17,7 +17,7 @@ namespace CygSoft.SmartSession.Desktop.Supports.Factories
         {
             this.componentFactory = componentFactory;
         }
-        public RecorderViewModel CreateRecorderViewModel(IExerciseRecorder exerciseRecorder)
+        public ExerciseRecorderViewModel CreateRecorderViewModel(IExerciseRecorder exerciseRecorder)
         {
             var recorderViewModel = componentFactory.CreateRecorderViewModel(exerciseRecorder);
             componentFactory.Release(recorderViewModel);

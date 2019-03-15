@@ -120,10 +120,10 @@
     <Compile Include="BusyIndicatorView.xaml.cs">
       <DependentUpon>BusyIndicatorView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Exercises\Recorder\SingleExerciseRecorderView.xaml.cs">
-      <DependentUpon>SingleExerciseRecorderView.xaml</DependentUpon>
+    <Compile Include="Common\RecorderView.xaml.cs">
+      <DependentUpon>RecorderView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Exercises\Recorder\SingleExerciseRecorderViewModel.cs" />
+    <Compile Include="Exercises\Recorder\ExerciseRecorderViewModel.cs" />
     <Compile Include="Exercises\Selection\ExerciseSelectionView.xaml.cs">
       <DependentUpon>ExerciseSelectionView.xaml</DependentUpon>
     </Compile>
@@ -137,10 +137,9 @@
     </Compile>
     <Compile Include="Exercises\Edit\ExerciseEditViewModel.cs" />
     <Compile Include="MainWindowViewModel.cs" />
-    <Compile Include="Exercises\Recorder\RecorderView.xaml.cs">
-      <DependentUpon>RecorderView.xaml</DependentUpon>
+    <Compile Include="Exercises\Recorder\ExerciseRecorderView.xaml.cs">
+      <DependentUpon>ExerciseRecorderView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Exercises\Recorder\RecorderViewModel.cs" />
     <Compile Include="PracticeRoutines\Recorder\RoutineExerciseListView.xaml.cs">
       <DependentUpon>RoutineExerciseListView.xaml</DependentUpon>
     </Compile>
@@ -210,15 +209,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Common\RecorderView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Exercises\ExerciseCompositeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Exercises\Edit\ExerciseEditView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Exercises\Recorder\SingleExerciseRecorderView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -238,7 +237,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Exercises\Recorder\RecorderView.xaml">
+    <Page Include="Exercises\Recorder\ExerciseRecorderView.xaml">
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
