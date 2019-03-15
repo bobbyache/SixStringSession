@@ -28,70 +28,112 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
+        <Style x:Key="RemainingDisplayTextColor" TargetType="{x:Type TextBlock}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Path=PracticeTimeCompleted}" Value="true">
+                    <DataTrigger.Setters>
+                        <Setter Property="Foreground" Value="OrangeRed" />
+                    </DataTrigger.Setters>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Path=PracticeTimeCompleted}" Value="false">
+                    <DataTrigger.Setters>
+                        <Setter Property="Foreground" Value="White" />
+                    </DataTrigger.Setters>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="PracticeTimeCompletedProgressColor" TargetType="{x:Type ProgressBar}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Path=PracticeTimeCompleted}" Value="true">
+                    <DataTrigger.Setters>
+                        <Setter Property="Foreground" Value="OrangeRed" />
+                    </DataTrigger.Setters>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Path=PracticeTimeCompleted}" Value="false">
+                    <DataTrigger.Setters>
+                        <Setter Property="Foreground" Value="Green" />
+                    </DataTrigger.Setters>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
     </UserControl.Resources>
-    <ScrollViewer >
-        <StackPanel HorizontalAlignment="Center">
-
-            <StackPanel Margin="5,5,0,0" Orientation="Vertical">
-                <StackPanel Orientation="Horizontal" Visibility="{Binding Recording, Converter={StaticResource BooleanToVisibilityConverter}}">
-                    <Ellipse HorizontalAlignment="Left" Margin="5" Height="16" Width="16" Fill="OrangeRed" />
-                    <TextBlock  FontWeight="Bold" VerticalAlignment="Center" Foreground="OrangeRed" Text="recording..." />
-                </StackPanel>
-
-                <TextBlock Width="300" Margin="5" Text="{Binding  Path=Title}" />
-                <ProgressBar Margin="5" Height="10" Value="{Binding OverallProgress, Mode=OneWay}" />
-                <StackPanel>
-                    <Button Style="{StaticResource RecordButtonStyle}" Command="{Binding PlayPauseCommand}" />
-                </StackPanel>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <DockPanel Grid.Row="0" LastChildFill="True">
+            <StackPanel Margin="5" DockPanel.Dock="Left" Orientation="Vertical">
+                <TextBlock Foreground="White" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" MinWidth="50" Text="{Binding RecordingTimeDisplay}" />
+                <TextBlock Style="{StaticResource RemainingDisplayTextColor}" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" MinWidth="50" Text="{Binding RemainingTimeDisplay}" />
             </StackPanel>
+            <StackPanel Width="100" Orientation="Horizontal" DockPanel.Dock="Right">
+                <Ellipse HorizontalAlignment="Left" Margin="5" Height="16" Width="16" Fill="OrangeRed" Visibility="{Binding Recording, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                <TextBlock  FontWeight="Bold" VerticalAlignment="Center" Foreground="OrangeRed" Text="recording..." Visibility="{Binding Recording, Converter={StaticResource BooleanToVisibilityConverter}}" />
+            </StackPanel>
+            <StackPanel Margin="5,5,0,0" Orientation="Vertical">
+                <TextBlock Foreground="White" Margin="5" Text="{Binding  Path=Title}" />
+                <ProgressBar Style="{StaticResource PracticeTimeCompletedProgressColor}" Margin="5" Height="10" Value="{Binding AssignedTimePercentage, Mode=OneWay}" />
+            </StackPanel>
+        </DockPanel>
+        <ScrollViewer Grid.Row="1" >
+            <StackPanel HorizontalAlignment="Center">
+
+                <StackPanel Margin="5,5,0,0" Orientation="Vertical">
 
 
-            <Border Style="{StaticResource PagePanel}">
-                <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
-                    <TextBlock HorizontalAlignment="Center" >Overall Practice Time</TextBlock>
-                    <TextBlock HorizontalAlignment="Center" Text="{Binding TotalRecordedDisplayTime}" Margin="2,2,2,10" />
-                    <TextBlock HorizontalAlignment="Center">Overall Progress</TextBlock>
-                    <ProgressBar Margin="0,2,0,0" MinHeight="10" MinWidth="200" HorizontalAlignment="Center" Value="{Binding OverallProgress, Mode=OneWay}" />
-                </StackPanel>
-            </Border>
-
-            <Border Style="{StaticResource PagePanel}">
-                <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
-                    <TextBlock Margin="10" HorizontalAlignment="Center">Metronome Speed</TextBlock>
-                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-                        <Button Margin="2" MinWidth="30" Command="{Binding LargeSpeedDecrementCommand}">&lt;&lt;</Button>
-                        <Button Margin="2" MinWidth="30" Command="{Binding SmallSpeedDecrementCommand}">&lt;</Button>
-                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" MinWidth="50" Text="{Binding MetronomeSpeedInformationText}" />
-                        <Button Margin="2" MinWidth="30" Command="{Binding SmallSpeedIncrementCommand}">&gt;</Button>
-                        <Button Margin="2" MinWidth="30" Command="{Binding LargeSpeedIncrementCommand}">&gt;&gt;</Button>
+                    <StackPanel>
+                        <Button Style="{StaticResource RecordButtonStyle}" Command="{Binding PlayPauseCommand}" />
                     </StackPanel>
-                    <ProgressBar Margin="0,2,0,0" MinHeight="10" MinWidth="200" HorizontalAlignment="Center" Value="{Binding SpeedProgress, Mode=OneWay}" />
                 </StackPanel>
-            </Border>
-            <Border Style="{StaticResource PagePanel}">
-                <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
-                    <TextBlock Margin="10" HorizontalAlignment="Center">Time</TextBlock>
-                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-                        <Button Margin="2" MinWidth="30" Command="{Binding DecrementMinutesPracticedCommand}">&lt;&lt;</Button>
-                        <Button Margin="2" MinWidth="30" Command="{Binding DecrementSecondsPracticedCommand}">&lt;</Button>
-                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" MinWidth="50" Text="{Binding RecordingTimeDisplay}" />
-                        <Button Margin="2" MinWidth="30" Command="{Binding IncrementSecondsPracticedCommand}">&gt;</Button>
-                        <Button Margin="2" MinWidth="30" Command="{Binding IncrementMinutesPracticedCommand}">&gt;&gt;</Button>
-                    </StackPanel>
-                    <ProgressBar Margin="0,2,0,0" MinHeight="10" MinWidth="200" HorizontalAlignment="Center" Value="{Binding PracticeTimeProgress, Mode=OneWay}" />
-                </StackPanel>
-            </Border>
 
-            <Border Style="{StaticResource PagePanel}">
-                <StackPanel Orientation="Vertical">
+
+                <Border Style="{StaticResource PagePanel}">
                     <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
-                        <TextBlock Margin="10" HorizontalAlignment="Center">Manual Progress</TextBlock>
+                        <TextBlock HorizontalAlignment="Center" >Overall Practice Time</TextBlock>
+                        <TextBlock HorizontalAlignment="Center" Text="{Binding TotalRecordedDisplayTime}" Margin="2,2,2,10" />
+                        <TextBlock HorizontalAlignment="Center">Overall Progress</TextBlock>
+                        <ProgressBar Margin="0,2,0,0" MinHeight="10" MinWidth="200" HorizontalAlignment="Center" Value="{Binding OverallProgress, Mode=OneWay}" />
+                    </StackPanel>
+                </Border>
 
-                        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="15">
-                            <Button MinWidth="20" MaxHeight="20" Command="{Binding DecrementManualProgressCommand}">
-                                &lt;
-                            </Button>
-                            <Slider 
+                <Border Style="{StaticResource PagePanel}">
+                    <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
+                        <TextBlock Margin="10" HorizontalAlignment="Center">Metronome Speed</TextBlock>
+                        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                            <Button Margin="2" MinWidth="30" Command="{Binding LargeSpeedDecrementCommand}">&lt;&lt;</Button>
+                            <Button Margin="2" MinWidth="30" Command="{Binding SmallSpeedDecrementCommand}">&lt;</Button>
+                            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" MinWidth="50" Text="{Binding MetronomeSpeedInformationText}" />
+                            <Button Margin="2" MinWidth="30" Command="{Binding SmallSpeedIncrementCommand}">&gt;</Button>
+                            <Button Margin="2" MinWidth="30" Command="{Binding LargeSpeedIncrementCommand}">&gt;&gt;</Button>
+                        </StackPanel>
+                        <ProgressBar Margin="0,2,0,0" MinHeight="10" MinWidth="200" HorizontalAlignment="Center" Value="{Binding SpeedProgress, Mode=OneWay}" />
+                    </StackPanel>
+                </Border>
+                <Border Style="{StaticResource PagePanel}">
+                    <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
+                        <TextBlock Margin="10" HorizontalAlignment="Center">Time</TextBlock>
+                        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                            <Button Margin="2" MinWidth="30" Command="{Binding DecrementMinutesPracticedCommand}">&lt;&lt;</Button>
+                            <Button Margin="2" MinWidth="30" Command="{Binding DecrementSecondsPracticedCommand}">&lt;</Button>
+                            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" MinWidth="50" Text="{Binding RecordingTimeDisplay}" />
+                            <Button Margin="2" MinWidth="30" Command="{Binding IncrementSecondsPracticedCommand}">&gt;</Button>
+                            <Button Margin="2" MinWidth="30" Command="{Binding IncrementMinutesPracticedCommand}">&gt;&gt;</Button>
+                        </StackPanel>
+                        <ProgressBar Margin="0,2,0,0" MinHeight="10" MinWidth="200" HorizontalAlignment="Center" Value="{Binding PracticeTimeProgress, Mode=OneWay}" />
+                    </StackPanel>
+                </Border>
+
+                <Border Style="{StaticResource PagePanel}">
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
+                            <TextBlock Margin="10" HorizontalAlignment="Center">Manual Progress</TextBlock>
+
+                            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="15">
+                                <Button MinWidth="20" MaxHeight="20" Command="{Binding DecrementManualProgressCommand}">
+                                    &lt;
+                                </Button>
+                                <Slider 
                             VerticalAlignment="Center"
                             MinWidth="150"
                             Height="20" 
@@ -100,26 +142,28 @@
                             SmallChange="1" 
                             IsMoveToPointEnabled="True" Value="{Binding ManualProgress}">
 
-                                <!-- Bind/pass event as command -->
-                                <i:Interaction.Triggers>
-                                    <i:EventTrigger EventName="ValueChanged">
-                                        <command:EventToCommand 
+                                    <!-- Bind/pass event as command -->
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="ValueChanged">
+                                            <command:EventToCommand 
                         Command="{Binding Mode=OneWay, Path=ValueChangedCommand}"
                         PassEventArgsToCommand="True" />
-                                    </i:EventTrigger>
-                                </i:Interaction.Triggers>
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
 
-                            </Slider>
-                            <Button MinWidth="20" MaxHeight="20" Command="{Binding IncrementManualProgressCommand}">
-                                &gt;
-                            </Button>
+                                </Slider>
+                                <Button MinWidth="20" MaxHeight="20" Command="{Binding IncrementManualProgressCommand}">
+                                    &gt;
+                                </Button>
+                            </StackPanel>
+
+                            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding ManualProgressInformationText}" />
+
                         </StackPanel>
-
-                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding ManualProgressInformationText}" />
-
                     </StackPanel>
-                </StackPanel>
-            </Border>
-        </StackPanel>
-    </ScrollViewer>
+                </Border>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+
 </UserControl>
