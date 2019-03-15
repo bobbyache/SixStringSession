@@ -57,7 +57,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
             viewModel.PropertyChanged += (s, e) =>
             {
                 if (e.PropertyName == "Title")
-                    fired = true;
+                  fired = true;
             };
             viewModel.Title = "Modified Practice Routine";
 
@@ -70,6 +70,9 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
             var listChanged = false;
 
             var dialogService = new Mock<IDialogViewService>();
+            dialogService.Setup(ds => ds.YesNoPrompt(It.IsAny<string>(), It.IsAny<string>())).Returns(true);
+            
+
             var practiceRoutine = EntityFactory.GetBasicPracticeRoutine();
             var viewModel = new PracticeRoutineEditViewModel(dialogService.Object);
 
@@ -86,6 +89,8 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         public void PracticeRoutineEditViewModel_Remove_TimeSlot_Removes_TimeSlot()
         {
             var dialogService = new Mock<IDialogViewService>();
+            dialogService.Setup(ds => ds.YesNoPrompt(It.IsAny<string>(), It.IsAny<string>())).Returns(true);
+
             var practiceRoutine = EntityFactory.GetBasicPracticeRoutine();
             var viewModel = new PracticeRoutineEditViewModel(dialogService.Object);
 
@@ -108,6 +113,8 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
             var listChanged = false;
 
             var dialogService = new Mock<IDialogViewService>();
+            dialogService.Setup(ds => ds.YesNoPrompt(It.IsAny<string>(), It.IsAny<string>())).Returns(true);
+
             var practiceRoutine = EntityFactory.GetBasicPracticeRoutine();
             var viewModel = new PracticeRoutineEditViewModel(dialogService.Object);
 

@@ -366,7 +366,7 @@ namespace CygSoft.SmartSession.Desktop.Exercises.Recorder
             RaisePropertyChanged(() => ManualProgress);
             RaisePropertyChanged(() => ManualProgressInformationText);
 
-            if (SaveCommand != null)
+            if (SaveCommand != null && Application.Current != null)
                 Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() => SaveCommand.RaiseCanExecuteChanged()));
         }
 

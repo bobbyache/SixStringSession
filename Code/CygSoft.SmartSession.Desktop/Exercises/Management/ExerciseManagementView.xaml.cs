@@ -18,9 +18,13 @@ namespace CygSoft.SmartSession.Desktop.Exercises.Management
         {
             if (e.ChangedButton == MouseButton.Right)
             {
-                ContextMenu cm = this.FindResource("contextMenu") as ContextMenu;
-                cm.PlacementTarget = sender as Window;
-                cm.IsOpen = true;
+                try
+                {
+                    ContextMenu cm = this.FindResource("contextMenu") as ContextMenu;
+                    cm.PlacementTarget = sender as Window;
+                    cm.IsOpen = true;
+                }
+                catch { /* TODO:Find out why this exception occurs */ }
             }
         }
 

@@ -43,7 +43,19 @@
                     <ProgressBar Margin="0,2,0,0" MinHeight="10" MinWidth="200" HorizontalAlignment="Center" Value="{Binding OverallProgress, Mode=OneWay}" />
                 </StackPanel>
             </Border>
-
+            <Border Style="{StaticResource PagePanel}">
+                <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
+                    <TextBlock Margin="10" HorizontalAlignment="Center">Time</TextBlock>
+                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                        <Button Margin="2" MinWidth="30" Command="{Binding DecrementMinutesPracticedCommand}">&lt;&lt;</Button>
+                        <Button Margin="2" MinWidth="30" Command="{Binding DecrementSecondsPracticedCommand}">&lt;</Button>
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" MinWidth="50" Text="{Binding RecordingTimeDisplay}" />
+                        <Button Margin="2" MinWidth="30" Command="{Binding IncrementSecondsPracticedCommand}">&gt;</Button>
+                        <Button Margin="2" MinWidth="30" Command="{Binding IncrementMinutesPracticedCommand}">&gt;&gt;</Button>
+                    </StackPanel>
+                    <ProgressBar Margin="0,2,0,0" MinHeight="10" MinWidth="200" HorizontalAlignment="Center" Value="{Binding PracticeTimeProgress, Mode=OneWay}" Visibility="{Binding ProgressByTime, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                </StackPanel>
+            </Border>
             <Border Style="{StaticResource PagePanel}" Visibility="{Binding ProgressBySpeed, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
                     <TextBlock Margin="10" HorizontalAlignment="Center">Metronome Speed</TextBlock>
@@ -57,20 +69,6 @@
                     <ProgressBar Margin="0,2,0,0" MinHeight="10" MinWidth="200" HorizontalAlignment="Center" Value="{Binding SpeedProgress, Mode=OneWay}" />
                 </StackPanel>
             </Border>
-            <Border Style="{StaticResource PagePanel}">
-                <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
-                    <TextBlock Margin="10" HorizontalAlignment="Center">Time</TextBlock>
-                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-                        <Button Margin="2" MinWidth="30" Command="{Binding DecrementMinutesPracticedCommand}">&lt;&lt;</Button>
-                        <Button Margin="2" MinWidth="30" Command="{Binding DecrementSecondsPracticedCommand}">&lt;</Button>
-                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" MinWidth="50" Text="{Binding RecordingTimeDisplay}" />
-                        <Button Margin="2" MinWidth="30" Command="{Binding IncrementSecondsPracticedCommand}">&gt;</Button>
-                        <Button Margin="2" MinWidth="30" Command="{Binding IncrementMinutesPracticedCommand}">&gt;&gt;</Button>
-                    </StackPanel>
-                    <ProgressBar Margin="0,2,0,0" MinHeight="10" MinWidth="200" HorizontalAlignment="Center" Value="{Binding PracticeTimeProgress, Mode=OneWay}" />
-                </StackPanel>
-            </Border>
-
             <Border Style="{StaticResource PagePanel}" Visibility="{Binding ProgressByManualInput, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <StackPanel Orientation="Vertical">
                     <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
