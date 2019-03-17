@@ -40,7 +40,7 @@
                             </StackPanel>
 
                             <TextBlock Margin="5" Style="{StaticResource DescriptionText}" Width="{Binding ElementName=boxBorder, Path=Width}"  Text="{Binding  Path=Title}" />
-                            <ProgressBar Margin="5" Height="10" Width="{Binding ElementName=boxBorder, Path=Width}" Value="{Binding OverallProgress, Mode=OneWay}" />
+                            <ProgressBar Margin="5" Height="10" Width="{Binding ElementName=boxBorder, Path=Width}" Value="{Binding AssignedTimePercentage, Mode=OneWay}" />
                         </StackPanel>
 
                     </Border>
