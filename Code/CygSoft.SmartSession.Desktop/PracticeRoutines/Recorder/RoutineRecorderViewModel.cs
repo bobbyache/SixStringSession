@@ -82,7 +82,7 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines.Recorder
             this.exerciseService = exerciseService ?? throw new ArgumentNullException("Exercise Service must be provided.");
             this.dialogService = dialogService ?? throw new ArgumentNullException("Dialog service must be provided.");
 
-            CancelCommand = new RelayCommand(() => Cancel(), () => true);
+            CancelCommand = new RelayCommand(() => Cancel(), () => !Recording);
             SaveCommand = new RelayCommand(() => Save(), () => CanExecuteSaveCommand());
             StartExercisingCommand = new RelayCommand(StartExercising, () => true);
         }
@@ -99,7 +99,10 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines.Recorder
             RaisePropertyChanged(() => Recording);
 
             if (SaveCommand != null)
+            {
                 Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() => SaveCommand.RaiseCanExecuteChanged()));
+                Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() => CancelCommand.RaiseCanExecuteChanged()));
+            }  
         }
 
         public void InitializeSession(int practiceRoutineId)
