@@ -1,5 +1,6 @@
 ﻿using CygSoft.SmartSession.Desktop.Exercises;
 using CygSoft.SmartSession.Desktop.PracticeRoutines;
+using CygSoft.SmartSession.Desktop.Supports;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 
@@ -15,6 +16,11 @@ namespace CygSoft.SmartSession.Desktop
         {
             get { return currentViewModel; }
             set { Set(() => CurrentViewModel, ref currentViewModel, value); }
+        }
+
+        public string WindowTitle
+        {
+            get { return $"{Settings.AssemblyTitle} [{Settings.AssemblyVersion}]"; }
         }
 
         public RelayCommand<string> NavigationCommand { get; private set; }
