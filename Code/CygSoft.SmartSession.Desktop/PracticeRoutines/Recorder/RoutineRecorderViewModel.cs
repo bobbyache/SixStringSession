@@ -26,6 +26,19 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines.Recorder
 
         public BindingList<TimeSlotRecorderViewModel> RecordableExercises { get; set; } = new BindingList<TimeSlotRecorderViewModel>();
 
+        private string title;
+        public string Title
+        {
+            get
+            {
+                return title;
+            }
+            set
+            {
+                Set(() => Title, ref title, value);
+            }
+        }
+
         public bool HasSelection { get => SelectedRecordableExercise != null; }
 
         private TimeSlotRecorderViewModel selectedRecordableExercise;
@@ -111,6 +124,7 @@ namespace CygSoft.SmartSession.Desktop.PracticeRoutines.Recorder
             RaisePropertyChanged(() => HasSelection);
 
             var routineRecorder = practiceRoutineService.GetPracticeRoutineRecorder(practiceRoutineId);
+            Title = routineRecorder.Title;
 
             foreach (var exerciseRecorder in routineRecorder.ExerciseRecorders)
             {
