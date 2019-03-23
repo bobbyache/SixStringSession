@@ -13,12 +13,14 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Margin="10" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Text="{Binding RecordingTimeDisplay}" />
-        <common:RecorderView Grid.Row="1" />
-        <StackPanel Grid.Row="2" DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right">
+        <TextBlock Grid.Row="0" Margin="2,10,2,0" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Text="{Binding Title}" />
+        <TextBlock Grid.Row="1" Margin="10" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Text="{Binding RecordingTimeDisplay}" />
+        <common:RecorderView Grid.Row="2" />
+        <StackPanel Grid.Row="3" DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button Content="Cancel" Margin="5" MinWidth="50" MaxHeight="35" Command="{Binding CancelCommand}" />
             <Button Content="Save" Margin="5" MinWidth="50" MaxHeight="35" Command="{Binding SaveCommand}" />
         </StackPanel>

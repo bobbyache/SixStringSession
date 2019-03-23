@@ -198,7 +198,6 @@ namespace CygSoft.SmartSession.Desktop.Exercises.Recorder
         public ExerciseRecorderViewModel(IExerciseService exerciseService, IExerciseRecorder exerciseRecorder)
         {
             this.exerciseService = exerciseService ?? throw new ArgumentNullException("Exercise service must be provided.");
-        
             this.exerciseRecorder = exerciseRecorder ?? throw new ArgumentNullException("Exercise Recorder must be provided.");
             exerciseRecorder.TickActionCallBack = TickTock;
             exerciseRecorder.RecordingStatusChanged += ExerciseRecorder_RecordingStatusChanged;
