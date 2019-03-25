@@ -64,6 +64,17 @@ https://www.codeproject.com/Articles/26288/Simplifying-the-WPF-TreeView-by-Using
 
 SelectedItem - Two Way Binding - Use an attached property to get this to work...
 https://stackoverflow.com/questions/1000040/data-binding-to-selecteditem-in-a-wpf-treeview
+
+Toast Notifications
+------------------------
+https://www.codeproject.com/Articles/1073989/WPF-Toast-Notification
+https://github.com/muhammad-magdy/WPFToastNotification
+https://www.codeproject.com/Articles/1077353/WPF-Toast-Notification-A-Deep-Dive
+
+https://github.com/WindowsNotifications
+https://github.com/WindowsNotifications/desktop-toasts/tree/master/CS
+https://www.michaelcrump.net/pop-toast-notification-in-wpf/ (these appear to require .net core)
+
 ===========================================================================
 Credits to...
 ===========================================================================
