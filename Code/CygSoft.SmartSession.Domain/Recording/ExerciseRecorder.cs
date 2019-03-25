@@ -2,6 +2,7 @@
 using CygSoft.SmartSession.Domain.Exercises;
 using CygSoft.SmartSession.Infrastructure;
 using System;
+using System.Linq;
 
 namespace CygSoft.SmartSession.Domain.Recording
 {
@@ -110,6 +111,11 @@ namespace CygSoft.SmartSession.Domain.Recording
         public bool ProgressByTime => practiceTimeProgress.Weighting > 0;
         public bool ProgressByManualInput => manualProgress.Weighting > 0;
 
+        public double SpeedProgressPercentageAllocation { get => GetPercentageAllocationFor(speedProgress.Weighting); }
+
+        public double TimeProgressPercentageAllocation { get => GetPercentageAllocationFor(practiceTimeProgress.Weighting); }
+
+        public double ManualProgressPercentageAllocation { get => GetPercentageAllocationFor(manualProgress.Weighting); }
 
         public event EventHandler RecordingStatusChanged;
         public event EventHandler Tick;
@@ -187,6 +193,19 @@ namespace CygSoft.SmartSession.Domain.Recording
 
             exercise.ExerciseActivity.Add(exerciseActivity);
             exerciseService.Update(exercise);
+        }
+
+        private double GetPercentageAllocationFor(int weighting)
+        {
+            var values = new int[3] { manualProgress.Weighting, speedProgress.Weighting, practiceTimeProgress.Weighting };
+            var sumOfItemWeightings = values.Sum();
+
+            double percentage = (((double)weighting / sumOfItemWeightings) * 100);
+
+            if (double.IsNaN(percentage))
+                return 0;
+
+            return Math.Round(percentage, 1);
         }
 
         #region Implement IDisposable

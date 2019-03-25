@@ -41,8 +41,23 @@
                     <TextBlock HorizontalAlignment="Center" Text="{Binding TotalRecordedDisplayTime}" Margin="2,2,2,10" />
                     <TextBlock HorizontalAlignment="Center">Overall Progress</TextBlock>
                     <ProgressBar Margin="0,2,0,0" MinHeight="10" MinWidth="200" HorizontalAlignment="Center" Value="{Binding OverallProgress, Mode=OneWay}" />
+                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                        <StackPanel Margin="10" Orientation="Vertical" Visibility="{Binding ProgressByTime, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <Image Source="../Images/timeprogress.png" />
+                            <TextBlock HorizontalAlignment="Center" Text="{Binding TimeProgressPercentageAllocation}" Foreground="White" />
+                        </StackPanel>
+                        <StackPanel Margin="10" Orientation="Vertical" Visibility="{Binding ProgressBySpeed, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <Image Source="../Images/speedprogress.png" />
+                            <TextBlock HorizontalAlignment="Center" Text="{Binding SpeedProgressPercentageAllocation}" Foreground="White" />
+                        </StackPanel>
+                        <StackPanel Margin="10" Orientation="Vertical" Visibility="{Binding ProgressByManualInput, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <Image Source="../Images/manualprogress.png" />
+                            <TextBlock HorizontalAlignment="Center" Text="{Binding ManualProgressPercentageAllocation}" Foreground="White" />
+                        </StackPanel>
+                    </StackPanel>
                 </StackPanel>
             </Border>
+
             <Border Style="{StaticResource PagePanel}">
                 <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
                     <TextBlock Margin="10" HorizontalAlignment="Center">Time</TextBlock>
@@ -56,7 +71,7 @@
                     <ProgressBar Margin="0,2,0,0" MinHeight="10" MinWidth="200" HorizontalAlignment="Center" Value="{Binding PracticeTimeProgress, Mode=OneWay}" Visibility="{Binding ProgressByTime, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                 </StackPanel>
             </Border>
-            <Border Style="{StaticResource PagePanel}" Visibility="{Binding ProgressBySpeed, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Border Style="{StaticResource PagePanel}">
                 <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
                     <TextBlock Margin="10" HorizontalAlignment="Center">Metronome Speed</TextBlock>
                     <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
@@ -66,10 +81,10 @@
                         <Button Margin="2" MinWidth="30" Command="{Binding SmallSpeedIncrementCommand}">&gt;</Button>
                         <Button Margin="2" MinWidth="30" Command="{Binding LargeSpeedIncrementCommand}">&gt;&gt;</Button>
                     </StackPanel>
-                    <ProgressBar Margin="0,2,0,0" MinHeight="10" MinWidth="200" HorizontalAlignment="Center" Value="{Binding SpeedProgress, Mode=OneWay}" />
+                    <ProgressBar Margin="0,2,0,0" MinHeight="10" MinWidth="200" HorizontalAlignment="Center" Value="{Binding SpeedProgress, Mode=OneWay}" Visibility="{Binding ProgressBySpeed, Converter={StaticResource BooleanToVisibilityConverter}}" />
                 </StackPanel>
             </Border>
-            <Border Style="{StaticResource PagePanel}" Visibility="{Binding ProgressByManualInput, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Border Style="{StaticResource PagePanel}">
                 <StackPanel Orientation="Vertical">
                     <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
                         <TextBlock Margin="10" HorizontalAlignment="Center">Manual Progress</TextBlock>

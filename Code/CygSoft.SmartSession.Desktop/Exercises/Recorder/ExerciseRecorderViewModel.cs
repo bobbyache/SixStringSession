@@ -172,6 +172,10 @@ namespace CygSoft.SmartSession.Desktop.Exercises.Recorder
         public bool ProgressByTime { get => exerciseRecorder.ProgressByTime; }
         public bool ProgressByManualInput { get => exerciseRecorder.ProgressByManualInput; }
 
+        public string SpeedProgressPercentageAllocation { get => $"{exerciseRecorder.SpeedProgressPercentageAllocation}%"; }
+        public string TimeProgressPercentageAllocation { get => $"{exerciseRecorder.TimeProgressPercentageAllocation}%"; }
+        public string ManualProgressPercentageAllocation { get => $"{exerciseRecorder.ManualProgressPercentageAllocation}%"; }
+
         public RelayCommand IncrementManualProgressCommand { get; private set; }
         public RelayCommand DecrementManualProgressCommand { get; private set; }
 

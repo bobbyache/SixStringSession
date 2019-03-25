@@ -71,6 +71,48 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         }
 
         [Test]
+        public void RecorderViewModel_SpeedProgressPercentageAllocation_Displayed_Correctly()
+        {
+            var exerciseService = new Mock<IExerciseService>();
+            var exerciseRecorder = new ExerciseRecorder(new Recorder(), 1, "Exercise Title",
+                new SpeedProgress(85, 85, 120, 500),
+                new PracticeTimeProgress(300, 600, 500),
+                new ManualProgress(0, 1000));
+
+            var viewModel = new ExerciseRecorderViewModel(exerciseService.Object, exerciseRecorder);
+
+            Assert.That(viewModel.SpeedProgressPercentageAllocation, Is.EqualTo("25%"));
+        }
+
+        [Test]
+        public void RecorderViewModel_TimeProgressPercentageAllocation_Displayed_Correctly()
+        {
+            var exerciseService = new Mock<IExerciseService>();
+            var exerciseRecorder = new ExerciseRecorder(new Recorder(), 1, "Exercise Title",
+                new SpeedProgress(85, 85, 120, 500),
+                new PracticeTimeProgress(300, 600, 500),
+                new ManualProgress(0, 1000));
+
+            var viewModel = new ExerciseRecorderViewModel(exerciseService.Object, exerciseRecorder);
+
+            Assert.That(viewModel.TimeProgressPercentageAllocation, Is.EqualTo("25%"));
+        }
+
+        [Test]
+        public void RecorderViewModel_ManualProgressPercentageAllocation_Displayed_Correctly()
+        {
+            var exerciseService = new Mock<IExerciseService>();
+            var exerciseRecorder = new ExerciseRecorder(new Recorder(), 1, "Exercise Title",
+                new SpeedProgress(85, 85, 120, 500),
+                new PracticeTimeProgress(300, 600, 500),
+                new ManualProgress(0, 1000));
+
+            var viewModel = new ExerciseRecorderViewModel(exerciseService.Object, exerciseRecorder);
+
+            Assert.That(viewModel.ManualProgressPercentageAllocation, Is.EqualTo("50%"));
+        }
+
+        [Test]
         public void RecorderViewModel_RecordingStatus_Gets_Value_From_ExerciseRecorder()
         {
             var exerciseService = new Mock<IExerciseService>();

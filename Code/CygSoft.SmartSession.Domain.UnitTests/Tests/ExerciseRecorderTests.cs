@@ -638,6 +638,90 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
             }
         }
 
+        [Test]
+        public void Percentage_Progress_Allocation_To_Time_ShowsCorrect_Percentage()
+        {
+            var recorder = new Recorder();
+            var manualProgress = new ManualProgress(0, 500);
+            var speedProgress = new SpeedProgress(0, 0, 120, 500);
+            var practiceTimeProgress = new PracticeTimeProgress(0, 600, 1000);
+
+            using (var exerciseRecorder = new ExerciseRecorder(recorder, 1, "Exercise Title", speedProgress, practiceTimeProgress, manualProgress))
+            {
+                Assert.That(exerciseRecorder.TimeProgressPercentageAllocation, Is.EqualTo(50));
+            }
+        }
+
+        [Test]
+        public void Percentage_Progress_Allocation_To_Speed_ShowsCorrect_Percentage()
+        {
+            var recorder = new Recorder();
+            var manualProgress = new ManualProgress(0, 500);
+            var speedProgress = new SpeedProgress(0, 0, 120, 500);
+            var practiceTimeProgress = new PracticeTimeProgress(0, 600, 1000);
+
+            using (var exerciseRecorder = new ExerciseRecorder(recorder, 1, "Exercise Title", speedProgress, practiceTimeProgress, manualProgress))
+            {
+                Assert.That(exerciseRecorder.SpeedProgressPercentageAllocation, Is.EqualTo(25));
+            }
+        }
+
+        [Test]
+        public void Percentage_Progress_Allocation_To_Manual_ShowsCorrect_Percentage()
+        {
+            var recorder = new Recorder();
+            var manualProgress = new ManualProgress(0, 500);
+            var speedProgress = new SpeedProgress(0, 0, 120, 500);
+            var practiceTimeProgress = new PracticeTimeProgress(0, 600, 1000);
+
+            using (var exerciseRecorder = new ExerciseRecorder(recorder, 1, "Exercise Title", speedProgress, practiceTimeProgress, manualProgress))
+            {
+                Assert.That(exerciseRecorder.ManualProgressPercentageAllocation, Is.EqualTo(25));
+            }
+        }
+
+        [Test]
+        public void Percentage_Progress_With_No_Weightings_Allocated_To_Manual_Returns_0()
+        {
+            var recorder = new Recorder();
+            var manualProgress = new ManualProgress(0, 0);
+            var speedProgress = new SpeedProgress(0, 0, 120, 0);
+            var practiceTimeProgress = new PracticeTimeProgress(0, 600, 0);
+
+            using (var exerciseRecorder = new ExerciseRecorder(recorder, 1, "Exercise Title", speedProgress, practiceTimeProgress, manualProgress))
+            {
+                Assert.That(exerciseRecorder.ManualProgressPercentageAllocation, Is.EqualTo(0));
+            }
+        }
+
+        [Test]
+        public void Percentage_Progress_With_No_Weightings_Allocated_To_Time_Returns_0()
+        {
+            var recorder = new Recorder();
+            var manualProgress = new ManualProgress(0, 0);
+            var speedProgress = new SpeedProgress(0, 0, 120, 0);
+            var practiceTimeProgress = new PracticeTimeProgress(0, 600, 0);
+
+            using (var exerciseRecorder = new ExerciseRecorder(recorder, 1, "Exercise Title", speedProgress, practiceTimeProgress, manualProgress))
+            {
+                Assert.That(exerciseRecorder.TimeProgressPercentageAllocation, Is.EqualTo(0));
+            }
+        }
+
+        [Test]
+        public void Percentage_Progress_With_No_Weightings_Allocated_To_Speed_Returns_0()
+        {
+            var recorder = new Recorder();
+            var manualProgress = new ManualProgress(0, 0);
+            var speedProgress = new SpeedProgress(0, 0, 120, 0);
+            var practiceTimeProgress = new PracticeTimeProgress(0, 600, 0);
+
+            using (var exerciseRecorder = new ExerciseRecorder(recorder, 1, "Exercise Title", speedProgress, practiceTimeProgress, manualProgress))
+            {
+                Assert.That(exerciseRecorder.SpeedProgressPercentageAllocation, Is.EqualTo(0));
+            }
+        }
+
         public class TestRecorder : Recorder
         {
             public TestRecorder(double initialSeconds) : base()

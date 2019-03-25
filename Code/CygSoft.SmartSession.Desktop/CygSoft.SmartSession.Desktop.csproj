@@ -354,5 +354,10 @@
   <ItemGroup>
     <Resource Include="Images\guitar_back.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\manualprogress.png" />
+    <Resource Include="Images\speedprogress.png" />
+    <Resource Include="Images\timeprogress.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

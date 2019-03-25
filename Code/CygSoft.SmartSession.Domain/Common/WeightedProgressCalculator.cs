@@ -26,6 +26,7 @@ namespace CygSoft.SmartSession.Domain.Common
             return result;
         }
 
+
         private double CalculateWeightedValue(IWeightedEntity item, int countOfItems, int sumOfItemWeightings)
         {
             double weightingSlice = (((double)item.Weighting / sumOfItemWeightings) * 100);

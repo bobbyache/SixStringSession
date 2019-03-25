@@ -52,5 +52,9 @@ namespace CygSoft.SmartSession.Domain.Recording
         bool ProgressBySpeed { get; }
         bool ProgressByTime { get; }
         bool ProgressByManualInput { get; }
+
+        double SpeedProgressPercentageAllocation { get; }
+        double TimeProgressPercentageAllocation { get; }
+        double ManualProgressPercentageAllocation { get; }
     }
 }
