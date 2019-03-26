@@ -19,9 +19,6 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         [Test]
         public void ExerciseCompositeViewModel_Receives_Save_Message_From_ExerciseEditViewModel()
         {
-            ViewModelLocator compositeRoot = new ViewModelLocator();
-            var viewModelFactory = compositeRoot.ViewModelFactory;
-
             var exerciseService = new Mock<IExerciseService>();
             var dialogService = new Mock<IDialogViewService>();
 
@@ -31,8 +28,9 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
 
             var exerciseManagementViewModel = new ExerciseManagementViewModel(exerciseService.Object, dialogService.Object);
             var exerciseEditViewModel = new ExerciseEditViewModel(dialogService.Object);
+            var viewModelFactory = new Mock<IViewModelFactory>();
 
-            var viewModel = new MockExerciseCompositeViewModel(viewModelFactory, exerciseService.Object, exerciseManagementViewModel, exerciseEditViewModel);
+            var viewModel = new MockExerciseCompositeViewModel(viewModelFactory.Object, exerciseService.Object, exerciseManagementViewModel, exerciseEditViewModel);
 
             exerciseEditViewModel.StartEdit(exercise);
             exerciseEditViewModel.SaveCommand.Execute(null);
@@ -72,9 +70,6 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
         [Test]
         public void ExerciseCompositeViewModel_Calls_Save_On_Service_When_Exercise_Saved_AsExisting()
         {
-            ViewModelLocator compositeRoot = new ViewModelLocator();
-            var viewModelFactory = compositeRoot.ViewModelFactory;
-
             var exerciseService = new Mock<IExerciseService>();
             var dialogService = new Mock<IDialogViewService>();
 
@@ -84,34 +79,33 @@ namespace CygSoft.SmartSession.Desktop.UnitTests.ViewModels
 
             var exerciseSearchViewModel = new ExerciseManagementViewModel(exerciseService.Object, dialogService.Object);
             var exerciseEditViewModel = new ExerciseEditViewModel(dialogService.Object);
+            var viewModelFactory = new Mock<IViewModelFactory>();
 
-            var viewModel = new ExerciseCompositeViewModel(viewModelFactory, exerciseService.Object, exerciseSearchViewModel, exerciseEditViewModel);
+            var viewModel = new ExerciseCompositeViewModel(viewModelFactory.Object, exerciseService.Object, exerciseSearchViewModel, exerciseEditViewModel);
 
             exerciseEditViewModel.StartEdit(exercise);
             exerciseEditViewModel.SaveCommand.Execute(null);
 
             exerciseService.Verify(svc => svc.Update(It.IsAny<Exercise>()),
                 Times.Once, "IExerciseService.Update was not called.");
-
         }
 
         [Test]
         public void ExerciseCompositeViewModel_Calls_Add_On_Service_When_Exercise_Saved_AsNew()
         {
-            ViewModelLocator compositeRoot = new ViewModelLocator();
-            var viewModelFactory = compositeRoot.ViewModelFactory;
-
-            var exerciseService = new Mock<IExerciseService>();
             var dialogService = new Mock<IDialogViewService>();
 
+            var exerciseService = new Mock<IExerciseService>();
             var exercise = new Exercise { Id = 0, Title = "New Exercise" };
             exerciseService.Setup(srv => srv.Get(It.IsAny<int>()))
                 .Returns(exercise);
 
             var exerciseManagementViewModel = new ExerciseManagementViewModel(exerciseService.Object, dialogService.Object);
             var exerciseEditViewModel = new ExerciseEditViewModel(dialogService.Object);
+            var viewModelFactory = new Mock<IViewModelFactory>();
 
-            var viewModel = new ExerciseCompositeViewModel(viewModelFactory, exerciseService.Object, exerciseManagementViewModel, exerciseEditViewModel);
+
+            var viewModel = new ExerciseCompositeViewModel(viewModelFactory.Object, exerciseService.Object, exerciseManagementViewModel, exerciseEditViewModel);
 
             exerciseEditViewModel.StartEdit(exercise);
             exerciseEditViewModel.SaveCommand.Execute(null);

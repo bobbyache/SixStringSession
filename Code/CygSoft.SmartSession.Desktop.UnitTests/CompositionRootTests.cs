@@ -30,6 +30,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests
         public void TearDownAfterTest()
         {
             Settings.AppSettings = new Settings();
+            Bootstrapper.Container.Dispose();
         }
 
         [Test]
@@ -62,7 +63,6 @@ namespace CygSoft.SmartSession.Desktop.UnitTests
         public void CompositeRoot_Creates_A_ExerciseEditModel_Successfully()
         {
             ViewModelLocator compositeRoot = new ViewModelLocator();
-
             var viewModel = compositeRoot.ExerciseEditViewModel;
 
             Assert.That(viewModel, Is.Not.Null);
@@ -214,6 +214,7 @@ namespace CygSoft.SmartSession.Desktop.UnitTests
         //{
         //    var compositeRoot = new ViewModelLocator();
         //    var viewModel = compositeRoot.ExerciseCompositeViewModel;
+        //    //Bootstrapper.Container.Release(viewModel);
 
         //    Assert.That(viewModel, Is.Not.Null);
         //}
@@ -225,6 +226,8 @@ namespace CygSoft.SmartSession.Desktop.UnitTests
 
         //    var viewModel_A = compositeRoot.ExerciseCompositeViewModel;
         //    var viewModel_B = compositeRoot.ExerciseCompositeViewModel;
+        //    //Bootstrapper.Container.Release(viewModel_A);
+        //    //Bootstrapper.Container.Release(viewModel_B);
 
         //    Assert.That(viewModel_A, Is.SameAs(viewModel_B));
         //}
