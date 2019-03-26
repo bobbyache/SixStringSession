@@ -188,6 +188,7 @@
     <Compile Include="Exercises\Management\ExerciseListItemModel.cs" />
     <Compile Include="Supports\EnumHelper.cs" />
     <Compile Include="Supports\Factories\ViewModelFactory.cs" />
+    <Compile Include="Supports\ISettings.cs" />
     <Compile Include="Supports\MarkupExts\EnumToItemsSource.cs" />
     <Compile Include="Supports\Messages\Messages.cs" />
     <Compile Include="Supports\Services\DialogService.cs" />

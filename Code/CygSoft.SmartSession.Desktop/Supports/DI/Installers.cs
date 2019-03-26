@@ -64,10 +64,13 @@ namespace CygSoft.SmartSession.Desktop.Supports.DI
     {
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
-            IConnectionManager connectionManager = new ConnectionManager(Settings.ConnectionString);
+            ISettings settings = Settings.AppSettings;
+            container.Register(Component.For<ISettings>().Instance(settings).LifeStyle.Singleton);
+
+            //IConnectionManager connectionManager = new ConnectionManager(settings.ConnectionString);
             //container.Register(Component.For<IDbConnection>().Instance(
             //    .DependsOn(Dependency.OnConfigValue("connectionString", Settings.ConnectionString)).LifeStyle.Singleton);
-            container.Register(Component.For<IDbConnection>().Instance(connectionManager.GetConnection()).LifeStyle.Singleton);
+            container.Register(Component.For<IDbConnection>().Instance(settings.DatabaseConnection).LifeStyle.Singleton);
 
             container.Register(Component.For<IDialogViewService>().ImplementedBy(typeof(DialogService)));
 

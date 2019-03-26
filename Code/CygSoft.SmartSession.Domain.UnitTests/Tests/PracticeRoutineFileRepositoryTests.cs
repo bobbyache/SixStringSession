@@ -13,7 +13,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
     public class PracticeRoutineFileRepositoryTests
     {
         [Test]
-        public void TestIt()
+        public void TestItWorks()
         {
             Assert.Fail("Needs to be implemented");
 

@@ -1,6 +1,8 @@
-﻿using System;
+﻿using CygSoft.SmartSession.Dal.MySql.Common;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -9,9 +11,12 @@ using System.Threading.Tasks;
 
 namespace CygSoft.SmartSession.Desktop.Supports
 {
-    public static class Settings
+    public class Settings : ISettings
     {
-        public static Version AssemblyVersion
+        // Replace this in order to swap out AppSettings during unit testing!
+        public static ISettings AppSettings { get; set; } = new Settings();
+
+        public virtual Version AssemblyVersion
         {
             get
             {
@@ -19,7 +24,22 @@ namespace CygSoft.SmartSession.Desktop.Supports
             }
         }
 
-        public static string ConnectionString
+        private IDbConnection databaseConnection;
+        public virtual IDbConnection DatabaseConnection
+        {
+            get
+            {
+                if (databaseConnection == null)
+                {
+                    var connectionManager = new ConnectionManager(ConnectionString);
+                    databaseConnection = connectionManager.GetConnection();
+                }
+
+                return databaseConnection;
+            }
+        }
+
+        public virtual string ConnectionString
         {
             get
             {
@@ -29,8 +49,8 @@ namespace CygSoft.SmartSession.Desktop.Supports
             }
         }
 
-        private static string fileAttachmentFolder;
-        public static string FileAttachmentFolder
+        private string fileAttachmentFolder;
+        public virtual string FileAttachmentFolder
         {
             get
             {
@@ -45,7 +65,7 @@ namespace CygSoft.SmartSession.Desktop.Supports
             }
         }
 
-        public static string AssemblyTitle
+        public virtual string AssemblyTitle
         {
             get
             {
@@ -60,7 +80,7 @@ namespace CygSoft.SmartSession.Desktop.Supports
             }
         }
 
-        public static string AssemblyDescription
+        public virtual string AssemblyDescription
         {
             get
             {
@@ -73,7 +93,7 @@ namespace CygSoft.SmartSession.Desktop.Supports
             }
         }
 
-        public static string AssemblyProduct
+        public virtual string AssemblyProduct
         {
             get
             {
@@ -86,7 +106,7 @@ namespace CygSoft.SmartSession.Desktop.Supports
             }
         }
 
-        public static string AssemblyCopyright
+        public virtual string AssemblyCopyright
         {
             get
             {
@@ -99,7 +119,7 @@ namespace CygSoft.SmartSession.Desktop.Supports
             }
         }
 
-        public static string AssemblyCompany
+        public virtual string AssemblyCompany
         {
             get
             {
