@@ -1,5 +1,6 @@
 ﻿using CygSoft.SmartSession.Desktop.Supports.DI;
 using CygSoft.SmartSession.Domain.Recording;
+using Moq;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -13,60 +14,48 @@ namespace CygSoft.SmartSession.Desktop.UnitTests
     public class CompositionRootTests
     {
         [Test]
-        public void Test()
+        public void CompositeRoot_ViewModelFactory_Creates_RecorderViewModel_Successfully()
         {
-            //ViewModelLocator compositeRoot = new ViewModelLocator();
-            //var factory = compositeRoot.ComponentFactory;
+            var exerciseRecorder = new Mock<IExerciseRecorder>();
+            ViewModelLocator compositeRoot = new ViewModelLocator();
 
-            //var progress = factory.CreateManualProgress(2000, 100);
-            //factory.Release(progress);
+            var factory = compositeRoot.ViewModelFactory;
 
-            //Assert.AreEqual(100, progress.Weighting);
+            var viewModel = factory.CreateRecorderViewModel(exerciseRecorder.Object);
+            factory.Release(viewModel);
 
-            Assert.Fail();
+            Assert.That(viewModel, Is.Not.Null);
         }
 
         [Test]
-        public void Test2()
+        public void CompositeRoot_ViewModelFactory_Creates_RecorderViewModel_AsSingleton()
         {
-            //ViewModelLocator compositeRoot = new ViewModelLocator();
-            //var factory = compositeRoot.ComponentFactory;
+            ViewModelLocator compositeRoot = new ViewModelLocator();
+            var factory = compositeRoot.ViewModelFactory;
 
-            //var progress = factory.CreatePracticeTimeProgress(600, 1200, 100);
-            //factory.Release(progress);
+            var viewModel_A = factory.CreateRecorderViewModel(new Mock<IExerciseRecorder>().Object);
+            var viewModel_B = factory.CreateRecorderViewModel(new Mock<IExerciseRecorder>().Object);
 
-            //Assert.AreEqual(100, progress.Weighting);
-
-            Assert.Fail();
+            Assert.That(viewModel_A, Is.SameAs(viewModel_B));
         }
 
-        [Test]
-        public void Test3()
-        {
-            //ViewModelLocator compositeRoot = new ViewModelLocator();
-            //var factory = compositeRoot.ComponentFactory;
+        //var recorder = compositeRoot.ComponentFactory.CreateRecorder();
+        //compositeRoot.ComponentFactory.Release(recorder);
 
-            //var recorder = compositeRoot.ComponentFactory.CreateRecorder();
-            //compositeRoot.ComponentFactory.Release(recorder);
+        //var manualProgress = compositeRoot.ComponentFactory.CreateManualProgress(600, 300);
+        //compositeRoot.ComponentFactory.Release(manualProgress);
 
-            //var manualProgress = compositeRoot.ComponentFactory.CreateManualProgress(600, 300);
-            //compositeRoot.ComponentFactory.Release(manualProgress);
+        //var practiceTimeProgress = compositeRoot.ComponentFactory.CreatePracticeTimeProgress(200, 1200, 300);
+        //compositeRoot.ComponentFactory.Release(practiceTimeProgress);
 
-            //var practiceTimeProgress = compositeRoot.ComponentFactory.CreatePracticeTimeProgress(200, 1200, 300);
-            //compositeRoot.ComponentFactory.Release(practiceTimeProgress);
+        //var speedProgress = compositeRoot.ComponentFactory.CreateSpeedProgress(20, 80, 160, 300);
+        //compositeRoot.ComponentFactory.Release(speedProgress);
 
-            //var speedProgress = compositeRoot.ComponentFactory.CreateSpeedProgress(20, 80, 160, 300);
-            //compositeRoot.ComponentFactory.Release(speedProgress);
+        //var exerciseRecorder = new ExerciseRecorder(recorder, 3, "My Title", speedProgress, practiceTimeProgress, manualProgress);
+        //Assert.That(exerciseRecorder, Is.Not.Null);
 
-            //var exerciseRecorder = new ExerciseRecorder(recorder, 3, "My Title", speedProgress, practiceTimeProgress, manualProgress);
-            //Assert.That(exerciseRecorder, Is.Not.Null);
-
-            //ViewModelLocator compositeRoot = new ViewModelLocator();
-            //var factory = compositeRoot.ViewModelFactory;
-            //var obj = factory.CreateRecorderViewModel(exerciseRecorder);
-
-            Assert.Fail();
-
-        }
+        //ViewModelLocator compositeRoot = new ViewModelLocator();
+        //var factory = compositeRoot.ViewModelFactory;
+        //var obj = factory.CreateRecorderViewModel(exerciseRecorder);
     }
 }

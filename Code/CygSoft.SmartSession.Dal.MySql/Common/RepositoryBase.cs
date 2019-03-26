@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CygSoft.SmartSession.Dal.MySql.Common
 {
-    internal abstract class RepositoryBase
+    public abstract class RepositoryBase
     {
         protected IDbConnection Connection { get; private set; }
 

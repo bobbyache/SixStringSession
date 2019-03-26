@@ -3,6 +3,8 @@ using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
 using CygSoft.SmartSession.Dal.MySql;
+using CygSoft.SmartSession.Dal.MySql.Common;
+using CygSoft.SmartSession.Dal.MySql.Repositories;
 using CygSoft.SmartSession.Desktop.Exercises;
 using CygSoft.SmartSession.Desktop.Exercises.Edit;
 using CygSoft.SmartSession.Desktop.Exercises.Management;
@@ -19,6 +21,7 @@ using CygSoft.SmartSession.Domain.Common;
 using CygSoft.SmartSession.Domain.Exercises;
 using CygSoft.SmartSession.Domain.PracticeRoutines;
 using CygSoft.SmartSession.Domain.Recording;
+using System.Data;
 
 namespace CygSoft.SmartSession.Desktop.Supports.DI
 {
@@ -61,16 +64,20 @@ namespace CygSoft.SmartSession.Desktop.Supports.DI
     {
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
+            IConnectionManager connectionManager = new ConnectionManager(Settings.ConnectionString);
+            //container.Register(Component.For<IDbConnection>().Instance(
+            //    .DependsOn(Dependency.OnConfigValue("connectionString", Settings.ConnectionString)).LifeStyle.Singleton);
+            container.Register(Component.For<IDbConnection>().Instance(connectionManager.GetConnection()).LifeStyle.Singleton);
+
             container.Register(Component.For<IDialogViewService>().ImplementedBy(typeof(DialogService)));
 
-            container.Register(Component.For<IUnitOfWork>().ImplementedBy(typeof(UnitOfWork))
-                .DependsOn(Dependency.OnConfigValue("connectionString", Settings.ConnectionString)).LifestyleSingleton());
-
+            container.Register(Component.For<IExerciseRepository>().ImplementedBy<ExerciseRepository>().LifeStyle.Singleton);
+            container.Register(Component.For<IPracticeRoutineRepository>().ImplementedBy<PracticeRoutineRepository>().LifeStyle.Singleton);
+            container.Register(Component.For<IUnitOfWork>().ImplementedBy(typeof(UnitOfWork)).LifestyleSingleton());
 
             container.AddFacility<TypedFactoryFacility>();
-
             container.Register(
-                Component.For<IComponentFactory>().AsFactory(),
+                Component.For<IViewModelFactory>().AsFactory(),
                 Component.For<IRecorder>().ImplementedBy<Recorder>().LifeStyle.Transient,
                 Component.For<ISpeedProgress>().ImplementedBy<SpeedProgress>().LifeStyle.Transient,
                 Component.For<IManualProgress>().ImplementedBy<ManualProgress>().LifeStyle.Transient,
@@ -85,11 +92,6 @@ namespace CygSoft.SmartSession.Desktop.Supports.DI
 
 
             container.Register(Component.For<IExerciseService>().ImplementedBy(typeof(ExerciseService)));
-
-            //container.Register(Component.For<IRecorder>().ImplementedBy(typeof(Recorder)));
-
-            //container.Register(Component.For<IExerciseRecorder>().ImplementedBy(typeof(ExerciseRecorder)));
-            //container.Register(Component.For<RecorderViewModel>());
             container.Register(Component.For<ExerciseEditViewModel>());
             container.Register(Component.For<ExerciseManagementViewModel>());
             container.Register(Component.For<ExerciseSelectionViewModel>());
@@ -102,8 +104,6 @@ namespace CygSoft.SmartSession.Desktop.Supports.DI
             container.Register(Component.For<RoutineRecorderViewModel>());
             
             container.Register(Component.For<MainWindowViewModel>());
-
-            //container.Register(Component.For<TimeSlotRecorderViewModel>().DependsOn(Onpar)
         }
     }
 }

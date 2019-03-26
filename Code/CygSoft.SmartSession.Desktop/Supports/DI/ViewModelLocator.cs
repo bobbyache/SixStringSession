@@ -32,7 +32,6 @@ namespace CygSoft.SmartSession.Desktop.Supports.DI
 
         public MainWindowViewModel MainWindowViewModel { get => Bootstrapper.Container.Resolve<MainWindowViewModel>(); }
 
-        public IComponentFactory ComponentFactory { get => Bootstrapper.Container.Resolve<IComponentFactory>(); }
         public IViewModelFactory ViewModelFactory { get => Bootstrapper.Container.Resolve<IViewModelFactory>(); }
     }
 }

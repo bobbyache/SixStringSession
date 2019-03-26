@@ -15,7 +15,7 @@ using System.Linq;
 
 namespace CygSoft.SmartSession.Dal.MySql.Repositories
 {
-    internal class PracticeRoutineRepository : RepositoryBase, IPracticeRoutineRepository
+    public class PracticeRoutineRepository : RepositoryBase, IPracticeRoutineRepository
     {
         public PracticeRoutineRepository(IDbConnection connection) : base(connection)
         {

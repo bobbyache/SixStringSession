@@ -8,9 +8,10 @@ using System.Threading.Tasks;
 
 namespace CygSoft.SmartSession.Desktop.Supports.DI
 {
-    public interface IComponentFactory
+    public interface IViewModelFactory
     {
         ExerciseRecorderViewModel CreateRecorderViewModel(IExerciseRecorder exerciseRecorder);
+        void Release(ExerciseRecorderViewModel recorderViewModel);
 
         //RecorderViewModel CreateRecorderViewModel(IRecorder recorder, int exerciseId, string title,
         //    ISpeedProgress speedProgress, IPracticeTimeProgress practiceTimeProgress, IManualProgress manualProgress);
@@ -24,7 +25,5 @@ namespace CygSoft.SmartSession.Desktop.Supports.DI
         //void Release(ISpeedProgress manuaProgress);
         //void Release(IPracticeTimeProgress manuaProgress);
         //void Release(IRecorder recorder);
-        void Release(ExerciseRecorderViewModel recorderViewModel);
-
     }
 }

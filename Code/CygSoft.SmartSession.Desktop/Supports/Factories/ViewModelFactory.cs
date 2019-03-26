@@ -11,9 +11,9 @@ namespace CygSoft.SmartSession.Desktop.Supports.Factories
 {
     public class ViewModelFactory : IViewModelFactory
     {
-        private IComponentFactory componentFactory;
+        private IViewModelFactory componentFactory;
 
-        public ViewModelFactory(IComponentFactory componentFactory)
+        public ViewModelFactory(IViewModelFactory componentFactory)
         {
             this.componentFactory = componentFactory;
         }
@@ -23,6 +23,11 @@ namespace CygSoft.SmartSession.Desktop.Supports.Factories
             componentFactory.Release(recorderViewModel);
 
             return recorderViewModel;
+        }
+
+        public void Release(ExerciseRecorderViewModel recorderViewModel)
+        {
+            this.componentFactory.Release(recorderViewModel);
         }
     }
 }

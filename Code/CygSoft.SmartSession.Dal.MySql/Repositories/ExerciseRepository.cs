@@ -12,7 +12,7 @@ using System.Linq;
 
 namespace CygSoft.SmartSession.Dal.MySql.Repositories
 {
-    internal class ExerciseRepository : RepositoryBase, IExerciseRepository
+    public class ExerciseRepository : RepositoryBase, IExerciseRepository
     {
         public ExerciseRepository(IDbConnection connection) : base(connection)
         {
