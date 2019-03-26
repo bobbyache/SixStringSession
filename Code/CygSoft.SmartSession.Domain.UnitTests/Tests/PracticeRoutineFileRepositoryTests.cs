@@ -1,4 +1,6 @@
-﻿using NUnit.Framework;
+﻿using CygSoft.SmartSession.Domain.PracticeRoutines;
+using Moq;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +16,9 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         public void TestIt()
         {
             Assert.Fail("Needs to be implemented");
+
+            //var repository = new Mock<IPracticeRoutineFileRepository>();
+            //repository.Setup(rep => rep.)
         }
     }
 }
