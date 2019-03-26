@@ -24,6 +24,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CygSoft.SmartSession.Dal.My
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CygSoft.SmartSession.UnitTests.Infrastructure", "CygSoft.SmartSession.UnitTests.Infrastructure\CygSoft.SmartSession.UnitTests.Infrastructure.csproj", "{71865433-9232-4299-A827-257664BBB16E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CygSoft.SmartSession.Dal.Files", "CygSoft.SmartSession.Dal.Files\CygSoft.SmartSession.Dal.Files.csproj", "{F69604FA-1816-461A-AA80-3452BC5E32C5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CygSoft.SmartSession.Dal.Files.IntegrationTests", "CygSoft.SmartSession.Dal.Files.IntegrationTests\CygSoft.SmartSession.Dal.Files.IntegrationTests.csproj", "{628594CD-F436-453C-8B4A-B8FCDD73D721}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -62,6 +66,14 @@ Global
 		{71865433-9232-4299-A827-257664BBB16E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{71865433-9232-4299-A827-257664BBB16E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{71865433-9232-4299-A827-257664BBB16E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F69604FA-1816-461A-AA80-3452BC5E32C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F69604FA-1816-461A-AA80-3452BC5E32C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F69604FA-1816-461A-AA80-3452BC5E32C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F69604FA-1816-461A-AA80-3452BC5E32C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{628594CD-F436-453C-8B4A-B8FCDD73D721}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{628594CD-F436-453C-8B4A-B8FCDD73D721}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{628594CD-F436-453C-8B4A-B8FCDD73D721}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{628594CD-F436-453C-8B4A-B8FCDD73D721}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

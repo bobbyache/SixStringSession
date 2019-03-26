@@ -65,6 +65,7 @@
     <Compile Include="Exercises\IExerciseRepository.cs" />
     <Compile Include="Exercises\IExerciseSearchCriteria.cs" />
     <Compile Include="Exercises\IExerciseService.cs" />
+    <Compile Include="PracticeRoutines\IPracticeRoutineFileRepository.cs" />
     <Compile Include="PracticeRoutines\IPracticeRoutineRepository.cs" />
     <Compile Include="PracticeRoutines\IPracticeRoutineSearchCriteria.cs" />
     <Compile Include="PracticeRoutines\IPracticeRoutineService.cs" />
