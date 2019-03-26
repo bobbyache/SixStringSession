@@ -9,12 +9,11 @@ namespace CygSoft.SmartSession.Dal.MySql.Common
 {
     internal abstract class RepositoryBase
     {
-        protected IDbTransaction Transaction { get; private set; }
-        protected IDbConnection Connection { get { return Transaction.Connection; } }
+        protected IDbConnection Connection { get; private set; }
 
-        public RepositoryBase(IDbTransaction transaction)
+        public RepositoryBase(IDbConnection connection)
         {
-            Transaction = transaction;
+            Connection = connection;
         }
     }
 }

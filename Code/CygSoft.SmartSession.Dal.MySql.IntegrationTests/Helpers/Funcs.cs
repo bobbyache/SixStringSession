@@ -1,4 +1,6 @@
-﻿using MySql.Data.MySqlClient;
+﻿using CygSoft.SmartSession.Dal.MySql.Repositories;
+using CygSoft.SmartSession.Domain;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +11,13 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Helpers
 {
     public class Funcs
     {
+        public static IUnitOfWork GetUnitOfWork()
+        {
+            var connection = UnitOfWork.CreateConnection(Settings.AppConnectionString);
+            var uow = new UnitOfWork(connection, new ExerciseRepository(connection), new PracticeRoutineRepository(connection));
+            return uow;
+        }
+
         public static DateTime RemoveMilliSeconds(DateTime dateTime)
         {
             return DateTime.Parse(DateTime.Now.ToString("yyy/MM/dd hh:mm:ss"));

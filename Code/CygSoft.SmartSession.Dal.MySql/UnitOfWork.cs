@@ -11,18 +11,32 @@ namespace CygSoft.SmartSession.Dal.MySql
 {
     public class UnitOfWork : IUnitOfWork
     {
+        public static IDbConnection CreateConnection(string connectionString)
+        {
+            return new MySqlConnection(connectionString);
+        }
+
         private IDbConnection connection;
         private IDbTransaction transaction;
-
         private bool _disposed;
 
-        #region IUnitOfWork
+        public IExerciseRepository Exercises { get; private set; }
+        public IPracticeRoutineRepository PracticeRoutines { get; private set; }
 
-        private IExerciseRepository exercises;
-        public IExerciseRepository Exercises { get { return exercises ?? (exercises = new ExerciseRepository(transaction)); } }
+        public UnitOfWork(IDbConnection connection, IExerciseRepository exerciseRepository, IPracticeRoutineRepository practiceRoutineRepository)
+        {
+            this.connection = connection ?? throw new ArgumentNullException("A closed IDbConnection must be provided.");
+            Exercises = exerciseRepository ?? throw new ArgumentNullException("ExerciseRepository must be specified.");
+            PracticeRoutines = practiceRoutineRepository ?? throw new ArgumentNullException("PracticeRoutineRepository must be specified.");
 
-        private IPracticeRoutineRepository practiceRoutines;
-        public IPracticeRoutineRepository PracticeRoutines { get { return practiceRoutines ?? (practiceRoutines = new PracticeRoutineRepository(transaction)); } }
+            connection.Open();
+            transaction = connection.BeginTransaction();
+        }
+
+        ~UnitOfWork()
+        {
+            DoDispose(false);
+        }
 
         public int Commit()
         {
@@ -39,7 +53,6 @@ namespace CygSoft.SmartSession.Dal.MySql
             {
                 transaction.Dispose();
                 transaction = connection.BeginTransaction();
-                ResetRepositories();
             }
             return 0;
         }
@@ -58,36 +71,7 @@ namespace CygSoft.SmartSession.Dal.MySql
             {
                 transaction.Dispose();
                 transaction = connection.BeginTransaction();
-                ResetRepositories();
             }
-        }
-
-        #endregion IUnitOfWork
-
-        //TODO: Inject repositories into UnitOfWork in order to test interaction between UnitOfWork, service, and repository calls.
-
-        //public UnitOfWork(string connectionString, IExerciseRepository exerciseRepository, IPracticeRoutineRepository practiceRoutineRepository, IGoalRepository goalRepository)
-        //{
-        //    exercises = exerciseRepository ?? throw new ArgumentNullException("ExerciseRepository must be specified.");
-        //    practiceRoutines = practiceRoutineRepository ?? throw new ArgumentNullException("PracticeRoutineRepository must be specified.");
-        //    goals = goalRepository ?? throw new ArgumentNullException("GoalRepository must be specified.");
-
-        //    _connection = new MySqlConnection(connectionString);
-        //    _connection.Open();
-        //    _transaction = _connection.BeginTransaction();
-        //}
-
-        public UnitOfWork(string connectionString)
-        {
-            connection = new MySqlConnection(connectionString);
-            connection.Open();
-            transaction = connection.BeginTransaction();
-        }
-
-        private void ResetRepositories()
-        {
-            exercises = null;
-            practiceRoutines = null;
         }
 
         public void Dispose()
@@ -115,11 +99,6 @@ namespace CygSoft.SmartSession.Dal.MySql
                 }
                 _disposed = true;
             }
-        }
-
-        ~UnitOfWork()
-        {
-            DoDispose(false);
         }
     }
 }

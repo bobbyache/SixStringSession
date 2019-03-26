@@ -7,6 +7,8 @@ using System;
 using System.Linq;
 using CygSoft.SmartSession.Infrastructure;
 using CygSoft.SmartSession.Dal.MySql.Common;
+using CygSoft.SmartSession.Domain;
+using CygSoft.SmartSession.Dal.MySql.Repositories;
 
 namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
 {
@@ -19,7 +21,7 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
             Funcs.RunScript("delete-all-records.sql", Settings.AppConnectionString);
             Funcs.RunScript("test-data-exercises.sql", Settings.AppConnectionString);
 
-            using (var uow = new UnitOfWork(Settings.AppConnectionString))
+            using (var uow = Funcs.GetUnitOfWork())
             {
                 IExerciseSearchCriteria crit = new ExerciseSearchCriteria
                 {
@@ -39,7 +41,7 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
             Funcs.RunScript("delete-all-records.sql", Settings.AppConnectionString);
             Funcs.RunScript("test-data-exercises.sql", Settings.AppConnectionString);
             
-            using (var uow = new UnitOfWork(Settings.AppConnectionString))
+            using (var uow = Funcs.GetUnitOfWork())
             {
                 IExerciseSearchCriteria crit = new ExerciseSearchCriteria
                 {
@@ -58,7 +60,7 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
             Funcs.RunScript("delete-all-records.sql", Settings.AppConnectionString);
             Funcs.RunScript("test-data-exercises.sql", Settings.AppConnectionString);
 
-            using (var uow = new UnitOfWork(Settings.AppConnectionString))
+            using (var uow = Funcs.GetUnitOfWork())
             {
                 IExerciseSearchCriteria crit = new ExerciseSearchCriteria
                 {
@@ -79,7 +81,7 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
             Funcs.RunScript("delete-all-records.sql", Settings.AppConnectionString);
             Funcs.RunScript("test-data-exercises.sql", Settings.AppConnectionString);
 
-            using (var uow = new UnitOfWork(Settings.AppConnectionString))
+            using (var uow = Funcs.GetUnitOfWork())
             {
                 IExerciseSearchCriteria crit = new ExerciseSearchCriteria
                 {
@@ -98,7 +100,7 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
             Funcs.RunScript("delete-all-records.sql", Settings.AppConnectionString);
             Funcs.RunScript("test-data-exercises.sql", Settings.AppConnectionString);
 
-            using (var uow = new UnitOfWork(Settings.AppConnectionString))
+            using (var uow = Funcs.GetUnitOfWork())
             {
                 IExerciseSearchCriteria crit = new ExerciseSearchCriteria
                 {
@@ -119,7 +121,7 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
             Funcs.RunScript("delete-all-records.sql", Settings.AppConnectionString);
             Funcs.RunScript("test-data-exercises.sql", Settings.AppConnectionString);
 
-            using (var uow = new UnitOfWork(Settings.AppConnectionString))
+            using (var uow = Funcs.GetUnitOfWork())
             {
                 IExerciseSearchCriteria crit = new ExerciseSearchCriteria
                 {
@@ -139,7 +141,7 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
             Funcs.RunScript("delete-all-records.sql", Settings.AppConnectionString);
             Funcs.RunScript("test-data-exercises.sql", Settings.AppConnectionString);
 
-            using (var uow = new UnitOfWork(Settings.AppConnectionString))
+            using (var uow = Funcs.GetUnitOfWork())
             {
                 IExerciseSearchCriteria crit = new ExerciseSearchCriteria
                 {
@@ -162,7 +164,7 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
             IExercise nexExercise;
             IExercise persistedExercise;
 
-            using (var uow = new UnitOfWork(Settings.AppConnectionString))
+            using (var uow = Funcs.GetUnitOfWork())
             {
                 nexExercise = CreateMetronomeExercise();
                 uow.Exercises.Add(nexExercise);
@@ -197,7 +199,7 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
             IExercise modifiedExercise;
             var currentTime = Funcs.RemoveMilliSeconds(DateTime.Now);
 
-            using (var uow = new UnitOfWork(Settings.AppConnectionString))
+            using (var uow = Funcs.GetUnitOfWork())
             {
                 IExercise newExercise = CreateMetronomeExercise();
                 uow.Exercises.Add(newExercise);
@@ -240,7 +242,7 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
             IExercise modifiedExercise;
             var currentTime = Funcs.RemoveMilliSeconds(DateTime.Now);
 
-            using (var uow = new UnitOfWork(Settings.AppConnectionString))
+            using (var uow = Funcs.GetUnitOfWork())
             {
                 Exercise newExercise = CreateMetronomeExercise();
                 uow.Exercises.Add(newExercise);
@@ -269,7 +271,7 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
 
             var currentTime = Funcs.RemoveMilliSeconds(DateTime.Now);
 
-            using (var uow = new UnitOfWork(Settings.AppConnectionString))
+            using (var uow = Funcs.GetUnitOfWork())
             {
                 Exercise newExercise = CreateMetronomeExercise();
                 uow.Exercises.Add(newExercise);
@@ -288,7 +290,7 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
         {
             Funcs.RunScript("delete-all-records.sql", Settings.AppConnectionString);
 
-            using (var uow = new UnitOfWork(Settings.AppConnectionString))
+            using (var uow = Funcs.GetUnitOfWork())
             {
                 var newEx = CreateMetronomeExercise();
                 uow.Exercises.Add(newEx);
@@ -309,7 +311,7 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
 
             IExercise recordedExercise;
 
-            using (var uow = new UnitOfWork(Settings.AppConnectionString))
+            using (var uow = Funcs.GetUnitOfWork())
             {
                 var newExercise = CreateMetronomeExercise();
                 
@@ -332,7 +334,7 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
 
             IExercise recordedExercise;
 
-            using (var uow = new UnitOfWork(Settings.AppConnectionString))
+            using (var uow = Funcs.GetUnitOfWork())
             {
                 var newExercise = CreateMetronomeExercise();
                 uow.Exercises.Add(newExercise);
@@ -356,7 +358,7 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
         {
             Funcs.RunScript("delete-all-records.sql", Settings.AppConnectionString);
 
-            using (var uow = new UnitOfWork(Settings.AppConnectionString))
+            using (var uow = Funcs.GetUnitOfWork())
             {
                 var newExercise = CreateMetronomeExercise();
 
@@ -396,7 +398,7 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
         {
             Funcs.RunScript("delete-all-records.sql", Settings.AppConnectionString);
 
-            using (var uow = new UnitOfWork(Settings.AppConnectionString))
+            using (var uow = Funcs.GetUnitOfWork())
             {
                 var newExercise = CreateMetronomeExercise();
                 uow.Exercises.Add(newExercise);
@@ -434,7 +436,7 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
             Funcs.RunScript("delete-all-records.sql", Settings.AppConnectionString);
             Funcs.RunScript("test-data-practiceroutine-recorder.sql", Settings.AppConnectionString);
 
-            using (var uow = new UnitOfWork(Settings.AppConnectionString))
+            using (var uow = Funcs.GetUnitOfWork())
             {
                 IExerciseSearchCriteria crit = new ExerciseSearchCriteria
                 {

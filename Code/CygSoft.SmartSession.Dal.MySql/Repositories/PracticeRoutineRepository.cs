@@ -17,7 +17,9 @@ namespace CygSoft.SmartSession.Dal.MySql.Repositories
 {
     internal class PracticeRoutineRepository : RepositoryBase, IPracticeRoutineRepository
     {
-        public PracticeRoutineRepository(IDbTransaction transaction) : base(transaction) { }
+        public PracticeRoutineRepository(IDbConnection connection) : base(connection)
+        {
+        }
 
         public void Add(PracticeRoutine entity)
         {

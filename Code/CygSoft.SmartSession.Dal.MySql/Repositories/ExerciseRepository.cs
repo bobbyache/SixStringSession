@@ -14,7 +14,9 @@ namespace CygSoft.SmartSession.Dal.MySql.Repositories
 {
     internal class ExerciseRepository : RepositoryBase, IExerciseRepository
     {
-        public ExerciseRepository(IDbTransaction transaction) : base(transaction) { }
+        public ExerciseRepository(IDbConnection connection) : base(connection)
+        {
+        }
 
         public void Add(IExercise entity)
         {

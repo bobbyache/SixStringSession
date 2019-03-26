@@ -24,7 +24,7 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
         {
             Funcs.RunScript("delete-all-records.sql", Settings.AppConnectionString);
 
-            using (var uow = new UnitOfWork(Settings.AppConnectionString))
+            using (var uow = Funcs.GetUnitOfWork())
             {
                 var exercise1 = EntityFactory.CreateExercise("Exercise 1");
                 var exercise2 = EntityFactory.CreateExercise("Exercise 2");
@@ -76,7 +76,7 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
         {
             Funcs.RunScript("delete-all-records.sql", Settings.AppConnectionString);
 
-            using (var uow = new UnitOfWork(Settings.AppConnectionString))
+            using (var uow = Funcs.GetUnitOfWork())
             {
                 var exercise1 = EntityFactory.CreateExercise("Exercise 1");
                 var exercise2 = EntityFactory.CreateExercise("Exercise 2");
@@ -175,7 +175,7 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
         {
             Funcs.RunScript("delete-all-records.sql", Settings.AppConnectionString);
 
-            using (var uow = new UnitOfWork(Settings.AppConnectionString))
+            using (var uow = Funcs.GetUnitOfWork())
             {
                 PracticeRoutine practiceRoutine = new PracticeRoutine("Created PracticeRoutine", new List<PracticeRoutineTimeSlot>());
                 uow.PracticeRoutines.Add(practiceRoutine);
@@ -227,7 +227,7 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
         {
             Funcs.RunScript("delete-all-records.sql", Settings.AppConnectionString);
 
-            using (var uow = new UnitOfWork(Settings.AppConnectionString))
+            using (var uow = Funcs.GetUnitOfWork())
             {
                 var exercise1 = EntityFactory.CreateExercise("Exercise 1");
                 var exercise2 = EntityFactory.CreateExercise("Exercise 2");
@@ -309,7 +309,7 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
             Funcs.RunScript("delete-all-records.sql", Settings.AppConnectionString);
             Funcs.RunScript("test-data-practiceroutines.sql", Settings.AppConnectionString);
 
-            using (var uow = new UnitOfWork(Settings.AppConnectionString))
+            using (var uow = Funcs.GetUnitOfWork())
             {
                 IPracticeRoutineSearchCriteria crit = new PracticeRoutineSearchCriteria();
                 crit.Title = "monday";
@@ -326,7 +326,7 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
             Funcs.RunScript("delete-all-records.sql", Settings.AppConnectionString);
             Funcs.RunScript("test-data-practiceroutine-recorder.sql", Settings.AppConnectionString);
 
-            using (var uow = new UnitOfWork(Settings.AppConnectionString))
+            using (var uow = Funcs.GetUnitOfWork())
             {
                 IPracticeRoutineSearchCriteria crit = new PracticeRoutineSearchCriteria();
                 crit.Title = "monday";
@@ -346,7 +346,7 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
             Funcs.RunScript("delete-all-records.sql", Settings.AppConnectionString);
             Funcs.RunScript("test-data-practiceroutine-recorder.sql", Settings.AppConnectionString);
 
-            using (var uow = new UnitOfWork(Settings.AppConnectionString))
+            using (var uow = Funcs.GetUnitOfWork())
             {
                 IPracticeRoutineSearchCriteria crit = new PracticeRoutineSearchCriteria();
                 crit.Title = "monday";
@@ -372,7 +372,7 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
 
             PracticeRoutine existingPracticeRoutine;
 
-            using (var uow = new UnitOfWork(Settings.AppConnectionString))
+            using (var uow = Funcs.GetUnitOfWork())
             {
                 PracticeRoutine newPracticeRoutine = EntityFactory.CreateEmptyPracticeRoutine("New Practice Routine");
                 uow.PracticeRoutines.Add(newPracticeRoutine);
@@ -399,7 +399,7 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
             PracticeRoutine modifiedPracticeRoutine;
             var currentTime = Funcs.RemoveMilliSeconds(DateTime.Now);
 
-            using (var uow = new UnitOfWork(Settings.AppConnectionString))
+            using (var uow = Funcs.GetUnitOfWork())
             {
                 PracticeRoutine newPracticeRoutine = EntityFactory.CreateEmptyPracticeRoutine("New Practice Routine");
                 uow.PracticeRoutines.Add(newPracticeRoutine);
@@ -434,7 +434,7 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
             PracticeRoutine modifiedPracticeRoutine;
             var currentTime = Funcs.RemoveMilliSeconds(DateTime.Now);
 
-            using (var uow = new UnitOfWork(Settings.AppConnectionString))
+            using (var uow = Funcs.GetUnitOfWork())
             {
                 PracticeRoutine newPracticeRoutine = EntityFactory.CreateEmptyPracticeRoutine("New Practice Routine");
                 uow.PracticeRoutines.Add(newPracticeRoutine);
@@ -462,7 +462,7 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
 
             var currentTime = Funcs.RemoveMilliSeconds(DateTime.Now);
 
-            using (var uow = new UnitOfWork(Settings.AppConnectionString))
+            using (var uow = Funcs.GetUnitOfWork())
             {
                 PracticeRoutine newPracticeRoutine = EntityFactory.CreateEmptyPracticeRoutine("New Practice Routine");
                 uow.PracticeRoutines.Add(newPracticeRoutine);
@@ -481,7 +481,7 @@ namespace CygSoft.SmartSession.Dal.MySql.IntegrationTests.Tests
         {
             Funcs.RunScript("delete-all-records.sql", Settings.AppConnectionString);
 
-            using (var uow = new UnitOfWork(Settings.AppConnectionString))
+            using (var uow = Funcs.GetUnitOfWork())
             {
                 var newEx = EntityFactory.CreateEmptyPracticeRoutine("New Practice Routine");
                 uow.PracticeRoutines.Add(newEx);
