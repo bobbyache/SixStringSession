@@ -1,4 +1,4 @@
-USE `smartsession_tests`;
+USE `smartsession_qa`;
 
 SET SQL_SAFE_UPDATES=0;
 

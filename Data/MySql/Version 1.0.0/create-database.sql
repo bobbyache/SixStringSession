@@ -1,7 +1,7 @@
 
-DROP DATABASE IF EXISTS `smartsession_tests`;
-CREATE DATABASE `smartsession_tests` /* !40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */;
-USE `smartsession_tests`;
+DROP DATABASE IF EXISTS `smartsession_qa`;
+CREATE DATABASE `smartsession_qa` /* !40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */;
+USE `smartsession_qa`;
 
 /* ********************************************************************************************************************************
 TEST DATABASE
@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS `exercise` (
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-CREATE TABLE IF NOT EXISTS `smartsession_tests`.`exerciseactivity` (
+CREATE TABLE IF NOT EXISTS `exerciseactivity` (
   `Id` INT NOT NULL AUTO_INCREMENT,
   `ExerciseId` INT NOT NULL,
   `Seconds` INT NOT NULL,
