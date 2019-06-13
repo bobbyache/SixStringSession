@@ -71,7 +71,7 @@
     <Compile Include="Tests\PracticeRoutineTimeSlotTests.cs" />
     <Compile Include="Tests\PracticeTimeProgressTests.cs" />
     <Compile Include="Tests\ExerciseRecorderTests.cs" />
-    <Compile Include="Tests\RecordingRoutineTests.cs" />
+    <Compile Include="Tests\PracticeRoutineRecorderTests.cs" />
     <Compile Include="Tests\RecordingSliceTests.cs" />
     <Compile Include="Tests\RecorderTests.cs" />
     <Compile Include="Tests\ExerciseServiceTests.cs" />

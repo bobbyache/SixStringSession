@@ -10,10 +10,10 @@ using System.Threading.Tasks;
 namespace CygSoft.SmartSession.Domain.UnitTests.Tests
 {
     [TestFixture]
-    public class RecordingRoutineTests
+    public class PracticeRoutineRecorderTests
     {
         [Test]
-        public void Routine_When_Initialized_Reflects_Correct_State()
+        public void PracticeRoutineRecorder_When_Initialized_Reflects_Correct_State()
         {
             var exercises = new List<ITimeSlotExerciseRecorder> { };
 
@@ -28,7 +28,7 @@ namespace CygSoft.SmartSession.Domain.UnitTests.Tests
         }
 
         [Test]
-        public void Routine_Reflects_Total_Recorded_Seconds_Correctly()
+        public void PracticeRoutineRecorder_Reflects_Total_Recorded_Seconds_Correctly()
         {
             var ex1 = new Mock<ITimeSlotExerciseRecorder>();
             ex1.Setup(obj => obj.RecordedSeconds).Returns(300);
