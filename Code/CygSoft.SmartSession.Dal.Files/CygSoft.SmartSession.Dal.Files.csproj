@@ -43,8 +43,19 @@
     <Compile Include="..\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="PracticeRoutineFileRepository.cs" />
+    <Compile Include="Repositories\PracticeRoutineFileRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CygSoft.SmartSession.Domain\CygSoft.SmartSession.Domain.csproj">
+      <Project>{5e5c771f-a122-423a-8cc3-27488e9e054a}</Project>
+      <Name>CygSoft.SmartSession.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CygSoft.SmartSession.Infrastructure\CygSoft.SmartSession.Infrastructure.csproj">
+      <Project>{26f5ecf2-47a5-481d-b9ad-e128b19f9eed}</Project>
+      <Name>CygSoft.SmartSession.Infrastructure</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
