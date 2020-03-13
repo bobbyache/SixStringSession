@@ -10,5 +10,8 @@
         <TextBox x:Name="Name" />
         <Button x:Name="SayHello"
                 Content="Click Me" />
+        <ListBox x:Name="GoalSummaries" ItemsSource="{Binding Goals}" SelectedItem="{Binding Path=SelectedGoalSummary, Mode=OneWayToSource}" DisplayMemberPath="Title">
+            
+        </ListBox>
     </StackPanel>
 </UserControl>

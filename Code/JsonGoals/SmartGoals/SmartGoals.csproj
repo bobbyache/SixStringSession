@@ -10,4 +10,8 @@
     <PackageReference Include="Caliburn.Micro" Version="4.0.117-alpha" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\GoalSpike\JsonDb.csproj" />
+  </ItemGroup>
+
 </Project>

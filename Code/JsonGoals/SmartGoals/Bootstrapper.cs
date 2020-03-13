@@ -3,9 +3,9 @@ using System.Windows;
 
 namespace SmartGoals
 {
-    public class HelloBootstrapper : BootstrapperBase
+    public class Bootstrapper : BootstrapperBase
     {
-        public HelloBootstrapper()
+        public Bootstrapper()
         {
             Initialize();
         }
