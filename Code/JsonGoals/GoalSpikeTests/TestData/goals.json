@@ -1,0 +1,32 @@
+﻿[
+    {
+      "id": "58d04406-b55a-40ef-9178-14202850b570",
+      "title": "Goal 1",
+      "percentComplete": 22
+    },
+    {
+      "id": "ab81f973-a727-4e3b-908d-3f941ba9193b",
+      "title": "Goal 2",
+      "percentComplete": 34
+    },
+    {
+      "id": "d2ce58ce-4f1b-4027-930d-72d15afc40ab",
+      "title": "Goal 3",
+      "percentComplete": 56
+    },
+    {
+      "id": "61d81da8-73bf-4d5e-97d9-f77a915983a0",
+      "title": "Goal 4",
+      "percentComplete": 55
+    },
+    {
+      "id": "fe0a1910-c33c-4191-a732-f13d0f13ffbd",
+      "title": "Goal 5",
+      "percentComplete": 59
+    },
+    {
+      "id": "0ea2d41c-0105-4db4-a83e-c4080694e95c",
+      "title": "Goal 6",
+      "percentComplete": 88
+    }
+ ]
