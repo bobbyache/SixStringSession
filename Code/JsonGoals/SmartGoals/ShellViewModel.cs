@@ -19,6 +19,11 @@ namespace SmartGoals
             }
         }
 
+        public string GreetingsMessage
+        {
+            get { return this.greetingMessageProvider.Get();  }
+        }
+
         private BindableCollection<GoalSummaryModel> goals = new BindableCollection<GoalSummaryModel>();
 
         public BindableCollection<GoalSummaryModel> Goals
@@ -46,8 +51,12 @@ namespace SmartGoals
 
         private GoalRepository repository = new GoalRepository(@"C:\Users\RobB\OneDrive - Korbitec Inc\Documents\Guitar\Goals");
 
-        public ShellViewModel()
+        private readonly GreetingsMessageProvider greetingMessageProvider;
+
+        public ShellViewModel(GreetingsMessageProvider greetingMessageProvider)
         {
+            this.greetingMessageProvider = greetingMessageProvider;
+
             var goalItems = repository.GetGoalList("goals.json");
             foreach (var goal in goalItems)
             {

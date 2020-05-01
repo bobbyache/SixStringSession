@@ -14,14 +14,33 @@ namespace SmartGoals
 
     public class Bootstrapper : BootstrapperBase
     {
+        private SimpleContainer simpleContainer = new SimpleContainer();
+
         public Bootstrapper()
         {
             Initialize();
         }
 
+        protected override object GetInstance(Type service, string key)
+        {
+            return simpleContainer.GetInstance(service, key);
+        }
+
+        protected override IEnumerable<object> GetAllInstances(Type service)
+        {
+            return simpleContainer.GetAllInstances(service);
+        }
+
         protected override void BuildUp(object instance)
         {
-            base.BuildUp(instance);
+            simpleContainer.BuildUp(instance);
+        }
+
+        protected override void Configure()
+        {
+            simpleContainer.Singleton<IWindowManager, WindowManager>();
+            simpleContainer.Singleton<ShellViewModel>();
+            simpleContainer.Singleton<GreetingsMessageProvider>();
         }
 
         protected override void OnExit(object sender, EventArgs e)
