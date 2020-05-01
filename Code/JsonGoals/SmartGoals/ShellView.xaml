@@ -3,13 +3,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+            xmlns:cal="http://www.caliburnproject.org"
              xmlns:local="clr-namespace:SmartGoals"
              mc:Ignorable="d" 
              d:DesignHeight="800" d:DesignWidth="800">
     <StackPanel>
         <TextBox x:Name="Name" />
         <Button x:Name="SayHello"
-                Content="Click Me" />
+                Content="Click Me" cal:Message.Attach="[Event MouseDoubleClick] = [Action HelloClicked]" />
+        <Button x:Name="SayHelloClickedOnDblClick"
+                Content="Double Click me" cal:Message.Attach="[Event MouseDoubleClick] = [Action DoubleClicked]" />
+        <Button x:Name="SayHelloClickedOnDblClickWithParam"
+                Content="Double Click me with Params" cal:Message.Attach="[Event MouseDoubleClick] = [Action DoubleClicked($eventArgs)]" />
+        <Label x:Name="SomeLabel" FontSize="12" cal:Message.Attach="[Event MouseDown] = [Action LabelClicked]">Here is a clickable label</Label>
         <ListBox x:Name="GoalSummaries" ItemsSource="{Binding Goals}" SelectedItem="{Binding Path=SelectedGoalSummary, Mode=OneWayToSource}" DisplayMemberPath="Title">
             
         </ListBox>

@@ -1,5 +1,6 @@
 ﻿using Caliburn.Micro;
 using JsonDb;
+using System;
 using System.Windows;
 
 namespace SmartGoals
@@ -18,6 +19,7 @@ namespace SmartGoals
                 NotifyOfPropertyChange(() => CanSayHello);
             }
         }
+
 
         public string GreetingsMessage
         {
@@ -67,7 +69,32 @@ namespace SmartGoals
 
         public void SayHello()
         {
+            // Binds by naming convention
             MessageBox.Show(string.Format("Hello {0}!", Name)); //Don't do this in real life :)
+        }
+
+        public void DoubleClicked()
+        {
+            // F1 on button to go to help page for event types that can be actioned. See weird syntax in xaml
+            MessageBox.Show(string.Format("Yeeha {0}, I've been double clicked!", Name)); //Don't do this in real life :)
+        }
+
+        public void SayHelloClickedOnDblClickWithParam(EventArgs eventArgs)
+        {
+            /*
+             * $eventArgs - Event Arguments
+             * $dataContext = the view model
+             * $source = the framework element that triggered the action
+             * $view = the whole user control
+             * $this = the ui element to which the action is attached
+             * */
+            Console.WriteLine(eventArgs);
+        }
+
+
+        public void LabelClicked()
+        {
+            Console.WriteLine("yeah clicked the label");
         }
     }
 }
