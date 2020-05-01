@@ -39,6 +39,7 @@ namespace SmartGoals
         protected override void Configure()
         {
             simpleContainer.Singleton<IWindowManager, WindowManager>();
+            simpleContainer.Singleton<IEventAggregator, EventAggregator>();
             simpleContainer.Singleton<ShellViewModel>();
             simpleContainer.Singleton<HeaderViewModel>();
             simpleContainer.Singleton<ContentViewModel>();
