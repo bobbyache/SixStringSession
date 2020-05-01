@@ -51,12 +51,17 @@ namespace SmartGoals
             get { return !string.IsNullOrWhiteSpace(Name); }
         }
 
+        public HeaderViewModel HeaderViewModel { get; }
+        public ContentViewModel ContentViewModel { get; }
+
         private GoalRepository repository = new GoalRepository(@"C:\Users\RobB\OneDrive - Korbitec Inc\Documents\Guitar\Goals");
 
         private readonly GreetingsMessageProvider greetingMessageProvider;
 
-        public ShellViewModel(GreetingsMessageProvider greetingMessageProvider)
+        public ShellViewModel(HeaderViewModel headerViewModel, ContentViewModel contentViewModel, GreetingsMessageProvider greetingMessageProvider)
         {
+            HeaderViewModel = headerViewModel;
+            ContentViewModel = contentViewModel;
             this.greetingMessageProvider = greetingMessageProvider;
 
             var goalItems = repository.GetGoalList("goals.json");

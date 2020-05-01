@@ -20,5 +20,7 @@
             
         </ListBox>
         <TextBlock x:Name="GreetingsMessage" FontSize="40" />
+        <ContentControl x:Name="HeaderViewModel" />
+        <ContentControl x:Name="ContentViewModel" />
     </StackPanel>
 </Window>
