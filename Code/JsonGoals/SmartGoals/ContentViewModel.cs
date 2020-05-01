@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SmartGoals
 {
-    public class ContentViewModel: PropertyChangedBase, IHandle<NavigateToHomeMessage>, IHandle<NavigateToSettingsMessage>
+    public class ContentViewModel: PropertyChangedBase, IHandle<NavigateToMessage>
     {
         private string contentText = "Nothing Here";
 
@@ -28,15 +28,16 @@ namespace SmartGoals
             this.eventAggregator.SubscribeOnUIThread(this);
         }
 
-        public Task HandleAsync(NavigateToHomeMessage message, CancellationToken cancellationToken)
+        public Task HandleAsync(NavigateToMessage message, CancellationToken cancellationToken)
         {
-            this.ContentText = "Home";
-            return Task.CompletedTask;
-        }
-
-        public Task HandleAsync(NavigateToSettingsMessage message, CancellationToken cancellationToken)
-        {
-            this.ContentText = "Settings";
+            if (message.NavigateTo == NavigateTo.Home)
+            {
+                this.ContentText = "Home";
+            }
+            else if (message.NavigateTo == NavigateTo.Settings)
+            {
+                this.ContentText = "Settings";
+            }
             return Task.CompletedTask;
         }
     }

@@ -11,12 +11,12 @@ namespace SmartGoals
 
         public void NavigateToHome()
         {
-            eventAggregator.PublishOnUIThreadAsync(new NavigateToHomeMessage());
+            eventAggregator.PublishOnUIThreadAsync(new NavigateToMessage(NavigateTo.Home));
         }
 
         public void NavigateToSettings()
         {
-            eventAggregator.PublishOnUIThreadAsync(new NavigateToSettingsMessage());
+            eventAggregator.PublishOnUIThreadAsync(new NavigateToMessage(NavigateTo.Settings));
         }
 
         public HeaderViewModel(IEventAggregator eventAggregator)
