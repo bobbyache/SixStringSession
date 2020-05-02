@@ -3,7 +3,11 @@
     public enum NavigateTo
     {
         Home,
-        Settings
+        Settings,
+        GoalsMenu,
+        RoutinesMenu,
+        SelectPracticeRoutine,
+        Examples
     }
 
     public sealed class NavigateToMessage

@@ -6,6 +6,8 @@ using System.Windows;
 namespace SmartGoals
 {
     /*
+     * Current Status: https://youtu.be/o3--INqJRVE?list=PL3JeBX8MKjuHhSFbPOwbrxvdiRC1Lsrkb&t=553
+     * -------------------------------------------------------------------------------------------------
      * Live Charts: https://lvcharts.net/
      * WPF in C# with MVVM using Caliburn Micro: https://www.youtube.com/watch?v=laPFq3Fhs8k
      * Documentation: https://caliburnmicro.com/documentation/
@@ -40,6 +42,7 @@ namespace SmartGoals
         {
             simpleContainer.Singleton<IWindowManager, WindowManager>();
             simpleContainer.Singleton<IEventAggregator, EventAggregator>();
+            simpleContainer.Singleton<MainMenuViewModel>();
             simpleContainer.Singleton<ExampleViewModel>();
             simpleContainer.Singleton<ShellViewModel>();
             simpleContainer.Singleton<HeaderViewModel>();

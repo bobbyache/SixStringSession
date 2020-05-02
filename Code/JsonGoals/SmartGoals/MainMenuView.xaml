@@ -6,7 +6,11 @@
              xmlns:local="clr-namespace:SmartGoals"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
-    </Grid>
+    
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button x:Name="NavigateToGoalsMenu">Goals</Button>
+        <Button x:Name="NavigateToRoutinesMenu">Routines</Button>
+        <Button x:Name="NavigateToSettings">Settings</Button>
+        <Button x:Name="NavigateToExamples">Examples</Button>
+    </StackPanel>
 </UserControl>
