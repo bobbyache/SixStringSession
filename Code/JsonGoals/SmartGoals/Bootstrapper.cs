@@ -40,6 +40,7 @@ namespace SmartGoals
         {
             simpleContainer.Singleton<IWindowManager, WindowManager>();
             simpleContainer.Singleton<IEventAggregator, EventAggregator>();
+            simpleContainer.Singleton<ExampleViewModel>();
             simpleContainer.Singleton<ShellViewModel>();
             simpleContainer.Singleton<HeaderViewModel>();
             simpleContainer.Singleton<ContentViewModel>();
