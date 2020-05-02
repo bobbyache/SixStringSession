@@ -44,6 +44,7 @@ namespace SmartGoals
             simpleContainer.Singleton<IEventAggregator, EventAggregator>();
             simpleContainer.Singleton<MainMenuViewModel>();
             simpleContainer.Singleton<ExampleViewModel>();
+            simpleContainer.Singleton<BottomMenuViewModel>();
             simpleContainer.Singleton<ShellViewModel>();
             simpleContainer.Singleton<HeaderViewModel>();
             simpleContainer.Singleton<ContentViewModel>();

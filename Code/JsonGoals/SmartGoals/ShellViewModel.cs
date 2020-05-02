@@ -12,11 +12,14 @@ namespace SmartGoals
         private readonly MainMenuViewModel mainMenuViewModel;
         private readonly ExampleViewModel exampleViewModel;
 
-        public ShellViewModel(IEventAggregator eventAggregator, MainMenuViewModel mainMenuViewModel, ExampleViewModel exampleViewModel)
+        public BottomMenuViewModel BottomMenuViewModel { get; }
+
+        public ShellViewModel(IEventAggregator eventAggregator, MainMenuViewModel mainMenuViewModel, ExampleViewModel exampleViewModel, BottomMenuViewModel bottomMenuViewModel)
         {
             this.eventAggregator = eventAggregator;
             this.mainMenuViewModel = mainMenuViewModel;
             this.exampleViewModel = exampleViewModel;
+            BottomMenuViewModel = bottomMenuViewModel;
         }
 
         protected override Task OnActivateAsync(CancellationToken cancellationToken)
