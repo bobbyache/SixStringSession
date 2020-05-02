@@ -5,6 +5,7 @@
         Home,
         Settings,
         GoalsMenu,
+        GoalDashboard,
         RoutinesMenu,
         SelectPracticeRoutine,
         Examples
