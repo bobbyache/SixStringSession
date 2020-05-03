@@ -28,9 +28,9 @@ namespace JsonDb
         }
 
 
-        private double CalculateWeightedValue(IWeightedEntity item, int countOfItems, int sumOfItemWeightings)
+        private double CalculateWeightedValue(IWeightedEntity item, int countOfItems, double sumOfItemWeightings)
         {
-            double weightingSlice = (((double)item.Weighting / sumOfItemWeightings) * 100);
+            double weightingSlice = ((item.Weighting / sumOfItemWeightings) * 100);
             double val = (item.PercentCompleted() / 100d) * weightingSlice;
             return val;
         }

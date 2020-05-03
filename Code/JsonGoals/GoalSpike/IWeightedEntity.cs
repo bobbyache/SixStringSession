@@ -6,7 +6,7 @@ namespace JsonDb
 {
     public interface IWeightedEntity
     {
-        int Weighting { get; }
+        double Weighting { get; }
         double PercentCompleted();
     }
 }

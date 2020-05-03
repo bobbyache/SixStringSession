@@ -19,6 +19,11 @@ namespace SmartGoals
             eventAggregator.PublishOnUIThreadAsync(new NavigateToMessage(NavigateTo.GoalDashboard));
         }
 
+        public void NavigateToTask()
+        {
+            eventAggregator.PublishOnUIThreadAsync(new NavigateToMessage(NavigateTo.TaskDashboard));
+        }
+
         public BottomMenuViewModel(IEventAggregator eventAggregator)
         {
             this.eventAggregator = eventAggregator;

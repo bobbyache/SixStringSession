@@ -3,18 +3,18 @@
   "title": "Highway to Hell - Lick 1",
   "initial": 0,
   "target": 100,
-  "activity": [
+  "history": [
     {
-      "date": "2019-05-04",
-      "value": 25
+      "d": "2019-05-04",
+      "v": 25
     },
     {
-      "date": "2019-05-04",
-      "value": 50
+      "d": "2019-05-04",
+      "v": 50
     },
     {
-      "date": "2019-05-04",
-      "value": 75
+      "d": "2019-05-04",
+      "v": 75
     }
   ]
 }

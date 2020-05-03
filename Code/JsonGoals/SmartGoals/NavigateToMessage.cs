@@ -6,6 +6,7 @@
         Settings,
         GoalsMenu,
         GoalDashboard,
+        TaskDashboard,
         RoutinesMenu,
         SelectPracticeRoutine,
         Examples

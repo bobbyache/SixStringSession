@@ -46,56 +46,17 @@ namespace JsonDb
             var goal = JsonSerializer.Deserialize<GoalDocument>(jsonString);
             return goal;
         }
+        public GoalDocument GetGoalDocument(string filePath, int test)
+        {
+            var jsonString = File.ReadAllText(filePath);
+            var goal = JsonSerializer.Deserialize<GoalDocument>(jsonString);
+            return goal;
+        }
+
 
         public GoalRepository(string folderPath)
         {
             this.folderPath = folderPath;
-        }
-
-        public Task GetTask(string id)
-        {
-            var jsonString = File.ReadAllText(Path.Combine(this.folderPath, $"T-{id}.json"));
-            var task = JsonSerializer.Deserialize<Task>(jsonString);
-            return task;
-        }
-
-        public Goal GetGoal(string id)
-        {
-            var jsonString = File.ReadAllText(Path.Combine(this.folderPath, $"G-{id}.json"));
-            var goal = JsonSerializer.Deserialize<Goal>(jsonString);
-            return goal;
-        }
-
-        public void SaveTasks(IList<Task> tasks)
-        {
-            foreach (var task in tasks)
-            {
-                SaveTask(task);
-            }
-        }
-
-        public List<Task> GetTasks(IList<TaskReference> taskReferences)
-        {
-            return GetTasks(taskReferences.Select(t => t.Id).ToArray());
-        }
-
-        public List<Task> GetTasks(string[] taskIds)
-        {
-            var tasks = new List<Task>();
-
-            foreach (var taskId in taskIds)
-            {
-                var task = GetTask(taskId);
-                tasks.Add(task);
-            }
-
-            return tasks;
-        }
-
-        public void SaveTask(Task task)
-        {
-            var jsonString = JsonSerializer.Serialize(task);
-            File.WriteAllText(Path.Combine(this.folderPath, $"T-{task.Id}.json"), jsonString);
         }
     }
 }

@@ -11,6 +11,19 @@ namespace JsonDbTests
         public class WeightedProgressCalculatorTests
         {
             [Fact]
+            public void WeightedProgressCalculator_CalculateTotalProgress_Test_X()
+            {
+                var calculator = new WeightedProgressCalculator();
+
+                calculator.Add(new WeightedObj(100, 0.5));
+                calculator.Add(new WeightedObj(50, 0.75));
+
+                var progress = calculator.CalculateTotalProgress();
+
+                Assert.Equal(70, progress);
+            }
+
+            [Fact]
             public void WeightedProgressCalculator_CalculateTotalProgress_Test_1()
             {
                 var calculator = new WeightedProgressCalculator();
@@ -65,12 +78,12 @@ namespace JsonDbTests
             {
                 private readonly double percentCompleted;
 
-                public WeightedObj(double percentComplete, int weighting)
+                public WeightedObj(double percentComplete, double weighting)
                 {
                     percentCompleted = percentComplete;
                     Weighting = weighting;
                 }
-                public int Weighting { get; private set; }
+                public double Weighting { get; private set; }
 
                 public double PercentCompleted()
                 {

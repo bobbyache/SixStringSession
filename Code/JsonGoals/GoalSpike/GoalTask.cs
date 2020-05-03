@@ -7,22 +7,22 @@ using System.Text.Json.Serialization;
 
 namespace JsonDb
 {
-    public class Task : IWeightedEntity
+    public class GoalTask : IWeightedEntity
     {
         [JsonPropertyName("id")] public string Id { get; set; }
         [JsonPropertyName("title")] public string Title { get; set; }
-        [JsonPropertyName("initial")] public double Initial { get; set; }
+        [JsonPropertyName("start")] public double Start { get; set; }
 
         [JsonPropertyName("target")] public double Target { get; set; }
 
-        [JsonPropertyName("activity")] public IList<TaskActivity> Activity { get; set; } = new List<TaskActivity>();
+        [JsonPropertyName("history")] public IList<TaskActivity> History { get; set; } = new List<TaskActivity>();
 
-        public int Weighting { get; set; } = 50;
+        [JsonPropertyName("weighting")] public double Weighting { get; set; } = 0.5;
 
         public double PercentCompleted()
         {
-            var numerator = (double)(GetLatestValue() - Initial); 
-            var denominator = (double)(Target - Initial);
+            var numerator = (double)(GetLatestValue() - Start); 
+            var denominator = (double)(Target - Start);
 
             if (denominator == 0)
             {
@@ -37,12 +37,12 @@ namespace JsonDb
 
         private double GetLatestValue()
         {
-            if (!Activity.Any())
-                return Initial;
+            if (!History.Any())
+                return Start;
 
             // get the last record, get the speed.
-            var lastActivityDate = Activity.Max(a => a.Date);
-            var manualProgress = Activity.Where(a => a.Date == lastActivityDate).Select(a => a.Value).Last();
+            var lastActivityDate = History.Max(a => a.Date);
+            var manualProgress = History.Where(a => a.Date == lastActivityDate).Select(a => a.Value).Last();
             return manualProgress;
         }
     }
@@ -50,7 +50,7 @@ namespace JsonDb
 
     public class TaskActivity
     {
-        [JsonPropertyName("date")] public DateTime Date { get; set; }
-        [JsonPropertyName("value")] public double Value { get; set; }
+        [JsonPropertyName("d")] public DateTime Date { get; set; }
+        [JsonPropertyName("v")] public double Value { get; set; }
     }
 }

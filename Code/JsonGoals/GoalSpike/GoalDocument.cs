@@ -9,7 +9,9 @@ namespace JsonDb
     {
         [JsonPropertyName("id")] public string Id { get; set; }
         [JsonPropertyName("title")] public string Title { get; set; }
-        [JsonPropertyName("tasks")] public IList<Task> Tasks { get; set; } = new List<Task>();
+        [JsonPropertyName("tasks")] public IList<GoalTask> Tasks { get; set; } = new List<GoalTask>();
+
+        [JsonPropertyName("weighting")] public double Weighting { get; set; } = 0.5;
 
         public double GetPercentComplete()
         {
