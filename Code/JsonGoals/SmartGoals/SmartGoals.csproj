@@ -15,4 +15,8 @@
     <ProjectReference Include="..\GoalSpike\JsonDb.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Supports\Resources\" />
+  </ItemGroup>
+
 </Project>

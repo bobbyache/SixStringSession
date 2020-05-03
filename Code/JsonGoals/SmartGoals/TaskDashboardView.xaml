@@ -9,40 +9,57 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="60" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="60" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="Auto" />
+
         </Grid.RowDefinitions>
-        <TextBlock FontSize="40">Here is some Header</TextBlock>
-        <lvc:CartesianChart HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1"  DockPanel.Dock="Bottom" Background="#222E31">
-            <lvc:CartesianChart.Series>
-                <lvc:LineSeries Values="{Binding Values1}" StrokeThickness="2" 
-                       Stroke="#1C8FC5" Fill="Transparent" LineSmoothness="1" 
-                       PointGeometrySize="15"/>
-            </lvc:CartesianChart.Series>
-            <lvc:CartesianChart.AxisX>
-                <lvc:Axis IsMerged="True">
-                    <lvc:Axis.Separator>
-                        <lvc:Separator StrokeThickness="1" StrokeDashArray="2">
-                            <lvc:Separator.Stroke>
-                                <SolidColorBrush Color="#404F56" />
-                            </lvc:Separator.Stroke>
-                        </lvc:Separator>
-                    </lvc:Axis.Separator>
-                </lvc:Axis>
-            </lvc:CartesianChart.AxisX>
-            <lvc:CartesianChart.AxisY>
-                <lvc:Axis IsMerged="True">
-                    <lvc:Axis.Separator>
-                        <lvc:Separator StrokeThickness="1.5" StrokeDashArray="4">
-                            <lvc:Separator.Stroke>
-                                <SolidColorBrush Color="#404F56" />
-                            </lvc:Separator.Stroke>
-                        </lvc:Separator>
-                    </lvc:Axis.Separator>
-                </lvc:Axis>
-            </lvc:CartesianChart.AxisY>
-        </lvc:CartesianChart>
-        <ContentControl Grid.Row="2" x:Name="BottomMenuViewModel" />
+        <Label Grid.Row="0" Content="{Binding GoalTitle, Mode=OneWay}" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
+        <Label Grid.Row="1" Content="{Binding Title, Mode=OneWay}" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
+        <DockPanel Grid.Row="2" LastChildFill="True">
+            <ListBox Margin="10" Width="200" ItemsSource="{Binding HistoryItems}" DockPanel.Dock="Left">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="{Binding Date}" Width="110"></Label>
+                            <TextBox Text="{Binding Value}" Width="40"></TextBox>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <lvc:CartesianChart Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" DockPanel.Dock="Right"  Series="{Binding Series}" Background="#222E31">
+                <lvc:CartesianChart.AxisX>
+                    <lvc:Axis LabelFormatter="{Binding Formatter}"></lvc:Axis>
+                </lvc:CartesianChart.AxisX>
+            </lvc:CartesianChart>
+        </DockPanel>
+        <ProgressBar Margin="10" Grid.Row="3"  Height="10" Value="{Binding ProgressValue, Mode=OneWay}" />
+        <Border Grid.Row="4" DockPanel.Dock="Top" Style="{StaticResource PagePanel}">
+            <StackPanel DockPanel.Dock="Left">
+                <TextBlock Text="Title:" Margin="5"></TextBlock>
+                <TextBox Margin="5" Text="{Binding Title, ValidatesOnNotifyDataErrors=True}"></TextBox>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Start Value:" MinWidth="80" Margin="5"></TextBlock>
+                    <TextBox MinWidth="60" Text="{Binding Start, ValidatesOnNotifyDataErrors=True}" 
+                             Margin="5"></TextBox>
+
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Target Value:" MinWidth="80" Margin="5"></TextBlock>
+                    <TextBox MinWidth="60" Text="{Binding Target, ValidatesOnNotifyDataErrors=True}" 
+                             Margin="5"></TextBox>
+
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Weighting Value:" MinWidth="80" Margin="5"></TextBlock>
+                    <Slider Margin="5" MinWidth="100" Maximum="100" TickFrequency="1" 
+                            Value="{Binding Weighting, ValidatesOnNotifyDataErrors=True}"
+                             TickPlacement="BottomRight" IsSnapToTickEnabled="True"></Slider>
+
+                </StackPanel>
+            </StackPanel>
+        </Border>
     </Grid>
 </UserControl>
