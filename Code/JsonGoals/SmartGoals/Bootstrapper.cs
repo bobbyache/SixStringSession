@@ -1,5 +1,6 @@
 ﻿using Caliburn.Micro;
 using JsonDb;
+using JsonDb.Data;
 using System;
 using System.Collections.Generic;
 using System.Windows;
@@ -43,7 +44,7 @@ namespace SmartGoals
         {
             simpleContainer.Singleton<IWindowManager, WindowManager>();
             simpleContainer.Singleton<IEventAggregator, EventAggregator>();
-            simpleContainer.Singleton<GoalRepository>();
+            simpleContainer.Singleton<JsonGoalRepository>();
             simpleContainer.Singleton<MainMenuViewModel>();
             simpleContainer.Singleton<ExampleViewModel>();
             simpleContainer.Singleton<GoalDashboardViewModel>();

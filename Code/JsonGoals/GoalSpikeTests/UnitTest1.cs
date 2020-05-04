@@ -1,4 +1,4 @@
-using JsonDb;
+using JsonDb.Data;
 using System;
 using System.IO;
 using System.Reflection;
@@ -18,14 +18,14 @@ namespace JsonDbTests
         [Fact]
         public void CalculateTaskProgressComplete()
         {
-            var task = new GoalTask();
+            var task = new JsonGoalTask();
             task.Id = "A9D3DD63-A0F3-4E02-A14A-8DA64CF923C3";
             task.Title = "New Task";
             task.Start = 50;
             task.Target = 150;
-            task.History.Add(new TaskActivity() { Date = DateTime.Parse("2020-03-13 12:13:20"), Value = 75 });
-            task.History.Add(new TaskActivity() { Date = DateTime.Parse("2020-03-13 12:13:20"), Value = 100 });
-            task.History.Add(new TaskActivity() { Date = DateTime.Parse("2020-03-13 12:13:20"), Value = 125 });
+            task.History.Add(new JsonGoalTaskHistoryItem() { Date = DateTime.Parse("2020-03-13 12:13:20"), Value = 75 });
+            task.History.Add(new JsonGoalTaskHistoryItem() { Date = DateTime.Parse("2020-03-13 12:13:20"), Value = 100 });
+            task.History.Add(new JsonGoalTaskHistoryItem() { Date = DateTime.Parse("2020-03-13 12:13:20"), Value = 125 });
 
             var percentComplete = task.PercentCompleted();
             Assert.Equal(75, percentComplete);
@@ -34,18 +34,18 @@ namespace JsonDbTests
         [Fact]
         public void CalculateGoalProgressComplete()
         {
-            var goal = new GoalDocument();
+            var goal = new JsonGoal();
             goal.Id = "A9D3DD63-A0F3-4E02-A14A-8DA64CF923C3";
             goal.Title = "Test Goal";
 
-            var task1 = new GoalTask() { Id = "09b56e3d-49f0-44b6-b063-1e362f8282ce", Title = "Task 1", Start = 0, Target = 100 };
-            var task2 = new GoalTask() { Id = "9e4b27e6-3c9d-448b-8a77-170eb59438c6", Title = "Task 2", Start = 0, Target = 100 };
+            var task1 = new JsonGoalTask() { Id = "09b56e3d-49f0-44b6-b063-1e362f8282ce", Title = "Task 1", Start = 0, Target = 100 };
+            var task2 = new JsonGoalTask() { Id = "9e4b27e6-3c9d-448b-8a77-170eb59438c6", Title = "Task 2", Start = 0, Target = 100 };
 
-            task1.History.Add(new TaskActivity() { Date = DateTime.Parse("2020-03-13"), Value = 25 });
-            task1.History.Add(new TaskActivity() { Date = DateTime.Parse("2020-03-14"), Value = 50 });
+            task1.History.Add(new JsonGoalTaskHistoryItem() { Date = DateTime.Parse("2020-03-13"), Value = 25 });
+            task1.History.Add(new JsonGoalTaskHistoryItem() { Date = DateTime.Parse("2020-03-14"), Value = 50 });
 
-            task2.History.Add(new TaskActivity() { Date = DateTime.Parse("2020-03-13"), Value = 25 });
-            task2.History.Add(new TaskActivity() { Date = DateTime.Parse("2020-03-14"), Value = 100 });
+            task2.History.Add(new JsonGoalTaskHistoryItem() { Date = DateTime.Parse("2020-03-13"), Value = 25 });
+            task2.History.Add(new JsonGoalTaskHistoryItem() { Date = DateTime.Parse("2020-03-14"), Value = 100 });
 
             goal.Tasks.Add(task1);
             goal.Tasks.Add(task2);
@@ -57,7 +57,7 @@ namespace JsonDbTests
         [Fact]
         public void GetGoalList()
         {
-            var repository = new GoalRepository(GetTestFileFolder());
+            var repository = new JsonGoalRepository(GetTestFileFolder());
             var goalList = repository.GetGoalList($"goals.json");
 
             Assert.Equal(6, goalList.Count);
@@ -66,9 +66,9 @@ namespace JsonDbTests
         [Fact]
         public void SaveGoalList()
         {
-            var repository = new GoalRepository(GetTestFileFolder());
+            var repository = new JsonGoalRepository(GetTestFileFolder());
             var goalList = repository.GetGoalList($"goals.json");
-            goalList.Add(new GoalListItem { Id = "8D642D0F-9CE1-4CF9-8CA6-828DFA25214E", PercentComplete = 99, Title = "Added Goal" });
+            goalList.Add(new JsonGoalListItem { Id = "8D642D0F-9CE1-4CF9-8CA6-828DFA25214E", PercentComplete = 99, Title = "Added Goal" });
 
             repository.SaveGoalList(goalList, $"saved_goals.json");
 
@@ -79,7 +79,7 @@ namespace JsonDbTests
         [Fact]
         public void GetGoalDocument()
         {
-            var repository = new GoalRepository(GetTestFileFolder());
+            var repository = new JsonGoalRepository(GetTestFileFolder());
             var goal = repository.GetGoalDocument("8D642D0F-9CE1-4CF9-8CA6-828DFA25214E");
 
             Assert.Equal("8D642D0F-9CE1-4CF9-8CA6-828DFA25214E", goal.Id);
@@ -95,7 +95,7 @@ namespace JsonDbTests
             //Assert.Equal("8D642D0F-9CE1-4CF9-8CA6-828DFA25214E", goal.Id);
             //Assert.Equal("Highway to Hell Solo", goal.Title);
 
-            var document = new GoalDocument();
+            var document = new JsonGoal();
             document.Id = "A9D3DD63-A0F3-4E02-A14A-8DA64CF923C3";
             document.Title = "New Goal Document";
 

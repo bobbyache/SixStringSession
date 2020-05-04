@@ -8,15 +8,16 @@ using System.Linq;
 using LiveCharts.Configurations;
 using LiveCharts.Wpf;
 using System.Windows.Media;
+using JsonDb.Data;
 
 namespace SmartGoals
 {
     public class TaskDashboardViewModel : Screen
     {
-        private readonly GoalRepository goalRepository;
-        private readonly GoalDocument goalDocument;
+        private readonly JsonGoalRepository goalRepository;
+        private readonly JsonGoal goalDocument;
 
-        private readonly GoalTask goalTask;
+        private readonly JsonGoalTask goalTask;
 
         private IEventAggregator eventAggregator { get; }
 
@@ -53,13 +54,13 @@ namespace SmartGoals
             set { this.goalTask.Weighting = value / 100; }
         }
 
-        public IList<TaskActivity> HistoryItems {  get { return this.goalTask.History; } }
+        public IList<JsonGoalTaskHistoryItem> HistoryItems {  get { return this.goalTask.History; } }
 
 
         public int ProgressValue { get { return  (int)Math.Round(this.goalTask.PercentCompleted()); } }
 
         
-        public TaskDashboardViewModel(GoalRepository goalRepository, IEventAggregator eventAggregator)
+        public TaskDashboardViewModel(JsonGoalRepository goalRepository, IEventAggregator eventAggregator)
         {
             this.goalRepository = goalRepository;
             this.eventAggregator = eventAggregator;
@@ -69,7 +70,7 @@ namespace SmartGoals
             this.goalTask = goalDocument.Tasks[0];
 
             // Example From: https://lvcharts.net/App/examples/v1/wpf/Date%20Time
-            var dayConfig = Mappers.Xy<TaskActivity>()
+            var dayConfig = Mappers.Xy<JsonGoalTaskHistoryItem>()
               .X(dateModel => dateModel.Date.Ticks / TimeSpan.FromDays(1).Ticks)
               .Y(dateModel => dateModel.Value);
 
@@ -78,7 +79,7 @@ namespace SmartGoals
             //more info at http://lvcharts.net/App/Index#/examples/v1/wpf/Types%20and%20Configuration
             Series = new SeriesCollection(dayConfig)
             {
-                new LineSeries { Values = new ChartValues<TaskActivity>(goalDocument.Tasks[0].History) },
+                new LineSeries { Values = new ChartValues<JsonGoalTaskHistoryItem>(goalDocument.Tasks[0].History) },
 
             };
 

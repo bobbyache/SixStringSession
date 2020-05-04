@@ -6,26 +6,26 @@ using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace JsonDb
+namespace JsonDb.Data
 {
-    public class GoalRepository
+    public class JsonGoalRepository
     {
         private string folderPath;
 
-        public IList<GoalListItem> GetGoalList(string fileName)
+        public IList<JsonGoalListItem> GetGoalList(string fileName)
         {
             var jsonString = File.ReadAllText(Path.Combine(this.folderPath, fileName));
-            var goalList = JsonSerializer.Deserialize<List<GoalListItem>>(jsonString);
+            var goalList = JsonSerializer.Deserialize<List<JsonGoalListItem>>(jsonString);
             return goalList;
         }
 
-        public void SaveGoalList(IList<GoalListItem> goalList, string fileName)
+        public void SaveGoalList(IList<JsonGoalListItem> goalList, string fileName)
         {
             var jsonString = JsonSerializer.Serialize(goalList);
             File.WriteAllText(Path.Combine(this.folderPath, fileName), jsonString);
         }
 
-        public void UpdateGoalList(IList<GoalListItem> goalList)
+        public void UpdateGoalList(IList<JsonGoalListItem> goalList)
         {
             foreach (var item in goalList)
             {
@@ -33,28 +33,28 @@ namespace JsonDb
             }
         }
 
-        public void UpdateGoalListItem(GoalListItem item)
+        public void UpdateGoalListItem(JsonGoalListItem item)
         {
             var goal = GetGoalDocument(item.Id);
             item.Title = goal.Title;
             item.PercentComplete = goal.GetPercentComplete();
         }
 
-        public GoalDocument GetGoalDocument(string id)
+        public JsonGoal GetGoalDocument(string id)
         {
             var jsonString = File.ReadAllText(Path.Combine(this.folderPath, $"{id}.json"));
-            var goal = JsonSerializer.Deserialize<GoalDocument>(jsonString);
+            var goal = JsonSerializer.Deserialize<JsonGoal>(jsonString);
             return goal;
         }
-        public GoalDocument GetGoalDocument(string filePath, int test)
+        public JsonGoal GetGoalDocument(string filePath, int test)
         {
             var jsonString = File.ReadAllText(filePath);
-            var goal = JsonSerializer.Deserialize<GoalDocument>(jsonString);
+            var goal = JsonSerializer.Deserialize<JsonGoal>(jsonString);
             return goal;
         }
 
 
-        public GoalRepository(string folderPath)
+        public JsonGoalRepository(string folderPath)
         {
             this.folderPath = folderPath;
         }

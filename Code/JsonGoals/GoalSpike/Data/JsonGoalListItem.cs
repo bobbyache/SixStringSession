@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 using System.Text.Json.Serialization;
 
-namespace JsonDb
+namespace JsonDb.Data
 {
-    public class GoalListItem
+    public class JsonGoalListItem
     {
         [JsonPropertyName("id")] public string Id { get; set; }
         [JsonPropertyName("title")] public string Title { get; set; }

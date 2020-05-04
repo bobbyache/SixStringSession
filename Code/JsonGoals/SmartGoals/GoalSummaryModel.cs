@@ -1,5 +1,6 @@
 ﻿using Caliburn.Micro;
 using JsonDb;
+using JsonDb.Data;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,8 +9,8 @@ namespace SmartGoals
 {
     public class GoalSummaryModel : PropertyChangedBase
     {
-        private GoalListItem goalListItem;
-        public GoalSummaryModel(GoalListItem goalListItem)
+        private JsonGoalListItem goalListItem;
+        public GoalSummaryModel(JsonGoalListItem goalListItem)
         {
             this.goalListItem = goalListItem;
             this.Title = goalListItem.Title;

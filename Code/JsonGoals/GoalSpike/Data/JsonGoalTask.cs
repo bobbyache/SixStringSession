@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace JsonDb
+namespace JsonDb.Data
 {
-    public class GoalTask : IWeightedEntity
+    public class JsonGoalTask : IWeightedEntity
     {
         [JsonPropertyName("id")] public string Id { get; set; }
         [JsonPropertyName("title")] public string Title { get; set; }
@@ -15,7 +15,7 @@ namespace JsonDb
 
         [JsonPropertyName("target")] public double Target { get; set; }
 
-        [JsonPropertyName("history")] public IList<TaskActivity> History { get; set; } = new List<TaskActivity>();
+        [JsonPropertyName("history")] public IList<JsonGoalTaskHistoryItem> History { get; set; } = new List<JsonGoalTaskHistoryItem>();
 
         [JsonPropertyName("weighting")] public double Weighting { get; set; } = 0.5;
 
@@ -48,7 +48,7 @@ namespace JsonDb
     }
 
 
-    public class TaskActivity
+    public class JsonGoalTaskHistoryItem
     {
         [JsonPropertyName("d")] public DateTime Date { get; set; }
         [JsonPropertyName("v")] public double Value { get; set; }
