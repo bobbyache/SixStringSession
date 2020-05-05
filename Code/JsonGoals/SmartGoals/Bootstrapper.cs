@@ -1,6 +1,4 @@
 ﻿using Caliburn.Micro;
-using JsonDb;
-using JsonDb.Data;
 using System;
 using System.Collections.Generic;
 using System.Windows;
@@ -10,6 +8,7 @@ namespace SmartGoals
     /*
      * Current Status: https://youtu.be/o3--INqJRVE?list=PL3JeBX8MKjuHhSFbPOwbrxvdiRC1Lsrkb&t=553
      * -------------------------------------------------------------------------------------------------
+     * AutoMapper: https://docs.automapper.org/en/stable/Getting-started.html
      * Live Charts: https://lvcharts.net/
      * WPF in C# with MVVM using Caliburn Micro: https://www.youtube.com/watch?v=laPFq3Fhs8k
      * Documentation: https://caliburnmicro.com/documentation/
@@ -44,7 +43,6 @@ namespace SmartGoals
         {
             simpleContainer.Singleton<IWindowManager, WindowManager>();
             simpleContainer.Singleton<IEventAggregator, EventAggregator>();
-            simpleContainer.Singleton<JsonGoalRepository>();
             simpleContainer.Singleton<MainMenuViewModel>();
             simpleContainer.Singleton<ExampleViewModel>();
             simpleContainer.Singleton<GoalDashboardViewModel>();

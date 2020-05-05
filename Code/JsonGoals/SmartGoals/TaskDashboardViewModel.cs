@@ -1,5 +1,4 @@
 ﻿using Caliburn.Micro;
-using JsonDb;
 using LiveCharts;
 using System;
 using System.Collections.Generic;
@@ -8,16 +7,15 @@ using System.Linq;
 using LiveCharts.Configurations;
 using LiveCharts.Wpf;
 using System.Windows.Media;
-using JsonDb.Data;
+using SmartSession.Domain;
 
 namespace SmartGoals
 {
     public class TaskDashboardViewModel : Screen
     {
-        private readonly JsonGoalRepository goalRepository;
-        private readonly JsonGoal goalDocument;
+        private readonly GoalDocument goalDocument;
 
-        private readonly JsonGoalTask goalTask;
+        private readonly GoalTask goalTask;
 
         private IEventAggregator eventAggregator { get; }
 
@@ -54,23 +52,23 @@ namespace SmartGoals
             set { this.goalTask.Weighting = value / 100; }
         }
 
-        public IList<JsonGoalTaskHistoryItem> HistoryItems {  get { return this.goalTask.History; } }
+        public IList<GoalTaskHistoryItem> HistoryItems {  get { return this.goalTask.History; } }
 
 
-        public int ProgressValue { get { return  (int)Math.Round(this.goalTask.PercentCompleted()); } }
+        public int ProgressValue { get { return 0; /* return  (int)Math.Round(this.goalTask.PercentCompleted()); */ } }
 
         
-        public TaskDashboardViewModel(JsonGoalRepository goalRepository, IEventAggregator eventAggregator)
+        public TaskDashboardViewModel(IEventAggregator eventAggregator)
         {
-            this.goalRepository = goalRepository;
             this.eventAggregator = eventAggregator;
             this.eventAggregator.SubscribeOnUIThread(this);
 
-            goalDocument = goalRepository.GetGoalDocument(@"C:\Users\RobB\OneDrive - Korbitec Inc\Documents\Guitar\Goals\goal.json", 0);
-            this.goalTask = goalDocument.Tasks[0];
+            // goalDocument = goalRepository.GetGoalDocument(@"C:\Users\RobB\OneDrive - Korbitec Inc\Documents\Guitar\Goals\goal.json", 0);
+            // this.goalTask = goalDocument.Tasks[0];
+
 
             // Example From: https://lvcharts.net/App/examples/v1/wpf/Date%20Time
-            var dayConfig = Mappers.Xy<JsonGoalTaskHistoryItem>()
+            var dayConfig = Mappers.Xy<GoalTaskHistoryItem>()
               .X(dateModel => dateModel.Date.Ticks / TimeSpan.FromDays(1).Ticks)
               .Y(dateModel => dateModel.Value);
 
@@ -79,7 +77,7 @@ namespace SmartGoals
             //more info at http://lvcharts.net/App/Index#/examples/v1/wpf/Types%20and%20Configuration
             Series = new SeriesCollection(dayConfig)
             {
-                new LineSeries { Values = new ChartValues<JsonGoalTaskHistoryItem>(goalDocument.Tasks[0].History) },
+                new LineSeries { Values = new ChartValues<GoalTaskHistoryItem>(goalTask.History) },
 
             };
 

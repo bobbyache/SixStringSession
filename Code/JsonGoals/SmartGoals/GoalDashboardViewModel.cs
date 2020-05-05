@@ -1,6 +1,4 @@
 ﻿using Caliburn.Micro;
-using JsonDb;
-using JsonDb.Data;
 using LiveCharts;
 using System;
 using System.Collections.Generic;
@@ -10,16 +8,13 @@ namespace SmartGoals
 {
     public class GoalDashboardViewModel: Screen
     {
-        private readonly JsonGoalRepository goalRepository;
-
         public ChartValues<double> Values1 { get; set; }
         public ChartValues<double> Values2 { get; set; }
 
         private IEventAggregator eventAggregator { get; }
 
-        public GoalDashboardViewModel(JsonGoalRepository goalRepository, IEventAggregator eventAggregator)
+        public GoalDashboardViewModel(IEventAggregator eventAggregator)
         {
-            this.goalRepository = goalRepository;
             this.eventAggregator = eventAggregator;
             this.eventAggregator.SubscribeOnUIThread(this);
 

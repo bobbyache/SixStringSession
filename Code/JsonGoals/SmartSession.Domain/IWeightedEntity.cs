@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace JsonDb
+namespace SmartSession.Domain
 {
     public interface IWeightedEntity
     {

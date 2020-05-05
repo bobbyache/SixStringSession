@@ -27,8 +27,9 @@ namespace JsonDbTests
             task.History.Add(new JsonGoalTaskHistoryItem() { Date = DateTime.Parse("2020-03-13 12:13:20"), Value = 100 });
             task.History.Add(new JsonGoalTaskHistoryItem() { Date = DateTime.Parse("2020-03-13 12:13:20"), Value = 125 });
 
-            var percentComplete = task.PercentCompleted();
-            Assert.Equal(75, percentComplete);
+            //var percentComplete = task.PercentCompleted();
+            //Assert.Equal(75, percentComplete);
+            Assert.False(true);
         }
 
         [Fact]
@@ -50,40 +51,9 @@ namespace JsonDbTests
             goal.Tasks.Add(task1);
             goal.Tasks.Add(task2);
 
-            var percentComplete = goal.GetPercentComplete();
-            Assert.Equal(75, percentComplete);
-        }
-
-        [Fact]
-        public void GetGoalList()
-        {
-            var repository = new JsonGoalRepository(GetTestFileFolder());
-            var goalList = repository.GetGoalList($"goals.json");
-
-            Assert.Equal(6, goalList.Count);
-        }
-
-        [Fact]
-        public void SaveGoalList()
-        {
-            var repository = new JsonGoalRepository(GetTestFileFolder());
-            var goalList = repository.GetGoalList($"goals.json");
-            goalList.Add(new JsonGoalListItem { Id = "8D642D0F-9CE1-4CF9-8CA6-828DFA25214E", PercentComplete = 99, Title = "Added Goal" });
-
-            repository.SaveGoalList(goalList, $"saved_goals.json");
-
-            var goalListNew = repository.GetGoalList($"saved_goals.json");
-
-        }
-
-        [Fact]
-        public void GetGoalDocument()
-        {
-            var repository = new JsonGoalRepository(GetTestFileFolder());
-            var goal = repository.GetGoalDocument("8D642D0F-9CE1-4CF9-8CA6-828DFA25214E");
-
-            Assert.Equal("8D642D0F-9CE1-4CF9-8CA6-828DFA25214E", goal.Id);
-            Assert.Equal("Highway to Hell Solo", goal.Title);
+            //var percentComplete = goal.GetPercentComplete();
+            //Assert.Equal(75, percentComplete);
+            Assert.False(true);
         }
 
         [Fact]

@@ -12,11 +12,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GoalSpike\JsonDb.csproj" />
+    <Folder Include="Supports\Resources\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Supports\Resources\" />
+    <ProjectReference Include="..\GoalSpike\JsonDb.csproj" />
+    <ProjectReference Include="..\SmartSession.Domain\SmartSession.Domain.csproj" />
   </ItemGroup>
 
 </Project>

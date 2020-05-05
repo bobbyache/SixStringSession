@@ -1,6 +1,4 @@
 ﻿using Caliburn.Micro;
-using JsonDb;
-using JsonDb.Data;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -56,7 +54,7 @@ namespace SmartGoals
         public HeaderViewModel HeaderViewModel { get; }
         public ContentViewModel ContentViewModel { get; }
 
-        private JsonGoalRepository repository = new JsonGoalRepository(@"C:\Users\RobB\OneDrive - Korbitec Inc\Documents\Guitar\Goals");
+        // private JsonGoalRepository repository = new JsonGoalRepository(@"C:\Users\RobB\OneDrive - Korbitec Inc\Documents\Guitar\Goals");
 
         private readonly GreetingsMessageProvider greetingMessageProvider;
 
@@ -66,12 +64,12 @@ namespace SmartGoals
             ContentViewModel = contentViewModel;
             this.greetingMessageProvider = greetingMessageProvider;
 
-            var goalItems = repository.GetGoalList("goals.json");
-            foreach (var goal in goalItems)
-            {
-                GoalSummaryModel model = new GoalSummaryModel(goal);
-                Goals.Add(model);
-            }
+            //var goalItems = repository.GetGoalList("goals.json");
+            //foreach (var goal in goalItems)
+            //{
+            //    GoalSummaryModel model = new GoalSummaryModel(goal);
+            //    Goals.Add(model);
+            //}
         }
 
         public void SayHello()
