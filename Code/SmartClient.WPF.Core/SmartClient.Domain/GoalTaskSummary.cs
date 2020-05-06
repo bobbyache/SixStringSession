@@ -9,7 +9,7 @@ namespace SmartClient.Domain
             this.GoalTitle = goalTitle;
             this.Id = id;
             this.Title = title;
-            this.PercentDone = percentDone;
+            this.PercentProgress = percentDone;
         }
 
         public string GoalTitle { get; private set; }
@@ -18,6 +18,6 @@ namespace SmartClient.Domain
 
         public string Title { get; private set; }
 
-        public int PercentDone { get; private set; }
+        public int PercentProgress { get; private set; }
     }
 }

@@ -9,8 +9,6 @@ namespace SmartClient.Domain
         string Id { get; }
         string Title { get; set; }
 
-        int Progress { get; }
-
-        int PercentDone { get; }
+        int PercentProgress { get; }
     }
 }

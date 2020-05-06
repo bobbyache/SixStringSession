@@ -11,8 +11,6 @@
 
         public string Title { get; set; }
 
-        public int Progress => throw new System.NotImplementedException();
-
-        public int PercentDone => throw new System.NotImplementedException();
+        public int PercentProgress => throw new System.NotImplementedException();
     }
 }
