@@ -4,8 +4,15 @@ using System.Text;
 
 namespace SmartClient.Domain
 {
-    public class GoalTaskProgressSnapshot
+    public class GoalTaskProgressSnapshot : IGoalTaskProgressSnapshot
     {
-        // public DateTime
+        public GoalTaskProgressSnapshot(string day, double value)
+        {
+            this.Day = DateTime.Parse(day);
+            this.Value = value;
+        }
+
+        public DateTime Day { get; private set; }
+        public double Value { get; set; }
     }
 }

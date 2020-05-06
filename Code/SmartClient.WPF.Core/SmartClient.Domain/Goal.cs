@@ -2,27 +2,35 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Text;
 
 namespace SmartClient.Domain
 {
     public class Goal
     {
+        private IDataGoal dataGoal;
         private readonly IGoalRepository goalRepository;
 
-        public Goal(IGoalRepository goalRepository)
+        public Goal(IGoalRepository goalRepository, string filePath)
         {
             this.goalRepository = goalRepository;
+            this.dataGoal = goalRepository.Open(filePath);
         }
 
-        public IEnumerable<GoalTaskProgressSnapshot> GetTaskProgressSnapshots(string taskId)
+        public IList<IGoalTaskProgressSnapshot> GetTaskProgressSnapshots(string taskId)
         {
-            throw new NotImplementedException();
+            var task = this.dataGoal.Tasks.Where(t => t.Id == taskId).SingleOrDefault();
+            var taskProgressSnapshots = task.ProgressHistory.Select(ph => new GoalTaskProgressSnapshot(ph.Day, ph.Value)
+                ).OfType<IGoalTaskProgressSnapshot>().ToList();
+
+            return taskProgressSnapshots;
         }
 
+        // TODO: Get Summary
         public GoalSummary GetSummary()
         {
-            throw new NotImplementedException();
+            return new GoalSummary(this.dataGoal.Id, this.dataGoal.Title);
         }
 
         public void UpdateTaskProgressSnapshot(string taskId, DateTime date, int value)
@@ -30,14 +38,28 @@ namespace SmartClient.Domain
             throw new NotImplementedException();
         }
 
-        public IEnumerable<GoalTaskSummary> GetTaskSummaries(string taskId)
+
+        // TODO: Get the task (but why... for reading or for viewing?
+        public GoalTask GetTask(string taskId)
         {
             throw new NotImplementedException();
         }
 
-        public GoalTask GetTask(string taskId)
+        public IList<IGoalTaskSummary> GetTaskSummaries()
         {
-            throw new NotImplementedException();
+            var tasks = this.dataGoal.Tasks.Select(t => new GoalTaskSummary(
+                    t.Id, t.Title, this.dataGoal.Title, (int)Math.Round(t.ProgressHistory.Last().Value
+                )));
+            return tasks.OfType<IGoalTaskSummary>().ToList();
+        }
+
+        public IGoalTaskSummary GetTaskSummary(string taskId)
+        {
+            var dataTask = this.dataGoal.Tasks.Where(t => t.Id == taskId).SingleOrDefault();
+            var summary = new GoalTaskSummary(dataTask.Id, dataTask.Title, this.dataGoal.Title,
+                (int)Math.Round(dataTask.ProgressHistory.Last().Value)
+                );
+            return summary;
         }
 
         public void UpdateTask(GoalTask task)

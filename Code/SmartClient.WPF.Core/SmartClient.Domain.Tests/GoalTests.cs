@@ -2,6 +2,7 @@ using Moq;
 using SmartClient.Domain.Data;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Xunit;
 
 namespace SmartClient.Domain.Tests
@@ -11,57 +12,58 @@ namespace SmartClient.Domain.Tests
     public class GoalTests
     {
         [Fact]
-        public void Test1()
+        public void GetATaskSummaryGivenATaskId()
         {
-            var taskMock = GetGoalTaskMock("9a3c801b-5e5c-423c-9696-6a2f687f31da", "Test Task", 0, 100, 0.5,
-                new List<IDataGoalTaskProgressSnapshot>
-                {
-                    GetGoalTaskProgressSnapshotMock("2010-03-15", 25).Object,
-                    GetGoalTaskProgressSnapshotMock("2010-04-15", 50).Object,
-                    GetGoalTaskProgressSnapshotMock("2010-05-15", 75).Object
-                }
-            );
+            var goal = MockHelpers.GetMockGoal();
+            var taskSummary = goal.GetTaskSummary("9a3c801b-5e5c-423c-9696-6a2f687f31da");
 
-            var goalMock = GetGoalMock("8233815a-2fa8-435d-98da-b84f416604f7", "Test Goal", 0.5, new List<IDataGoalTask> { taskMock.Object });
-
-            var repository = new Mock<IGoalRepository>();
-            repository.Setup(r => r.Open(It.IsAny<string>())).Returns(goalMock.Object);
-
-            var goal = new Goal(repository.Object);
-
-            Assert.True(goal.GetTask("9a3c801b-5e5c-423c-9696-6a2f687f31da") != null);
+            Assert.True(taskSummary != null);
+            Assert.True(taskSummary.Id == "9a3c801b-5e5c-423c-9696-6a2f687f31da");
+            Assert.Equal("Test Task 1", taskSummary.Title);
+            Assert.True(taskSummary.PercentDone == 75);
+            Assert.True(taskSummary.GoalTitle == "Test Goal");
         }
 
-        private Mock<IDataGoal> GetGoalMock(string id, string title, double weighting, IList<IDataGoalTask> tasks)
+        [Fact]
+        public void GetAllTaskSummaries()
         {
-            var mock = new Mock<IDataGoal>();
-            mock.Setup(g => g.Id).Returns(id);
-            mock.Setup(g => g.Title).Returns(title);
-            mock.Setup(g => g.Weighting).Returns(weighting);
-            mock.Setup(g => g.Tasks).Returns(tasks);
+            var goal = MockHelpers.GetMockGoal();
+            var taskSummaries = goal.GetTaskSummaries();
 
-            return mock;
-        }
-        private Mock<IDataGoalTask> GetGoalTaskMock(string id, string title, int start, int target, double weighting, IList<IDataGoalTaskProgressSnapshot> progressSnapshots)
-        {
-            var mock = new Mock<IDataGoalTask>();
-            mock.Setup(t => t.Id).Returns(id);
-            mock.Setup(t => t.Title).Returns(title);
-            mock.Setup(t => t.Start).Returns(start);
-            mock.Setup(t => t.Target).Returns(target);
-            mock.Setup(t => t.Weighting).Returns(weighting);
-            mock.Setup(t => t.ProgressHistory).Returns(progressSnapshots);
+            Assert.True(taskSummaries[0] != null);
+            Assert.True(taskSummaries[0].Id == "9a3c801b-5e5c-423c-9696-6a2f687f31da");
+            Assert.True(taskSummaries[0].Title == "Test Task 1");
+            Assert.True(taskSummaries[0].PercentDone == 75);
+            Assert.True(taskSummaries[0].GoalTitle == "Test Goal");
 
-            return mock;
+            Assert.True(taskSummaries[1] != null);
+            Assert.True(taskSummaries[1].Id == "9a3c801b-5e5c-423c-9696-6a2f687f31db");
+            Assert.True(taskSummaries[1].Title == "Test Task 2");
+            Assert.True(taskSummaries[1].PercentDone == 90);
+            Assert.True(taskSummaries[1].GoalTitle == "Test Goal");
         }
 
-        private Mock<IDataGoalTaskProgressSnapshot> GetGoalTaskProgressSnapshotMock(string day, double value)
+        [Fact]
+        public void GetTaskProgressSnapshotsForTask()
         {
-            var mock = new Mock<IDataGoalTaskProgressSnapshot>();
-            mock.Setup(m => m.Day).Returns(day);
-            mock.Setup(m => m.Value).Returns(value);
+            var goal = MockHelpers.GetMockGoal();
+            var goalSummary = goal.GetSummary();
+            var snapshots = goal.GetTaskProgressSnapshots("9a3c801b-5e5c-423c-9696-6a2f687f31db");
 
-            return mock;
+            Assert.Equal(3, snapshots.Count());
+            Assert.Equal(new DateTime(2010, 3, 15), snapshots[0].Day);
+            Assert.Equal(10, snapshots[0].Value);
+            Assert.Equal(new DateTime(2010, 5, 17), snapshots[2].Day);
+        }
+
+        [Fact]
+        public void GetGoalSummary()
+        {
+            var goal = MockHelpers.GetMockGoal();
+
+            var goalSummary = goal.GetSummary();
+            Assert.Equal("8233815a-2fa8-435d-98da-b84f416604f7", goalSummary.Id);
+            Assert.Equal("Test Goal", goalSummary.Title);
         }
     }
 }
