@@ -7,12 +7,12 @@ using System.Text;
 
 namespace SmartClient.Domain
 {
-    public class Goal
+    public class GoalManager
     {
         private IDataGoal dataGoal;
         private readonly IGoalRepository goalRepository;
 
-        public Goal(IGoalRepository goalRepository, string filePath)
+        public GoalManager(IGoalRepository goalRepository, string filePath)
         {
             this.goalRepository = goalRepository;
             this.dataGoal = goalRepository.Open(filePath);
