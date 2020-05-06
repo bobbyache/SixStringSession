@@ -1,4 +1,5 @@
 ﻿using SmartClient.Domain.Data;
+using SmartClient.Domain.Weighting;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -27,29 +28,20 @@ namespace SmartClient.Domain
             return taskProgressSnapshots;
         }
 
-        // TODO: Get Summary
         public GoalSummary GetSummary()
         {
-            return new GoalSummary(this.dataGoal.Id, this.dataGoal.Title);
-        }
+            var taskSummaries = GetTaskSummaries();
 
-        public void UpdateTaskProgressSnapshot(string taskId, DateTime date, int value)
-        {
-            throw new NotImplementedException();
-        }
-
-
-        // TODO: Get the task (but why... for reading or for viewing?
-        public GoalTask GetTask(string taskId)
-        {
-            throw new NotImplementedException();
+            WeightedProgressCalculator calculator = new WeightedProgressCalculator();
+            calculator.AddRange(taskSummaries.ToList<IWeightedEntity>());
+            var percentProgress = calculator.CalculateTotalProgress();
+            return new GoalSummary(this.dataGoal.Id, this.dataGoal.Title, percentProgress);
         }
 
         public IList<IGoalTaskSummary> GetTaskSummaries()
         {
             var tasks = this.dataGoal.Tasks.Select(t => new GoalTaskSummary(
-                    t.Id, t.Title, this.dataGoal.Title, (int)Math.Round(t.ProgressHistory.Last().Value
-                )));
+                    t.Id, t.Title, this.dataGoal.Title, (int)Math.Round(t.ProgressHistory.Last().Value), t.Weighting));
             return tasks.OfType<IGoalTaskSummary>().ToList();
         }
 
@@ -57,29 +49,33 @@ namespace SmartClient.Domain
         {
             var dataTask = this.dataGoal.Tasks.Where(t => t.Id == taskId).SingleOrDefault();
             var summary = new GoalTaskSummary(dataTask.Id, dataTask.Title, this.dataGoal.Title,
-                (int)Math.Round(dataTask.ProgressHistory.Last().Value)
-                );
+                (int)Math.Round(dataTask.ProgressHistory.Last().Value), dataTask.Weighting);
             return summary;
         }
 
-        public void UpdateTask(GoalTask task)
-        {
-            throw new NotImplementedException();
-        }
+        //public void UpdateTaskProgressSnapshot(string taskId, DateTime date, int value)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        public void CreateTask(GoalTask task)
-        {
-            throw new NotImplementedException();
-        }
+        //public void UpdateTask(IEditableGoalTask task)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        public void DeleteTask(string taskId)
-        {
-            throw new NotImplementedException();
-        }
+        //public IEditableGoalTask CreateTask()
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        public void Save()
-        {
-            throw new NotImplementedException();
-        }
+        //public void DeleteTask(string taskId)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        //public void Save()
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }

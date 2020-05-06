@@ -21,6 +21,7 @@ namespace SmartClient.Domain.Tests
             Assert.True(taskSummary.Id == "9a3c801b-5e5c-423c-9696-6a2f687f31da");
             Assert.Equal("Test Task 1", taskSummary.Title);
             Assert.True(taskSummary.PercentProgress == 75);
+            Assert.True(taskSummary.Weighting == 0.5);
             Assert.True(taskSummary.GoalTitle == "Test Goal");
         }
 
@@ -34,12 +35,14 @@ namespace SmartClient.Domain.Tests
             Assert.True(taskSummaries[0].Id == "9a3c801b-5e5c-423c-9696-6a2f687f31da");
             Assert.True(taskSummaries[0].Title == "Test Task 1");
             Assert.True(taskSummaries[0].PercentProgress == 75);
+            Assert.True(taskSummaries[0].Weighting == 0.5);
             Assert.True(taskSummaries[0].GoalTitle == "Test Goal");
 
             Assert.True(taskSummaries[1] != null);
             Assert.True(taskSummaries[1].Id == "9a3c801b-5e5c-423c-9696-6a2f687f31db");
             Assert.True(taskSummaries[1].Title == "Test Task 2");
             Assert.True(taskSummaries[1].PercentProgress == 90);
+            Assert.True(taskSummaries[1].Weighting == 0.5);
             Assert.True(taskSummaries[1].GoalTitle == "Test Goal");
         }
 
@@ -64,6 +67,7 @@ namespace SmartClient.Domain.Tests
             var goalSummary = goal.GetSummary();
             Assert.Equal("8233815a-2fa8-435d-98da-b84f416604f7", goalSummary.Id);
             Assert.Equal("Test Goal", goalSummary.Title);
+            Assert.Equal(82, goalSummary.PercentProgress);
         }
     }
 }
