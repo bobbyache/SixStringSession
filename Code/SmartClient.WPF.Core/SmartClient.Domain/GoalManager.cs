@@ -10,8 +10,8 @@ namespace SmartClient.Domain
 {
     public class GoalManager
     {
-        private IDataGoal dataGoal;
-        private readonly IGoalRepository goalRepository;
+        protected IDataGoal dataGoal;
+        protected readonly IGoalRepository goalRepository;
 
         public GoalManager(IGoalRepository goalRepository, string filePath)
         {
@@ -53,10 +53,21 @@ namespace SmartClient.Domain
             return summary;
         }
 
-        //public void UpdateTaskProgressSnapshot(string taskId, DateTime date, int value)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public IGoalTaskProgressSnapshot GetTaskProgressSnapshot(string taskId, DateTime date)
+        {
+            var dataTask = this.dataGoal.Tasks.Where(t => t.Id == taskId).SingleOrDefault();
+            var snapshot = dataTask.ProgressHistory
+                .Where(ph => ph.Day == date.ToString("yyyy-MM-dd")).SingleOrDefault();
+            return new GoalTaskProgressSnapshot(snapshot.Day, snapshot.Value);
+        }
+
+        public void UpdateTaskProgressSnapshot(string taskId, DateTime date, int value)
+        {
+            var dataTask = this.dataGoal.Tasks.Where(t => t.Id == taskId).SingleOrDefault();
+            var snapshot = dataTask.ProgressHistory
+                .Where(ph => ph.Day == date.ToString("yyyy-MM-dd")).SingleOrDefault();
+            snapshot.Value = value;
+        }
 
         //public void UpdateTask(IEditableGoalTask task)
         //{

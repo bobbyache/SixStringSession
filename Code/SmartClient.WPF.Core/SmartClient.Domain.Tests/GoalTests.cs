@@ -1,5 +1,6 @@
 using Moq;
 using SmartClient.Domain.Data;
+using SmartClient.Domain.Tests.Test;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,8 +15,8 @@ namespace SmartClient.Domain.Tests
         [Fact]
         public void GetATaskSummaryGivenATaskId()
         {
-            var goal = MockHelpers.GetMockGoal();
-            var taskSummary = goal.GetTaskSummary("9a3c801b-5e5c-423c-9696-6a2f687f31da");
+            var goalManager = MockHelpers.GetMockGoalManager();
+            var taskSummary = goalManager.GetTaskSummary("9a3c801b-5e5c-423c-9696-6a2f687f31da");
 
             Assert.True(taskSummary != null);
             Assert.True(taskSummary.Id == "9a3c801b-5e5c-423c-9696-6a2f687f31da");
@@ -28,8 +29,8 @@ namespace SmartClient.Domain.Tests
         [Fact]
         public void GetAllTaskSummaries()
         {
-            var goal = MockHelpers.GetMockGoal();
-            var taskSummaries = goal.GetTaskSummaries();
+            var goalManager = MockHelpers.GetMockGoalManager();
+            var taskSummaries = goalManager.GetTaskSummaries();
 
             Assert.True(taskSummaries[0] != null);
             Assert.True(taskSummaries[0].Id == "9a3c801b-5e5c-423c-9696-6a2f687f31da");
@@ -49,9 +50,9 @@ namespace SmartClient.Domain.Tests
         [Fact]
         public void GetTaskProgressSnapshotsForTask()
         {
-            var goal = MockHelpers.GetMockGoal();
-            var goalSummary = goal.GetSummary();
-            var snapshots = goal.GetTaskProgressSnapshots("9a3c801b-5e5c-423c-9696-6a2f687f31db");
+            var goalManager = MockHelpers.GetMockGoalManager();
+            var goalSummary = goalManager.GetSummary();
+            var snapshots = goalManager.GetTaskProgressSnapshots("9a3c801b-5e5c-423c-9696-6a2f687f31db");
 
             Assert.Equal(3, snapshots.Count());
             Assert.Equal(new DateTime(2010, 3, 15), snapshots[0].Day);
@@ -62,12 +63,32 @@ namespace SmartClient.Domain.Tests
         [Fact]
         public void GetGoalSummary()
         {
-            var goal = MockHelpers.GetMockGoal();
+            var goalManager = MockHelpers.GetMockGoalManager();
 
-            var goalSummary = goal.GetSummary();
+            var goalSummary = goalManager.GetSummary();
             Assert.Equal("8233815a-2fa8-435d-98da-b84f416604f7", goalSummary.Id);
             Assert.Equal("Test Goal", goalSummary.Title);
             Assert.Equal(82, goalSummary.PercentProgress);
         }
+
+        [Fact]
+        public void GetTaskProgressSnapshot()
+        {
+            var goalManager = MockHelpers.GetMockGoalManager();
+            var progressSnapshot = goalManager.GetTaskProgressSnapshot("9a3c801b-5e5c-423c-9696-6a2f687f31db", DateTime.Parse("2010-04-15 10:22:22"));
+            Assert.NotNull(progressSnapshot);
+        }
+
+
+        [Fact]
+        public void UpdateTaskProgressSnapshot()
+        {
+            var goalManager = new GoalManager(new TestGoalRepository(), string.Empty);
+            goalManager.UpdateTaskProgressSnapshot("9a3c801b-5e5c-423c-9696-6a2f687f31db", DateTime.Parse("2012-09-05 11:51:38"), 6);
+            var snapshot = goalManager.GetTaskProgressSnapshot("9a3c801b-5e5c-423c-9696-6a2f687f31db", DateTime.Parse("2012-09-05 10:22:22"));
+
+            Assert.Equal(6, snapshot.Value);
+        }
+
     }
 }

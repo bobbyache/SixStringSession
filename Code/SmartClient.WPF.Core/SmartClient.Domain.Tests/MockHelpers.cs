@@ -8,7 +8,7 @@ namespace SmartClient.Domain.Tests
 {
     public class MockHelpers
     {
-        public static GoalManager GetMockGoal()
+        public static GoalManager GetMockGoalManager()
         {
             var taskMock1 = MockHelpers.GetGoalTaskMock("9a3c801b-5e5c-423c-9696-6a2f687f31da", "Test Task 1", 0, 100, 0.5,
                 new List<IDataGoalTaskProgressSnapshot>
