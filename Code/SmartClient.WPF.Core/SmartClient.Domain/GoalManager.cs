@@ -41,7 +41,7 @@ namespace SmartClient.Domain
         public IList<IGoalTaskSummary> GetTaskSummaries()
         {
             var tasks = this.dataGoal.Tasks.Select(t => new GoalTaskSummary(
-                    t.Id, t.Title, this.dataGoal.Title, (int)Math.Round(t.ProgressHistory.Last().Value), t.Weighting));
+                    t.Id, t.Title, this.dataGoal.Title, GetLatestProgressHistoryValue(t.ProgressHistory), t.Weighting));
             return tasks.OfType<IGoalTaskSummary>().ToList();
         }
 
@@ -49,8 +49,17 @@ namespace SmartClient.Domain
         {
             var dataTask = this.dataGoal.Tasks.Where(t => t.Id == taskId).SingleOrDefault();
             var summary = new GoalTaskSummary(dataTask.Id, dataTask.Title, this.dataGoal.Title,
-                (int)Math.Round(dataTask.ProgressHistory.Last().Value), dataTask.Weighting);
+                GetLatestProgressHistoryValue(dataTask.ProgressHistory), dataTask.Weighting);
             return summary;
+        }
+
+        private int GetLatestProgressHistoryValue(IList<IDataGoalTaskProgressSnapshot> history)
+        {
+            if (history != null && history.Count() >= 1)
+            {
+                return (int)Math.Round(history.Last().Value);
+            }
+            return 0;
         }
 
         public IGoalTaskProgressSnapshot GetTaskProgressSnapshot(string taskId, DateTime date)
@@ -74,10 +83,13 @@ namespace SmartClient.Domain
         //    throw new NotImplementedException();
         //}
 
-        //public IEditableGoalTask CreateTask()
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public IEditableGoalTask CreateTask()
+        {
+            var dataGoalTask = new DataGoalTask();
+            var editableGoalTask = new EditableGoalTask(this.dataGoal.Title, dataGoalTask);
+            this.dataGoal.Tasks.Add(dataGoalTask);
+            return editableGoalTask;
+        }
 
         //public void DeleteTask(string taskId)
         //{

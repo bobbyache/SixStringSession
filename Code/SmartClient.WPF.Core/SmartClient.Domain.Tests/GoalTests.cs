@@ -90,5 +90,36 @@ namespace SmartClient.Domain.Tests
             Assert.Equal(6, snapshot.Value);
         }
 
+        [Fact]
+        public void CreateATask()
+        {
+            var goalManager = new GoalManager(new TestGoalRepository(), string.Empty);
+            var editableTask = goalManager.CreateTask();
+
+            Assert.NotNull(editableTask);
+
+            Guid guidResult;
+            Assert.True(Guid.TryParse(editableTask.Id, out guidResult), "Expected that ID would be a type of GUID");
+            Assert.Equal("New Task", editableTask.Title);
+            Assert.Equal(0.5, editableTask.Weighting);
+        }
+
+        [Fact]
+        public void CreateATask_CreatesATaskOnGoal()
+        {
+            var goalManager = new GoalManager(new TestGoalRepository(), string.Empty);
+            var editableTask = goalManager.CreateTask();
+            var taskSummary = goalManager.GetTaskSummary(editableTask.Id);
+
+            Assert.NotNull(taskSummary);
+
+            Guid guidResult;
+            Assert.True(Guid.TryParse(editableTask.Id, out guidResult), "Expected that ID would be a type of GUID");
+
+            Assert.Equal(0, taskSummary.PercentProgress);
+            Assert.Equal(0.5, taskSummary.Weighting);
+            Assert.Equal("New Task", taskSummary.Title);
+            Assert.Equal(goalManager.GetSummary().Title, taskSummary.GoalTitle);
+        }
     }
 }
