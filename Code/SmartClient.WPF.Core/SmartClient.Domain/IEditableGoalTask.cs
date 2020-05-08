@@ -12,5 +12,7 @@ namespace SmartClient.Domain
         string Title { get; set; }
 
         public double Weighting { get; set; }
+        public double Start { get; set; }
+        public double Target { get; set; }
     }
 }

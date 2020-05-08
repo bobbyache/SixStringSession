@@ -1,8 +1,5 @@
-using Moq;
-using SmartClient.Domain.Data;
 using SmartClient.Domain.Tests.Test;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using Xunit;
 
@@ -101,6 +98,8 @@ namespace SmartClient.Domain.Tests
             Guid guidResult;
             Assert.True(Guid.TryParse(editableTask.Id, out guidResult), "Expected that ID would be a type of GUID");
             Assert.Equal("New Task", editableTask.Title);
+            Assert.Equal(0, editableTask.Start);
+            Assert.Equal(100, editableTask.Target);
             Assert.Equal(0.5, editableTask.Weighting);
         }
 
@@ -120,6 +119,45 @@ namespace SmartClient.Domain.Tests
             Assert.Equal(0.5, taskSummary.Weighting);
             Assert.Equal("New Task", taskSummary.Title);
             Assert.Equal(goalManager.GetSummary().Title, taskSummary.GoalTitle);
+        }
+
+        [Fact]
+        public void GetEditableTask()
+        {
+            var goalManager = new GoalManager(new TestGoalRepository(), string.Empty);
+            var editableTask = goalManager.GetEditableTask("8233815a-2fa8-435d-98da-b84f416604f7");
+
+            Assert.NotNull(editableTask);
+
+            Guid guidResult;
+            Assert.True(Guid.TryParse(editableTask.Id, out guidResult), "Expected that ID would be a type of GUID");
+            
+            Assert.Equal(0.5, editableTask.Weighting);
+            Assert.Equal(0, editableTask.Start);
+            Assert.Equal(100, editableTask.Target);
+            Assert.Equal("Test Task 2", editableTask.Title);
+            Assert.Equal(goalManager.GetSummary().Title, editableTask.GoalTitle);
+        }
+
+        [Fact]
+        public void UpdateATask()
+        {
+            var goalManager = new GoalManager(new TestGoalRepository(), string.Empty);
+            var editableTask = goalManager.GetEditableTask("8233815a-2fa8-435d-98da-b84f416604f7");
+
+            editableTask.Title = "Changed Title";
+            editableTask.Weighting = 0.75;
+            editableTask.Start = 20;
+            editableTask.Target = 120;
+
+            // goalManager.UpdateTask(editableTask);
+
+            var updatedTask = goalManager.GetEditableTask("8233815a-2fa8-435d-98da-b84f416604f7");
+
+            Assert.Equal("Changed Title", updatedTask.Title);
+            Assert.Equal(0.75, updatedTask.Weighting);
+            Assert.Equal(20, updatedTask.Start);
+            Assert.Equal(120, updatedTask.Target);
         }
     }
 }

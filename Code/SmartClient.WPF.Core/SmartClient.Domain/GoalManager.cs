@@ -78,17 +78,24 @@ namespace SmartClient.Domain
             snapshot.Value = value;
         }
 
-        //public void UpdateTask(IEditableGoalTask task)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
         public IEditableGoalTask CreateTask()
         {
             var dataGoalTask = new DataGoalTask();
             var editableGoalTask = new EditableGoalTask(this.dataGoal.Title, dataGoalTask);
             this.dataGoal.Tasks.Add(dataGoalTask);
             return editableGoalTask;
+        }
+
+        public IEditableGoalTask GetEditableTask(string id)
+        {
+            var dataTask = this.dataGoal.Tasks.Where(t => t.Id == id).SingleOrDefault();
+            var editableGoalTask = new EditableGoalTask(this.dataGoal.Title, dataTask);
+            return editableGoalTask;
+        }
+
+        public void UpdateTask(IEditableGoalTask task)
+        {
+            throw new NotImplementedException();
         }
 
         //public void DeleteTask(string taskId)
