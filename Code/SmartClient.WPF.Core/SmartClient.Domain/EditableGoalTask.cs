@@ -33,17 +33,29 @@ namespace SmartClient.Domain
 
         public string GoalTitle { get; }
         public string Id => this.dataGoalTask.Id;
+
         public string Title
         {
-            get => this.dataGoalTask.Title;
-            set => this.dataGoalTask.Title = value;
+            get { return this.dataGoalTask.Title; }
+            set {
+                if (string.IsNullOrEmpty(value) || value.Length < 3)
+                    throw new InvalidTitleException("Invalid title");
+                this.dataGoalTask.Title = value;
+            }
         }
 
         public double Weighting
         {
-            get => this.dataGoalTask.Weighting;
-            set => this.dataGoalTask.Weighting = value;
+            get { return this.dataGoalTask.Weighting; }
+            set 
+            {
+                if (value < 0 || value > 1)
+
+                    throw new InvalidWeightingException("Weighting must be between 0 and 1");
+                this.dataGoalTask.Weighting = value; 
+            }
         }
+
         public double Start
         {
             get { return this.dataGoalTask.Start; }

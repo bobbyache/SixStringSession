@@ -100,6 +100,33 @@ namespace SmartClient.Domain.Tests
         }
 
         [Fact]
+        public void UpdateTask_EnsureTitleLengthValid()
+        {
+            var goalManager = new GoalManager(new TestGoalRepository(), string.Empty);
+            var task = goalManager.GetEditableTask("9a3c801b-5e5c-423c-9696-6a2f687f31db");
+
+            Assert.Throws<InvalidTitleException>(new Action(() => task.Title = "sh"));
+        }
+
+        [Fact]
+        public void UpdateTask_EnsureWeightingNotLessThanZero()
+        {
+            var goalManager = new GoalManager(new TestGoalRepository(), string.Empty);
+            var task = goalManager.GetEditableTask("9a3c801b-5e5c-423c-9696-6a2f687f31db");
+
+            Assert.Throws<InvalidWeightingException>(new Action(() => task.Weighting = -0.001));
+        }
+
+        [Fact]
+        public void UpdateTask_EnsureWeightingNotMoreThanOne()
+        {
+            var goalManager = new GoalManager(new TestGoalRepository(), string.Empty);
+            var task = goalManager.GetEditableTask("9a3c801b-5e5c-423c-9696-6a2f687f31db");
+
+            Assert.Throws<InvalidWeightingException>(new Action(() => task.Weighting = 1.001));
+        }
+
+        [Fact]
         public void CreateATask()
         {
             var goalManager = new GoalManager(new TestGoalRepository(), string.Empty);
