@@ -70,6 +70,27 @@ namespace SmartClient.Domain.Tests
         }
 
         [Fact]
+        public void UpdateGoal_EnsureTitleLengthValid()
+        {
+            var goalManager = new GoalManager(new TestGoalRepository(), string.Empty);
+            Assert.Throws<InvalidTitleException>(new Action(() => goalManager.GetEditableGoal().Title = "sh"));
+        }
+
+        [Fact]
+        public void UpdateGoal_EnsureWeightingNotLessThanZero()
+        {
+            var goalManager = new GoalManager(new TestGoalRepository(), string.Empty);
+            Assert.Throws<InvalidWeightingException>(new Action(() => goalManager.GetEditableGoal().Weighting = -0.001));
+        }
+
+        [Fact]
+        public void UpdateGoal_EnsureWeightingNotMoreThanOne()
+        {
+            var goalManager = new GoalManager(new TestGoalRepository(), string.Empty);
+            Assert.Throws<InvalidWeightingException>(new Action(() => goalManager.GetEditableGoal().Weighting = 1.001));
+        }
+
+        [Fact]
         public void GetTaskProgressSnapshot()
         {
             var goalManager = MockHelpers.GetMockGoalManager();

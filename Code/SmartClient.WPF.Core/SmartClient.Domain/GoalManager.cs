@@ -90,6 +90,11 @@ namespace SmartClient.Domain
             }
         }
 
+        public IEditableGoal GetEditableGoal()
+        {
+            return new EditableGoal(this.dataGoal);
+        }
+
         public IEditableGoalTask CreateTask()
         {
             var dataGoalTask = new DataGoalTask();
