@@ -75,7 +75,19 @@ namespace SmartClient.Domain
             var dataTask = this.dataGoal.Tasks.Where(t => t.Id == taskId).SingleOrDefault();
             var snapshot = dataTask.ProgressHistory
                 .Where(ph => ph.Day == date.ToString("yyyy-MM-dd")).SingleOrDefault();
-            snapshot.Value = value;
+            if (snapshot == null)
+            {
+                var newSnapshot = new DataGoalTaskProgressSnapshot()
+                {
+                    Day = date.ToString("yyyy-MM-dd"),
+                    Value = value
+                };
+                dataTask.ProgressHistory.Add(newSnapshot);
+            }
+            else
+            {
+                snapshot.Value = value;
+            }
         }
 
         public IEditableGoalTask CreateTask()

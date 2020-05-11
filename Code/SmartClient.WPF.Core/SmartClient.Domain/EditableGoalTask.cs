@@ -1,6 +1,8 @@
 ﻿using SmartClient.Domain.Data;
+using SmartClient.Domain.Exceptions;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection.Metadata.Ecma335;
 using System.Text;
 
@@ -42,15 +44,48 @@ namespace SmartClient.Domain
             get => this.dataGoalTask.Weighting;
             set => this.dataGoalTask.Weighting = value;
         }
-        public double Start 
+        public double Start
         {
-            get => this.dataGoalTask.Start;
-            set => this.dataGoalTask.Start = value;
+            get { return this.dataGoalTask.Start; }
+            set
+            {
+                if (this.dataGoalTask.Target <= value)
+                {
+                    throw new OutOfProgressHistoryBoundsException("Start value cannot equal or more than the Target");
+                }
+
+                if (this.dataGoalTask.ProgressHistory.Count > 0)
+                {
+                    var minValue = this.dataGoalTask.ProgressHistory.Select(s => s.Value).Min();
+                    if (value > minValue)
+                    {
+                        throw new OutOfProgressHistoryBoundsException("Start value would place some progress history out of bounds");
+                    }
+                }
+                this.dataGoalTask.Start = value;
+            }
         }
+
         public double Target 
         {
-            get => this.dataGoalTask.Target;
-            set => this.dataGoalTask.Target = value;
+            get { return this.dataGoalTask.Target; }
+            set
+            {
+                if (this.dataGoalTask.Start >= value)
+                {
+                    throw new OutOfProgressHistoryBoundsException("Target value cannot be equal or less than the Start");
+                }
+
+                if (this.dataGoalTask.ProgressHistory.Count > 0)
+                {
+                    var maxValue = this.dataGoalTask.ProgressHistory.Select(s => s.Value).Max();
+                    if (value < maxValue)
+                    {
+                        throw new OutOfProgressHistoryBoundsException("Target value would place some progress history out of bounds");
+                    }
+                }
+                this.dataGoalTask.Target = value;
+            }
         }
     }
 }

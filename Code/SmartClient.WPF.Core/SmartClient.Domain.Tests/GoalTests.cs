@@ -1,3 +1,4 @@
+using SmartClient.Domain.Exceptions;
 using SmartClient.Domain.Tests.Test;
 using System;
 using System.Linq;
@@ -78,13 +79,24 @@ namespace SmartClient.Domain.Tests
 
 
         [Fact]
-        public void UpdateTaskProgressSnapshot()
+        public void UpdateTaskProgressSnapshot_ExistingItem()
         {
             var goalManager = new GoalManager(new TestGoalRepository(), string.Empty);
             goalManager.UpdateTaskProgressSnapshot("9a3c801b-5e5c-423c-9696-6a2f687f31db", DateTime.Parse("2012-09-05 11:51:38"), 6);
             var snapshot = goalManager.GetTaskProgressSnapshot("9a3c801b-5e5c-423c-9696-6a2f687f31db", DateTime.Parse("2012-09-05 10:22:22"));
 
             Assert.Equal(6, snapshot.Value);
+        }
+
+        [Fact]
+        public void UpdateTaskProgressSnapshot_NewItem()
+        {
+            var goalManager = new GoalManager(new TestGoalRepository(), string.Empty);
+            goalManager.UpdateTaskProgressSnapshot("9a3c801b-5e5c-423c-9696-6a2f687f31db", DateTime.Parse("2012-09-05 11:51:38"), 6);
+            goalManager.UpdateTaskProgressSnapshot("9a3c801b-5e5c-423c-9696-6a2f687f31db", DateTime.Parse("2014-10-15"), 7);
+            var snapshot = goalManager.GetTaskProgressSnapshot("9a3c801b-5e5c-423c-9696-6a2f687f31db", DateTime.Parse("2014-10-15 10:22:22"));
+
+            Assert.Equal(7, snapshot.Value);
         }
 
         [Fact]
@@ -158,6 +170,79 @@ namespace SmartClient.Domain.Tests
             Assert.Equal(0.75, updatedTask.Weighting);
             Assert.Equal(20, updatedTask.Start);
             Assert.Equal(120, updatedTask.Target);
+        }
+
+        [Fact]
+        public void UpdateATask_EnsureTargetNotSetLessThanMaxProgressSnapshot()
+        {
+            var goalManager = new GoalManager(new TestGoalRepository(), string.Empty);
+            var editableTask = goalManager.CreateTask();
+            var taskId = editableTask.Id;
+
+            goalManager.UpdateTaskProgressSnapshot(editableTask.Id, DateTime.Parse("2012-09-05"), 10);
+            goalManager.UpdateTaskProgressSnapshot(editableTask.Id, DateTime.Parse("2012-09-06"), 15);
+            goalManager.UpdateTaskProgressSnapshot(editableTask.Id, DateTime.Parse("2012-09-07"), 20);
+
+            Assert.Throws<OutOfProgressHistoryBoundsException>(new Action(() => editableTask.Target = 19));
+        }
+
+        [Fact]
+        public void UpdateATask_EnsureTargetNotEqualTo_Start()
+        {
+            var goalManager = new GoalManager(new TestGoalRepository(), string.Empty);
+            var editableTask = goalManager.CreateTask();
+            var taskId = editableTask.Id;
+
+            Assert.Throws<OutOfProgressHistoryBoundsException>(new Action(() => editableTask.Target = 0));
+        }
+
+        [Fact]
+        public void UpdateATask_EnsureTargetNotSmallerThan_Start()
+        {
+            var goalManager = new GoalManager(new TestGoalRepository(), string.Empty);
+            var editableTask = goalManager.CreateTask();
+            var taskId = editableTask.Id;
+
+            Assert.Throws<OutOfProgressHistoryBoundsException>(new Action(() => editableTask.Target = -1));
+        }
+
+
+        [Fact]
+        public void UpdateATask_EnsureStartNotSetMoreThanMinProgressSnapshot()
+        {
+            var goalManager = new GoalManager(new TestGoalRepository(), string.Empty);
+            var editableTask = goalManager.CreateTask();
+            var taskId = editableTask.Id;
+
+            goalManager.UpdateTaskProgressSnapshot(editableTask.Id, DateTime.Parse("2012-09-05"), 10);
+            goalManager.UpdateTaskProgressSnapshot(editableTask.Id, DateTime.Parse("2012-09-06"), 15);
+            goalManager.UpdateTaskProgressSnapshot(editableTask.Id, DateTime.Parse("2012-09-07"), 20);
+
+            Assert.Throws<OutOfProgressHistoryBoundsException>(new Action(() => editableTask.Start = 11));
+        }
+
+        [Fact]
+        public void UpdateATask_EnsureStartNotEqualTo_Target()
+        {
+            var goalManager = new GoalManager(new TestGoalRepository(), string.Empty);
+            var editableTask = goalManager.CreateTask();
+            var taskId = editableTask.Id;
+
+            editableTask.Target = 100;
+
+            Assert.Throws<OutOfProgressHistoryBoundsException>(new Action(() => editableTask.Start = 100));
+        }
+
+        [Fact]
+        public void UpdateATask_EnsureStartNotBiggerThan_Target()
+        {
+            var goalManager = new GoalManager(new TestGoalRepository(), string.Empty);
+            var editableTask = goalManager.CreateTask();
+            var taskId = editableTask.Id;
+
+            editableTask.Target = 100;
+
+            Assert.Throws<OutOfProgressHistoryBoundsException>(new Action(() => editableTask.Start = 101));
         }
     }
 }
