@@ -14,14 +14,14 @@ namespace SmartClient.Domain.Tests
         public void GetATaskSummaryGivenATaskId()
         {
             var goalManager = MockHelpers.GetMockGoalManager();
-            var taskSummary = goalManager.GetTaskSummary("9a3c801b-5e5c-423c-9696-6a2f687f31da");
+            var taskSummary = goalManager.GetTaskSummary(MockHelpers.TASK_1_ID);
 
             Assert.True(taskSummary != null);
-            Assert.True(taskSummary.Id == "9a3c801b-5e5c-423c-9696-6a2f687f31da");
-            Assert.Equal("Test Task 1", taskSummary.Title);
+            Assert.True(taskSummary.Id == MockHelpers.TASK_1_ID);
+            Assert.Equal(MockHelpers.TASK_1_TITLE, taskSummary.Title);
             Assert.True(taskSummary.PercentProgress == 75);
             Assert.True(taskSummary.Weighting == 0.5);
-            Assert.True(taskSummary.GoalTitle == "Test Goal");
+            Assert.True(taskSummary.GoalTitle == MockHelpers.GOAL_TITLE);
         }
 
         [Fact]
@@ -31,18 +31,18 @@ namespace SmartClient.Domain.Tests
             var taskSummaries = goalManager.GetTaskSummaries();
 
             Assert.True(taskSummaries[0] != null);
-            Assert.True(taskSummaries[0].Id == "9a3c801b-5e5c-423c-9696-6a2f687f31da");
-            Assert.True(taskSummaries[0].Title == "Test Task 1");
+            Assert.True(taskSummaries[0].Id == MockHelpers.TASK_1_ID);
+            Assert.True(taskSummaries[0].Title == MockHelpers.TASK_1_TITLE);
             Assert.True(taskSummaries[0].PercentProgress == 75);
             Assert.True(taskSummaries[0].Weighting == 0.5);
-            Assert.True(taskSummaries[0].GoalTitle == "Test Goal");
+            Assert.True(taskSummaries[0].GoalTitle == MockHelpers.GOAL_TITLE);
 
             Assert.True(taskSummaries[1] != null);
-            Assert.True(taskSummaries[1].Id == "9a3c801b-5e5c-423c-9696-6a2f687f31db");
-            Assert.True(taskSummaries[1].Title == "Test Task 2");
+            Assert.True(taskSummaries[1].Id == MockHelpers.TASK_2_ID);
+            Assert.True(taskSummaries[1].Title == MockHelpers.TASK_2_TITLE);
             Assert.True(taskSummaries[1].PercentProgress == 90);
             Assert.True(taskSummaries[1].Weighting == 0.5);
-            Assert.True(taskSummaries[1].GoalTitle == "Test Goal");
+            Assert.True(taskSummaries[1].GoalTitle == MockHelpers.GOAL_TITLE);
         }
 
         [Fact]
@@ -50,7 +50,7 @@ namespace SmartClient.Domain.Tests
         {
             var goalManager = MockHelpers.GetMockGoalManager();
             var goalSummary = goalManager.GetSummary();
-            var snapshots = goalManager.GetTaskProgressSnapshots("9a3c801b-5e5c-423c-9696-6a2f687f31db");
+            var snapshots = goalManager.GetTaskProgressSnapshots(MockHelpers.TASK_2_ID);
 
             Assert.Equal(3, snapshots.Count());
             Assert.Equal(new DateTime(2010, 3, 15), snapshots[0].Day);
@@ -64,8 +64,8 @@ namespace SmartClient.Domain.Tests
             var goalManager = MockHelpers.GetMockGoalManager();
 
             var goalSummary = goalManager.GetSummary();
-            Assert.Equal("8233815a-2fa8-435d-98da-b84f416604f7", goalSummary.Id);
-            Assert.Equal("Test Goal", goalSummary.Title);
+            Assert.Equal(MockHelpers.GOAL_ID, goalSummary.Id);
+            Assert.Equal(MockHelpers.GOAL_TITLE, goalSummary.Title);
             Assert.Equal(82, goalSummary.PercentProgress);
         }
 
@@ -94,7 +94,7 @@ namespace SmartClient.Domain.Tests
         public void GetTaskProgressSnapshot()
         {
             var goalManager = MockHelpers.GetMockGoalManager();
-            var progressSnapshot = goalManager.GetTaskProgressSnapshot("9a3c801b-5e5c-423c-9696-6a2f687f31db", DateTime.Parse("2010-04-15 10:22:22"));
+            var progressSnapshot = goalManager.GetTaskProgressSnapshot(MockHelpers.TASK_2_ID, DateTime.Parse("2010-04-15 10:22:22"));
             Assert.NotNull(progressSnapshot);
         }
 
@@ -103,8 +103,8 @@ namespace SmartClient.Domain.Tests
         public void UpdateTaskProgressSnapshot_ExistingItem()
         {
             var goalManager = new GoalManager(new TestGoalRepository(), string.Empty);
-            goalManager.UpdateTaskProgressSnapshot("9a3c801b-5e5c-423c-9696-6a2f687f31db", DateTime.Parse("2012-09-05 11:51:38"), 6);
-            var snapshot = goalManager.GetTaskProgressSnapshot("9a3c801b-5e5c-423c-9696-6a2f687f31db", DateTime.Parse("2012-09-05 10:22:22"));
+            goalManager.UpdateTaskProgressSnapshot(MockHelpers.TASK_2_ID, DateTime.Parse("2012-09-05 11:51:38"), 6);
+            var snapshot = goalManager.GetTaskProgressSnapshot(MockHelpers.TASK_2_ID, DateTime.Parse("2012-09-05 10:22:22"));
 
             Assert.Equal(6, snapshot.Value);
         }
@@ -113,9 +113,9 @@ namespace SmartClient.Domain.Tests
         public void UpdateTaskProgressSnapshot_NewItem()
         {
             var goalManager = new GoalManager(new TestGoalRepository(), string.Empty);
-            goalManager.UpdateTaskProgressSnapshot("9a3c801b-5e5c-423c-9696-6a2f687f31db", DateTime.Parse("2012-09-05 11:51:38"), 6);
-            goalManager.UpdateTaskProgressSnapshot("9a3c801b-5e5c-423c-9696-6a2f687f31db", DateTime.Parse("2014-10-15"), 7);
-            var snapshot = goalManager.GetTaskProgressSnapshot("9a3c801b-5e5c-423c-9696-6a2f687f31db", DateTime.Parse("2014-10-15 10:22:22"));
+            goalManager.UpdateTaskProgressSnapshot(MockHelpers.TASK_2_ID, DateTime.Parse("2012-09-05 11:51:38"), 6);
+            goalManager.UpdateTaskProgressSnapshot(MockHelpers.TASK_2_ID, DateTime.Parse("2014-10-15"), 7);
+            var snapshot = goalManager.GetTaskProgressSnapshot(MockHelpers.TASK_2_ID, DateTime.Parse("2014-10-15 10:22:22"));
 
             Assert.Equal(7, snapshot.Value);
         }
@@ -124,7 +124,7 @@ namespace SmartClient.Domain.Tests
         public void UpdateTask_EnsureTitleLengthValid()
         {
             var goalManager = new GoalManager(new TestGoalRepository(), string.Empty);
-            var task = goalManager.GetEditableTask("9a3c801b-5e5c-423c-9696-6a2f687f31db");
+            var task = goalManager.GetEditableTask(MockHelpers.TASK_2_ID);
 
             Assert.Throws<InvalidTitleException>(new Action(() => task.Title = "sh"));
         }
@@ -133,7 +133,7 @@ namespace SmartClient.Domain.Tests
         public void UpdateTask_EnsureWeightingNotLessThanZero()
         {
             var goalManager = new GoalManager(new TestGoalRepository(), string.Empty);
-            var task = goalManager.GetEditableTask("9a3c801b-5e5c-423c-9696-6a2f687f31db");
+            var task = goalManager.GetEditableTask(MockHelpers.TASK_2_ID);
 
             Assert.Throws<InvalidWeightingException>(new Action(() => task.Weighting = -0.001));
         }
@@ -142,7 +142,7 @@ namespace SmartClient.Domain.Tests
         public void UpdateTask_EnsureWeightingNotMoreThanOne()
         {
             var goalManager = new GoalManager(new TestGoalRepository(), string.Empty);
-            var task = goalManager.GetEditableTask("9a3c801b-5e5c-423c-9696-6a2f687f31db");
+            var task = goalManager.GetEditableTask(MockHelpers.TASK_2_ID);
 
             Assert.Throws<InvalidWeightingException>(new Action(() => task.Weighting = 1.001));
         }
@@ -185,7 +185,7 @@ namespace SmartClient.Domain.Tests
         public void GetEditableTask()
         {
             var goalManager = new GoalManager(new TestGoalRepository(), string.Empty);
-            var editableTask = goalManager.GetEditableTask("8233815a-2fa8-435d-98da-b84f416604f7");
+            var editableTask = goalManager.GetEditableTask(MockHelpers.GOAL_ID);
 
             Assert.NotNull(editableTask);
 
@@ -195,7 +195,7 @@ namespace SmartClient.Domain.Tests
             Assert.Equal(0.5, editableTask.Weighting);
             Assert.Equal(0, editableTask.Start);
             Assert.Equal(100, editableTask.Target);
-            Assert.Equal("Test Task 2", editableTask.Title);
+            Assert.Equal(MockHelpers.TASK_2_TITLE, editableTask.Title);
             Assert.Equal(goalManager.GetSummary().Title, editableTask.GoalTitle);
         }
 
@@ -203,7 +203,7 @@ namespace SmartClient.Domain.Tests
         public void UpdateATask()
         {
             var goalManager = new GoalManager(new TestGoalRepository(), string.Empty);
-            var editableTask = goalManager.GetEditableTask("8233815a-2fa8-435d-98da-b84f416604f7");
+            var editableTask = goalManager.GetEditableTask(MockHelpers.GOAL_ID);
 
             editableTask.Title = "Changed Title";
             editableTask.Weighting = 0.75;
@@ -212,7 +212,7 @@ namespace SmartClient.Domain.Tests
 
             // goalManager.UpdateTask(editableTask);
 
-            var updatedTask = goalManager.GetEditableTask("8233815a-2fa8-435d-98da-b84f416604f7");
+            var updatedTask = goalManager.GetEditableTask(MockHelpers.GOAL_ID);
 
             Assert.Equal("Changed Title", updatedTask.Title);
             Assert.Equal(0.75, updatedTask.Weighting);

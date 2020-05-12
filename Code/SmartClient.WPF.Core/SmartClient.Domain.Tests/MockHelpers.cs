@@ -8,9 +8,17 @@ namespace SmartClient.Domain.Tests
 {
     public class MockHelpers
     {
+        public static string GOAL_ID = "8233815a-2fa8-435d-98da-b84f416604f7";
+        public static string GOAL_TITLE = "Test Goal";
+
+        public static string TASK_1_ID = "9a3c801b-5e5c-423c-9696-6a2f687f31da";
+        public static string TASK_1_TITLE = "Test Task 1";
+
+        public static string TASK_2_ID = "9a3c801b-5e5c-423c-9696-6a2f687f31db";
+        public static string TASK_2_TITLE = "Test Task 2";
         public static GoalManager GetMockGoalManager()
         {
-            var taskMock1 = MockHelpers.GetGoalTaskMock("9a3c801b-5e5c-423c-9696-6a2f687f31da", "Test Task 1", 0, 100, 0.5,
+            var taskMock1 = MockHelpers.GetGoalTaskMock(TASK_1_ID, TASK_1_TITLE, 0, 100, 0.5,
                 new List<IDataGoalTaskProgressSnapshot>
                 {
                     MockHelpers.GetGoalTaskProgressSnapshotMock("2010-03-15", 25).Object,
@@ -19,7 +27,7 @@ namespace SmartClient.Domain.Tests
                 }
             );
 
-            var taskMock2 = MockHelpers.GetGoalTaskMock("9a3c801b-5e5c-423c-9696-6a2f687f31db", "Test Task 2", 0, 100, 0.5,
+            var taskMock2 = MockHelpers.GetGoalTaskMock(TASK_2_ID, TASK_2_TITLE, 0, 100, 0.5,
                 new List<IDataGoalTaskProgressSnapshot>
                 {
                     MockHelpers.GetGoalTaskProgressSnapshotMock("2010-03-15", 10).Object,
