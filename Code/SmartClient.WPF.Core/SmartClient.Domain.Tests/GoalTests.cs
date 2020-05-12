@@ -203,6 +203,32 @@ namespace SmartClient.Domain.Tests
         }
 
         [Fact]
+        public void GetTaskDetail()
+        {
+            var goalManager = new GoalManager(new TestGoalRepository(), string.Empty);
+            GoalTaskDetail taskDetail = goalManager.GetTaskDetail("9a3c801b-5e5c-423c-9696-6a2f687f31db");
+
+            Assert.Equal("9a3c801b-5e5c-423c-9696-6a2f687f31db", taskDetail.Id);
+            Assert.Equal("Test Task 1", taskDetail.Title);
+            Assert.Equal(0, taskDetail.Start);
+            Assert.Equal(100, taskDetail.Target);
+            Assert.Equal(0.5, taskDetail.Weighting);
+            
+            Assert.Equal(3, taskDetail.TaskProgressSnapshots.Length);
+        }
+
+        [Fact]
+        public void GetTaskDetail_EnsureProgressHistoryIsSorted()
+        {
+            var goalManager = new GoalManager(new TestGoalRepository(), string.Empty);
+            GoalTaskDetail taskDetail = goalManager.GetTaskDetail("9a3c801b-5e5c-423c-9696-6a2f687f31db");
+
+        
+            Assert.Equal(DateTime.Parse("2012-08-23"), taskDetail.TaskProgressSnapshots[0].Day);
+            Assert.Equal(DateTime.Parse("2012-09-23"), taskDetail.TaskProgressSnapshots[2].Day);
+        }
+
+        [Fact]
         public void UpdateATask()
         {
             var goalManager = new GoalManager(new TestGoalRepository(), string.Empty);

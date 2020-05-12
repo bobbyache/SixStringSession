@@ -131,5 +131,11 @@ namespace SmartClient.Domain
         {
             this.goalRepository.Save(this.dataGoal, this.filePath);
         }
+
+        public GoalTaskDetail GetTaskDetail(string taskId)
+        {
+            var dataTask = this.dataGoal.Tasks.Where(t => t.Id == taskId).SingleOrDefault();
+            return new GoalTaskDetail(dataTask);
+        }
     }
 }

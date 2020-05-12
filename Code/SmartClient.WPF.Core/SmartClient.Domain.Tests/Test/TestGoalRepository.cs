@@ -60,9 +60,9 @@ namespace SmartClient.Domain.Tests.Test
 
             var goalTaskProgressHistory = new List<IDataGoalTaskProgressSnapshot>
             {
-                new TestDataGoalTaskProgressSnapshot() { Day = "2012-08-23", Value = 20 },
                 new TestDataGoalTaskProgressSnapshot() { Day = "2012-09-05", Value = 20 },
-                new TestDataGoalTaskProgressSnapshot() { Day = "2012-09-23", Value = 20 }
+                new TestDataGoalTaskProgressSnapshot() { Day = "2012-09-23", Value = 20 },
+                new TestDataGoalTaskProgressSnapshot() { Day = "2012-08-23", Value = 20 }
             };
 
             goalTask.ProgressHistory = goalTaskProgressHistory;
