@@ -70,7 +70,7 @@ namespace SmartClient.Domain.Tests.Test
             return goalTask;
         }
 
-        public string Save(IDataGoal goal, string filePath)
+        public void Save(IDataGoal goal, string filePath)
         {
             throw new NotImplementedException();
         }

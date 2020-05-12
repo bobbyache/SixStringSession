@@ -3,6 +3,6 @@
     public interface IGoalRepository
     {
         IDataGoal Open(string filePath);
-        string Save(IDataGoal goal, string filePath);
+        void Save(IDataGoal goal, string filePath);
     }
 }
