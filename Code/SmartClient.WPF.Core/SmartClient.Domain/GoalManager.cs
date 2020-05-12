@@ -12,9 +12,11 @@ namespace SmartClient.Domain
     {
         protected IDataGoal dataGoal;
         protected readonly IGoalRepository goalRepository;
+        private string filePath;
 
         public GoalManager(IGoalRepository goalRepository, string filePath)
         {
+            this.filePath = filePath;
             this.goalRepository = goalRepository;
             this.dataGoal = goalRepository.Open(filePath);
         }
@@ -48,9 +50,13 @@ namespace SmartClient.Domain
         public IGoalTaskSummary GetTaskSummary(string taskId)
         {
             var dataTask = this.dataGoal.Tasks.Where(t => t.Id == taskId).SingleOrDefault();
-            var summary = new GoalTaskSummary(dataTask.Id, dataTask.Title, this.dataGoal.Title,
-                GetLatestProgressHistoryValue(dataTask.ProgressHistory), dataTask.Weighting);
-            return summary;
+            if (dataTask != null)
+            {
+                var summary = new GoalTaskSummary(dataTask.Id, dataTask.Title, this.dataGoal.Title,
+                    GetLatestProgressHistoryValue(dataTask.ProgressHistory), dataTask.Weighting);
+                return summary;
+            }
+            return null;
         }
 
         private int GetLatestProgressHistoryValue(IList<IDataGoalTaskProgressSnapshot> history)
@@ -115,14 +121,15 @@ namespace SmartClient.Domain
             throw new NotImplementedException();
         }
 
-        //public void DeleteTask(string taskId)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public void DeleteTask(string taskId)
+        {
+            var dataTask = this.dataGoal.Tasks.Where(t => t.Id == taskId).SingleOrDefault();
+            this.dataGoal.Tasks.Remove(dataTask);
+        }
 
-        //public void Save()
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public void Save()
+        {
+            this.goalRepository.Save(this.dataGoal, this.filePath);
+        }
     }
 }

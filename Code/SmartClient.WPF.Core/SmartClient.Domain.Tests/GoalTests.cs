@@ -1,7 +1,10 @@
+using Moq;
+using SmartClient.Domain.Data;
 using SmartClient.Domain.Exceptions;
 using SmartClient.Domain.Tests.Test;
 using System;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using Xunit;
 
 namespace SmartClient.Domain.Tests
@@ -291,6 +294,31 @@ namespace SmartClient.Domain.Tests
             editableTask.Target = 100;
 
             Assert.Throws<OutOfProgressHistoryBoundsException>(new Action(() => editableTask.Start = 101));
+        }
+
+        [Fact]
+        public void DeleteATask()
+        {
+            var goalManager = new GoalManager(new TestGoalRepository(), string.Empty);
+            var taskSummaries = goalManager.GetTaskSummaries();
+            var numTasks = taskSummaries.Count;
+            var firstTaskId = taskSummaries[0].Id;
+
+            goalManager.DeleteTask(firstTaskId);
+
+            Assert.Equal(numTasks - 1, goalManager.GetTaskSummaries().Count);
+            Assert.Null(goalManager.GetTaskSummary(firstTaskId));
+        }
+
+        [Fact]
+        public void SaveAGoal_CallsSaveOnRepository()
+        {
+            var mockRepository = new Mock<IGoalRepository>();
+            
+            var goalManager = new GoalManager(mockRepository.Object, string.Empty);
+            goalManager.Save();
+
+            mockRepository.Verify(r => r.Save(It.IsAny<IDataGoal>(), It.IsAny<string>()), Times.Once());
         }
     }
 }
