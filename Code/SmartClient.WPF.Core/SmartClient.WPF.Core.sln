@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.30002.166
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartClient.Domain", "SmartClient.Domain\SmartClient.Domain.csproj", "{5735757E-4376-494A-8F73-91B46F5EBA69}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartClient.Domain.Tests", "SmartClient.Domain.Tests\SmartClient.Domain.Tests.csproj", "{5ABE7B63-D093-4344-BC88-A3993FE29554}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartClient.Domain.Tests", "SmartClient.Domain.Tests\SmartClient.Domain.Tests.csproj", "{5ABE7B63-D093-4344-BC88-A3993FE29554}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartGoals", "SmartGoals\SmartGoals.csproj", "{2899C9C5-68DA-4211-AB07-AFDA6E751787}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{5ABE7B63-D093-4344-BC88-A3993FE29554}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5ABE7B63-D093-4344-BC88-A3993FE29554}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5ABE7B63-D093-4344-BC88-A3993FE29554}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2899C9C5-68DA-4211-AB07-AFDA6E751787}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2899C9C5-68DA-4211-AB07-AFDA6E751787}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2899C9C5-68DA-4211-AB07-AFDA6E751787}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2899C9C5-68DA-4211-AB07-AFDA6E751787}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
