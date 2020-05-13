@@ -38,7 +38,7 @@ namespace SmartClient.Domain.Tests
 
 
             var goalMock = MockHelpers.GetGoalMock("8233815a-2fa8-435d-98da-b84f416604f7", "Test Goal", 0.5, new List<IDataGoalTask> { taskMock1.Object, taskMock2.Object });
-            var goal = new GoalManager(MockHelpers.GetGoalRepositoryMock(goalMock).Object, null);
+            var goal = new GoalManager(MockHelpers.GetGoalRepositoryMock(goalMock).Object);
 
             return goal;
         }

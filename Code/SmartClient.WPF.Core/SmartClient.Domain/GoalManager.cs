@@ -14,9 +14,8 @@ namespace SmartClient.Domain
         protected readonly IGoalRepository goalRepository;
         private string filePath;
 
-        public GoalManager(IGoalRepository goalRepository, string filePath)
+        public GoalManager(IGoalRepository goalRepository)
         {
-            this.filePath = filePath;
             this.goalRepository = goalRepository;
             this.dataGoal = goalRepository.Open(filePath);
         }
