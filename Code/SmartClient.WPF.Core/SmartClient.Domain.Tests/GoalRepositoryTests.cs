@@ -46,13 +46,13 @@ namespace SmartClient.Domain.Tests
             return Exists;
         }
 
-        protected override IDataGoal Read(string filePath)
+        protected override DataGoal Read(string filePath)
         {
             FileRead = true;
             return null;
         }
 
-        protected override IDataGoal Create(string filePath)
+        protected override DataGoal Create(string filePath)
         {
             FileCreated = true;
             return null;

@@ -414,7 +414,7 @@ namespace SmartClient.Domain.Tests
 
             goalManager.Save();
 
-            mockRepository.Verify(r => r.Save(It.IsAny<IDataGoal>(), It.IsAny<string>()), Times.Once());
+            mockRepository.Verify(r => r.Save(It.IsAny<DataGoal>(), It.IsAny<string>()), Times.Once());
         }
     }
 }

@@ -8,7 +8,7 @@ namespace SmartClient.Domain
 {
     public class GoalDetail : GoalSummary, IGoalDetail
     {
-        public GoalDetail(IDataGoal dataGoal) : base(dataGoal) { }
+        public GoalDetail(DataGoal dataGoal) : base(dataGoal) { }
         public IGoalTaskSummary[] TaskSummaries
         {
             get

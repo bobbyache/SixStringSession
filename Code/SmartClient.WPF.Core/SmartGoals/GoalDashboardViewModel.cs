@@ -16,6 +16,21 @@ namespace SmartGoals
 
         public GoalDashboardViewModel(IEventAggregator eventAggregator, GoalManager goalManager)
         {
+            goalManager.Open(@"C:\Code\dummy_goal.json");
+
+            goalManager.Save(@"C:\Code\dummy_goal_saved.json");
+            // var goalTask = goalManager.CreateTask();
+            //goalTask.Title = "First Task";
+            //goalTask.Start = 20;
+            //goalTask.Target = 150;
+
+            //goalManager.UpdateTaskProgressSnapshot(goalTask.Id, DateTime.Parse("2020-03-02"), 5);
+            //goalManager.UpdateTaskProgressSnapshot(goalTask.Id, DateTime.Parse("2020-03-03"), 6);
+            //goalManager.UpdateTaskProgressSnapshot(goalTask.Id, DateTime.Parse("2020-03-03"), 7);
+
+
+            // goalManager.Save();
+
             this.eventAggregator = eventAggregator;
             this.eventAggregator.SubscribeOnUIThread(this);
 

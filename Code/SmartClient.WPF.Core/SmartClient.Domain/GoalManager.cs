@@ -10,7 +10,7 @@ namespace SmartClient.Domain
 {
     public class GoalManager
     {
-        protected IDataGoal dataGoal;
+        protected DataGoal dataGoal;
         protected readonly IGoalRepository goalRepository;
         private string filePath = null;
 
@@ -80,7 +80,7 @@ namespace SmartClient.Domain
             return null;
         }
 
-        private int GetLatestProgressHistoryValue(IList<IDataGoalTaskProgressSnapshot> history)
+        private int GetLatestProgressHistoryValue(IList<DataGoalTaskProgressSnapshot> history)
         {
             if (!this.IsOpened()) throw new InvalidOperationException(NO_DATA_LOADED);
 
@@ -168,6 +168,13 @@ namespace SmartClient.Domain
         {
             if (!this.IsOpened()) throw new InvalidOperationException(NO_DATA_LOADED);
 
+            this.goalRepository.Save(this.dataGoal, this.filePath);
+        }
+
+        public void Save(string filePath)
+        {
+            if (!this.IsOpened()) throw new InvalidOperationException(NO_DATA_LOADED);
+            this.filePath = filePath;
             this.goalRepository.Save(this.dataGoal, this.filePath);
         }
 

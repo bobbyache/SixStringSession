@@ -2,7 +2,7 @@
 {
     public interface IGoalRepository
     {
-        IDataGoal Open(string filePath);
-        void Save(IDataGoal goal, string filePath);
+        DataGoal Open(string filePath);
+        void Save(DataGoal goal, string filePath);
     }
 }

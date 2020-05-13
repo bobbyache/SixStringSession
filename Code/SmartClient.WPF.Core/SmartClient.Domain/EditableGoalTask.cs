@@ -10,9 +10,9 @@ namespace SmartClient.Domain
 {
     public class EditableGoalTask : IEditableGoalTask
     {
-        private readonly IDataGoalTask dataGoalTask;
+        private readonly DataGoalTask dataGoalTask;
 
-        public EditableGoalTask(string goalTitle, IDataGoalTask dataGoalTask)
+        public EditableGoalTask(string goalTitle, DataGoalTask dataGoalTask)
         {
             if (string.IsNullOrEmpty(dataGoalTask.Id))
             {

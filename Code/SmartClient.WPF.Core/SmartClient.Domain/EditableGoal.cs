@@ -8,9 +8,9 @@ namespace SmartClient.Domain
 {
     public class EditableGoal : IEditableGoal
     {
-        private readonly IDataGoal dataGoal;
+        private readonly DataGoal dataGoal;
 
-        public EditableGoal(IDataGoal dataGoal)
+        public EditableGoal(DataGoal dataGoal)
         {
             this.dataGoal = dataGoal;
         }

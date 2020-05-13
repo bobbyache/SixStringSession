@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace SmartClient.Domain.Data
 {
-    public class DataGoalTask : IDataGoalTask
+    public class DataGoalTask
     {
-        public string Id { get; set; }
-        public string Title { get; set; }
-        public IList<IDataGoalTaskProgressSnapshot> ProgressHistory { get; set; } = new List<IDataGoalTaskProgressSnapshot>();
-        public double Start { get; set; }
-        public double Target { get; set; }
-        public double Weighting { get; set; }
+        [JsonPropertyName("id")] public virtual string Id { get; set; }
+        [JsonPropertyName("title")] public virtual string Title { get; set; }
+        [JsonPropertyName("history")] public virtual IList<DataGoalTaskProgressSnapshot> ProgressHistory { get; set; } = new List<DataGoalTaskProgressSnapshot>();
+        [JsonPropertyName("start")] public virtual double Start { get; set; }
+        [JsonPropertyName("target")] public virtual double Target { get; set; }
+        [JsonPropertyName("weighting")] public virtual double Weighting { get; set; }
     }
 }

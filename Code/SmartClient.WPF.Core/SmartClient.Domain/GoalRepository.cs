@@ -9,7 +9,7 @@ namespace SmartClient.Domain
 {
     public class GoalRepository : IGoalRepository
     {
-        public virtual void Save(IDataGoal goal, string filePath)
+        public virtual void Save(DataGoal goal, string filePath)
         {
             var jsonSerializerOptions = new JsonSerializerOptions();
             jsonSerializerOptions.WriteIndented = false;
@@ -17,7 +17,7 @@ namespace SmartClient.Domain
             File.WriteAllText(filePath, JsonSerializer.Serialize((DataGoal)goal, jsonSerializerOptions));
         }
 
-        public virtual IDataGoal Open(string filePath)
+        public virtual DataGoal Open(string filePath)
         {
             if (FileExists(filePath))
             {
@@ -29,7 +29,7 @@ namespace SmartClient.Domain
             }
         }
 
-        protected virtual IDataGoal Create(string filePath)
+        protected virtual DataGoal Create(string filePath)
         {
             var dataGoal = DataGoal.Create();
             this.Save(dataGoal, filePath);
@@ -37,7 +37,7 @@ namespace SmartClient.Domain
             return Read(filePath);
         }
 
-        protected virtual IDataGoal Read(string filePath)
+        protected virtual DataGoal Read(string filePath)
         {
             var jsonString = File.ReadAllText(filePath);
             var goal = JsonSerializer.Deserialize<DataGoal>(jsonString);

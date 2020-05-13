@@ -9,7 +9,7 @@ namespace SmartClient.Domain
     public class GoalSummary : IGoalSummary
     {
         protected IList<IGoalTaskSummary> taskSummaries;
-        public GoalSummary(IDataGoal dataGoal)
+        public GoalSummary(DataGoal dataGoal)
         {
             this.Id = dataGoal.Id;
             this.Title = dataGoal.Title;
@@ -32,14 +32,14 @@ namespace SmartClient.Domain
             return percentProgress;
         }
 
-        private IList<IGoalTaskSummary> GetTaskSummaries(IDataGoal dataGoal)
+        private IList<IGoalTaskSummary> GetTaskSummaries(DataGoal dataGoal)
         {
             var tasks = dataGoal.Tasks.Select(t => new GoalTaskSummary(
                     t.Id, t.Title, dataGoal.Title, GetLatestProgressHistoryValue(t.ProgressHistory), t.Weighting));
             return tasks.OfType<IGoalTaskSummary>().ToList();
         }
 
-        private int GetLatestProgressHistoryValue(IList<IDataGoalTaskProgressSnapshot> history)
+        private int GetLatestProgressHistoryValue(IList<DataGoalTaskProgressSnapshot> history)
         {
             if (history != null && history.Count() >= 1)
             {

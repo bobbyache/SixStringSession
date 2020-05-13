@@ -8,9 +8,9 @@ namespace SmartClient.Domain
 {
     public class GoalTaskDetail : IGoalTaskDetail
     {
-        private IDataGoalTask task;
+        private DataGoalTask task;
 
-        public GoalTaskDetail(IDataGoalTask task)
+        public GoalTaskDetail(DataGoalTask task)
         {
             this.task = task;
         }
