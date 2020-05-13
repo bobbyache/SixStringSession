@@ -1,19 +1,51 @@
-﻿using System.Dynamic;
+﻿using SmartClient.Domain.Data;
+using SmartClient.Domain.Weighting;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace SmartClient.Domain
 {
     public class GoalSummary : IGoalSummary
     {
-        public GoalSummary(string id, string title, int percentProgress)
+        protected IList<IGoalTaskSummary> taskSummaries;
+        public GoalSummary(IDataGoal dataGoal)
         {
-            this.Id = id;
-            this.Title = title;
-            this.PercentProgress = percentProgress;
+            this.Id = dataGoal.Id;
+            this.Title = dataGoal.Title;
+            this.taskSummaries = GetTaskSummaries(dataGoal);
+            this.PercentProgress = GetPercentProgress();
+
         }
         public string Id { get; private set; }
 
-        public string Title { get; set; }
+        public string Title { get; private set; }
 
         public int PercentProgress { get; private set; }
+
+        private int GetPercentProgress()
+        {
+            WeightedProgressCalculator calculator = new WeightedProgressCalculator();
+            calculator.AddRange(this.taskSummaries.ToList<IWeightedEntity>());
+            var percentProgress = calculator.CalculateTotalProgress();
+
+            return percentProgress;
+        }
+
+        private IList<IGoalTaskSummary> GetTaskSummaries(IDataGoal dataGoal)
+        {
+            var tasks = dataGoal.Tasks.Select(t => new GoalTaskSummary(
+                    t.Id, t.Title, dataGoal.Title, GetLatestProgressHistoryValue(t.ProgressHistory), t.Weighting));
+            return tasks.OfType<IGoalTaskSummary>().ToList();
+        }
+
+        private int GetLatestProgressHistoryValue(IList<IDataGoalTaskProgressSnapshot> history)
+        {
+            if (history != null && history.Count() >= 1)
+            {
+                return (int)Math.Round(history.Last().Value);
+            }
+            return 0;
+        }
     }
 }

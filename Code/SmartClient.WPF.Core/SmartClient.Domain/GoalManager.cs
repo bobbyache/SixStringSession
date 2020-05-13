@@ -30,14 +30,14 @@ namespace SmartClient.Domain
             return taskProgressSnapshots;
         }
 
-        public GoalSummary GetSummary()
+        public IGoalSummary GetSummary()
         {
-            var taskSummaries = GetTaskSummaries();
+            return new GoalSummary(this.dataGoal);
+        }
 
-            WeightedProgressCalculator calculator = new WeightedProgressCalculator();
-            calculator.AddRange(taskSummaries.ToList<IWeightedEntity>());
-            var percentProgress = calculator.CalculateTotalProgress();
-            return new GoalSummary(this.dataGoal.Id, this.dataGoal.Title, percentProgress);
+        public IGoalDetail GetDetail()
+        {
+            return new GoalDetail(this.dataGoal);
         }
 
         public IList<IGoalTaskSummary> GetTaskSummaries()

@@ -73,6 +73,19 @@ namespace SmartClient.Domain.Tests
         }
 
         [Fact]
+        public void GetGoalDetail()
+        {
+            var goalManager = MockHelpers.GetMockGoalManager();
+
+            var goalDetail = goalManager.GetDetail();
+
+            Assert.Equal(MockHelpers.GOAL_ID, goalDetail.Id);
+            Assert.Equal(MockHelpers.GOAL_TITLE, goalDetail.Title);
+            Assert.Equal(82, goalDetail.PercentProgress);
+            Assert.Equal(2, goalDetail.TaskSummaries.Length);
+        }
+
+        [Fact]
         public void UpdateGoal_EnsureTitleLengthValid()
         {
             var goalManager = new GoalManager(new TestGoalRepository(), string.Empty);

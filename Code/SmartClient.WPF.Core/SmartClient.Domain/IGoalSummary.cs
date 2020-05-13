@@ -7,7 +7,7 @@ namespace SmartClient.Domain
     public interface IGoalSummary
     {
         string Id { get; }
-        string Title { get; set; }
+        string Title { get; }
 
         int PercentProgress { get; }
     }
