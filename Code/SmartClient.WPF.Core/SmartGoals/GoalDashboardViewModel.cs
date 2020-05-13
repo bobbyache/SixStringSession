@@ -1,5 +1,6 @@
 ﻿using Caliburn.Micro;
 using LiveCharts;
+using SmartClient.Domain;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -13,7 +14,7 @@ namespace SmartGoals
 
         private IEventAggregator eventAggregator { get; }
 
-        public GoalDashboardViewModel(IEventAggregator eventAggregator)
+        public GoalDashboardViewModel(IEventAggregator eventAggregator, GoalManager goalManager)
         {
             this.eventAggregator = eventAggregator;
             this.eventAggregator.SubscribeOnUIThread(this);

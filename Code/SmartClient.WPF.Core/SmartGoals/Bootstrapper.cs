@@ -1,4 +1,6 @@
 ﻿using Caliburn.Micro;
+using SmartClient.Domain;
+using SmartClient.Domain.Data;
 using System;
 using System.Collections.Generic;
 using System.Windows;
@@ -41,6 +43,9 @@ namespace SmartGoals
 
         protected override void Configure()
         {
+            simpleContainer.Singleton<IGoalRepository, GoalRepository>();
+            simpleContainer.Singleton<GoalManager, GoalManager>();
+
             simpleContainer.Singleton<IWindowManager, WindowManager>();
             simpleContainer.Singleton<IEventAggregator, EventAggregator>();
             simpleContainer.Singleton<MainMenuViewModel>();

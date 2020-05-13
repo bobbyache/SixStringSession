@@ -13,10 +13,14 @@ namespace SmartClient.Domain.Tests
     // https://www.meziantou.net/declaring-internalsvisibleto-in-the-csproj.htm
     public class GoalTests
     {
+        private const string PATH_TO_FILE = @"\\path\to\file";
+
         [Fact]
         public void GetATaskSummaryGivenATaskId()
         {
             var goalManager = MockHelpers.GetMockGoalManager();
+            goalManager.Open(PATH_TO_FILE);
+
             var taskSummary = goalManager.GetTaskSummary(MockHelpers.TASK_1_ID);
 
             Assert.True(taskSummary != null);
@@ -31,6 +35,8 @@ namespace SmartClient.Domain.Tests
         public void GetAllTaskSummaries()
         {
             var goalManager = MockHelpers.GetMockGoalManager();
+            goalManager.Open(PATH_TO_FILE);
+
             var taskSummaries = goalManager.GetTaskSummaries();
 
             Assert.True(taskSummaries[0] != null);
@@ -52,6 +58,8 @@ namespace SmartClient.Domain.Tests
         public void GetTaskProgressSnapshotsForTask()
         {
             var goalManager = MockHelpers.GetMockGoalManager();
+            goalManager.Open(PATH_TO_FILE);
+
             var goalSummary = goalManager.GetSummary();
             var snapshots = goalManager.GetTaskProgressSnapshots(MockHelpers.TASK_2_ID);
 
@@ -65,8 +73,10 @@ namespace SmartClient.Domain.Tests
         public void GetGoalSummary()
         {
             var goalManager = MockHelpers.GetMockGoalManager();
+            goalManager.Open(PATH_TO_FILE);
 
             var goalSummary = goalManager.GetSummary();
+
             Assert.Equal(MockHelpers.GOAL_ID, goalSummary.Id);
             Assert.Equal(MockHelpers.GOAL_TITLE, goalSummary.Title);
             Assert.Equal(82, goalSummary.PercentProgress);
@@ -76,6 +86,7 @@ namespace SmartClient.Domain.Tests
         public void GetGoalDetail()
         {
             var goalManager = MockHelpers.GetMockGoalManager();
+            goalManager.Open(PATH_TO_FILE);
 
             var goalDetail = goalManager.GetDetail();
 
@@ -89,6 +100,8 @@ namespace SmartClient.Domain.Tests
         public void UpdateGoal_EnsureTitleLengthValid()
         {
             var goalManager = new GoalManager(new TestGoalRepository());
+            goalManager.Open(PATH_TO_FILE);
+
             Assert.Throws<InvalidTitleException>(new Action(() => goalManager.GetEditableGoal().Title = "sh"));
         }
 
@@ -96,6 +109,8 @@ namespace SmartClient.Domain.Tests
         public void UpdateGoal_EnsureWeightingNotLessThanZero()
         {
             var goalManager = new GoalManager(new TestGoalRepository());
+            goalManager.Open(PATH_TO_FILE);
+
             Assert.Throws<InvalidWeightingException>(new Action(() => goalManager.GetEditableGoal().Weighting = -0.001));
         }
 
@@ -103,6 +118,8 @@ namespace SmartClient.Domain.Tests
         public void UpdateGoal_EnsureWeightingNotMoreThanOne()
         {
             var goalManager = new GoalManager(new TestGoalRepository());
+            goalManager.Open(PATH_TO_FILE);
+
             Assert.Throws<InvalidWeightingException>(new Action(() => goalManager.GetEditableGoal().Weighting = 1.001));
         }
 
@@ -110,6 +127,8 @@ namespace SmartClient.Domain.Tests
         public void GetTaskProgressSnapshot()
         {
             var goalManager = MockHelpers.GetMockGoalManager();
+            goalManager.Open(PATH_TO_FILE);
+
             var progressSnapshot = goalManager.GetTaskProgressSnapshot(MockHelpers.TASK_2_ID, DateTime.Parse("2010-04-15 10:22:22"));
             Assert.NotNull(progressSnapshot);
         }
@@ -119,6 +138,8 @@ namespace SmartClient.Domain.Tests
         public void UpdateTaskProgressSnapshot_ExistingItem()
         {
             var goalManager = new GoalManager(new TestGoalRepository());
+            goalManager.Open(PATH_TO_FILE);
+
             goalManager.UpdateTaskProgressSnapshot(MockHelpers.TASK_2_ID, DateTime.Parse("2012-09-05 11:51:38"), 6);
             var snapshot = goalManager.GetTaskProgressSnapshot(MockHelpers.TASK_2_ID, DateTime.Parse("2012-09-05 10:22:22"));
 
@@ -129,6 +150,8 @@ namespace SmartClient.Domain.Tests
         public void UpdateTaskProgressSnapshot_NewItem()
         {
             var goalManager = new GoalManager(new TestGoalRepository());
+            goalManager.Open(PATH_TO_FILE);
+
             goalManager.UpdateTaskProgressSnapshot(MockHelpers.TASK_2_ID, DateTime.Parse("2012-09-05 11:51:38"), 6);
             goalManager.UpdateTaskProgressSnapshot(MockHelpers.TASK_2_ID, DateTime.Parse("2014-10-15"), 7);
             var snapshot = goalManager.GetTaskProgressSnapshot(MockHelpers.TASK_2_ID, DateTime.Parse("2014-10-15 10:22:22"));
@@ -140,6 +163,8 @@ namespace SmartClient.Domain.Tests
         public void UpdateTask_EnsureTitleLengthValid()
         {
             var goalManager = new GoalManager(new TestGoalRepository());
+            goalManager.Open(PATH_TO_FILE);
+
             var task = goalManager.GetEditableTask(MockHelpers.TASK_2_ID);
 
             Assert.Throws<InvalidTitleException>(new Action(() => task.Title = "sh"));
@@ -149,6 +174,8 @@ namespace SmartClient.Domain.Tests
         public void UpdateTask_EnsureWeightingNotLessThanZero()
         {
             var goalManager = new GoalManager(new TestGoalRepository());
+            goalManager.Open(PATH_TO_FILE);
+
             var task = goalManager.GetEditableTask(MockHelpers.TASK_2_ID);
 
             Assert.Throws<InvalidWeightingException>(new Action(() => task.Weighting = -0.001));
@@ -158,6 +185,8 @@ namespace SmartClient.Domain.Tests
         public void UpdateTask_EnsureWeightingNotMoreThanOne()
         {
             var goalManager = new GoalManager(new TestGoalRepository());
+            goalManager.Open(PATH_TO_FILE);
+
             var task = goalManager.GetEditableTask(MockHelpers.TASK_2_ID);
 
             Assert.Throws<InvalidWeightingException>(new Action(() => task.Weighting = 1.001));
@@ -167,6 +196,8 @@ namespace SmartClient.Domain.Tests
         public void CreateATask()
         {
             var goalManager = new GoalManager(new TestGoalRepository());
+            goalManager.Open(PATH_TO_FILE);
+
             var editableTask = goalManager.CreateTask();
 
             Assert.NotNull(editableTask);
@@ -183,6 +214,8 @@ namespace SmartClient.Domain.Tests
         public void CreateATask_CreatesATaskOnGoal()
         {
             var goalManager = new GoalManager(new TestGoalRepository());
+            goalManager.Open(PATH_TO_FILE);
+
             var editableTask = goalManager.CreateTask();
             var taskSummary = goalManager.GetTaskSummary(editableTask.Id);
 
@@ -201,6 +234,8 @@ namespace SmartClient.Domain.Tests
         public void GetEditableTask()
         {
             var goalManager = new GoalManager(new TestGoalRepository());
+            goalManager.Open(PATH_TO_FILE);
+
             var editableTask = goalManager.GetEditableTask(MockHelpers.GOAL_ID);
 
             Assert.NotNull(editableTask);
@@ -219,6 +254,8 @@ namespace SmartClient.Domain.Tests
         public void GetTaskDetail()
         {
             var goalManager = new GoalManager(new TestGoalRepository());
+            goalManager.Open(PATH_TO_FILE);
+
             GoalTaskDetail taskDetail = goalManager.GetTaskDetail("9a3c801b-5e5c-423c-9696-6a2f687f31db");
 
             Assert.Equal("9a3c801b-5e5c-423c-9696-6a2f687f31db", taskDetail.Id);
@@ -234,6 +271,8 @@ namespace SmartClient.Domain.Tests
         public void GetTaskDetail_EnsureProgressHistoryIsSorted()
         {
             var goalManager = new GoalManager(new TestGoalRepository());
+            goalManager.Open(PATH_TO_FILE);
+
             GoalTaskDetail taskDetail = goalManager.GetTaskDetail("9a3c801b-5e5c-423c-9696-6a2f687f31db");
 
         
@@ -245,6 +284,8 @@ namespace SmartClient.Domain.Tests
         public void UpdateATask()
         {
             var goalManager = new GoalManager(new TestGoalRepository());
+            goalManager.Open(PATH_TO_FILE);
+
             var editableTask = goalManager.GetEditableTask(MockHelpers.GOAL_ID);
 
             editableTask.Title = "Changed Title";
@@ -266,6 +307,8 @@ namespace SmartClient.Domain.Tests
         public void UpdateATask_EnsureTargetNotSetLessThanMaxProgressSnapshot()
         {
             var goalManager = new GoalManager(new TestGoalRepository());
+            goalManager.Open(PATH_TO_FILE);
+
             var editableTask = goalManager.CreateTask();
             var taskId = editableTask.Id;
 
@@ -280,6 +323,8 @@ namespace SmartClient.Domain.Tests
         public void UpdateATask_EnsureTargetNotEqualTo_Start()
         {
             var goalManager = new GoalManager(new TestGoalRepository());
+            goalManager.Open(PATH_TO_FILE);
+
             var editableTask = goalManager.CreateTask();
             var taskId = editableTask.Id;
 
@@ -290,6 +335,8 @@ namespace SmartClient.Domain.Tests
         public void UpdateATask_EnsureTargetNotSmallerThan_Start()
         {
             var goalManager = new GoalManager(new TestGoalRepository());
+            goalManager.Open(PATH_TO_FILE);
+
             var editableTask = goalManager.CreateTask();
             var taskId = editableTask.Id;
 
@@ -301,6 +348,8 @@ namespace SmartClient.Domain.Tests
         public void UpdateATask_EnsureStartNotSetMoreThanMinProgressSnapshot()
         {
             var goalManager = new GoalManager(new TestGoalRepository());
+            goalManager.Open(PATH_TO_FILE);
+
             var editableTask = goalManager.CreateTask();
             var taskId = editableTask.Id;
 
@@ -315,6 +364,8 @@ namespace SmartClient.Domain.Tests
         public void UpdateATask_EnsureStartNotEqualTo_Target()
         {
             var goalManager = new GoalManager(new TestGoalRepository());
+            goalManager.Open(PATH_TO_FILE);
+
             var editableTask = goalManager.CreateTask();
             var taskId = editableTask.Id;
 
@@ -327,6 +378,8 @@ namespace SmartClient.Domain.Tests
         public void UpdateATask_EnsureStartNotBiggerThan_Target()
         {
             var goalManager = new GoalManager(new TestGoalRepository());
+            goalManager.Open(PATH_TO_FILE);
+
             var editableTask = goalManager.CreateTask();
             var taskId = editableTask.Id;
 
@@ -339,6 +392,8 @@ namespace SmartClient.Domain.Tests
         public void DeleteATask()
         {
             var goalManager = new GoalManager(new TestGoalRepository());
+            goalManager.Open(PATH_TO_FILE);
+
             var taskSummaries = goalManager.GetTaskSummaries();
             var numTasks = taskSummaries.Count;
             var firstTaskId = taskSummaries[0].Id;
@@ -355,6 +410,8 @@ namespace SmartClient.Domain.Tests
             var mockRepository = new Mock<IGoalRepository>();
             
             var goalManager = new GoalManager(mockRepository.Object);
+            goalManager.Open(PATH_TO_FILE);
+
             goalManager.Save();
 
             mockRepository.Verify(r => r.Save(It.IsAny<IDataGoal>(), It.IsAny<string>()), Times.Once());

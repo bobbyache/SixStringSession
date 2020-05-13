@@ -12,16 +12,30 @@ namespace SmartClient.Domain
     {
         protected IDataGoal dataGoal;
         protected readonly IGoalRepository goalRepository;
-        private string filePath;
+        private string filePath = null;
 
         public GoalManager(IGoalRepository goalRepository)
         {
             this.goalRepository = goalRepository;
+        }
+
+        protected bool IsOpened()
+        {
+            return this.filePath != null;
+        }
+
+        public void Open(string filePath)
+        {
+            this.filePath = filePath;
             this.dataGoal = goalRepository.Open(filePath);
         }
 
+        private const string NO_DATA_LOADED = "No data loaded";
+
         public IList<IGoalTaskProgressSnapshot> GetTaskProgressSnapshots(string taskId)
         {
+            if (!this.IsOpened()) throw new InvalidOperationException(NO_DATA_LOADED);
+
             var task = this.dataGoal.Tasks.Where(t => t.Id == taskId).SingleOrDefault();
             var taskProgressSnapshots = task.ProgressHistory.Select(ph => new GoalTaskProgressSnapshot(ph.Day, ph.Value)
                 ).OfType<IGoalTaskProgressSnapshot>().ToList();
@@ -31,16 +45,22 @@ namespace SmartClient.Domain
 
         public IGoalSummary GetSummary()
         {
+            if (!this.IsOpened()) throw new InvalidOperationException(NO_DATA_LOADED);
+
             return new GoalSummary(this.dataGoal);
         }
 
         public IGoalDetail GetDetail()
         {
+            if (!this.IsOpened()) throw new InvalidOperationException(NO_DATA_LOADED);
+
             return new GoalDetail(this.dataGoal);
         }
 
         public IList<IGoalTaskSummary> GetTaskSummaries()
         {
+            if (!this.IsOpened()) throw new InvalidOperationException(NO_DATA_LOADED);
+
             var tasks = this.dataGoal.Tasks.Select(t => new GoalTaskSummary(
                     t.Id, t.Title, this.dataGoal.Title, GetLatestProgressHistoryValue(t.ProgressHistory), t.Weighting));
             return tasks.OfType<IGoalTaskSummary>().ToList();
@@ -48,6 +68,8 @@ namespace SmartClient.Domain
 
         public IGoalTaskSummary GetTaskSummary(string taskId)
         {
+            if (!this.IsOpened()) throw new InvalidOperationException(NO_DATA_LOADED);
+
             var dataTask = this.dataGoal.Tasks.Where(t => t.Id == taskId).SingleOrDefault();
             if (dataTask != null)
             {
@@ -60,6 +82,8 @@ namespace SmartClient.Domain
 
         private int GetLatestProgressHistoryValue(IList<IDataGoalTaskProgressSnapshot> history)
         {
+            if (!this.IsOpened()) throw new InvalidOperationException(NO_DATA_LOADED);
+
             if (history != null && history.Count() >= 1)
             {
                 return (int)Math.Round(history.Last().Value);
@@ -69,6 +93,8 @@ namespace SmartClient.Domain
 
         public IGoalTaskProgressSnapshot GetTaskProgressSnapshot(string taskId, DateTime date)
         {
+            if (!this.IsOpened()) throw new InvalidOperationException(NO_DATA_LOADED);
+
             var dataTask = this.dataGoal.Tasks.Where(t => t.Id == taskId).SingleOrDefault();
             var snapshot = dataTask.ProgressHistory
                 .Where(ph => ph.Day == date.ToString("yyyy-MM-dd")).SingleOrDefault();
@@ -77,6 +103,8 @@ namespace SmartClient.Domain
 
         public void UpdateTaskProgressSnapshot(string taskId, DateTime date, int value)
         {
+            if (!this.IsOpened()) throw new InvalidOperationException(NO_DATA_LOADED);
+
             var dataTask = this.dataGoal.Tasks.Where(t => t.Id == taskId).SingleOrDefault();
             var snapshot = dataTask.ProgressHistory
                 .Where(ph => ph.Day == date.ToString("yyyy-MM-dd")).SingleOrDefault();
@@ -97,11 +125,15 @@ namespace SmartClient.Domain
 
         public IEditableGoal GetEditableGoal()
         {
+            if (!this.IsOpened()) throw new InvalidOperationException(NO_DATA_LOADED);
+
             return new EditableGoal(this.dataGoal);
         }
 
         public IEditableGoalTask CreateTask()
         {
+            if (!this.IsOpened()) throw new InvalidOperationException(NO_DATA_LOADED);
+
             var dataGoalTask = new DataGoalTask();
             var editableGoalTask = new EditableGoalTask(this.dataGoal.Title, dataGoalTask);
             this.dataGoal.Tasks.Add(dataGoalTask);
@@ -110,6 +142,8 @@ namespace SmartClient.Domain
 
         public IEditableGoalTask GetEditableTask(string id)
         {
+            if (!this.IsOpened()) throw new InvalidOperationException(NO_DATA_LOADED);
+
             var dataTask = this.dataGoal.Tasks.Where(t => t.Id == id).SingleOrDefault();
             var editableGoalTask = new EditableGoalTask(this.dataGoal.Title, dataTask);
             return editableGoalTask;
@@ -117,22 +151,30 @@ namespace SmartClient.Domain
 
         public void UpdateTask(IEditableGoalTask task)
         {
+            if (!this.IsOpened()) throw new InvalidOperationException(NO_DATA_LOADED);
+
             throw new NotImplementedException();
         }
 
         public void DeleteTask(string taskId)
         {
+            if (!this.IsOpened()) throw new InvalidOperationException(NO_DATA_LOADED);
+
             var dataTask = this.dataGoal.Tasks.Where(t => t.Id == taskId).SingleOrDefault();
             this.dataGoal.Tasks.Remove(dataTask);
         }
 
         public void Save()
         {
+            if (!this.IsOpened()) throw new InvalidOperationException(NO_DATA_LOADED);
+
             this.goalRepository.Save(this.dataGoal, this.filePath);
         }
 
         public GoalTaskDetail GetTaskDetail(string taskId)
         {
+            if (!this.IsOpened()) throw new InvalidOperationException(NO_DATA_LOADED);
+
             var dataTask = this.dataGoal.Tasks.Where(t => t.Id == taskId).SingleOrDefault();
             return new GoalTaskDetail(dataTask);
         }

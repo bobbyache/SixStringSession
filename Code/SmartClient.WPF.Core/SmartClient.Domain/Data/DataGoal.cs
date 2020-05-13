@@ -18,9 +18,9 @@ namespace SmartClient.Domain.Data
             };
         }
 
-        public string Id { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public string Title { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public IList<IDataGoalTask> Tasks { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public double Weighting { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public string Id { get; set; }
+        public string Title { get; set; }
+        public IList<IDataGoalTask> Tasks { get; set; }
+        public double Weighting { get; set; }
     }
 }
