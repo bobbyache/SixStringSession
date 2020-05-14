@@ -21,4 +21,13 @@
 
         public NavigateTo NavigateTo { get; }
     }
+
+    public sealed class SelectGoalTaskDetailMessage
+    {
+        public string TaskId { get; private set; }
+        public SelectGoalTaskDetailMessage(string taskId)
+        {
+            this.TaskId = taskId;
+        }
+    }
 }

@@ -39,23 +39,23 @@
         <Border Grid.Row="4" DockPanel.Dock="Top" Style="{StaticResource PagePanel}">
             <StackPanel DockPanel.Dock="Left">
                 <TextBlock Text="Title:" Margin="5"></TextBlock>
-                <TextBox Margin="5" Text="{Binding Title, ValidatesOnNotifyDataErrors=True}"></TextBox>
+                <TextBox Margin="5" Text="{Binding Title, ValidatesOnNotifyDataErrors=True, Mode=OneWay}"></TextBox>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Start Value:" MinWidth="80" Margin="5"></TextBlock>
-                    <TextBox MinWidth="60" Text="{Binding Start, ValidatesOnNotifyDataErrors=True}" 
+                    <TextBox MinWidth="60" Text="{Binding Start, ValidatesOnNotifyDataErrors=True, Mode=OneWay}" 
                              Margin="5"></TextBox>
 
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Target Value:" MinWidth="80" Margin="5"></TextBlock>
-                    <TextBox MinWidth="60" Text="{Binding Target, ValidatesOnNotifyDataErrors=True}" 
+                    <TextBox MinWidth="60" Text="{Binding Target, ValidatesOnNotifyDataErrors=True, Mode=OneWay}" 
                              Margin="5"></TextBox>
 
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Weighting Value:" MinWidth="80" Margin="5"></TextBlock>
                     <Slider Margin="5" MinWidth="100" Maximum="100" TickFrequency="1" 
-                            Value="{Binding Weighting, ValidatesOnNotifyDataErrors=True}"
+                            Value="{Binding Weighting, ValidatesOnNotifyDataErrors=True, Mode=OneWay}"
                              TickPlacement="BottomRight" IsSnapToTickEnabled="True"></Slider>
 
                 </StackPanel>

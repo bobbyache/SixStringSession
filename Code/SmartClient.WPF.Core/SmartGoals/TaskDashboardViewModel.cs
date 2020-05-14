@@ -2,91 +2,85 @@
 using LiveCharts;
 using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Linq;
 using LiveCharts.Configurations;
 using LiveCharts.Wpf;
-using System.Windows.Media;
-
+using SmartClient.Domain;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace SmartGoals
 {
-    public class TaskDashboardViewModel : Screen
+    public class TaskDashboardViewModel : Screen, IHandle<SelectGoalTaskDetailMessage>
     {
-        // private readonly GoalDocument goalDocument;
-
-        // private readonly GoalTask goalTask;
+        private IGoalTaskDetail goalTask;
+        private readonly GoalManager goalManager;
 
         private IEventAggregator eventAggregator { get; }
 
         public string GoalTitle
         {
-            get { return "Goal Title"; } // this.goalDocument.Title; }
+            get { return "Goal Title"; }
         }
 
         public string Title
         {
-            get { return "Goal Task Title"; }
-            //set 
-            //{
-            //    this.goalTask.Title = value;
-            //    NotifyOfPropertyChange("title");
-            //}
+            get { return this.goalTask.Title; }
         }
 
         public double Start
         {
-            get { return 0; }
-            //set { this.goalTask.Target = value; }
+            get { return this.goalTask.Start; }
         }
 
         public double Target
         {
-            get { return 0; }
-            //set { this.goalTask.Target = value; }
+            get { return this.goalTask.Target; }
         }
 
         public double Weighting
         {
-            get { return 0; }
-            //set { this.goalTask.Weighting = value / 100; }
+            get { return this.goalTask.Weighting; }
         }
 
-        // public IList<GoalTaskHistoryItem> HistoryItems {  get { return this.goalTask.History; } }
+        public IList<IGoalTaskProgressSnapshot> HistoryItems {  get { return this.goalTask.TaskProgressSnapshots; } }
 
 
-        public int ProgressValue { get { return 0; /* return  (int)Math.Round(this.goalTask.PercentCompleted()); */ } }
+        public int ProgressValue { get { return this.goalTask.PercentProgress; } }
 
         
-        public TaskDashboardViewModel(IEventAggregator eventAggregator)
+        public string TaskId { set { this.goalTask = goalManager.GetTaskDetail(value); } }
+
+        public TaskDashboardViewModel(IEventAggregator eventAggregator, GoalManager goalManager)
         {
-            //this.eventAggregator = eventAggregator;
-            //this.eventAggregator.SubscribeOnUIThread(this);
-
-            //// goalDocument = goalRepository.GetGoalDocument(@"C:\Users\RobB\OneDrive - Korbitec Inc\Documents\Guitar\Goals\goal.json", 0);
-            //// this.goalTask = goalDocument.Tasks[0];
-
-
-            //// Example From: https://lvcharts.net/App/examples/v1/wpf/Date%20Time
-            //var dayConfig = Mappers.Xy<GoalTaskHistoryItem>()
-            //  .X(dateModel => dateModel.Date.Ticks / TimeSpan.FromDays(1).Ticks)
-            //  .Y(dateModel => dateModel.Value);
-
-            ////Notice you can also configure this type globally, so you don't need to configure every
-            ////SeriesCollection instance using the type.
-            ////more info at http://lvcharts.net/App/Index#/examples/v1/wpf/Types%20and%20Configuration
-            //Series = new SeriesCollection(dayConfig)
-            //{
-            //    new LineSeries { Values = new ChartValues<GoalTaskHistoryItem>(goalTask.History) },
-
-            //};
-
-            //Formatter = value => new DateTime((long)(value * TimeSpan.FromDays(1).Ticks)).ToString("d");
+            this.eventAggregator = eventAggregator;
+            this.goalManager = goalManager;
+            this.eventAggregator.SubscribeOnUIThread(this);            
         }
 
         public Func<double, string> Formatter { get; set; }
         public SeriesCollection Series { get; set; }
 
-    }
+        public Task HandleAsync(SelectGoalTaskDetailMessage message, CancellationToken cancellationToken)
+        {
+            this.goalTask = goalManager.GetTaskDetail(message.TaskId);
+
+            //// Example From: https://lvcharts.net/App/examples/v1/wpf/Date%20Time
+            var dayConfig = Mappers.Xy<IGoalTaskProgressSnapshot>()
+              .X(dateModel => dateModel.Day.Ticks / TimeSpan.FromDays(1).Ticks)
+              .Y(dateModel => dateModel.Value);
+
+            //Notice you can also configure this type globally, so you don't need to configure every
+            //SeriesCollection instance using the type.
+            //more info at http://lvcharts.net/App/Index#/examples/v1/wpf/Types%20and%20Configuration
+            Series = new SeriesCollection(dayConfig)
+            {
+                new LineSeries { Values = new ChartValues<IGoalTaskProgressSnapshot>(goalTask.TaskProgressSnapshots) }
+            };
+
+            Formatter = value => new DateTime((long)(value * TimeSpan.FromDays(1).Ticks)).ToString("d");
+
+            return base.OnActivateAsync(cancellationToken);
+        }
+    } 
 }
 
