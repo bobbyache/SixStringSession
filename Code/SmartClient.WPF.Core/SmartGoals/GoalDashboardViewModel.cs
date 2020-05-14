@@ -11,22 +11,39 @@ namespace SmartGoals
     {
         private readonly GoalManager goalManager;
         private IGoalDetail goal;
+        private IEventAggregator eventAggregator { get; }
 
         public IList<IGoalTaskSummary> TaskSummaries { get { return this.goal.TaskSummaries; } }
-        private IEventAggregator eventAggregator { get; }
+
+        private IGoalTaskSummary selectedTask;
+        public IGoalTaskSummary SelectedTaskSummary
+        {
+            get { return selectedTask; }
+            set
+            {
+                this.selectedTask = value;
+                NotifyOfPropertyChange("SelectedTask");
+            }
+        }
+
+        public void OpenSelectedTask()
+        {
+            if (this.SelectedTaskSummary != null)
+            {
+                var task = this.SelectedTaskSummary;
+            }
+        }
 
         public string Title { get { return this.goal.Title; } }
         public int PercentProgress {  get { return this.goal.PercentProgress;  } }
 
         public GoalDashboardViewModel(IEventAggregator eventAggregator, GoalManager goalManager)
         {
-            // goalManager.Save(@"C:\Code\dummy_goal_saved.json");
-            
-            
             this.eventAggregator = eventAggregator;
             this.goalManager = goalManager;
             this.eventAggregator.SubscribeOnUIThread(this);
             goalManager.Open(@"C:\Code\dummy_goal_2.json");
+            // goalManager.Save(@"C:\Code\dummy_goal_saved.json");
             this.goal = this.goalManager.GetDetail();
             
         }

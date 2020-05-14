@@ -15,7 +15,7 @@
                 Content="Double Click me" cal:Message.Attach="[Event MouseDoubleClick] = [Action DoubleClicked]" />
         <Button x:Name="SayHelloClickedOnDblClickWithParam"
                 Content="Double Click me with Params" cal:Message.Attach="[Event MouseDoubleClick] = [Action DoubleClicked($eventArgs)]" />
-        <Label x:Name="SomeLabel" FontSize="12" cal:Message.Attach="[Event MouseDown] = [Action LabelClicked]">Here is a clickable label</Label>
+        <Label FontSize="12" cal:Message.Attach="[Event MouseDown] = [Action LabelClicked]">Here is a clickable label</Label>
         <ListBox x:Name="GoalSummaries" ItemsSource="{Binding Goals}" SelectedItem="{Binding Path=SelectedGoalSummary, Mode=OneWayToSource}" DisplayMemberPath="Title">
 
         </ListBox>
