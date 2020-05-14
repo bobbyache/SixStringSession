@@ -1,14 +1,18 @@
 ﻿using Caliburn.Micro;
 using LiveCharts;
 using SmartClient.Domain;
+using SmartGoals.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace SmartGoals
 {
     public class GoalDashboardViewModel: Screen
     {
+        private readonly IDialogService dialogService;
         private readonly GoalManager goalManager;
         private IGoalDetail goal;
         private IEventAggregator eventAggregator { get; }
@@ -22,7 +26,7 @@ namespace SmartGoals
             set
             {
                 this.selectedTask = value;
-                NotifyOfPropertyChange("SelectedTask");
+                NotifyOfPropertyChange("SelectedTaskSummary");
             }
         }
 
@@ -57,15 +61,18 @@ namespace SmartGoals
         public string Title { get { return this.goal.Title; } }
         public int PercentProgress {  get { return this.goal.PercentProgress;  } }
 
-        public GoalDashboardViewModel(IEventAggregator eventAggregator, GoalManager goalManager)
+        public GoalDashboardViewModel(IEventAggregator eventAggregator, IDialogService dialogService, GoalManager goalManager)
         {
             this.eventAggregator = eventAggregator;
+            this.dialogService = dialogService;
             this.goalManager = goalManager;
-            this.eventAggregator.SubscribeOnUIThread(this);
-            goalManager.Open(@"C:\Code\dummy_goal_2.json");
-            // goalManager.Save(@"C:\Code\dummy_goal_saved.json");
+            this.eventAggregator.SubscribeOnUIThread(this);         
+        }
+
+        protected override Task OnActivateAsync(CancellationToken cancellationToken)
+        {
             this.goal = this.goalManager.GetDetail();
-            
+            return base.OnActivateAsync(cancellationToken);
         }
     }
 }

@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SmartClient.Domain\SmartClient.Domain.csproj" />
+    <ProjectReference Include="..\SmartSession.RecentProjects\SmartSession.RecentProjects.csproj" />
   </ItemGroup>
 
 </Project>

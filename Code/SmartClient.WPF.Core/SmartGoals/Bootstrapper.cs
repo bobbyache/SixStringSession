@@ -1,6 +1,7 @@
 ﻿using Caliburn.Micro;
 using SmartClient.Domain;
 using SmartClient.Domain.Data;
+using SmartGoals.Services;
 using System;
 using System.Collections.Generic;
 using System.Windows;
@@ -48,6 +49,10 @@ namespace SmartGoals
 
             simpleContainer.Singleton<IWindowManager, WindowManager>();
             simpleContainer.Singleton<IEventAggregator, EventAggregator>();
+            simpleContainer.Singleton<IDialogService, DialogService>();
+            simpleContainer.Singleton<ISettingsService, SettingsService>();
+
+            simpleContainer.Singleton<IntroViewModel>();
             simpleContainer.Singleton<MainMenuViewModel>();
             simpleContainer.Singleton<ExampleViewModel>();
             simpleContainer.Singleton<GoalDashboardViewModel>();

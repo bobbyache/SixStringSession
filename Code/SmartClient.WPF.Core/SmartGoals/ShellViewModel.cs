@@ -9,6 +9,7 @@ namespace SmartGoals
     public class ShellViewModel : Conductor<Screen>.Collection.OneActive, IHandle<NavigateToMessage>
     {
         private readonly IEventAggregator eventAggregator;
+        private readonly IntroViewModel introViewModel;
         private readonly MainMenuViewModel mainMenuViewModel;
         private readonly ExampleViewModel exampleViewModel;
         private readonly GoalDashboardViewModel goalDashboardViewModel;
@@ -17,6 +18,7 @@ namespace SmartGoals
         public BottomMenuViewModel BottomMenuViewModel { get; }
 
         public ShellViewModel(IEventAggregator eventAggregator, 
+            IntroViewModel introViewModel,
             MainMenuViewModel mainMenuViewModel, 
             ExampleViewModel exampleViewModel, 
             BottomMenuViewModel bottomMenuViewModel,
@@ -25,6 +27,7 @@ namespace SmartGoals
             )
         {
             this.eventAggregator = eventAggregator;
+            this.introViewModel = introViewModel;
             this.mainMenuViewModel = mainMenuViewModel;
             this.exampleViewModel = exampleViewModel;
             BottomMenuViewModel = bottomMenuViewModel;
@@ -36,7 +39,7 @@ namespace SmartGoals
         {
             eventAggregator.SubscribeOnUIThread(this);
             // Will set this.ActiveItem for View
-            return ActivateItemAsync(this.mainMenuViewModel, cancellationToken);
+            return ActivateItemAsync(this.introViewModel, cancellationToken);
             // return base.OnActivateAsync(cancellationToken);
         }
 
