@@ -34,6 +34,26 @@ namespace SmartGoals
             }
         }
 
+        public void AddTask()
+        {
+
+        }
+
+        public void EditTask()
+        {
+
+        }
+
+        public void DeleteTask()
+        {
+
+        }
+
+        public void ViewTaskSummary()
+        {
+
+        }
+
         public string Title { get { return this.goal.Title; } }
         public int PercentProgress {  get { return this.goal.PercentProgress;  } }
 

@@ -33,6 +33,15 @@
                         </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
+                <ListBox.ContextMenu>
+                    <ContextMenu cal:Action.TargetWithoutContext="{Binding Path=PlacementTarget.DataContext, RelativeSource={RelativeSource Self}}">
+                        <MenuItem Header="Add" cal:Message.Attach="AddTask" />
+                        <MenuItem Header="Edit" cal:Message.Attach="EditTask" />
+                        <MenuItem Header="Delete" cal:Message.Attach="DeleteTask" />
+                        <Separator />
+                        <MenuItem Header="Summary" cal:Message.Attach="ViewTaskSummary" />
+                    </ContextMenu>
+                </ListBox.ContextMenu>
             </ListBox>
         </Border>
         <ContentControl Grid.Row="2" x:Name="BottomMenuViewModel" />
