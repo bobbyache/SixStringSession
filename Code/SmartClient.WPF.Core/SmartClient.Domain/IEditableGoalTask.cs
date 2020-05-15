@@ -10,7 +10,7 @@ namespace SmartClient.Domain
         string Id { get; }
 
         string Title { get; set; }
-
+        string UnitOfMeasure { get; set; }
         public double Weighting { get; set; }
         public double Start { get; set; }
         public double Target { get; set; }

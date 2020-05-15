@@ -61,8 +61,7 @@ namespace SmartClient.Domain
         {
             if (!this.IsOpened()) throw new InvalidOperationException(NO_DATA_LOADED);
 
-            var tasks = this.dataGoal.Tasks.Select(t => new GoalTaskSummary(
-                    t.Id, t.Title, this.dataGoal.Title, GetLatestProgressHistoryValue(t.ProgressHistory), t.Weighting));
+            var tasks = this.dataGoal.Tasks.Select(t => new GoalTaskSummary(t, this.dataGoal.Title));
             return tasks.OfType<IGoalTaskSummary>().ToList();
         }
 
@@ -73,8 +72,7 @@ namespace SmartClient.Domain
             var dataTask = this.dataGoal.Tasks.Where(t => t.Id == taskId).SingleOrDefault();
             if (dataTask != null)
             {
-                var summary = new GoalTaskSummary(dataTask.Id, dataTask.Title, this.dataGoal.Title,
-                    GetLatestProgressHistoryValue(dataTask.ProgressHistory), dataTask.Weighting);
+                var summary = new GoalTaskSummary(dataTask, this.dataGoal.Title);
                 return summary;
             }
             return null;
@@ -183,7 +181,7 @@ namespace SmartClient.Domain
             if (!this.IsOpened()) throw new InvalidOperationException(NO_DATA_LOADED);
 
             var dataTask = this.dataGoal.Tasks.Where(t => t.Id == taskId).SingleOrDefault();
-            return new GoalTaskDetail(dataTask);
+            return new GoalTaskDetail(dataTask, this.dataGoal.Title);
         }
     }
 }

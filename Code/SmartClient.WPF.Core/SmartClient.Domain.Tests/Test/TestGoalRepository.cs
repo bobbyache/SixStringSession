@@ -26,12 +26,13 @@ namespace SmartClient.Domain.Tests.Test
 
         private DataGoalTask GetDataGoalTask(string id, string title)
         {
-            var goalTask = new DataGoalTask();
-            goalTask.Id = id;
-            goalTask.Title = title;
-            goalTask.Start = 0;
-            goalTask.Target = 100;
-            goalTask.Weighting = 0.5;
+            var task = new DataGoalTask();
+            task.Id = id;
+            task.Title = title;
+            task.Start = 0;
+            task.Target = 100;
+            task.Weighting = 0.5;
+            task.UnitOfMeasure = "BPM";
 
             var goalTaskProgressHistory = new List<DataGoalTaskProgressSnapshot>
             {
@@ -40,9 +41,9 @@ namespace SmartClient.Domain.Tests.Test
                 new DataGoalTaskProgressSnapshot() { Day = "2012-08-23", Value = 20 }
             };
 
-            goalTask.ProgressHistory = goalTaskProgressHistory;
+            task.ProgressHistory = goalTaskProgressHistory;
 
-            return goalTask;
+            return task;
         }
 
         public void Save(DataGoal goal, string filePath)

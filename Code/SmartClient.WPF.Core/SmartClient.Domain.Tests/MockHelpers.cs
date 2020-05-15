@@ -18,7 +18,7 @@ namespace SmartClient.Domain.Tests
         public static string TASK_2_TITLE = "Test Task 2";
         public static GoalManager GetMockGoalManager()
         {
-            var taskMock1 = MockHelpers.GetGoalTaskMock(TASK_1_ID, TASK_1_TITLE, 0, 100, 0.5,
+            var taskMock1 = MockHelpers.GetGoalTaskMock(TASK_1_ID, TASK_1_TITLE, "BPM", 0, 100, 0.5,
                 new List<DataGoalTaskProgressSnapshot>
                 {
                     MockHelpers.GetGoalTaskProgressSnapshotMock("2010-03-15", 25).Object,
@@ -27,7 +27,7 @@ namespace SmartClient.Domain.Tests
                 }
             );
 
-            var taskMock2 = MockHelpers.GetGoalTaskMock(TASK_2_ID, TASK_2_TITLE, 0, 100, 0.5,
+            var taskMock2 = MockHelpers.GetGoalTaskMock(TASK_2_ID, TASK_2_TITLE, "BPM", 0, 100, 0.5,
                 new List<DataGoalTaskProgressSnapshot>
                 {
                     MockHelpers.GetGoalTaskProgressSnapshotMock("2010-03-15", 10).Object,
@@ -60,11 +60,12 @@ namespace SmartClient.Domain.Tests
 
             return mock;
         }
-        public static Mock<DataGoalTask> GetGoalTaskMock(string id, string title, int start, int target, double weighting, IList<DataGoalTaskProgressSnapshot> progressSnapshots)
+        public static Mock<DataGoalTask> GetGoalTaskMock(string id, string title, string unitOfMeaure, int start, int target, double weighting, IList<DataGoalTaskProgressSnapshot> progressSnapshots)
         {
             var mock = new Mock<DataGoalTask>();
             mock.Setup(t => t.Id).Returns(id);
             mock.Setup(t => t.Title).Returns(title);
+            mock.Setup(t => t.UnitOfMeasure).Returns(unitOfMeaure);
             mock.Setup(t => t.Start).Returns(start);
             mock.Setup(t => t.Target).Returns(target);
             mock.Setup(t => t.Weighting).Returns(weighting);

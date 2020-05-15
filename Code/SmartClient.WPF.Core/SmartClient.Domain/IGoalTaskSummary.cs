@@ -10,5 +10,6 @@ namespace SmartClient.Domain
         string GoalTitle { get; }
         string Id { get; }
         string Title { get; }
+        string UnitOfMeasure { get; }
     }
 }

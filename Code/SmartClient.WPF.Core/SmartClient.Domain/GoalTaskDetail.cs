@@ -12,14 +12,17 @@ namespace SmartClient.Domain
     {
         private DataGoalTask task;
 
-        public GoalTaskDetail(DataGoalTask task)
+        public GoalTaskDetail(DataGoalTask task, string goalTitle)
         {
             this.task = task;
+            this.GoalTitle = goalTitle;
         }
 
         public string Id => task.Id;
 
         public string Title => task.Title;
+
+        public string Type => task.UnitOfMeasure;
 
         public double Weighting => task.Weighting;
 
@@ -43,6 +46,11 @@ namespace SmartClient.Domain
                 return history.OrderBy(h => h.Day).ToArray();
             }
         }
+
+        public string UnitOfMeasure => task.UnitOfMeasure;
+
+        public string GoalTitle { get; }
+
         private int GetLatestProgressHistoryValue(IList<DataGoalTaskProgressSnapshot> history)
         {
             if (history != null && history.Count() >= 1)

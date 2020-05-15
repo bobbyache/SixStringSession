@@ -34,8 +34,7 @@ namespace SmartClient.Domain
 
         private IList<IGoalTaskSummary> GetTaskSummaries(DataGoal dataGoal)
         {
-            var tasks = dataGoal.Tasks.Select(t => new GoalTaskSummary(
-                    t.Id, t.Title, dataGoal.Title, GetLatestProgressHistoryValue(t.ProgressHistory), t.Weighting));
+            var tasks = dataGoal.Tasks.Select(t => new GoalTaskSummary(t, dataGoal.Title));
             return tasks.OfType<IGoalTaskSummary>().ToList();
         }
 

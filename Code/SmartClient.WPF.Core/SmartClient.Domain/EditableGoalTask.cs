@@ -19,6 +19,7 @@ namespace SmartClient.Domain
                 this.GoalTitle = goalTitle;
                 this.dataGoalTask = dataGoalTask;
                 this.dataGoalTask.Title = "New Task";
+                this.dataGoalTask.UnitOfMeasure = "BPM";
                 this.dataGoalTask.Weighting = 0.5;
                 this.dataGoalTask.Start = 0;
                 this.dataGoalTask.Target = 100;
@@ -98,6 +99,12 @@ namespace SmartClient.Domain
                 }
                 this.dataGoalTask.Target = value;
             }
+        }
+
+        public string UnitOfMeasure 
+        {
+            get { return this.dataGoalTask.UnitOfMeasure; }
+            set { this.dataGoalTask.UnitOfMeasure = value; }
         }
     }
 }
