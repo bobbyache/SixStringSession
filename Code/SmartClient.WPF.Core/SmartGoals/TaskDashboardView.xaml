@@ -17,7 +17,7 @@
 
         </Grid.RowDefinitions>
         <Label Grid.Row="0" Content="{Binding GoalTitle, Mode=OneWay}" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
-        <Label Grid.Row="1" Content="{Binding Title, Mode=OneWay}" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
+        <Label Grid.Row="1" Content="{Binding Title, Mode=Default}" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
         <DockPanel Grid.Row="2" LastChildFill="True">
             <ListBox Margin="10" Width="200" ItemsSource="{Binding HistoryItems}" DockPanel.Dock="Left">
                 <ListBox.ItemTemplate>
@@ -55,7 +55,7 @@
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Weighting Value:" MinWidth="80" Margin="5"></TextBlock>
                     <Slider Margin="5" MinWidth="100" Maximum="100" TickFrequency="1" 
-                            Value="{Binding Weighting, ValidatesOnNotifyDataErrors=True, Mode=OneWay}"
+                            Value="{Binding WeightingPercentage, ValidatesOnNotifyDataErrors=True, Mode=OneWay}"
                              TickPlacement="BottomRight" IsSnapToTickEnabled="True"></Slider>
 
                 </StackPanel>

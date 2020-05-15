@@ -10,6 +10,7 @@ namespace SmartGoals
     {
         private readonly IEventAggregator eventAggregator;
         private readonly IntroViewModel introViewModel;
+        private readonly CreateGoalViewModel createGoalViewModel;
         private readonly MainMenuViewModel mainMenuViewModel;
         private readonly ExampleViewModel exampleViewModel;
         private readonly GoalDashboardViewModel goalDashboardViewModel;
@@ -19,6 +20,7 @@ namespace SmartGoals
 
         public ShellViewModel(IEventAggregator eventAggregator, 
             IntroViewModel introViewModel,
+            CreateGoalViewModel createGoalViewModel,
             MainMenuViewModel mainMenuViewModel, 
             ExampleViewModel exampleViewModel, 
             BottomMenuViewModel bottomMenuViewModel,
@@ -28,6 +30,7 @@ namespace SmartGoals
         {
             this.eventAggregator = eventAggregator;
             this.introViewModel = introViewModel;
+            this.createGoalViewModel = createGoalViewModel;
             this.mainMenuViewModel = mainMenuViewModel;
             this.exampleViewModel = exampleViewModel;
             BottomMenuViewModel = bottomMenuViewModel;
@@ -54,6 +57,14 @@ namespace SmartGoals
             if (message.NavigateTo == NavigateTo.Examples)
             {
                 this.ActiveItem = exampleViewModel;
+            }
+            else if (message.NavigateTo == NavigateTo.Home)
+            {
+                this.ActiveItem = this.introViewModel;
+            }
+            else if (message.NavigateTo == NavigateTo.CreateGoal)
+            {
+                this.ActiveItem = createGoalViewModel;
             }
             else if (message.NavigateTo == NavigateTo.GoalDashboard)
             {

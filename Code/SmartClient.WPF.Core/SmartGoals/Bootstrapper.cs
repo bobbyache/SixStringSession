@@ -16,8 +16,12 @@ namespace SmartGoals
      * WPF in C# with MVVM using Caliburn Micro: https://www.youtube.com/watch?v=laPFq3Fhs8k
      * Documentation: https://caliburnmicro.com/documentation/
      * Caliburn Micro Introduction Series: https://www.youtube.com/watch?v=vVFXQ1fvFTc&list=PL3JeBX8MKjuHhSFbPOwbrxvdiRC1Lsrkb
+     * 
+     * Validation Strategy?
+     * https://gist.github.com/canton7/6727693
+     * ... however, you've already got a good working implementation going with your MySql solution... so do a spike with that first
+     * 
      * */
-
     public class Bootstrapper : BootstrapperBase
     {
         private SimpleContainer simpleContainer = new SimpleContainer();
@@ -53,6 +57,7 @@ namespace SmartGoals
             simpleContainer.Singleton<ISettingsService, SettingsService>();
 
             simpleContainer.Singleton<IntroViewModel>();
+            simpleContainer.Singleton<CreateGoalViewModel>();
             simpleContainer.Singleton<MainMenuViewModel>();
             simpleContainer.Singleton<ExampleViewModel>();
             simpleContainer.Singleton<GoalDashboardViewModel>();

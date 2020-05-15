@@ -1,7 +1,9 @@
 ﻿using SmartClient.Domain.Data;
+using SmartClient.Domain.Weighting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 
 namespace SmartClient.Domain
@@ -25,7 +27,13 @@ namespace SmartClient.Domain
 
         public double Target => task.Target;
 
-        public int PercentProgress => throw new NotImplementedException();
+        public int PercentProgress
+        {
+            get
+            {
+                return GetLatestProgressHistoryValue(task.ProgressHistory);
+            }
+        }
 
         public IGoalTaskProgressSnapshot[] TaskProgressSnapshots
         {
@@ -35,5 +43,14 @@ namespace SmartClient.Domain
                 return history.OrderBy(h => h.Day).ToArray();
             }
         }
+        private int GetLatestProgressHistoryValue(IList<DataGoalTaskProgressSnapshot> history)
+        {
+            if (history != null && history.Count() >= 1)
+            {
+                return (int)Math.Round(history.Last().Value);
+            }
+            return 0;
+        }
+
     }
 }

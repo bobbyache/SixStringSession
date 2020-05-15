@@ -57,12 +57,7 @@ namespace SmartGoals
 
         public void CreateProject()
         {
-            string filePath;
-            var opening = this.dialogService.OpenFile(settingsService.InitialProjectDirectory, out filePath);
-            if (opening)
-            {
-                this.dialogService.ExclamationMessage("Created", $"Successfully opened {filePath}");
-            }
+            eventAggregator.PublishOnUIThreadAsync(new NavigateToMessage(NavigateTo.CreateGoal));
         }
 
         public List<RecentProject> RecentProjects

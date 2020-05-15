@@ -37,18 +37,14 @@ namespace SmartGoals
             get { return this.goalTask.Target; }
         }
 
-        public double Weighting
+        public int WeightingPercentage
         {
-            get { return this.goalTask.Weighting; }
+            get { return (int)(this.goalTask.Weighting * 100); }
         }
 
         public IList<IGoalTaskProgressSnapshot> HistoryItems {  get { return this.goalTask.TaskProgressSnapshots; } }
 
-
         public int ProgressValue { get { return this.goalTask.PercentProgress; } }
-
-        
-        public string TaskId { set { this.goalTask = goalManager.GetTaskDetail(value); } }
 
         public TaskDashboardViewModel(IEventAggregator eventAggregator, GoalManager goalManager)
         {
@@ -63,6 +59,12 @@ namespace SmartGoals
         public Task HandleAsync(SelectGoalTaskDetailMessage message, CancellationToken cancellationToken)
         {
             this.goalTask = goalManager.GetTaskDetail(message.TaskId);
+            
+            NotifyOfPropertyChange(() => Title);
+            NotifyOfPropertyChange(() => WeightingPercentage);
+            NotifyOfPropertyChange(() => Target);
+            NotifyOfPropertyChange(() => Start);
+            NotifyOfPropertyChange(() => ProgressValue);
 
             //// Example From: https://lvcharts.net/App/examples/v1/wpf/Date%20Time
             var dayConfig = Mappers.Xy<IGoalTaskProgressSnapshot>()

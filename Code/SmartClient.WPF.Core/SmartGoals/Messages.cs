@@ -7,6 +7,7 @@
         GoalsMenu,
         GoalDashboard,
         TaskDashboard,
+        CreateGoal,
         RoutinesMenu,
         SelectPracticeRoutine,
         Examples
