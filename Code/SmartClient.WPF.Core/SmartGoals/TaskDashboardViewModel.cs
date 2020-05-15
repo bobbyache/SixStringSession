@@ -65,6 +65,7 @@ namespace SmartGoals
             NotifyOfPropertyChange(() => Target);
             NotifyOfPropertyChange(() => Start);
             NotifyOfPropertyChange(() => ProgressValue);
+            NotifyOfPropertyChange(() => HistoryItems);
 
             //// Example From: https://lvcharts.net/App/examples/v1/wpf/Date%20Time
             var dayConfig = Mappers.Xy<IGoalTaskProgressSnapshot>()
@@ -80,6 +81,8 @@ namespace SmartGoals
             };
 
             Formatter = value => new DateTime((long)(value * TimeSpan.FromDays(1).Ticks)).ToString("d");
+
+            NotifyOfPropertyChange(() => Series);
 
             return base.OnActivateAsync(cancellationToken);
         }
