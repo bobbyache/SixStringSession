@@ -1,4 +1,6 @@
-﻿namespace SmartClient.Domain
+﻿using SmartClient.Domain.Common;
+
+namespace SmartClient.Domain
 {
     public interface IGoalTaskDetail
     {
@@ -12,7 +14,7 @@
         public double Start { get; }
         public double Target { get; }
 
-        public string UnitOfMeasure { get; }
+        public TaskUnitOfMeasure UnitOfMeasure { get; }
 
         public int PercentProgress { get; }
 

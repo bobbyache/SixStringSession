@@ -1,4 +1,5 @@
-﻿using SmartClient.Domain.Data;
+﻿using SmartClient.Domain.Common;
+using SmartClient.Domain.Data;
 using SmartClient.Domain.Exceptions;
 using System;
 using System.Collections.Generic;
@@ -101,10 +102,10 @@ namespace SmartClient.Domain
             }
         }
 
-        public string UnitOfMeasure 
+        public TaskUnitOfMeasure UnitOfMeasure 
         {
-            get { return this.dataGoalTask.UnitOfMeasure; }
-            set { this.dataGoalTask.UnitOfMeasure = value; }
+            get { return Utils.ParseToEnum<TaskUnitOfMeasure>(this.dataGoalTask.UnitOfMeasure); }
+            set { this.dataGoalTask.UnitOfMeasure = value.ToString(); }
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using SmartClient.Domain.Data;
+﻿using SmartClient.Domain.Common;
+using SmartClient.Domain.Data;
 using System;
 using System.Collections.Generic;
 using System.Dynamic;
@@ -32,7 +33,7 @@ namespace SmartClient.Domain
         }
         public double Weighting => dataTask.Weighting;
 
-        public string UnitOfMeasure => dataTask.UnitOfMeasure;
+        public TaskUnitOfMeasure UnitOfMeasure => Utils.ParseToEnum<TaskUnitOfMeasure>(this.dataTask.UnitOfMeasure);
 
         private int GetLatestProgressHistoryValue(IList<DataGoalTaskProgressSnapshot> history)
         {

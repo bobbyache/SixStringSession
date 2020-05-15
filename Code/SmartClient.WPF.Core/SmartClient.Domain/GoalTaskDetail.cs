@@ -1,4 +1,5 @@
-﻿using SmartClient.Domain.Data;
+﻿using SmartClient.Domain.Common;
+using SmartClient.Domain.Data;
 using SmartClient.Domain.Weighting;
 using System;
 using System.Collections.Generic;
@@ -47,7 +48,7 @@ namespace SmartClient.Domain
             }
         }
 
-        public string UnitOfMeasure => task.UnitOfMeasure;
+        public TaskUnitOfMeasure UnitOfMeasure => Utils.ParseToEnum<TaskUnitOfMeasure>(this.task.UnitOfMeasure);
 
         public string GoalTitle { get; }
 

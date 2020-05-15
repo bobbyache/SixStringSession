@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SmartClient.Domain.Common;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -10,7 +11,7 @@ namespace SmartClient.Domain
         string Id { get; }
 
         string Title { get; set; }
-        string UnitOfMeasure { get; set; }
+        TaskUnitOfMeasure UnitOfMeasure { get; set; }
         public double Weighting { get; set; }
         public double Start { get; set; }
         public double Target { get; set; }

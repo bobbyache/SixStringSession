@@ -1,4 +1,5 @@
 using Moq;
+using SmartClient.Domain.Common;
 using SmartClient.Domain.Data;
 using SmartClient.Domain.Exceptions;
 using SmartClient.Domain.Tests.Test;
@@ -27,7 +28,7 @@ namespace SmartClient.Domain.Tests
             Assert.True(taskSummary.Id == MockHelpers.TASK_1_ID);
             Assert.Equal(MockHelpers.TASK_1_TITLE, taskSummary.Title);
             Assert.True(taskSummary.PercentProgress == 75);
-            Assert.Equal("BPM", taskSummary.UnitOfMeasure);
+            Assert.Equal(TaskUnitOfMeasure.BPM, taskSummary.UnitOfMeasure);
             Assert.True(taskSummary.Weighting == 0.5);
             Assert.True(taskSummary.GoalTitle == MockHelpers.GOAL_TITLE);
         }
@@ -44,7 +45,7 @@ namespace SmartClient.Domain.Tests
             Assert.True(taskSummaries[0].Id == MockHelpers.TASK_1_ID);
             Assert.True(taskSummaries[0].Title == MockHelpers.TASK_1_TITLE);
             Assert.True(taskSummaries[0].PercentProgress == 75);
-            Assert.True(taskSummaries[0].UnitOfMeasure == "BPM");
+            Assert.True(taskSummaries[0].UnitOfMeasure == TaskUnitOfMeasure.BPM);
             Assert.True(taskSummaries[0].Weighting == 0.5);
             Assert.True(taskSummaries[0].GoalTitle == MockHelpers.GOAL_TITLE);
 
@@ -207,7 +208,7 @@ namespace SmartClient.Domain.Tests
             Guid guidResult;
             Assert.True(Guid.TryParse(editableTask.Id, out guidResult), "Expected that ID would be a type of GUID");
             Assert.Equal("New Task", editableTask.Title);
-            Assert.Equal("BPM", editableTask.UnitOfMeasure);
+            Assert.Equal(TaskUnitOfMeasure.BPM, editableTask.UnitOfMeasure);
             Assert.Equal(0, editableTask.Start);
             Assert.Equal(100, editableTask.Target);
             Assert.Equal(0.5, editableTask.Weighting);
@@ -230,7 +231,7 @@ namespace SmartClient.Domain.Tests
             Assert.Equal(0, taskSummary.PercentProgress);
             Assert.Equal(0.5, taskSummary.Weighting);
             Assert.Equal("New Task", taskSummary.Title);
-            Assert.Equal("BPM", editableTask.UnitOfMeasure);
+            Assert.Equal(TaskUnitOfMeasure.BPM, editableTask.UnitOfMeasure);
             Assert.Equal(goalManager.GetSummary().Title, taskSummary.GoalTitle);
         }
 
@@ -250,7 +251,7 @@ namespace SmartClient.Domain.Tests
             Assert.Equal(0.5, editableTask.Weighting);
             Assert.Equal(0, editableTask.Start);
             Assert.Equal(100, editableTask.Target);
-            Assert.Equal("BPM", editableTask.UnitOfMeasure);
+            Assert.Equal(TaskUnitOfMeasure.BPM, editableTask.UnitOfMeasure);
             Assert.Equal(MockHelpers.TASK_2_TITLE, editableTask.Title);
             Assert.Equal(goalManager.GetSummary().Title, editableTask.GoalTitle);
         }
@@ -268,7 +269,7 @@ namespace SmartClient.Domain.Tests
             Assert.Equal(0, taskDetail.Start);
             Assert.Equal(100, taskDetail.Target);
             Assert.Equal(0.5, taskDetail.Weighting);
-            Assert.Equal("BPM", taskDetail.UnitOfMeasure);
+            Assert.Equal(TaskUnitOfMeasure.BPM, taskDetail.UnitOfMeasure);
 
             Assert.Equal(3, taskDetail.TaskProgressSnapshots.Length);
         }
@@ -298,7 +299,7 @@ namespace SmartClient.Domain.Tests
             editableTask.Weighting = 0.75;
             editableTask.Start = 20;
             editableTask.Target = 120;
-            editableTask.UnitOfMeasure = "MIN";
+            editableTask.UnitOfMeasure = TaskUnitOfMeasure.MIN;
 
             // goalManager.UpdateTask(editableTask);
 
@@ -308,7 +309,7 @@ namespace SmartClient.Domain.Tests
             Assert.Equal(0.75, updatedTask.Weighting);
             Assert.Equal(20, updatedTask.Start);
             Assert.Equal(120, updatedTask.Target);
-            Assert.Equal("MIN", editableTask.UnitOfMeasure);
+            Assert.Equal(TaskUnitOfMeasure.MIN, editableTask.UnitOfMeasure);
         }
 
         [Fact]

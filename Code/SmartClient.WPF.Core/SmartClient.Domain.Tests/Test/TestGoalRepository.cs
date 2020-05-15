@@ -1,4 +1,5 @@
-﻿using SmartClient.Domain.Data;
+﻿using SmartClient.Domain.Common;
+using SmartClient.Domain.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,7 +33,7 @@ namespace SmartClient.Domain.Tests.Test
             task.Start = 0;
             task.Target = 100;
             task.Weighting = 0.5;
-            task.UnitOfMeasure = "BPM";
+            task.UnitOfMeasure = TaskUnitOfMeasure.BPM.ToString();
 
             var goalTaskProgressHistory = new List<DataGoalTaskProgressSnapshot>
             {
