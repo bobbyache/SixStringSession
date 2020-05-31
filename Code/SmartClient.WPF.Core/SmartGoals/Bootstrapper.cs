@@ -8,7 +8,8 @@ using System.Windows;
 
 namespace SmartGoals
 {
-    /*
+    /* Caliburn Videos
+     * -------------------------------------------------------------------------------------------------
      * Current Status: https://youtu.be/o3--INqJRVE?list=PL3JeBX8MKjuHhSFbPOwbrxvdiRC1Lsrkb&t=553
      * -------------------------------------------------------------------------------------------------
      * AutoMapper: https://docs.automapper.org/en/stable/Getting-started.html
@@ -18,9 +19,13 @@ namespace SmartGoals
      * Caliburn Micro Introduction Series: https://www.youtube.com/watch?v=vVFXQ1fvFTc&list=PL3JeBX8MKjuHhSFbPOwbrxvdiRC1Lsrkb
      * 
      * Validation Strategy?
+     * -------------------------------------------------------------------------------------------------
      * https://gist.github.com/canton7/6727693
      * ... however, you've already got a good working implementation going with your MySql solution... so do a spike with that first
-     * 
+     * Also check this:
+     * https://github.com/AIexandr/Caliburn.Micro.Validation
+     * and this:
+     * https://www.codeproject.com/Articles/97564/Attributes-based-Validation-in-a-WPF-MVVM-Applicat
      * */
     public class Bootstrapper : BootstrapperBase
     {
