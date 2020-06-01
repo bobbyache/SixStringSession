@@ -80,24 +80,6 @@ namespace SmartGoals
 
         protected override void OnStartup(object sender, StartupEventArgs e)
         {
-            // https://stackoverflow.com/questions/16404538/setting-the-initial-window-size-in-caliburn-micro
-
-            //double width = 1000; // Settings.Default.screen_width;  //Previous window width 
-            //double height = 800; //  Settings.Default.screen_height; //Previous window height
-
-            //double screen_width = System.Windows.SystemParameters.PrimaryScreenWidth;
-            //double screen_height = System.Windows.SystemParameters.PrimaryScreenHeight;
-
-            //if (width > screen_width) width = (screen_width - 10);
-            //if (height > screen_height) height = (screen_height - 10);
-
-            //Dictionary<string, object> window_settings = new Dictionary<string, object>();
-
-            //window_settings.Add("Width", screen_width);
-            //window_settings.Add("Height", screen_height);
-
-            // DisplayRootViewFor<ShellViewModel>(window_settings);
-
             DisplayRootViewFor<ShellViewModel>();
         }
     }

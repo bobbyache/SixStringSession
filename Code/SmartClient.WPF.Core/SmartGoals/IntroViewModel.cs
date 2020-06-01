@@ -3,9 +3,7 @@ using SmartClient.Domain;
 using SmartGoals.Services;
 using SmartGoals.Supports.CommonScreens;
 using SmartSession.RecentProjects;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace SmartGoals
 {
@@ -14,7 +12,8 @@ namespace SmartGoals
         private readonly GoalManager goalManager;
         private RecentProjectsRepository recentProjects = new RecentProjectsRepository();
 
-        public IntroViewModel(IEventAggregator eventAggregator, IDialogService dialogService, ISettingsService settingsService, GoalManager goalManager)
+        public IntroViewModel(IEventAggregator eventAggregator, IDialogService dialogService, ISettingsService settingsService, 
+            GoalManager goalManager)
             : base(eventAggregator, dialogService, settingsService)
         {
             this.goalManager = goalManager;

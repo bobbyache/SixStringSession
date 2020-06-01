@@ -1,11 +1,8 @@
 ﻿using Caliburn.Micro;
-using LiveCharts;
 using SmartClient.Domain;
 using SmartGoals.Services;
 using SmartGoals.Supports.CommonScreens;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -33,7 +30,6 @@ namespace SmartGoals
         {
             if (this.SelectedTaskSummary != null)
             {
-                var task = this.SelectedTaskSummary;
                 Notify(new SelectGoalTaskDetailMessage(this.SelectedTaskSummary.Id));
                 Notify(new NavigateToMessage(NavigateTo.TaskDashboard));
             }
@@ -62,7 +58,8 @@ namespace SmartGoals
         public string Title { get { return this.goal.Title; } }
         public int PercentProgress {  get { return this.goal.PercentProgress;  } }
 
-        public GoalDashboardViewModel(IEventAggregator eventAggregator, IDialogService dialogService, ISettingsService settingsService, GoalManager goalManager) 
+        public GoalDashboardViewModel(IEventAggregator eventAggregator, IDialogService dialogService, ISettingsService settingsService, 
+            GoalManager goalManager) 
             : base(eventAggregator, dialogService, settingsService)
         {
             this.goalManager = goalManager;    

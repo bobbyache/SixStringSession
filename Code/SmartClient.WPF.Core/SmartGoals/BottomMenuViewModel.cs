@@ -1,9 +1,6 @@
 ﻿using Caliburn.Micro;
 using SmartGoals.Services;
 using SmartGoals.Supports.CommonScreens;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace SmartGoals
 {
