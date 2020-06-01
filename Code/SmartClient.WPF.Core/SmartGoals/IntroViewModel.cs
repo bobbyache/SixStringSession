@@ -1,6 +1,7 @@
 ﻿using Caliburn.Micro;
 using SmartClient.Domain;
 using SmartGoals.Services;
+using SmartGoals.Supports.CommonScreens;
 using SmartSession.RecentProjects;
 using System;
 using System.Collections.Generic;
@@ -8,19 +9,14 @@ using System.Text;
 
 namespace SmartGoals
 {
-    public class IntroViewModel : Screen
+    public class IntroViewModel : BaseScreen
     {
-        private readonly IEventAggregator eventAggregator;
-        private readonly IDialogService dialogService;
-        private readonly ISettingsService settingsService;
         private readonly GoalManager goalManager;
         private RecentProjectsRepository recentProjects = new RecentProjectsRepository();
 
         public IntroViewModel(IEventAggregator eventAggregator, IDialogService dialogService, ISettingsService settingsService, GoalManager goalManager)
+            : base(eventAggregator, dialogService, settingsService)
         {
-            this.eventAggregator = eventAggregator;
-            this.dialogService = dialogService;
-            this.settingsService = settingsService;
             this.goalManager = goalManager;
         }
 

@@ -2,6 +2,7 @@
 using LiveCharts;
 using SmartClient.Domain;
 using SmartGoals.Services;
+using SmartGoals.Supports.CommonScreens;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,12 +11,10 @@ using System.Threading.Tasks;
 
 namespace SmartGoals
 {
-    public class GoalDashboardViewModel: Screen
+    public class GoalDashboardViewModel: BaseScreen
     {
-        private readonly IDialogService dialogService;
         private readonly GoalManager goalManager;
         private IGoalDetail goal;
-        private IEventAggregator eventAggregator { get; }
 
         public IList<IGoalTaskSummary> TaskSummaries { get { return this.goal.TaskSummaries; } }
 
@@ -63,12 +62,10 @@ namespace SmartGoals
         public string Title { get { return this.goal.Title; } }
         public int PercentProgress {  get { return this.goal.PercentProgress;  } }
 
-        public GoalDashboardViewModel(IEventAggregator eventAggregator, IDialogService dialogService, GoalManager goalManager)
+        public GoalDashboardViewModel(IEventAggregator eventAggregator, IDialogService dialogService, ISettingsService settingsService, GoalManager goalManager) 
+            : base(eventAggregator, dialogService, settingsService)
         {
-            this.eventAggregator = eventAggregator;
-            this.dialogService = dialogService;
-            this.goalManager = goalManager;
-            this.eventAggregator.SubscribeOnUIThread(this);         
+            this.goalManager = goalManager;    
         }
 
         protected override Task OnActivateAsync(CancellationToken cancellationToken)

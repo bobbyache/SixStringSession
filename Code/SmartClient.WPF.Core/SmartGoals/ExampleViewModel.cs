@@ -1,12 +1,11 @@
 ﻿using Caliburn.Micro;
+using SmartGoals.Services;
+using SmartGoals.Supports.CommonScreens;
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows;
 
 namespace SmartGoals
 {
-    public class ExampleViewModel: Screen
+    public class ExampleViewModel: BaseScreen
     {
         string name;
 
@@ -21,18 +20,7 @@ namespace SmartGoals
             }
         }
 
-        public string GreetingsMessage
-        {
-            get { return this.greetingMessageProvider.Get(); }
-        }
-
-        private BindableCollection<GoalSummaryModel> goals = new BindableCollection<GoalSummaryModel>();
-
-        public BindableCollection<GoalSummaryModel> Goals
-        {
-            get { return goals; }
-            set { goals = value; }
-        }
+        public BindableCollection<GoalSummaryModel> Goals { get; set; } = new BindableCollection<GoalSummaryModel>();
 
         private GoalSummaryModel selectedGoalSummary;
 
@@ -54,34 +42,22 @@ namespace SmartGoals
         public HeaderViewModel HeaderViewModel { get; }
         public ContentViewModel ContentViewModel { get; }
 
-        // private JsonGoalRepository repository = new JsonGoalRepository(@"C:\Users\RobB\OneDrive - Korbitec Inc\Documents\Guitar\Goals");
-
-        private readonly GreetingsMessageProvider greetingMessageProvider;
-
-        public ExampleViewModel(HeaderViewModel headerViewModel, ContentViewModel contentViewModel, GreetingsMessageProvider greetingMessageProvider)
+        public ExampleViewModel(IEventAggregator eventAggregator, IDialogService dialogService, ISettingsService settingsService, 
+            HeaderViewModel headerViewModel, ContentViewModel contentViewModel) 
+            : base(eventAggregator, dialogService, settingsService)
         {
             HeaderViewModel = headerViewModel;
             ContentViewModel = contentViewModel;
-            this.greetingMessageProvider = greetingMessageProvider;
-
-            //var goalItems = repository.GetGoalList("goals.json");
-            //foreach (var goal in goalItems)
-            //{
-            //    GoalSummaryModel model = new GoalSummaryModel(goal);
-            //    Goals.Add(model);
-            //}
         }
 
         public void SayHello()
         {
-            // Binds by naming convention
-            MessageBox.Show(string.Format("Hello {0}!", Name)); //Don't do this in real life :)
+            dialogService.ExclamationMessage("Hello message", string.Format("Hello {0}!", Name));
         }
 
         public void DoubleClicked()
         {
-            // F1 on button to go to help page for event types that can be actioned. See weird syntax in xaml
-            MessageBox.Show(string.Format("Yeeha {0}, I've been double clicked!", Name)); //Don't do this in real life :)
+            dialogService.ExclamationMessage("Click Message", string.Format("Yeeha {0}, I've been double clicked!", Name));
         }
 
         public void SayHelloClickedOnDblClickWithParam(EventArgs eventArgs)

@@ -1,12 +1,11 @@
 ﻿using Caliburn.Micro;
-using System;
+using SmartGoals.Supports.CommonScreens;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Windows;
 
 namespace SmartGoals
 {
-    public class ShellViewModel : Conductor<Screen>.Collection.OneActive, IHandle<NavigateToMessage>
+    public class ShellViewModel : Conductor<BaseScreen>.Collection.OneActive, IHandle<NavigateToMessage>
     {
         private readonly IEventAggregator eventAggregator;
         private readonly IntroViewModel introViewModel;
@@ -33,7 +32,7 @@ namespace SmartGoals
             this.createGoalViewModel = createGoalViewModel;
             this.mainMenuViewModel = mainMenuViewModel;
             this.exampleViewModel = exampleViewModel;
-            BottomMenuViewModel = bottomMenuViewModel;
+            this.BottomMenuViewModel = bottomMenuViewModel;
             this.goalDashboardViewModel = goalDashboardViewModel;
             this.taskDashboardViewModel = taskDashboardViewModel;
         }
@@ -46,7 +45,7 @@ namespace SmartGoals
             // return base.OnActivateAsync(cancellationToken);
         }
 
-        public override Task DeactivateItemAsync(Screen item, bool close, CancellationToken cancellationToken = default)
+        public override Task DeactivateItemAsync(BaseScreen item, bool close, CancellationToken cancellationToken = default)
         {
             eventAggregator.Unsubscribe(this);
             return base.DeactivateItemAsync(item, close, cancellationToken);

@@ -1,14 +1,14 @@
 ﻿using Caliburn.Micro;
+using SmartGoals.Services;
+using SmartGoals.Supports.CommonScreens;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace SmartGoals
 {
-    public class BottomMenuViewModel: Screen
+    public class BottomMenuViewModel: BaseScreen
     {
-        private readonly IEventAggregator eventAggregator;
-
         public void NavigateToExamples()
         {
             eventAggregator.PublishOnUIThreadAsync(new NavigateToMessage(NavigateTo.Examples));
@@ -24,9 +24,9 @@ namespace SmartGoals
             eventAggregator.PublishOnUIThreadAsync(new NavigateToMessage(NavigateTo.Home));
         }
 
-        public BottomMenuViewModel(IEventAggregator eventAggregator)
+        public BottomMenuViewModel(IEventAggregator eventAggregator, IDialogService dialogService, ISettingsService settingsService) 
+            : base(eventAggregator, dialogService, settingsService)
         {
-            this.eventAggregator = eventAggregator;
         }
     }
 }

@@ -19,7 +19,6 @@
         <ListBox x:Name="GoalSummaries" ItemsSource="{Binding Goals}" SelectedItem="{Binding Path=SelectedGoalSummary, Mode=OneWayToSource}" DisplayMemberPath="Title">
 
         </ListBox>
-        <TextBlock x:Name="GreetingsMessage" FontSize="40" />
         <ContentControl x:Name="HeaderViewModel" />
         <ContentControl x:Name="ContentViewModel" />
     </StackPanel>

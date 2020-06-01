@@ -7,15 +7,15 @@ using LiveCharts.Wpf;
 using SmartClient.Domain;
 using System.Threading;
 using System.Threading.Tasks;
+using SmartGoals.Supports.CommonScreens;
+using SmartGoals.Services;
 
 namespace SmartGoals
 {
-    public class TaskDashboardViewModel : Screen, IHandle<SelectGoalTaskDetailMessage>
+    public class TaskDashboardViewModel : BaseScreen, IHandle<SelectGoalTaskDetailMessage>
     {
         private IGoalTaskDetail goalTask;
         private readonly GoalManager goalManager;
-
-        private IEventAggregator eventAggregator { get; }
 
         public string GoalTitle
         {
@@ -46,9 +46,10 @@ namespace SmartGoals
 
         public int ProgressValue { get { return this.goalTask.PercentProgress; } }
 
-        public TaskDashboardViewModel(IEventAggregator eventAggregator, GoalManager goalManager)
+        public TaskDashboardViewModel(IEventAggregator eventAggregator, IDialogService dialogService, ISettingsService settingsService, 
+            GoalManager goalManager) 
+            : base(eventAggregator, dialogService, settingsService)
         {
-            this.eventAggregator = eventAggregator;
             this.goalManager = goalManager;
             this.eventAggregator.SubscribeOnUIThread(this);            
         }
