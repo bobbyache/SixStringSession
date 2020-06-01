@@ -9,14 +9,14 @@ namespace SmartGoals.Supports.CommonScreens
     public class BaseScreen : Screen
     {
         private readonly IEventAggregator eventAggregator;
-        protected readonly IDialogService dialogService;
-        protected readonly ISettingsService settingsService;
+        protected readonly IDialogService Dialogs;
+        protected readonly ISettingsService Settings;
 
         public BaseScreen(IEventAggregator eventAggregator, IDialogService dialogService, ISettingsService settingsService)
         {
             this.eventAggregator = eventAggregator;
-            this.dialogService = dialogService;
-            this.settingsService = settingsService;
+            this.Dialogs = dialogService;
+            this.Settings = settingsService;
 
             this.eventAggregator.SubscribeOnUIThread(this);
         }

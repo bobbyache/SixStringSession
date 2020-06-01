@@ -43,7 +43,7 @@ namespace SmartGoals
         public void OpenProject()
         {
             string filePath;
-            var opening = this.dialogService.OpenFile(settingsService.InitialProjectDirectory, out filePath);
+            var opening = Dialogs.OpenFile(Settings.InitialProjectDirectory, out filePath);
             if (opening)
             {
                 this.goalManager.Open(filePath);

@@ -52,12 +52,12 @@ namespace SmartGoals
 
         public void SayHello()
         {
-            dialogService.ExclamationMessage("Hello message", string.Format("Hello {0}!", Name));
+            Dialogs.ExclamationMessage("Hello message", string.Format("Hello {0}!", Name));
         }
 
         public void DoubleClicked()
         {
-            dialogService.ExclamationMessage("Click Message", string.Format("Yeeha {0}, I've been double clicked!", Name));
+            Dialogs.ExclamationMessage("Click Message", string.Format("Yeeha {0}, I've been double clicked!", Name));
         }
 
         public void SayHelloClickedOnDblClickWithParam(EventArgs eventArgs)
