@@ -13,27 +13,27 @@ namespace SmartGoals
     {
         public void NavigateToHome()
         {
-            eventAggregator.PublishOnUIThreadAsync(new NavigateToMessage(NavigateTo.Home));
+            Notify(new NavigateToMessage(NavigateTo.Home));
         }
 
         public void NavigateToSettings()
         {
-            // eventAggregator.PublishOnUIThreadAsync(new NavigateToMessage(NavigateTo.Settings));
+            // Notify(new NavigateToMessage(NavigateTo.Settings));
         }
 
         public void NavigateToGoalsMenu()
         {
-            // eventAggregator.PublishOnUIThreadAsync(new NavigateToMessage(NavigateTo.GoalManager));
+            // Notify(new NavigateToMessage(NavigateTo.GoalManager));
         }
 
         public void NavigateToRoutinesMenu()
         {
-            // eventAggregator.PublishOnUIThreadAsync(new NavigateToMessage(NavigateTo.RoutineManager));
+            // Notify(new NavigateToMessage(NavigateTo.RoutineManager));
         }
 
         public void NavigateToExamples()
         {
-            eventAggregator.PublishOnUIThreadAsync(new NavigateToMessage(NavigateTo.Examples));
+            Notify(new NavigateToMessage(NavigateTo.Examples));
         }
 
         public MainMenuViewModel(IEventAggregator eventAggregator, IDialogService dialogService, ISettingsService settingsService)

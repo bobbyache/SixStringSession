@@ -11,17 +11,17 @@ namespace SmartGoals
     {
         public void NavigateToExamples()
         {
-            eventAggregator.PublishOnUIThreadAsync(new NavigateToMessage(NavigateTo.Examples));
+            Notify(new NavigateToMessage(NavigateTo.Examples));
         }
 
         public void NavigateToGoal()
         {
-            eventAggregator.PublishOnUIThreadAsync(new NavigateToMessage(NavigateTo.GoalDashboard));
+            Notify(new NavigateToMessage(NavigateTo.GoalDashboard));
         }
 
         public void NavigateToHome()
         {
-            eventAggregator.PublishOnUIThreadAsync(new NavigateToMessage(NavigateTo.Home));
+            Notify(new NavigateToMessage(NavigateTo.Home));
         }
 
         public BottomMenuViewModel(IEventAggregator eventAggregator, IDialogService dialogService, ISettingsService settingsService) 

@@ -8,7 +8,7 @@ namespace SmartGoals.Supports.CommonScreens
 {
     public class BaseScreen : Screen
     {
-        protected readonly IEventAggregator eventAggregator;
+        private readonly IEventAggregator eventAggregator;
         protected readonly IDialogService dialogService;
         protected readonly ISettingsService settingsService;
 
@@ -19,6 +19,11 @@ namespace SmartGoals.Supports.CommonScreens
             this.settingsService = settingsService;
 
             this.eventAggregator.SubscribeOnUIThread(this);
+        }
+
+        public void Notify(object message)
+        {
+            eventAggregator.PublishOnUIThreadAsync(message);
         }
     }
 }

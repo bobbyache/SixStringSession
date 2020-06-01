@@ -36,7 +36,7 @@ namespace SmartGoals
             if (SelectedRecentProject != null)
             {
                 this.goalManager.Open(SelectedRecentProject.FilePath);
-                eventAggregator.PublishOnUIThreadAsync(new NavigateToMessage(NavigateTo.GoalDashboard));
+                Notify(new NavigateToMessage(NavigateTo.GoalDashboard));
             }
         }
 
@@ -47,13 +47,13 @@ namespace SmartGoals
             if (opening)
             {
                 this.goalManager.Open(filePath);
-                eventAggregator.PublishOnUIThreadAsync(new NavigateToMessage(NavigateTo.GoalDashboard));
+                Notify(new NavigateToMessage(NavigateTo.GoalDashboard));
             }
         }
 
         public void CreateProject()
         {
-            eventAggregator.PublishOnUIThreadAsync(new NavigateToMessage(NavigateTo.CreateGoal));
+            Notify(new NavigateToMessage(NavigateTo.CreateGoal));
         }
 
         public List<RecentProject> RecentProjects

@@ -50,8 +50,7 @@ namespace SmartGoals
             GoalManager goalManager) 
             : base(eventAggregator, dialogService, settingsService)
         {
-            this.goalManager = goalManager;
-            this.eventAggregator.SubscribeOnUIThread(this);            
+            this.goalManager = goalManager;     
         }
 
         public Func<double, string> Formatter { get; set; }

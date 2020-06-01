@@ -2,11 +2,7 @@
 using SmartClient.Domain;
 using SmartGoals.Services;
 using SmartGoals.Supports.CommonScreens;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
-using System.Windows.Navigation;
 
 namespace SmartGoals
 {
@@ -29,7 +25,7 @@ namespace SmartGoals
 
 		public void Cancel()
 		{
-			eventAggregator.PublishOnUIThreadAsync(new NavigateToMessage(NavigateTo.Home));
+			Notify(new NavigateToMessage(NavigateTo.Home));
 		}
 
 		public void Submit()
@@ -39,7 +35,7 @@ namespace SmartGoals
 			editableGoal.Title = this.Title;
 			editableGoal.Weighting = this.WeightingPercentage / 100d;
 			this.goalManager.Save();
-			eventAggregator.PublishOnUIThreadAsync(new NavigateToMessage(NavigateTo.GoalDashboard));
+			Notify(new NavigateToMessage(NavigateTo.GoalDashboard));
 		}
 	}
 }

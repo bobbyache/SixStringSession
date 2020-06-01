@@ -34,8 +34,8 @@ namespace SmartGoals
             if (this.SelectedTaskSummary != null)
             {
                 var task = this.SelectedTaskSummary;
-                eventAggregator.PublishOnUIThreadAsync(new SelectGoalTaskDetailMessage(this.SelectedTaskSummary.Id));
-                eventAggregator.PublishOnUIThreadAsync(new NavigateToMessage(NavigateTo.TaskDashboard));
+                Notify(new SelectGoalTaskDetailMessage(this.SelectedTaskSummary.Id));
+                Notify(new NavigateToMessage(NavigateTo.TaskDashboard));
             }
         }
 
