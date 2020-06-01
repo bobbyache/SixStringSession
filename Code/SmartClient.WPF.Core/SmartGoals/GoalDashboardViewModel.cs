@@ -25,7 +25,7 @@ namespace SmartGoals
             set
             {
                 this.selectedTask = value;
-                NotifyOfPropertyChange("SelectedTaskSummary");
+                NotifyOfPropertyChange(() => SelectedTaskSummary);
             }
         }
 

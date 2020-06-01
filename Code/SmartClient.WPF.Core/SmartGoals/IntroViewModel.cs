@@ -27,7 +27,7 @@ namespace SmartGoals
             set
             {
                 this.selectedRecentProject = value;
-                NotifyOfPropertyChange("SelectedRecentProject");
+                NotifyOfPropertyChange(() => SelectedRecentProject);
             }
         }
 

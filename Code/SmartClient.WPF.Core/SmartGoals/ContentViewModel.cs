@@ -19,7 +19,7 @@ namespace SmartGoals
             set
             {
                 this.contentText = value;
-                NotifyOfPropertyChange("ContentText");
+                NotifyOfPropertyChange(() => ContentText);
             }
         }
         private IEventAggregator eventAggregator { get; }
