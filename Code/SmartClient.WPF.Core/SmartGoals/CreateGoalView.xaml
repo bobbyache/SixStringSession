@@ -17,7 +17,7 @@
                 <TextBlock Text="File:" Margin="5"></TextBlock>
                 <DockPanel LastChildFill="True">
                     <Button DockPanel.Dock="Right" Margin="2" MinWidth="30" Command="{Binding IncrementMinutesPracticedCommand}">...</Button>
-                    <TextBox Text="{Binding FilePath, Mode=TwoWay}" />
+                    <TextBox Text="{Binding FilePath, ValidatesOnNotifyDataErrors=True, Mode=TwoWay}" />
                     
                 </DockPanel>
                 <TextBlock Text="Title:" Margin="5"></TextBlock>
@@ -34,7 +34,7 @@
         </Border>
         <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Grid.Row="1">
             <Button cal:Message.Attach="[Event Click] = [Action Cancel]">Cancel</Button>
-            <Button cal:Message.Attach="[Event Click] = [Action Submit]">Submit</Button>
+            <Button x:Name="Submit" cal:Message.Attach="[Event Click] = [Action Submit]">Submit</Button>
         </StackPanel>
     </Grid>
 </UserControl>
