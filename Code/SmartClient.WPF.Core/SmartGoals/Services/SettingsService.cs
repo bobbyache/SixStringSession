@@ -5,7 +5,6 @@ namespace SmartGoals.Services
     public class SettingsService : ISettingsService
     {
         private const string INITIAL_PROJECT_DIRECTORY = "InitialProjectDirectory";
-
         public virtual string InitialProjectDirectory
         {
             get

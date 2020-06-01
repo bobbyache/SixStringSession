@@ -2,6 +2,7 @@
 using SmartClient.Domain;
 using SmartGoals.Services;
 using SmartGoals.Supports.CommonScreens;
+using SmartGoals.Supports.Validators;
 using System.ComponentModel.DataAnnotations;
 
 namespace SmartGoals
@@ -11,16 +12,14 @@ namespace SmartGoals
 		
 		private string title;
 		[Required]
+		[StringLength(500, MinimumLength = 3, ErrorMessage = "Title must be between 3 and 500 characters")]
 		public string Title
 		{
 			get { return title; }
 			set 
 			{ 
 				title = value;
-				NotifyOfPropertyChange(() => Title);
-				Validate(() => Title, value);
-				NotifyOfPropertyChange(() => CanSubmit);
-				
+				SetAndValidate(() => Title, value);
 			}
 		}
 
@@ -29,15 +28,15 @@ namespace SmartGoals
 		
 		private string filePath;
 		[Required]
+		[ValidFilePath]
+		[ExistingFilePath]
 		public string FilePath
 		{
 			get { return filePath; }
 			set 
 			{ 
 				filePath = value;
-				NotifyOfPropertyChange(() => FilePath);
-				Validate(() => FilePath, value);
-				NotifyOfPropertyChange(() => CanSubmit);
+				SetAndValidate(() => FilePath, value);
 			}
 		}
 
@@ -67,11 +66,6 @@ namespace SmartGoals
 			editableGoal.Weighting = this.WeightingPercentage / 100d;
 			this.goalManager.Save();
 			Notify(new NavigateToMessage(NavigateTo.GoalDashboard));
-		}
-
-		public bool CanSubmit
-		{
-			get { return !validator.HasErrors; }
 		}
 	}
 }

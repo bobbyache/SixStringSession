@@ -17,6 +17,11 @@ namespace SmartGoals.Supports.CommonScreens
             validator.ErrorsChanged += Validator_ErrorsChanged;
         }
 
+        public bool CanSubmit
+        {
+            get { return !validator.HasErrors; }
+        }
+
         public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
 
         protected ValidatableObject validator;
@@ -32,6 +37,14 @@ namespace SmartGoals.Supports.CommonScreens
         {
             if (this.ErrorsChanged != null)
                 ErrorsChanged(this, e);
+        }
+
+
+        public void SetAndValidate<T>(Expression<Func<T>> propertyExpression, T newValue)
+        {
+            NotifyOfPropertyChange(propertyExpression);
+            Validate(propertyExpression, newValue);
+            NotifyOfPropertyChange(() => CanSubmit);
         }
 
         public void Validate<T>(Expression<Func<T>> propertyExpression, T newValue)
