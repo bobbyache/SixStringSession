@@ -2,13 +2,12 @@
 using LiveCharts;
 using System;
 using System.Collections.Generic;
-using LiveCharts.Configurations;
-using LiveCharts.Wpf;
 using SmartClient.Domain;
 using System.Threading;
 using System.Threading.Tasks;
 using SmartGoals.Supports.CommonScreens;
 using SmartGoals.Services;
+using SmartGoals.Charts;
 
 namespace SmartGoals
 {
@@ -67,20 +66,9 @@ namespace SmartGoals
             NotifyOfPropertyChange(() => ProgressValue);
             NotifyOfPropertyChange(() => HistoryItems);
 
-            //// Example From: https://lvcharts.net/App/examples/v1/wpf/Date%20Time
-            var dayConfig = Mappers.Xy<IGoalTaskProgressSnapshot>()
-              .X(dateModel => dateModel.Day.Ticks / TimeSpan.FromDays(1).Ticks)
-              .Y(dateModel => dateModel.Value);
-
-            //Notice you can also configure this type globally, so you don't need to configure every
-            //SeriesCollection instance using the type.
-            //more info at http://lvcharts.net/App/Index#/examples/v1/wpf/Types%20and%20Configuration
-            Series = new SeriesCollection(dayConfig)
-            {
-                new LineSeries { Values = new ChartValues<IGoalTaskProgressSnapshot>(goalTask.TaskProgressSnapshots) }
-            };
-
-            Formatter = value => new DateTime((long)(value * TimeSpan.FromDays(1).Ticks)).ToString("d");
+            TaskProgressLinearChart linearChart = new TaskProgressLinearChart(goalTask.TaskProgressSnapshots);
+            Series = linearChart.Series;
+            Formatter = linearChart.Formatter;
 
             NotifyOfPropertyChange(() => Series);
 
