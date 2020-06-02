@@ -28,8 +28,8 @@ namespace SmartGoals
 		
 		private string filePath;
 		[Required]
-		[ValidFilePath]
-		[ExistingFilePath]
+		[ValidFilePathValidator]
+		[ExistingFilePathValidator]
 		public string FilePath
 		{
 			get { return filePath; }

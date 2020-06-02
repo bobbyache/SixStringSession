@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.IO;
-using System.Text;
 
 namespace SmartGoals.Supports.Validators
 {
-    public class ExistingFilePath : ValidationAttribute
+    public class ExistingFilePathValidator : ValidationAttribute
     {
         public override bool IsValid(object value)
         {
