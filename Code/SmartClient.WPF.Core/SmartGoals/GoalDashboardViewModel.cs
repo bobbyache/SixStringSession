@@ -47,7 +47,17 @@ namespace SmartGoals
 
         public void DeleteTask()
         {
-
+            if (selectedTask != null)
+            {
+                if (Dialogs.YesNoPrompt("Delete Task", $"Sure you'd like to delete task\n{selectedTask.Title}"))
+                {
+                    this.goalManager.DeleteTask(selectedTask.Id);
+                    this.goalManager.Save();
+                    this.goal = this.goalManager.GetDetail();
+                    NotifyOfPropertyChange(() => TaskSummaries);
+                    NotifyOfPropertyChange(() => PercentProgress);
+                }
+            }
         }
 
         public string Title { get { return this.goal.Title; } }
