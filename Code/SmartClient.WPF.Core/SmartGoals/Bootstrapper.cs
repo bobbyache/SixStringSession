@@ -63,14 +63,10 @@ namespace SmartGoals
 
             simpleContainer.Singleton<IntroViewModel>();
             simpleContainer.Singleton<CreateGoalViewModel>();
-            simpleContainer.Singleton<MainMenuViewModel>();
-            simpleContainer.Singleton<ExampleViewModel>();
             simpleContainer.Singleton<GoalDashboardViewModel>();
             simpleContainer.Singleton<BottomMenuViewModel>();
             simpleContainer.Singleton<TaskDashboardViewModel>();
             simpleContainer.Singleton<ShellViewModel>();
-            simpleContainer.Singleton<HeaderViewModel>();
-            simpleContainer.Singleton<ContentViewModel>();
         }
 
         protected override void OnExit(object sender, EventArgs e)

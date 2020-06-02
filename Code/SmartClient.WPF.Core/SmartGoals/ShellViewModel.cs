@@ -10,8 +10,6 @@ namespace SmartGoals
         private readonly IEventAggregator eventAggregator;
         private readonly IntroViewModel introViewModel;
         private readonly CreateGoalViewModel createGoalViewModel;
-        private readonly MainMenuViewModel mainMenuViewModel;
-        private readonly ExampleViewModel exampleViewModel;
         private readonly GoalDashboardViewModel goalDashboardViewModel;
         private readonly TaskDashboardViewModel taskDashboardViewModel;
 
@@ -20,8 +18,6 @@ namespace SmartGoals
         public ShellViewModel(IEventAggregator eventAggregator, 
             IntroViewModel introViewModel,
             CreateGoalViewModel createGoalViewModel,
-            MainMenuViewModel mainMenuViewModel, 
-            ExampleViewModel exampleViewModel, 
             BottomMenuViewModel bottomMenuViewModel,
             GoalDashboardViewModel goalDashboardViewModel,
             TaskDashboardViewModel taskDashboardViewModel
@@ -30,8 +26,6 @@ namespace SmartGoals
             this.eventAggregator = eventAggregator;
             this.introViewModel = introViewModel;
             this.createGoalViewModel = createGoalViewModel;
-            this.mainMenuViewModel = mainMenuViewModel;
-            this.exampleViewModel = exampleViewModel;
             this.BottomMenuViewModel = bottomMenuViewModel;
             this.goalDashboardViewModel = goalDashboardViewModel;
             this.taskDashboardViewModel = taskDashboardViewModel;
@@ -42,7 +36,6 @@ namespace SmartGoals
             eventAggregator.SubscribeOnUIThread(this);
             // Will set this.ActiveItem for View
             return ActivateItemAsync(this.introViewModel, cancellationToken);
-            // return base.OnActivateAsync(cancellationToken);
         }
 
         public override Task DeactivateItemAsync(BaseScreen item, bool close, CancellationToken cancellationToken = default)
@@ -53,11 +46,7 @@ namespace SmartGoals
 
         public Task HandleAsync(NavigateToMessage message, CancellationToken cancellationToken)
         {
-            if (message.NavigateTo == NavigateTo.Examples)
-            {
-                this.ActiveItem = exampleViewModel;
-            }
-            else if (message.NavigateTo == NavigateTo.Home)
+            if (message.NavigateTo == NavigateTo.Home)
             {
                 this.ActiveItem = this.introViewModel;
             }

@@ -6,16 +6,6 @@ namespace SmartGoals
 {
     public class BottomMenuViewModel: BaseScreen
     {
-        public void NavigateToExamples()
-        {
-            Notify(new NavigateToMessage(NavigateTo.Examples));
-        }
-
-        public void NavigateToGoal()
-        {
-            Notify(new NavigateToMessage(NavigateTo.GoalDashboard));
-        }
-
         public void NavigateToHome()
         {
             Notify(new NavigateToMessage(NavigateTo.Home));

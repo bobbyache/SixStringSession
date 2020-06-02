@@ -23,7 +23,7 @@
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
-                            <Label Content="{Binding Date}" Width="110"></Label>
+                            <Label Content="{Binding Day}" Width="110"></Label>
                             <TextBox Text="{Binding Value}" Width="40"></TextBox>
                         </StackPanel>
                     </DataTemplate>

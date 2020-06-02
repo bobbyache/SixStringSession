@@ -3,14 +3,9 @@
     public enum NavigateTo
     {
         Home,
-        Settings,
-        GoalsMenu,
         GoalDashboard,
         TaskDashboard,
         CreateGoal,
-        RoutinesMenu,
-        SelectPracticeRoutine,
-        Examples
     }
 
     public sealed class NavigateToMessage

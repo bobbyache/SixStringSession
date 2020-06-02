@@ -3,12 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:SmartGoals"
              mc:Ignorable="d" d:DesignWidth="800" Height="58">
     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Stretch">
         <Button x:Name="NavigateToHome">Home</Button>
-        
-        <Button x:Name="NavigateToGoal">Goal Dashboard</Button>
-        <Button x:Name="NavigateToExamples">Examples</Button>
     </StackPanel>
 </UserControl>

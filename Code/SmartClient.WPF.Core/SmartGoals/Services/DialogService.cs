@@ -42,7 +42,7 @@ namespace SmartGoals.Services
             return false;
         }
 
-        public bool WarningYesNoPrompt(string caption, string message)
+        public bool YesNoWarningPrompt(string caption, string message)
         {
             MessageBoxResult result = MessageBox.Show(message, caption, MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (result == MessageBoxResult.Yes)
