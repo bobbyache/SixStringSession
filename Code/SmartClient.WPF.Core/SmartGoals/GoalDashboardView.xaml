@@ -20,29 +20,41 @@
         </Border>
 
         <Border Grid.Row="1" DockPanel.Dock="Top" Style="{StaticResource PagePanel}">
-            <ListBox ItemsSource="{Binding TaskSummaries}" SelectedItem="{Binding SelectedTaskSummary}" HorizontalContentAlignment="Stretch" cal:Message.Attach="[MouseDoubleClick]=[Action OpenSelectedTask]">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <Grid Margin="0,2">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="200" />
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="{Binding Title, Mode=OneWay}" />
-                            <ProgressBar Grid.Column="1" Minimum="0" Maximum="100" Value="{Binding PercentProgress, Mode=OneWay}" />
-                        </Grid>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-                <ListBox.ContextMenu>
-                    <ContextMenu cal:Action.TargetWithoutContext="{Binding Path=PlacementTarget.DataContext, RelativeSource={RelativeSource Self}}">
-                        <MenuItem Header="Add" cal:Message.Attach="AddTask" />
-                        <MenuItem Header="Edit" cal:Message.Attach="EditTask" />
-                        <MenuItem Header="Delete" cal:Message.Attach="DeleteTask" />
-                        <Separator />
-                        <MenuItem Header="Summary" cal:Message.Attach="ViewTaskSummary" />
-                    </ContextMenu>
-                </ListBox.ContextMenu>
-            </ListBox>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Stretch">
+                    <Button cal:Message.Attach="[Event Click] = [Action ViewTaskSummary]">View</Button>
+                    <Button cal:Message.Attach="[Event Click] = [Action AddTask]">Add</Button>
+                    <Button cal:Message.Attach="[Event Click] = [Action EditTask]">Edit</Button>
+                    <Button cal:Message.Attach="[Event Click] = [Action DeleteTask]">Delete</Button>
+                </StackPanel>
+                <ListBox Grid.Row="1" ItemsSource="{Binding TaskSummaries}" SelectedItem="{Binding SelectedTaskSummary}" HorizontalContentAlignment="Stretch" cal:Message.Attach="[MouseDoubleClick]=[Action ViewTaskSummary]">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="0,2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="200" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="{Binding Title, Mode=OneWay}" />
+                                <ProgressBar Grid.Column="1" Minimum="0" Maximum="100" Value="{Binding PercentProgress, Mode=OneWay}" />
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                    <ListBox.ContextMenu>
+                        <ContextMenu cal:Action.TargetWithoutContext="{Binding Path=PlacementTarget.DataContext, RelativeSource={RelativeSource Self}}">
+                            <MenuItem Header="Add" cal:Message.Attach="AddTask" />
+                            <MenuItem Header="Edit" cal:Message.Attach="EditTask" />
+                            <MenuItem Header="Delete" cal:Message.Attach="DeleteTask" />
+                            <Separator />
+                            <MenuItem Header="View" cal:Message.Attach="ViewTaskSummary" />
+                        </ContextMenu>
+                    </ListBox.ContextMenu>
+                </ListBox>
+            </Grid>
         </Border>
         <ContentControl Grid.Row="2" x:Name="BottomMenuViewModel" />
     </Grid>

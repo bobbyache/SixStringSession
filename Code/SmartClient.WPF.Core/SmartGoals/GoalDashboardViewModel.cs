@@ -26,7 +26,7 @@ namespace SmartGoals
             }
         }
 
-        public void OpenSelectedTask()
+        public void ViewTaskSummary()
         {
             if (this.SelectedTaskSummary != null)
             {
@@ -50,11 +50,6 @@ namespace SmartGoals
 
         }
 
-        public void ViewTaskSummary()
-        {
-
-        }
-
         public string Title { get { return this.goal.Title; } }
         public int PercentProgress {  get { return this.goal.PercentProgress;  } }
 
@@ -68,6 +63,12 @@ namespace SmartGoals
         protected override Task OnActivateAsync(CancellationToken cancellationToken)
         {
             this.goal = this.goalManager.GetDetail();
+
+            NotifyOfPropertyChange(() => Title);
+            NotifyOfPropertyChange(() => PercentProgress);
+            NotifyOfPropertyChange(() => TaskSummaries);
+            NotifyOfPropertyChange(() => SelectedTaskSummary);
+
             return base.OnActivateAsync(cancellationToken);
         }
     }

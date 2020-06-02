@@ -16,6 +16,9 @@ namespace SmartGoals
         private IGoalTaskDetail goalTask;
         private readonly GoalManager goalManager;
 
+        public Func<double, string> Formatter { get; set; }
+        public SeriesCollection Series { get; set; }
+
         public string GoalTitle
         {
             get { return "Goal Title"; }
@@ -52,8 +55,10 @@ namespace SmartGoals
             this.goalManager = goalManager;     
         }
 
-        public Func<double, string> Formatter { get; set; }
-        public SeriesCollection Series { get; set; }
+        public void BackToGoal()
+        {
+            Notify(new NavigateToMessage(NavigateTo.GoalDashboard));
+        }
 
         public Task HandleAsync(SelectGoalTaskDetailMessage message, CancellationToken cancellationToken)
         {
