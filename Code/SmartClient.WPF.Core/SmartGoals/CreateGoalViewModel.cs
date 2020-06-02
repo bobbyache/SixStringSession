@@ -3,7 +3,9 @@ using SmartClient.Domain;
 using SmartGoals.Services;
 using SmartGoals.Supports.CommonScreens;
 using SmartGoals.Supports.Validators;
+using System;
 using System.ComponentModel.DataAnnotations;
+using System.IO;
 
 namespace SmartGoals
 {
@@ -29,7 +31,6 @@ namespace SmartGoals
 		private string filePath;
 		[Required]
 		[ValidFilePathValidator]
-		[ExistingFilePathValidator]
 		public string FilePath
 		{
 			get { return filePath; }
@@ -40,8 +41,6 @@ namespace SmartGoals
 			}
 		}
 
-
-
 		private readonly GoalManager goalManager;
 
 		public CreateGoalViewModel(IEventAggregator eventAggregator, 
@@ -51,6 +50,21 @@ namespace SmartGoals
 		{
 			this.goalManager = goalManager;
 			ValidateAll();
+		}
+
+		public void CreateFilePath()
+		{
+			string filePath;
+			var opened = Dialogs.CreateFile(Settings.InitialProjectDirectory, ".json", "JSON Files (*.json)|*.json", out filePath);
+			if (opened)
+			{
+				FilePath = filePath;
+
+				if (string.IsNullOrEmpty(Title))
+				{
+					Title = Path.GetFileNameWithoutExtension(FilePath);
+				}
+			}
 		}
 
 		public void Cancel()

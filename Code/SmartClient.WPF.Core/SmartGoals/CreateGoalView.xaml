@@ -15,7 +15,7 @@
             <StackPanel>
                 <TextBlock Text="File:" Margin="5"></TextBlock>
                 <DockPanel LastChildFill="True">
-                    <Button DockPanel.Dock="Right" Margin="2" MinWidth="30" Command="{Binding IncrementMinutesPracticedCommand}">...</Button>
+                    <Button DockPanel.Dock="Right" Margin="2" MinWidth="30" cal:Message.Attach="[Event Click] = [Action CreateFilePath]">...</Button>
                     <TextBox Text="{Binding FilePath, ValidatesOnNotifyDataErrors=True, Mode=TwoWay}" />
                     
                 </DockPanel>

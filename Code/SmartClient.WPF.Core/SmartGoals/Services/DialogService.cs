@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Caliburn.Micro;
+using System;
 using System.Windows;
 
 namespace SmartGoals.Services
@@ -22,7 +23,30 @@ namespace SmartGoals.Services
             dlg.CheckPathExists = true;
             dlg.Multiselect = false;
 
-            Nullable<bool> result = dlg.ShowDialog();
+            bool? result = dlg.ShowDialog();
+
+            if (result == true)
+            {
+                filePath = dlg.FileName;
+                return true;
+            }
+
+            filePath = null;
+            return false;
+        }
+
+        public bool CreateFile(string initialDirectory, string defaultExtension, string fileFilters, out string filePath)
+        {
+            Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
+
+            dlg.Title = "Create File";
+            dlg.DefaultExt = defaultExtension; // ".png";
+            dlg.Filter = fileFilters; // "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif";
+            dlg.InitialDirectory = initialDirectory;
+            dlg.CheckPathExists = true;
+            dlg.OverwritePrompt = true;
+
+            bool? result = dlg.ShowDialog();
 
             if (result == true)
             {
