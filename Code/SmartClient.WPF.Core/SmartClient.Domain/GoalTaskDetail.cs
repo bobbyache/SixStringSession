@@ -1,11 +1,8 @@
 ﻿using SmartClient.Domain.Common;
 using SmartClient.Domain.Data;
-using SmartClient.Domain.Weighting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection.Metadata.Ecma335;
-using System.Text;
 
 namespace SmartClient.Domain
 {
@@ -22,8 +19,6 @@ namespace SmartClient.Domain
         public string Id => task.Id;
 
         public string Title => task.Title;
-
-        public string Type => task.UnitOfMeasure;
 
         public double Weighting => task.Weighting;
 

@@ -66,6 +66,7 @@ namespace SmartGoals
             simpleContainer.Singleton<GoalDashboardViewModel>();
             simpleContainer.Singleton<BottomMenuViewModel>();
             simpleContainer.Singleton<TaskDashboardViewModel>();
+            simpleContainer.Singleton<AddTaskViewModel>();
             simpleContainer.Singleton<ShellViewModel>();
         }
 

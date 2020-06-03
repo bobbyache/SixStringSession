@@ -1,10 +1,10 @@
-﻿<UserControl x:Class="SmartGoals.TaskDashboardView"
+﻿<UserControl x:Class="SmartGoals.AddTaskView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
-             xmlns:cal="http://www.caliburnproject.org"
+             xmlns:cal="http://www.caliburnproject.org" 
+             xmlns:common="clr-namespace:SmartClient.Domain.Common;assembly=SmartClient.Domain"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
@@ -12,31 +12,11 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="40" />
-            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Label Grid.Row="0" Content="{Binding GoalTitle, Mode=OneWay}" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
         <Label Grid.Row="1" Content="{Binding Title, Mode=Default}" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
-        <DockPanel Grid.Row="2" LastChildFill="True">
-            <ListBox Margin="10" Width="200" ItemsSource="{Binding HistoryItems}" DockPanel.Dock="Left">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <Label Content="{Binding Day}" Width="110"></Label>
-                            <TextBox Text="{Binding Value}" Width="40"></TextBox>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
-            <lvc:CartesianChart Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" DockPanel.Dock="Right"  Series="{Binding Series}" Background="#222E31">
-                <lvc:CartesianChart.AxisX>
-                    <lvc:Axis LabelFormatter="{Binding Formatter}"></lvc:Axis>
-                </lvc:CartesianChart.AxisX>
-            </lvc:CartesianChart>
-        </DockPanel>
-        <ProgressBar Margin="10" Grid.Row="3"  Height="10" Value="{Binding ProgressValue, Mode=OneWay}" />
-        <Border Grid.Row="4" DockPanel.Dock="Top" Style="{StaticResource PagePanel}">
+        <Border Grid.Row="2" DockPanel.Dock="Top" Style="{StaticResource PagePanel}">
             <StackPanel DockPanel.Dock="Left">
                 <TextBlock Text="Title:" Margin="5"></TextBlock>
                 <TextBox Margin="5" Text="{Binding Title, ValidatesOnNotifyDataErrors=True, Mode=OneWay}"></TextBox>
@@ -59,8 +39,14 @@
                              TickPlacement="BottomRight" IsSnapToTickEnabled="True"></Slider>
 
                 </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock MinWidth="80" Margin="2" Text="Measure" />
+                    <!--<ComboBox HorizontalAlignment="Center" VerticalAlignment="Center" MinWidth="150"
+                        ItemsSource="{Binding Source={markupexts:EnumBindingSource {x:Type common:TaskUnitOfMeasure}} }" />-->
+                    
+                </StackPanel>
             </StackPanel>
         </Border>
-        <Button Grid.Row="5" cal:Message.Attach="[Event Click] = [Action BackToGoal]">Back to Goal</Button>
+        <Button Grid.Row="3" cal:Message.Attach="[Event Click] = [Action BackToGoal]">Back to Goal</Button>
     </Grid>
 </UserControl>

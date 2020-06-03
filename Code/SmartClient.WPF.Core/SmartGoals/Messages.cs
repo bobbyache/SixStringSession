@@ -6,6 +6,7 @@
         GoalDashboard,
         TaskDashboard,
         CreateGoal,
+        AddTask
     }
 
     public sealed class NavigateToMessage

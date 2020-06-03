@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace SmartClient.Domain.Common
 {
     public class Utils
     {
+        // Note that here are some other options for enum parsing: https://gist.github.com/pbdesk/1723650
         public static T ParseToEnum<T>(string enumText) where T : struct, IConvertible
         {
             if (!typeof(T).IsEnum)

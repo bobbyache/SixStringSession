@@ -37,7 +37,7 @@ namespace SmartGoals
 
         public void AddTask()
         {
-
+            Notify(new NavigateToMessage(NavigateTo.AddTask));
         }
 
         public void EditTask()

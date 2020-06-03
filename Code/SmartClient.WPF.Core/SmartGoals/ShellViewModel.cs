@@ -12,15 +12,17 @@ namespace SmartGoals
         private readonly CreateGoalViewModel createGoalViewModel;
         private readonly GoalDashboardViewModel goalDashboardViewModel;
         private readonly TaskDashboardViewModel taskDashboardViewModel;
+        private readonly AddTaskViewModel addTaskViewModel;
 
         public BottomMenuViewModel BottomMenuViewModel { get; }
 
-        public ShellViewModel(IEventAggregator eventAggregator, 
+        public ShellViewModel(IEventAggregator eventAggregator,
             IntroViewModel introViewModel,
             CreateGoalViewModel createGoalViewModel,
             BottomMenuViewModel bottomMenuViewModel,
             GoalDashboardViewModel goalDashboardViewModel,
-            TaskDashboardViewModel taskDashboardViewModel
+            TaskDashboardViewModel taskDashboardViewModel,
+            AddTaskViewModel addTaskViewModel
             )
         {
             this.eventAggregator = eventAggregator;
@@ -29,6 +31,7 @@ namespace SmartGoals
             this.BottomMenuViewModel = bottomMenuViewModel;
             this.goalDashboardViewModel = goalDashboardViewModel;
             this.taskDashboardViewModel = taskDashboardViewModel;
+            this.addTaskViewModel = addTaskViewModel;
         }
 
         protected override Task OnActivateAsync(CancellationToken cancellationToken)
@@ -61,6 +64,10 @@ namespace SmartGoals
             else if (message.NavigateTo == NavigateTo.TaskDashboard)
             {
                 this.ActiveItem = taskDashboardViewModel;
+            }
+            else if (message.NavigateTo == NavigateTo.AddTask)
+            {
+                this.ActiveItem = addTaskViewModel;
             }
 
             return Task.CompletedTask;
