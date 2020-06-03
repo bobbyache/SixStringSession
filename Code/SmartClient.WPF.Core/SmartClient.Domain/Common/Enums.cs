@@ -1,16 +1,17 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace SmartClient.Domain.Common
 {
     public enum TaskUnitOfMeasure
     {
-        [Display(Description = "Beats per Min (BPM)")]
+        [Description("Beats per Min (BPM)")]
         BPM,
-        [Display(Description = "Duration in Minutes")]
+        [Description("Duration in Minutes")]
         MIN,
-        [Display(Description = "Bars or Measures")]
+        [Description("Bars or Measures")]
         BAR,
-        [Display(Description = "Percentage (%)")]
+        [Description("Percentage (%)")]
         PER
     }
 }
