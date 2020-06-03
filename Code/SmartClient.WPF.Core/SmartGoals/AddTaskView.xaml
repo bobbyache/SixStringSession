@@ -4,7 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:cal="http://www.caliburnproject.org" 
-             xmlns:common="clr-namespace:SmartClient.Domain.Common;assembly=SmartClient.Domain"
+             xmlns:enums="clr-namespace:SmartClient.Domain.Common;assembly=SmartClient.Domain" 
+             xmlns:converters="clr-namespace:SmartGoals.Supports.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
@@ -40,10 +41,12 @@
 
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock MinWidth="80" Margin="2" Text="Measure" />
-                    <!--<ComboBox HorizontalAlignment="Center" VerticalAlignment="Center" MinWidth="150"
-                        ItemsSource="{Binding Source={markupexts:EnumBindingSource {x:Type common:TaskUnitOfMeasure}} }" />-->
-                    
+                    <TextBlock MinWidth="115" Margin="2" Text="Unit Measure" />
+                    <ComboBox MinWidth="200"
+                        ItemsSource="{Binding UnitOfMeasure, Converter={converters:EnumToCollectionConverter}, Mode=OneTime}"
+                      SelectedValuePath="Value"
+                      DisplayMemberPath="Description"
+                      SelectedValue="{Binding UnitOfMeasure}" />
                 </StackPanel>
             </StackPanel>
         </Border>
