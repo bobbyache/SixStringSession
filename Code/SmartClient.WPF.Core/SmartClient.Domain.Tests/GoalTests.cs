@@ -221,7 +221,26 @@ namespace SmartClient.Domain.Tests
             goalManager.Open(PATH_TO_FILE);
 
             var editableTask = goalManager.CreateTask();
+
+            Guid guidResult;
+            Assert.True(Guid.TryParse(editableTask.Id, out guidResult), "Expected that ID would be a type of GUID");
+
+            Assert.Equal(0.5, editableTask.Weighting);
+            Assert.Equal("New Task", editableTask.Title);
+            Assert.Equal(TaskUnitOfMeasure.BPM, editableTask.UnitOfMeasure);
+            Assert.Equal(goalManager.GetSummary().Title, editableTask.GoalTitle);
+        }
+        [Fact]
+        public void AddATask_AddsATaskOnGoal()
+        {
+            var goalManager = new GoalManager(new TestGoalRepository());
+            goalManager.Open(PATH_TO_FILE);
+
+            var editableTask = goalManager.CreateTask();
+            goalManager.AddTask(editableTask);
+
             var taskSummary = goalManager.GetTaskSummary(editableTask.Id);
+            
 
             Assert.NotNull(taskSummary);
 
@@ -319,6 +338,8 @@ namespace SmartClient.Domain.Tests
             goalManager.Open(PATH_TO_FILE);
 
             var editableTask = goalManager.CreateTask();
+            goalManager.AddTask(editableTask);
+
             var taskId = editableTask.Id;
 
             goalManager.UpdateTaskProgressSnapshot(editableTask.Id, DateTime.Parse("2012-09-05"), 10);
@@ -360,6 +381,8 @@ namespace SmartClient.Domain.Tests
             goalManager.Open(PATH_TO_FILE);
 
             var editableTask = goalManager.CreateTask();
+            goalManager.AddTask(editableTask);
+
             var taskId = editableTask.Id;
 
             goalManager.UpdateTaskProgressSnapshot(editableTask.Id, DateTime.Parse("2012-09-05"), 10);

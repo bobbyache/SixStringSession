@@ -134,8 +134,13 @@ namespace SmartClient.Domain
 
             var dataGoalTask = new DataGoalTask();
             var editableGoalTask = new EditableGoalTask(this.dataGoal.Title, dataGoalTask);
-            this.dataGoal.Tasks.Add(dataGoalTask);
             return editableGoalTask;
+        }
+
+        public void AddTask(IEditableGoalTask task)
+        {
+           var dataGoalTask =  ((EditableGoalTask)task).DataGoalTask;
+            this.dataGoal.Tasks.Add(dataGoalTask);
         }
 
         public IEditableGoalTask GetEditableTask(string id)
