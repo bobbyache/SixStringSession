@@ -20,36 +20,39 @@
         <Border Grid.Row="2" DockPanel.Dock="Top" Style="{StaticResource PagePanel}">
             <StackPanel DockPanel.Dock="Left">
                 <TextBlock Text="Title:" Margin="5"></TextBlock>
-                <TextBox Margin="5" Text="{Binding Title, ValidatesOnNotifyDataErrors=True, Mode=OneWay}"></TextBox>
+                <TextBox Margin="5" Text="{Binding Title, ValidatesOnNotifyDataErrors=True, Mode=TwoWay}"></TextBox>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Start Value:" MinWidth="80" Margin="5"></TextBlock>
-                    <TextBox MinWidth="60" Text="{Binding Start, ValidatesOnNotifyDataErrors=True, Mode=OneWay}" 
+                    <TextBox MinWidth="60" Text="{Binding Start, ValidatesOnNotifyDataErrors=True, Mode=TwoWay}" 
                              Margin="5"></TextBox>
 
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Target Value:" MinWidth="80" Margin="5"></TextBlock>
-                    <TextBox MinWidth="60" Text="{Binding Target, ValidatesOnNotifyDataErrors=True, Mode=OneWay}" 
+                    <TextBox MinWidth="60" Text="{Binding Target, ValidatesOnNotifyDataErrors=True, Mode=TwoWay}" 
                              Margin="5"></TextBox>
 
                 </StackPanel>
-                <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Vertical">
                     <TextBlock Text="Weighting Value:" MinWidth="80" Margin="5"></TextBlock>
-                    <Slider Margin="5" MinWidth="100" Maximum="100" TickFrequency="1" 
-                            Value="{Binding WeightingPercentage, ValidatesOnNotifyDataErrors=True, Mode=OneWay}"
-                             TickPlacement="BottomRight" IsSnapToTickEnabled="True"></Slider>
+                    <Slider Margin="5" MinWidth="100" TickFrequency="1" 
+                            Value="{Binding WeightingPercentage, ValidatesOnNotifyDataErrors=True, Mode=TwoWay}"
+                             TickPlacement="BottomRight" IsSnapToTickEnabled="True" Minimum="0" Maximum="100"></Slider>
 
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock MinWidth="115" Margin="2" Text="Unit Measure" />
                     <ComboBox MinWidth="200"
-                        ItemsSource="{Binding UnitOfMeasure, Converter={converters:EnumToCollectionConverter}, Mode=OneTime}"
+                        ItemsSource="{Binding UnitOfMeasure, Converter={converters:EnumToCollectionConverter}, Mode=TwoWay}"
                       SelectedValuePath="Value"
                       DisplayMemberPath="Description"
                       SelectedValue="{Binding UnitOfMeasure}" />
                 </StackPanel>
             </StackPanel>
         </Border>
-        <Button Grid.Row="3" cal:Message.Attach="[Event Click] = [Action BackToGoal]">Back to Goal</Button>
+        <StackPanel Grid.Row="3" HorizontalAlignment="Right" Orientation="Horizontal">
+            <Button cal:Message.Attach="[Event Click] = [Action Cancel]">Cancel</Button>
+            <Button x:Name="Submit" cal:Message.Attach="[Event Click] = [Action Submit]">Submit</Button>
+        </StackPanel>
     </Grid>
 </UserControl>

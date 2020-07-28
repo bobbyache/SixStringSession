@@ -3,16 +3,15 @@ using SmartClient.Domain;
 using SmartClient.Domain.Common;
 using SmartGoals.Services;
 using SmartGoals.Supports.CommonScreens;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using System.ComponentModel.DataAnnotations;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace SmartGoals
 {
-    public class AddTaskViewModel : ValidatableScreen
+    public class AddTaskViewModel : ValidatableScreen, IHandle<AddTaskMessage>
     {
+        private IGoalDetail goal;
         private IEditableGoalTask goalTask;
         private readonly GoalManager goalManager;
 
@@ -21,6 +20,8 @@ namespace SmartGoals
             get { return this.goalTask.GoalTitle; }
         }
 
+        [Required]
+        [StringLength(250, MinimumLength=3, ErrorMessage="Title must be between 3 and 250 characters")]
         public string Title
         {
             get { return this.goalTask.Title; }
@@ -67,7 +68,6 @@ namespace SmartGoals
             set
             {
                 this.goalTask.UnitOfMeasure = value;
-                // this.goalTask.UnitOfMeasure = TaskUnitOfMeasure.BPM;
                 SetAndValidate(() => UnitOfMeasure, value);
             }
         }
@@ -81,13 +81,33 @@ namespace SmartGoals
 
         protected override Task OnActivateAsync(CancellationToken cancellationToken)
         {
+            return base.OnActivateAsync(cancellationToken);
+        }
+
+        public Task HandleAsync(AddTaskMessage message, CancellationToken cancellationToken)
+        {
+            this.goal = message.Goal;
             this.goalTask = goalManager.CreateTask();
 
             NotifyOfPropertyChange(() => Title);
             NotifyOfPropertyChange(() => Target);
             NotifyOfPropertyChange(() => Start);
+            NotifyOfPropertyChange(() => WeightingPercentage);
+            NotifyOfPropertyChange(() => UnitOfMeasure);
 
-            return base.OnActivateAsync(cancellationToken);
+            return Task.CompletedTask;
         }
+        public void Cancel()
+        {
+            Notify(new NavigateToMessage(NavigateTo.GoalDashboard));
+        }
+
+        public void Submit()
+        {
+            this.goalManager.AddTask(this.goalTask);
+            this.goalManager.Save();
+            Notify(new NavigateToMessage(NavigateTo.GoalDashboard));
+        }
+
     }
 }

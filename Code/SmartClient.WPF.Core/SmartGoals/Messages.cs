@@ -1,4 +1,6 @@
-﻿namespace SmartGoals
+﻿using SmartClient.Domain;
+
+namespace SmartGoals
 {
     public enum NavigateTo
     {
@@ -25,6 +27,15 @@
         public SelectGoalTaskDetailMessage(string taskId)
         {
             this.TaskId = taskId;
+        }
+    }
+
+    public sealed class AddTaskMessage
+    {
+        public IGoalDetail Goal { get; private set; }
+        public AddTaskMessage(IGoalDetail goal)
+        {
+            this.Goal = goal;
         }
     }
 }
